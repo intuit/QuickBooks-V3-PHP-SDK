@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:dk:nordsign:application:services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns0="urn:dk:nordsign:schema:ContactPerson" xmlns:ns1="urn:dk:nordsign:schema:ContactCompany" name="NavService" targetNamespace="urn:dk:nordsign:application:services">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:dk:nordsign:application:services">
+      <xsd:import namespace="urn:dk:nordsign:schema:ContactPerson" schemaLocation="http://mylocation.com/schemas/ContactPerson.xsd"/>
+      <xsd:import namespace="urn:dk:nordsign:schema:ContactCompany" schemaLocation="http://mylocation.com/schemas/ContactCompany.xsd"/>
+      <xsd:element name="UpdateContactPerson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns0:ContactPerson"/>
+            <xsd:element name="Test" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateContactPersonResponse" type="xsd:string"/>
+      <xsd:element name="UpdateContactCompany">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:ContactCompany"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateContactCompanyResponse" type="xsd:float"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateContactCompanyResponse">
+    <wsdl:part name="UpdateContactCompanyResponse" element="tns:UpdateContactCompany"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateContactCompany">
+    <wsdl:part name="UpdateContactCompany" element="tns:UpdateContactCompany"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateContactPersonResponse">
+    <wsdl:part name="UpdateContactPersonResponse" element="tns:UpdateContactPerson"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateContactPerson">
+    <wsdl:part name="UpdateContactPerson" element="tns:UpdateContactPerson"/>
+  </wsdl:message>
+  <wsdl:portType name="NavService_Port">
+    <wsdl:operation name="UpdateContactPerson">
+      <wsdl:input message="tns:UpdateContactPerson"/>
+      <wsdl:output message="tns:UpdateContactPersonResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactCompany">
+      <wsdl:input message="tns:UpdateContactCompany"/>
+      <wsdl:output message="tns:UpdateContactCompanyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NavService_Binding" type="tns:NavService_Port">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UpdateContactPerson">
+      <soap:operation soapAction="urn:dk:nordsign:application:services/UpdateContactPerson"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactCompany">
+      <soap:operation soapAction="urn:dk:nordsign:application:services/UpdateContactCompany"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NavService_Service">
+    <wsdl:port name="NavService_Port" binding="tns:NavService_Binding">
+      <soap:address location="http://mylocation.com/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:ContactCompany xmlns:ns0="urn:dk:nordsign:schema:ContactCompany" xmlns:ns1="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <ns0:ID>3242342323</ns0:ID>
+  <ns1:CompanyID>23423423423</ns1:CompanyID>
+  <ns0:BillingAddress>
+    <ns0:Address>
+      <ns1:Line>Address line</ns1:Line>
+    </ns0:Address>
+    <ns0:PostalCode>9200</ns0:PostalCode>
+    <ns0:City>Aalborg</ns0:City>
+    <ns0:Country>DK</ns0:Country>
+  </ns0:BillingAddress>
+  <ns0:ShippingAddress>
+    <ns0:Address>
+      <ns1:Line>Gammelnibevej 122</ns1:Line>
+    </ns0:Address>
+  </ns0:ShippingAddress>
+  <ns0:ShippingAddress>
+    <ns0:Address>
+      <ns1:Line>Nyborgvej 23 st th</ns1:Line>
+    </ns0:Address>
+  </ns0:ShippingAddress>
+</ns0:ContactCompany>

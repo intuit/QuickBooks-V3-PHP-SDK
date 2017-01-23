@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shiporder xmlns:ns0="http://www.w3.org/2001/XMLSchema" orderid="Order ID">
+  <orderperson>Jon Doe</orderperson>
+  <shipto>
+    <name>Jon Doe Company</name>
+    <address>Big Valley Str. 142</address>
+    <city>Aalborg</city>
+    <country>Denmark</country>
+  </shipto>
+  <item>
+    <title>Example title</title>
+    <note>Note</note>
+    <quantity>145</quantity>
+    <price>125.5</price>
+  </item>
+</shiporder>
