@@ -1,0 +1,19 @@
+{
+    "name": "hlu2/quick-books_demo",
+    "description": "The demo for QuickBooks PHP Open Source Release",
+    "type": "library",
+    "require": {
+        "php": ">=5.6.0",
+        "ext-OAuth": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "hlu2",
+            "email": "Hao_Lu@intuit.com"
+        }
+    ]
+}

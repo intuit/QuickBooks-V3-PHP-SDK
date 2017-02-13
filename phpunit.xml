@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<phpunit bootstrap="./bootstrape.php"
+          colors="true">
+  <testsuites>
+        <testsuite name="QuickBooks PHP Test Suite">
+            <directory suffix=".test.php">test</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+
+      </logging>
+      <filter>
+        <blacklist>
+            <directory suffix=".php">vendor</directory>
+        </blacklist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory suffix=".php">src/XSD2PHP</directory>
+                <directory suffix=".php">src/Data</directory>
+              </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

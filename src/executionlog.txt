@@ -1,0 +1,38 @@
+Called GetBaseURL method.
+GetSerializer
+GetSerializer(Response): XML
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
+Called Method Add.
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
+Called PrepareRequest method
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
+Called GetBaseURL method.
+GetSerializer
+GetSerializer(Response): XML
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
+Called Method Add.
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
+Called PrepareRequest method
+GetSerializer
+GetSerializer(Request): Xml
+GetSerializer
+GetSerializer(Response): XML
