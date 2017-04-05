@@ -1,0 +1,15 @@
+<phpunit colors="true" bootstrap="Bootstrap.php"
+	convertErrorsToExceptions="true" convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true" processIsolation="true" stopOnFailure="false"
+	syntaxCheck="false">
+	<testsuites>
+		<testsuite name="General">
+			<file>BindTest.php</file>
+			<file>Php2XmlTest.php</file>
+			<file>Xsd2PhpTest.php</file>
+		</testsuite>
+		<testsuite name="Xsd2Php" >
+			<file>Xsd2Php/MavenXsdTest.php</file>
+		</testsuite>
+	</testsuites>
+</phpunit>

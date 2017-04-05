@@ -1,0 +1,2419 @@
+<?xml version="1.0"?>
+<xsdschema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:exslt="http://exslt.org/common">
+  <classes>
+    <class debug="1.1-1" name="project" type="Model" namespace="http://maven.apache.org/POM/4.0.0"><extends debug="1.2Extend" name="Model"/>
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				The &lt;code&gt;&amp;lt;project&amp;gt;&lt;/code&gt; element is the root of the
+				descriptor.
+				The following table lists all of the possible child elements.
+			</doc>
+		</docs>
+	</class>
+    <class debug="1.2-2" name="Model" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				The &lt;code&gt;&amp;lt;project&amp;gt;&lt;/code&gt; element is the root of the
+				descriptor.
+				The following table lists all of the possible child elements.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="parent" type="Parent" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The location of the parent project, if one exists. Values from the
+						parent project will be the default for this project if they are
+						left unspecified. The location is given as a group ID, artifact ID and
+						version.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="modelVersion" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Declares to which version of
+						project descriptor this POM conforms.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						A universally unique identifier for a project. It is normal to
+						use a fully-qualified package name to distinguish it from other projects with
+						a similar name
+						(eg. &lt;code&gt;org.apache.maven&lt;/code&gt;).
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The identifier for this artifact that is unique within the group given by the
+						group ID.
+						An artifact is something that is either produced or used by a project.
+						Examples of artifacts produced by
+						Maven for a project include: JARs, source and binary distributions, and WARs.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="packaging" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The type of artifact this project produces, for example
+						&lt;code&gt;jar&lt;/code&gt;
+						&lt;code&gt;war&lt;/code&gt;
+						&lt;code&gt;ear&lt;/code&gt;
+						&lt;code&gt;pom&lt;/code&gt;.
+						Plugins can create their own packaging, and
+						therefore their own packaging types,
+						so this list does not contain all possible types.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The full name of the project.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The current version of the artifact produced by this project.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="description" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						A detailed description of the project, used by Maven whenever it needs to
+						describe the project,
+						such as on the web site. While this element can be specified as CDATA to
+						enable
+						the use of HTML tags within the description, it is discouraged to allow plain
+						text representation.
+						If you need to modify the index page of the generated web site, you are able
+						to specify your own instead
+						of adjusting this text.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The URL to the project's homepage.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="prerequisites" type="Prerequisites" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Describes the prerequisites in the build environment for this project.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="issueManagement" type="IssueManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The project's issue
+						management system information.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="ciManagement" type="CiManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The project's continuous
+						integration information.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="inceptionYear" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The year of the project's inception, specified with 4 digits.
+						This value is used when generating copyright notices as well as being
+						informational.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="mailingLists" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Contains information about a project's mailing lists.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="mailingList" type="MailingList" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="developers" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Describes the committers of a project.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="developer" type="Developer" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="contributors" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Describes the contributors to a project that are not yet committers.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="contributor" type="Contributor" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="licenses" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes all of the licenses for this project.
+						Each license is described by a &lt;code&gt;license&lt;/code&gt; element, which
+						is then described by additional elements.
+						Projects should only list the license(s) that applies to the project
+						and not the licenses that apply to dependencies.
+						If multiple licenses are listed, it is assumed that the user can select any
+						of them, not that they
+						must accept all.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="license" type="License" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="scm" type="Scm" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Specification for the SCM used by the project, such as CVS, Subversion, etc.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="organization" type="Organization" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes various attributes of the organization to
+						which the project belongs. These attributes are utilized when
+						documentation is created (for copyright notices and links).
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="build" type="Build" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">Information required to build the
+						project.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="profiles" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						A listing of project-local build profiles which will modify the build
+						process when activated.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="profile" type="Profile" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="modules" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The modules (sometimes called subprojects) to build as a part of this
+						project.
+						Each module listed is a relative path to the directory containing the module.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="module" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="repositories" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The lists of the remote
+						repositories for discovering dependencies and
+						extensions.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="repository" type="Repository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginRepositories" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The lists of the remote repositories for discovering plugins for builds and
+						reports.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginRepository" type="Repository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencies" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes all of the dependencies associated with a
+						project.
+						These dependencies are used to construct a classpath for your
+						project during the build process. They are automatically downloaded from the
+						repositories defined in this project.
+						See &lt;a
+						href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html"&gt;the
+						dependency mechanism&lt;/a&gt; for more information.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="dependency" type="Dependency" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reports" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						&lt;b&gt;Deprecated&lt;/b&gt;. Now ignored by Maven.
+          </doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reporting" type="Reporting" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element includes the specification of report plugins to use to generate
+						the reports on the
+						Maven-generated site. These reports will be run when a user executes &lt;code&gt;mvn
+						site&lt;/code&gt;. All of the
+						reports will be included in the navigation bar for browsing.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencyManagement" type="DependencyManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Default dependency information for projects that inherit from
+						this one. The dependencies in this section are not immediately resolved.
+						Instead, when a POM derived from this one declares a dependency
+						described by a matching groupId and artifactId, the version and other values from
+						this
+						section are used for that dependency if they were not already specified.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="distributionManagement" type="DistributionManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Distribution information for a
+						project that enables deployment of the site
+						and artifacts to remote web servers and repositories respectively.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="properties" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Properties that can be used throughout the POM as a substitution, and are used as
+						filters in resources
+						if enabled. The format is
+						&lt;code&gt;&amp;lt;name&amp;gt;value&amp;lt;/name&amp;gt;&lt;/code&gt;.
+					</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Contributor" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				Description of a person who has contributed to the project, but who does
+				not have commit privileges. Usually, these contributions come in the
+				form of patches submitted.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The full name of the contributor.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="email" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The email address of the
+						contributor.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The URL for the homepage of the
+						contributor.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="organization" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The organization to which the
+						contributor belongs.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="organizationUrl" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The URL of the organization.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="roles" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The roles the contributor plays in the project. Each role is
+						described by a &lt;code&gt;role&lt;/code&gt; element, the body of which is a
+						role name. This can also be used to describe the contribution.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="role" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="timezone" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The timezone the contributor is in. This is a number in the range -11 to 12.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="properties" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Properties about the contributor, such as an instant messenger handle.
+					</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Profile" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Modifications to the build process which is activated based on environmental parameters
+				or command line arguments.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The identifier of this build
+						profile. This used both for command line activation, and identifies
+						identical profiles to merge with during inheritance.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="activation" type="Activation" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The conditional logic which will
+						automatically
+						trigger the inclusion of this profile.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="build" type="BuildBase" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Information required to build the
+						project.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="modules" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The modules (sometimes called subprojects) to build as a part of this
+						project.
+						Each module listed is a relative path to the directory containing the module.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="module" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="repositories" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The lists of the remote
+						repositories for discovering dependencies and
+						extensions.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="repository" type="Repository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginRepositories" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The lists of the remote repositories for discovering plugins for builds and
+						reports.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginRepository" type="Repository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencies" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes all of the dependencies associated with a
+						project.
+						These dependencies are used to construct a classpath for your
+						project during the build process. They are automatically downloaded from the
+						repositories defined in this project.
+						See &lt;a
+						href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html"&gt;the
+						dependency mechanism&lt;/a&gt; for more information.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="dependency" type="Dependency" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reports" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						&lt;b&gt;Deprecated&lt;/b&gt;. Now ignored by Maven.
+          </doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reporting" type="Reporting" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element includes the specification of report plugins to use to generate
+						the reports on the
+						Maven-generated site. These reports will be run when a user executes &lt;code&gt;mvn
+						site&lt;/code&gt;. All of the
+						reports will be included in the navigation bar for browsing.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencyManagement" type="DependencyManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Default dependency information for projects that inherit from
+						this one. The dependencies in this section are not immediately resolved.
+						Instead, when a POM derived from this one declares a dependency
+						described by a matching groupId and artifactId, the version and other values from
+						this
+						section are used for that dependency if they were not already specified.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="distributionManagement" type="DistributionManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Distribution information for a
+						project that enables deployment of the site
+						and artifacts to remote web servers and repositories respectively.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="properties" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Properties that can be used throughout the POM as a substitution, and are used as
+						filters in resources
+						if enabled. The format is
+						&lt;code&gt;&amp;lt;name&amp;gt;value&amp;lt;/name&amp;gt;&lt;/code&gt;.
+					</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Activation" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				The conditions within the build runtime environment which will trigger
+				the automatic inclusion of the build profile.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="activeByDefault" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Flag specifying whether this
+						profile is active by default.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="jdk" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Specifies that this profile will be activated when a matching JDK is detected. For
+						example, &lt;code&gt;1.4&lt;/code&gt;
+						only activates on JDKs versioned 1.4, while &lt;code&gt;!1.4&lt;/code&gt;
+						matches any JDK that is not version 1.4.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="os" type="ActivationOS" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Specifies that this profile will be activated when matching operating system
+						attributes are detected.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="property" type="ActivationProperty" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Specifies that this profile will be activated when this system property is
+						specified.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="file" type="ActivationFile" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Specifies that this profile will be activated based on existence of a file.
+					</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="ActivationFile" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				This is the file specification used to activate the profile. The missing value
+				will be the location
+				of a file that needs to exist, and if it doesn't the profile will be
+				activated. On the other hand exists will test
+				for the existence of the file and if it is there the profile will be activated.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="missing" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The name of the file that must be
+						missing to activate the profile.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="exists" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The name of the file that must
+						exist to activate the profile.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="ActivationProperty" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				This is the property specification used to activate a profile. If the value
+				field is empty,
+				then the existence of the named property will activate the profile, otherwise it
+				does a case-sensitive
+				match against the property value as well.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The name of the property to be
+						used to activate a profile.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="value" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The value of the property
+						required to activate a profile.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="ActivationOS" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				This is an activator which will detect an operating system's attributes in
+				order to activate
+				its profile.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The name of the operating system
+						to be used to activate the profile. This must be an exact match
+						of the &lt;code&gt;${os.name}&lt;/code&gt; Java property, such as
+						&lt;code&gt;Windows XP&lt;/code&gt;.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="family" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The general family of the OS to be used to activate the profile, such as
+						&lt;code&gt;windows&lt;/code&gt; or &lt;code&gt;unix&lt;/code&gt;.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="arch" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The architecture of the operating
+						system to be used to activate the profile.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The version of the operating
+						system to be used to activate the profile.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="DependencyManagement" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Section for management of default dependency information for use in a group of
+				POMs.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencies" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The dependencies specified here are not used until they
+						are referenced in a POM within the group. This allows the
+						specification of a "standard" version for a particular
+						dependency.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="dependency" type="Dependency" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Dependency" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The project group that produced the dependency, e.g.
+						&lt;code&gt;org.apache.maven&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The unique id for an artifact produced by the project group, e.g.
+						&lt;code&gt;maven-artifact&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The version of the dependency, e.g. &lt;code&gt;3.2.1&lt;/code&gt;. In Maven
+						2, this can also be
+						specified as a range of versions.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="type" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The type of dependency. This defaults to &lt;code&gt;jar&lt;/code&gt;. While
+						it usually represents the extension on
+						the filename of the dependency, that is not always the case. A type can be
+						mapped to a different
+						extension and a classifier.
+						The type often correspongs to the packaging used, though this is also not
+						always the case.
+						Some examples are &lt;code&gt;jar&lt;/code&gt;, &lt;code&gt;war&lt;/code&gt;,
+						&lt;code&gt;ejb-client&lt;/code&gt; and &lt;code&gt;test-jar&lt;/code&gt;.
+						New types can be defined by plugins that set
+						&lt;code&gt;extensions&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;, so
+						this is not a complete list.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="classifier" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The classifier of the dependency. This allows distinguishing two artifacts
+						that belong to the same POM but
+						were built differently, and is appended to the filename after the version. For
+						example,
+						&lt;code&gt;jdk14&lt;/code&gt; and &lt;code&gt;jdk15&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="scope" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The scope of the dependency - &lt;code&gt;compile&lt;/code&gt;,
+						&lt;code&gt;runtime&lt;/code&gt;, &lt;code&gt;test&lt;/code&gt;,
+						&lt;code&gt;system&lt;/code&gt;, and &lt;code&gt;provided&lt;/code&gt;.
+						Used to
+						calculate the various classpaths used for compilation, testing, and so on. It also
+						assists in determining
+						which artifacts to include in a distribution of this project. For more
+						information, see
+						&lt;a
+						href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html"&gt;the
+						dependency mechanism&lt;/a&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="systemPath" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						FOR SYSTEM SCOPE ONLY. Note that use of this property is
+						&lt;b&gt;discouraged&lt;/b&gt; and may be replaced in later
+						versions. This specifies the path on the filesystem for this dependency.
+						Requires an absolute path for the value, not relative.
+						Use a property that gives the machine specific absolute path,
+						e.g. &lt;code&gt;${java.home}&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="exclusions" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Lists a set of artifacts that should be excluded from this dependency's
+						artifact list when it comes to
+						calculating transitive dependencies.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="exclusion" type="Exclusion" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="optional" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Indicates the dependency is optional for use of this library. While the version of
+						the dependency will be
+						taken into account for dependency calculation if the library is used elsewhere,
+						it will not be passed on
+						transitively.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Exclusion" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The artifact ID of the project to
+						exclude.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group ID of the project to
+						exclude.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Reporting" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Section for management of reports
+				and their configuration.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="excludeDefaults" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">If true, then the default reports
+						are not included in the site generation. This includes the
+						reports in the "Project Info" menu.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="outputDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Where to store all of the generated reports. The default is
+						&lt;code&gt;${project.build.directory}/site&lt;/code&gt;
+						.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="plugins" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The reporting plugins to use and
+						their configuration.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="plugin" type="ReportPlugin" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="ReportPlugin" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group ID of the reporting
+						plugin in the repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The artifact ID of the reporting
+						plugin in the repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The version of the reporting
+						plugin to be used.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="inherited" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether the configuration in this
+						plugin should be made available to projects that
+						inherit from this one.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="configuration" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The configuration of the
+						reporting plugin.</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reportSets" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Multiple specifications of a set
+						of reports, each having (possibly) different
+						configuration. This is the reporting parallel to an &lt;code&gt;execution&lt;/code&gt;
+						in the build.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="reportSet" type="ReportSet" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="ReportSet" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Represents a set of reports and
+				configuration to be used to generate them.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">0.0.0+</doc>
+					<doc name="Definition">The unique id for this report
+						set, to be used during POM inheritance.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="configuration" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Configuration of the report to be
+						used when generating this set.</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="inherited" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Whether any configuration should be propagated to child POMs.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="reports" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of reports from this plugin which should be generated from this set.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="report" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="BuildBase" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="defaultGoal" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The default goal (or phase in Maven 2) to execute when none is specified for
+						the project.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="resources" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes all of the classpath resources such as properties files
+						associated with a
+						project. These resources are often included in the final package.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="resource" type="Resource" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="testResources" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element describes all of the classpath resources such as properties files
+						associated with a
+						project's unit tests.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="testResource" type="Resource" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="directory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The directory where all files generated by the build are placed.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="finalName" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The filename (excluding the extension, and with no path information) that the
+						produced artifact
+						will be called. The default value is
+						&lt;code&gt;${artifactId}-${version}&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="filters" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of filter properties files that are used when filtering is enabled.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="filter" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginManagement" type="PluginManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Default plugin information to be made available for reference by
+						projects derived from this one. This plugin configuration will not
+						be resolved or bound to the lifecycle unless referenced. Any local
+						configuration for a given plugin will override the plugin's entire
+						definition here.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="plugins" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of plugins to use.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="plugin" type="Plugin" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Plugin" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group ID of the plugin in the
+						repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The artifact ID of the plugin in
+						the repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The version (or valid range of
+						verisons) of the plugin to be used.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="extensions" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to load Maven extensions
+						(such as packaging and type handlers) from this
+						plugin. For performance reasons, this should only be enabled when necessary.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="executions" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Multiple specifications of a set
+						of goals to execute during the build lifecycle, each having
+						(possibly) different
+						configuration.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="execution" type="PluginExecution" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="dependencies" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Additional dependencies that this
+						project needs to introduce to the plugin's
+						classloader.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="dependency" type="Dependency" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="goals" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						&lt;b&gt;Deprecated&lt;/b&gt;. Unused by Maven.
+          </doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="inherited" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Whether any configuration should be propagated to child POMs.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="configuration" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">0.0.0+</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="PluginExecution" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The identifier of this execution
+						for labelling the goals during the build, and for matching
+						exections to merge during inheritance.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="phase" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The build lifecycle phase to bind
+						the goals in this execution to. If omitted, the goals will
+						be bound to the default specified in their metadata.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="goals" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The goals to execute with the
+						given configuration.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="goal" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="inherited" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Whether any configuration should be propagated to child POMs.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="configuration" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">0.0.0+</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="PluginManagement" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Section for management of default plugin information for use in a group of POMs.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="plugins" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of plugins to use.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="plugin" type="Plugin" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Resource" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				This element describes all of the classpath resources associated with a project
+				or
+				unit tests.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="targetPath" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Describe the resource target path. For example, if you want that
+						resource to appear in a specific package
+						(&lt;code&gt;org.apache.maven.messages&lt;/code&gt;), you must specify
+						this
+						element with this value: &lt;code&gt;org/apache/maven/messages&lt;/code&gt;.
+						This is not required if you simply put the resources in that directory
+						structure at the source, however.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="filtering" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Whether resources are filtered to replace tokens with parameterised values or
+						not.
+						The values are taken from the &lt;code&gt;properties&lt;/code&gt; element and
+						from the properties in the files listed
+						in the &lt;code&gt;filters&lt;/code&gt; element.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="directory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Describe the directory where the resources are stored.
+						The path is relative to the POM.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="includes" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">A list of patterns to include,
+						e.g. &lt;code&gt;**&amp;#47;*.xml&lt;/code&gt;.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="include" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="excludes" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">A list of patterns to exclude,
+						e.g. &lt;code&gt;**&amp;#47;*.xml&lt;/code&gt;</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="exclude" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="DistributionManagement" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				This elements describes all that pertains to distribution for a project.
+				It is primarily used for deployment of artifacts and the site
+				produced by the build.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="repository" type="DeploymentRepository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Information needed to deploy the artifacts generated by the project to a remote
+						repository.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="snapshotRepository" type="DeploymentRepository" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Where to deploy snapshots of artifacts to. If not given, it defaults to the
+						&lt;code&gt;repository&lt;/code&gt; element.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="site" type="Site" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Information needed for deploying the web site of the project.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="downloadUrl" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0+</doc>
+					<doc name="Definition">
+						The URL of the project's download page. If not given users will be
+						referred to the homepage given by
+						&lt;code&gt;url&lt;/code&gt;. This is given to assist in locating artifacts that are not in the
+						repository due to
+						licensing restrictions.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="relocation" type="Relocation" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Relocation information of the artifact if it has been moved to a new group ID and/or
+						artifact ID.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="status" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Gives the status of this artifact in the remote repository. This must not be
+						set in your local
+						project, as it is updated by tools placing it in the reposiory. Valid values are:
+						&lt;code&gt;none&lt;/code&gt; (default),
+						&lt;code&gt;converted&lt;/code&gt; (repository manager converted this from
+						an Maven 1 POM), &lt;code&gt;partner&lt;/code&gt;
+						(directly synced from a partner Maven 2 repository),
+						&lt;code&gt;deployed&lt;/code&gt; (was deployed from a Maven 2
+						instance), &lt;code&gt;verified&lt;/code&gt; (has been hand verified as correct and
+						final).
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Site" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Contains the information needed for deploying websites.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						A unique identifier for a deployment locataion. This is used to match the
+						site to configuration in
+						the &lt;code&gt;settings.xml&lt;/code&gt; file, for example.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Human readable name of the deployment location.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The url of the location where website is deployed, in the form
+						&lt;code&gt;protocol://hostname/path&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Relocation" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Describes where an artifact has
+				moved to. If any of the values are omitted, it is assumed to be the
+				same as it was before.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group ID the artifact has
+						moved to.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The new artifact ID of the
+						artifact.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The new version of the artifact.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="message" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">An additional message to show the
+						user about the move, such as the reason.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="DeploymentRepository" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Repository contains the information needed for deploying to the remote repoistory.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="uniqueVersion" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to assign snapshots a
+						unique version comprised of the timestamp and build number, or to
+						use the same version each time</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						A unique identifier for a repository. This is used to match the repository
+						to configuration in
+						the &lt;code&gt;settings.xml&lt;/code&gt; file, for example.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Human readable name of the repository.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The url of the repository, in the form
+						&lt;code&gt;protocol://hostname/path&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="layout" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The type of layout this repository uses for locating and storing artifacts -
+						can be &lt;code&gt;legacy&lt;/code&gt; or
+						&lt;code&gt;default&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Repository" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				A repository contains the information needed for establishing connections
+				with remote repoistory.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="releases" type="RepositoryPolicy" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">How to handle downloading of
+						releases from this repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="snapshots" type="RepositoryPolicy" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">How to handle downloading of
+						snapshots from this repository.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						A unique identifier for a repository. This is used to match the repository
+						to configuration in
+						the &lt;code&gt;settings.xml&lt;/code&gt; file, for example.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Human readable name of the repository.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The url of the repository, in the form
+						&lt;code&gt;protocol://hostname/path&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="layout" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The type of layout this repository uses for locating and storing artifacts -
+						can be &lt;code&gt;legacy&lt;/code&gt; or
+						&lt;code&gt;default&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="RepositoryPolicy" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Download policy</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="enabled" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to use this repository
+						for downloading this type of artifact.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="updatePolicy" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The frequency for downloading updates - can be
+						&lt;code&gt;always,&lt;/code&gt;
+						&lt;code&gt;daily&lt;/code&gt;
+						(default),
+						&lt;code&gt;interval:XXX&lt;/code&gt;
+						(in minutes) or
+						&lt;code&gt;never&lt;/code&gt;
+						(only if it doesn't exist locally).
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="checksumPolicy" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						What to do when verification of an artifact checksum fails. Valid values are
+						&lt;code&gt;ignore&lt;/code&gt;
+						,
+						&lt;code&gt;fail&lt;/code&gt;
+						or
+						&lt;code&gt;warn&lt;/code&gt;
+						(the default).
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="MailingList" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				This element describes all of the mailing lists associated with
+				a project. The auto-generated site references this information.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The name of the mailing list.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="subscribe" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The email address or link that can be used to subscribe to the mailing list.
+						If this is an email address, a
+						&lt;code&gt;mailto:&lt;/code&gt; link will automatically be created when
+						the documentation is created.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="unsubscribe" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The email address or link that can be used to unsubscribe to
+						the mailing list. If this is an email address, a
+						&lt;code&gt;mailto:&lt;/code&gt; link will automatically be created
+						when the documentation is created.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="post" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The email address or link that can be used to post to
+						the mailing list. If this is an email address, a
+						&lt;code&gt;mailto:&lt;/code&gt; link will automatically be created
+						when the documentation is created.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="archive" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The link to a URL where you can browse the mailing list archive.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="otherArchives" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The link to alternate URLs where you can browse the list archive.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="otherArchive" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Build" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="sourceDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element specifies a directory containing the source
+						of the project. The generated build system will compile
+						the source in this directory when the project is built.
+						The path given is relative to the project descriptor.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="scriptSourceDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element specifies a directory containing the script sources
+						of the project. This directory is meant to be different from the
+						sourceDirectory, in that its contents will be copied to the output
+						directory in most cases (since scripts are interpreted rather than
+						compiled).
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="testSourceDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element specifies a directory containing the unit test
+						source of the project. The generated build system will
+						compile these directories when the project is being tested.
+						The path given is relative to the project descriptor.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="outputDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The directory where compiled application classes are placed.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="testOutputDirectory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The directory where compiled test classes are placed.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="extensions" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">A set of build extensions to use
+						from this project.</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="extension" type="Extension" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="defaultGoal" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The default goal (or phase in Maven 2) to execute when none is specified for
+						the project.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="resources" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						This element describes all of the classpath resources such as properties files
+						associated with a
+						project. These resources are often included in the final package.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="resource" type="Resource" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="testResources" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						This element describes all of the classpath resources such as properties files
+						associated with a
+						project's unit tests.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="testResource" type="Resource" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="directory" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The directory where all files generated by the build are placed.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="finalName" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The filename (excluding the extension, and with no path information) that the
+						produced artifact
+						will be called. The default value is
+						&lt;code&gt;${artifactId}-${version}&lt;/code&gt;.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="filters" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of filter properties files that are used when filtering is enabled.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="filter" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="pluginManagement" type="PluginManagement" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Default plugin information to be made available for reference by
+						projects derived from this one. This plugin configuration will not
+						be resolved or bound to the lifecycle unless referenced. Any local
+						configuration for a given plugin will override the plugin's entire
+						definition here.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="plugins" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The list of plugins to use.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="plugin" type="Plugin" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Extension" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Describes a build extension to
+				utilise.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group ID of the
+						extension's artifact.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The artifact ID of the extension.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The version of the extension.
+					</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="IssueManagement" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Information about the issue tracking (or bug tracking) system used to manage this
+				project.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="system" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The name of the issue management
+						system, e.g. Bugzilla</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">URL for the issue management
+						system used by the project.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Parent" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="artifactId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The artifact id of the parent
+						project to inherit from.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="groupId" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The group id of the parent
+						project to inherit from.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="version" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The version of the parent project
+						to inherit.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="relativePath" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The relative path of the parent &lt;code&gt;pom.xml&lt;/code&gt; file within
+						the check out.
+						The default value is &lt;code&gt;../pom.xml&lt;/code&gt;.
+						Maven looks for the parent pom first in the reactor of currently building
+						projects, then in this location on
+						the filesystem, then the local repository, and lastly in the remote repo.
+						&lt;code&gt;relativePath&lt;/code&gt; allows you to select a different
+						location,
+						for example when your structure is flat, or deeper without an intermediate
+						parent pom.
+						However, the group ID, artifact ID and version are still required,
+						and must match the file in the location given or it will revert to the
+						repository for the POM.
+						This feature is only for enhancing the development in a local checkout of that
+						project.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Prerequisites" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">Describes the prerequisites a
+				project can have.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="maven" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The minimum version of Maven
+						required to build the project, or to use this plugin.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="CiManagement" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="system" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The name of the continuous integration system, e.g.
+						&lt;code&gt;continuum&lt;/code&gt;.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						URL for the continuous integration system used by the project if it has a web
+						interface.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="notifiers" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Configuration for notifying developers/users when a build is
+						unsuccessful, including user information and notification mode.
+          </doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeNoColon" xmlType="element" name="notifier" type="Notifier" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="unbounded"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Notifier" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+			<doc name="Definition">
+				Configures one method for notifying users/developers when a build breaks.
+			</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="type" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">The mechanism used to deliver
+						notifications.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="sendOnError" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to send notifications on
+						error.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="sendOnFailure" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to send notifications on
+						failure.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="sendOnSuccess" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to send notifications on
+						success.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="sendOnWarning" type="boolean" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">Whether to send notifications on
+						warning.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="address" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						&lt;b&gt;Deprecated&lt;/b&gt;. Where to send the notification to - eg email address.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="configuration" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">0.0.0+</doc>
+					<doc name="Definition">Extended configuration specific
+						to this notifier goes here.</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="License" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				Describes the licenses for this project. This is used to generate
+				the license page of the project's web site, as well as being taken into
+				consideration in other reporting and
+				validation. The licenses listed for the project are that of the project itself, and not
+				of dependencies.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The full legal name of the
+						license.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The official url for the license
+						text.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="distribution" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The primary method by which this project may be distributed.
+						&lt;dl&gt;
+						&lt;dt&gt;repo&lt;/dt&gt;
+						&lt;dd&gt;may be downloaded from the Maven repository&lt;/dd&gt;
+						&lt;dt&gt;manual&lt;/dt&gt;
+						&lt;dd&gt;user must manually download and install the dependency.&lt;/dd&gt;
+						&lt;/dl&gt; </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="comments" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Addendum information pertaining to this license.
+          </doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Developer" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">
+				Information about one of the committers on this project.
+      </doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="id" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The unique ID of the developer in
+						the SCM.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The full name of the contributor.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="email" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The email address of the
+						contributor.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The URL for the homepage of the
+						contributor.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="organization" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The organization to which the
+						contributor belongs.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="organizationUrl" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The URL of the organization.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="roles" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The roles the contributor plays in the project. Each role is
+						described by a &lt;code&gt;role&lt;/code&gt; element, the body of which is a
+						role name. This can also be used to describe the contribution.
+					</doc>
+				</docs>
+				
+					
+						<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="role" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="unbounded"/>
+					
+				
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="timezone" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						The timezone the contributor is in. This is a number in the range -11 to 12.
+					</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeNoColon" xmlType="element" name="properties" type="" namespace="#default#" typeNamespace="#default#" minOccurs="0" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">
+						Properties about the contributor, such as an instant messenger handle.
+					</doc>
+				</docs>
+				
+					
+						<any name="any"/>
+					
+				
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Scm" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">4.0.0</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="connection" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The source control management system URL
+						that describes the repository and how to connect to the
+						repository. For more information, see the
+						&lt;a href="http://maven.apache.org/scm/scm-url-format.html"&gt;URL
+						format&lt;/a&gt;
+						and &lt;a
+						href="http://maven.apache.org/scm/scms-overview.html"&gt;list of
+						supported SCMs&lt;/a&gt;.
+						This connection is read-only.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="developerConnection" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						Just like &lt;code&gt;connection&lt;/code&gt;, but for developers, i.e. this
+						scm connection
+						will not be read only.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="tag" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The tag of current code. By default, it's set to HEAD during
+						development.
+          </doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">4.0.0</doc>
+					<doc name="Definition">
+						The URL to the project's browsable SCM repository, such as ViewVC or
+						Fisheye.</doc>
+				</docs>
+			</property>
+		
+	</class>
+    <class debug="1.2-2" name="Organization" type="" typeNamespace="" namespace="http://maven.apache.org/POM/4.0.0">
+		<docs>
+			<doc name="Definition">3.0.0+</doc>
+			<doc name="Definition">Specifies the organization that
+				produces this project.</doc>
+		</docs>
+		
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="name" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The full name of the
+						organization.</doc>
+				</docs>
+			</property>
+			<property debug="nameElement-TypeColonNoNamespace" xmlType="element" name="url" type="string" namespace="#default#" minOccurs="0" typeNamespace="xs" maxOccurs="">
+				<docs>
+					<doc name="Definition">3.0.0+</doc>
+					<doc name="Definition">The URL to the
+						organization's home page.</doc>
+				</docs>
+			</property>
+		
+	</class>
+  </classes>
+</xsdschema>

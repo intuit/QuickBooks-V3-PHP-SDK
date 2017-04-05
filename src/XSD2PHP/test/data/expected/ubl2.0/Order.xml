@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:Order xmlns:ns0="urn:oasis:names:specification:ubl:schema:xsd:Order-2" xmlns:ns1="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:ns2="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <ns1:BuyerCustomerParty>
+    <ns2:SupplierAssignedAccountID>CT02933822</ns2:SupplierAssignedAccountID>
+    <ns1:BuyerContact>
+      <ns2:ID>CT2344332</ns2:ID>
+      <ns2:Name>Jon Doe</ns2:Name>
+      <ns2:Telephone>24533223</ns2:Telephone>
+      <ns2:ElectronicMail>email@example.com</ns2:ElectronicMail>
+    </ns1:BuyerContact>
+  </ns1:BuyerCustomerParty>
+  <ns1:OrderLine>
+    <ns1:LineItem>
+      <ns2:ID>DYE_SUB</ns2:ID>
+      <ns2:Quantity unitCode="M2">110.22</ns2:Quantity>
+      <ns1:Price>
+        <ns2:PriceAmount>200.75</ns2:PriceAmount>
+      </ns1:Price>
+    </ns1:LineItem>
+  </ns1:OrderLine>
+</ns0:Order>

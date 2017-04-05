@@ -1,0 +1,21 @@
+<ns2:ContactCompany xmlns:ns2="urn:dk:nordsign:schema:ContactCompany"
+	xmlns:ns5="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+	xmlns:ns3="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+	<ns2:ExtID>DK234234234234234</ns2:ExtID>
+	<ns5:CompanyID>DK234234234234234</ns5:CompanyID>
+	<ns5:Name>TON s.r.o.</ns5:Name>
+	<ns5:Telephone>24234234222</ns5:Telephone>
+	<ns5:Telefax>12341234622</ns5:Telefax>
+	<ns3:Party>
+		<ns5:WebsiteURI>test.com</ns5:WebsiteURI>
+	</ns3:Party>
+	<ns2:BillingAddress>
+		<ns2:Address>
+			<ns5:Line>Nytorv 50 22 2</ns5:Line>
+		</ns2:Address>
+		<ns2:PostalCode>9000</ns2:PostalCode>
+		<ns2:City>Aalborg</ns2:City>
+		<ns2:State>Nordjylland</ns2:State>
+		<ns2:Country>DK</ns2:Country>
+	</ns2:BillingAddress>
+</ns2:ContactCompany>

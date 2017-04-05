@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:dk:nordsign:schema:ContactCompany" xmlns="urn:dk:nordsign:schema:ContactCompany"
+	elementFormDefault="qualified"
+	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+	xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2">
+
+	<xsd:import
+		schemaLocation="../ubl2.0/common/UBL-CommonAggregateComponents-2.0.xsd"
+		namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" />
+	<xsd:import
+		schemaLocation="../ubl2.0/common/UBL-CommonBasicComponents-2.0.xsd"
+		namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" />
+
+	<xsd:element name="ContactCompany">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ID" type="cbc:IDType" maxOccurs="1"
+					minOccurs="1"></xsd:element>
+				<xsd:element ref="cbc:CompanyID" maxOccurs="1"
+					minOccurs="1"></xsd:element>
+				<xsd:element ref="cbc:Name" maxOccurs="1" minOccurs="1"></xsd:element>
+				<xsd:element ref="cbc:Telephone" maxOccurs="1"
+					minOccurs="1"></xsd:element>
+				<xsd:element ref="cbc:Telefax" maxOccurs="1" minOccurs="1"></xsd:element>
+
+				<xsd:element ref="cac:Party" maxOccurs="1" minOccurs="1"></xsd:element>
+				<xsd:element name="BillingAddress" type="AddressType"
+					maxOccurs="1" minOccurs="1"></xsd:element>
+				<xsd:element name="ShippingAddress" type="AddressType"
+					maxOccurs="unbounded" minOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>
+			<xsd:element name="Address" type="cac:AddressLineType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="Address2" type="cac:AddressLineType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="PostBox" type="cbc:PostboxType"
+				maxOccurs="1" minOccurs="1" />
+
+			<xsd:element name="PostalCode" type="cbc:PostalZoneType"
+				maxOccurs="1" minOccurs="1" />
+			<xsd:element name="City" type="cbc:CityNameType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="State" type="cbc:RegionType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="Country" type="cbc:NameType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="ContactPerson" type="cac:ContactType"
+				maxOccurs="1" minOccurs="1"></xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+</xsd:schema>

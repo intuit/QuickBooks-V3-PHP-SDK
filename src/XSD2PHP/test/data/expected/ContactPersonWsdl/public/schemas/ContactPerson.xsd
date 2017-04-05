@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:dk:nordsign:schema:ContactPerson" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" targetNamespace="urn:dk:nordsign:schema:ContactPerson" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+	<xsd:import schemaLocation="http://mylocation.com/schemas/UBL-CommonBasicComponents-2.0.xsd" namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"/>
+	<xsd:import schemaLocation="http://mylocation.com/schemas/UBL-CommonAggregateComponents-2.0.xsd" namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+	</xsd:import>
+
+
+	<xsd:element name="ContactPerson" type="ContactPersonType"/>
+
+	<xsd:complexType name="ContactPersonType">
+		<xsd:sequence>
+
+			<xsd:element name="ID" type="cbc:IDType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="Name" type="cbc:NameType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="Telephone" type="cbc:TelephoneType" maxOccurs="unbounded" minOccurs="0"/>
+			<xsd:element name="ElectronicMail" type="cbc:ElectronicMailType" maxOccurs="unbounded" minOccurs="0"/>
+			<xsd:element name="Username" type="cbc:ElectronicMailType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="Password" type="cbc:TextType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="Created" type="cbc:DateType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="Role" type="xsd:integer" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="Title" type="cbc:TitleType" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="Company_No" type="cbc:CompanyIDType" maxOccurs="1" minOccurs="0"/>
+			<xsd:element name="BillingAddress" type="cac:AddressType" maxOccurs="1" minOccurs="1"/>
+			<xsd:element name="ShippingAddress" type="cac:AddressType" maxOccurs="unbounded" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

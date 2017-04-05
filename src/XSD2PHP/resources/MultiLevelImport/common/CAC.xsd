@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Document Type: CommonAggregateComponents Generated On: Tue Oct 03
+		2:26:38 P3 2006
+	-->
+	<!-- ===== xsd:schema Element With Namespaces Declarations ===== -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+	xmlns="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+	xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2"
+	xmlns:ccts="urn:un:unece:uncefact:documentation:2"
+	xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="2.0">
+
+	<xsd:import schemaLocation="CommonSchema1.xsd"
+		namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" />
+
+<xsd:include schemaLocation="CAC_include1.xsd" />
+
+ <xsd:element name="AddressLine" type="AddressLineType"/>
+ <xsd:element name="Country" type="CountryType"/>
+  <xsd:element name="LocationCoordinate" type="LocationCoordinateType"/>
+  
+  <xsd:complexType name="LocationCoordinateType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <ccts:Component>
+          <ccts:ComponentType>ABIE</ccts:ComponentType>
+          <ccts:DictionaryEntryName>Location Coordinate. Details</ccts:DictionaryEntryName>
+          <ccts:Definition>Information about physical (geographical) location.</ccts:Definition>
+          <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+        </ccts:Component>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="cbc:CoordinateSystemCode" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Coordinate System Code. Code</ccts:DictionaryEntryName>
+              <ccts:Definition>An identifier for the location system used.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTerm>Coordinate System Code</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+              <ccts:DataType>Code. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LatitudeDegreesMeasure" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Latitude_ Degrees. Measure</ccts:DictionaryEntryName>
+              <ccts:Definition>The measure of latitude in degrees.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTermQualifier>Latitude</ccts:PropertyTermQualifier>
+              <ccts:PropertyTerm>Degrees</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Measure</ccts:RepresentationTerm>
+              <ccts:DataType>Measure. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LatitudeMinutesMeasure" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Latitude_ Minutes. Measure</ccts:DictionaryEntryName>
+              <ccts:Definition>The measure of latitude in minutes.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTermQualifier>Latitude</ccts:PropertyTermQualifier>
+              <ccts:PropertyTerm>Minutes</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Measure</ccts:RepresentationTerm>
+              <ccts:DataType>Measure. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LatitudeDirectionCode" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Latitude Direction Code. Code</ccts:DictionaryEntryName>
+              <ccts:Definition>The direction of latitude measurement from the equator.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTerm>Latitude Direction Code</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+              <ccts:DataType>Latitude Direction_ Code. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LongitudeDegreesMeasure" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Longitude_ Degrees. Measure</ccts:DictionaryEntryName>
+              <ccts:Definition>The measure of longitude in degrees.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTermQualifier>Longitude</ccts:PropertyTermQualifier>
+              <ccts:PropertyTerm>Degrees</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Measure</ccts:RepresentationTerm>
+              <ccts:DataType>Measure. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LongitudeMinutesMeasure" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Longitude_ Minutes. Measure</ccts:DictionaryEntryName>
+              <ccts:Definition>The measure of longitude in minutes.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTermQualifier>Longitude</ccts:PropertyTermQualifier>
+              <ccts:PropertyTerm>Minutes</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Measure</ccts:RepresentationTerm>
+              <ccts:DataType>Measure. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element ref="cbc:LongitudeDirectionCode" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>
+            <ccts:Component>
+              <ccts:ComponentType>BBIE</ccts:ComponentType>
+              <ccts:DictionaryEntryName>Location Coordinate. Longitude Direction Code. Code</ccts:DictionaryEntryName>
+              <ccts:Definition>The direction of longitude measurement from the meridian.</ccts:Definition>
+              <ccts:Cardinality>0..1</ccts:Cardinality>
+              <ccts:ObjectClass>Location Coordinate</ccts:ObjectClass>
+              <ccts:PropertyTerm>Longitude Direction Code</ccts:PropertyTerm>
+              <ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+              <ccts:DataType>Longitude Direction_ Code. Type</ccts:DataType>
+            </ccts:Component>
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+ 
+ <xsd:complexType name="AddressType">
+        <xsd:annotation>
+            <xsd:documentation>
+                <ccts:Component>
+                    <ccts:ComponentType>ABIE</ccts:ComponentType>
+                    <ccts:DictionaryEntryName>Address. Details
+                    </ccts:DictionaryEntryName>
+                    <ccts:Definition>Information about a structured address.
+                    </ccts:Definition>
+                    <ccts:ObjectClass>Address</ccts:ObjectClass>
+                </ccts:Component>
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="cbc:ID" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Identifier
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An identifier for a specific address within a
+                                scheme of registered addresses.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Identifier</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Identifier</ccts:RepresentationTerm>
+                            <ccts:DataType>Identifier. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>DetailsKey
+                            </ccts:AlternativeBusinessTerms>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:AddressTypeCode" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Address Type Code. Code
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>A code specifying the type of this address, such
+                                as business address or home address.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Address Type Code</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+                            <ccts:DataType>Code. Type</ccts:DataType>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:AddressFormatCode" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Address Format Code. Code
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>A code specifying the format of this address.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Address Format Code</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Code</ccts:RepresentationTerm>
+                            <ccts:DataType>Code. Type</ccts:DataType>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:Postbox" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Postbox. Text
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>A post office box number.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Postbox</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Text</ccts:RepresentationTerm>
+                            <ccts:DataType>Text. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>PostBox, PO Box
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"123"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:Floor" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Floor. Text
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An addressable floor of a building.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Floor</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Text</ccts:RepresentationTerm>
+                            <ccts:DataType>Text. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>SubPremiseNumber
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"30"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:Room" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Room. Text
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>A room, suite, or apartment of a building.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Room</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Text</ccts:RepresentationTerm>
+                            <ccts:DataType>Text. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>SubPremiseNumber
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"Reception"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:StreetName" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Street Name. Name
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>The name of a street.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Street Name</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Name</ccts:RepresentationTerm>
+                            <ccts:DataType>Name. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>Thoroughfare
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"Kwun Tong Road"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:AdditionalStreetName" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Additional_ Street Name. Name
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An additional name of a street used to further
+                                specify the street name.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTermQualifier>Additional
+                            </ccts:PropertyTermQualifier>
+                            <ccts:PropertyTerm>Street Name</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Name</ccts:RepresentationTerm>
+                            <ccts:DataType>Name. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>Thoroughfare
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"Cnr Aberdeen Road"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:BlockName" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Block Name. Name
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>The block name, expressed as text, for an area
+                                surrounded by streets and usually containing several buildings
+                                for this address.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Block Name</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Name</ccts:RepresentationTerm>
+                            <ccts:DataType>Name. Type</ccts:DataType>
+                            <ccts:Examples>Seabird</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:BuildingName" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Building Name. Name
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>The name of a building.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Building Name</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Name</ccts:RepresentationTerm>
+                            <ccts:DataType>Name. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>BuildingName
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"Plot 421"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:BuildingNumber" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Building Number. Text
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>The number of a building.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Building Number</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Text</ccts:RepresentationTerm>
+                            <ccts:DataType>Text. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>PremiseNumber
+                            </ccts:AlternativeBusinessTerms>
+                            <ccts:Examples>"388"</ccts:Examples>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="cbc:InhouseMail" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>BBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Inhouse_ Mail. Text
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>A specific location within a building.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTermQualifier>Inhouse</ccts:PropertyTermQualifier>
+                            <ccts:PropertyTerm>Mail</ccts:PropertyTerm>
+                            <ccts:RepresentationTerm>Text</ccts:RepresentationTerm>
+                            <ccts:DataType>Text. Type</ccts:DataType>
+                            <ccts:AlternativeBusinessTerms>MailStop
+                            </ccts:AlternativeBusinessTerms>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="AddressLine" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>ASBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Address Line
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An association to Address Line.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..n</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Address Line</ccts:PropertyTerm>
+                            <ccts:AssociatedObjectClass>Address Line
+                            </ccts:AssociatedObjectClass>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="Country" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>ASBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Country
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An association to Country.</ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Country</ccts:PropertyTerm>
+                            <ccts:AssociatedObjectClass>Country</ccts:AssociatedObjectClass>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="LocationCoordinate" minOccurs="0"
+                maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        <ccts:Component>
+                            <ccts:ComponentType>ASBIE</ccts:ComponentType>
+                            <ccts:DictionaryEntryName>Address. Location Coordinate
+                            </ccts:DictionaryEntryName>
+                            <ccts:Definition>An association to Location Coordinate.
+                            </ccts:Definition>
+                            <ccts:Cardinality>0..1</ccts:Cardinality>
+                            <ccts:ObjectClass>Address</ccts:ObjectClass>
+                            <ccts:PropertyTerm>Location Coordinate</ccts:PropertyTerm>
+                            <ccts:AssociatedObjectClass>Location Coordinate
+                            </ccts:AssociatedObjectClass>
+                        </ccts:Component>
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+</xsd:schema>
