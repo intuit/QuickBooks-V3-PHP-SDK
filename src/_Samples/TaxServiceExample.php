@@ -1,9 +1,9 @@
 <?php
 /***
  *  PLEASE FIX ME!!
- * 
- * 
- * 
+ *
+ *
+ *
  */
 require_once('../config.php');
 
@@ -17,8 +17,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
+if (!$realmId) {
     exit("Please add realm to App.Config before running this sample.\n");
+}
 
 // Prep Service Context
 $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
@@ -27,13 +28,15 @@ $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings(
     ConfigurationManager::AppSettings('ConsumerSecret'));
 $serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
 
-if (!$serviceContext)
+if (!$serviceContext) {
     exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Data Services
 $dataService = new DataService($serviceContext);
-if (!$dataService)
+if (!$dataService) {
     exit("Problem while initializing DataService.\n");
+}
 
 $rnd = rand();
 $taxRateDetails = new IPPTaxRateDetails();
@@ -48,11 +51,10 @@ $taxService->TaxRateDetails = array($taxRateDetails);
 
 
 $result = $dataService->Add($taxService);
-if(empty($result)) {
+if (empty($result)) {
     echo "\n Something was wrong. Please check logs";
 } else {
     print_r($result);
-    
 }
 
 
@@ -60,7 +62,7 @@ if(empty($result)) {
 # Var-dump output
 ####
 /**
- * 
+ *
 object(IPPTaxService)#40 (4) {
   ["TaxCode"]=>
   string(23) "MyTaxCodeName_482378853"

@@ -1,2 +1,3 @@
 /vendor/
 composer.phar
+.php_cs.cache

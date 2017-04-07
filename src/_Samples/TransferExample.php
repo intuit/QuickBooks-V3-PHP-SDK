@@ -12,8 +12,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
+if (!$realmId) {
     exit("Please add realm to App.Config before running this sample.\n");
+}
 
 // Prep Service Context
 $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
@@ -27,13 +28,15 @@ $serviceContext->IppConfiguration->Message->Request->SerializationFormat = Seria
 $serviceContext->IppConfiguration->BaseUrl->Qbo = ConfigurationManager::BaseURLSettings(strtolower(IntuitServicesType::QBO));
 $serviceContext->baseserviceURL = $serviceContext->GetBaseURL();
 
-if (!$serviceContext)
+if (!$serviceContext) {
     exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Data Services
 $dataService = new DataService($serviceContext);
-if (!$dataService)
+if (!$dataService) {
     exit("Problem while initializing DataService.\n");
+}
 
 
 $result = $dataService->Add(createTransfer());
@@ -43,15 +46,15 @@ print_r($result);
 ################################################################################
 # Domain Objects example                                                       #
 ################################################################################
-function createTransfer() {
-    
+function createTransfer()
+{
     $from = new IPPReferenceType();
     $from->name = "Checking";
     $from->value = 35;
     
     $to = new IPPReferenceType();
     $to->name = "Savings";
-    $to->value = 36;    
+    $to->value = 36;
     
     $transfer = new IPPTransfer();
     $transfer->FromAccountRef = $from;
@@ -62,14 +65,14 @@ function createTransfer() {
 }
 
 /**
- * Output function 
+ * Output function
  */
 function showMe($entity)
 {
-$className = get_class($entity); 
+    $className = get_class($entity);
 
 
-return <<<OUTTEXT
+    return <<<OUTTEXT
 Hi!
 I am an instance of $className object. 
 And I state that transfer was perfromed from "{$entity->FromAccountRef->name}" (id={$entity->FromAccountRef->name})
@@ -80,5 +83,4 @@ My id is {$entity->Id} and this was for {$entity->domain} domain.
 See my whole object:
 
 OUTTEXT;
-   
 }

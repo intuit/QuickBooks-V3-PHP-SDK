@@ -11,8 +11,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
-	exit("Please add realm to App.Config before running this sample.\n");
+if (!$realmId) {
+    exit("Please add realm to App.Config before running this sample.\n");
+}
 
 // Prep Service Context
 $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
@@ -20,8 +21,9 @@ $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings(
                                               ConfigurationManager::AppSettings('ConsumerKey'),
                                               ConfigurationManager::AppSettings('ConsumerSecret'));
 $serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext)
-	exit("Problem while initializing ServiceContext.\n");
+if (!$serviceContext) {
+    exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Platform Services
 $platformService = new PlatformService($serviceContext);
@@ -41,5 +43,3 @@ Example output:
 
 ...etc...
 */
-
-?>

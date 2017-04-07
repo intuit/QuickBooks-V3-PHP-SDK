@@ -9,10 +9,9 @@
 require_once('../sdk/config.php');
 define('PATH_TAIL', 'Utility.Test');
 define('TESTSUITE_NAME', 'Utility_Tests');
-define('PATH_DEST',PATH_SDK_ROOT . 'sdk/' . PATH_TAIL . '/');
+define('PATH_DEST', PATH_SDK_ROOT . 'sdk/' . PATH_TAIL . '/');
 require_once(PATH_SDK_ROOT . ".." . DIRECTORY_SEPARATOR . 'build/DetectTests.php');
 
-class AllTests extends DetectTests {
+class AllTests extends DetectTests
+{
 }
-
-?>

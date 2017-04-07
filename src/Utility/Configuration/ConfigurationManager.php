@@ -18,23 +18,20 @@ use QuickBooksOnline\API\Core\CoreConstants;
  */
 class ConfigurationManager
 {
+    private static function getSettignsFromFile()
+    {
+        $fileName = getcwd() . CoreConstants::SLASH_CHAR . "App.config";
+        return simplexml_load_file($fileName);
+    }
 
-        private static function getSettignsFromFile()
-        {
-            $fileName = getcwd() . CoreConstants::SLASH_CHAR . "App.config";
-            return simplexml_load_file($fileName);
-        }
+    private static function getSettings($xmlObj, $xpath, $name = null)
+    {
+        $result = $xmlObj->xpath($xpath);
 
-        private static function getSettings($xmlObj, $xpath, $name = null)
-        {
- 		$result = $xmlObj->xpath($xpath);
-
-		$returnVal = NULL;
-		if ($result && $result[0])
-		{
-			foreach($result[0]->attributes() as $attrName => $attrVal)
-			{
-                            switch($attrName) {
+        $returnVal = null;
+        if ($result && $result[0]) {
+            foreach ($result[0]->attributes() as $attrName => $attrVal) {
+                switch ($attrName) {
                                 case 'value': $returnVal = (string)$attrVal;
                                               break 2; // break switch and foreach
 
@@ -42,23 +39,21 @@ class ConfigurationManager
                                               break 2; // break switch and foreach
 
                             }
-
-			}
-		}
-
-		return $returnVal;
+            }
         }
 
-        /**
-	 * App specific settings
-	 * @param string targetSetting
-	 */
-	public static function AppSettings($targetSetting)
-	{
-		$xmlObj = self::getSettignsFromFile();
-                return self::getSettings($xmlObj, '//appSettings/add[@key="'.$targetSetting.'"]');
+        return $returnVal;
+    }
 
-	}
+        /**
+     * App specific settings
+     * @param string targetSetting
+     */
+    public static function AppSettings($targetSetting)
+    {
+        $xmlObj = self::getSettignsFromFile();
+        return self::getSettings($xmlObj, '//appSettings/add[@key="'.$targetSetting.'"]');
+    }
 
         /**
          * Get base url depends from the service

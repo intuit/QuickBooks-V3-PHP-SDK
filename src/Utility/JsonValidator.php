@@ -13,18 +13,19 @@ class JsonValidator
      * @return bool
      *          True if the string is a valid JSON; false otherwise
      */
-    public static function validate($string, $throwException = true){
-        if(!isset($string) || trim($string) === ''){
-            if($throwException == true){
+    public static function validate($string, $throwException = true)
+    {
+        if (!isset($string) || trim($string) === '') {
+            if ($throwException == true) {
                 throw new \InvalidArgumentException("Empty or null JSON String");
-            }else{
+            } else {
                 return false;
             }
         }
 
         @json_decode($string);
-        if(json_last_error() != JSON_ERROR_NONE){
-            if($throwException == true){
+        if (json_last_error() != JSON_ERROR_NONE) {
+            if ($throwException == true) {
                 throw new \InvalidArgumentException("Invalid JSON String");
             }
 
