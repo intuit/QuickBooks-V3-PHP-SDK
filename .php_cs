@@ -14,6 +14,5 @@ return PhpCsFixer\Config::create()
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'long'],
     ])
-    ->setUsingCache(true)
     ->setFinder($finder);
 ;
