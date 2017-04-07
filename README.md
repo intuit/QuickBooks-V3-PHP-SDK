@@ -7,8 +7,8 @@ To find out more, visit the official documentation website:
 http://developer.intuit.com/
 
 ![Build status](https://travis-ci.org/intuit/QuickBooks-V3-PHP-SDK.svg?branch=master)
-[![Latest Stable Version]([![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk))
-[![Total Downloads]([![Total Downloads](https://poser.pugx.org/quickbooks/v3-php-sdk/downloads)](https://packagist.org/packages/quickbooks/v3-php-sdk))
+[![Latest Stable Version]((https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable))
+[![Total Downloads]((https://poser.pugx.org/quickbooks/v3-php-sdk/downloads)](https://packagist.org/packages/quickbooks/v3-php-sdk))
 
 Requirements
 ------------
