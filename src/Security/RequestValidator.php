@@ -10,5 +10,4 @@ namespace QuickBooksOnline\API\Security;
 */
 class RequestValidator
 {
-
 }

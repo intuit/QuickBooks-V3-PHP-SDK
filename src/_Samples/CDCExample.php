@@ -12,8 +12,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
-	exit("Please add realm to App.Config before running this sample.\n");
+if (!$realmId) {
+    exit("Please add realm to App.Config before running this sample.\n");
+}
 
 // Prep Service Context
 $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
@@ -21,13 +22,15 @@ $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings(
                                               ConfigurationManager::AppSettings('ConsumerKey'),
                                               ConfigurationManager::AppSettings('ConsumerSecret'));
 $serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext)
-	exit("Problem while initializing ServiceContext.\n");
+if (!$serviceContext) {
+    exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Data Services
 $dataService = new DataService($serviceContext);
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
+if (!$dataService) {
+    exit("Problem while initializing DataService.\n");
+}
 
 
 // Use CDC APIs
@@ -35,12 +38,10 @@ $entityList = array('Customer','Vendor');
 $changedSince = time() - 50*(24*60*60); // 50 days ago
 
 $cdcResponse = $dataService->CDC($entityList, $changedSince);
-if ($cdcResponse->entities)
-{
-	foreach($cdcResponse->entities as $entityName => $entityArray)
-	{
-		echo "CDC Says " . count($entityArray) . " Updated Entities of Type = {$entityName}\n";
-	}
+if ($cdcResponse->entities) {
+    foreach ($cdcResponse->entities as $entityName => $entityArray) {
+        echo "CDC Says " . count($entityArray) . " Updated Entities of Type = {$entityName}\n";
+    }
 }
 
 /*
@@ -49,5 +50,3 @@ Example output:
 CDC Says 318 Updated Entities of Type = Customer
 CDC Says 278 Updated Entities of Type = Vendor
 */
-
-?>

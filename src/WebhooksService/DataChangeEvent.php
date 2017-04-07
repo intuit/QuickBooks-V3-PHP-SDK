@@ -23,7 +23,8 @@ class DataChangeEvent
      *
      * @return $this
      */
-    public function setEntities($entities){
+    public function setEntities($entities)
+    {
         $this->entities = $entities;
         return $this;
     }
@@ -34,7 +35,8 @@ class DataChangeEvent
      * @return array(Entity)
      *      Return an array of Entity
      */
-    public function getEntities(){
+    public function getEntities()
+    {
         return $this->entities;
     }
 }

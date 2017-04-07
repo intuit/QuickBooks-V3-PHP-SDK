@@ -12,7 +12,7 @@ class ClassNamingUtil
         'equipment'
     );
 
-    static $irregular = array(
+    public static $irregular = array(
         'move'   => 'moves',
         'foot'   => 'feet',
         'goose'  => 'geese',
@@ -23,7 +23,7 @@ class ClassNamingUtil
         'valve'  => 'valves'
     );
 
-    static $singular = array(
+    public static $singular = array(
         '/(quiz)zes$/i'             => "$1",
         '/(matr)ices$/i'            => "$1ix",
         '/(vert|ind)ices$/i'        => "$1ex",
@@ -62,29 +62,29 @@ class ClassNamingUtil
      * @return $singularClassName
      *          The singular format of class name. Unchanged if the name is Singular already
      */
-    public static function singularize( $string )
+    public static function singularize($string)
     {
         // save some time in the case that singular and plural are the same
-        if ( in_array( strtolower( $string ), self::$uncountable ) )
+        if (in_array(strtolower($string), self::$uncountable)) {
             return $string;
+        }
 
         // check for irregular plural forms
-        foreach ( self::$irregular as $result => $pattern )
-        {
+        foreach (self::$irregular as $result => $pattern) {
             $pattern = '/' . $pattern . '$/i';
 
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string);
+            if (preg_match($pattern, $string)) {
+                return preg_replace($pattern, $result, $string);
+            }
         }
 
         // check for matches using regular expressions
-        foreach ( self::$singular as $pattern => $result )
-        {
-            if ( preg_match( $pattern, $string ) )
-                return preg_replace( $pattern, $result, $string );
+        foreach (self::$singular as $pattern => $result) {
+            if (preg_match($pattern, $string)) {
+                return preg_replace($pattern, $result, $string);
+            }
         }
 
         return $string;
     }
-
 }

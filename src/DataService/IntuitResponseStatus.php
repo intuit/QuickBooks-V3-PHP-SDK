@@ -10,13 +10,13 @@ namespace QuickBooksOnline\API\DataService;
  */
 class IntuitResponseStatus
 {
-	/**
-	 * Entity has been made void.
-	 */
+    /**
+     * Entity has been made void.
+     */
     const Voided = 1;
 
-	/**
-	 * Entity has been deleted.
-	 */
+    /**
+     * Entity has been deleted.
+     */
     const Deleted = 2;
 }

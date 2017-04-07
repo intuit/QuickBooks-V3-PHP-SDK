@@ -30,5 +30,4 @@ class CompressionFormat
      * @var string Deflate
      */
     const Deflate='Deflate';
-
 }
