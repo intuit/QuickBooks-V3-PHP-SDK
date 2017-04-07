@@ -16,7 +16,7 @@ use QuickBooksOnline\API\Core\Configuration\OperationControlList;
 
 
 /**
- * Specifies the Default Configuration Reader implmentation used by the SDK.
+ * Specifies the Default Configuration Reader implmentation used by the SDK. The ConfigReader can either read a file or from passed arrays
  *
  * @hao - separate each function to its own method
  *
@@ -76,7 +76,7 @@ class LocalConfigReader
 	 *           A Customer FilePath. If different than the default sdk.config file
 	 * @return IppConfiguration The custom config object.
 	 */
-	public static function ReadConfiguration($filePath = null, $OAuthOption = CoreConstants::OAUTH1)
+	public static function ReadConfigurationFromFile($filePath, $OAuthOption = CoreConstants::OAUTH1)
 	{
 		$ippConfig = new IppConfiguration();
 
@@ -86,7 +86,8 @@ class LocalConfigReader
 				  $xmlObj = simplexml_load_file($filePath);
 			}else
 			{
-				  $xmlObj = simplexml_load_file(PATH_SDK_ROOT . 'sdk.config');
+				 // $xmlObj = simplexml_load_file(PATH_SDK_ROOT . 'sdk.config');
+				 throw new \Exception("Can't Read Configuration from file: ". $filePath);
 			}
 
 			LocalConfigReader::initializeOAuthSettings($xmlObj, $ippConfig, $OAuthOption);
@@ -101,6 +102,38 @@ class LocalConfigReader
 				throw new SdkException("Error Reading the ");
 		}
 
+
+	}
+
+	public static function ReadConfigurationFromParameters($OAuthConfig, $baseUrl, $defaultLoggingLocation = CoreConstatnts::DEFAULT_LOGGINGLOCATION, $minorVersion = 3){
+		$ippConfig = new IppConfiguration();
+    try {
+				//Set OAuth
+				if(isset($OAuthConfig)){
+						 $ippConfig->Security = $OAuthConfig;
+				}else{
+						throw new \Exception("Empty OAuth Config from Constuct IPP Configuration on LocalConfigReader");
+				}
+				//Set Logger and Searlization format. The default one is XML
+				LocalConfigReader::intializeMessage($ippConfig);
+				LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, CompressionFormat::None, CompressionFormat::None, SerializationFormat::Xml, SerializationFormat::Xml);
+				//Set base Urls
+				$ippConfig->BaseUrl = new BaseUrl();
+				$ippConfig->BaseUrl->Qbo = $baseUrl;
+				//Set content writer and logger
+				LocalConfigReader::setupLogger($ippConfig, $defaultLoggingLocation, "TRUE");
+				LocalConfigReader::setupContentWriter($ippConfig, CoreConstants::FILE_STRATEGY, CoreConstants::PHP_CLASS_PREFIX, null, false);
+				//Set API Entity Rules
+				$rules=CoreConstants::getQuickBooksOnlineAPIEntityRules();
+				LocalConfigReader::initOperationControlList($ippConfig, $rules);
+				//Set minor version
+				$ippConfig->minorVersion = $minorVersion;
+
+				return $ippConfig;
+
+    } catch (\Exception $e) {
+			  throw new \Exception("Can't Config Environments from passed parameters");
+    }
 
 	}
 
@@ -220,10 +253,7 @@ class LocalConfigReader
   	 * @Hao
  	 */
 	 public static function initializeRequestAndResponseSerializationAndCompressionFormat($xmlObj, $ippConfig){
-		 // Initialize Request Configuration Object
-		 $ippConfig->Message = new Message();
-		 $ippConfig->Message->Request = new Request();
-		 $ippConfig->Message->Response = new Response();
+		 LocalConfigReader::intializeMessage($ippConfig);
 
 		 $requestSerializationFormat = NULL;
 		 $requestCompressionFormat = NULL;
@@ -246,76 +276,87 @@ class LocalConfigReader
 		 	  $responseSerializationFormat = (string)$responseAttr->serializationFormat;
 		 	  $responseCompressionFormat = (string)$responseAttr->compressionFormat;
 		 }
+		 LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, $requestCompressionFormat, $responseCompressionFormat, $requestSerializationFormat, $responseSerializationFormat);
 
+	 }
+
+	 public static function intializeMessage($ippConfig){
+		// Initialize Request Configuration Object
+		 $ippConfig->Message = new Message();
+		 $ippConfig->Message->Request = new Request();
+		 $ippConfig->Message->Response = new Response();
+	 }
+
+	 public static function setRequestAndResponseSerializationFormat($ippConfig, $requestCompressionFormat, $responseCompressionFormat, $requestSerializationFormat, $responseSerializationFormat){
 		 switch ($requestCompressionFormat)
 		 {
-		 				case CompressionFormat::None:
-		 						$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
-		 						break;
-		 				case CompressionFormat::GZip:
-		 						$ippConfig->Message->Request->CompressionFormat = CompressionFormat::GZip;
-		 						break;
-		 				case CompressionFormat::Deflate:
-		 						$ippConfig->Message->Request->CompressionFormat = CompressionFormat::Deflate;
-		 						break;
-		 				default:
+						case CompressionFormat::None:
+								$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
+								break;
+						case CompressionFormat::GZip:
+								$ippConfig->Message->Request->CompressionFormat = CompressionFormat::GZip;
+								break;
+						case CompressionFormat::Deflate:
+								$ippConfig->Message->Request->CompressionFormat = CompressionFormat::Deflate;
+								break;
+						default:
 								//Default compression set to None
 								$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
-						    break;
+								break;
 		 }
 
 		 switch ($responseCompressionFormat)
 		 {
-		 				case CompressionFormat::None:
-		 						$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
-		 						break;
-		 				case CompressionFormat::GZip:
-		 						$ippConfig->Message->Response->CompressionFormat = CompressionFormat::GZip;
-		 						break;
-		 				case CompressionFormat::Deflate:
-		 						$ippConfig->Message->Response->CompressionFormat = CompressionFormat::Deflate;
-		 						break;
+						case CompressionFormat::None:
+								$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
+								break;
+						case CompressionFormat::GZip:
+								$ippConfig->Message->Response->CompressionFormat = CompressionFormat::GZip;
+								break;
+						case CompressionFormat::Deflate:
+								$ippConfig->Message->Response->CompressionFormat = CompressionFormat::Deflate;
+								break;
 						default:
-						    //Default compression set to None
-						    $ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
-						    break;
-		 	}
+								//Default compression set to None
+								$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
+								break;
+			}
 
-		 	switch ($requestSerializationFormat)
-		 	{
-		 				//case Intuit\Ipp\Utility\SerializationFormat::DEFAULT:
-		 				case SerializationFormat::Xml:
-		 						$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
-		 						break;
-		 				case SerializationFormat::Json:
-		 						$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Json;
-		 						break;
-		 				case SerializationFormat::Custom:
-		 						$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Custom;
-		 						break;
-						default:
-						    //Default compression set to XML
-						    $ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
-						    break;
-		 	}
-
-		 	switch ($responseSerializationFormat)
-		 	{
-		 				case SerializationFormat::Xml:
-		 						$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
-		 						break;
-		 				//case Intuit\Ipp\Utility\SerializationFormat::DEFAULT:
-		 				case SerializationFormat::Json:
-		 						$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Json;
-		 						break;
-		 				case SerializationFormat::Custom:
-		 						$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Custom;
-		 						break;
+			switch ($requestSerializationFormat)
+			{
+						//case Intuit\Ipp\Utility\SerializationFormat::DEFAULT:
+						case SerializationFormat::Xml:
+								$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
+								break;
+						case SerializationFormat::Json:
+								$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Json;
+								break;
+						case SerializationFormat::Custom:
+								$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Custom;
+								break;
 						default:
 								//Default compression set to XML
-						    $ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
-						    break;
-		 	}
+								$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
+								break;
+			}
+
+			switch ($responseSerializationFormat)
+			{
+						case SerializationFormat::Xml:
+								$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
+								break;
+						//case Intuit\Ipp\Utility\SerializationFormat::DEFAULT:
+						case SerializationFormat::Json:
+								$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Json;
+								break;
+						case SerializationFormat::Custom:
+								$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Custom;
+								break;
+						default:
+								//Default compression set to XML
+								$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
+								break;
+			}
 	 }
 
 	 /**
@@ -336,36 +377,47 @@ class LocalConfigReader
  		}
 
  		// Initialize Logger
- 		$ippConfig->Logger = new Logger();
- 		if ( isset($xmlObj) &&
- 		     isset($xmlObj->intuit->ipp->logger->requestLog))
- 		{
- 			$requestLogAttr = $xmlObj->intuit->ipp->logger->requestLog->attributes();
- 			$ippConfig->Logger->RequestLog->ServiceRequestLoggingLocation = (string)$requestLogAttr->requestResponseLoggingDirectory;
- 			$ippConfig->Logger->RequestLog->EnableRequestResponseLogging = (string)$requestLogAttr->enableRequestResponseLogging;
- 		}else {
- 			throw new \Exception("Log settings is not available from Config file.");
- 		}
+		if ( isset($xmlObj) &&
+				 isset($xmlObj->intuit->ipp->logger->requestLog))
+		{
+			$requestLogAttr = $xmlObj->intuit->ipp->logger->requestLog->attributes();
+			$ServiceRequestLoggingLocation = (string)$requestLogAttr->requestResponseLoggingDirectory;
+			$EnableRequestResponseLogging = (string)$requestLogAttr->enableRequestResponseLogging;
+			LocalConfigReader::setupLogger($ippConfig, $ServiceRequestLoggingLocation, $EnableRequestResponseLogging);
+		}else {
+			throw new \Exception("Log settings is not available from Config file.");
+		}
 
      // A developer is forced to write in the same style.
      // This should be refactored
-     $ippConfig->ContentWriter = new ContentWriterSettings();
      if ( isset($xmlObj) &&
  		      isset($xmlObj->intuit->ipp->contentWriter))
  		{
  			$contentWriterAttr = $xmlObj->intuit->ipp->contentWriter->attributes();
- 			$ippConfig->ContentWriter->strategy = ContentWriterSettings::checkStrategy((string)$contentWriterAttr->strategy);
- 			$ippConfig->ContentWriter->prefix = (string)$contentWriterAttr->prefix;
-      $ippConfig->ContentWriter->exportDir = $contentWriterAttr->exportDirectory
-                                                                     ? (string)$contentWriterAttr->exportDirectory
-                                                                     : null;
-      $ippConfig->ContentWriter->returnOject = $contentWriterAttr->returnObject
-                                                                     ? filter_var((string)$contentWriterAttr->returnObject, FILTER_VALIDATE_BOOLEAN)
-                                                                     : false;
-      $ippConfig->ContentWriter->verifyConfiguration();
+ 			$strategy = ContentWriterSettings::checkStrategy((string)$contentWriterAttr->strategy);
+ 			$prefix = (string)$contentWriterAttr->prefix;
+      $exportDir = $contentWriterAttr->exportDirectory;
+      $returnOject = $contentWriterAttr->returnObject;
+			LocalConfigReader::setupContentWriter($ippConfig, $strategy, $prefix, $exportDir, $returnOject);
  		}else{
 			throw new \Exception("Content Writer Settings is not available from Config file.");
 		}
+	 }
+
+	 public static function setupLogger($ippConfig, $ServiceRequestLoggingLocation, $EnableRequestResponseLogging)
+	 {
+		 $ippConfig->Logger = new Logger();
+		 $ippConfig->Logger->RequestLog->ServiceRequestLoggingLocation = $ServiceRequestLoggingLocation;
+		 $ippConfig->Logger->RequestLog->EnableRequestResponseLogging = $EnableRequestResponseLogging;
+	 }
+
+	 public static function setupContentWriter($ippConfig, $strategy, $prefix, $exportDir, $returnOject ){
+		 $ippConfig->ContentWriter = new ContentWriterSettings();
+		 $ippConfig->ContentWriter->strategy = $strategy;
+		 $ippConfig->ContentWriter->prefix = $prefix;
+		 $ippConfig->ContentWriter->exportDir = $exportDir ? (string)$exportDir : null;
+		 $ippConfig->ContentWriter->returnOject = $returnOject ? filter_var($returnOject, FILTER_VALIDATE_BOOLEAN): false;
+		 $ippConfig->ContentWriter->verifyConfiguration();
 	 }
 
 
@@ -376,7 +428,7 @@ class LocalConfigReader
    */
    private static function decorateEntity($name)
    {
-      return PHP_CLASS_PREFIX . $name;
+      return CoreConstants::PHP_CLASS_PREFIX . $name;
    }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace QuickBooksOnline\API\Core\Http\Serialization;
+use QuickBooksOnline\API\Core\CoreConstants;
 /**
  * Entity serialize contract.
  */
@@ -35,10 +36,11 @@ class IEntitySerializer {
 	public static function cleanPhpClassNameToIntuitEntityName($phpClassName)
 	{
 		//Add namespace to it
+		$phpClassName = trim($phpClassName);
 		$listArray = explode('\\', $phpClassName);
 		$trimedPhpClassName = end($listArray);
-		if (0==strpos($trimedPhpClassName, PHP_CLASS_PREFIX))
-			return substr($trimedPhpClassName, strlen(PHP_CLASS_PREFIX));
+		if (0==strpos($trimedPhpClassName, CoreConstants::PHP_CLASS_PREFIX))
+			return substr($trimedPhpClassName, strlen(CoreConstants::PHP_CLASS_PREFIX));
 
 		throw new \Exception("Cannot convert php Class name:{" . $phpClassName . "} to Intuit Entity name");
 	}

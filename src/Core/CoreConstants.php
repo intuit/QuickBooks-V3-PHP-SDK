@@ -7,6 +7,9 @@ namespace QuickBooksOnline\API\Core;
 class CoreConstants
 {
 
+	const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
+
+  const PHP_CLASS_PREFIX = 'IPP';
   /*
 	* All content writer strategy we support. Append this lists with new strategies
 	*/

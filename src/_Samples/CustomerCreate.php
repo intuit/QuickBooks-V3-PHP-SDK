@@ -9,31 +9,22 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Data\IPPCustomer;
 
 
-
 // Prep Data Services
-$dataService = DataService::Configure();
+//$dataService = DataService::Configure("/Users/hlu2/Desktop/intuit_git/V3-PHP-SDK_March30/sdk/sdk.config");
 
 
-/*
+
+
 $dataService = DataService::Configure(array(
-	   'auth_mode' => 'oauth1',
-		 'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
-		 'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-		 'accessTokenKey' => "lvprdePgDHR4kSxxC7KFb8sy84TjQMVJrbITqyeaRAwBrLuq",
-		 'accessTokenSecret' => "VRm1nrr17JL1RhPAFGgEjepxWeSUbGGsOwsjrKLP",
-		 'QBORealmID' => "123145812836282"
-));
-*/
-
-/*$dataService = DataService::Configure(array(
 	   'auth_mode' => 'oauth1',
 		 'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
 		 'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
 		 'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
 		 'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-		 'QBORealmID' => "193514489870599"
+		 'QBORealmID' => "193514489870599",
+		 'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
 ));
-*/
+
 
 if (!$dataService)
 	exit("Problem while initializing DataService.\n");

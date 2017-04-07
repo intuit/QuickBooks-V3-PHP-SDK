@@ -6,9 +6,14 @@ use QuickBooksOnline\API\Core\Configuration\LocalConfigReader;
 use QuickBooksOnline\API\Security\OAuthRequestValidator;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Exception\SdkException;
+use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
+use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
+use QuickBooksOnline\API\Core\CoreConstants;
+
 
 /**
- * THe Service Context Class contains necessary settings for
+ * THe Service Context Class contains necessary settings for RestCalls
+ * @Hao Update the fields to be private April.2th, 2017
  */
 class ServiceContext
 {
@@ -82,9 +87,15 @@ class ServiceContext
 	 * @throws InvalidTokenException If the token is invalid.
 	 * @return ServiceContext Returns ServiceContext object.
 	 */
-	 public function __construct($realmId, $serviceType = CoreConstants::IntuitServicesTypeQBO, $requestValidator = NULL)
+	 private function __construct($realmId, $serviceType = CoreConstants::IntuitServicesTypeQBO, $requestValidator = NULL, $ippConfiguration = NULL)
 	 {
-		  $this->IppConfiguration = LocalConfigReader::ReadConfiguration();
+		  if(isset($ippConfiguration))
+		  {
+				 //$this->IppConfiguration = LocalConfigReader::ReadConfiguration();
+				 $this->IppConfiguration = $ippConfiguration;
+			}else{
+				throw new \Exception("You shouldn't pass a null ippConfiguration in Current release");
+			}
 
 	    // Validate Parameters
 	    if (empty($realmId))
@@ -108,14 +119,14 @@ class ServiceContext
 	    }
 
 	    $this->isCreateMethod = false;
-	    $this->baseserviceURL = $this->GetBaseURL();
+	    $this->baseserviceURL = $this->getBaseURL();
 
 	    return $this;
 	 }
 
-	 public static function ConfigureFromLocalFile()
+	 public static function ConfigureFromLocalFile($filePath)
 	 {
-      $localIppConfiguration = LocalConfigReader::ReadConfiguration();
+      $localIppConfiguration = LocalConfigReader::ReadConfigurationFromFile($filePath);
 		 	$QBORealmID = $localIppConfiguration->RealmID;
 			if (empty($QBORealmID))
 	    {
@@ -124,13 +135,13 @@ class ServiceContext
 
 			$serviceType = CoreConstants::IntuitServicesTypeQBO;
 			$OAuthConfig = $localIppConfiguration->Security;
-			$serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig);
+			$serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $localIppConfiguration);
 
 			return $serviceContextInstance;
 	 }
 
 	 public static function ConfigureFromPassedArray(array $settings){
-		 if(empty($settings)){
+		 if( !isset($settings) || empty($settings)){
 			 throw new \Exception("Empty OAuth Array passed. Can't construct ServiceContext based on Empty Array");
 		 }
 
@@ -160,61 +171,40 @@ class ServiceContext
 						throw new Exception("'QBORealmID' must be provided");
 		 }
 
+		 if (!isset($settings['baseUrl'])) {
+						throw new Exception("'baseUrl' must be provided");
+		 }
+
+
+
 		 $OAuthConfig = new OAuthRequestValidator( $settings['accessTokenKey'],
 		 																						$settings['accessTokenSecret'],
 			  																				$settings['consumerKey'],
 		                                            $settings['consumerSecret']);
      $QBORealmID = $settings['QBORealmID'];
+		 $baseURL = $settings['baseUrl'];
 
      $serviceType = CoreConstants::IntuitServicesTypeQBO;
-		 $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig);
+		 $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $baseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, "3");
+		 $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
 		 return $serviceContextInstance;
 	 }
+
 
 	/**
 	 * Gets the base Uri for a QBO user.
 	 *
 	 * @return string Returns the base Uri endpoint for a user.
 	 */
-	public function GetBaseURL()
+	public function getBaseURL()
 	{
 		  $this->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called GetBaseURL method.");
-	    $baseurl = NULL;
-
-
-	    if ($this->serviceType == CoreConstants::IntuitServicesTypeQBO)
-	    {
-	    	if ($this->IppConfiguration &&
-	    	    $this->IppConfiguration->BaseUrl &&
-	    	    $this->IppConfiguration->BaseUrl->Qbo)
-				{
-							$baseurl = $this->IppConfiguration->BaseUrl->Qbo . implode(CoreConstants::SLASH_CHAR, array(CoreConstants::VERSION)) . CoreConstants::SLASH_CHAR;
-			  }
-
-	        if (empty($baseurl))
-	        {
-	            $baseurl = CoreConstants::QBO_BASEURL;
-	        }
-
-	        //this.IppConfiguration.Logger.CustomLogger.Log(TraceLevel.Info, string.Format(CultureInfo.InvariantCulture, "BaseUrl set for QBD Service Type: {0}.", baseurl));
-	    }
-	    else if ($this->serviceType == CoreConstants::IntuitServicesTypeIPP)
-	    {
-	    	if ($this->IppConfiguration &&
-	    	    $this->IppConfiguration->BaseUrl &&
-	    	    $this->IppConfiguration->BaseUrl->Ipp)
-			  {
-	            $baseurl = $this->IppConfiguration->BaseUrl->Ipp;
-	        }
-
-	        if (empty($baseurl))
-	        {
-	            $baseurl = CoreConstants::IPP_BASEURL;
-	        }
-
-	        //this.IppConfiguration.Logger.CustomLogger.Log(TraceLevel.Info, string.Format(CultureInfo.InvariantCulture, "BaseUrl set for Intuit Platform Service Type: {0}.", baseurl));
-	    }
-
+			try
+			{
+				   $baseurl = $this->IppConfiguration->BaseUrl->Qbo . implode(CoreConstants::SLASH_CHAR, array(CoreConstants::VERSION)) . CoreConstants::SLASH_CHAR;
+			} catch (\Exception $e){
+				  throw new \Excpetion("Base URL is not setup");
+			}
 	    return $baseurl;
 	}
 
@@ -229,5 +219,26 @@ class ServiceContext
 
 	public function disableSSlCheck() {
 		$this->IppConfiguration->SSLCheckStatus = false;
+	}
+
+	/**
+	* Currently the Object serailziation and deserilization only supports XML format.
+	*/
+	public function useXml(){
+			$this->$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
+			$this->$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
+			$this->$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
+			$this->$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
+	}
+
+	/**
+	* Currently the Object serailziation and deserilization only supports XML format.
+	* To be Supported @Hao
+	*/
+	public function useJson(){
+			$this->$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
+			$this->$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
+			$this->$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Json;
+			$this->$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Json;
 	}
 }

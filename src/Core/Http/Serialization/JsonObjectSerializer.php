@@ -5,6 +5,7 @@ use QuickBooksOnline\API\Utility\DomainEntityBuilder;
 use QuickBooksOnline\API\Utility\MetadataExtractor;
 use QuickBooksOnline\API\Diagnostics\TraceLogger;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
+use QuickBooksOnline\API\Core\CoreConstants;
 
 /**
  * Json Serializer to serialize and de serialize.
@@ -99,7 +100,7 @@ class JsonObjectSerializer extends IEntitySerializer {
          */
  	private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
 	{
-		return PHP_CLASS_PREFIX . $intuitEntityName;
+		return CoreConstatnts::PHP_CLASS_PREFIX . $intuitEntityName;
 	}
 
         /**

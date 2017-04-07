@@ -3,6 +3,7 @@ namespace QuickBooksOnline\API\DataService;
 
 use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\ServiceContext;
+use QuickbooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\Configuration\OperationControlList;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
@@ -10,7 +11,6 @@ use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
-use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\Configuration\LocalConfigReader;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Diagnostics\ContentWriter;
@@ -124,26 +124,37 @@ class DataService {
     }
 
     /**
+     * PHP SDK currently only support XML for Object Serialization and Deserialization
+     */
+    public function useXml(){
+
+    }
+    /**
 
     * New Static function for static Reading from Config or Passing Array
     */
     /**
+    * The config needs to include
     */
-    public static function Configure(array $settings = NULL){
-      if(empty($settings)){
-        $ServiceContextFromFile = ServiceContext::ConfigureFromLocalFile();
-        if (!isset($ServiceContextFromFile)) {
-            throw new Exception('Construct ServiceContext from File failed.');
+    public static function Configure($settings){
+      if(isset($settings)){
+        if(is_array($settings)){
+          $ServiceContextFromPassedArray = ServiceContext::ConfigureFromPassedArray($settings);
+          if (!isset($ServiceContextFromPassedArray)) {
+              throw new Exception('Construct ServiceContext from OAuthSettigs failed.');
+          }
+          $DataServiceInstance = new DataService($ServiceContextFromPassedArray);
+          return $DataServiceInstance;
+        }else if(is_string($settings)){
+          $ServiceContextFromFile = ServiceContext::ConfigureFromLocalFile($settings);
+          if (!isset($ServiceContextFromFile)) {
+              throw new Exception('Construct ServiceContext from File failed.');
+          }
+          $DataServiceInstance = new DataService($ServiceContextFromFile);
+          return $DataServiceInstance;
         }
-        $DataServiceInstance = new DataService($ServiceContextFromFile);
-        return $DataServiceInstance;
       }else{
-        $ServiceContextFromPassedArray = ServiceContext::ConfigureFromPassedArray($settings);
-        if (!isset($ServiceContextFromPassedArray)) {
-            throw new Exception('Construct ServiceContext from OAuthSettigs failed.');
-        }
-        $DataServiceInstance = new DataService($ServiceContextFromPassedArray);
-        return $DataServiceInstance;
+         throw new SdkException("Passed Null to Configure method. It expects either a file path for the config file or an array containing OAuth settings and BaseURL.");
       }
     }
 
@@ -218,7 +229,7 @@ class DataService {
             return FALSE;
         }
 
-        $php2xml = new com\mikebevz\xsd2php\Php2Xml(PHP_CLASS_PREFIX);
+        $php2xml = new com\mikebevz\xsd2php\Php2Xml(CoreConsants::PHP_CLASS_PREFIX);
         $php2xml->overrideAsSingleNamespace = 'http://schema.intuit.com/finance/v3';
 
         try {
@@ -238,7 +249,9 @@ class DataService {
      * @return POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName) {
-        return PHP_CLASS_PREFIX . $intuitEntityName;
+        $className = CoreConstants::PHP_CLASS_PREFIX . $intuitEntityName;
+        $className = trim($className);
+        return $className;
     }
 
 
@@ -256,8 +269,8 @@ class DataService {
      */
     private static function cleanPhpClassNameToIntuitEntityName($phpClassName) {
         $phpClassName = self::removeNameSpaceFromPhpClassName($phpClassName);
-        if (0 == strpos($phpClassName, PHP_CLASS_PREFIX))
-            return substr($phpClassName, strlen(PHP_CLASS_PREFIX));
+        if (0 == strpos($phpClassName, CoreConstants::PHP_CLASS_PREFIX))
+            return substr($phpClassName, strlen(CoreConstants::PHP_CLASS_PREFIX));
 
         return NULL;
     }

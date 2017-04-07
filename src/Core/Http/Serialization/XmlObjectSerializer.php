@@ -6,6 +6,7 @@ use QuickbooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
 
+
 /**
  * Xml Serialize(r) to serialize and de serialize.
  */
@@ -39,7 +40,7 @@ class XmlObjectSerializer extends IEntitySerializer {
 			return FALSE;
 		}
 
-		$php2xml = new Php2Xml(PHP_CLASS_PREFIX);
+		$php2xml = new Php2Xml(CoreConstants::PHP_CLASS_PREFIX);
 		$php2xml->overrideAsSingleNamespace='http://schema.intuit.com/finance/v3';
 
 		try {
@@ -92,7 +93,7 @@ class XmlObjectSerializer extends IEntitySerializer {
 		}else{
 			  throw new \Exception("Can't find corresponding CLASS for className" . $className . "during unmarshall XML into POPO Object");
 		}
-		$bind = new Bind(PHP_CLASS_PREFIX);
+		$bind = new Bind(CoreConstants::PHP_CLASS_PREFIX);
 		$bind->overrideAsSingleNamespace='http://schema.intuit.com/finance/v3';
 		$bind->bindXml($xmlStr, $phpObj);
 		return $phpObj;
@@ -150,7 +151,7 @@ class XmlObjectSerializer extends IEntitySerializer {
 	private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
 	{
 		$intuitEntityName = trim($intuitEntityName);
-		return PHP_CLASS_PREFIX . $intuitEntityName;
+		return CoreConstants::PHP_CLASS_PREFIX . $intuitEntityName;
 	}
 
 	/**
@@ -165,8 +166,8 @@ class XmlObjectSerializer extends IEntitySerializer {
 		//if the className has delimiters, get the last part
 		$separetes = explode('\\', $phpClassName);
 		$phpClassName = end($separetes);
-		if (0==strpos($phpClassName, PHP_CLASS_PREFIX))
-			return substr($phpClassName, strlen(PHP_CLASS_PREFIX));
+		if (0==strpos($phpClassName, CoreConstants::PHP_CLASS_PREFIX))
+			return substr($phpClassName, strlen(CoreConstants::PHP_CLASS_PREFIX));
 
 		return NULL;
 	}
