@@ -6,9 +6,9 @@ PHP client for connecting to the QuickBooks Online V3 REST API.
 To find out more, visit the official documentation website:
 http://developer.intuit.com/
 
-![Build status](https://travis-ci.org/hlu2/QuickBooks_Demo.svg?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/hlu2/quick-books_demo/v/stable)](https://packagist.org/packages/hlu2/quick-books_demo)
-[![Total Downloads](https://poser.pugx.org/hlu2/quick-books_demo/downloads)](https://packagist.org/packages/hlu2/quick-books_demo)
+![Build status](https://travis-ci.org/intuit/QuickBooks-V3-PHP-SDK.svg?branch=master)
+[![Latest Stable Version]([![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk))
+[![Total Downloads]([![Total Downloads](https://poser.pugx.org/quickbooks/v3-php-sdk/downloads)](https://packagist.org/packages/quickbooks/v3-php-sdk))
 
 Requirements
 ------------
@@ -71,7 +71,7 @@ $dataService = DataService::Configure(array(
 ));
 ~~~
 
-or you use the sdk.config file as the config file for preparing service context. You will need to pass the path of config file explicitly:
+or you use the sdk.config file located in /src as a template for the config file for preparing service context. You will need to pass the path of config file explicitly:
 ~~~php
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
