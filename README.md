@@ -44,6 +44,9 @@ API client from [the Intuit vendor on Packagist](composer require quickbooks/v3-
 If you are not familiar with Composer. Please read the introduction guide for Composer here:
 https://getcomposer.org/doc/00-intro.md
 
+If you haven't installed PECL OAuth 1.2.3 libraray, you need to install it to run the PHP SDK. Please refer to the documentation here for how to install it:
+https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/0209_php/0002_install_the_php_sdk
+
 Configuration
 -------------
 
