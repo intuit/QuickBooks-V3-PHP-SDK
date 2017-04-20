@@ -105,7 +105,7 @@ class LocalConfigReader
 
 	}
 
-	public static function ReadConfigurationFromParameters($OAuthConfig, $baseUrl, $defaultLoggingLocation = CoreConstatnts::DEFAULT_LOGGINGLOCATION, $minorVersion = 3){
+	public static function ReadConfigurationFromParameters($OAuthConfig, $baseUrl, $defaultLoggingLocation = CoreConstants::DEFAULT_LOGGINGLOCATION, $minorVersion = 3){
 		$ippConfig = new IppConfiguration();
     try {
 				//Set OAuth

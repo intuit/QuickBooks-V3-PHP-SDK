@@ -25,6 +25,14 @@ $dataService = DataService::Configure(array(
 		 'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
 ));
 
+// Prep Data Services
+$serviceContext = $dataService->getServiceContext();
+
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+$dataService->setMinorVersion("4");
+$dataService->useXml();
+$dataService->disableLog();
+var_dump($serviceContext);
 
 if (!$dataService)
 	exit("Problem while initializing DataService.\n");

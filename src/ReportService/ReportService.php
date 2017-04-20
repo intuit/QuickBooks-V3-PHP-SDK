@@ -6,6 +6,11 @@ use QuickBooksOnline\API\Diagnostics\ContentWriter;
 use QuickBooksOnline\API\Core\Configuration\OperationControlList;
 use QuickBooksOnline\API\DataService\Batch;
 use QuickBooksOnline\API\DataService\IntuitCDCResponse;
+use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
+use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 
 class ReportService
 {
@@ -825,7 +830,7 @@ class ReportService
         $this->restHandler = new SyncRestHandler($serviceContext);
 
         // Set the Service type to either QBO or QBD by calling a method.
-        $this->serviceContext->UseDataServices();
+        //$this->serviceContext->UseDataServices();
     }
 
     /**
@@ -1037,7 +1042,8 @@ class ReportService
         CoreHelper::CheckNullResponseAndThrowException($responseBody);
 
         try {
-            $responseBody = $this->modifyReportResponse($responseBody);
+            //The modification is no longer necessary
+            //$responseBody = $this->modifyReportResponse($responseBody);
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, TRUE);
 
         } catch (Exception $e) {

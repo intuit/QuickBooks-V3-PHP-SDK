@@ -5,10 +5,12 @@ use ReflectionProperty;
 use RuntimeException;
 use UnexpectedValueException;
 use InvalidArgumentException;
-use QuickBooksOnline\API\Utility\Serialization\SimpleEntity;
-use QuickBooksOnline\API\Utility\Serialization\ObjectEntity;
-use QuickBooksOnline\API\Utility\Serialization\UnknownEntity;
-use QuickBooksOnline\API\Utility\Serialization\AbstractEntity;
+use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\Http\Serialization\ObjectEntity;
+use QuickBooksOnline\API\Core\Http\Serialization\SimpleEntity;
+use QuickBooksOnline\API\Core\Http\Serialization\UnknownEntity;
+use QuickBooksOnline\API\Core\Http\Serialization\AbstractEntity;
+
 
 /**
  * Extracts metadata for properties and decides which type is associated with this property
@@ -88,12 +90,21 @@ class MetadataExtractor {
        // generate names
        // try it
        foreach ($this->generateObjectNames($value) as $name) {
+          $name = $this->addNameSpaceToPotentialClassName($name);
            if(class_exists($name)) {
                return new ObjectEntity($name);
            }
        }
 
        return new UnknownEntity($value);
+    }
+
+    private function addNameSpaceToPotentialClassName($name){
+      $name = trim($name);
+      $lists = explode('\\', $name);
+      $ippEntityName = end($lists);
+      $ippEntityName = CoreConstants::NAMEPSACE_DATA_PREFIX . $ippEntityName;
+      return $ippEntityName;
     }
 
     /**
@@ -149,7 +160,8 @@ class MetadataExtractor {
      */
     private function getIntuitName($string)
     {
-        return \PHP_CLASS_PREFIX.$string;
+        $string = trim($string);
+        return $string;
     }
 
     /**

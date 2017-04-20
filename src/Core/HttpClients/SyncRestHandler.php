@@ -87,7 +87,7 @@ class SyncRestHandler extends RestHandler
 				// });
 			}
 		}
-		catch (Exception $webException)
+		catch (\Exception $webException)
 		{
 			// System.Net.HttpWebRequest.Abort() was previously called.-or- The time-out
 			// period for the request expired.-or- An error occurred while processing the request.
@@ -169,7 +169,7 @@ class SyncRestHandler extends RestHandler
 				}
 			}
 		}
-		catch(Exception $e)
+		catch(\Exception $e)
 		{
           throw new \Exception("Error on GetOAuthResponseHeaders.");
 		}
@@ -235,7 +235,7 @@ class SyncRestHandler extends RestHandler
 
     //When call OAuth, check if the user has OAuth installed.
 		if (!extension_loaded('OAuth')) {
-				throw new Exception('The PHP exention OAuth 1.2.3 must be installed to use this library.');
+				throw new \Exception('The PHP exention OAuth 1.2.3 must be installed to use this library.');
 		}
 
 

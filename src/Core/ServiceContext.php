@@ -152,27 +152,27 @@ class ServiceContext
      }
 
 		 if (!isset($settings['consumerKey'])) {
-            throw new Exception("'consumerKey' must be provided");
+            throw new \Exception("'consumerKey' must be provided");
      }
 
 		 if (!isset($settings['consumerSecret'])) {
-						throw new Exception("'consumerSecret' must be provided");
+						throw new \Exception("'consumerSecret' must be provided");
 		 }
 
 		 if (!isset($settings['accessTokenKey'])) {
-						throw new Exception("'accessTokenKey' must be provided");
+						throw new \Exception("'accessTokenKey' must be provided");
 		 }
 
 		 if (!isset($settings['accessTokenSecret'])) {
-						throw new Exception("'accessTokenSecret' must be provided");
+						throw new \Exception("'accessTokenSecret' must be provided");
 		 }
 
 		 if (!isset($settings['QBORealmID'])) {
-						throw new Exception("'QBORealmID' must be provided");
+						throw new \Exception("'QBORealmID' must be provided");
 		 }
 
 		 if (!isset($settings['baseUrl'])) {
-						throw new Exception("'baseUrl' must be provided");
+						throw new \Exception("'baseUrl' must be provided");
 		 }
 
 
@@ -225,20 +225,72 @@ class ServiceContext
 	* Currently the Object serailziation and deserilization only supports XML format.
 	*/
 	public function useXml(){
-			$this->$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
-			$this->$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
-			$this->$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Xml;
-			$this->$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Xml;
+			$this->IppConfiguration->Message->Request->CompressionFormat = CompressionFormat::None;
+			$this->IppConfiguration->Message->Response->CompressionFormat = CompressionFormat::None;
+			$this->IppConfiguration->Message->Request->SerializationFormat = SerializationFormat::Xml;
+			$this->IppConfiguration->Message->Response->SerializationFormat = SerializationFormat::Xml;
 	}
 
 	/**
 	* Currently the Object serailziation and deserilization only supports XML format.
-	* To be Supported @Hao
+	* To be Supported, Currently it is only a place holder @Hao
 	*/
-	public function useJson(){
-			$this->$ippConfig->Message->Request->CompressionFormat = CompressionFormat::None;
-			$this->$ippConfig->Message->Response->CompressionFormat = CompressionFormat::None;
-			$this->$ippConfig->Message->Request->SerializationFormat = SerializationFormat::Json;
-			$this->$ippConfig->Message->Response->SerializationFormat = SerializationFormat::Json;
+	private function useJson(){
+			$this->IppConfiguration->Message->Request->CompressionFormat = CompressionFormat::None;
+			$this->IppConfiguration->Message->Response->CompressionFormat = CompressionFormat::None;
+			$this->IppConfiguration->Message->Request->SerializationFormat = SerializationFormat::Json;
+			$this->IppConfiguration->Message->Response->SerializationFormat = SerializationFormat::Json;
+	}
+
+	/**
+	 * Disable Log the request and response to disk
+	 */
+	public function disableLog(){
+		try
+		{
+			$_ippConfigInstance = $this->getIppConfig();
+			LocalConfigReader::setupLogger($_ippConfigInstance, CoreConstants::DEFAULT_LOGGINGLOCATION, "FALSE");
+		}catch (\Exception $e){
+				throw new \Excpetion("Error in disable Log.");
+		}
+	}
+
+	/**
+	* Set a new Location for Log instead of the default Location
+	* @param $new_log_location
+  *        The new log directory path. It is a directory, not a file
+	*/
+	public function setLogLocation($new_log_location){
+			try
+			{
+				$_ippConfigInstance = $this->getIppConfig();
+				LocalConfigReader::setupLogger($_ippConfigInstance, $new_log_location, "TRUE");
+			}catch (\Exception $e){
+				  throw new \Excpetion("Error in setting up new Log Configuration: " . $new_log_location);
+			}
+	}
+
+	public function setMinorVersion($new_minor_version){
+		   try
+		   {
+			    $_ippConfigInstance = $this->getIppConfig();
+					$_ippConfigInstance->minorVersion = $new_minor_version;
+		   }catch (\Exception $e){
+				  throw new \Excpetion("Error in setting up minor version.");
+		   }
+	}
+
+	/**
+	* Return the Ipp Configuration for the ServiceContext for changing the settings
+	* @return IppConfiguration
+  *            The IppConfiguration for current settings
+	*/
+	private function getIppConfig(){
+		  $_ippConfiguration = $this->IppConfiguration;
+		  if(isset($_ippConfiguration)){
+			    return $_ippConfiguration;
+		  }else{
+			    throw new \Excpetion("Return Null or Empty IppConfiguration.");
+		  }
 	}
 }

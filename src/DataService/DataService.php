@@ -119,16 +119,78 @@ class DataService {
         $this->serviceContext = $serviceContext;
     }
 
+    /**
+    * Return the ServiceContext of this DataService
+    *
+    * @return ServiceContext
+    */
+    public function getServiceContext(){
+       $_ServiceContext = $this->serviceContext;
+       if(isset($_ServiceContext)){
+          return $_ServiceContext;
+       }else{
+         throw new \Exception("Trying to Return an Empty Service Context.");
+       }
+    }
+
     private function setupRestHandler($serviceContext){
       $this->restHandler = new SyncRestHandler($serviceContext);
     }
 
     /**
-     * PHP SDK currently only support XML for Object Serialization and Deserialization
+     * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
      */
     public function useXml(){
-
+        $_ServiceContext = $this->getServiceContext();
+        $_ServiceContext->useXml();
+        $this->updateServiceContextSettingsForOthers($_ServiceContext);
     }
+
+    /**
+     * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
+     */
+    public function useJson(){
+      $_ServiceContext = $this->getServiceContext();
+      $_ServiceContext->useJson();
+      $this->updateServiceContextSettingsForOthers($_ServiceContext);
+    }
+
+    /**
+    * Set a new directory for request and response log
+    */
+    public function setLogLocation($new_log_location){
+      $_ServiceContext = $this->getServiceContext();
+      $_ServiceContext->setLogLocation($new_log_location);
+      $this->updateServiceContextSettingsForOthers($_ServiceContext);
+    }
+
+    /**
+    * Set a new Minor Version
+    * @param $new_minor_version
+    *     The new minor version that passed
+    */
+    public function setMinorVersion($newMinorVersion){
+      $_ServiceContext = $this->getServiceContext();
+      $_ServiceContext->setMinorVersion($newMinorVersion);
+      $this->updateServiceContextSettingsForOthers($_ServiceContext);
+    }
+
+    /**
+    * Disable the logging function
+    *
+    */
+    public function disableLog(){
+      $_ServiceContext = $this->getServiceContext();
+      $_ServiceContext->disableLog();
+      $this->updateServiceContextSettingsForOthers($_ServiceContext);
+    }
+
+    public function updateServiceContextSettingsForOthers($_ServiceContext){
+      $this->setupSerializers();
+      $this->useMinorVersion();
+      $this->setupRestHandler($_ServiceContext);
+    }
+
     /**
 
     * New Static function for static Reading from Config or Passing Array
@@ -141,14 +203,14 @@ class DataService {
         if(is_array($settings)){
           $ServiceContextFromPassedArray = ServiceContext::ConfigureFromPassedArray($settings);
           if (!isset($ServiceContextFromPassedArray)) {
-              throw new Exception('Construct ServiceContext from OAuthSettigs failed.');
+              throw new \Exception('Construct ServiceContext from OAuthSettigs failed.');
           }
           $DataServiceInstance = new DataService($ServiceContextFromPassedArray);
           return $DataServiceInstance;
         }else if(is_string($settings)){
           $ServiceContextFromFile = ServiceContext::ConfigureFromLocalFile($settings);
           if (!isset($ServiceContextFromFile)) {
-              throw new Exception('Construct ServiceContext from File failed.');
+              throw new \Exception('Construct ServiceContext from File failed.');
           }
           $DataServiceInstance = new DataService($ServiceContextFromFile);
           return $DataServiceInstance;
