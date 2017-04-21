@@ -79,6 +79,17 @@ or you use the sdk.config file located in /src as a template for the config file
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
 
+To set up Minor Version you want to use for the Request:
+~~~php
+$dataService->setMinorVersion("4");
+~~~
+
+To set up your own Log location for complete request and response:
+~~~php
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+~~~
+
+
 Connecting to the QuickBooks Online API
 -----------------------
 Referring to class methods may be required sometime. To access to the Class reference Entity, go to:
