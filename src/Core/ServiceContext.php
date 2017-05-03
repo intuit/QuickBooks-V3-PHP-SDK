@@ -10,6 +10,7 @@ use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Security\RequestValidator;
 
 /**
  * THe Service Context Class contains necessary settings for RestCalls
@@ -62,7 +63,7 @@ class ServiceContext
 
     /**
      * The Minor Version that would that returns additinoal fields from build v71
-     * @var MinorVersion
+     * @var string
      */
     public $minorVersion;
 
@@ -194,9 +195,14 @@ class ServiceContext
     {
         $this->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called GetBaseURL method.");
         try {
-            $baseurl = $this->IppConfiguration->BaseUrl->Qbo . implode(CoreConstants::SLASH_CHAR, array(CoreConstants::VERSION)) . CoreConstants::SLASH_CHAR;
+            if ($this->serviceType === CoreConstants::IntuitServicesTypeQBO) {
+                $baseurl = $this->IppConfiguration->BaseUrl->Qbo . implode(CoreConstants::SLASH_CHAR, array(CoreConstants::VERSION)) . CoreConstants::SLASH_CHAR;
+            }
+            else {
+                $baseurl = $this->IppConfiguration->BaseUrl->Ipp;
+            }
         } catch (\Exception $e) {
-            throw new \Excpetion("Base URL is not setup");
+            throw new \Exception("Base URL is not setup");
         }
         return $baseurl;
     }
@@ -207,7 +213,7 @@ class ServiceContext
     public function UsePlatformServices()
     {
         $this->serviceType = CoreConstants::IntuitServicesTypeIPP;
-        $this->baseserviceURL = $this->GetBaseURL();
+        $this->baseserviceURL = $this->getBaseURL();
     }
 
     public function disableSSlCheck()
@@ -247,7 +253,7 @@ class ServiceContext
             $_ippConfigInstance = $this->getIppConfig();
             LocalConfigReader::setupLogger($_ippConfigInstance, CoreConstants::DEFAULT_LOGGINGLOCATION, "FALSE");
         } catch (\Exception $e) {
-            throw new \Excpetion("Error in disable Log.");
+            throw new \Exception("Error in disable Log.");
         }
     }
 
@@ -262,7 +268,7 @@ class ServiceContext
             $_ippConfigInstance = $this->getIppConfig();
             LocalConfigReader::setupLogger($_ippConfigInstance, $new_log_location, "TRUE");
         } catch (\Exception $e) {
-            throw new \Excpetion("Error in setting up new Log Configuration: " . $new_log_location);
+            throw new \Exception("Error in setting up new Log Configuration: " . $new_log_location);
         }
     }
 
@@ -272,7 +278,7 @@ class ServiceContext
             $_ippConfigInstance = $this->getIppConfig();
             $_ippConfigInstance->minorVersion = $new_minor_version;
         } catch (\Exception $e) {
-            throw new \Excpetion("Error in setting up minor version.");
+            throw new \Exception("Error in setting up minor version.");
         }
     }
 
@@ -287,7 +293,7 @@ class ServiceContext
         if (isset($_ippConfiguration)) {
             return $_ippConfiguration;
         } else {
-            throw new \Excpetion("Return Null or Empty IppConfiguration.");
+            throw new \Exception("Return Null or Empty IppConfiguration.");
         }
     }
 }

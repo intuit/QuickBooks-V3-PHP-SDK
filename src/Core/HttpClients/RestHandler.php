@@ -2,8 +2,8 @@
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Core\Http\Compression\GZipCompressor;
-use QuickBooksOnline\API\Core\Http\Compression\DeflateCompressor;
+use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
+use QuickBooksOnline\API\Core\ServiceContext;
 
 /**
  * Rest Handler class.
@@ -15,31 +15,31 @@ use QuickBooksOnline\API\Core\Http\Compression\DeflateCompressor;
      * The contex
      * @var ServiceContext
      */
-    private $serviceContext;
+    protected $serviceContext;
 
     /**
      * Response serializer.
      * @var IEntitySerializer
      */
-    private $ResponseSerializer;
+    protected $ResponseSerializer;
 
     /**
      * Gets or sets Request compressor.
      * @var ICompressor
      */
-    private $RequestCompressor;
+    protected $RequestCompressor;
 
     /**
      * Gets or sets Response compressor.
      * @var ICompressor
      */
-    private $ResponseCompressor;
+    protected $ResponseCompressor;
 
     /**
      * Gets or sets Request serializer.
      * @var IEntitySerializer
      */
-    private $RequestSerializer;
+    protected $RequestSerializer;
 
     /**
    *
