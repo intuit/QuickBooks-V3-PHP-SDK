@@ -2,6 +2,7 @@
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
+use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Utility\IntuitErrorHandler;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -13,18 +14,16 @@ use QuickBooksOnline\API\Exception\IdsException;
  */
 class SyncRestHandler extends RestHandler
 {
-
-    /**
-     * The context
-     * @var ServiceContext
-     */
-    private $serviceContext;
-
   /**
     * Store the error code during Request
     * @var FaultHandler
     */
     private $faultHandler = null;
+
+    /**
+     * @var ServiceContext
+     */
+    private $context;
 
     /**
      * Initializes a new instance of the SyncRestHandler class.

@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
@@ -8,9 +9,8 @@ use QuickBooksOnline\API\Core\ServiceContext;
 /**
  * Rest Handler class.
  */
- class RestHandler
- {
-
+class RestHandler
+{
     /**
      * The contex
      * @var ServiceContext
@@ -42,7 +42,7 @@ use QuickBooksOnline\API\Core\ServiceContext;
     protected $RequestSerializer;
 
     /**
-   *
+     *
      * Initializes a new instance of the RestHandler class.
      *
      * @param ServiceContext $context The Service Context
@@ -56,4 +56,4 @@ use QuickBooksOnline\API\Core\ServiceContext;
         $this->ResponseSerializer = CoreHelper::GetSerializer($this->serviceContext, false);
         $this->RequestLogging = CoreHelper::GetRequestLogging($this->serviceContext);
     }
- }
+}
