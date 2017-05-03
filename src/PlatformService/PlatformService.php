@@ -94,7 +94,7 @@ class PlatformService
 	 * Reconnect generates a new OAuth access token and invalidates the OAuth access token used
 	 * in the request, thereby extending the life span by six months.
 	 *
-	 * @return SimpleXMLElement Xml of Reconnect response
+	 * @return \SimpleXMLElement Xml of Reconnect response
 	 */
 	public function Reconnect()
 	{
@@ -109,7 +109,7 @@ class PlatformService
 	 * Disconnect invalidates the OAuth access token in the request, thereby disconnecting
 	 * the user from QuickBooks for this app.
 	 *
-	 * @return SimpleXMLElement Xml of Disconnect response
+	 * @return \SimpleXMLElement Xml of Disconnect response
 	 */
 	public function Disconnect()
 	{
@@ -124,7 +124,7 @@ class PlatformService
 	/**
 	 * Returns user information such as first name, last name, and email address.
 	 *
-	 * @return SimpleXMLElement Xml of Disconnect response
+	 * @return \SimpleXMLElement Xml of Disconnect response
 	 */
 	public function CurrentUser()
 	{
