@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TotalInvoiceAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TotalInvoiceAmount
  */
-class TotalInvoiceAmount
-	extends TotalInvoiceAmountType
-	{
-
-
-
+class TotalInvoiceAmount extends TotalInvoiceAmountType
+{
 } // end class TotalInvoiceAmount

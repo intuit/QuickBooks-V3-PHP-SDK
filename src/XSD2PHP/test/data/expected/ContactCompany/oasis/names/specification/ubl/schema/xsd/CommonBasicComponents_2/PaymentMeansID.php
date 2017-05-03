@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentMeansID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentMeansID
  */
-class PaymentMeansID
-	extends PaymentMeansIDType
-	{
-
-
-
+class PaymentMeansID extends PaymentMeansIDType
+{
 } // end class PaymentMeansID

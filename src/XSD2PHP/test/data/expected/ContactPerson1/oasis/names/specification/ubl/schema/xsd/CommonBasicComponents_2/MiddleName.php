@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MiddleName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MiddleName
  */
-class MiddleName
-	extends MiddleNameType
-	{
-
-
-
+class MiddleName extends MiddleNameType
+{
 } // end class MiddleName

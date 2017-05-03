@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LineItem
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LineItem
  */
-class LineItem
-	extends LineItemType
-	{
-
-
-
+class LineItem extends LineItemType
+{
 } // end class LineItem

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LineCountNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LineCountNumeric
  */
-class LineCountNumeric
-	extends LineCountNumericType
-	{
-
-
-
+class LineCountNumeric extends LineCountNumericType
+{
 } // end class LineCountNumeric

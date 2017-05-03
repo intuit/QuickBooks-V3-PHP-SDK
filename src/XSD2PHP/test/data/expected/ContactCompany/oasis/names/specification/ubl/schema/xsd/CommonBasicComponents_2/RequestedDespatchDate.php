@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RequestedDespatchDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RequestedDespatchDate
  */
-class RequestedDespatchDate
-	extends RequestedDespatchDateType
-	{
-
-
-
+class RequestedDespatchDate extends RequestedDespatchDateType
+{
 } // end class RequestedDespatchDate

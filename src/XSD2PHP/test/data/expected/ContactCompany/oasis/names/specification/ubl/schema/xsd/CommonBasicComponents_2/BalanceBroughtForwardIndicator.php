@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BalanceBroughtForwardIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BalanceBroughtForwardIndicator
  */
-class BalanceBroughtForwardIndicator
-	extends BalanceBroughtForwardIndicatorType
-	{
-
-
-
+class BalanceBroughtForwardIndicator extends BalanceBroughtForwardIndicatorType
+{
 } // end class BalanceBroughtForwardIndicator

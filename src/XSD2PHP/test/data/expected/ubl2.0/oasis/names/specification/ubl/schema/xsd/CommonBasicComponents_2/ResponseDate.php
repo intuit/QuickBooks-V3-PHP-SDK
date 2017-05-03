@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ResponseDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ResponseDate
  */
-class ResponseDate
-	extends ResponseDateType
-	{
-
-
-
+class ResponseDate extends ResponseDateType
+{
 } // end class ResponseDate

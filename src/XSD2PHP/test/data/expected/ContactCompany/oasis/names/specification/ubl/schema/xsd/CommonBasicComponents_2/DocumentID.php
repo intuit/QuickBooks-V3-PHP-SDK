@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DocumentID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DocumentID
  */
-class DocumentID
-	extends DocumentIDType
-	{
-
-
-
+class DocumentID extends DocumentIDType
+{
 } // end class DocumentID

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NameSuffix
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NameSuffix
  */
-class NameSuffix
-	extends NameSuffixType
-	{
-
-
-
+class NameSuffix extends NameSuffixType
+{
 } // end class NameSuffix

@@ -6,14 +6,10 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2;
  * @xmlType UBLExtensionType
  * @xmlName UBLExtension
  * @var oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2\UBLExtension
- * @xmlDefinition 
+ * @xmlDefinition
         A single extension for private use.
-      
+
  */
-class UBLExtension
-	extends UBLExtensionType
-	{
-
-
-
+class UBLExtension extends UBLExtensionType
+{
 } // end class UBLExtension

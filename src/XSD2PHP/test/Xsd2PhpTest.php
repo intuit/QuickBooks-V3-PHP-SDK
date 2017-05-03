@@ -16,35 +16,36 @@ class Xsd2PhpTest extends LegkoXMLTestCase
      * XSD to PHP convertor class
      * @var Xsd2Php
      */
-    private $tclass; 
+    private $tclass;
     
     private $xsd;
     
-    protected function setUp ()
+    protected function setUp()
     {
         $this->xsd = dirname(__FILE__)."/../resources/ubl2.0/maindoc/UBL-Order-2.0.xsd";
         $this->tclass = new xsd2php\Xsd2Php("", $this->xsd);
     }
-    protected function tearDown ()
+    protected function tearDown()
     {
-        $this->tclass = null;        
+        $this->tclass = null;
     }
     
     /*
     private function rmdir_recursive($dir) {
-        if (is_dir($dir)) { 
-         $objects = scandir($dir); 
-         foreach ($objects as $object) { 
-           if ($object != "." && $object != "..") { 
-             if (filetype($dir."/".$object) == "dir") rmdir_recursive($dir."/".$object); else unlink($dir."/".$object); 
-           } 
-         } 
-         reset($objects); 
-         rmdir($dir); 
-       } 
+        if (is_dir($dir)) {
+         $objects = scandir($dir);
+         foreach ($objects as $object) {
+           if ($object != "." && $object != "..") {
+             if (filetype($dir."/".$object) == "dir") rmdir_recursive($dir."/".$object); else unlink($dir."/".$object);
+           }
+         }
+         reset($objects);
+         rmdir($dir);
+       }
     }*/
     
-    public function testXSDMustBeConvertedToXML() {
+    public function testXSDMustBeConvertedToXML()
+    {
         $this->markTestSkipped(
             'execution of test does not complete - possibly xml files are too big?'
         );
@@ -55,7 +56,8 @@ class Xsd2PhpTest extends LegkoXMLTestCase
         $this->assertEquals($expected, $actual);
     }
     
-    public function testPHPFilesMustBeSaved() {
+    public function testPHPFilesMustBeSaved()
+    {
         $this->markTestSkipped(
             'Need to update expected data to account for Intuit code changes'
         );
@@ -87,12 +89,12 @@ class Xsd2PhpTest extends LegkoXMLTestCase
         $this->assertDirContentsEquals(dirname(__FILE__).'/data/expected/ubl2.0/un', dirname(__FILE__).'/data/generated/ubl2.0/un');
         
         if (file_exists('data/generated/ubl2.0')) {
-           rmdir_recursive(realpath('data/generated/ubl2.0'));
+            rmdir_recursive(realpath('data/generated/ubl2.0'));
         }
-        
     }
     
-    public function testSimpleSchema1() {
+    public function testSimpleSchema1()
+    {
         $this->tclass = new xsd2php\Xsd2Php("", "../resources/simple1/simple.xsd");
         $xml = $this->tclass->getXML();
         //file_put_contents(dirname(__FILE__).'/data/expected/simple1/generated.xml', $xml->saveXml());
@@ -151,86 +153,80 @@ class Xsd2PhpTest extends LegkoXMLTestCase
         }
     }
     
-    public function testMultiLevelImportAndIncludes() {
-
-         $this->markTestSkipped(
+    public function testMultiLevelImportAndIncludes()
+    {
+        $this->markTestSkipped(
              'Need to update expected data to account for Intuit code changes'
          );
-         $this->tclass = new xsd2php\Xsd2Php("", "../resources/MultiLevelImport/ContactPerson.xsd");
-         $xml = $this->tclass->getXML();
+        $this->tclass = new xsd2php\Xsd2Php("", "../resources/MultiLevelImport/ContactPerson.xsd");
+        $xml = $this->tclass->getXML();
          //file_put_contents(dirname(__FILE__).'/data/expected/MultiLevelImport/generated.xml', $xml->saveXml());
          $expectedXml = file_get_contents(dirname(__FILE__).'/data/expected/MultiLevelImport/generated.xml');
-         $this->assertEquals($expectedXml, $xml->saveXml());
+        $this->assertEquals($expectedXml, $xml->saveXml());
          
-         if (file_exists(dirname(__FILE__).'/data/generated/MultiLevelImport')) {
+        if (file_exists(dirname(__FILE__).'/data/generated/MultiLevelImport')) {
             rmdir_recursive(realpath(dirname(__FILE__).'/data/generated/MultiLevelImport'));
-         } 
+        }
          
-         $this->tclass->saveClasses(dirname(__FILE__).'/data/generated/MultiLevelImport', true);
+        $this->tclass->saveClasses(dirname(__FILE__).'/data/generated/MultiLevelImport', true);
          
-         if (file_exists(dirname(__FILE__).'/data/generated/MultiLevelImport')) {
+        if (file_exists(dirname(__FILE__).'/data/generated/MultiLevelImport')) {
             rmdir_recursive(realpath(dirname(__FILE__).'/data/generated/MultiLevelImport'));
-         } 
+        }
     }
     
- public function testContactPerson() {
-
+    public function testContactPerson()
+    {
         $this->markTestSkipped(
             'Need to update expected data to account for Intuit code changes'
         );
         $expPath = dirname(__FILE__).'/data/expected/ContactPerson1/';
         $genPath = dirname(__FILE__).'/data/generated/ContactPerson1/';
         
-         $this->tclass = new xsd2php\Xsd2Php("", "../resources/ContactPerson1/ContactPerson.xsd");
-         $xml = $this->tclass->getXML();
+        $this->tclass = new xsd2php\Xsd2Php("", "../resources/ContactPerson1/ContactPerson.xsd");
+        $xml = $this->tclass->getXML();
          //file_put_contents($expPath.'generated.xml', $xml->saveXml());
          $expectedXml = file_get_contents($expPath.'generated.xml');
-         $this->assertEquals($expectedXml, $xml->saveXml());
+        $this->assertEquals($expectedXml, $xml->saveXml());
          
-         if (file_exists($genPath)) {
+        if (file_exists($genPath)) {
             rmdir_recursive(realpath($genPath));
-         } 
+        }
          
-         $this->tclass->saveClasses($genPath, true);
+        $this->tclass->saveClasses($genPath, true);
          
-         if (file_exists($genPath)) {
-           rmdir_recursive(realpath($genPath));
-         }
-        
-        
+        if (file_exists($genPath)) {
+            rmdir_recursive(realpath($genPath));
+        }
     }
  
     
-    public function testContactCompany() {
+    public function testContactCompany()
+    {
         $this->markTestSkipped(
             'Need to update expected data to account for Intuit code changes'
         );
         $expPath = dirname(__FILE__).'/data/expected/ContactCompany/';
         $genPath = dirname(__FILE__).'/data/generated/ContactCompany/';
         
-         $this->tclass = new xsd2php\Xsd2Php("", "../resources/ContactCompany/ContactCompany.xsd");
-         $xml = $this->tclass->getXML();
+        $this->tclass = new xsd2php\Xsd2Php("", "../resources/ContactCompany/ContactCompany.xsd");
+        $xml = $this->tclass->getXML();
          //file_put_contents($expPath.'generated.xml', $xml->saveXml());
          $expectedXml = file_get_contents($expPath.'generated.xml');
-         $this->assertEquals($expectedXml, $xml->saveXml());
+        $this->assertEquals($expectedXml, $xml->saveXml());
          
-         if (file_exists($genPath)) {
+        if (file_exists($genPath)) {
             rmdir_recursive(realpath($genPath));
-         } 
+        }
          
-         $this->tclass->saveClasses($genPath, true);
+        $this->tclass->saveClasses($genPath, true);
          
          //$cp = new ContactCompany\ContactCompany();
          //$id = new CommonBasicComponents_2\ID();
             
          
          if (file_exists($genPath)) {
-           rmdir_recursive(realpath($genPath));
-         } 
+             rmdir_recursive(realpath($genPath));
+         }
     }
-    
-    
-    
-    
-   
 }

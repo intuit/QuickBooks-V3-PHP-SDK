@@ -2,16 +2,13 @@
 namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
 
 use un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\_2;
+
 /**
  * @xmlNamespace urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2
  * @xmlType QuantityType
  * @xmlName PackagesQuantityType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PackagesQuantityType
  */
-class PackagesQuantityType
-	extends _2\QuantityType
-	{
-
-
-
+class PackagesQuantityType extends _2\QuantityType
+{
 } // end class PackagesQuantityType

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LotIdentification
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LotIdentification
  */
-class LotIdentification
-	extends LotIdentificationType
-	{
-
-
-
+class LotIdentification extends LotIdentificationType
+{
 } // end class LotIdentification

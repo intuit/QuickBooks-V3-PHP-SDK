@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderableUnitFactorRate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderableUnitFactorRate
  */
-class OrderableUnitFactorRate
-	extends OrderableUnitFactorRateType
-	{
-
-
-
+class OrderableUnitFactorRate extends OrderableUnitFactorRateType
+{
 } // end class OrderableUnitFactorRate

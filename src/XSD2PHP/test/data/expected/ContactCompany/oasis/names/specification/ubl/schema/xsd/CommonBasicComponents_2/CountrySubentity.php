@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CountrySubentity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CountrySubentity
  */
-class CountrySubentity
-	extends CountrySubentityType
-	{
-
-
-
+class CountrySubentity extends CountrySubentityType
+{
 } // end class CountrySubentity

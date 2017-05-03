@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PayerReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PayerReference
  */
-class PayerReference
-	extends PayerReferenceType
-	{
-
-
-
+class PayerReference extends PayerReferenceType
+{
 } // end class PayerReference

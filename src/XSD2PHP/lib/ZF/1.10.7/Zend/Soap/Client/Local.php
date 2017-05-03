@@ -56,7 +56,7 @@ class Zend_Soap_Client_Local extends Zend_Soap_Client
      * @param string $wsdl
      * @param array $options
      */
-    function __construct(Zend_Soap_Server $server, $wsdl, $options = null)
+    public function __construct(Zend_Soap_Server $server, $wsdl, $options = null)
     {
         $this->_server = $server;
 
@@ -89,5 +89,4 @@ class Zend_Soap_Client_Local extends Zend_Soap_Client
         return $response;
     }
 }
-
 } // end if (extension_loaded('soap')

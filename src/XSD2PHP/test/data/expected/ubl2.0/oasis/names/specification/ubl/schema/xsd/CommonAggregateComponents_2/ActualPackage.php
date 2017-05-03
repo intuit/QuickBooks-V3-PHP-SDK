@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ActualPackage
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ActualPackage
  */
-class ActualPackage
-	extends PackageType
-	{
-
-
-
+class ActualPackage extends PackageType
+{
 } // end class ActualPackage

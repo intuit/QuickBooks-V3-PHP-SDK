@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReminderPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReminderPeriod
  */
-class ReminderPeriod
-	extends PeriodType
-	{
-
-
-
+class ReminderPeriod extends PeriodType
+{
 } // end class ReminderPeriod

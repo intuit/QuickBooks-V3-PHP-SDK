@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderableIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderableIndicator
  */
-class OrderableIndicator
-	extends OrderableIndicatorType
-	{
-
-
-
+class OrderableIndicator extends OrderableIndicatorType
+{
 } // end class OrderableIndicator

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TradingTerms
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TradingTerms
  */
-class TradingTerms
-	extends TradingTermsType
-	{
-
-
-
+class TradingTerms extends TradingTermsType
+{
 } // end class TradingTerms

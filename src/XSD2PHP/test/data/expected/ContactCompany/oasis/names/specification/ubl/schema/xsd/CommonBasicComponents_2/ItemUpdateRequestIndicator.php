@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ItemUpdateRequestIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ItemUpdateRequestIndicator
  */
-class ItemUpdateRequestIndicator
-	extends ItemUpdateRequestIndicatorType
-	{
-
-
-
+class ItemUpdateRequestIndicator extends ItemUpdateRequestIndicatorType
+{
 } // end class ItemUpdateRequestIndicator

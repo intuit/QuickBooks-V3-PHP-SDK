@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReminderDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReminderDocumentReference
  */
-class ReminderDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class ReminderDocumentReference extends DocumentReferenceType
+{
 } // end class ReminderDocumentReference

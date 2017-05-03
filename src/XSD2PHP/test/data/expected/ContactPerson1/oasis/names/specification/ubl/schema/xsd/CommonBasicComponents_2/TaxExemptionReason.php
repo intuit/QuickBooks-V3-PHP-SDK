@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxExemptionReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxExemptionReason
  */
-class TaxExemptionReason
-	extends TaxExemptionReasonType
-	{
-
-
-
+class TaxExemptionReason extends TaxExemptionReasonType
+{
 } // end class TaxExemptionReason

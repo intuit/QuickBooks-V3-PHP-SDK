@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TotalDebitAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TotalDebitAmount
  */
-class TotalDebitAmount
-	extends TotalDebitAmountType
-	{
-
-
-
+class TotalDebitAmount extends TotalDebitAmountType
+{
 } // end class TotalDebitAmount

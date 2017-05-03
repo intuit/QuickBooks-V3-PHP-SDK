@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BaseAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BaseAmount
  */
-class BaseAmount
-	extends BaseAmountType
-	{
-
-
-
+class BaseAmount extends BaseAmountType
+{
 } // end class BaseAmount

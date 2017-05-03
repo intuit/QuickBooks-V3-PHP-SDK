@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ContractTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ContractTypeCode
  */
-class ContractTypeCode
-	extends ContractTypeCodeType
-	{
-
-
-
+class ContractTypeCode extends ContractTypeCodeType
+{
 } // end class ContractTypeCode

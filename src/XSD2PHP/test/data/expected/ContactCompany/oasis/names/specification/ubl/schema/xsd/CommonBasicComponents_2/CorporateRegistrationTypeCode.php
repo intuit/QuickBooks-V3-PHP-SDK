@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CorporateRegistrationTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CorporateRegistrationTypeCode
  */
-class CorporateRegistrationTypeCode
-	extends CorporateRegistrationTypeCodeType
-	{
-
-
-
+class CorporateRegistrationTypeCode extends CorporateRegistrationTypeCodeType
+{
 } // end class CorporateRegistrationTypeCode

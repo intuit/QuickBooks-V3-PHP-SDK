@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InhouseMail
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InhouseMail
  */
-class InhouseMail
-	extends InhouseMailType
-	{
-
-
-
+class InhouseMail extends InhouseMailType
+{
 } // end class InhouseMail

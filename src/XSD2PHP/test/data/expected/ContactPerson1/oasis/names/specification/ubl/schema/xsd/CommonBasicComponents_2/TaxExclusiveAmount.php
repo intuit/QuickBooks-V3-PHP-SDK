@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxExclusiveAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxExclusiveAmount
  */
-class TaxExclusiveAmount
-	extends TaxExclusiveAmountType
-	{
-
-
-
+class TaxExclusiveAmount extends TaxExclusiveAmountType
+{
 } // end class TaxExclusiveAmount

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransitCountry
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransitCountry
  */
-class TransitCountry
-	extends CountryType
-	{
-
-
-
+class TransitCountry extends CountryType
+{
 } // end class TransitCountry

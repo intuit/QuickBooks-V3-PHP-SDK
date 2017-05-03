@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName InvoiceDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\InvoiceDocumentReference
  */
-class InvoiceDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class InvoiceDocumentReference extends DocumentReferenceType
+{
 } // end class InvoiceDocumentReference

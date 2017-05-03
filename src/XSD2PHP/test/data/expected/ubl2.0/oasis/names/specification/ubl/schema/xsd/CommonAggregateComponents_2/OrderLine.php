@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OrderLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OrderLine
  */
-class OrderLine
-	extends OrderLineType
-	{
-
-
-
+class OrderLine extends OrderLineType
+{
 } // end class OrderLine

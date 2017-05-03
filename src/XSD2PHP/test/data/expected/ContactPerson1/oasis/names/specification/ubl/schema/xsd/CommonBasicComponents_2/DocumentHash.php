@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DocumentHash
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DocumentHash
  */
-class DocumentHash
-	extends DocumentHashType
-	{
-
-
-
+class DocumentHash extends DocumentHashType
+{
 } // end class DocumentHash

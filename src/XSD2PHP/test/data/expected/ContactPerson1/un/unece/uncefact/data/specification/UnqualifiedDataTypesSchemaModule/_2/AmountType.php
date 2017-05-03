@@ -16,28 +16,26 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType decimal
  */
 class AmountType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var decimal
-		 */
-		public $value;	
-	/**
-	 * @UniqueID UDT000001-SC2
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Amount Currency. Identifier
-	 * @Definition The currency of the amount.
-	 * @ObjectClass Amount Currency
-	 * @PropertyTermName Identification
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @BuiltinType normalisedString
-	 * @xmlType attribute
-	 * @xmlName currencyID
-	 * @var clm54217:CurrencyCodeContentType
-	 */
-	public $currencyID;
-
-
+        /**
+         * @xmlType value
+         * @var decimal
+         */
+        public $value;
+    /**
+     * @UniqueID UDT000001-SC2
+     * @CategoryCode SC
+     * @DictionaryEntryName Amount Currency. Identifier
+     * @Definition The currency of the amount.
+     * @ObjectClass Amount Currency
+     * @PropertyTermName Identification
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @BuiltinType normalisedString
+     * @xmlType attribute
+     * @xmlName currencyID
+     * @var clm54217:CurrencyCodeContentType
+     */
+    public $currencyID;
 } // end class AmountType

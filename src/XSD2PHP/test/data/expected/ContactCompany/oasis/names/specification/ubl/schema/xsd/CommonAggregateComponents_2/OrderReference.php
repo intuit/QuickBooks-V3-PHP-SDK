@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OrderReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OrderReference
  */
-class OrderReference
-	extends OrderReferenceType
-	{
-
-
-
+class OrderReference extends OrderReferenceType
+{
 } // end class OrderReference

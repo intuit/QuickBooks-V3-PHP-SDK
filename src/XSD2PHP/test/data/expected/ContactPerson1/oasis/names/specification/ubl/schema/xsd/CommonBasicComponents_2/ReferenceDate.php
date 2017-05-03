@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReferenceDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReferenceDate
  */
-class ReferenceDate
-	extends ReferenceDateType
-	{
-
-
-
+class ReferenceDate extends ReferenceDateType
+{
 } // end class ReferenceDate

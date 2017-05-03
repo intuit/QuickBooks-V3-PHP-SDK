@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PhysicalAttribute
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PhysicalAttribute
  */
-class PhysicalAttribute
-	extends PhysicalAttributeType
-	{
-
-
-
+class PhysicalAttribute extends PhysicalAttributeType
+{
 } // end class PhysicalAttribute

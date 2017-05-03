@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PricingCurrencyCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PricingCurrencyCode
  */
-class PricingCurrencyCode
-	extends PricingCurrencyCodeType
-	{
-
-
-
+class PricingCurrencyCode extends PricingCurrencyCodeType
+{
 } // end class PricingCurrencyCode

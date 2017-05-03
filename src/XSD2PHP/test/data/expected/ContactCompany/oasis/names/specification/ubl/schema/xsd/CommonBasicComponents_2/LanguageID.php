@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LanguageID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LanguageID
  */
-class LanguageID
-	extends LanguageIDType
-	{
-
-
-
+class LanguageID extends LanguageIDType
+{
 } // end class LanguageID

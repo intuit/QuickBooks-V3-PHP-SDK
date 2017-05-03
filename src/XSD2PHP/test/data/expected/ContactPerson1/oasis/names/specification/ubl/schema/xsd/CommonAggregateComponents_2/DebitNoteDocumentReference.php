@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DebitNoteDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DebitNoteDocumentReference
  */
-class DebitNoteDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class DebitNoteDocumentReference extends DocumentReferenceType
+{
 } // end class DebitNoteDocumentReference

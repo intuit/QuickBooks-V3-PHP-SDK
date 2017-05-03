@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LicensePlateID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LicensePlateID
  */
-class LicensePlateID
-	extends LicensePlateIDType
-	{
-
-
-
+class LicensePlateID extends LicensePlateIDType
+{
 } // end class LicensePlateID

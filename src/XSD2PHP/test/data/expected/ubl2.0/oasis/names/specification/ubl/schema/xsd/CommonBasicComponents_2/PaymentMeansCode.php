@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentMeansCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentMeansCode
  */
-class PaymentMeansCode
-	extends PaymentMeansCodeType
-	{
-
-
-
+class PaymentMeansCode extends PaymentMeansCodeType
+{
 } // end class PaymentMeansCode

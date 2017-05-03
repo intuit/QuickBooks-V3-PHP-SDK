@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CommodityClassification
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CommodityClassification
  */
-class CommodityClassification
-	extends CommodityClassificationType
-	{
-
-
-
+class CommodityClassification extends CommodityClassificationType
+{
 } // end class CommodityClassification

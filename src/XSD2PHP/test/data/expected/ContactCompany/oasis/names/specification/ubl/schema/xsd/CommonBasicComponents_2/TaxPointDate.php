@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxPointDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxPointDate
  */
-class TaxPointDate
-	extends TaxPointDateType
-	{
-
-
-
+class TaxPointDate extends TaxPointDateType
+{
 } // end class TaxPointDate

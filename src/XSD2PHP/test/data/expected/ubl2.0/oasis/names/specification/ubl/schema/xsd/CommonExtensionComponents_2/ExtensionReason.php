@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2;
  * @xmlName ExtensionReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2\ExtensionReason
  */
-class ExtensionReason
-	extends ExtensionReasonType
-	{
-
-
-
+class ExtensionReason extends ExtensionReasonType
+{
 } // end class ExtensionReason

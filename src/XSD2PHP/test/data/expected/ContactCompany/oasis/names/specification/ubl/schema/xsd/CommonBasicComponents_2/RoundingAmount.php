@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RoundingAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RoundingAmount
  */
-class RoundingAmount
-	extends RoundingAmountType
-	{
-
-
-
+class RoundingAmount extends RoundingAmountType
+{
 } // end class RoundingAmount

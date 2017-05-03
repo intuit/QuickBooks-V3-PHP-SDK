@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName MaritimeTransport
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\MaritimeTransport
  */
-class MaritimeTransport
-	extends MaritimeTransportType
-	{
-
-
-
+class MaritimeTransport extends MaritimeTransportType
+{
 } // end class MaritimeTransport

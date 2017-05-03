@@ -16,12 +16,11 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType boolean
  */
 class IndicatorType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var boolean
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var boolean
+         */
+        public $value;
 } // end class IndicatorType

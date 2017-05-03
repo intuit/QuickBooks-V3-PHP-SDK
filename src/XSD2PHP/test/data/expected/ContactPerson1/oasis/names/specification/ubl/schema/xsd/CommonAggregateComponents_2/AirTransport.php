@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AirTransport
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AirTransport
  */
-class AirTransport
-	extends AirTransportType
-	{
-
-
-
+class AirTransport extends AirTransportType
+{
 } // end class AirTransport

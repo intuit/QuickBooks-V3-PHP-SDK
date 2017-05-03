@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ClassificationCategory
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ClassificationCategory
  */
-class ClassificationCategory
-	extends ClassificationCategoryType
-	{
-
-
-
+class ClassificationCategory extends ClassificationCategoryType
+{
 } // end class ClassificationCategory

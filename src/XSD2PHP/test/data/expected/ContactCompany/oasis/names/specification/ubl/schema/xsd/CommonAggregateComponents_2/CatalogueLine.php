@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CatalogueLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CatalogueLine
  */
-class CatalogueLine
-	extends CatalogueLineType
-	{
-
-
-
+class CatalogueLine extends CatalogueLineType
+{
 } // end class CatalogueLine

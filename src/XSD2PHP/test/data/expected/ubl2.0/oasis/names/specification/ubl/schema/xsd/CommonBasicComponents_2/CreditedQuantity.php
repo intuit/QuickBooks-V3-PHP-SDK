@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CreditedQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CreditedQuantity
  */
-class CreditedQuantity
-	extends CreditedQuantityType
-	{
-
-
-
+class CreditedQuantity extends CreditedQuantityType
+{
 } // end class CreditedQuantity

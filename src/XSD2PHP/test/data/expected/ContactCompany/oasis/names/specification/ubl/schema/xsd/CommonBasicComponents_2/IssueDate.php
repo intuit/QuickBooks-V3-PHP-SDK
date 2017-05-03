@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName IssueDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\IssueDate
  */
-class IssueDate
-	extends IssueDateType
-	{
-
-
-
+class IssueDate extends IssueDateType
+{
 } // end class IssueDate

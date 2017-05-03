@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CatalogueRequestLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CatalogueRequestLine
  */
-class CatalogueRequestLine
-	extends CatalogueRequestLineType
-	{
-
-
-
+class CatalogueRequestLine extends CatalogueRequestLineType
+{
 } // end class CatalogueRequestLine

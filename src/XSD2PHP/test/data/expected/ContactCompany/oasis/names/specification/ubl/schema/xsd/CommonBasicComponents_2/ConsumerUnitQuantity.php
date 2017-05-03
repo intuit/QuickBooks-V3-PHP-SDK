@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ConsumerUnitQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ConsumerUnitQuantity
  */
-class ConsumerUnitQuantity
-	extends ConsumerUnitQuantityType
-	{
-
-
-
+class ConsumerUnitQuantity extends ConsumerUnitQuantityType
+{
 } // end class ConsumerUnitQuantity

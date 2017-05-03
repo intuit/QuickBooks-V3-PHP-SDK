@@ -2,6 +2,7 @@
 use oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
 use oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
 use dk\nordsign\schema\ContactCompany as CC;
+
 set_include_path(get_include_path().PATH_SEPARATOR.
                 realpath("../src").PATH_SEPARATOR.
                 realpath("data/expected/ContactCompany"));
@@ -16,22 +17,22 @@ require_once "com/mikebevz/xsd2php/Php2Xml.php";
 class BindTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * 
+     *
      * @var xsd2php\Bind
      */
-    private $tclass;  
+    private $tclass;
     
     private $expDir = "data/expected/ContactCompany";
     private $genDir = "data/generated/ContactCompany";
     
     
-    protected function setUp ()
+    protected function setUp()
     {
         $this->tclass = new xsd2php\Bind("");
     }
-    protected function tearDown ()
+    protected function tearDown()
     {
-        $this->tclass = null;        
+        $this->tclass = null;
     }
     
     /**
@@ -50,47 +51,47 @@ class BindTest extends PHPUnit_Framework_TestCase
         require_once dirname(__FILE__).'/data/expected/simple1/price.php';
         $xml = file_get_contents(dirname(__FILE__).'/data/expected/simple1/shiporder.xml');
         $model = new shiporder();
-        
+
         $shiporderModel = $this->tclass->bindXml($xml, $model);
-        
+
         $modelToXml = new xsd2php\Php2Xml();
         $actualXml = $modelToXml->getXml($shiporderModel);
         $this->assertEquals($xml, $actualXml);
-        
-        
+
+
         $shiporder = new shiporder();
         $item = new item();
-        
+
         $note = new note();
         $note->value = "Note";
         $item->note = $note;
-        
+
         $price = new price();
-        $price->value = 125.5;    
+        $price->value = 125.5;
         $item->price = $price;
-        
+
         $quantity = new quantity();
         $quantity->value = 145;
         $item->quantity = $quantity;
-        
+
         $title = new title();
         $title->value = 'Example title';
         $item->title = $title;
-        $shiporder->item = $item; 
-        
+        $shiporder->item = $item;
+
         $shiporder->orderid = 'Order ID';
         $orderperson = new orderperson();
-        $orderperson->value = "Jon Doe";        
-        
+        $orderperson->value = "Jon Doe";
+
         $shiporder->orderperson = $orderperson;
-        
+
         $shipto = new shipto();
         $address = new address();
         $address->value = "Big Valley Str. 142";
-        
+
         $shipto->address = $address;
         $city = new city();
-        $city->value = "Aalborg"; 
+        $city->value = "Aalborg";
         $shipto->city = $city;
         $country = new country();
         $country->value = "Denmark";
@@ -98,16 +99,17 @@ class BindTest extends PHPUnit_Framework_TestCase
         $name = new name();
         $name->value = "Jon Doe Company";
         $shipto->name = $name;
-        
+
         $shiporder->shipto = $shipto;
-        
+
         $this->assertEquals($shiporder, $shiporderModel);
-        
-        
+
+
     }
     */
     
-    public function testContactCompany() {
+    public function testContactCompany()
+    {
         $this->tclass->debug = true;
         
         $input = file_get_contents($this->expDir.DIRECTORY_SEPARATOR."BindTest.xml");
@@ -141,7 +143,7 @@ class BindTest extends PHPUnit_Framework_TestCase
         $party = new CommonAggregateComponents_2\Party();
         $webURI = new CommonBasicComponents_2\WebsiteURI();
         $webURI->value = "test.com";
-        $party->WebsiteURI = $webURI;        
+        $party->WebsiteURI = $webURI;
         $expBinding->Party = $party;
         
         $fax = new CommonBasicComponents_2\Telefax();
@@ -173,6 +175,4 @@ class BindTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals($expBinding, $model);
     }
-    
-    
 }

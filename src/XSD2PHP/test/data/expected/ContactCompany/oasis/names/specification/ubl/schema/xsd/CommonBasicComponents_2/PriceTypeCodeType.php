@@ -2,16 +2,13 @@
 namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
 
 use un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\_2;
+
 /**
  * @xmlNamespace urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2
  * @xmlType CodeType
  * @xmlName PriceTypeCodeType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PriceTypeCodeType
  */
-class PriceTypeCodeType
-	extends _2\CodeType
-	{
-
-
-
+class PriceTypeCodeType extends _2\CodeType
+{
 } // end class PriceTypeCodeType

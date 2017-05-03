@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TierRange
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TierRange
  */
-class TierRange
-	extends TierRangeType
-	{
-
-
-
+class TierRange extends TierRangeType
+{
 } // end class TierRange

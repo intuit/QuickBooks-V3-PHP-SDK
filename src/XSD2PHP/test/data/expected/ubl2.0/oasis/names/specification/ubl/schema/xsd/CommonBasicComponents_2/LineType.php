@@ -2,16 +2,13 @@
 namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
 
 use un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\_2;
+
 /**
  * @xmlNamespace urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2
  * @xmlType TextType
  * @xmlName LineType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LineType
  */
-class LineType
-	extends _2\TextType
-	{
-
-
-
+class LineType extends _2\TextType
+{
 } // end class LineType

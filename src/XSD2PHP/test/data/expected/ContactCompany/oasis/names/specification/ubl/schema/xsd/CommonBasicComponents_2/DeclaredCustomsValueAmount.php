@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DeclaredCustomsValueAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DeclaredCustomsValueAmount
  */
-class DeclaredCustomsValueAmount
-	extends DeclaredCustomsValueAmountType
-	{
-
-
-
+class DeclaredCustomsValueAmount extends DeclaredCustomsValueAmountType
+{
 } // end class DeclaredCustomsValueAmount

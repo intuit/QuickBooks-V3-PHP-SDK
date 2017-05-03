@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PhysicalLocation
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PhysicalLocation
  */
-class PhysicalLocation
-	extends LocationType
-	{
-
-
-
+class PhysicalLocation extends LocationType
+{
 } // end class PhysicalLocation

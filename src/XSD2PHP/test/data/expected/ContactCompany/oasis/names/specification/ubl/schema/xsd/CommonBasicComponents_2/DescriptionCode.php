@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DescriptionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DescriptionCode
  */
-class DescriptionCode
-	extends DescriptionCodeType
-	{
-
-
-
+class DescriptionCode extends DescriptionCodeType
+{
 } // end class DescriptionCode

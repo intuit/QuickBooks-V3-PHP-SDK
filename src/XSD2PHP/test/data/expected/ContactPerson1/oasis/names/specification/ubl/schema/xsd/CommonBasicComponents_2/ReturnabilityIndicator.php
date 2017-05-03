@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReturnabilityIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReturnabilityIndicator
  */
-class ReturnabilityIndicator
-	extends ReturnabilityIndicatorType
-	{
-
-
-
+class ReturnabilityIndicator extends ReturnabilityIndicatorType
+{
 } // end class ReturnabilityIndicator

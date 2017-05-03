@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CustomsTariffQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CustomsTariffQuantity
  */
-class CustomsTariffQuantity
-	extends CustomsTariffQuantityType
-	{
-
-
-
+class CustomsTariffQuantity extends CustomsTariffQuantityType
+{
 } // end class CustomsTariffQuantity

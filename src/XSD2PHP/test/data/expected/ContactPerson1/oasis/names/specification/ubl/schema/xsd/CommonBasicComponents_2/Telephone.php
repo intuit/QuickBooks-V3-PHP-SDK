@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Telephone
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Telephone
  */
-class Telephone
-	extends TelephoneType
-	{
-
-
-
+class Telephone extends TelephoneType
+{
 } // end class Telephone

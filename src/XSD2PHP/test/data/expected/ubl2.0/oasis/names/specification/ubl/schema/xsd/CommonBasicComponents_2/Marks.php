@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Marks
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Marks
  */
-class Marks
-	extends MarksType
-	{
-
-
-
+class Marks extends MarksType
+{
 } // end class Marks

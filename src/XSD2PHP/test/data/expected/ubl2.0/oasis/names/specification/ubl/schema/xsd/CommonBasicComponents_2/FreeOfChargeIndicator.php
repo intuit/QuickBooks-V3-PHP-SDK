@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName FreeOfChargeIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\FreeOfChargeIndicator
  */
-class FreeOfChargeIndicator
-	extends FreeOfChargeIndicatorType
-	{
-
-
-
+class FreeOfChargeIndicator extends FreeOfChargeIndicatorType
+{
 } // end class FreeOfChargeIndicator

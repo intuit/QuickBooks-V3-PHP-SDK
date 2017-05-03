@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TaxCategory
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TaxCategory
  */
-class TaxCategory
-	extends TaxCategoryType
-	{
-
-
-
+class TaxCategory extends TaxCategoryType
+{
 } // end class TaxCategory

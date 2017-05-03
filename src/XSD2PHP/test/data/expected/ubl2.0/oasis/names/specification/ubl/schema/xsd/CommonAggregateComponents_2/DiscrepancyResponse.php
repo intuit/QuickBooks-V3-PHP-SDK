@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DiscrepancyResponse
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DiscrepancyResponse
  */
-class DiscrepancyResponse
-	extends ResponseType
-	{
-
-
-
+class DiscrepancyResponse extends ResponseType
+{
 } // end class DiscrepancyResponse

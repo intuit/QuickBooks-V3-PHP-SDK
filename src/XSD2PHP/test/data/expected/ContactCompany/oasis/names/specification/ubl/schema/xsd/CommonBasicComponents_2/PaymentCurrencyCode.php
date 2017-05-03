@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentCurrencyCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentCurrencyCode
  */
-class PaymentCurrencyCode
-	extends PaymentCurrencyCodeType
-	{
-
-
-
+class PaymentCurrencyCode extends PaymentCurrencyCodeType
+{
 } // end class PaymentCurrencyCode

@@ -21,20 +21,20 @@ class MavenXsdTest extends LegkoXMLTestCase
     private $expectedDir;
     private $generatedDir;
 
-    protected function setUp ()
+    protected function setUp()
     {
         $this->xsd = realpath(dirname(__FILE__)."/../../resources/maven/maven-v4_0_0.xsd");
         $this->expectedDir = realpath(dirname(__FILE__)."/../data/expected/Xsd2Php/MavenTests");
         $this->generatedDir = realpath(dirname(__FILE__)."/../data/generated/Xsd2Php/MavenTests");
         $this->tclass = new xsd2php\Xsd2Php("", $this->xsd);
     }
-    protected function tearDown ()
+    protected function tearDown()
     {
         $this->tclass = null;
     }
 
-    public function testNamespaceToPHP() {
-
+    public function testNamespaceToPHP()
+    {
         $ns[0] = "http://maven.apache.org/POM/4.0.0";
         $ns[1] = "urn:dk:nordsign:schema:ContactCompany";
         $ns[2] = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2";
@@ -47,13 +47,13 @@ class MavenXsdTest extends LegkoXMLTestCase
 
         $i = 0;
         foreach ($ns as $key => $value) {
-            $this->assertEquals ($nse[$i], $this->tclass->namespaceToPhp($value));
+            $this->assertEquals($nse[$i], $this->tclass->namespaceToPhp($value));
             $i++;
         }
-
     }
 
-    public function testXSDMustBeConvertedToXML() {
+    public function testXSDMustBeConvertedToXML()
+    {
         $this->markTestSkipped(
             'Need to update expected data to account for Intuit code changes'
         );
@@ -64,8 +64,8 @@ class MavenXsdTest extends LegkoXMLTestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testSavePHPBindings() {
-
+    public function testSavePHPBindings()
+    {
         $this->markTestSkipped(
             'Need to update expected data to account for Intuit code changes'
         );
@@ -83,7 +83,4 @@ class MavenXsdTest extends LegkoXMLTestCase
             rmdir_recursive($this->generatedDir."/bindings");
         }
     }
-
-    
-
 }

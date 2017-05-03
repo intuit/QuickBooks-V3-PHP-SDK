@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ManufacturerParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ManufacturerParty
  */
-class ManufacturerParty
-	extends PartyType
-	{
-
-
-
+class ManufacturerParty extends PartyType
+{
 } // end class ManufacturerParty

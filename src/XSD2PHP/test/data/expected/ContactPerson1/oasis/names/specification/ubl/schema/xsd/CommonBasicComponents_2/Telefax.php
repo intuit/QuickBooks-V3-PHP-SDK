@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Telefax
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Telefax
  */
-class Telefax
-	extends TelefaxType
-	{
-
-
-
+class Telefax extends TelefaxType
+{
 } // end class Telefax

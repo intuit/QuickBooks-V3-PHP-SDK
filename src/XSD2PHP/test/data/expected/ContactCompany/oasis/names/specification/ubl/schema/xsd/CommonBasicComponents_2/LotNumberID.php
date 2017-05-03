@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LotNumberID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LotNumberID
  */
-class LotNumberID
-	extends LotNumberIDType
-	{
-
-
-
+class LotNumberID extends LotNumberIDType
+{
 } // end class LotNumberID

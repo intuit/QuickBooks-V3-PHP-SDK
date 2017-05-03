@@ -8,7 +8,6 @@ use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Data\IPPCustomer;
 
-
 // Prep Data Services
 //$dataService = DataService::Configure("/Users/hlu2/Desktop/intuit_git/V3-PHP-SDK_March30/sdk/sdk.config");
 
@@ -16,13 +15,13 @@ use QuickBooksOnline\API\Data\IPPCustomer;
 
 
 $dataService = DataService::Configure(array(
-	   'auth_mode' => 'oauth1',
-		 'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-		 'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-		 'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-		 'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-		 'QBORealmID' => "193514489870599",
-		 'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+       'auth_mode' => 'oauth1',
+         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
+         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
+         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
+         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
+         'QBORealmID' => "193514489870599",
+         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
 ));
 
 // Prep Data Services
@@ -34,8 +33,9 @@ $dataService->useXml();
 $dataService->disableLog();
 var_dump($serviceContext);
 
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
+if (!$dataService) {
+    exit("Problem while initializing DataService.\n");
+}
 
 // Add a customer
 $customerObj = new IPPCustomer();
@@ -49,8 +49,7 @@ if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
-}
-else {
+} else {
     # code...
     // Echo some formatted output
     echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
@@ -83,5 +82,3 @@ Created Customer Id=801. Reconstructed response body:
   <ns0:PreferredDeliveryMethod>Print</ns0:PreferredDeliveryMethod>
 </ns0:Customer>
 */
-
-?>

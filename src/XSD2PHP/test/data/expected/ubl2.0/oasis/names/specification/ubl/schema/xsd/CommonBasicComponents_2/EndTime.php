@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName EndTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\EndTime
  */
-class EndTime
-	extends EndTimeType
-	{
-
-
-
+class EndTime extends EndTimeType
+{
 } // end class EndTime

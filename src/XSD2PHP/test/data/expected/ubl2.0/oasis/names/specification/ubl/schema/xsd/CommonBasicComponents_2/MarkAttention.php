@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MarkAttention
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MarkAttention
  */
-class MarkAttention
-	extends MarkAttentionType
-	{
-
-
-
+class MarkAttention extends MarkAttentionType
+{
 } // end class MarkAttention

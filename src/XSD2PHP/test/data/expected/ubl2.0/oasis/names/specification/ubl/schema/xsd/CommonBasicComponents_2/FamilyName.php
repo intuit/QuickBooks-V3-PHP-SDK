@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName FamilyName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\FamilyName
  */
-class FamilyName
-	extends FamilyNameType
-	{
-
-
-
+class FamilyName extends FamilyNameType
+{
 } // end class FamilyName

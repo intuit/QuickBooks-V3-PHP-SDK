@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RequiredRelatedItem
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RequiredRelatedItem
  */
-class RequiredRelatedItem
-	extends RelatedItemType
-	{
-
-
-
+class RequiredRelatedItem extends RelatedItemType
+{
 } // end class RequiredRelatedItem

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName StartDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\StartDate
  */
-class StartDate
-	extends StartDateType
-	{
-
-
-
+class StartDate extends StartDateType
+{
 } // end class StartDate

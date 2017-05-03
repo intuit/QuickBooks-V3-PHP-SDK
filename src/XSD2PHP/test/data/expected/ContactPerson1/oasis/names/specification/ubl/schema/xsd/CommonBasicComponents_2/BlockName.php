@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BlockName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BlockName
  */
-class BlockName
-	extends BlockNameType
-	{
-
-
-
+class BlockName extends BlockNameType
+{
 } // end class BlockName

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RailCarID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RailCarID
  */
-class RailCarID
-	extends RailCarIDType
-	{
-
-
-
+class RailCarID extends RailCarIDType
+{
 } // end class RailCarID

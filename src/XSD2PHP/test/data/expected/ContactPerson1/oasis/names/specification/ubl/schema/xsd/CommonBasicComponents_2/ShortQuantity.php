@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ShortQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ShortQuantity
  */
-class ShortQuantity
-	extends ShortQuantityType
-	{
-
-
-
+class ShortQuantity extends ShortQuantityType
+{
 } // end class ShortQuantity

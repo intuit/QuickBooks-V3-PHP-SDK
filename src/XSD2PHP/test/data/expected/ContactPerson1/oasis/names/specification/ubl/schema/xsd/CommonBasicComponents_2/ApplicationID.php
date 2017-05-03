@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ApplicationID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ApplicationID
  */
-class ApplicationID
-	extends ApplicationIDType
-	{
-
-
-
+class ApplicationID extends ApplicationIDType
+{
 } // end class ApplicationID

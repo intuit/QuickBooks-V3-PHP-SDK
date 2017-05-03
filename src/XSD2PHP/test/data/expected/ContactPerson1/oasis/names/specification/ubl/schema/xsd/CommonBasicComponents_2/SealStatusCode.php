@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SealStatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SealStatusCode
  */
-class SealStatusCode
-	extends SealStatusCodeType
-	{
-
-
-
+class SealStatusCode extends SealStatusCodeType
+{
 } // end class SealStatusCode

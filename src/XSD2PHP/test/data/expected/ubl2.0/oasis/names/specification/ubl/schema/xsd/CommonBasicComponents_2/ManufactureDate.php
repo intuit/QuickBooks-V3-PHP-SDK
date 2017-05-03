@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ManufactureDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ManufactureDate
  */
-class ManufactureDate
-	extends ManufactureDateType
-	{
-
-
-
+class ManufactureDate extends ManufactureDateType
+{
 } // end class ManufactureDate

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DeliveryUnit
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DeliveryUnit
  */
-class DeliveryUnit
-	extends DeliveryUnitType
-	{
-
-
-
+class DeliveryUnit extends DeliveryUnitType
+{
 } // end class DeliveryUnit

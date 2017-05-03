@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ResponseTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ResponseTime
  */
-class ResponseTime
-	extends ResponseTimeType
-	{
-
-
-
+class ResponseTime extends ResponseTimeType
+{
 } // end class ResponseTime

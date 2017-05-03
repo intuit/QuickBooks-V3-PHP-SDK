@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName StatementPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\StatementPeriod
  */
-class StatementPeriod
-	extends PeriodType
-	{
-
-
-
+class StatementPeriod extends PeriodType
+{
 } // end class StatementPeriod

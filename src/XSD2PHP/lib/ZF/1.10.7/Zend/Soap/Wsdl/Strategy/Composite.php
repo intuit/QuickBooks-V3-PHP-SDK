@@ -66,7 +66,7 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
      */
     public function __construct(array $typeMap=array(), $defaultStrategy="Zend_Soap_Wsdl_Strategy_DefaultComplexType")
     {
-        foreach($typeMap AS $type => $strategy) {
+        foreach ($typeMap as $type => $strategy) {
             $this->connectTypeToStrategy($type, $strategy);
         }
         $this->_defaultStrategy = $defaultStrategy;
@@ -82,7 +82,7 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
      */
     public function connectTypeToStrategy($type, $strategy)
     {
-        if(!is_string($type)) {
+        if (!is_string($type)) {
             /**
              * @see Zend_Soap_Wsdl_Exception
              */
@@ -103,10 +103,10 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
     public function getDefaultStrategy()
     {
         $strategy = $this->_defaultStrategy;
-        if(is_string($strategy) && class_exists($strategy)) {
+        if (is_string($strategy) && class_exists($strategy)) {
             $strategy = new $strategy;
         }
-        if( !($strategy instanceof Zend_Soap_Wsdl_Strategy_Interface) ) {
+        if (!($strategy instanceof Zend_Soap_Wsdl_Strategy_Interface)) {
             /**
              * @see Zend_Soap_Wsdl_Exception
              */
@@ -128,14 +128,14 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
      */
     public function getStrategyOfType($type)
     {
-        if(isset($this->_typeMap[$type])) {
+        if (isset($this->_typeMap[$type])) {
             $strategy = $this->_typeMap[$type];
 
-            if(is_string($strategy) && class_exists($strategy)) {
+            if (is_string($strategy) && class_exists($strategy)) {
                 $strategy = new $strategy();
             }
 
-            if( !($strategy instanceof Zend_Soap_Wsdl_Strategy_Interface) ) {
+            if (!($strategy instanceof Zend_Soap_Wsdl_Strategy_Interface)) {
                 /**
                  * @see Zend_Soap_Wsdl_Exception
                  */
@@ -171,7 +171,7 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
      */
     public function addComplexType($type)
     {
-        if(!($this->_context instanceof Zend_Soap_Wsdl) ) {
+        if (!($this->_context instanceof Zend_Soap_Wsdl)) {
             /**
              * @see Zend_Soap_Wsdl_Exception
              */

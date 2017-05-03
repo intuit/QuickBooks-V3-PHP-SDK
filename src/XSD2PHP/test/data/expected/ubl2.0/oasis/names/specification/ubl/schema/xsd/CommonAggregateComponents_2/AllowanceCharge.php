@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AllowanceCharge
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AllowanceCharge
  */
-class AllowanceCharge
-	extends AllowanceChargeType
-	{
-
-
-
+class AllowanceCharge extends AllowanceChargeType
+{
 } // end class AllowanceCharge

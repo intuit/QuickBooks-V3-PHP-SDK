@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CoordinateSystemCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CoordinateSystemCode
  */
-class CoordinateSystemCode
-	extends CoordinateSystemCodeType
-	{
-
-
-
+class CoordinateSystemCode extends CoordinateSystemCodeType
+{
 } // end class CoordinateSystemCode

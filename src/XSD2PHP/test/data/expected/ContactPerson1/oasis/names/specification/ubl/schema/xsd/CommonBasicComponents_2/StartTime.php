@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName StartTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\StartTime
  */
-class StartTime
-	extends StartTimeType
-	{
-
-
-
+class StartTime extends StartTimeType
+{
 } // end class StartTime

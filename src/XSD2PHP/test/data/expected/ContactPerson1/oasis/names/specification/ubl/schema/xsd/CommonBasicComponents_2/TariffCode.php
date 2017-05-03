@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TariffCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TariffCode
  */
-class TariffCode
-	extends TariffCodeType
-	{
-
-
-
+class TariffCode extends TariffCodeType
+{
 } // end class TariffCode

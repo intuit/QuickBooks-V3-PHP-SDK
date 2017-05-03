@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReminderSequenceNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReminderSequenceNumeric
  */
-class ReminderSequenceNumeric
-	extends ReminderSequenceNumericType
-	{
-
-
-
+class ReminderSequenceNumeric extends ReminderSequenceNumericType
+{
 } // end class ReminderSequenceNumeric

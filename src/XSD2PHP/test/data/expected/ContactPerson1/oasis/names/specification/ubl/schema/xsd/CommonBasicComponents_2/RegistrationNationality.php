@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RegistrationNationality
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RegistrationNationality
  */
-class RegistrationNationality
-	extends RegistrationNationalityType
-	{
-
-
-
+class RegistrationNationality extends RegistrationNationalityType
+{
 } // end class RegistrationNationality

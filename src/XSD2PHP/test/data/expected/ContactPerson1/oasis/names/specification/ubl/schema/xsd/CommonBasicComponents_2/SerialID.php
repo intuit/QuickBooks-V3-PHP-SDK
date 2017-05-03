@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SerialID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SerialID
  */
-class SerialID
-	extends SerialIDType
-	{
-
-
-
+class SerialID extends SerialIDType
+{
 } // end class SerialID

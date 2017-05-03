@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName QuotationDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\QuotationDocumentReference
  */
-class QuotationDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class QuotationDocumentReference extends DocumentReferenceType
+{
 } // end class QuotationDocumentReference

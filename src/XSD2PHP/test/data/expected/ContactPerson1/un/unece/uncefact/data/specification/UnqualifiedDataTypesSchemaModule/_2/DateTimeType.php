@@ -17,12 +17,11 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlUsageRule Can be used for a date and/or time.
  */
 class DateTimeType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var dateTime
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var dateTime
+         */
+        public $value;
 } // end class DateTimeType

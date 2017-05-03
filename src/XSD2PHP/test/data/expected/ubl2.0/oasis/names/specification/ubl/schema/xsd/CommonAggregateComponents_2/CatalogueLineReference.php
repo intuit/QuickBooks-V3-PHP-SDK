@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CatalogueLineReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CatalogueLineReference
  */
-class CatalogueLineReference
-	extends LineReferenceType
-	{
-
-
-
+class CatalogueLineReference extends LineReferenceType
+{
 } // end class CatalogueLineReference

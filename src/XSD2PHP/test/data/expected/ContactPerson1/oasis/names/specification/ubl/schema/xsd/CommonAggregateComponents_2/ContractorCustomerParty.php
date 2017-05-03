@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ContractorCustomerParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ContractorCustomerParty
  */
-class ContractorCustomerParty
-	extends CustomerPartyType
-	{
-
-
-
+class ContractorCustomerParty extends CustomerPartyType
+{
 } // end class ContractorCustomerParty

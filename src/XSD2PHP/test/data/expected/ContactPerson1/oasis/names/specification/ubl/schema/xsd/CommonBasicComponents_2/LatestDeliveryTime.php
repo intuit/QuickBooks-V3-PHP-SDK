@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LatestDeliveryTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LatestDeliveryTime
  */
-class LatestDeliveryTime
-	extends LatestDeliveryTimeType
-	{
-
-
-
+class LatestDeliveryTime extends LatestDeliveryTimeType
+{
 } // end class LatestDeliveryTime

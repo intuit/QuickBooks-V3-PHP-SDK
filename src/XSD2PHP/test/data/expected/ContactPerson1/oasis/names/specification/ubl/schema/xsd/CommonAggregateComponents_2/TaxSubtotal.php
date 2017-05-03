@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TaxSubtotal
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TaxSubtotal
  */
-class TaxSubtotal
-	extends TaxSubtotalType
-	{
-
-
-
+class TaxSubtotal extends TaxSubtotalType
+{
 } // end class TaxSubtotal

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MinimumBackorderQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MinimumBackorderQuantity
  */
-class MinimumBackorderQuantity
-	extends MinimumBackorderQuantityType
-	{
-
-
-
+class MinimumBackorderQuantity extends MinimumBackorderQuantityType
+{
 } // end class MinimumBackorderQuantity

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CompletionIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CompletionIndicator
  */
-class CompletionIndicator
-	extends CompletionIndicatorType
-	{
-
-
-
+class CompletionIndicator extends CompletionIndicatorType
+{
 } // end class CompletionIndicator

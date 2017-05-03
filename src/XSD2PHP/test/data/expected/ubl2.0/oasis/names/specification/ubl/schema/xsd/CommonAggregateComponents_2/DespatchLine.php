@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DespatchLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DespatchLine
  */
-class DespatchLine
-	extends DespatchLineType
-	{
-
-
-
+class DespatchLine extends DespatchLineType
+{
 } // end class DespatchLine

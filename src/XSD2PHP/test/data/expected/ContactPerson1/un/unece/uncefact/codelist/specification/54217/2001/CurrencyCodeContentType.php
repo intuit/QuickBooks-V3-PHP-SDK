@@ -8,12 +8,11 @@ namespace un\unece\uncefact\codelist\specification\_54217\_2001;
  * @var un\unece\uncefact\codelist\specification\_54217\_2001\CurrencyCodeContentType
  */
 class CurrencyCodeContentType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var token
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var token
+         */
+        public $value;
 } // end class CurrencyCodeContentType

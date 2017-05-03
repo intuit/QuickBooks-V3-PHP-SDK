@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName MeasurementDimension
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\MeasurementDimension
  */
-class MeasurementDimension
-	extends DimensionType
-	{
-
-
-
+class MeasurementDimension extends DimensionType
+{
 } // end class MeasurementDimension

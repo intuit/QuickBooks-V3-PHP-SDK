@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName EstimatedDeliveryPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\EstimatedDeliveryPeriod
  */
-class EstimatedDeliveryPeriod
-	extends PeriodType
-	{
-
-
-
+class EstimatedDeliveryPeriod extends PeriodType
+{
 } // end class EstimatedDeliveryPeriod

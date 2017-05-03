@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FinalDestinationCountry
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FinalDestinationCountry
  */
-class FinalDestinationCountry
-	extends CountryType
-	{
-
-
-
+class FinalDestinationCountry extends CountryType
+{
 } // end class FinalDestinationCountry

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransportEvent
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransportEvent
  */
-class TransportEvent
-	extends TransportEventType
-	{
-
-
-
+class TransportEvent extends TransportEventType
+{
 } // end class TransportEvent

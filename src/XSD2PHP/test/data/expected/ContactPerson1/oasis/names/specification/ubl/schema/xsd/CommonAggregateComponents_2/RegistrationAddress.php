@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RegistrationAddress
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RegistrationAddress
  */
-class RegistrationAddress
-	extends AddressType
-	{
-
-
-
+class RegistrationAddress extends AddressType
+{
 } // end class RegistrationAddress

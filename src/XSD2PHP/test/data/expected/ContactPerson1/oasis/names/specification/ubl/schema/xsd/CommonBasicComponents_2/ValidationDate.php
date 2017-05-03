@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ValidationDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ValidationDate
  */
-class ValidationDate
-	extends ValidationDateType
-	{
-
-
-
+class ValidationDate extends ValidationDateType
+{
 } // end class ValidationDate

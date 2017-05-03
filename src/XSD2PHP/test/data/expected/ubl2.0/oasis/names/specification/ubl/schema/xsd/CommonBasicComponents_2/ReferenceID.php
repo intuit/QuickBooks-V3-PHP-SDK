@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReferenceID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReferenceID
  */
-class ReferenceID
-	extends ReferenceIDType
-	{
-
-
-
+class ReferenceID extends ReferenceIDType
+{
 } // end class ReferenceID

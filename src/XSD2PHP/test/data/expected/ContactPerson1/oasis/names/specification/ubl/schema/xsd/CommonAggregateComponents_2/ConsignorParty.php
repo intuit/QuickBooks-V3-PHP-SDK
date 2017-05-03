@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ConsignorParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ConsignorParty
  */
-class ConsignorParty
-	extends PartyType
-	{
-
-
-
+class ConsignorParty extends PartyType
+{
 } // end class ConsignorParty

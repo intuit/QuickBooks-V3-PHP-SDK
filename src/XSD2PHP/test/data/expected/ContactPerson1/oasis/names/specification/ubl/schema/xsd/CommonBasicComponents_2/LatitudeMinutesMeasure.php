@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LatitudeMinutesMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LatitudeMinutesMeasure
  */
-class LatitudeMinutesMeasure
-	extends LatitudeMinutesMeasureType
-	{
-
-
-
+class LatitudeMinutesMeasure extends LatitudeMinutesMeasureType
+{
 } // end class LatitudeMinutesMeasure

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName IssueTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\IssueTime
  */
-class IssueTime
-	extends IssueTimeType
-	{
-
-
-
+class IssueTime extends IssueTimeType
+{
 } // end class IssueTime

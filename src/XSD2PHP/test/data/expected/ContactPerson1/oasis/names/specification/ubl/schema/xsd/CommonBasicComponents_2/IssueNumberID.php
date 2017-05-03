@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName IssueNumberID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\IssueNumberID
  */
-class IssueNumberID
-	extends IssueNumberIDType
-	{
-
-
-
+class IssueNumberID extends IssueNumberIDType
+{
 } // end class IssueNumberID

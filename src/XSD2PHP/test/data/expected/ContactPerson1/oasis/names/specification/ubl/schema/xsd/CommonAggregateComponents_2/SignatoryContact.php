@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName SignatoryContact
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\SignatoryContact
  */
-class SignatoryContact
-	extends ContactType
-	{
-
-
-
+class SignatoryContact extends ContactType
+{
 } // end class SignatoryContact

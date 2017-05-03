@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName UnitQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\UnitQuantity
  */
-class UnitQuantity
-	extends UnitQuantityType
-	{
-
-
-
+class UnitQuantity extends UnitQuantityType
+{
 } // end class UnitQuantity

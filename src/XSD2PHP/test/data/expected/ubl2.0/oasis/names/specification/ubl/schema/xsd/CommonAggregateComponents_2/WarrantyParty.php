@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName WarrantyParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\WarrantyParty
  */
-class WarrantyParty
-	extends PartyType
-	{
-
-
-
+class WarrantyParty extends PartyType
+{
 } // end class WarrantyParty

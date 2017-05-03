@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PrepaidAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PrepaidAmount
  */
-class PrepaidAmount
-	extends PrepaidAmountType
-	{
-
-
-
+class PrepaidAmount extends PrepaidAmountType
+{
 } // end class PrepaidAmount

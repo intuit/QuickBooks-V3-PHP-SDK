@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CodeValue
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CodeValue
  */
-class CodeValue
-	extends CodeValueType
-	{
-
-
-
+class CodeValue extends CodeValueType
+{
 } // end class CodeValue

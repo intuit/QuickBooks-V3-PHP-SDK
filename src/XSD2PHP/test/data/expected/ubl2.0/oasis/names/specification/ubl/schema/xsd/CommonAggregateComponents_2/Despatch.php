@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Despatch
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Despatch
  */
-class Despatch
-	extends DespatchType
-	{
-
-
-
+class Despatch extends DespatchType
+{
 } // end class Despatch

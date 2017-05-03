@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName HazardousGoodsTransit
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\HazardousGoodsTransit
  */
-class HazardousGoodsTransit
-	extends HazardousGoodsTransitType
-	{
-
-
-
+class HazardousGoodsTransit extends HazardousGoodsTransitType
+{
 } // end class HazardousGoodsTransit

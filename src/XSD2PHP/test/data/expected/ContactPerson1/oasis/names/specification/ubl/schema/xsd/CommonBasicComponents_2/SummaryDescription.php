@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SummaryDescription
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SummaryDescription
  */
-class SummaryDescription
-	extends SummaryDescriptionType
-	{
-
-
-
+class SummaryDescription extends SummaryDescriptionType
+{
 } // end class SummaryDescription

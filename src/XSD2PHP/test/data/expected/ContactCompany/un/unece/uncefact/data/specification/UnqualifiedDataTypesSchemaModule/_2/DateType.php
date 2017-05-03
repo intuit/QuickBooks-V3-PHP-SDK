@@ -16,12 +16,11 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType date
  */
 class DateType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var string
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var string
+         */
+        public $value;
 } // end class DateType

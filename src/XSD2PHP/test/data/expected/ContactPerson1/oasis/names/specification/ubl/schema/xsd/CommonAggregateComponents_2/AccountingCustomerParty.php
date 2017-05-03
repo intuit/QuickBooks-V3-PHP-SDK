@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AccountingCustomerParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AccountingCustomerParty
  */
-class AccountingCustomerParty
-	extends CustomerPartyType
-	{
-
-
-
+class AccountingCustomerParty extends CustomerPartyType
+{
 } // end class AccountingCustomerParty

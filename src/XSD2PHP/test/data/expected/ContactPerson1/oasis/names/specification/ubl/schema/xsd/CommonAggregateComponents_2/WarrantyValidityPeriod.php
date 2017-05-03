@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName WarrantyValidityPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\WarrantyValidityPeriod
  */
-class WarrantyValidityPeriod
-	extends PeriodType
-	{
-
-
-
+class WarrantyValidityPeriod extends PeriodType
+{
 } // end class WarrantyValidityPeriod

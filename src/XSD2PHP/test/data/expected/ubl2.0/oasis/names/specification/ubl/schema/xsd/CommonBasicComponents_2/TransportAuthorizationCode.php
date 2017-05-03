@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportAuthorizationCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportAuthorizationCode
  */
-class TransportAuthorizationCode
-	extends TransportAuthorizationCodeType
-	{
-
-
-
+class TransportAuthorizationCode extends TransportAuthorizationCodeType
+{
 } // end class TransportAuthorizationCode

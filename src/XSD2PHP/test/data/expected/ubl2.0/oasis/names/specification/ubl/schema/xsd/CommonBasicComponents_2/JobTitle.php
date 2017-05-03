@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName JobTitle
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\JobTitle
  */
-class JobTitle
-	extends JobTitleType
-	{
-
-
-
+class JobTitle extends JobTitleType
+{
 } // end class JobTitle

@@ -44,7 +44,7 @@ class Zend_Soap_Client_Common extends SoapClient
      * @param string $wsdl
      * @param array $options
      */
-    function __construct($doRequestCallback, $wsdl, $options)
+    public function __construct($doRequestCallback, $wsdl, $options)
     {
         $this->_doRequestCallback = $doRequestCallback;
 
@@ -62,7 +62,7 @@ class Zend_Soap_Client_Common extends SoapClient
      * @param int    $one_way
      * @return mixed
      */
-    function __doRequest($request, $location, $action, $version, $one_way = null)
+    public function __doRequest($request, $location, $action, $version, $one_way = null)
     {
         if ($one_way === null) {
             return call_user_func($this->_doRequestCallback, $this, $request, $location, $action, $version);
@@ -70,7 +70,5 @@ class Zend_Soap_Client_Common extends SoapClient
             return call_user_func($this->_doRequestCallback, $this, $request, $location, $action, $version, $one_way);
         }
     }
-
 }
-
 } // end if (extension_loaded('soap')

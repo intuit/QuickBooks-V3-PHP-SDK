@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Price
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Price
  */
-class Price
-	extends PriceType
-	{
-
-
-
+class Price extends PriceType
+{
 } // end class Price

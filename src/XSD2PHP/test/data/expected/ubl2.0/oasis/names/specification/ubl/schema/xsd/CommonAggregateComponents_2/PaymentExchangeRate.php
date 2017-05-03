@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PaymentExchangeRate
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PaymentExchangeRate
  */
-class PaymentExchangeRate
-	extends ExchangeRateType
-	{
-
-
-
+class PaymentExchangeRate extends ExchangeRateType
+{
 } // end class PaymentExchangeRate

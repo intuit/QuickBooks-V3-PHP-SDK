@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OversupplyQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OversupplyQuantity
  */
-class OversupplyQuantity
-	extends OversupplyQuantityType
-	{
-
-
-
+class OversupplyQuantity extends OversupplyQuantityType
+{
 } // end class OversupplyQuantity

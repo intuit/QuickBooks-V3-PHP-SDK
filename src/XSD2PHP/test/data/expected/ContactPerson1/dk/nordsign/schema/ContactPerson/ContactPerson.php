@@ -7,10 +7,6 @@ namespace dk\nordsign\schema\ContactPerson;
  * @xmlName ContactPerson
  * @var dk\nordsign\schema\ContactPerson\ContactPerson
  */
-class ContactPerson
-	extends ContactPersonType
-	{
-
-
-
+class ContactPerson extends ContactPersonType
+{
 } // end class ContactPerson

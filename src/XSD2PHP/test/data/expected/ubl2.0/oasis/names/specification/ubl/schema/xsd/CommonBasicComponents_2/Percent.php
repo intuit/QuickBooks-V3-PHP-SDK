@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Percent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Percent
  */
-class Percent
-	extends PercentType
-	{
-
-
-
+class Percent extends PercentType
+{
 } // end class Percent

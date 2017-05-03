@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SubstitutionStatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SubstitutionStatusCode
  */
-class SubstitutionStatusCode
-	extends SubstitutionStatusCodeType
-	{
-
-
-
+class SubstitutionStatusCode extends SubstitutionStatusCodeType
+{
 } // end class SubstitutionStatusCode

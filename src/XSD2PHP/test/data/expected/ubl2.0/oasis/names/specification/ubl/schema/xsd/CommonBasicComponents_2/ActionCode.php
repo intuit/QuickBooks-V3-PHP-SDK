@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ActionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ActionCode
  */
-class ActionCode
-	extends ActionCodeType
-	{
-
-
-
+class ActionCode extends ActionCodeType
+{
 } // end class ActionCode

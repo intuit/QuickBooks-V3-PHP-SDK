@@ -41,7 +41,8 @@ class Entity
      * @param $name
      * @return $this
      */
-    public function setName($name){
+    public function setName($name)
+    {
         $this->name = $name;
         return $this;
     }
@@ -50,7 +51,8 @@ class Entity
      * @return mixed
      *      The name for the entity
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -60,7 +62,8 @@ class Entity
      * @param $id
      * @return $this
      */
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
@@ -70,7 +73,8 @@ class Entity
      *
      * @return mixed
      */
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -80,7 +84,8 @@ class Entity
      * @param $operation
      * @return $this
      */
-    public function setOperation($operation){
+    public function setOperation($operation)
+    {
         $this->operation = $operation;
         return $this;
     }
@@ -90,7 +95,8 @@ class Entity
      *
      * @return mixed
      */
-    public function getOperation(){
+    public function getOperation()
+    {
         return $this->operation;
     }
 
@@ -100,7 +106,8 @@ class Entity
      * @param $lastUnpdate
      * @return $this
      */
-    public function setLastUpdated($lastUnpdate){
+    public function setLastUpdated($lastUnpdate)
+    {
         $this->lastUpdated = $lastUnpdate;
         return $this;
     }
@@ -111,8 +118,8 @@ class Entity
      * @return mixed
      *
      */
-    public function getLastUpdated(){
+    public function getLastUpdated()
+    {
         return $this->lastUpdated;
     }
-
 }

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MinimumQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MinimumQuantity
  */
-class MinimumQuantity
-	extends MinimumQuantityType
-	{
-
-
-
+class MinimumQuantity extends MinimumQuantityType
+{
 } // end class MinimumQuantity

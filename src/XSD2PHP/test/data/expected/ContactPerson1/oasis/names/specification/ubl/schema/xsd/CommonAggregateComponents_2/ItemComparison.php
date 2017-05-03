@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ItemComparison
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ItemComparison
  */
-class ItemComparison
-	extends ItemComparisonType
-	{
-
-
-
+class ItemComparison extends ItemComparisonType
+{
 } // end class ItemComparison

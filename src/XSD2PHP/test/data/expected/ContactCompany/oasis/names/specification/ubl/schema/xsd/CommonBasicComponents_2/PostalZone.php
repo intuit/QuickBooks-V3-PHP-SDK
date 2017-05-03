@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PostalZone
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PostalZone
  */
-class PostalZone
-	extends PostalZoneType
-	{
-
-
-
+class PostalZone extends PostalZoneType
+{
 } // end class PostalZone

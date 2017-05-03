@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ValidatorID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ValidatorID
  */
-class ValidatorID
-	extends ValidatorIDType
-	{
-
-
-
+class ValidatorID extends ValidatorIDType
+{
 } // end class ValidatorID

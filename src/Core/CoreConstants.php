@@ -6,269 +6,267 @@ namespace QuickBooksOnline\API\Core;
  */
 class CoreConstants
 {
+    const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
 
-	const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
-
-  const PHP_CLASS_PREFIX = 'IPP';
+    const PHP_CLASS_PREFIX = 'IPP';
   /*
-	* All content writer strategy we support. Append this lists with new strategies
-	*/
-	const CONTENTWRITER_STRATEGIES = array('file','handler','export');
+    * All content writer strategy we support. Append this lists with new strategies
+    */
+    const CONTENTWRITER_STRATEGIES = array('file','handler','export');
 
   /*
-	 * Specific file strategy that we used for Content Writter
-	 */
-	const FILE_STRATEGY    = "file";
+     * Specific file strategy that we used for Content Writter
+     */
+    const FILE_STRATEGY    = "file";
 
-	/*
-	 * Specific file strategy that we used for Content Writter
-	 */
+    /*
+     * Specific file strategy that we used for Content Writter
+     */
   const HANDLER_STRATEGY = "handler";
 
-	/*
-	 * Specific file strategy that we used for Content Writter
-	 */
+    /*
+     * Specific file strategy that we used for Content Writter
+     */
   const EXPORT_STRATEGY  = "export";
 
-	/**
-	 * No compression.
-	 * @var int None
-	 */
-	const DataCompressionFormat_None = 0;
+    /**
+     * No compression.
+     * @var int None
+     */
+    const DataCompressionFormat_None = 0;
 
-	/**
-	 * GZip compression.
-	 * @var int GZip
-	 */
-	const DataCompressionFormat_GZip = 1;
+    /**
+     * GZip compression.
+     * @var int GZip
+     */
+    const DataCompressionFormat_GZip = 1;
 
-	/**
-	 * Deflate compression.
-	 * @var int Deflate
-	 */
-	const DataCompressionFormat_Deflate = 2;
+    /**
+     * Deflate compression.
+     * @var int Deflate
+     */
+    const DataCompressionFormat_Deflate = 2;
 
-	/**
-	 * Current QuickBooks Namespace for PHP SDK
-	 * @var int Deflate
-	 */
-	const NAMEPSACE_DATA_PREFIX = 'QuickBooksOnline\\API\\Data\\';
+    /**
+     * Current QuickBooks Namespace for PHP SDK
+     * @var int Deflate
+     */
+    const NAMEPSACE_DATA_PREFIX = 'QuickBooksOnline\\API\\Data\\';
 
-	/**
-	 * OAuth 1 Mode constant.
-	 * @var int Deflate
-	 */
-	const OAUTH1 = "OAuth1";
+    /**
+     * OAuth 1 Mode constant.
+     * @var int Deflate
+     */
+    const OAUTH1 = "OAuth1";
 
-	/**
-	 * OAuth 2 Mode constant.
-	 * @var int Deflate
-	 */
-	const OAUTH2 = "OAuth2";
-
-
-	/**
-	 * QuickBooks Online Data through IDS.
-	 * @var string QBO
-	 */
-	const IntuitServicesTypeQBO = "QBO";
+    /**
+     * OAuth 2 Mode constant.
+     * @var int Deflate
+     */
+    const OAUTH2 = "OAuth2";
 
 
-	/**
-	 * Intuit Platform services.
-	 * @var string IPP
-	 */
-	const IntuitServicesTypeIPP = "IPP";
+    /**
+     * QuickBooks Online Data through IDS.
+     * @var string QBO
+     */
+    const IntuitServicesTypeQBO = "QBO";
 
-	/**
-	 * None service type.
-	 * @var string None
-	 */
-	const IntuitServicesTypeNone = "None";
 
-	/**
-	 * Slash character.
-	 * @var string SLASH_CHAR
-	 */
-	const SLASH_CHAR = "/";
+    /**
+     * Intuit Platform services.
+     * @var string IPP
+     */
+    const IntuitServicesTypeIPP = "IPP";
 
-	/**
-	 * The Intuit Services Version.
-	 * @var string VERSION
-	 */
-	const VERSION = "v3";
+    /**
+     * None service type.
+     * @var string None
+     */
+    const IntuitServicesTypeNone = "None";
 
-	/**
-	 * The Resource.
-	 * @var string RESOURCE
-	 */
-	const RESOURCE = "resource";
+    /**
+     * Slash character.
+     * @var string SLASH_CHAR
+     */
+    const SLASH_CHAR = "/";
 
-	/**
-	 * Content type: text/xml.
-	 * @var string CONTENTTYPE_TEXTXML
-	 */
-	const CONTENTTYPE_TEXTXML = "text/xml";
+    /**
+     * The Intuit Services Version.
+     * @var string VERSION
+     */
+    const VERSION = "v3";
 
-	/**
-	 * Content type: text/plain.
-	 * @var string CONTENTTYPE_TEXTPLAIN
-	 */
-	const CONTENTTYPE_TEXTPLAIN = "text/plain";
+    /**
+     * The Resource.
+     * @var string RESOURCE
+     */
+    const RESOURCE = "resource";
 
-	/**
-	 * Content type: application/text.
-	 * @var string CONTENTTYPE_APPLICATIONTEXT
-	 */
-	const CONTENTTYPE_APPLICATIONTEXT = "application/text";
+    /**
+     * Content type: text/xml.
+     * @var string CONTENTTYPE_TEXTXML
+     */
+    const CONTENTTYPE_TEXTXML = "text/xml";
 
-	/**
-	 * Content type: application/xml.
-	 * @var string CONTENTTYPE_APPLICATIONXML
-	 */
-	const CONTENTTYPE_APPLICATIONXML = "application/xml";
+    /**
+     * Content type: text/plain.
+     * @var string CONTENTTYPE_TEXTPLAIN
+     */
+    const CONTENTTYPE_TEXTPLAIN = "text/plain";
 
-	/**
-	 * Content type: application/xml.
-	 * @var string CONTENTTYPE_APPLICATIONJSON
-	 */
-	const CONTENTTYPE_APPLICATIONJSON = "application/json";
+    /**
+     * Content type: application/text.
+     * @var string CONTENTTYPE_APPLICATIONTEXT
+     */
+    const CONTENTTYPE_APPLICATIONTEXT = "application/text";
 
-	/**
-	 * Content type: application/x-www-form-urlencoded.
-	 * @var string CONTENTTYPE_URLFORMENCODED
-	 */
-	const CONTENTTYPE_URLFORMENCODED = "application/x-www-form-urlencoded";
+    /**
+     * Content type: application/xml.
+     * @var string CONTENTTYPE_APPLICATIONXML
+     */
+    const CONTENTTYPE_APPLICATIONXML = "application/xml";
 
-        	/**
-	 * Content type: application/x-www-form-urlencoded.
-	 * @var string CONTENTTYPE_URLFORMENCODED
-	 */
-	const CONTENTTYPE_OCTETSTREAM = "application/octet-stream";
+    /**
+     * Content type: application/xml.
+     * @var string CONTENTTYPE_APPLICATIONJSON
+     */
+    const CONTENTTYPE_APPLICATIONJSON = "application/json";
+
+    /**
+     * Content type: application/x-www-form-urlencoded.
+     * @var string CONTENTTYPE_URLFORMENCODED
+     */
+    const CONTENTTYPE_URLFORMENCODED = "application/x-www-form-urlencoded";
+
+            /**
+     * Content type: application/x-www-form-urlencoded.
+     * @var string CONTENTTYPE_URLFORMENCODED
+     */
+    const CONTENTTYPE_OCTETSTREAM = "application/octet-stream";
 
         /**
-	 * Content type: application/pdf.
-	 * @var string CONTENTTYPE_APPLICATIONPDF
+     * Content type: application/pdf.
+     * @var string CONTENTTYPE_APPLICATIONPDF
          */
         const CONTENTTYPE_APPLICATIONPDF = "application/pdf";
 
-	/**
-	 * The Base Url for QBO.
-	 * @var string QBO_BASEURL
-	 */
-	const QBO_BASEURL = "https://quickbooks.api.intuit.com/";
+    /**
+     * The Base Url for QBO.
+     * @var string QBO_BASEURL
+     */
+    const QBO_BASEURL = "https://quickbooks.api.intuit.com/";
 
-	/**
-	 * Id Parameter Name.
-	 * @var string Id
-	 */
-	const Id = "Id";
+    /**
+     * Id Parameter Name.
+     * @var string Id
+     */
+    const Id = "Id";
 
-	/**
-	 * Sync Token Parameter Name.
-	 * @var string SYNC_TOKEN
-	 */
-	const SYNC_TOKEN = "SyncToken";
+    /**
+     * Sync Token Parameter Name.
+     * @var string SYNC_TOKEN
+     */
+    const SYNC_TOKEN = "SyncToken";
 
-	/**
-	 * Domain Parameter Name.
-	 * @var string DOMAIN
-	 */
-	const DOMAIN = "domain";
+    /**
+     * Domain Parameter Name.
+     * @var string DOMAIN
+     */
+    const DOMAIN = "domain";
 
-	/**
-	 * MetaData Parameter Name.
-	 * @var string METADATA
-	 */
-	const METADATA = "MetaData";
+    /**
+     * MetaData Parameter Name.
+     * @var string METADATA
+     */
+    const METADATA = "MetaData";
 
-	/**
-	 * Sparse Parameter Name.
-	 * @var string SPARSE
-	 */
-	const SPARSE = "sparse";
+    /**
+     * Sparse Parameter Name.
+     * @var string SPARSE
+     */
+    const SPARSE = "sparse";
 
-	/**
-	 * Status Parameter Name.
-	 * @var string STATUS
-	 */
-	const STATUS = "status";
+    /**
+     * Status Parameter Name.
+     * @var string STATUS
+     */
+    const STATUS = "status";
 
-	/**
-	 * Id Domain Query Parameter.
-	 * @var string ID_DOMAIN_QUERY
-	 */
-	const ID_DOMAIN_QUERY = "?idDomain=";
+    /**
+     * Id Domain Query Parameter.
+     * @var string ID_DOMAIN_QUERY
+     */
+    const ID_DOMAIN_QUERY = "?idDomain=";
 
-	/**
-	 * Authorization String For Header.
-	 * @var string AUTHORIZATIONSTRING_FORHEADER
-	 */
-	const AUTHORIZATIONSTRING_FORHEADER = "Authorization";
+    /**
+     * Authorization String For Header.
+     * @var string AUTHORIZATIONSTRING_FORHEADER
+     */
+    const AUTHORIZATIONSTRING_FORHEADER = "Authorization";
 
-	/**
-	 * Request File Name Format.
-	 * @var string REQUESTFILENAME_FORMAT
-	 */
-	const REQUESTFILENAME_FORMAT = "{0}{1}Request-{2}.txt";
+    /**
+     * Request File Name Format.
+     * @var string REQUESTFILENAME_FORMAT
+     */
+    const REQUESTFILENAME_FORMAT = "{0}{1}Request-{2}.txt";
 
-	/**
-	 * Response File Name Format.
-	 * @var string RESPONSEFILENAME_FORMAT
-	 */
-	const RESPONSEFILENAME_FORMAT = "{0}{1}Response-{2}.txt";
+    /**
+     * Response File Name Format.
+     * @var string RESPONSEFILENAME_FORMAT
+     */
+    const RESPONSEFILENAME_FORMAT = "{0}{1}Response-{2}.txt";
 
-	/**
-	 * Error Response File Name Format.
-	 * @var string ERRORRESPONSEFILENAME_FORMAT
-	 */
-	const ERRORRESPONSEFILENAME_FORMAT = "{0}{1}Error-Response-{2}.txt";
+    /**
+     * Error Response File Name Format.
+     * @var string ERRORRESPONSEFILENAME_FORMAT
+     */
+    const ERRORRESPONSEFILENAME_FORMAT = "{0}{1}Error-Response-{2}.txt";
 
-	/**
-	 * The Compression format of the request data.
-	 * @var string CONTENTENCODING
-	 */
-	const CONTENTENCODING = "Content-Encoding";
+    /**
+     * The Compression format of the request data.
+     * @var string CONTENTENCODING
+     */
+    const CONTENTENCODING = "Content-Encoding";
 
-	/**
-	 * The Compression format of the response data.
-	 * @var string ACCEPTENCODING
-	 */
-	const ACCEPTENCODING = "Accept-Encoding";
+    /**
+     * The Compression format of the response data.
+     * @var string ACCEPTENCODING
+     */
+    const ACCEPTENCODING = "Accept-Encoding";
 
-	/**
-	 * The Request source header value.
-	 * @var string REQUESTSOURCEHEADER
-	 */
-	const USERAGENT = "V3PHPSDK3.0.0";
+    /**
+     * The Request source header value.
+     * @var string REQUESTSOURCEHEADER
+     */
+    const USERAGENT = "V3PHPSDK3.0.0";
 
-  public static function getType($string, $return=1)
-  {
+    public static function getType($string, $return=1)
+    {
         $parts = explode("/", $string);
         return array_key_exists($return, $parts) ? $parts[$return] : null;
-  }
+    }
 
-	/**
-		* Returns current rules for what operation is supported and what is not for QuickBooks Online API entity
-		* @return array
-	 */
-	public static function getQuickBooksOnlineAPIEntityRules()
-	{
-					return
-						 array(
-									'*' => array(
-																											"DownloadPDF" => FALSE,
-																											"jsonOnly" => FALSE,
-																											"SendEmail"=> FALSE
-																										),
-									"IPPTaxService" => array( '*' => FALSE,
-																					 'Add' => TRUE,
-																					 'jsonOnly' => TRUE
-																					),
-									"IPPSalesReceipt" => array( "DownloadPDF" => TRUE, "SendEmail" => TRUE ),
-									"IPPInvoice"      => array( "DownloadPDF" => TRUE, "SendEmail" => TRUE  ),
-									"IPPEstimate"     => array( "DownloadPDF" => TRUE, "SendEmail" => TRUE  ),
-							);
-	}
-
+    /**
+        * Returns current rules for what operation is supported and what is not for QuickBooks Online API entity
+        * @return array
+     */
+    public static function getQuickBooksOnlineAPIEntityRules()
+    {
+        return
+                         array(
+                                    '*' => array(
+                                                                                                            "DownloadPDF" => false,
+                                                                                                            "jsonOnly" => false,
+                                                                                                            "SendEmail"=> false
+                                                                                                        ),
+                                    "IPPTaxService" => array( '*' => false,
+                                                                                     'Add' => true,
+                                                                                     'jsonOnly' => true
+                                                                                    ),
+                                    "IPPSalesReceipt" => array( "DownloadPDF" => true, "SendEmail" => true ),
+                                    "IPPInvoice"      => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPEstimate"     => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                            );
+    }
 }

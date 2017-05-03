@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportEmergencyCardCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportEmergencyCardCode
  */
-class TransportEmergencyCardCode
-	extends TransportEmergencyCardCodeType
-	{
-
-
-
+class TransportEmergencyCardCode extends TransportEmergencyCardCodeType
+{
 } // end class TransportEmergencyCardCode

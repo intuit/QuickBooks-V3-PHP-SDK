@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AgencyName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AgencyName
  */
-class AgencyName
-	extends AgencyNameType
-	{
-
-
-
+class AgencyName extends AgencyNameType
+{
 } // end class AgencyName

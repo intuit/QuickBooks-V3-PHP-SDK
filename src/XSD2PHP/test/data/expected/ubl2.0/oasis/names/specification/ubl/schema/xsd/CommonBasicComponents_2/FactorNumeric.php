@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName FactorNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\FactorNumeric
  */
-class FactorNumeric
-	extends FactorNumericType
-	{
-
-
-
+class FactorNumeric extends FactorNumericType
+{
 } // end class FactorNumeric

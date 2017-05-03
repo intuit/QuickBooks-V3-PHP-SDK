@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TechnicalName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TechnicalName
  */
-class TechnicalName
-	extends TechnicalNameType
-	{
-
-
-
+class TechnicalName extends TechnicalNameType
+{
 } // end class TechnicalName

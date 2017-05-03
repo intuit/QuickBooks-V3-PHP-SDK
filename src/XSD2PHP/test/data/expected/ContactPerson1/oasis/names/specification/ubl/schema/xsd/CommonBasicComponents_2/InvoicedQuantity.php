@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InvoicedQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InvoicedQuantity
  */
-class InvoicedQuantity
-	extends InvoicedQuantityType
-	{
-
-
-
+class InvoicedQuantity extends InvoicedQuantityType
+{
 } // end class InvoicedQuantity

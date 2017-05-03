@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SettlementDiscountPercent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SettlementDiscountPercent
  */
-class SettlementDiscountPercent
-	extends SettlementDiscountPercentType
-	{
-
-
-
+class SettlementDiscountPercent extends SettlementDiscountPercentType
+{
 } // end class SettlementDiscountPercent

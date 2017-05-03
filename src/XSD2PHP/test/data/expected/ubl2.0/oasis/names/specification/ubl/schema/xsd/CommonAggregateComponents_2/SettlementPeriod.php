@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName SettlementPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\SettlementPeriod
  */
-class SettlementPeriod
-	extends PeriodType
-	{
-
-
-
+class SettlementPeriod extends PeriodType
+{
 } // end class SettlementPeriod

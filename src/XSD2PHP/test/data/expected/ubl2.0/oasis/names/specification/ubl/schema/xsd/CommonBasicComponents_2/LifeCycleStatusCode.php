@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LifeCycleStatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LifeCycleStatusCode
  */
-class LifeCycleStatusCode
-	extends LifeCycleStatusCodeType
-	{
-
-
-
+class LifeCycleStatusCode extends LifeCycleStatusCodeType
+{
 } // end class LifeCycleStatusCode
