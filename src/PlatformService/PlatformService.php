@@ -2,6 +2,7 @@
 
 namespace QuickBooksOnline\API\PlatformService;
 
+use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Exception\SdkExceptions\InvalidTokenException;
 use QuickBooksOnline\API\Exception\SdkExceptions\InvalidParameterException;
