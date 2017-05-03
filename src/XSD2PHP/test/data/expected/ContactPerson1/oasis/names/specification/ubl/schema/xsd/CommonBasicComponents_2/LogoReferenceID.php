@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LogoReferenceID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LogoReferenceID
  */
-class LogoReferenceID
-	extends LogoReferenceIDType
-	{
-
-
-
+class LogoReferenceID extends LogoReferenceIDType
+{
 } // end class LogoReferenceID

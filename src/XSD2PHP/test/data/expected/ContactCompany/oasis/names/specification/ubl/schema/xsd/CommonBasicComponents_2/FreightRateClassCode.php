@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName FreightRateClassCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\FreightRateClassCode
  */
-class FreightRateClassCode
-	extends FreightRateClassCodeType
-	{
-
-
-
+class FreightRateClassCode extends FreightRateClassCodeType
+{
 } // end class FreightRateClassCode

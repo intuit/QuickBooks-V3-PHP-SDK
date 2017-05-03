@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FlashpointTemperature
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FlashpointTemperature
  */
-class FlashpointTemperature
-	extends TemperatureType
-	{
-
-
-
+class FlashpointTemperature extends TemperatureType
+{
 } // end class FlashpointTemperature

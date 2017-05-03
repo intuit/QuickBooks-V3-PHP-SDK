@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CreditLineAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CreditLineAmount
  */
-class CreditLineAmount
-	extends CreditLineAmountType
-	{
-
-
-
+class CreditLineAmount extends CreditLineAmountType
+{
 } // end class CreditLineAmount

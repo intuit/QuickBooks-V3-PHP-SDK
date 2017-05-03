@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransitDirectionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransitDirectionCode
  */
-class TransitDirectionCode
-	extends TransitDirectionCodeType
-	{
-
-
-
+class TransitDirectionCode extends TransitDirectionCodeType
+{
 } // end class TransitDirectionCode

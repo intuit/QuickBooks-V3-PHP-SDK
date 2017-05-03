@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ShippingMarks
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ShippingMarks
  */
-class ShippingMarks
-	extends ShippingMarksType
-	{
-
-
-
+class ShippingMarks extends ShippingMarksType
+{
 } // end class ShippingMarks

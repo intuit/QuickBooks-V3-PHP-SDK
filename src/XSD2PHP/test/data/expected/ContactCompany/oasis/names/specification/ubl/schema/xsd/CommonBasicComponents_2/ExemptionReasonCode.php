@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ExemptionReasonCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ExemptionReasonCode
  */
-class ExemptionReasonCode
-	extends ExemptionReasonCodeType
-	{
-
-
-
+class ExemptionReasonCode extends ExemptionReasonCodeType
+{
 } // end class ExemptionReasonCode

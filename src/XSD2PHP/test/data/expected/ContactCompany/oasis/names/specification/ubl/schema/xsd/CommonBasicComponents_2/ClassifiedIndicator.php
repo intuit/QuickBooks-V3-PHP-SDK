@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ClassifiedIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ClassifiedIndicator
  */
-class ClassifiedIndicator
-	extends ClassifiedIndicatorType
-	{
-
-
-
+class ClassifiedIndicator extends ClassifiedIndicatorType
+{
 } // end class ClassifiedIndicator

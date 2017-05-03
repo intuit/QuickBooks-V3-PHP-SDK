@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CargoTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CargoTypeCode
  */
-class CargoTypeCode
-	extends CargoTypeCodeType
-	{
-
-
-
+class CargoTypeCode extends CargoTypeCodeType
+{
 } // end class CargoTypeCode

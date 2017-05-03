@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PrepaidIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PrepaidIndicator
  */
-class PrepaidIndicator
-	extends PrepaidIndicatorType
-	{
-
-
-
+class PrepaidIndicator extends PrepaidIndicatorType
+{
 } // end class PrepaidIndicator

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Indicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Indicator
  */
-class Indicator
-	extends IndicatorType
-	{
-
-
-
+class Indicator extends IndicatorType
+{
 } // end class Indicator

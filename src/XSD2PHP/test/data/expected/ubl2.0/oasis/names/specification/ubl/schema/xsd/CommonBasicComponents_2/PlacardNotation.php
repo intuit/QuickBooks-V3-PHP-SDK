@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PlacardNotation
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PlacardNotation
  */
-class PlacardNotation
-	extends PlacardNotationType
-	{
-
-
-
+class PlacardNotation extends PlacardNotationType
+{
 } // end class PlacardNotation

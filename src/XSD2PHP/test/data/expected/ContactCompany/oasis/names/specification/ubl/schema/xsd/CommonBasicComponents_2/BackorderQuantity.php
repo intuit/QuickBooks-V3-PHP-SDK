@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BackorderQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BackorderQuantity
  */
-class BackorderQuantity
-	extends BackorderQuantityType
-	{
-
-
-
+class BackorderQuantity extends BackorderQuantityType
+{
 } // end class BackorderQuantity

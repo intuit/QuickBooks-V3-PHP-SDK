@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CalculationSequenceNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CalculationSequenceNumeric
  */
-class CalculationSequenceNumeric
-	extends CalculationSequenceNumericType
-	{
-
-
-
+class CalculationSequenceNumeric extends CalculationSequenceNumericType
+{
 } // end class CalculationSequenceNumeric

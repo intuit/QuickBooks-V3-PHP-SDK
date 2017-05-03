@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName WeightMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\WeightMeasure
  */
-class WeightMeasure
-	extends WeightMeasureType
-	{
-
-
-
+class WeightMeasure extends WeightMeasureType
+{
 } // end class WeightMeasure

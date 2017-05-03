@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CompanyID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CompanyID
  */
-class CompanyID
-	extends CompanyIDType
-	{
-
-
-
+class CompanyID extends CompanyIDType
+{
 } // end class CompanyID

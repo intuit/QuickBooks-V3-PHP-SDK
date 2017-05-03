@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InsuranceValueAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InsuranceValueAmount
  */
-class InsuranceValueAmount
-	extends InsuranceValueAmountType
-	{
-
-
-
+class InsuranceValueAmount extends InsuranceValueAmountType
+{
 } // end class InsuranceValueAmount

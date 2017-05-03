@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportServiceCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportServiceCode
  */
-class TransportServiceCode
-	extends TransportServiceCodeType
-	{
-
-
-
+class TransportServiceCode extends TransportServiceCodeType
+{
 } // end class TransportServiceCode

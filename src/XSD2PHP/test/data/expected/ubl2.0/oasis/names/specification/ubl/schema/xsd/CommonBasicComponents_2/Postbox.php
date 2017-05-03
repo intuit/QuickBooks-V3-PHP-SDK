@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Postbox
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Postbox
  */
-class Postbox
-	extends PostboxType
-	{
-
-
-
+class Postbox extends PostboxType
+{
 } // end class Postbox

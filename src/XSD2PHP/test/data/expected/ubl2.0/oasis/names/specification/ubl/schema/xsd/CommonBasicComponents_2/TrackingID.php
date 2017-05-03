@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TrackingID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TrackingID
  */
-class TrackingID
-	extends TrackingIDType
-	{
-
-
-
+class TrackingID extends TrackingIDType
+{
 } // end class TrackingID

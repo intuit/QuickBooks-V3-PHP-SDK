@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LineValidityPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LineValidityPeriod
  */
-class LineValidityPeriod
-	extends PeriodType
-	{
-
-
-
+class LineValidityPeriod extends PeriodType
+{
 } // end class LineValidityPeriod

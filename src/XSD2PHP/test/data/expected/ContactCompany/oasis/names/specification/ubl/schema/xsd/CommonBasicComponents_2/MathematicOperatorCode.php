@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MathematicOperatorCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MathematicOperatorCode
  */
-class MathematicOperatorCode
-	extends MathematicOperatorCodeType
-	{
-
-
-
+class MathematicOperatorCode extends MathematicOperatorCodeType
+{
 } // end class MathematicOperatorCode

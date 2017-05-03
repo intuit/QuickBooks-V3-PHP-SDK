@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LossRiskResponsibilityCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LossRiskResponsibilityCode
  */
-class LossRiskResponsibilityCode
-	extends LossRiskResponsibilityCodeType
-	{
-
-
-
+class LossRiskResponsibilityCode extends LossRiskResponsibilityCodeType
+{
 } // end class LossRiskResponsibilityCode

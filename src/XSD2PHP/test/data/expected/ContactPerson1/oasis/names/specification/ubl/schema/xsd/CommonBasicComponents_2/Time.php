@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Time
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Time
  */
-class Time
-	extends TimeType
-	{
-
-
-
+class Time extends TimeType
+{
 } // end class Time

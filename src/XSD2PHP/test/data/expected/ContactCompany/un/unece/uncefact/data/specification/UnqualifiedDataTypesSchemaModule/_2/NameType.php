@@ -16,28 +16,26 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType string
  */
 class NameType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var string
-		 */
-		public $value;	
-	/**
-	 * @UniqueID UDT0000020-SC2
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Language. Identifier
-	 * @Definition The identifier of the language used in the content component.
-	 * @ObjectClass Language
-	 * @PropertyTermName Identification
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @BuiltinType language
-	 * @xmlType attribute
-	 * @xmlName languageID
-	 * @var string
-	 */
-	public $languageID;
-
-
+        /**
+         * @xmlType value
+         * @var string
+         */
+        public $value;
+    /**
+     * @UniqueID UDT0000020-SC2
+     * @CategoryCode SC
+     * @DictionaryEntryName Language. Identifier
+     * @Definition The identifier of the language used in the content component.
+     * @ObjectClass Language
+     * @PropertyTermName Identification
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @BuiltinType language
+     * @xmlType attribute
+     * @xmlName languageID
+     * @var string
+     */
+    public $languageID;
 } // end class NameType

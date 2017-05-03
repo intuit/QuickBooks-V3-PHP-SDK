@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MinimumMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MinimumMeasure
  */
-class MinimumMeasure
-	extends MinimumMeasureType
-	{
-
-
-
+class MinimumMeasure extends MinimumMeasureType
+{
 } // end class MinimumMeasure

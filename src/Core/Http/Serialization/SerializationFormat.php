@@ -13,21 +13,21 @@ class SerializationFormat
      */
     //const DEFAULT = "DEFAULT";
 
-	/**
-	 * Xml Serialization Format.
-	 * @var string
-	 */
-	const Xml = "Xml";
+    /**
+     * Xml Serialization Format.
+     * @var string
+     */
+    const Xml = "Xml";
 
-	/**
-	 * Java Script Obejct Notation Serialization Format.
-	 * @var string
-	 */
-	const Json = "Json";
+    /**
+     * Java Script Obejct Notation Serialization Format.
+     * @var string
+     */
+    const Json = "Json";
 
-	/**
-	 * Custom serialization format.
-	 * @var string
-	 */
-	const Custom = "Custom";
+    /**
+     * Custom serialization format.
+     * @var string
+     */
+    const Custom = "Custom";
 }

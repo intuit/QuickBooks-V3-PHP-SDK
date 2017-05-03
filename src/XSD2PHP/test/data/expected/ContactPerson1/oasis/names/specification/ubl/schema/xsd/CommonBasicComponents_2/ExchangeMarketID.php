@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ExchangeMarketID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ExchangeMarketID
  */
-class ExchangeMarketID
-	extends ExchangeMarketIDType
-	{
-
-
-
+class ExchangeMarketID extends ExchangeMarketIDType
+{
 } // end class ExchangeMarketID

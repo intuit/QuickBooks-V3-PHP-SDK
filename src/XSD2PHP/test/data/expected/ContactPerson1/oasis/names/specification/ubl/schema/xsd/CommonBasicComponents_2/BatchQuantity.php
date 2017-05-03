@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BatchQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BatchQuantity
  */
-class BatchQuantity
-	extends BatchQuantityType
-	{
-
-
-
+class BatchQuantity extends BatchQuantityType
+{
 } // end class BatchQuantity

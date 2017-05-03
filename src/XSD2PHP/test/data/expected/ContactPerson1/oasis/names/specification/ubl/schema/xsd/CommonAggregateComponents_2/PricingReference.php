@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PricingReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PricingReference
  */
-class PricingReference
-	extends PricingReferenceType
-	{
-
-
-
+class PricingReference extends PricingReferenceType
+{
 } // end class PricingReference

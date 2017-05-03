@@ -4,13 +4,13 @@ namespace QuickBooksOnline\API\Diagnostics;
 
 use QuickBooksOnline\API\Exception\SdkException;
 
-
 /**
  * Writes temporary file
  *
  * @author amatiushkin
  */
-class ContentWriter {
+class ContentWriter
+{
 
     /**
      * Contains content to write
@@ -43,7 +43,8 @@ class ContentWriter {
      */
     private $handler = null;
 
-    public function __construct($content = NULL) {
+    public function __construct($content = null)
+    {
         $this->content = $content;
     }
 
@@ -93,7 +94,7 @@ class ContentWriter {
      */
     protected function getUniqId()
     {
-        return uniqid($this->getPrefix(),true);
+        return uniqid($this->getPrefix(), true);
     }
 
     /**
@@ -103,7 +104,7 @@ class ContentWriter {
      */
     private function createTempFile()
     {
-       return tempnam(sys_get_temp_dir(), $this->getUniqId());
+        return tempnam(sys_get_temp_dir(), $this->getUniqId());
     }
 
     /**
@@ -154,12 +155,12 @@ class ContentWriter {
     public function saveTemp()
     {
         $this->tempPath = $this->createTempFile();
-        if(is_writable($this->getTempPath())) {
+        if (is_writable($this->getTempPath())) {
             $result = file_put_contents($this->getTempPath(), $this->getContent());
-            if(false === $result) {
+            if (false === $result) {
                 throw new SdkException('Unable to put content into temp file: ' . $this->getTempPath());
             }
-            if(empty($result)) {
+            if (empty($result)) {
                 throw new SdkException('Empty or zero file was received: ' . $this->getTempPath());
             }
             $this->bytes = $result;
@@ -178,24 +179,24 @@ class ContentWriter {
     public function saveAsHandler()
     {
         $this->handler = tmpfile();
-        if(false === $this->handler) {
-            throw new SdkException('Unable to create a handler for tempfile in ' . sys_get_temp_dir() );
+        if (false === $this->handler) {
+            throw new SdkException('Unable to create a handler for tempfile in ' . sys_get_temp_dir());
         }
-        if(empty($this->handler)) {
-             throw new SdkException('Handler has an invalid state. It is empty.');
+        if (empty($this->handler)) {
+            throw new SdkException('Handler has an invalid state. It is empty.');
         }
         $this->tempPath = $this->getPathFromHandler();
-        if(empty($this->tempPath)) {
+        if (empty($this->tempPath)) {
             throw new SdkException('Unable to locate path from stream source');
         }
         $result = fwrite($this->handler, $this->getContent());
-        if(false === $result) {
-           throw new SdkException('Unable to write content into temp file: ' . $this->getTempPath());
+        if (false === $result) {
+            throw new SdkException('Unable to write content into temp file: ' . $this->getTempPath());
         }
-        if(empty($result)) {
+        if (empty($result)) {
             throw new SdkException('Empty or zero file was received: ' . $this->getTempPath());
         }
-        if(-1 === fseek($this->handler, 0)) {
+        if (-1 === fseek($this->handler, 0)) {
             throw new SdkException('Unable to reset file pointer in the file ' . $this->getTempPath());
         }
         $this->bytes = $result;
@@ -209,34 +210,33 @@ class ContentWriter {
      */
     public function saveFile($dir, $name=null)
     {
-        if(empty($dir)) {
+        if (empty($dir)) {
             throw new SdkException("Directory is empty.");
         }
 
-        if(!file_exists($dir)) {
+        if (!file_exists($dir)) {
             throw new SdkException("Directory ($dir) doesn't exist.");
         }
 
-        if(!is_writable($dir)) {
+        if (!is_writable($dir)) {
             throw new SdkException("Directory ($dir) is not writable");
         }
         $this->tempPath = $dir . DIRECTORY_SEPARATOR . $this->generateFileName($name);
-        if(file_exists($this->tempPath)) {
+        if (file_exists($this->tempPath)) {
             throw new SdkException("File ($this->tempPath) already exists");
         }
         try {
             $result = file_put_contents($this->tempPath, $this->getContent());
-        } catch(Exception $e) {
-            if(!is_writable($this->tempPath)) {
+        } catch (Exception $e) {
+            if (!is_writable($this->tempPath)) {
                 throw new SdkException("File ({$this->tempPath}) is not writable");
             }
             throw new SdkException("Error was thrown: " . $e->getMessage() . "\File: " .$e->getFile() ." on line " . $e->getLine());
         }
-        if(false === $result) {
+        if (false === $result) {
             throw new SdkException('Unable to write content into temp file: ' . $this->tempPath);
         }
         $this->bytes = $result;
-
     }
 
     /**
@@ -259,13 +259,9 @@ class ContentWriter {
     private function getPathFromHandler()
     {
         $metaDatas = stream_get_meta_data($this->handler);
-        if(array_key_exists('uri', $metaDatas)) {
+        if (array_key_exists('uri', $metaDatas)) {
             return $metaDatas['uri'];
         }
         return null;
     }
-
-
-
-
 }

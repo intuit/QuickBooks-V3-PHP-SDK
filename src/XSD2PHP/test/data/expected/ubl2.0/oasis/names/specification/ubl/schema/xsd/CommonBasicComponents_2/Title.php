@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Title
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Title
  */
-class Title
-	extends TitleType
-	{
-
-
-
+class Title extends TitleType
+{
 } // end class Title

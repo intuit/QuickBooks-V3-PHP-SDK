@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Stowage
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Stowage
  */
-class Stowage
-	extends StowageType
-	{
-
-
-
+class Stowage extends StowageType
+{
 } // end class Stowage

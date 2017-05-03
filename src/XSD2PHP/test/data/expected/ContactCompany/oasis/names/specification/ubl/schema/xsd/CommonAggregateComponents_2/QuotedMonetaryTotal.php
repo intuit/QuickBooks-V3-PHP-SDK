@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName QuotedMonetaryTotal
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\QuotedMonetaryTotal
  */
-class QuotedMonetaryTotal
-	extends MonetaryTotalType
-	{
-
-
-
+class QuotedMonetaryTotal extends MonetaryTotalType
+{
 } // end class QuotedMonetaryTotal

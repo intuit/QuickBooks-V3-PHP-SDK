@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName VesselID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\VesselID
  */
-class VesselID
-	extends VesselIDType
-	{
-
-
-
+class VesselID extends VesselIDType
+{
 } // end class VesselID

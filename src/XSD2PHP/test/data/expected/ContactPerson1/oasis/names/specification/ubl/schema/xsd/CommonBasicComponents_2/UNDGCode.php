@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName UNDGCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\UNDGCode
  */
-class UNDGCode
-	extends UNDGCodeType
-	{
-
-
-
+class UNDGCode extends UNDGCodeType
+{
 } // end class UNDGCode

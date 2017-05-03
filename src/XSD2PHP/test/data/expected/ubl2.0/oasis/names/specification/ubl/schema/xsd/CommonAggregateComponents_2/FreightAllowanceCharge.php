@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FreightAllowanceCharge
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FreightAllowanceCharge
  */
-class FreightAllowanceCharge
-	extends AllowanceChargeType
-	{
-
-
-
+class FreightAllowanceCharge extends AllowanceChargeType
+{
 } // end class FreightAllowanceCharge

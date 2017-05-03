@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Note
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Note
  */
-class Note
-	extends NoteType
-	{
-
-
-
+class Note extends NoteType
+{
 } // end class Note

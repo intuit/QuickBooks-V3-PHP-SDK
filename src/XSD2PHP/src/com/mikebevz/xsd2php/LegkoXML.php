@@ -4,8 +4,8 @@
 //require_once 'Xsd2Php.php';
 namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
 
-class LegkoXML {
-
+class LegkoXML
+{
     public $version = "0.0.4";
 
     /**
@@ -18,18 +18,18 @@ class LegkoXML {
 
     private $php2wsdl;
 
-    public function __construct() {
-
-
+    public function __construct()
+    {
     }
 
-    public function compileSchema($schema, $destination) {
+    public function compileSchema($schema, $destination)
+    {
         $this->xsd2php = new Xsd2Php($schema);
         $this->xsd2php->saveClasses($destination, true);
     }
 
-    public function generateWsdl($class) {
-
+    public function generateWsdl($class)
+    {
     }
 
     /**

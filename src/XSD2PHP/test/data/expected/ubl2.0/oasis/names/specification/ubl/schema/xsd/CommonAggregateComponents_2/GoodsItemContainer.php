@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName GoodsItemContainer
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\GoodsItemContainer
  */
-class GoodsItemContainer
-	extends GoodsItemContainerType
-	{
-
-
-
+class GoodsItemContainer extends GoodsItemContainerType
+{
 } // end class GoodsItemContainer

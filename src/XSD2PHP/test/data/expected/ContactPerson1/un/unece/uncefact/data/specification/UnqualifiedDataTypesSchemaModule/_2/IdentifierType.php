@@ -14,118 +14,116 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlRepresentationTermName Identifier
  * @xmlPrimitiveType string
  * @xmlBuiltinType normalizedString
- * @xmlUsageRule Other supplementary components in the CCT are captured as part of the token and name for the schema module containing the identifer list and thus, are not declared as attributes. 
+ * @xmlUsageRule Other supplementary components in the CCT are captured as part of the token and name for the schema module containing the identifer list and thus, are not declared as attributes.
  */
 class IdentifierType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var normalizedString
-		 */
-		public $value;	
-	/**
-	 * @UniqueID UDT000011-SC2
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme. Identifier
-	 * @Definition The identification of the identification scheme.
-	 * @ObjectClass Identification Scheme
-	 * @PropertyTermName Identification
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @xmlType attribute
-	 * @xmlName schemeID
-	 * @var xsd:normalizedString
-	 */
-	public $schemeID;
-	/**
-	 * @UniqueID UDT000011-SC3
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme. Name. Text
-	 * @Definition The name of the identification scheme.
-	 * @ObjectClass Identification Scheme
-	 * @PropertyTermName Name
-	 * @RepresentationTermName Text
-	 * @PrimitiveType string
-	 * @xmlType attribute
-	 * @xmlName schemeName
-	 * @var xsd:string
-	 */
-	public $schemeName;
-	/**
-	 * @UniqueID UDT000011-SC4
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme Agency. Identifier
-	 * @Definition The identification of the agency that maintains the identification scheme.
-	 * @ObjectClass Identification Scheme Agency
-	 * @PropertyTermName Identification
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @UsageRule Defaults to the UN/EDIFACT data element 3055 code list.
-	 * @xmlType attribute
-	 * @xmlName schemeAgencyID
-	 * @var xsd:normalizedString
-	 */
-	public $schemeAgencyID;
-	/**
-	 * @UniqueID UDT000011-SC5
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme Agency. Name. Text
-	 * @Definition The name of the agency that maintains the identification scheme.
-	 * @ObjectClass Identification Scheme Agency
-	 * @PropertyTermName Agency Name
-	 * @RepresentationTermName Text
-	 * @PrimitiveType string
-	 * @xmlType attribute
-	 * @xmlName schemeAgencyName
-	 * @var xsd:string
-	 */
-	public $schemeAgencyName;
-	/**
-	 * @UniqueID UDT000011-SC6
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme. Version. Identifier
-	 * @Definition The version of the identification scheme.
-	 * @ObjectClass Identification Scheme
-	 * @PropertyTermName Version
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @BuiltinType normalizedString
-	 * @xmlType attribute
-	 * @xmlName schemeVersionID
-	 * @var xsd:normalizedString
-	 */
-	public $schemeVersionID;
-	/**
-	 * @UniqueID UDT0000011-SC7
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme Data. Uniform Resource. Identifier
-	 * @Definition The Uniform Resource Identifier that identifies where the identification scheme data is located.
-	 * @ObjectClass Identification Scheme Data
-	 * @PropertyTermName Uniform Resource Identifier
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @BuiltinType anyURI
-	 * @xmlType attribute
-	 * @xmlName schemeDataURI
-	 * @var xsd:anyURI
-	 */
-	public $schemeDataURI;
-	/**
-	 * @UniqueID UDT0000011-SC8
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Identification Scheme. Uniform Resource. Identifier
-	 * @Definition The Uniform Resource Identifier that identifies where the identification scheme is located.
-	 * @ObjectClass Identification Scheme
-	 * @PropertyTermName Uniform Resource Identifier
-	 * @RepresentationTermName Identifier
-	 * @PrimitiveType string
-	 * @BuiltinType anyURI
-	 * @xmlType attribute
-	 * @xmlName schemeURI
-	 * @var xsd:anyURI
-	 */
-	public $schemeURI;
-
-
+        /**
+         * @xmlType value
+         * @var normalizedString
+         */
+        public $value;
+    /**
+     * @UniqueID UDT000011-SC2
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme. Identifier
+     * @Definition The identification of the identification scheme.
+     * @ObjectClass Identification Scheme
+     * @PropertyTermName Identification
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @xmlType attribute
+     * @xmlName schemeID
+     * @var xsd:normalizedString
+     */
+    public $schemeID;
+    /**
+     * @UniqueID UDT000011-SC3
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme. Name. Text
+     * @Definition The name of the identification scheme.
+     * @ObjectClass Identification Scheme
+     * @PropertyTermName Name
+     * @RepresentationTermName Text
+     * @PrimitiveType string
+     * @xmlType attribute
+     * @xmlName schemeName
+     * @var xsd:string
+     */
+    public $schemeName;
+    /**
+     * @UniqueID UDT000011-SC4
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme Agency. Identifier
+     * @Definition The identification of the agency that maintains the identification scheme.
+     * @ObjectClass Identification Scheme Agency
+     * @PropertyTermName Identification
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @UsageRule Defaults to the UN/EDIFACT data element 3055 code list.
+     * @xmlType attribute
+     * @xmlName schemeAgencyID
+     * @var xsd:normalizedString
+     */
+    public $schemeAgencyID;
+    /**
+     * @UniqueID UDT000011-SC5
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme Agency. Name. Text
+     * @Definition The name of the agency that maintains the identification scheme.
+     * @ObjectClass Identification Scheme Agency
+     * @PropertyTermName Agency Name
+     * @RepresentationTermName Text
+     * @PrimitiveType string
+     * @xmlType attribute
+     * @xmlName schemeAgencyName
+     * @var xsd:string
+     */
+    public $schemeAgencyName;
+    /**
+     * @UniqueID UDT000011-SC6
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme. Version. Identifier
+     * @Definition The version of the identification scheme.
+     * @ObjectClass Identification Scheme
+     * @PropertyTermName Version
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @BuiltinType normalizedString
+     * @xmlType attribute
+     * @xmlName schemeVersionID
+     * @var xsd:normalizedString
+     */
+    public $schemeVersionID;
+    /**
+     * @UniqueID UDT0000011-SC7
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme Data. Uniform Resource. Identifier
+     * @Definition The Uniform Resource Identifier that identifies where the identification scheme data is located.
+     * @ObjectClass Identification Scheme Data
+     * @PropertyTermName Uniform Resource Identifier
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @BuiltinType anyURI
+     * @xmlType attribute
+     * @xmlName schemeDataURI
+     * @var xsd:anyURI
+     */
+    public $schemeDataURI;
+    /**
+     * @UniqueID UDT0000011-SC8
+     * @CategoryCode SC
+     * @DictionaryEntryName Identification Scheme. Uniform Resource. Identifier
+     * @Definition The Uniform Resource Identifier that identifies where the identification scheme is located.
+     * @ObjectClass Identification Scheme
+     * @PropertyTermName Uniform Resource Identifier
+     * @RepresentationTermName Identifier
+     * @PrimitiveType string
+     * @BuiltinType anyURI
+     * @xmlType attribute
+     * @xmlName schemeURI
+     * @var xsd:anyURI
+     */
+    public $schemeURI;
 } // end class IdentifierType

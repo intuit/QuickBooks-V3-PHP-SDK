@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Endorsement
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Endorsement
  */
-class Endorsement
-	extends EndorsementType
-	{
-
-
-
+class Endorsement extends EndorsementType
+{
 } // end class Endorsement

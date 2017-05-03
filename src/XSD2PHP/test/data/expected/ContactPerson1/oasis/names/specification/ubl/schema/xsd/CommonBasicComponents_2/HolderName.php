@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName HolderName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\HolderName
  */
-class HolderName
-	extends HolderNameType
-	{
-
-
-
+class HolderName extends HolderNameType
+{
 } // end class HolderName

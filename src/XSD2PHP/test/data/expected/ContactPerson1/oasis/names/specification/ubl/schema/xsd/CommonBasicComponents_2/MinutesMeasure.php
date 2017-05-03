@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MinutesMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MinutesMeasure
  */
-class MinutesMeasure
-	extends MinutesMeasureType
-	{
-
-
-
+class MinutesMeasure extends MinutesMeasureType
+{
 } // end class MinutesMeasure

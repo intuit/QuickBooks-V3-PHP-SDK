@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TaxExchangeRate
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TaxExchangeRate
  */
-class TaxExchangeRate
-	extends ExchangeRateType
-	{
-
-
-
+class TaxExchangeRate extends ExchangeRateType
+{
 } // end class TaxExchangeRate

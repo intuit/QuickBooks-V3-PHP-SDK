@@ -8,12 +8,11 @@ namespace un\unece\uncefact\codelist\specification\IANAMIMEMediaType\_2003;
  * @var un\unece\uncefact\codelist\specification\IANAMIMEMediaType\_2003\BinaryObjectMimeCodeContentType
  */
 class BinaryObjectMimeCodeContentType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var string
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var string
+         */
+        public $value;
 } // end class BinaryObjectMimeCodeContentType

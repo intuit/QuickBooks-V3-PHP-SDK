@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CustomsStatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CustomsStatusCode
  */
-class CustomsStatusCode
-	extends CustomsStatusCodeType
-	{
-
-
-
+class CustomsStatusCode extends CustomsStatusCodeType
+{
 } // end class CustomsStatusCode

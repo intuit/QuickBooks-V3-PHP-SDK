@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ActualDeliveryDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ActualDeliveryDate
  */
-class ActualDeliveryDate
-	extends ActualDeliveryDateType
-	{
-
-
-
+class ActualDeliveryDate extends ActualDeliveryDateType
+{
 } // end class ActualDeliveryDate

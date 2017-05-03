@@ -16,28 +16,26 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType decimal
  */
 class QuantityType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var decimal
-		 */
-		public $value;	
-	/**
-	 * @UniqueID UDT0000018-SC2
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Quantity. Unit. Code
-	 * @Definition The unit of the quantity
-	 * @ObjectClass Quantity
-	 * @PropertyTermName Unit Code
-	 * @RepresentationTermName Code
-	 * @PrimitiveType string
-	 * @BuiltinType normalizedString
-	 * @xmlType attribute
-	 * @xmlName unitCode
-	 * @var clm66411:UnitCodeContentType
-	 */
-	public $unitCode;
-
-
+        /**
+         * @xmlType value
+         * @var decimal
+         */
+        public $value;
+    /**
+     * @UniqueID UDT0000018-SC2
+     * @CategoryCode SC
+     * @DictionaryEntryName Quantity. Unit. Code
+     * @Definition The unit of the quantity
+     * @ObjectClass Quantity
+     * @PropertyTermName Unit Code
+     * @RepresentationTermName Code
+     * @PrimitiveType string
+     * @BuiltinType normalizedString
+     * @xmlType attribute
+     * @xmlName unitCode
+     * @var clm66411:UnitCodeContentType
+     */
+    public $unitCode;
 } // end class QuantityType

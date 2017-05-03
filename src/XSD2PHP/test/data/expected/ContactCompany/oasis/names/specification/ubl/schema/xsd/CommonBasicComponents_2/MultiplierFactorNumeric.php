@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MultiplierFactorNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MultiplierFactorNumeric
  */
-class MultiplierFactorNumeric
-	extends MultiplierFactorNumericType
-	{
-
-
-
+class MultiplierFactorNumeric extends MultiplierFactorNumericType
+{
 } // end class MultiplierFactorNumeric

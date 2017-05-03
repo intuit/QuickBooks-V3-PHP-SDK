@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Measure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Measure
  */
-class Measure
-	extends MeasureType
-	{
-
-
-
+class Measure extends MeasureType
+{
 } // end class Measure

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReceiptDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReceiptDocumentReference
  */
-class ReceiptDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class ReceiptDocumentReference extends DocumentReferenceType
+{
 } // end class ReceiptDocumentReference

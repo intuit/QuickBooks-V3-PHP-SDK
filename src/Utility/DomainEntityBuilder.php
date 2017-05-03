@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 use RuntimeException;
 
-
 //THis is a incomplete Class. Complete this Class late for Converting Response to JSON Deserialization
 //-Hao Feb.7th.2017
 /**
@@ -17,7 +16,8 @@ use RuntimeException;
  * @author amatiushkin
  */
 
-class DomainEntityBuilder {
+class DomainEntityBuilder
+{
     /**
      * Contains original class name or type of converted object
      * @var string
@@ -53,7 +53,8 @@ class DomainEntityBuilder {
      * Requires type or class of target instance
      * @param strign $name
      */
-    public function __construct($name) {
+    public function __construct($name)
+    {
         $this->originalClassName = $name;
     }
 
@@ -63,11 +64,11 @@ class DomainEntityBuilder {
      */
     private function makeReflection()
     {
-        if(!class_exists($this->getOriginalClassName())) {
+        if (!class_exists($this->getOriginalClassName())) {
             throw new InvalidArgumentException('Class name ' . $this->getOriginalClassName() . ' not exists');
         }
 
-        $this->reflection = new ReflectionClass( $this->getOriginalClassName() );
+        $this->reflection = new ReflectionClass($this->getOriginalClassName());
     }
 
     /**
@@ -93,16 +94,17 @@ class DomainEntityBuilder {
      * @return mixed
      * @throws UnexpectedValueException
      */
-    private function populatePropertyComments() {
-        if(is_null($this->properties)) {
+    private function populatePropertyComments()
+    {
+        if (is_null($this->properties)) {
             throw new UnexpectedValueException('Properties are expected here');
         }
 
-        if(!is_array($this->properties)) {
+        if (!is_array($this->properties)) {
             throw new UnexpectedValueException('Properties should be provided as array');
         }
         // if nothing to do here
-        if(is_array($this->properties) && empty($this->properties)) {
+        if (is_array($this->properties) && empty($this->properties)) {
             return null;
         }
 
@@ -146,19 +148,20 @@ class DomainEntityBuilder {
      */
     private function forgeInstance($instance)
     {
-         $reflection = new ReflectionClass($instance);
-         foreach ($reflection->getProperties() as $key => $property) {
-             if(!$property instanceof ReflectionProperty) { continue; }
-             $entity = $this->getEntityFromModel($key, $property->getName());
-             $value = $property->getValue($instance);
+        $reflection = new ReflectionClass($instance);
+        foreach ($reflection->getProperties() as $key => $property) {
+            if (!$property instanceof ReflectionProperty) {
+                continue;
+            }
+            $entity = $this->getEntityFromModel($key, $property->getName());
+            $value = $property->getValue($instance);
 
-             if(is_array($value)) {
-                 $this->processPropertyValues($instance, $property, $entity, $value);
-             } else {
+            if (is_array($value)) {
+                $this->processPropertyValues($instance, $property, $entity, $value);
+            } else {
                 $this->processPropertyValue($instance, $property, $entity, $value);
-             }
-
-         }
+            }
+        }
         return $instance;
     }
 
@@ -176,21 +179,22 @@ class DomainEntityBuilder {
      * @param AbstractEntity $model
      * @param array stdClass $values
      */
-    private function processPropertyValues($instance,$property, $model ,$values)
+    private function processPropertyValues($instance, $property, $model, $values)
     {
         $changed = false;
 
-        foreach($values as &$value) {
-            if(!$this->isMorhing($model, $value)) { continue; }
+        foreach ($values as &$value) {
+            if (!$this->isMorhing($model, $value)) {
+                continue;
+            }
             $newType = $model->getType();
             //$value = new $newType( (array) $value );
             $value = static::create($newType, (array) $value);
             $changed = true;
         }
-        if($changed) {
-           $property->setValue($instance,$values);
+        if ($changed) {
+            $property->setValue($instance, $values);
         }
-
     }
 
     /**
@@ -200,7 +204,7 @@ class DomainEntityBuilder {
      * @param array $values
      * @return mixed
      */
-    public static function create($type,$values)
+    public static function create($type, $values)
     {
         $i = new static($type);
         $i->usePropertyValues($values);
@@ -213,16 +217,24 @@ class DomainEntityBuilder {
      * @param stdClass $value
      * @return boolean
      */
-    private function isMorhing($entity,$value)
+    private function isMorhing($entity, $value)
     {
-       if(!$entity instanceof Serialization\ObjectEntity) { return false; }
+        if (!$entity instanceof Serialization\ObjectEntity) {
+            return false;
+        }
        //String, numeric are fine
-       if(!is_object($value)) { return false; }
+       if (!is_object($value)) {
+           return false;
+       }
        // if object has same type already (it's wierd, but ok)
-       if(get_class($value) === $entity->getType()) { return false; }
+       if (get_class($value) === $entity->getType()) {
+           return false;
+       }
        // we expect stdClass here only
-       if(!$value instanceof \stdClass) { return false; }
-       return true;
+       if (!$value instanceof \stdClass) {
+           return false;
+       }
+        return true;
     }
 
     /**
@@ -232,13 +244,13 @@ class DomainEntityBuilder {
      * @param AbstractEntity $model
      * @param stdClass $value
      */
-    private function processPropertyValue($instance,$property, $model,$value)
+    private function processPropertyValue($instance, $property, $model, $value)
     {
-       if($this->isMorhing($model, $value)) {
-        $newType = $model->getType();
-        $new = static::create($newType, (array) $value);
-        $property->setValue($instance,$new);
-       }
+        if ($this->isMorhing($model, $value)) {
+            $newType = $model->getType();
+            $new = static::create($newType, (array) $value);
+            $property->setValue($instance, $new);
+        }
     }
 
 
@@ -252,15 +264,11 @@ class DomainEntityBuilder {
      */
     private function getEntityFromModel($index, $propertyName)
     {
-
         $entity = $this->model[$index];
-        if($entity->getName() === $propertyName) {
+        if ($entity->getName() === $propertyName) {
             return $entity;
         }
         // TODO Do we need to implement search by name in model?
         throw new RuntimeException("Unexpected $propertyName by the given index.");
-
     }
-
-
 }

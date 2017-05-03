@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DeliveryContact
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DeliveryContact
  */
-class DeliveryContact
-	extends ContactType
-	{
-
-
-
+class DeliveryContact extends ContactType
+{
 } // end class DeliveryContact

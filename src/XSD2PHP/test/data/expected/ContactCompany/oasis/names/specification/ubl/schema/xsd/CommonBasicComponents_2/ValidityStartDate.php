@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ValidityStartDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ValidityStartDate
  */
-class ValidityStartDate
-	extends ValidityStartDateType
-	{
-
-
-
+class ValidityStartDate extends ValidityStartDateType
+{
 } // end class ValidityStartDate

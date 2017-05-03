@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TargetCurrencyBaseRate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TargetCurrencyBaseRate
  */
-class TargetCurrencyBaseRate
-	extends TargetCurrencyBaseRateType
-	{
-
-
-
+class TargetCurrencyBaseRate extends TargetCurrencyBaseRateType
+{
 } // end class TargetCurrencyBaseRate

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LengthMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LengthMeasure
  */
-class LengthMeasure
-	extends LengthMeasureType
-	{
-
-
-
+class LengthMeasure extends LengthMeasureType
+{
 } // end class LengthMeasure

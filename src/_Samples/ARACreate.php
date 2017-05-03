@@ -12,8 +12,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
-	exit("Please add realm to App.Config before running this sample.\n");
+if (!$realmId) {
+    exit("Please add realm to App.Config before running this sample.\n");
+}
 
 // Prep Service Context
 $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
@@ -21,24 +22,23 @@ $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings(
                                               ConfigurationManager::AppSettings('ConsumerKey'),
                                               ConfigurationManager::AppSettings('ConsumerSecret'));
 $serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext)
-	exit("Problem while initializing ServiceContext.\n");
+if (!$serviceContext) {
+    exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Data Services
 $dataService = new DataService($serviceContext);
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
+if (!$dataService) {
+    exit("Problem while initializing DataService.\n");
+}
 
 // Add an account set up as an Accounts Receivable account
 $accountObj = new IPPAccount();
 $accountObj->Name = "Accounts Recv (" . rand() . ")";
-if (IntuitServicesType::QBO == $serviceType)
-{
-	$accountObj->AccountSubType = 'AccountsReceivable';
-}
-else
-{
-	$accountObj->AccountType = 'Accounts Receivable';
+if (IntuitServicesType::QBO == $serviceType) {
+    $accountObj->AccountSubType = 'AccountsReceivable';
+} else {
+    $accountObj->AccountType = 'Accounts Receivable';
 }
 
 $resultingObj = $dataService->Add($accountObj);
@@ -49,5 +49,3 @@ Example output:
 
 New A/R Account Id: 329
 */
-
-?>

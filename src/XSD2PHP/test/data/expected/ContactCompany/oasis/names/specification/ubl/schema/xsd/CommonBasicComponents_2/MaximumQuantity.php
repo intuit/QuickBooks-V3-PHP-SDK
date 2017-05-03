@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MaximumQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MaximumQuantity
  */
-class MaximumQuantity
-	extends MaximumQuantityType
-	{
-
-
-
+class MaximumQuantity extends MaximumQuantityType
+{
 } // end class MaximumQuantity

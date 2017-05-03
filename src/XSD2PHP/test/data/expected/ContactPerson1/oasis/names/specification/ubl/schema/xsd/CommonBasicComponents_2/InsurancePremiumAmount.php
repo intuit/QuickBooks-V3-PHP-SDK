@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InsurancePremiumAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InsurancePremiumAmount
  */
-class InsurancePremiumAmount
-	extends InsurancePremiumAmountType
-	{
-
-
-
+class InsurancePremiumAmount extends InsurancePremiumAmountType
+{
 } // end class InsurancePremiumAmount

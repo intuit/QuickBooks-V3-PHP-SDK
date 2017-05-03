@@ -349,7 +349,7 @@ class Zend_Console_Getopt
      */
     public function addArguments($argv)
     {
-        if(!is_array($argv)) {
+        if (!is_array($argv)) {
             require_once 'Zend/Console/Getopt/Exception.php';
             throw new Zend_Console_Getopt_Exception(
                 "Parameter #1 to addArguments should be an array");
@@ -369,7 +369,7 @@ class Zend_Console_Getopt
      */
     public function setArguments($argv)
     {
-        if(!is_array($argv)) {
+        if (!is_array($argv)) {
             require_once 'Zend/Console/Getopt/Exception.php';
             throw new Zend_Console_Getopt_Exception(
                 "Parameter #1 to setArguments should be an array");
@@ -643,8 +643,7 @@ class Zend_Console_Getopt
      */
     public function setAliases($aliasMap)
     {
-        foreach ($aliasMap as $flag => $alias)
-        {
+        foreach ($aliasMap as $flag => $alias) {
             if ($this->_getoptConfig[self::CONFIG_IGNORECASE]) {
                 $flag = strtolower($flag);
                 $alias = strtolower($alias);
@@ -676,8 +675,7 @@ class Zend_Console_Getopt
      */
     public function setHelp($helpMap)
     {
-        foreach ($helpMap as $flag => $help)
-        {
+        foreach ($helpMap as $flag => $help) {
             if (!isset($this->_ruleMap[$flag])) {
                 continue;
             }
@@ -714,9 +712,9 @@ class Zend_Console_Getopt
             }
             if (substr($argv[0], 0, 2) == '--') {
                 $this->_parseLongOption($argv);
-            } else if (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) >1))  {
+            } elseif (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) >1)) {
                 $this->_parseShortOptionCluster($argv);
-            } else if($this->_getoptConfig[self::CONFIG_PARSEALL]) {
+            } elseif ($this->_getoptConfig[self::CONFIG_PARSEALL]) {
                 $this->_remainingArgs[] = array_shift($argv);
             } else {
                 /*
@@ -896,8 +894,7 @@ class Zend_Console_Getopt
      */
     protected function _addRulesModeZend($rules)
     {
-        foreach ($rules as $ruleCode => $helpMessage)
-        {
+        foreach ($rules as $ruleCode => $helpMessage) {
             // this may have to translate the long parm type if there
             // are any complaints that =string will not work (even though that use
             // case is not documented)
@@ -966,5 +963,4 @@ class Zend_Console_Getopt
             $this->_rules[$mainFlag] = $rule;
         }
     }
-
 }

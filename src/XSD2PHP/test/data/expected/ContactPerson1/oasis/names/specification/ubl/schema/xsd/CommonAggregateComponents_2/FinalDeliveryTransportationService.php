@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FinalDeliveryTransportationService
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FinalDeliveryTransportationService
  */
-class FinalDeliveryTransportationService
-	extends TransportationServiceType
-	{
-
-
-
+class FinalDeliveryTransportationService extends TransportationServiceType
+{
 } // end class FinalDeliveryTransportationService

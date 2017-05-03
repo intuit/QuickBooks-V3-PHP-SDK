@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OtherInstruction
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OtherInstruction
  */
-class OtherInstruction
-	extends OtherInstructionType
-	{
-
-
-
+class OtherInstruction extends OtherInstructionType
+{
 } // end class OtherInstruction

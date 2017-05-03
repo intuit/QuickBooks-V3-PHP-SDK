@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName InvoicePeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\InvoicePeriod
  */
-class InvoicePeriod
-	extends PeriodType
-	{
-
-
-
+class InvoicePeriod extends PeriodType
+{
 } // end class InvoicePeriod

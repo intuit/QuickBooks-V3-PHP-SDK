@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MarkingID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MarkingID
  */
-class MarkingID
-	extends MarkingIDType
-	{
-
-
-
+class MarkingID extends MarkingIDType
+{
 } // end class MarkingID

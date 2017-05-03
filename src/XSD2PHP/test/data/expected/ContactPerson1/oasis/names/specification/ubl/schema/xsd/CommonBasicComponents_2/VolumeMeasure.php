@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName VolumeMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\VolumeMeasure
  */
-class VolumeMeasure
-	extends VolumeMeasureType
-	{
-
-
-
+class VolumeMeasure extends VolumeMeasureType
+{
 } // end class VolumeMeasure

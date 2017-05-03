@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AdditionalItemProperty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AdditionalItemProperty
  */
-class AdditionalItemProperty
-	extends ItemPropertyType
-	{
-
-
-
+class AdditionalItemProperty extends ItemPropertyType
+{
 } // end class AdditionalItemProperty

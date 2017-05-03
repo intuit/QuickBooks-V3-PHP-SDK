@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LastExitPortLocation
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LastExitPortLocation
  */
-class LastExitPortLocation
-	extends LocationType
-	{
-
-
-
+class LastExitPortLocation extends LocationType
+{
 } // end class LastExitPortLocation

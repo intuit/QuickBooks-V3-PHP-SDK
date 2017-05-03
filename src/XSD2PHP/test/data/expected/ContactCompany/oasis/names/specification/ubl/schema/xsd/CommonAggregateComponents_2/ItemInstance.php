@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ItemInstance
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ItemInstance
  */
-class ItemInstance
-	extends ItemInstanceType
-	{
-
-
-
+class ItemInstance extends ItemInstanceType
+{
 } // end class ItemInstance

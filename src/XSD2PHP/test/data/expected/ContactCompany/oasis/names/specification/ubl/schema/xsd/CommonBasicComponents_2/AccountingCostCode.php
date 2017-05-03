@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AccountingCostCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AccountingCostCode
  */
-class AccountingCostCode
-	extends AccountingCostCodeType
-	{
-
-
-
+class AccountingCostCode extends AccountingCostCodeType
+{
 } // end class AccountingCostCode

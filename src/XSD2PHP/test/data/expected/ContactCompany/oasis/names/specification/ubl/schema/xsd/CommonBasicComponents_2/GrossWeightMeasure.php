@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName GrossWeightMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\GrossWeightMeasure
  */
-class GrossWeightMeasure
-	extends GrossWeightMeasureType
-	{
-
-
-
+class GrossWeightMeasure extends GrossWeightMeasureType
+{
 } // end class GrossWeightMeasure

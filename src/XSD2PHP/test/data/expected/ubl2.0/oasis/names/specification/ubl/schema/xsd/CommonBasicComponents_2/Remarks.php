@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Remarks
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Remarks
  */
-class Remarks
-	extends RemarksType
-	{
-
-
-
+class Remarks extends RemarksType
+{
 } // end class Remarks

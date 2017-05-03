@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PrepaidPayment
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PrepaidPayment
  */
-class PrepaidPayment
-	extends PaymentType
-	{
-
-
-
+class PrepaidPayment extends PaymentType
+{
 } // end class PrepaidPayment

@@ -89,7 +89,5 @@ class Zend_Soap_Client_DotNet extends Zend_Soap_Client
 
         return $result->$resultProperty;
     }
-
 }
-
 } // end if (extension_loaded('soap')

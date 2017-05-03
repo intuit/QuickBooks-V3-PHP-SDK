@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransportMeans
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransportMeans
  */
-class TransportMeans
-	extends TransportMeansType
-	{
-
-
-
+class TransportMeans extends TransportMeansType
+{
 } // end class TransportMeans

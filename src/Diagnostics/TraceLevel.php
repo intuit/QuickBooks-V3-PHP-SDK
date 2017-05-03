@@ -6,35 +6,33 @@ namespace QuickBooksOnline\API\Diagnostics;
  */
 class TraceLevel
 {
-	/**
-	 * Specifies what level of messages to output.
-	 * @var int Off
-	 */
+    /**
+     * Specifies what level of messages to output.
+     * @var int Off
+     */
     const Off = 0;
 
-	/**
-	 * Output error-handling messages.
-	 * @var int Error
-	 */
+    /**
+     * Output error-handling messages.
+     * @var int Error
+     */
     const Error = 1;
 
-	/**
-	 * Output warnings and error-handling messages.
-	 * @var int Warning
-	 */
+    /**
+     * Output warnings and error-handling messages.
+     * @var int Warning
+     */
     const Warning = 2;
 
-	/**
-	 * Output informational messages, warnings, and error-handling messages.
-	 * @var int Info
-	 */
+    /**
+     * Output informational messages, warnings, and error-handling messages.
+     * @var int Info
+     */
     const Info = 3;
 
-	/**
-	 * Output all debugging and tracing messages.
-	 * @var int Verbose
-	 */
+    /**
+     * Output all debugging and tracing messages.
+     * @var int Verbose
+     */
     const Verbose = 4;
 }
-
-?>

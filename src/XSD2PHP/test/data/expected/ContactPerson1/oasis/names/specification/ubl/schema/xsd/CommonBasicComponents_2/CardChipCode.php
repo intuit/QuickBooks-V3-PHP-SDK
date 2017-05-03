@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CardChipCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CardChipCode
  */
-class CardChipCode
-	extends CardChipCodeType
-	{
-
-
-
+class CardChipCode extends CardChipCodeType
+{
 } // end class CardChipCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DespatchTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DespatchTime
  */
-class DespatchTime
-	extends DespatchTimeType
-	{
-
-
-
+class DespatchTime extends DespatchTimeType
+{
 } // end class DespatchTime

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DataSendingCapability
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DataSendingCapability
  */
-class DataSendingCapability
-	extends DataSendingCapabilityType
-	{
-
-
-
+class DataSendingCapability extends DataSendingCapabilityType
+{
 } // end class DataSendingCapability

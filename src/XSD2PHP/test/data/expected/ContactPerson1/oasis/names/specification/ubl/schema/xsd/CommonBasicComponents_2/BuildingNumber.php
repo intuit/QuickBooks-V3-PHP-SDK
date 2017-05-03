@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BuildingNumber
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BuildingNumber
  */
-class BuildingNumber
-	extends BuildingNumberType
-	{
-
-
-
+class BuildingNumber extends BuildingNumberType
+{
 } // end class BuildingNumber

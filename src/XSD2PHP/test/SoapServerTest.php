@@ -1,19 +1,19 @@
 <?php
 use dk\nordsign\application\services;
+
 set_include_path(
     get_include_path() . PATH_SEPARATOR . realpath("../src"));
 use com\mikebevz\xsd2php;
-
 
 require_once "com/mikebevz/xsd2php/SoapServer.php";
 
 class SoapServerTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * 
+     *
      * @var xsd2php\SoapServer
      */
-    private $tclass;  
+    private $tclass;
     
     private $wsdl;
     
@@ -23,9 +23,8 @@ class SoapServerTest extends PHPUnit_Framework_TestCase
     private $genDir = "data/generated/SoapServer";
     private static $actual;
     
-    protected function setUp ()
+    protected function setUp()
     {
-        
         $this->options = array(
             'soap_version' => SOAP_1_2,
             'cache_wsdl' => WSDL_CACHE_NONE,
@@ -33,22 +32,20 @@ class SoapServerTest extends PHPUnit_Framework_TestCase
         );
         
         $this->wsdl = $this->expDir.DIRECTORY_SEPARATOR."NavService.wsdl";
-        $this->tclass = new xsd2php\SoapServer($this->wsdl,  $this->options);
-        
-        
+        $this->tclass = new xsd2php\SoapServer($this->wsdl, $this->options);
     }
-    protected function tearDown ()
+    protected function tearDown()
     {
-        $this->tclass = null;        
+        $this->tclass = null;
     }
     
     /**
-     * Case is that we've got NavService.php, a webservice class, which we would 
+     * Case is that we've got NavService.php, a webservice class, which we would
      * like to expose as a webservice using SoapServer.
-     * 
+     *
      */
-    public function test1() {
-        
+    public function test1()
+    {
         require_once $this->expDir.DIRECTORY_SEPARATOR."services".DIRECTORY_SEPARATOR."NavService.php";
         
         $service = new services\NavService2();
@@ -90,7 +87,8 @@ class SoapServerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, self::$actual);
     }
     
-    public static function callback($buf) {
+    public static function callback($buf)
+    {
         self::$actual = $buf;
     }
 }

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AnticipatedMonetaryTotal
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AnticipatedMonetaryTotal
  */
-class AnticipatedMonetaryTotal
-	extends MonetaryTotalType
-	{
-
-
-
+class AnticipatedMonetaryTotal extends MonetaryTotalType
+{
 } // end class AnticipatedMonetaryTotal

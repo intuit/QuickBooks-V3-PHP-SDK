@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReferencedContract
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReferencedContract
  */
-class ReferencedContract
-	extends ContractType
-	{
-
-
-
+class ReferencedContract extends ContractType
+{
 } // end class ReferencedContract

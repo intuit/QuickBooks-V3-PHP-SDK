@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PlotIdentification
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PlotIdentification
  */
-class PlotIdentification
-	extends PlotIdentificationType
-	{
-
-
-
+class PlotIdentification extends PlotIdentificationType
+{
 } // end class PlotIdentification

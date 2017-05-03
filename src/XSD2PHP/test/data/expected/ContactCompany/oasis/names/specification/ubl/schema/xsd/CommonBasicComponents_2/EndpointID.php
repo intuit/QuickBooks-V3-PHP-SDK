@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName EndpointID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\EndpointID
  */
-class EndpointID
-	extends EndpointIDType
-	{
-
-
-
+class EndpointID extends EndpointIDType
+{
 } // end class EndpointID

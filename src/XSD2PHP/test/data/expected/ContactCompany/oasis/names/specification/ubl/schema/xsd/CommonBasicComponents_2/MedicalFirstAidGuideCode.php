@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MedicalFirstAidGuideCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MedicalFirstAidGuideCode
  */
-class MedicalFirstAidGuideCode
-	extends MedicalFirstAidGuideCodeType
-	{
-
-
-
+class MedicalFirstAidGuideCode extends MedicalFirstAidGuideCodeType
+{
 } // end class MedicalFirstAidGuideCode

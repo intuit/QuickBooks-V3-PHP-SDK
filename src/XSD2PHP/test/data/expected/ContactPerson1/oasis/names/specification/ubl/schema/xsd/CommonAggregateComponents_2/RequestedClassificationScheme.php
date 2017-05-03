@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RequestedClassificationScheme
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RequestedClassificationScheme
  */
-class RequestedClassificationScheme
-	extends ClassificationSchemeType
-	{
-
-
-
+class RequestedClassificationScheme extends ClassificationSchemeType
+{
 } // end class RequestedClassificationScheme

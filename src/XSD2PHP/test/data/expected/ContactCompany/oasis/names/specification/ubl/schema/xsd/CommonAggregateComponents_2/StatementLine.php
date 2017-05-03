@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName StatementLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\StatementLine
  */
-class StatementLine
-	extends StatementLineType
-	{
-
-
-
+class StatementLine extends StatementLineType
+{
 } // end class StatementLine

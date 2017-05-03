@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName InformationContentProviderParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\InformationContentProviderParty
  */
-class InformationContentProviderParty
-	extends PartyType
-	{
-
-
-
+class InformationContentProviderParty extends PartyType
+{
 } // end class InformationContentProviderParty

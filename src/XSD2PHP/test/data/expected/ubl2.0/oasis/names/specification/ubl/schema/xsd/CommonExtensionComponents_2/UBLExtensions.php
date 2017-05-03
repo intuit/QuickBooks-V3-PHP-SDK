@@ -6,14 +6,10 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2;
  * @xmlType UBLExtensionsType
  * @xmlName UBLExtensions
  * @var oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2\UBLExtensions
- * @xmlDefinition 
+ * @xmlDefinition
         A container for all extensions present in the document.
-      
+
  */
-class UBLExtensions
-	extends UBLExtensionsType
-	{
-
-
-
+class UBLExtensions extends UBLExtensionsType
+{
 } // end class UBLExtensions

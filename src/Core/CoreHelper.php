@@ -12,96 +12,89 @@ use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 
-
 /**
  * Helper class.
  */
  class CoreHelper
  {
- 	/**
- 	 * Gets the serializer mechanism using the service context and the depending on the request and response.
- 	 * @param ServiceContext serviceContext The service context object.
- 	 * @param bool isRequest Specifies whether to return serializer mechanism for reqeust or response.
- 	 * @return IEntitySerializer The Serializer mechanism.
- 	 */
- 	public static function GetSerializer($serviceContext, $isRequest)
- 	{
-		$serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer");
+     /**
+     * Gets the serializer mechanism using the service context and the depending on the request and response.
+     * @param ServiceContext serviceContext The service context object.
+     * @param bool isRequest Specifies whether to return serializer mechanism for reqeust or response.
+     * @return IEntitySerializer The Serializer mechanism.
+     */
+    public static function GetSerializer($serviceContext, $isRequest)
+    {
+        $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer");
 
-		$serializer = NULL;
-        if ($isRequest)
-        {
-            switch ($serviceContext->IppConfiguration->Message->Request->SerializationFormat)
-            {
+        $serializer = null;
+        if ($isRequest) {
+            switch ($serviceContext->IppConfiguration->Message->Request->SerializationFormat) {
                 case SerializationFormat::Xml:
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): Xml");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): Xml");
                     $serializer = new XmlObjectSerializer();
                     break;
                 case SerializationFormat::Json:
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): JSON");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): JSON");
                     $serializer = new JsonObjectSerializer();
                     break;
                 case SerializationFormat::Custom:
                     // TODO: check whtether this is possible
                     // $this->serializer = $serviceContext->IppConfiguration->Message->Request->CustomSerializer;
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): Custom");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Request): Custom");
                     break;
             }
-        }
-        else
-        {
-            switch ($serviceContext->IppConfiguration->Message->Response->SerializationFormat)
-            {
+        } else {
+            switch ($serviceContext->IppConfiguration->Message->Response->SerializationFormat) {
                 case SerializationFormat::Xml:
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): XML");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): XML");
                     $serializer = new XmlObjectSerializer();
                     break;
                 case SerializationFormat::Json:
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): JSON");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): JSON");
                     $serializer = new JsonObjectSerializer();
                     break;
                 case SerializationFormat::Custom:
                     // TODO: check whtether this is possible
                     // $this->serializer = $serviceContext->IppConfiguration->Message->Response->CustomSerializer;
-					          $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): Custom");
+                              $serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "GetSerializer(Response): Custom");
                     break;
             }
         }
 
         return $serializer;
- 	}
+    }
 
-	/**
-	 * This function is deprecated use simplexml_load_string() instead.
-	 * @param string response The response string
-	 * @return SimpleXMLElement The SimpleXMLElement object.
+    /**
+     * This function is deprecated use simplexml_load_string() instead.
+     * @param string response The response string
+     * @return SimpleXMLElement The SimpleXMLElement object.
    * @deprecated since version v2.1
-	 */
-	public static function ParseResponseIntoXml()
-	{
-           throw new BadFunctionCallException(__METHOD__ . " has been removed.");
-	}
+     */
+    public static function ParseResponseIntoXml()
+    {
+        throw new BadFunctionCallException(__METHOD__ . " has been removed.");
+    }
 
-	/**
+    /**
    * TO DO: Rewrite Late - Hao
-	 * Checks whether the reponse is null or empty and throws communication exception.
-	 * @param string response The response from the query service.
-	 */
+     * Checks whether the reponse is null or empty and throws communication exception.
+     * @param string response The response from the query service.
+     */
     public static function CheckNullResponseAndThrowException($response)
     {
-        if (!$response)
-        {
-        	$messageToWrite = 'Response Null or Empty';
-			   $backTrace =  debug_backtrace();
-			   $callerFileName = $backTrace[0]['file'];
-			   $callerFileLineNumber = $backTrace[0]['line'];
-			   $callerFunctionName = $backTrace[0]['function'];
-			   $logMessage = implode(" - ", array(date('Y-m-d H:i:s'),
-			                                   $callerFileName,
-			                                   $callerFileLineNumber,
-			                                   $callerFunctionName,
-			                                   $messageToWrite));
-        	throw new IdsException($logMessage);
+        if (!$response) {
+            $messageToWrite = 'Response Null or Empty';
+            $backTrace =  debug_backtrace();
+            $callerFileName = $backTrace[0]['file'];
+            $callerFileLineNumber = $backTrace[0]['line'];
+            $callerFunctionName = $backTrace[0]['function'];
+            $logMessage = implode(" - ", array(date('Y-m-d H:i:s'),
+                                               $callerFileName,
+                                               $callerFileLineNumber,
+                                               $callerFunctionName,
+                                               $messageToWrite));
+            throw new IdsException($logMessage);
         }
     }
 
@@ -114,10 +107,8 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
     public static function GetCompressor($serviceContext, $isRequest)
     {
         $compressor = null;
-        if ($isRequest)
-        {
-            switch ($serviceContext->IppConfiguration->Message->Request->CompressionFormat)
-            {
+        if ($isRequest) {
+            switch ($serviceContext->IppConfiguration->Message->Request->CompressionFormat) {
                 case CompressionFormat::GZip:
                     $compressor = new GZipCompressor();
                     break;
@@ -125,11 +116,8 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
                     $compressor = new DeflateCompressor();
                     break;
             }
-        }
-        else
-        {
-            switch ($serviceContext->IppConfiguration->Message->Response->CompressionFormat)
-            {
+        } else {
+            switch ($serviceContext->IppConfiguration->Message->Response->CompressionFormat) {
                 case CompressionFormat::GZip:
                     $compressor = new GZipCompressor();
                     break;
@@ -149,29 +137,23 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
      */
     public static function GetRequestLogging($serviceContext)
     {
-        $requestLogger = NULL;
+        $requestLogger = null;
         try {
-	        if (isset($serviceContext->IppConfiguration) &&
-	            isset($serviceContext->IppConfiguration->Logger) &&
-	            isset($serviceContext->IppConfiguration->Logger->RequestLog) &&
-	            isset($serviceContext->IppConfiguration->Logger->RequestLog->EnableRequestResponseLogging) &&
-	            isset($serviceContext->IppConfiguration->Logger->RequestLog->ServiceRequestLoggingLocation))
-	        {
-	                $requestLogger = new LogRequestsToDisk(
-	                $serviceContext->IppConfiguration->Logger->RequestLog->EnableRequestResponseLogging,
-	                $serviceContext->IppConfiguration->Logger->RequestLog->ServiceRequestLoggingLocation);
-	        }
-	        else
-	        {
-	            $requestLogger = new LogRequestsToDisk(false, null);
-	        }
-        }
-        catch(\Exception $e)
-        {
+            if (isset($serviceContext->IppConfiguration) &&
+                isset($serviceContext->IppConfiguration->Logger) &&
+                isset($serviceContext->IppConfiguration->Logger->RequestLog) &&
+                isset($serviceContext->IppConfiguration->Logger->RequestLog->EnableRequestResponseLogging) &&
+                isset($serviceContext->IppConfiguration->Logger->RequestLog->ServiceRequestLoggingLocation)) {
+                $requestLogger = new LogRequestsToDisk(
+                    $serviceContext->IppConfiguration->Logger->RequestLog->EnableRequestResponseLogging,
+                    $serviceContext->IppConfiguration->Logger->RequestLog->ServiceRequestLoggingLocation);
+            } else {
+                $requestLogger = new LogRequestsToDisk(false, null);
+            }
+        } catch (\Exception $e) {
             $requestLogger = new LogRequestsToDisk(false, null);
         }
 
         return $requestLogger;
     }
-
-}
+ }

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BackOrderAllowedIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BackOrderAllowedIndicator
  */
-class BackOrderAllowedIndicator
-	extends BackOrderAllowedIndicatorType
-	{
-
-
-
+class BackOrderAllowedIndicator extends BackOrderAllowedIndicatorType
+{
 } // end class BackOrderAllowedIndicator

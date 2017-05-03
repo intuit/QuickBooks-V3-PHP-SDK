@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName SellerSubstitutedLineItem
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\SellerSubstitutedLineItem
  */
-class SellerSubstitutedLineItem
-	extends LineItemType
-	{
-
-
-
+class SellerSubstitutedLineItem extends LineItemType
+{
 } // end class SellerSubstitutedLineItem

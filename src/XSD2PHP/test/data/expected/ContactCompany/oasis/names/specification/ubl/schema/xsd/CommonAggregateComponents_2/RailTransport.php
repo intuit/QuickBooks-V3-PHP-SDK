@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RailTransport
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RailTransport
  */
-class RailTransport
-	extends RailTransportType
-	{
-
-
-
+class RailTransport extends RailTransportType
+{
 } // end class RailTransport

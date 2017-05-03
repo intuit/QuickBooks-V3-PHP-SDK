@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ExternalReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ExternalReference
  */
-class ExternalReference
-	extends ExternalReferenceType
-	{
-
-
-
+class ExternalReference extends ExternalReferenceType
+{
 } // end class ExternalReference

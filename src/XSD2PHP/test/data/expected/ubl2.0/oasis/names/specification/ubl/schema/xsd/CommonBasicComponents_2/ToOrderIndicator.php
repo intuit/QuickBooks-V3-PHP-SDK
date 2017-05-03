@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ToOrderIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ToOrderIndicator
  */
-class ToOrderIndicator
-	extends ToOrderIndicatorType
-	{
-
-
-
+class ToOrderIndicator extends ToOrderIndicatorType
+{
 } // end class ToOrderIndicator

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PreviousVersionID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PreviousVersionID
  */
-class PreviousVersionID
-	extends PreviousVersionIDType
-	{
-
-
-
+class PreviousVersionID extends PreviousVersionIDType
+{
 } // end class PreviousVersionID

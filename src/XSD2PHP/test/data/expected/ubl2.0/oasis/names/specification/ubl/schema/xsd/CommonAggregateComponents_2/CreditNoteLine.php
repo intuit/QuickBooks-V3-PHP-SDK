@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CreditNoteLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CreditNoteLine
  */
-class CreditNoteLine
-	extends CreditNoteLineType
-	{
-
-
-
+class CreditNoteLine extends CreditNoteLineType
+{
 } // end class CreditNoteLine

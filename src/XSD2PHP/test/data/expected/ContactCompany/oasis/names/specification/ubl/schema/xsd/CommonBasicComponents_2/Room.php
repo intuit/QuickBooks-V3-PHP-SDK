@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Room
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Room
  */
-class Room
-	extends RoomType
-	{
-
-
-
+class Room extends RoomType
+{
 } // end class Room

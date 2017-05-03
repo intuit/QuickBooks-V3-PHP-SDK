@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CitySubdivisionName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CitySubdivisionName
  */
-class CitySubdivisionName
-	extends CitySubdivisionNameType
-	{
-
-
-
+class CitySubdivisionName extends CitySubdivisionNameType
+{
 } // end class CitySubdivisionName

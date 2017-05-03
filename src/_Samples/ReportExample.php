@@ -14,8 +14,9 @@ $serviceType = IntuitServicesType::QBO;
 
 // Get App Config
 $realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
+if (!$realmId) {
     exit("Please add realm to App.Config before running this sample.\n");
+}
 
 
 // Prep Service Context
@@ -25,24 +26,25 @@ $requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings(
     ConfigurationManager::AppSettings('ConsumerSecret'));
 $serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
 
-if (!$serviceContext)
+if (!$serviceContext) {
     exit("Problem while initializing ServiceContext.\n");
+}
 
 // Prep Data Services
 $reportService = new ReportService($serviceContext);
-if (!$reportService)
+if (!$reportService) {
     exit("Problem while initializing ReportService.\n");
+}
 
 
 $reportService->setStartDate("2015-01-01");
 $reportService->setAccountingMethod("Accrual");
 $profitAndLossReport = $reportService->executeReport(ReportName::PROFITANDLOSS);
 
-if (!$profitAndLossReport){
+if (!$profitAndLossReport) {
     exit("ProfitAndLossReport Is Null.\n");
-}
-else{
+} else {
     $reportName = strtolower($profitAndLossReport->Header->ReportName);
-    echo ("ReportName: " . $reportName . "\n");
-    echo ("Profit And Loss Report Execution Successful!" . "\n");
+    echo("ReportName: " . $reportName . "\n");
+    echo("Profit And Loss Report Execution Successful!" . "\n");
 }

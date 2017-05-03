@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CarrierParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CarrierParty
  */
-class CarrierParty
-	extends PartyType
-	{
-
-
-
+class CarrierParty extends PartyType
+{
 } // end class CarrierParty

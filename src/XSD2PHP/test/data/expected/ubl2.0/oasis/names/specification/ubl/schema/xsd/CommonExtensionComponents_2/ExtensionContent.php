@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2;
  * @xmlName ExtensionContent
  * @var oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2\ExtensionContent
  */
-class ExtensionContent
-	extends ExtensionContentType
-	{
-
-
-
+class ExtensionContent extends ExtensionContentType
+{
 } // end class ExtensionContent

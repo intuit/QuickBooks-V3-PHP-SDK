@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CustomerReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CustomerReference
  */
-class CustomerReference
-	extends CustomerReferenceType
-	{
-
-
-
+class CustomerReference extends CustomerReferenceType
+{
 } // end class CustomerReference

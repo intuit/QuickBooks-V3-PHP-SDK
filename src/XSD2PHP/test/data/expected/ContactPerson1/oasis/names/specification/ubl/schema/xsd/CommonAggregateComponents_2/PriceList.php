@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PriceList
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PriceList
  */
-class PriceList
-	extends PriceListType
-	{
-
-
-
+class PriceList extends PriceListType
+{
 } // end class PriceList

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransportContract
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransportContract
  */
-class TransportContract
-	extends ContractType
-	{
-
-
-
+class TransportContract extends ContractType
+{
 } // end class TransportContract

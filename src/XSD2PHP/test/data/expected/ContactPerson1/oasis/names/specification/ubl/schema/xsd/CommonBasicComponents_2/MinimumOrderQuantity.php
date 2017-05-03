@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MinimumOrderQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MinimumOrderQuantity
  */
-class MinimumOrderQuantity
-	extends MinimumOrderQuantityType
-	{
-
-
-
+class MinimumOrderQuantity extends MinimumOrderQuantityType
+{
 } // end class MinimumOrderQuantity

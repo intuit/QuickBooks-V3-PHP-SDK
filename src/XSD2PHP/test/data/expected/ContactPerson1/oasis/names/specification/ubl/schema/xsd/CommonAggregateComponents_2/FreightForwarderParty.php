@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FreightForwarderParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FreightForwarderParty
  */
-class FreightForwarderParty
-	extends PartyType
-	{
-
-
-
+class FreightForwarderParty extends PartyType
+{
 } // end class FreightForwarderParty

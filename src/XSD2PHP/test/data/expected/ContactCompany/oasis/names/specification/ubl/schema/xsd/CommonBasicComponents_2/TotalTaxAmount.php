@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TotalTaxAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TotalTaxAmount
  */
-class TotalTaxAmount
-	extends TotalTaxAmountType
-	{
-
-
-
+class TotalTaxAmount extends TotalTaxAmountType
+{
 } // end class TotalTaxAmount

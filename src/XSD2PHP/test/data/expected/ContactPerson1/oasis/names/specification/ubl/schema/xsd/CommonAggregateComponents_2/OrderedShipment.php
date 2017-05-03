@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OrderedShipment
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OrderedShipment
  */
-class OrderedShipment
-	extends OrderedShipmentType
-	{
-
-
-
+class OrderedShipment extends OrderedShipmentType
+{
 } // end class OrderedShipment

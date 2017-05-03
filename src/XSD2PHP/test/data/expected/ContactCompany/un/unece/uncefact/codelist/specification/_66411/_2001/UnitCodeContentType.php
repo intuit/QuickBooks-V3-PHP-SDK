@@ -8,12 +8,11 @@ namespace un\unece\uncefact\codelist\specification\_66411\_2001;
  * @var un\unece\uncefact\codelist\specification\_66411\_2001\UnitCodeContentType
  */
 class UnitCodeContentType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var string
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var string
+         */
+        public $value;
 } // end class UnitCodeContentType

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName EmergencyTemperature
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\EmergencyTemperature
  */
-class EmergencyTemperature
-	extends TemperatureType
-	{
-
-
-
+class EmergencyTemperature extends TemperatureType
+{
 } // end class EmergencyTemperature

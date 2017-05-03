@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LatitudeDirectionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LatitudeDirectionCode
  */
-class LatitudeDirectionCode
-	extends LatitudeDirectionCodeType
-	{
-
-
-
+class LatitudeDirectionCode extends LatitudeDirectionCodeType
+{
 } // end class LatitudeDirectionCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName MinimumTemperature
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\MinimumTemperature
  */
-class MinimumTemperature
-	extends TemperatureType
-	{
-
-
-
+class MinimumTemperature extends TemperatureType
+{
 } // end class MinimumTemperature

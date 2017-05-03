@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DebitNoteLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DebitNoteLine
  */
-class DebitNoteLine
-	extends DebitNoteLineType
-	{
-
-
-
+class DebitNoteLine extends DebitNoteLineType
+{
 } // end class DebitNoteLine

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentChannelCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentChannelCode
  */
-class PaymentChannelCode
-	extends PaymentChannelCodeType
-	{
-
-
-
+class PaymentChannelCode extends PaymentChannelCodeType
+{
 } // end class PaymentChannelCode

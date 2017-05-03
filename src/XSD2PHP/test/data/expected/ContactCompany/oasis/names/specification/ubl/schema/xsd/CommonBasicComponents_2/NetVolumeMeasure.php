@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NetVolumeMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NetVolumeMeasure
  */
-class NetVolumeMeasure
-	extends NetVolumeMeasureType
-	{
-
-
-
+class NetVolumeMeasure extends NetVolumeMeasureType
+{
 } // end class NetVolumeMeasure

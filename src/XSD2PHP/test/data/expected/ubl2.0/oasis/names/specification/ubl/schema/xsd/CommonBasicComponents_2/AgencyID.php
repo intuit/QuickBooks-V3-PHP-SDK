@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AgencyID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AgencyID
  */
-class AgencyID
-	extends AgencyIDType
-	{
-
-
-
+class AgencyID extends AgencyIDType
+{
 } // end class AgencyID

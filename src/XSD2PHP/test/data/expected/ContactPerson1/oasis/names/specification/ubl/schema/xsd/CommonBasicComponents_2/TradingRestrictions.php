@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TradingRestrictions
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TradingRestrictions
  */
-class TradingRestrictions
-	extends TradingRestrictionsType
-	{
-
-
-
+class TradingRestrictions extends TradingRestrictionsType
+{
 } // end class TradingRestrictions

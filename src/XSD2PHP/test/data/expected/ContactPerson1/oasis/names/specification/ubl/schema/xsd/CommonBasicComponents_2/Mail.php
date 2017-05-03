@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Mail
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Mail
  */
-class Mail
-	extends MailType
-	{
-
-
-
+class Mail extends MailType
+{
 } // end class Mail

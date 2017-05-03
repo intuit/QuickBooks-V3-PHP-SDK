@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DiscountPercent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DiscountPercent
  */
-class DiscountPercent
-	extends DiscountPercentType
-	{
-
-
-
+class DiscountPercent extends DiscountPercentType
+{
 } // end class DiscountPercent

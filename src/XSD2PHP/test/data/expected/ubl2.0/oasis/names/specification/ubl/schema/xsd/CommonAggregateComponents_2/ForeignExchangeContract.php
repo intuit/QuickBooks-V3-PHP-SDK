@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ForeignExchangeContract
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ForeignExchangeContract
  */
-class ForeignExchangeContract
-	extends ContractType
-	{
-
-
-
+class ForeignExchangeContract extends ContractType
+{
 } // end class ForeignExchangeContract

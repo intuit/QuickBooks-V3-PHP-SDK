@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PrepaidPaymentReferenceID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PrepaidPaymentReferenceID
  */
-class PrepaidPaymentReferenceID
-	extends PrepaidPaymentReferenceIDType
-	{
-
-
-
+class PrepaidPaymentReferenceID extends PrepaidPaymentReferenceIDType
+{
 } // end class PrepaidPaymentReferenceID

@@ -16,7 +16,8 @@ namespace QuickBooksOnline\API\Core\Configuration;
  *
  * @author amatiushkin
  */
-class OperationControlList {
+class OperationControlList
+{
     private $operationList = array();
     const ALL = '*';
 
@@ -29,7 +30,8 @@ class OperationControlList {
      *
      * @param type $array
      */
-    public function __construct($array = array()) {
+    public function __construct($array = array())
+    {
         $this->setOperationList($array);
     }
 
@@ -70,28 +72,27 @@ class OperationControlList {
                             : self::ALL;
 
         // entity and operation were found as is
-        if( ($entity === $lookupEn) && ($operation === $lookupOp) ) {
+        if (($entity === $lookupEn) && ($operation === $lookupOp)) {
             return $this->operationList[$lookupEn][$lookupOp];
         }
 
         //lookup for operation for current entity if it exists
-        if(array_key_exists($lookupOp, $this->operationList[$lookupEn])) {
+        if (array_key_exists($lookupOp, $this->operationList[$lookupEn])) {
             return $this->operationList[$lookupEn][$lookupOp];
         }
 
         //lookup for operation for current entity if it exists
-        if(array_key_exists($operation, $this->operationList[self::ALL])) {
+        if (array_key_exists($operation, $this->operationList[self::ALL])) {
             return $this->operationList[self::ALL][$operation];
         }
 
         //fallback to global entity
-        if(array_key_exists($lookupOp, $this->operationList[self::ALL])) {
+        if (array_key_exists($lookupOp, $this->operationList[self::ALL])) {
             return $this->operationList[self::ALL][$lookupOp];
         }
 
         //fall back to global entity and operation
         return $this->operationList[self::ALL][self::ALL];
-
     }
 
     /**
@@ -112,7 +113,4 @@ class OperationControlList {
     {
         $this->setOperationList(array_merge_recursive($this->getOperationList(), $array));
     }
-
-
-
 }

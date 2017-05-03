@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ChargeableWeightMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ChargeableWeightMeasure
  */
-class ChargeableWeightMeasure
-	extends ChargeableWeightMeasureType
-	{
-
-
-
+class ChargeableWeightMeasure extends ChargeableWeightMeasureType
+{
 } // end class ChargeableWeightMeasure

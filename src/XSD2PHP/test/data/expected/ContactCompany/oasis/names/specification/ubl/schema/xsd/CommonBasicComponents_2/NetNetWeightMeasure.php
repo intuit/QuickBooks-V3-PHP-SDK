@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NetNetWeightMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NetNetWeightMeasure
  */
-class NetNetWeightMeasure
-	extends NetNetWeightMeasureType
-	{
-
-
-
+class NetNetWeightMeasure extends NetNetWeightMeasureType
+{
 } // end class NetNetWeightMeasure

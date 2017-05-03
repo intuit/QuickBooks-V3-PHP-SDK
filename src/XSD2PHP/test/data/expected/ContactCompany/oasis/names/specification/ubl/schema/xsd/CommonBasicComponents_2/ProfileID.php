@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ProfileID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ProfileID
  */
-class ProfileID
-	extends ProfileIDType
-	{
-
-
-
+class ProfileID extends ProfileIDType
+{
 } // end class ProfileID

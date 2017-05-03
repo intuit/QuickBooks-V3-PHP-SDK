@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName StatusReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\StatusReason
  */
-class StatusReason
-	extends StatusReasonType
-	{
-
-
-
+class StatusReason extends StatusReasonType
+{
 } // end class StatusReason

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MarkCareIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MarkCareIndicator
  */
-class MarkCareIndicator
-	extends MarkCareIndicatorType
-	{
-
-
-
+class MarkCareIndicator extends MarkCareIndicatorType
+{
 } // end class MarkCareIndicator

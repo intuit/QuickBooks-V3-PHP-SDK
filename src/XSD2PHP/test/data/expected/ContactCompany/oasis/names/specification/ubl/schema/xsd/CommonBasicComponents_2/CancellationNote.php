@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CancellationNote
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CancellationNote
  */
-class CancellationNote
-	extends CancellationNoteType
-	{
-
-
-
+class CancellationNote extends CancellationNoteType
+{
 } // end class CancellationNote

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Keyword
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Keyword
  */
-class Keyword
-	extends KeywordType
-	{
-
-
-
+class Keyword extends KeywordType
+{
 } // end class Keyword

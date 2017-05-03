@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ExporterParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ExporterParty
  */
-class ExporterParty
-	extends PartyType
-	{
-
-
-
+class ExporterParty extends PartyType
+{
 } // end class ExporterParty

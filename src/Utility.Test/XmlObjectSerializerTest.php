@@ -11,9 +11,10 @@ date_default_timezone_set('America/Chicago');
  *
  * @author amatiushkin
  */
-class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase {
-
-    public function testDeserializerIPPNameValue() {
+class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase
+{
+    public function testDeserializerIPPNameValue()
+    {
         $instance = new XmlObjectSerializer();
         $item = $instance->Deserialize($this->getCompanyInfoXML(), true);
         $verificationArray = array();
@@ -27,7 +28,8 @@ class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($expected, $verificationArray);
     }
 
-    public function testDeserializerLinkedTxnForBill() {
+    public function testDeserializerLinkedTxnForBill()
+    {
         $instance = new XmlObjectSerializer();
         $item = $instance->Deserialize($this->getBillWithLinkedTxn(), true);
         $this->assertTrue($item instanceof IPPBill);
@@ -38,7 +40,8 @@ class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase {
         $this->verifylinkedTxn($line->LinkedTxn, "29");
     }
     
-    public function testDeserializerLinkedTxnForBillArray() {
+    public function testDeserializerLinkedTxnForBillArray()
+    {
         $instance = new XmlObjectSerializer();
         $item = $instance->Deserialize($this->getBillWithDoubleLinkedTxn(), true);
         $this->assertTrue($item instanceof IPPBill);
@@ -54,7 +57,8 @@ class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase {
     }
     
     
-    public function testSerializerLinkedTxnForBill() {
+    public function testSerializerLinkedTxnForBill()
+    {
         $e = new IPPBill();
         $e->LinkedTxn = new IPPLinkedTxn();
         $e->LinkedTxn->TxnId = "123";
@@ -69,12 +73,13 @@ class XmlObjectSerializerTest extends PHPUnit_Framework_TestCase {
     private function verifylinkedTxn($linked, $id)
     {
         $this->assertTrue($linked instanceof IPPLinkedTxn);
-        $this->assertEquals($id,$linked->TxnId);
-        $this->assertEquals("BillPaymentCheck",$linked->TxnType);        
+        $this->assertEquals($id, $linked->TxnId);
+        $this->assertEquals("BillPaymentCheck", $linked->TxnType);
     }
 
 
-    private function getCompanyInfoXML() {
+    private function getCompanyInfoXML()
+    {
         return <<< XML
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <IntuitResponse time="2015-06-10T16:11:56.717-07:00">
@@ -226,11 +231,11 @@ XML;
  </Bill>
 </IntuitResponse>        
 XML;
-    }    
+    }
     
-        private function getBillWithKLinkedTxnResult()
+    private function getBillWithKLinkedTxnResult()
     {
-return <<< XML
+        return <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 <ns0:Bill xmlns:ns0="http://schema.intuit.com/finance/v3">
   <ns0:LinkedTxn>
@@ -243,7 +248,5 @@ return <<< XML
   </ns0:Line>
 </ns0:Bill>
 XML;
-            
     }
-
 }

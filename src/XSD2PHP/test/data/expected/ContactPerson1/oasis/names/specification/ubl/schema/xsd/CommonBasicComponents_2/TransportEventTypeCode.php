@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportEventTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportEventTypeCode
  */
-class TransportEventTypeCode
-	extends TransportEventTypeCodeType
-	{
-
-
-
+class TransportEventTypeCode extends TransportEventTypeCodeType
+{
 } // end class TransportEventTypeCode

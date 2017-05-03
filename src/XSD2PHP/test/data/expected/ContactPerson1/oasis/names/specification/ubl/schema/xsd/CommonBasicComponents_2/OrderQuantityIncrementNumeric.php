@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderQuantityIncrementNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderQuantityIncrementNumeric
  */
-class OrderQuantityIncrementNumeric
-	extends OrderQuantityIncrementNumericType
-	{
-
-
-
+class OrderQuantityIncrementNumeric extends OrderQuantityIncrementNumericType
+{
 } // end class OrderQuantityIncrementNumeric

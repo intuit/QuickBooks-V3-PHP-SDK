@@ -1,62 +1,59 @@
 <?php
+
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Core\Http\Compression\GZipCompressor;
-use QuickBooksOnline\API\Core\Http\Compression\DeflateCompressor;
-
+use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
+use QuickBooksOnline\API\Core\ServiceContext;
 
 /**
  * Rest Handler class.
  */
- class RestHandler {
+class RestHandler
+{
+    /**
+     * The contex
+     * @var ServiceContext
+     */
+    protected $serviceContext;
 
-	/**
-	 * The contex
-	 * @var ServiceContext
-	 */
-    private $serviceContext;
+    /**
+     * Response serializer.
+     * @var IEntitySerializer
+     */
+    protected $ResponseSerializer;
 
-	/**
-	 * Response serializer.
-	 * @var IEntitySerializer
-	 */
-    private $ResponseSerializer;
+    /**
+     * Gets or sets Request compressor.
+     * @var ICompressor
+     */
+    protected $RequestCompressor;
 
-	/**
-	 * Gets or sets Request compressor.
-	 * @var ICompressor
-	 */
-    private $RequestCompressor;
+    /**
+     * Gets or sets Response compressor.
+     * @var ICompressor
+     */
+    protected $ResponseCompressor;
 
-	/**
-	 * Gets or sets Response compressor.
-	 * @var ICompressor
-	 */
-    private $ResponseCompressor;
+    /**
+     * Gets or sets Request serializer.
+     * @var IEntitySerializer
+     */
+    protected $RequestSerializer;
 
-	/**
-	 * Gets or sets Request serializer.
-	 * @var IEntitySerializer
-	 */
-    private $RequestSerializer;
-
-	/**
-   *
-	 * Initializes a new instance of the RestHandler class.
-	 *
-	 * @param ServiceContext $context The Service Context
-	 */
+    /**
+     *
+     * Initializes a new instance of the RestHandler class.
+     *
+     * @param ServiceContext $context The Service Context
+     */
     protected function __construct($context)
     {
         $this->serviceContext = $context;
-		    $this->RequestCompressor = CoreHelper::GetCompressor($this->serviceContext, true);
-		    $this->ResponseCompressor = CoreHelper::GetCompressor($this->serviceContext, false);
-		    $this->RequestSerializer = CoreHelper::GetSerializer($this->serviceContext, true);
-		    $this->ResponseSerializer = CoreHelper::GetSerializer($this->serviceContext, false);
+        $this->RequestCompressor = CoreHelper::GetCompressor($this->serviceContext, true);
+        $this->ResponseCompressor = CoreHelper::GetCompressor($this->serviceContext, false);
+        $this->RequestSerializer = CoreHelper::GetSerializer($this->serviceContext, true);
+        $this->ResponseSerializer = CoreHelper::GetSerializer($this->serviceContext, false);
         $this->RequestLogging = CoreHelper::GetRequestLogging($this->serviceContext);
     }
 }
-
-
-?>

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AttributeID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AttributeID
  */
-class AttributeID
-	extends AttributeIDType
-	{
-
-
-
+class AttributeID extends AttributeIDType
+{
 } // end class AttributeID

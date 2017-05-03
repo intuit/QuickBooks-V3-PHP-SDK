@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PayableRoundingAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PayableRoundingAmount
  */
-class PayableRoundingAmount
-	extends PayableRoundingAmountType
-	{
-
-
-
+class PayableRoundingAmount extends PayableRoundingAmountType
+{
 } // end class PayableRoundingAmount

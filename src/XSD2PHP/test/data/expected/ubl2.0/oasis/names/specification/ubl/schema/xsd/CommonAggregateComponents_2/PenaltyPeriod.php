@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PenaltyPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PenaltyPeriod
  */
-class PenaltyPeriod
-	extends PeriodType
-	{
-
-
-
+class PenaltyPeriod extends PeriodType
+{
 } // end class PenaltyPeriod

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SplitConsignmentIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SplitConsignmentIndicator
  */
-class SplitConsignmentIndicator
-	extends SplitConsignmentIndicatorType
-	{
-
-
-
+class SplitConsignmentIndicator extends SplitConsignmentIndicatorType
+{
 } // end class SplitConsignmentIndicator

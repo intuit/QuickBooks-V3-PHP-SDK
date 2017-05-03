@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PenaltySurchargePercent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PenaltySurchargePercent
  */
-class PenaltySurchargePercent
-	extends PenaltySurchargePercentType
-	{
-
-
-
+class PenaltySurchargePercent extends PenaltySurchargePercentType
+{
 } // end class PenaltySurchargePercent

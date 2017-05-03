@@ -183,7 +183,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      */
     public function setOptions($options)
     {
-        if($options instanceof Zend_Config) {
+        if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
 
@@ -251,11 +251,11 @@ class Zend_Soap_Server implements Zend_Server_Interface
             $options['uri'] = $this->_uri;
         }
 
-        if(null !== $this->_features) {
+        if (null !== $this->_features) {
             $options['features'] = $this->_features;
         }
 
-        if(null !== $this->_wsdlCache) {
+        if (null !== $this->_wsdlCache) {
             $options['cache_wsdl'] = $this->_wsdlCache;
         }
 
@@ -583,12 +583,12 @@ class Zend_Soap_Server implements Zend_Server_Interface
      */
     public function setObject($object)
     {
-        if(!is_object($object)) {
+        if (!is_object($object)) {
             require_once 'Zend/Soap/Server/Exception.php';
             throw new Zend_Soap_Server_Exception('Invalid object argument ('.gettype($object).')');
         }
 
-        if(isset($this->_object)) {
+        if (isset($this->_object)) {
             require_once 'Zend/Soap/Server/Exception.php';
             throw new Zend_Soap_Server_Exception('An object has already been registered with this soap server instance');
         }
@@ -689,7 +689,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             }
 
             $dom = new DOMDocument();
-            if(strlen($xml) == 0 || !$dom->loadXML($xml)) {
+            if (strlen($xml) == 0 || !$dom->loadXML($xml)) {
                 require_once 'Zend/Soap/Server/Exception.php';
                 throw new Zend_Soap_Server_Exception('Invalid XML');
             }
@@ -822,7 +822,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
         $soap = $this->_getSoap();
 
         ob_start();
-        if($setRequestException instanceof Exception) {
+        if ($setRequestException instanceof Exception) {
             // Send SOAP fault message if we've catched exception
             $soap->fault("Sender", $setRequestException->getMessage());
         } else {
@@ -924,7 +924,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             } else {
                 $message = 'Unknown error';
             }
-        } elseif(is_string($fault)) {
+        } elseif (is_string($fault)) {
             $message = $fault;
         } else {
             $message = 'Unknown error';
@@ -934,7 +934,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
             'VersionMismatch', 'MustUnderstand', 'DataEncodingUnknown',
             'Sender', 'Receiver', 'Server'
         );
-        if(!in_array($code, $allowedFaultModes)) {
+        if (!in_array($code, $allowedFaultModes)) {
             $code = "Receiver";
         }
 

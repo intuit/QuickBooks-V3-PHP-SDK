@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName GrossVolumeMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\GrossVolumeMeasure
  */
-class GrossVolumeMeasure
-	extends GrossVolumeMeasureType
-	{
-
-
-
+class GrossVolumeMeasure extends GrossVolumeMeasureType
+{
 } // end class GrossVolumeMeasure

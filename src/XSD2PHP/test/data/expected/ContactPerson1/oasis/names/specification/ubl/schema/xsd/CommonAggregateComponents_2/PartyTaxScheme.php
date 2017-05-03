@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PartyTaxScheme
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PartyTaxScheme
  */
-class PartyTaxScheme
-	extends PartyTaxSchemeType
-	{
-
-
-
+class PartyTaxScheme extends PartyTaxSchemeType
+{
 } // end class PartyTaxScheme

@@ -8,10 +8,6 @@ namespace oasis\names\specification\ubl\schema\xsd\Order_2;
  * @var oasis\names\specification\ubl\schema\xsd\Order_2\Order
  * @xmlDefinition This element MUST be conveyed as the root element in any instance document based on this Schema expression
  */
-class Order
-	extends OrderType
-	{
-
-
-
+class Order extends OrderType
+{
 } // end class Order

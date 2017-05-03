@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BaseUnitMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BaseUnitMeasure
  */
-class BaseUnitMeasure
-	extends BaseUnitMeasureType
-	{
-
-
-
+class BaseUnitMeasure extends BaseUnitMeasureType
+{
 } // end class BaseUnitMeasure

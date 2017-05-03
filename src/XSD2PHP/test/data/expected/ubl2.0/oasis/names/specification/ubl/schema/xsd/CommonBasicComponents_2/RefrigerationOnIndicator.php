@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RefrigerationOnIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RefrigerationOnIndicator
  */
-class RefrigerationOnIndicator
-	extends RefrigerationOnIndicatorType
-	{
-
-
-
+class RefrigerationOnIndicator extends RefrigerationOnIndicatorType
+{
 } // end class RefrigerationOnIndicator

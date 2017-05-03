@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentNote
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentNote
  */
-class PaymentNote
-	extends PaymentNoteType
-	{
-
-
-
+class PaymentNote extends PaymentNoteType
+{
 } // end class PaymentNote

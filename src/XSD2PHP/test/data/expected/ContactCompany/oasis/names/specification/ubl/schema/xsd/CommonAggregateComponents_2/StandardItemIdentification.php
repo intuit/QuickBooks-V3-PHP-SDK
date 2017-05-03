@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName StandardItemIdentification
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\StandardItemIdentification
  */
-class StandardItemIdentification
-	extends ItemIdentificationType
-	{
-
-
-
+class StandardItemIdentification extends ItemIdentificationType
+{
 } // end class StandardItemIdentification

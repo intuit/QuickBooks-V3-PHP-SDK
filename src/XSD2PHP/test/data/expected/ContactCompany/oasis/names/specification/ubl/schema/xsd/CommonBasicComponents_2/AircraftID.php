@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AircraftID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AircraftID
  */
-class AircraftID
-	extends AircraftIDType
-	{
-
-
-
+class AircraftID extends AircraftIDType
+{
 } // end class AircraftID

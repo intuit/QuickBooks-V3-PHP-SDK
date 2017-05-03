@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RequiredCustomsID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RequiredCustomsID
  */
-class RequiredCustomsID
-	extends RequiredCustomsIDType
-	{
-
-
-
+class RequiredCustomsID extends RequiredCustomsIDType
+{
 } // end class RequiredCustomsID

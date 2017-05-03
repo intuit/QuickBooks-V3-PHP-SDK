@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RequiredItemLocationQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RequiredItemLocationQuantity
  */
-class RequiredItemLocationQuantity
-	extends ItemLocationQuantityType
-	{
-
-
-
+class RequiredItemLocationQuantity extends ItemLocationQuantityType
+{
 } // end class RequiredItemLocationQuantity

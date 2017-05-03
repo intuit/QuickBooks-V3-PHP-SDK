@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OriginalJobID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OriginalJobID
  */
-class OriginalJobID
-	extends OriginalJobIDType
-	{
-
-
-
+class OriginalJobID extends OriginalJobIDType
+{
 } // end class OriginalJobID

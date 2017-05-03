@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName InvoiceLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\InvoiceLine
  */
-class InvoiceLine
-	extends InvoiceLineType
-	{
-
-
-
+class InvoiceLine extends InvoiceLineType
+{
 } // end class InvoiceLine

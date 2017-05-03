@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AdditionalInformation
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AdditionalInformation
  */
-class AdditionalInformation
-	extends AdditionalInformationType
-	{
-
-
-
+class AdditionalInformation extends AdditionalInformationType
+{
 } // end class AdditionalInformation

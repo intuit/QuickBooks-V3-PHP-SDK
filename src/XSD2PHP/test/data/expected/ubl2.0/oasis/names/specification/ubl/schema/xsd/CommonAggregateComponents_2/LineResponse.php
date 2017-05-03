@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LineResponse
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LineResponse
  */
-class LineResponse
-	extends LineResponseType
-	{
-
-
-
+class LineResponse extends LineResponseType
+{
 } // end class LineResponse

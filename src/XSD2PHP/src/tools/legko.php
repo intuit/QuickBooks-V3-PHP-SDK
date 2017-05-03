@@ -10,7 +10,8 @@ require_once 'Zend/Console/Getopt.php';
 
 use com\mikebevz\xsd2php;
 
-class LegkoTool {
+class LegkoTool
+{
     
     /**
      * Legko XML Facade
@@ -19,12 +20,13 @@ class LegkoTool {
     private $legko;
     
     /**
-     * 
+     *
      * @var Zend_Console_Getopt
      */
     private $opts;
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->legko = new xsd2php\LegkoXML();
         
         $this->opts = new Zend_Console_Getopt(
@@ -40,7 +42,8 @@ class LegkoTool {
         //print_r($this->opts->getOptions());
     }
  
-    public function showHelp() {
+    public function showHelp()
+    {
         $this->println("Legko XML Tool v. {$this->legko->getVersion()}
 Syntax: legko action options
 
@@ -59,10 +62,10 @@ Examples:
 Generate PHP bindings
     \033[32m$ legko compile-schema --schema MySchema.xsd --dest ../bindings \033[0m   
         ");
-    
-    }   
+    }
 
-    public function compileSchema() {
+    public function compileSchema()
+    {
         if (!$this->opts->getOption('dest')) {
             throw new RuntimeException("Specify destination folder (--dest PATH)");
         }
@@ -83,10 +86,10 @@ Generate PHP bindings
         $this->println("Bindings successfully generated in ".realpath($dest));
     }
 
-    private function println($msg = "") {
+    private function println($msg = "")
+    {
         print($msg."\n");
     }
-    
 }
 
 $action = $argv[1];
@@ -101,7 +104,7 @@ if (!in_array($action, $actions)) {
 }
 
 switch ($action) {
-    case 'compile-schema': 
+    case 'compile-schema':
         try {
             $legko->compileSchema();
         } catch (RuntimeException $e) {
@@ -114,5 +117,5 @@ switch ($action) {
         break;
     default:
         echo "Help";
-        break;    
+        break;
 }

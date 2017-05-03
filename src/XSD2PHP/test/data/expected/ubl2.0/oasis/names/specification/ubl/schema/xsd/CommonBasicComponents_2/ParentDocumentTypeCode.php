@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ParentDocumentTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ParentDocumentTypeCode
  */
-class ParentDocumentTypeCode
-	extends ParentDocumentTypeCodeType
-	{
-
-
-
+class ParentDocumentTypeCode extends ParentDocumentTypeCodeType
+{
 } // end class ParentDocumentTypeCode

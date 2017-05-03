@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CarrierAssignedID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CarrierAssignedID
  */
-class CarrierAssignedID
-	extends CarrierAssignedIDType
-	{
-
-
-
+class CarrierAssignedID extends CarrierAssignedIDType
+{
 } // end class CarrierAssignedID

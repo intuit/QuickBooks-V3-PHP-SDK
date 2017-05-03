@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderID
  */
-class OrderID
-	extends OrderIDType
-	{
-
-
-
+class OrderID extends OrderIDType
+{
 } // end class OrderID

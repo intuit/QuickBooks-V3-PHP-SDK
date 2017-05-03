@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TotalGoodsItemQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TotalGoodsItemQuantity
  */
-class TotalGoodsItemQuantity
-	extends TotalGoodsItemQuantityType
-	{
-
-
-
+class TotalGoodsItemQuantity extends TotalGoodsItemQuantityType
+{
 } // end class TotalGoodsItemQuantity

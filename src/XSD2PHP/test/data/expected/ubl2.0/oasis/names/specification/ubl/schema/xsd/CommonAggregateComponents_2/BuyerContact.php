@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName BuyerContact
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\BuyerContact
  */
-class BuyerContact
-	extends ContactType
-	{
-
-
-
+class BuyerContact extends ContactType
+{
 } // end class BuyerContact

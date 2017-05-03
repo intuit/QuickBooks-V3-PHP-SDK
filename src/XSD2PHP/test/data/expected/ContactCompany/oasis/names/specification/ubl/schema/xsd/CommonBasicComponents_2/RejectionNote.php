@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RejectionNote
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RejectionNote
  */
-class RejectionNote
-	extends RejectionNoteType
-	{
-
-
-
+class RejectionNote extends RejectionNoteType
+{
 } // end class RejectionNote

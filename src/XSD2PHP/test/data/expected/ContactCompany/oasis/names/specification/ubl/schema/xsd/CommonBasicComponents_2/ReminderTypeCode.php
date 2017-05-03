@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReminderTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReminderTypeCode
  */
-class ReminderTypeCode
-	extends ReminderTypeCodeType
-	{
-
-
-
+class ReminderTypeCode extends ReminderTypeCodeType
+{
 } // end class ReminderTypeCode

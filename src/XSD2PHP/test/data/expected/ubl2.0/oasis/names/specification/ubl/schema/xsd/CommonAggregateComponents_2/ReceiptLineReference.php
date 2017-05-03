@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReceiptLineReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReceiptLineReference
  */
-class ReceiptLineReference
-	extends LineReferenceType
-	{
-
-
-
+class ReceiptLineReference extends LineReferenceType
+{
 } // end class ReceiptLineReference

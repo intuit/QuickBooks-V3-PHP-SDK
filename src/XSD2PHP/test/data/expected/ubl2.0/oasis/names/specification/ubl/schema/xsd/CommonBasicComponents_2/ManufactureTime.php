@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ManufactureTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ManufactureTime
  */
-class ManufactureTime
-	extends ManufactureTimeType
-	{
-
-
-
+class ManufactureTime extends ManufactureTimeType
+{
 } // end class ManufactureTime

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReferenceEventCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReferenceEventCode
  */
-class ReferenceEventCode
-	extends ReferenceEventCodeType
-	{
-
-
-
+class ReferenceEventCode extends ReferenceEventCodeType
+{
 } // end class ReferenceEventCode

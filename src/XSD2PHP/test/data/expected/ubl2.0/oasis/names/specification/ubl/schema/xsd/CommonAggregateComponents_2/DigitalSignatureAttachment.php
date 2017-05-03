@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DigitalSignatureAttachment
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DigitalSignatureAttachment
  */
-class DigitalSignatureAttachment
-	extends AttachmentType
-	{
-
-
-
+class DigitalSignatureAttachment extends AttachmentType
+{
 } // end class DigitalSignatureAttachment

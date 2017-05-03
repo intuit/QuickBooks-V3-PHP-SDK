@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PriceChangeReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PriceChangeReason
  */
-class PriceChangeReason
-	extends PriceChangeReasonType
-	{
-
-
-
+class PriceChangeReason extends PriceChangeReasonType
+{
 } // end class PriceChangeReason

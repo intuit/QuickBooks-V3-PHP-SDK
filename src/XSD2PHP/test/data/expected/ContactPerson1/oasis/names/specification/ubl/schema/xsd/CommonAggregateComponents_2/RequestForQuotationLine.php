@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RequestForQuotationLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RequestForQuotationLine
  */
-class RequestForQuotationLine
-	extends RequestForQuotationLineType
-	{
-
-
-
+class RequestForQuotationLine extends RequestForQuotationLineType
+{
 } // end class RequestForQuotationLine

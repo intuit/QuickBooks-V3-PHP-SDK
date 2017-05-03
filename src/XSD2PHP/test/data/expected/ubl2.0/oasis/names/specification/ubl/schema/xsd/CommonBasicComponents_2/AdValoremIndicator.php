@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AdValoremIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AdValoremIndicator
  */
-class AdValoremIndicator
-	extends AdValoremIndicatorType
-	{
-
-
-
+class AdValoremIndicator extends AdValoremIndicatorType
+{
 } // end class AdValoremIndicator

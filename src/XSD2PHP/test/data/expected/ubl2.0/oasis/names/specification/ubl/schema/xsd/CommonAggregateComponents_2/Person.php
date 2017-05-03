@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Person
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Person
  */
-class Person
-	extends PersonType
-	{
-
-
-
+class Person extends PersonType
+{
 } // end class Person

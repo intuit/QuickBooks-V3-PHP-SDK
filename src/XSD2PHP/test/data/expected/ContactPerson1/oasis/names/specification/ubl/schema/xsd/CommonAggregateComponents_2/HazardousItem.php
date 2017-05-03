@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName HazardousItem
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\HazardousItem
  */
-class HazardousItem
-	extends HazardousItemType
-	{
-
-
-
+class HazardousItem extends HazardousItemType
+{
 } // end class HazardousItem

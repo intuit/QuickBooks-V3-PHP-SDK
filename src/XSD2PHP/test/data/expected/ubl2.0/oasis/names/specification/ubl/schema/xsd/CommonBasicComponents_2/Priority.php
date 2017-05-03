@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Priority
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Priority
  */
-class Priority
-	extends PriorityType
-	{
-
-
-
+class Priority extends PriorityType
+{
 } // end class Priority

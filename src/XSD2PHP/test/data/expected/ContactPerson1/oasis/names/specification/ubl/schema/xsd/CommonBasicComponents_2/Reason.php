@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Reason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Reason
  */
-class Reason
-	extends ReasonType
-	{
-
-
-
+class Reason extends ReasonType
+{
 } // end class Reason

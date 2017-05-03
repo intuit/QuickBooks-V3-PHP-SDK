@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ModelName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ModelName
  */
-class ModelName
-	extends ModelNameType
-	{
-
-
-
+class ModelName extends ModelNameType
+{
 } // end class ModelName

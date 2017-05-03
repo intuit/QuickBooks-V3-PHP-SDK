@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NetworkID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NetworkID
  */
-class NetworkID
-	extends NetworkIDType
-	{
-
-
-
+class NetworkID extends NetworkIDType
+{
 } // end class NetworkID
