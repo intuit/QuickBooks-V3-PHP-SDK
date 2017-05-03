@@ -2,6 +2,7 @@
 
 namespace QuickBooksOnline\API\PlatformService;
 
+use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Exception\SdkExceptions\InvalidTokenException;
 use QuickBooksOnline\API\Exception\SdkExceptions\InvalidParameterException;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
@@ -53,7 +54,7 @@ class PlatformService
 			throw new InvalidParameterException('Wrong arg type passed - is not an object.');
 		}
 
-		if (0 !== strcmp('ServiceContext',get_class($serviceContext)))
+		if (!$serviceContext instanceof ServiceContext)
 		{
 			throw new InvalidParameterException('Wrong arg type passed - is not the correct class.');
 		}
