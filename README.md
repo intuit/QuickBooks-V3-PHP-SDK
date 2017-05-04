@@ -97,7 +97,7 @@ Connecting to the QuickBooks Online API
 Referring to class methods may be required sometime. To access to the Class reference Entity, go to:
 https://developer-static.intuit.com/SDKDocs/QBV3Doc/IPPPHPDevKitV3/entities/index.html
 
-Object creation based on array Support
+Object creation based on array
 -----------------------------------------
 Currently the below API entity Endpoints support creating Objects from Array:
 
@@ -115,7 +115,7 @@ On the body, you can then use the static class to create corresponding objects.
 
 For example, to create Invoice, you can do the following:
 ~~~php
-array = [
+$myInvoiceObj = Invoice::create([
   "DocNumber" => "1070",
   "LinkedTxn" => [],
   "Line" => [[
@@ -141,8 +141,7 @@ array = [
       "value" => "1",
       "name" => "Amy's Bird Sanctuary"
   ]
-];
-$myInvoiceObj = Invoice::create($array);
+]);
 $resultingInvoiceObj = $dataService->Add($myInvoiceObj);
 ~~~
 
