@@ -109,6 +109,7 @@ For create/update above entity endpoints, you are going to import corresponding 
 ~~~php
 <?php
 use QuickBooksOnline\API\Facades\{Invoice/Bill/SalesReceipt};
+~~~
 
 On the body, you can then use the static class to create corresponding objects.
 
@@ -143,6 +144,8 @@ array = [
 ];
 $myInvoiceObj = Invoice::create($array);
 $resultingInvoiceObj = $dataService->Add($myInvoiceObj);
+~~~
+
 
 For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
 
