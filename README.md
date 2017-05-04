@@ -145,7 +145,13 @@ $myInvoiceObj = Invoice::create([
 $resultingInvoiceObj = $dataService->Add($myInvoiceObj);
 ~~~
 
-
+To update an Object with new content, here is the sample code:
+~~~php
+  $updatedInvoice = Invoice::update($myInvoiceObj, [
+            "Deposit" => 100000,
+            "DocNumber" => "12223322"
+    ]);
+~~~
 For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
 
 
