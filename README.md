@@ -97,6 +97,56 @@ Connecting to the QuickBooks Online API
 Referring to class methods may be required sometime. To access to the Class reference Entity, go to:
 https://developer-static.intuit.com/SDKDocs/QBV3Doc/IPPPHPDevKitV3/entities/index.html
 
+Object creation based on array Support
+-----------------------------------------
+Currently the below API entity Endpoints support creating Objects from Array:
+
+* Invoice
+* Bill
+* SalesReceipt
+
+For create/update above entity endpoints, you are going to import corresponding facade class:
+~~~php
+<?php
+use QuickBooksOnline\API\Facades\{Invoice/Bill/SalesReceipt};
+
+On the body, you can then use the static class to create corresponding objects.
+
+For example, to create Invoice, you can do the following:
+~~~php
+array = [
+  "DocNumber" => "1070",
+  "LinkedTxn" => [],
+  "Line" => [[
+      "Id" => "1",
+      "LineNum" => 1,
+      "Amount" => 150.0,
+      "DetailType" => "SalesItemLineDetail",
+      "SalesItemLineDetail" => [
+          "ItemRef" => [
+              "value" => "1",
+              "name" => "Services"
+          ],
+          "TaxCodeRef" => [
+              "value" => "NON"
+          ]
+      ]
+  ], [
+      "Amount" => 150.0,
+      "DetailType" => "SubTotalLineDetail",
+      "SubTotalLineDetail" => []
+  ]],
+  "CustomerRef" => [
+      "value" => "1",
+      "name" => "Amy's Bird Sanctuary"
+  ]
+];
+$myInvoiceObj = Invoice::create($array);
+$resultingInvoiceObj = $dataService->Add($myInvoiceObj);
+
+For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
+
+
 Create new resources (PUT)
 -----------------------------------------
 To create a Customer in QuickBooks Online:
