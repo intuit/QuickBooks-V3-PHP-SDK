@@ -111,7 +111,7 @@ For create/update above entity endpoints, you are going to import corresponding 
 use QuickBooksOnline\API\Facades\{Invoice/Bill/SalesReceipt};
 ~~~
 
-On the body, you can then use the static class to create corresponding objects.
+On the body, you can then use the static class to create corresponding objects. The array is based on the documentation on the link here: https://developer.intuit.com/docs/api/accounting/invoice
 
 For example, to create Invoice, you can do the following:
 ~~~php
