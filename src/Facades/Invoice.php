@@ -10,9 +10,14 @@ class Invoice{
     }
 
     public static function update($objToUpdate, array $data){
+        $classOfObj = get_class($objToUpdate);
+        if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("Invoice")) != 0){
+          throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of Invoice.");
+        }
         $newInvoiceObj = Invoice::create($data);
-        FacadeHelper::mergeObj($objToUpdate, $newInvoiceObj);
-        return $objToUpdate;
+        $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);
+        FacadeHelper::mergeObj($clonedOfObj, $newInvoiceObj);
+        return $clonedOfObj;
     }
 
 }

@@ -32,7 +32,17 @@ class FacadeClassMapper
                //IPPTransaction
                'CreatedByRef','LastModifiedByRef','EntityRef',
                //IPPBill
-               'PayerRef','VendorRef','APAccountRef'
+               'PayerRef','VendorRef','APAccountRef',
+               //IPPAccount
+               'ParentRef',
+               //IPPCustomer
+               'RootCustomerRef', 'CustomerTypeRef' ,'TaxGroupCodeRef', 'JobTypeRef',
+               //IPPBillPayment
+               'BankAccountRef','CCAccountRef','ReimbursableInfoRef','DropShipToEntity',
+               //Employee
+               'EmployeeRef','OtherNameRef','PayrollItemRef',
+               //IPPTransfer
+               'FromAccountRef','ToAccountRef'
 
         ];
     }
@@ -79,7 +89,10 @@ class FacadeClassMapper
                //IPPInvoice
                'InvoiceEx',
                //Delivery Info is escaped right now.
-               'DeliveryInfo'
+               'DeliveryInfo',
+               //IPPPurchase
+               'PurchaseEx'
+
         ];
     }
     /**
@@ -105,13 +118,19 @@ class FacadeClassMapper
         'GlobalTaxCalculation' =>  'GlobalTaxCalculationEnum',
         'PrintStatus' =>  'PrintStatusEnum',
         'EmailStatus' =>  'EmailStatusEnum',
-          'PaymentType' => 'PaymentTypeEnum',
-          'CCTxnMode' =>  'CCTxnModeEnum',
-          'CCTxnType' =>  'CCTxnTypeEnum',
-          'CardSecurityCodeMatch' =>  'CCSecurityCodeMatchEnum',
-         'AvsStreet' =>  'CCAVSMatchEnum',
-          'AvsZip' =>  'CCAVSMatchEnum',
-          'Type'  => 'CustomFieldTypeEnum'
+        'PaymentType' => 'PaymentTypeEnum',
+        'CCTxnMode' =>  'CCTxnModeEnum',
+        'CCTxnType' =>  'CCTxnTypeEnum',
+        'CardSecurityCodeMatch' =>  'CCSecurityCodeMatchEnum',
+        'AvsStreet' =>  'CCAVSMatchEnum',
+        'AvsZip' =>  'CCAVSMatchEnum',
+        'Type'  => 'CustomFieldTypeEnum',
+        'Classification' => 'AccountClassificationEnum',
+        'AccountType' => 'AccountTypeEnum',
+        'status' => 'EntityStatusEnum',
+        'PayType' => 'BillPaymentTypeEnum',
+        'POStatus' => 'PurchaseOrderStatusEnum',
+        'NameOf' => 'TimeActivityTypeEnum'
        ];
     }
 
@@ -121,9 +140,30 @@ class FacadeClassMapper
          'MetaData' => 'ModificationMetaData',
          'BillAddr' => 'PhysicalAddress',
          'ShipAddr' => 'PhysicalAddress',
+         'OtherAddr' => 'PhysicalAddress',
          'RemitToAddr' => 'PhysicalAddress',
+         'PayeeAddr' => 'PhysicalAddress',
+         'VendorAddr' => 'PhysicalAddress',
          'BillEmail' => 'EmailAddress',
-         'ReplyEmail' => 'EmailAddress'
+         'ReplyEmail' => 'EmailAddress',
+         'POEmail' => 'EmailAddress',
+         //CCDetail was mapped to different entity on BillPaymentCreditCard
+         'CCDetail' => 'CreditChargeInfo',
+         'PrimaryPhone' => 'TelephoneNumber',
+         'AlternatePhone' => 'TelephoneNumber',
+         'Mobile' => 'TelephoneNumber',
+         'Fax' => 'TelephoneNumber',
+         'Telephone' => 'TelephoneNumber',
+         'Email' => 'EmailAddress',
+         'PrimaryEmailAddr' => 'EmailAddress',
+         'WebAddr' => 'WebSiteAddress',
+         'WebSite' => 'WebSiteAddress',
+         'OtherContactInfo' => 'ContactInfo',
+         'OtherContact' => 'GenericContactType',
+         'CheckPayment' => 'BillPaymentCheck',
+         'CheckDetail' => 'CheckPayment',
+         'CreditCardPayment' => 'BillPaymentCreditCard',
+         'CashBack' => 'CashBackInfo'
        ];
     }
 

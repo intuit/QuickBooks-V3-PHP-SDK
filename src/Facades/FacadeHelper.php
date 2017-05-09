@@ -37,11 +37,11 @@ class FacadeHelper{
      //If the key is in complexList
      if(FacadeHelper::isKeyInComplexList($classNameOrKeyName)){
          $methodFound = FacadeHelper::isKeyInComplexList($classNameOrKeyName);
-         $createdObj = FacadeHelper::getComplexListObject($methodFound, $classNameOrKeyName, $data);
+         $createdObj = FacadeHelper::getComplexListObject($methodFound, $classNameOrKeyName, $trimedData);
          return $createdObj;
      } else if(FacadeHelper::isKeyEnumType($classNameOrKeyName)){
          $enumTypeClassName = FacadeHelper::isKeyEnumType($classNameOrKeyName);
-         $createdObj = FacadeHelper::getEnumType($enumTypeClassName, $data);
+         $createdObj = FacadeHelper::getEnumType($enumTypeClassName, $trimedData);
          return $createdObj;
      }
      else{
@@ -49,7 +49,7 @@ class FacadeHelper{
          $clazz = FacadeHelper::decorateKeyWithNameSpaceAndPrefix($classNameOrKeyName);
          if(class_exists($clazz)){
             $currentObj = new $clazz();
-            foreach($data as $key => $val){
+            foreach($trimedData as $key => $val){
                 if(is_array($val)){
                     if (FacadeHelper::isAssociateArray($val)){
                        //Key value pair. The value can be another array
@@ -271,17 +271,29 @@ class FacadeHelper{
   /**
    * Override the content from Object B to Object A
    * Don't use array_merge here. As the NUll Value will be overriden as well
+   * Remove the !empty check. For integer or string that is 0, it needs to be passed and set.
    */
   public static function mergeObj($objA, $objB){
       if(get_class($objA) != get_class($objB)) throw new \Excetpion("Can't assign object value to a different type.");
       $property_fields = get_object_vars($objA);
       foreach ($property_fields as $propertyName => $val){
           $BsValue = $objB->$propertyName;
-          if(isset($BsValue) && !empty($BsValue)){
+          if(isset($BsValue)){
                $objA->$propertyName = $BsValue;
           }
       }
       return $objA;
+  }
+
+  public static function cloneObj($obj){
+      $clazz = get_class($obj);
+      if(class_exists($clazz)){
+          $clonedObj = new $clazz();
+          $clonedObj = FacadeHelper::mergeObj($clonedObj, $obj);
+          return $clonedObj;
+      }else{
+         throw new \Exception("The passed object:{" . $clazz . "} does not exist.");
+      }
   }
 
 
@@ -338,6 +350,10 @@ class FacadeHelper{
               break;
           }
       }
+      return FacadeHelper::simpleAppendClassNameSpace($key);
+   }
+
+   public static function simpleAppendClassNameSpace($key){
       return CoreConstants::NAMEPSACE_DATA_PREFIX . CoreConstants::PHP_CLASS_PREFIX . $key;
    }
 
