@@ -5,8 +5,8 @@ class Customer{
 
     public static function create(array $data, $throwException = TRUE){
         if(!isset($data) || empty($data)) throw new \Exception("Passed array for creating Customer is Empty");
-        $AccountObject = FacadeHelper::reflectArrayToObject("Customer", $data, $throwException );
-        return $AccountObject;
+        $CustomerObject = FacadeHelper::reflectArrayToObject("Customer", $data, $throwException );
+        return $CustomerObject;
     }
 
     /**
