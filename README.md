@@ -162,11 +162,20 @@ $resultingInvoiceObj = $dataService->Add($myInvoiceObj);
 To update an Invoice with new content, here is the sample code:
 ~~~php
   $updatedInvoice = Invoice::update($myInvoiceObj, [
+            "sparse" => true,
             "Deposit" => 100000,
             "DocNumber" => "12223322"
     ]);
   $resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
 ~~~
+
+**Be careful when you trying to use the update method. QuickBooks Online Provide Two Updates: Full Update and Sparse Update. The sparse update operation provides the ability to update a subset of attributes for a given object; only those specified in the request are updated. Missing attributes are left untouched.This is in contrast to the full update operation, where elements missing from the request are cleared.**
+
+**Considerations for using sparse updating include:
+ 1) Prevent unintended overwrites: A client application often does not use all the fields of an entity, so when it sends a full update request  with only fields they use, it results in an erroneous blanking out of fields that were not sent.
+ 2) Reduce request payload: Always desired, but is more relevant when the client application is mobile because of lower speeds, spotty connections, and the fact that mobile users are sensitive to amount of data usage in each billing cycle.
+ 3) Facilitate future field additions: New fields can be added to an entity without past versions of production applications clearing all other existing fields inadvertently, as would happen with a full update operation.
+**
 
 For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. 
 Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
