@@ -63,7 +63,7 @@ You need to include them in the script before making your HTTP call.
 
 ### OAuth 1.0 Configuration
 There are two ways to provide OAuth configration for prepare the service context for API call:
-1)
+<br/>1)
 Pass the OAuth configuration as an array:
 ~~~php
 $dataService = DataService::Configure(array(
