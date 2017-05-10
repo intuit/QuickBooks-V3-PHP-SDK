@@ -183,7 +183,7 @@ Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/Sampl
 
 Create new resources (PUT)
 -----------------------------------------
-To create a new resource in QuickBooks Online(Invoice will be used an Example here):
+To create a new resource in QuickBooks Online(Invoice will be used an Example here:
 
 ~~~php
 <?php
