@@ -180,6 +180,44 @@ To update an Invoice with new content, here is the sample code:
 For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. 
 Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
 
+For example, to create an Invoice, you can also do the following:
+~~~php
+<?php 
+// Add an invoice
+$invoice = new IPPInvoice();
+$invoice->Deposit       = 0;
+$invoice->domain        =  "QBO";
+$invoice->AutoDocNumber = true;
+$invoice->TxnDate = date('Y-m-d', time());
+$invoice->CustomerRef   = "66";
+$invoice->PrivateNote   = "SomeNote";
+$invoice->TxnStatus     = "Payable";
+
+$line = new IPPLine();
+$line->Id = "0";
+$line->LineNum          = "1";
+$line->Description      = "test";
+$line->Amount           = 1000;
+$line->DetailType = "DescriptionOnly";
+
+$sub_line = new IPPLine();
+$sub_line->Id           = "0";
+$sub_line->LineNum      = "2";
+$sub_line->Description  = "Sub Total";
+$sub_line->Amount       = 2000;
+$sub_line->DetailType   = "SubtotalLineDetail";
+
+
+$invoice->Line          = array($line, $sub_line);
+$invoice->RemitToRef    = "66";
+$invoice->TotalAmt      = 1000;
+$invoice->FinanceCharge = 'false';
+
+// Add a invoice
+$resultingInvoiceObj = $dataService->Add($invoice);
+~~~
+
+However, all corresponding Objects need to be imported before using them.
 
 Create new resources (PUT)
 -----------------------------------------
