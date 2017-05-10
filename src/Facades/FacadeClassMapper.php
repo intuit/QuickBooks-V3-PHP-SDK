@@ -42,7 +42,9 @@ class FacadeClassMapper
                //Employee
                'EmployeeRef','OtherNameRef','PayrollItemRef',
                //IPPTransfer
-               'FromAccountRef','ToAccountRef'
+               'FromAccountRef','ToAccountRef',
+               //IPPItem
+               'UOMSetRef','IncomeAccountRef','ExpenseAccountRef','COGSAccountRef','AssetAccountRef','PrefVendorRef','SalesTaxCodeRef','PurchaseTaxCodeRef'
 
         ];
     }
@@ -124,13 +126,19 @@ class FacadeClassMapper
         'CardSecurityCodeMatch' =>  'CCSecurityCodeMatchEnum',
         'AvsStreet' =>  'CCAVSMatchEnum',
         'AvsZip' =>  'CCAVSMatchEnum',
+        //Since they are all enum. The Item is IPPItemTypeEnum
         'Type'  => 'CustomFieldTypeEnum',
         'Classification' => 'AccountClassificationEnum',
         'AccountType' => 'AccountTypeEnum',
         'status' => 'EntityStatusEnum',
         'PayType' => 'BillPaymentTypeEnum',
         'POStatus' => 'PurchaseOrderStatusEnum',
-        'NameOf' => 'TimeActivityTypeEnum'
+        'NameOf' => 'TimeActivityTypeEnum',
+        //Gender is a special type of Enum
+        'Gender' => 'gender',
+        'UseTimeEntry' => 'TimeEntryUsedForPaychecksEnum',
+        'SpecialItemType' => 'SpecialItemTypeEnum',
+        'TaxTypeApplicable' => 'TaxTypeApplicablityEnum'
        ];
     }
 
@@ -144,6 +152,7 @@ class FacadeClassMapper
          'RemitToAddr' => 'PhysicalAddress',
          'PayeeAddr' => 'PhysicalAddress',
          'VendorAddr' => 'PhysicalAddress',
+         'PrimaryAddr' => 'PhysicalAddress',
          'BillEmail' => 'EmailAddress',
          'ReplyEmail' => 'EmailAddress',
          'POEmail' => 'EmailAddress',
@@ -163,7 +172,12 @@ class FacadeClassMapper
          'CheckPayment' => 'BillPaymentCheck',
          'CheckDetail' => 'CheckPayment',
          'CreditCardPayment' => 'BillPaymentCreditCard',
-         'CashBack' => 'CashBackInfo'
+         'CashBack' => 'CashBackInfo',
+         'ItemGroupLine' => 'ItemComponentLine',
+         'ItemAssemblyLine' => 'ItemComponentLine',
+         'SalesTaxRateList' => 'TaxRateList',
+         'PurchaseTaxRateList' => 'TaxRateList',
+         'AdjustmentTaxRateList' => 'TaxRateList'
        ];
     }
 
