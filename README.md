@@ -78,7 +78,8 @@ $dataService = DataService::Configure(array(
 
 or
 
-2) You use the sdk.config file located in /src as a template for the config file for preparing service context. You will need to pass the path of config file explicitly:
+2)
+You use the sdk.config file located in /src as a template for the config file for preparing service context. You will need to pass the path of config file explicitly:
 ~~~php
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
