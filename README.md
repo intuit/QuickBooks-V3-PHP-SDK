@@ -336,15 +336,15 @@ $updatedInvoice = Invoice::update($findInvoice, [
 ]);
 
 $resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
-$resultingCustomerUpdatedObj = $dataService->Add($resultingCustomerObj);
+$error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
 }
 else {
-    echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingCustomerObj, $urlResource);
+    echo "Created Id={$resultingUpdatedInvoiceObj->Id}. Reconstructed response body:\n\n";
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingUpdatedInvoiceObj, $urlResource);
     echo $xmlBody . "\n";
 }
 ~~~
