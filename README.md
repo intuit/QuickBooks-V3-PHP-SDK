@@ -14,29 +14,24 @@ http://developer.intuit.com/
 
 Requirements
 ------------
-
+To use PHP SDK, you need to have: 
 - PHP 5.6 or greater
-- PHP OAuth 1.2.3 extension enabled
+- PHP PECL OAuth 1.2.3 extension enabled
 
-**To connect to the API with OAuth1 you need the following:**
+QuickBooks Online API use OAuth 1.0 as an authorization protocol. 
+**To generate OAuth 1.0 access tokens, you need:**
 
 - Account with developer.intuit.com
 - Consumer keys and Consumer secrets in your app for starting OAuth 1.0a flow
-- Access Token and Access Token Secrets
 
-To generate OAuth Access Token and Access Token Secrets, refer to our documentation here: https://developer.intuit.com/docs/0100_quickbooks_online/0100_essentials/000500_authentication_and_authorization/connect_from_within_your_app
+For programming guide and how it worked, refer to our documentation here: https://developer.intuit.com/docs/0100_quickbooks_online/0100_essentials/000500_authentication_and_authorization/connect_from_within_your_app
 
-We also suggest you play with OAuth playground: 
+You can also generate OAuth tokens from OAuth playground: 
 https://appcenter.intuit.com/Playground/OAuth/IA/
-
-You can use it generate access tokens for either QuickBooks Online production or sandbox. 
-
 
 Installation
 ------------
-
-Use the following Composer command to install the
-API client from [the Intuit vendor on Packagist](composer require quickbooks/v3-php-sdk):
+Use the following Composer command to install the PHP SDK:
 
 ~~~shell
  $ composer require quickbooks/v3-php-sdk
@@ -51,9 +46,7 @@ https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/02
 
 Configuration
 -------------
-
 To use Composer library, put: 
-
 ~~~php
 require "vendor/autoload.php";
 ~~~
@@ -61,19 +54,15 @@ require "vendor/autoload.php";
 As the first line in your PHP Script before calling other libraries/Classes.
 (You can declare your own spl autoloader; however, using Composer’s `vendor/autoload.php` hook is recommended).
 
-For using PHP SDK, the following classes are required:
-
+For using PHP SDK, the following class is required:
 ~~~php
 use QuickBooksOnline\API\DataService\DataService;
 ~~~
-
 You need to include them in the script before making your HTTP call.
 
-
-### OAuth 1.0
-
-There are two ways to provide static configration for prepare the service context for API call:
-
+### OAuth 1.0 Configuration
+There are two ways to provide OAuth configration for prepare the service context for API call:
+1)
 Pass the OAuth configuration as an array:
 ~~~php
 $dataService = DataService::Configure(array(
@@ -86,7 +75,9 @@ $dataService = DataService::Configure(array(
 ));
 ~~~
 
-or you use the sdk.config file located in /src as a template for the config file for preparing service context. You will need to pass the path of config file explicitly:
+or
+
+2)you use the sdk.config file located in /src as a template for the config file for preparing service context. You will need to pass the path of config file explicitly:
 ~~~php
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
@@ -104,7 +95,6 @@ $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 Connecting to the QuickBooks Online API
 -----------------------
 Currently the below API entity Endpoints support creating Objects from Array:
-
 * Account
 * Bill
 * BillPayment
@@ -217,7 +207,7 @@ $invoice->FinanceCharge = 'false';
 $resultingInvoiceObj = $dataService->Add($invoice);
 ~~~
 
-However, all corresponding Objects need to be imported before using them.
+However, all corresponding objects need to be imported before using them.
 
 Create new resources (PUT)
 -----------------------------------------
