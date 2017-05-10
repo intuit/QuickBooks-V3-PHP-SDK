@@ -52,7 +52,7 @@ https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/02
 Configuration
 -------------
 
-To use Class library, put: 
+To use Composer library, put: 
 
 ~~~php
 require "vendor/autoload.php";
@@ -61,9 +61,19 @@ require "vendor/autoload.php";
 As the first line in your PHP Script before calling other libraries/Classes.
 (You can declare your own spl autoloader; however, using Composer’s `vendor/autoload.php` hook is recommended).
 
-There are two ways to provide static configration for prepare the service context for API call:
+For using PHP SDK, the following classes are required:
+
+~~~php
+use QuickBooksOnline\API\DataService\DataService;
+~~~
+
+You need to include them in the script before making your HTTP call.
+
 
 ### OAuth 1.0
+
+There are two ways to provide static configration for prepare the service context for API call:
+
 Pass the OAuth configuration as an array:
 ~~~php
 $dataService = DataService::Configure(array(
@@ -91,27 +101,40 @@ To set up your own Log location for complete request and response:
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 ~~~
 
-
 Connecting to the QuickBooks Online API
 -----------------------
-Referring to class methods may be required sometime. To access to the Class reference Entity, go to:
-https://developer-static.intuit.com/SDKDocs/QBV3Doc/IPPPHPDevKitV3/entities/index.html
-
-Object creation based on array
------------------------------------------
 Currently the below API entity Endpoints support creating Objects from Array:
 
-* Invoice
+* Account
 * Bill
+* BillPayment
+* CompanyCurrency
+* CreditMemo
+* Customer
+* Class
+* Department
+* Deposit
+* Employee
+* Estimate
+* Invoice
+* Item
+* JournalEntry
+* Payment
+* Purchase
+* PurchaseOrder
+* RefundReceipt
 * SalesReceipt
+* TimeActivity
+* Transfer
+* VendorCredit
 
 For create/update above entity endpoints, you are going to import corresponding facade class:
 ~~~php
 <?php
-use QuickBooksOnline\API\Facades\{Invoice/Bill/SalesReceipt};
+use QuickBooksOnline\API\Facades\{Facade_Class_Name};
 ~~~
 
-On the body, you can then use the static class to create corresponding objects. The array is based on the documentation on the link here: https://developer.intuit.com/docs/api/accounting/invoice
+On the body, you can then use the static class to create corresponding objects. The array is based on the documentation on the link here: https://developer.intuit.com/docs/api/accounting/
 
 For example, to create Invoice, you can do the following:
 ~~~php
@@ -145,28 +168,30 @@ $myInvoiceObj = Invoice::create([
 $resultingInvoiceObj = $dataService->Add($myInvoiceObj);
 ~~~
 
-To update an Object with new content, here is the sample code:
+To update an Invoice with new content, here is the sample code:
 ~~~php
   $updatedInvoice = Invoice::update($myInvoiceObj, [
             "Deposit" => 100000,
             "DocNumber" => "12223322"
     ]);
+  $resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
 ~~~
-For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
+
+For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. 
+Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
 
 
 Create new resources (PUT)
 -----------------------------------------
-To create a Customer in QuickBooks Online:
+To create a new resource in QuickBooks Online(Invoice will be used an Example here):
 
 ~~~php
 <?php
 require "vendor/autoload.php";
 
 use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\Facades\Invoice;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
-use QuickBooksOnline\API\Data\IPPCustomer;
-
 
 $dataService = DataService::Configure(array(
 	         'auth_mode' => 'oauth1',
@@ -181,13 +206,80 @@ $dataService = DataService::Configure(array(
 if (!$dataService)
 	exit("Problem while initializing DataService.\n");
 
-// Add a customer
-$customerObj = new IPPCustomer();
-$customerObj->Name = "Name" . rand();
-$customerObj->CompanyName = "CompanyName" . rand();
-$customerObj->GivenName = "GivenName" . rand();
-$customerObj->DisplayName = "DisplayName" . rand();
-$resultingCustomerObj = $dataService->Add($customerObj);
+// Add the Invoice resource
+$theResourceObj = Invoice::create([
+       "Deposit" => 0,
+      "domain" => "QBO",
+      "sparse" => false,
+      "Id" => $IdGenerated,
+      "SyncToken" => 0,
+      "MetaData" => [
+          "CreateTime" => "2015-07-24T10:35:08-07:00",
+          "LastUpdatedTime" => "2015-07-24T10:35:08-07:00"
+      ],
+      "CustomField"=>  [ [
+          "DefinitionId" => "1",
+          "Name" => "Crew #",
+          "Type" => "StringType"
+      ]],
+      "DocNumber" => "1070",
+      "TxnDate" => "2015-07-24",
+      "LinkedTxn" => [],
+      "Line" => [[
+          "Id" => "1",
+          "LineNum" => 1,
+          "Amount" => 150.0,
+          "DetailType" => "SalesItemLineDetail",
+          "SalesItemLineDetail" => [
+              "ItemRef" => [
+                  "value" => "1",
+                  "name" => "Services"
+              ],
+              "TaxCodeRef" => [
+                  "value" => "NON"
+              ]
+          ]
+      ], [
+          "Amount" => 150.0,
+          "DetailType" => "SubTotalLineDetail",
+          "SubTotalLineDetail" => []
+      ]],
+      "TxnTaxDetail" => [
+          "TotalTax" => 0
+      ],
+      "CustomerRef" => [
+          "value" => "1",
+          "name" => "Amy's Bird Sanctuary"
+      ],
+      "CustomerMemo" => [
+          "value" => "Added customer memo."
+      ],
+      "BillAddr" => [
+          "Id" => "2",
+          "Line1" => "4581 Finch St.",
+          "City" => "Bayshore",
+          "CountrySubDivisionCode" => "CA",
+          "PostalCode" => "94326",
+          "Lat" => "INVALID",
+          "Long"=> "INVALID"
+      ],
+      "ShipAddr" => [
+          "Id" => "109",
+          "Line1" => "4581 Finch St.",
+          "City" => "Bayshore",
+          "CountrySubDivisionCode" => "CA",
+          "PostalCode" => "94326",
+          "Lat" => "INVALID",
+          "Long" => "INVALID"
+      ],
+      "DueDate" => "2015-08-23",
+      "TotalAmt" => 150.0,
+      "ApplyTaxAfterDiscount" => false,
+      "PrintStatus" => "NeedToPrint",
+      "EmailStatus" => "NotSet",
+      "Balance" => 150.0
+]);
+$resultingObj = $dataService->Add($theResourceObj);
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
@@ -195,8 +287,8 @@ if ($error != null) {
     echo "The Response message is: " . $error->getResponseBody() . "\n";
 }
 else {
-    echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingCustomerObj, $urlResource);
+    echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
     echo $xmlBody . "\n";
 }
 ?>
@@ -205,30 +297,45 @@ else {
 
 Update existing resources (PUT)
 ---------------------------------
-To update a single resource, you will need to read the resource first and then update it:
+To update a single resource, take Invoice as an example here. You will need to read the resource first and then update it:
+
 ~~~php
-// Same as adding a customer before
-....
-$customerObj = new IPPCustomer();
-$customerObj->Name = "Name" . rand();
-$customerObj->CompanyName = "CompanyName" . rand();
-$customerObj->GivenName = "GivenName" . rand();
-$customerObj->DisplayName = "DisplayName" . rand();
-$resultingCustomerObj = $dataService->Add($customerObj);
+<?php
+require "vendor/autoload.php";
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\Facades\Invoice;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+
+$dataService = DataService::Configure(array(
+	         'auth_mode' => 'oauth1',
+		 'consumerKey' => "Your Cosumer Key",
+		 'consumerSecret' => "Your Consumer secrets",
+		 'accessTokenKey' => "Your Access Token",
+		 'accessTokenSecret' => "Your Access Token Secrets",
+		 'QBORealmID' => "193514489870599",
+		 'baseUrl' => "https://sandbox.api.intuit.com/"
+));
+
+if (!$dataService)
+	exit("Problem while initializing DataService.\n");
+
+//You can also use Query to find the Invoice
+$findInvoice = $dataService->FindById("Your Invoice ID");
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
-}
-else {
-    echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingCustomerObj, $urlResource);
-    echo $xmlBody . "\n";
+    exit();
 }
 
-// Update Customer Obj
-$resultingCustomerObj->GivenName = "New Name " . rand();
+// Update the Invoice Obj
+$updatedInvoice = Invoice::update($findInvoice, [
+            "Deposit" => 100000,
+            "DocNumber" => "12223322"
+]);
+
+$resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
 $resultingCustomerUpdatedObj = $dataService->Add($resultingCustomerObj);
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
@@ -248,7 +355,9 @@ Delete resources (DELETE)
 To delete a single resource you can call the delete method on the dataService object:
 
 ~~~php
+//Same as constructing the DataService
 ...
+$targetInvoiceObj = $dataService->FindById("The ID of the Invoice");
 $currentResultObj = $dataService->Delete($targetObject);
 if ($crudResultObj)
 	echo "Delete the purchase object that we just created.\n";
@@ -262,7 +371,9 @@ Query resources (Query)
 -------------------------------------------
 To use Query, you will construct the Query String and call the $dataService->Query() method:
 ~~~php
-$allAccounts = $dataServices->Query("SELECT * FROM Account");
+//Same for constructing the DataService object
+...
+$allInvoices = $dataServices->Query("SELECT * FROM Invoice");
 ~~~
 
 Handling Errors And Timeouts
