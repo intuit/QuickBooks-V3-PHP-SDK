@@ -344,21 +344,19 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Facades\Invoice;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
+
 $dataService = DataService::Configure(array(
 	         'auth_mode' => 'oauth1',
-		 'consumerKey' => "Your Cosumer Key",
-		 'consumerSecret' => "Your Consumer secrets",
-		 'accessTokenKey' => "Your Access Token",
-		 'accessTokenSecret' => "Your Access Token Secrets",
-		 'QBORealmID' => "193514489870599",
-		 'baseUrl' => "https://sandbox.api.intuit.com/"
+		 'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
+		 'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
+		 'accessTokenKey' => "lvprdzNckPXUquNnptGJXw84tgnAUQ7HQw9j7vbZdJQmc2Wj",
+		 'accessTokenSecret' => "qSmQj5RLl0jA4HRvova3xwmZwRMclQcsNLU1XwXO",
+		 'QBORealmID' => "193514464689044",
+		 'baseUrl' => "https://sandbox-quickbooks.api.intuit.com/"
 ));
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
-
-//You can also use Query to find the Invoice
-$findInvoice = $dataService->FindById("Your Invoice ID");
+$entities = $dataService->Query("select * from Invoice where docNumber='1566'");
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
@@ -366,25 +364,17 @@ if ($error != null) {
     echo "The Response message is: " . $error->getResponseBody() . "\n";
     exit();
 }
-
-// Update the Invoice Obj
-$updatedInvoice = Invoice::update($findInvoice, [
-            "Deposit" => 100000,
-            "DocNumber" => "12223322"
-]);
-
-$resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
-$error = $dataService->getLastError();
-if ($error != null) {
-    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
-    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
-    echo "The Response message is: " . $error->getResponseBody() . "\n";
+if(!empty($entities) && sizeof($entities) == 1){
+    $theInvoice = current($entities);
+    $updatedInvoice = Invoice::update($theInvoice, [
+         'sparse' => true,
+         'DocNumber' => '8999'
+    ]);
+    $dataService->add($updatedInvoice);
+    
 }
-else {
-    echo "Created Id={$resultingUpdatedInvoiceObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingUpdatedInvoiceObj, $urlResource);
-    echo $xmlBody . "\n";
-}
+
+?>
 ~~~
 
 **Be careful when you trying to use the update method. QuickBooks Online Provide Two Updates: Full Update and Sparse Update. The sparse update operation provides the ability to update a subset of attributes for a given object; only those specified in the request are updated. Missing attributes are left untouched.This is in contrast to the full update operation, where elements missing from the request are cleared.**
