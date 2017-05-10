@@ -18,7 +18,7 @@ To use PHP SDK, you need to have:
 - PHP 5.6 or greater
 - PHP PECL OAuth 1.2.3 extension enabled
 
-QuickBooks Online API use OAuth 1.0 as an authorization protocol. 
+QuickBooks Online API use OAuth 1.0 as an authorization protocol. <br/>
 **To generate OAuth 1.0 access tokens, you need:**
 
 - Account with developer.intuit.com
