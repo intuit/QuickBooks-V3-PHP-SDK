@@ -412,14 +412,14 @@ $allInvoices = $dataServices->Query("SELECT * FROM Invoice");
 
 The query statement you will use is very similar to a SQL query. If you go to the documentation page for each API entity endpoint(use Invoice as an example here): https://developer.intuit.com/docs/api/accounting/invoice
 
-You will find that a few keywords like "filterable, sortable" are listed for some fields. For those fields that are filterable and sortable, you can use the SQL query to match the items. For example, to match an invoice with a specific docNumber, you will use:
+You will find that a few keywords like "filterable, sortable" are listed for some fields. For those fields that are filterable and sortable, you can use the SQL query to match the fields. For example, to match an invoice with a specific docNumber, you will use:
 
 ~~~php
 $allInvoices = $dataServices->Query("select * from Invoice where docNumber='1038'");
 ~~~
 
 For QuickBooks Online, SQL comparision value is required to be *single quoted*. A Statement for Invoice use double quote for string value or just an integer for comparision  *WILL NOT WORK*
-~~sql
+~~~sql
 $allInvoices = $dataServices->Query("select * from Invoice where docNumber=1038");
 ~~~
 
