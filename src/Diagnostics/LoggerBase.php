@@ -8,7 +8,27 @@ use QuickBooksOnline\API\Core\CoreConstants;
  */
 class LoggerBase
 {
-
+    /**
+     * The logging location.
+     * @var LoggerBase $ServiceRequestLoggingLocation
+     */
+    public $ServiceRequestLoggingLocation;
+    
+    /**
+     * The logging enabled flag.
+     * @var LoggerBase $EnableRequestResponseLogging
+     */
+    public $EnableRequestResponseLogging;
+    
+    /**
+     * Initializes the LoggerBase object
+     */
+    public function __construct()
+    {
+        $this->ServiceRequestLoggingLocation = CoreConstants::DEFAULT_LOGGINGLOCATION;
+        $this->EnableRequestResponseLogging = TRUE;
+    }
+    
     /**
      * Logs messages depending on the ids trace level.
      *
@@ -18,6 +38,7 @@ class LoggerBase
      */
     public function Log($idsTraceLevel, $messageToWrite)
     {
-        file_put_contents(CoreConstants::DEFAULT_LOGGINGLOCATION . 'executionlog.txt', $messageToWrite."\n", FILE_APPEND);
+        if ($this->EnableRequestResponseLogging === TRUE)
+            file_put_contents($this->ServiceRequestLoggingLocation . 'executionlog.txt', $messageToWrite."\n", FILE_APPEND);
     }
 }
