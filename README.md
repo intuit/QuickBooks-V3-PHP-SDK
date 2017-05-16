@@ -478,5 +478,5 @@ See our Tool documentation for more information: https://developer.intuit.com/do
 
 Examples
 --------
-Under the /src folder, there is a directory called "_Samples". You can find working examples for PUT, GET, QUERY, and UPDATE QuickBooks Online API Entities. 
+Under the /src folder, there is a directory called "_Samples". You can find working examples for PUT, GET, QUERY, and UPDATE QuickBooks Online API Entities there. If you have any other questions or need technique support, feel free to create a ticket @ https://help.developer.intuit.com/s/contactsupport or Email me: Hao_Lu@intuit.com
 
