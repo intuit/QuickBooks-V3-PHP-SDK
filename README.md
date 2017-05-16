@@ -67,12 +67,13 @@ There are two ways to provide OAuth configration for prepare the service context
 Pass the OAuth configuration as an array:
 ~~~php
 $dataService = DataService::Configure(array(
-         	  'auth_mode' => 'oauth1',
-		  'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
-		  'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-		  'accessTokenKey' => "lvprdePgDHR4kSxxC7KFb8sy84TjQMVJrbITqyeaRAwBrLuq",
-		  'accessTokenSecret' => "VRm1nrr17JL1RhPAFGgEjepxWeSUbGGsOwsjrKLP",
-		  'QBORealmID' => "123145812836282"
+         'auth_mode' => 'oauth1',
+         'consumerKey' => "Your Consumer key",
+         'consumerSecret' => "Your Consumer secret",
+         'accessTokenKey' => "Your Access Tokens",
+         'accessTokenSecret' => "Your Access Token secrets",
+         'QBORealmID' => "Your CompanyID",
+         'baseUrl' => "either sandbox or Production QBO URL"
 ));
 ~~~
 
@@ -83,18 +84,42 @@ You use the sdk.config file located in /src as a template for the config file fo
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
 
-To set up Minor Version you want to use for the Request:
+For OAuth values under Development Keys, use "https://sandbox-quickbooks.api.intuit.com/" as baseUrl<br>
+For OAuth values under Production Keys, use "https://quickbooks.api.intuit.com/" as baseUrl.
+
+Currently the default minor version for PHP SDK is set to 4. To set up the minor Version with a different value, use:
 ~~~php
-$dataService->setMinorVersion("4");
+$dataService->setMinorVersion("3");
 ~~~
 
-To set up your own Log location for complete request and response:
+To set up your own Log location for complete request and response, use:
 ~~~php
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 ~~~
+For PHP SDK, the default log position is located at : tmp/IdsLogs 
+(If the path does not exist. The request and response log will not be recored under IdsLogs directory.)
+
+PHP SDK has two kinds of logs. One is the request/response log and the other one is the Executation log. Executation log will not be able to be turned off. However, you can always change the location of the request/response log, or disable it:
+~~~php
+$dataService->disableLog();
+~~~
+
+Test your OAuth settings
+------------------------
+To test that your configuration was correct and you can successfully connect to QuickBooks Online, ping the getCompanyInfo() method, which will return the CompanyInfo object representing the current company if successful or NULL if unsuccessful. When it is null, use the getLastError() to find out the actual error:
+
+~~~php
+$CompanyInfo = $dataService->getCompanyInfo();
+$error = $dataService->getLastError();
+if ($error != null) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+} 
+~~~
 
 Connecting to the QuickBooks Online API
------------------------
+---------------------------------------
 Currently the below API entity Endpoints support creating Objects from Array:
 * Account
 * Bill
@@ -451,5 +476,7 @@ else {
 
 See our Tool documentation for more information: https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/0209_php
 
-
+Examples
+--------
+Under the /src folder, there is a directory called "_Samples". You can find working examples for PUT, GET, QUERY, and UPDATE QuickBooks Online API Entities. 
 
