@@ -1,19 +1,14 @@
 <?php
-
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
 include('../config.php');
 
 use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
-use QuickBooksOnline\API\Data\IPPCustomer;
+use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
-//$dataService = DataService::Configure("/Users/hlu2/Desktop/intuit_git/V3-PHP-SDK_March30/sdk/sdk.config");
-
-
-
-
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
          'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
@@ -24,25 +19,34 @@ $dataService = DataService::Configure(array(
          'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
 ));
 
-// Prep Data Services
-$serviceContext = $dataService->getServiceContext();
-
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
-$dataService->setMinorVersion("4");
-$dataService->useXml();
-$dataService->disableLog();
-var_dump($serviceContext);
 
-if (!$dataService) {
-    exit("Problem while initializing DataService.\n");
-}
 
 // Add a customer
-$customerObj = new IPPCustomer();
-$customerObj->Name = "Name" . rand();
-$customerObj->CompanyName = "CompanyName" . rand();
-$customerObj->GivenName = "GivenName" . rand();
-$customerObj->DisplayName = "DisplayName" . rand();
+$customerObj = Customer::create([
+  "BillAddr" => [
+     "Line1"=>  "123 Main Street",
+     "City"=>  "Mountain View",
+     "Country"=>  "USA",
+     "CountrySubDivisionCode"=>  "CA",
+     "PostalCode"=>  "94042"
+ ],
+ "Notes" =>  "Here are other details.",
+ "Title"=>  "Mr",
+ "GivenName"=>  "James",
+ "MiddleName"=>  "B",
+ "FamilyName"=>  "King",
+ "Suffix"=>  "Jr",
+ "FullyQualifiedName"=>  "King Groceries",
+ "CompanyName"=>  "King Groceries",
+ "DisplayName"=>  "King's Groceries",
+ "PrimaryPhone"=>  [
+     "FreeFormNumber"=>  "(555) 555-5555"
+ ],
+ "PrimaryEmailAddr"=>  [
+     "Address" => "jdrew@myemail.com"
+ ]
+]);
 $resultingCustomerObj = $dataService->Add($customerObj);
 $error = $dataService->getLastError();
 if ($error != null) {

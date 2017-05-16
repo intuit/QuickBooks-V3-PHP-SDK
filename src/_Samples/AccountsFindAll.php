@@ -1,45 +1,41 @@
 <?php
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+include('../config.php');
 
-require_once('../config.php');
-
-require_once(PATH_SDK_ROOT . 'Core/ServiceContext.php');
-require_once(PATH_SDK_ROOT . 'DataService/DataService.php');
-require_once(PATH_SDK_ROOT . 'PlatformService/PlatformService.php');
-require_once(PATH_SDK_ROOT . 'Utility/Configuration/ConfigurationManager.php');
-
-//Specify QBO or QBD
-$serviceType = IntuitServicesType::QBO;
-
-// Get App Config
-$realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId) {
-    exit("Please add realm to App.Config before running this sample.\n");
-}
-
-// Prep Service Context
-$requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
-                                              ConfigurationManager::AppSettings('AccessTokenSecret'),
-                                              ConfigurationManager::AppSettings('ConsumerKey'),
-                                              ConfigurationManager::AppSettings('ConsumerSecret'));
-$serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext) {
-    exit("Problem while initializing ServiceContext.\n");
-}
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
 // Prep Data Services
-$dataService = new DataService($serviceContext);
-if (!$dataService) {
-    exit("Problem while initializing DataService.\n");
-}
+$dataService = DataService::Configure(array(
+       'auth_mode' => 'oauth1',
+         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
+         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
+         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
+         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
+         'QBORealmID' => "193514489870599",
+         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+));
+
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 // Iterate through all Accounts, even if it takes multiple pages
 $i = 1;
 while (1) {
     $allAccounts = $dataService->FindAll('Account', $i, 500);
+    $error = $dataService->getLastError();
+    if ($error != null) {
+        echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+        echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+        echo "The Response message is: " . $error->getResponseBody() . "\n";
+        exit();
+    }
+    
     if (!$allAccounts || (0==count($allAccounts))) {
         break;
     }
-    
+
     foreach ($allAccounts as $oneAccount) {
         echo "Account[".($i++)."]: {$oneAccount->Name}\n";
         echo "\t * Id: [{$oneAccount->Id}]\n";
@@ -67,3 +63,4 @@ Account[1]: COGs
 ...
 
 */
+ ?>

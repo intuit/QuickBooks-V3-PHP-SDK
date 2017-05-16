@@ -1,36 +1,30 @@
 <?php
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+include('../config.php');
 
-require_once('../config.php');
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Data\IPPReferenceType;
+use QuickBooksOnline\API\Data\IPPAttachableRef;
+use QuickBooksOnline\API\Data\IPPAttachable;
+use QuickBooksOnline\API\Facades\Bill;
 
-require_once(PATH_SDK_ROOT . 'Core/ServiceContext.php');
-require_once(PATH_SDK_ROOT . 'DataService/DataService.php');
-require_once(PATH_SDK_ROOT . 'PlatformService/PlatformService.php');
-require_once(PATH_SDK_ROOT . 'Utility/Configuration/ConfigurationManager.php');
 
-//Specify QBO or QBD
-$serviceType = IntuitServicesType::QBO;
-
-// Get App Config
-$realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId) {
-    exit("Please add realm to App.Config before running this sample.\n");
-}
-
-// Prep Service Context
-$requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
-    ConfigurationManager::AppSettings('AccessTokenSecret'),
-    ConfigurationManager::AppSettings('ConsumerKey'),
-    ConfigurationManager::AppSettings('ConsumerSecret'));
-$serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext) {
-    exit("Problem while initializing ServiceContext.\n");
-}
 
 // Prep Data Services
-$dataService = new DataService($serviceContext);
-if (!$dataService) {
-    exit("Problem while initializing DataService.\n");
-}
+$dataService = DataService::Configure(array(
+       'auth_mode' => 'oauth1',
+         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
+         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
+         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
+         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
+         'QBORealmID' => "193514489870599",
+         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+));
+
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 // Prepare entities for attachment upload
 $imageBase64 = array();
@@ -94,11 +88,30 @@ $imageBase64['image/jpeg'] = "" .
     "Gqf9/I//AI3RRXRTk+VamM4rmegv/DMfh/H/AB8ap/38j/8AjdB/Zj8Pn/l41Trn/WR9f+/dFFVzPuRZ" .
     "XEP7Mfh89bjVOP8AppFx/wCQ69I/Zf8A2d9F0z4hXP2S61Qb9Olzl4z0lh/6Z+9FFY4mT9lLU1oJc6P/" .
     "2Q==";
-    
+
 $sendMimeType = "image/jpeg";
 
 // Create a new IPPBill
-$billObj = CreateBill($dataService);
+$billObj = Bill::create([
+  "Line" =>[
+          [
+              "Id" =>"1",
+              "Amount" => 200.00,
+              "DetailType" => "AccountBasedExpenseLineDetail",
+              "AccountBasedExpenseLineDetail"=>
+              [
+                  "AccountRef"=>
+                  [
+                      "value"=>"7"
+                  ]
+              ]
+          ]
+      ],
+      "VendorRef"=>
+      [
+          "value"=>"56"
+      ]
+]);
 if (!$billObj) {
     echo "Problem creating bill\n";
     exit();
@@ -119,47 +132,6 @@ $resultObj = $dataService->Upload(base64_decode($imageBase64[$sendMimeType]),
                                   $objAttachable->FileName,
                                   $sendMimeType,
                                   $objAttachable);
-
-
-function CreateBill($dataServices)
-{
-    // Query to find an expense account to attribute this expense to
-    $AccountArray=array();
-    $AccountArray['Expense'] = $dataServices->Query("SELECT * FROM Account WHERE AccountType='Expense'", 1, 10);
-    if (!$AccountArray['Expense']) {
-        return null;
-    }
-    $expenseAccountId = $AccountArray['Expense'][0]->Id;
-
-    // Query to find an Vendor to attribute this bill to
-    $VendorArray = $dataServices->Query("SELECT * FROM Vendor", 1, 10);
-    if (!$VendorArray) {
-        return null;
-    }
-    $vendorId = $VendorArray[0]->Id;
-                
-    // Create lines
-    $PaymentLine = new IPPLine(array('Description'=>'some line item',
-                                     'Amount'     =>'7.50',
-                                     'DetailType' =>'AccountBasedExpenseLineDetail',
-                                     'AccountBasedExpenseLineDetail'=>
-                                          new IPPAccountBasedExpenseLineDetail(
-                                              array('AccountRef'=>
-                                                  new IPPReferenceType(array('value'=>$expenseAccountId))
-                                             )
-                                        ),
-                                     )
-                              );
-
-    // Create Bill Obj
-    $billObj = new IPPBill();
-    $billObj->Name = 'Bill' . rand();
-    $billObj->VendorRef = new IPPReferenceType(array('value'=>$vendorId));
-    $billObj->TotalAmt = '15.00';
-    $billObj->Line = array($PaymentLine,$PaymentLine);
-                            
-    return $dataServices->Add($billObj);
-}
 
 
 
