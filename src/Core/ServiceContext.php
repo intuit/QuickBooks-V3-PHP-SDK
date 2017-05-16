@@ -178,11 +178,23 @@ class ServiceContext
             $settings['consumerSecret']);
         $QBORealmID = $settings['QBORealmID'];
         $baseURL = $settings['baseUrl'];
-
+        $checkedBaseURL = ServiceContext::checkAndAddBaseURLSlash($baseURL);
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
-        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $baseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, "3");
+        //Set the default minor version to 4
+        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, "4");
         $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
         return $serviceContextInstance;
+    }
+
+    /**
+     * When user passing the URL from Code. Sometimes they forget to add "/" at the end of string. Add it for them.
+     */
+    private static function checkAndAddBaseURLSlash($baseURL){
+        $lastChar = substr($baseURL, -1);
+        if(strcmp($lastChar, "/") != 0){
+             $baseURL = $baseURL . "/";
+        }
+        return $baseURL;
     }
 
 
@@ -236,7 +248,7 @@ class ServiceContext
      * Currently the Object serailziation and deserilization only supports XML format.
      * To be Supported, Currently it is only a place holder @Hao
      */
-    private function useJson()
+    public function useJson()
     {
         $this->IppConfiguration->Message->Request->CompressionFormat = CompressionFormat::None;
         $this->IppConfiguration->Message->Response->CompressionFormat = CompressionFormat::None;

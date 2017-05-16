@@ -815,7 +815,7 @@ class DataService
         $uri = null;
 
 
-        $formattedChangedSince = date("Y-m-d\TH:m:sP", $this->verifyChangedSince($changedSince));
+        $formattedChangedSince = date("Y-m-d\TH:m:s", $this->verifyChangedSince($changedSince));
         $query = "entities=" . $entityString . "&changedSince=" . $formattedChangedSince;
         $uri = "company/{1}/cdc?{2}";
         //$uri = str_replace("{0}", CoreConstants::VERSION, $uri);
@@ -1281,5 +1281,25 @@ class DataService
             throw new SdkException("Input value should be unix timestamp or valid date string");
         }
         return $converted;
+    }
+
+    /**
+     * A sample Test call to see if the connect is setup correctly
+     */
+    public function getCompanyInfo(){
+       $currentServiceContext = $this->serviceContext;
+       if(!isset($currentServiceContext)  || empty($currentServiceContext->realmId)){
+            throw new \Exception("Please Setup Service Context realmID before making get CompanyInfo call.");
+       }
+
+       $result = $this->Query("SELECT * FROM CompanyInfo");
+       if(!isset($result)){
+           return null;
+       }else{
+            if(empty($result) || sizeof($result) > 1 ) throw new \Exception("Internal Error. Returned CompanyInfo from QBO is either empty or contain multiple records. Something is Wrong.");
+            $firstElementValue = reset($result);
+            return $firstElementValue;
+       }
+
     }
 }

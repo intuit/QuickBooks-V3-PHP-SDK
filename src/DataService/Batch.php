@@ -65,6 +65,14 @@ class Batch
     */
     private $lastError = null;
 
+    /**
+    * Get the error from last request
+    * @return lastError
+    */
+    public function getLastError()
+    {
+        return $this->lastError;
+    }
 
     /**
      * Initializes a new instance of the Batch class.
