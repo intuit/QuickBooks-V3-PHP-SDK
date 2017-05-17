@@ -18,6 +18,10 @@ class LoggerBase
      */
     public function Log($idsTraceLevel, $messageToWrite)
     {
-        file_put_contents(CoreConstants::DEFAULT_LOGGINGLOCATION . 'executionlog.txt', $messageToWrite."\n", FILE_APPEND);
+        $fileToWrite = CoreConstants::DEFAULT_LOGGINGLOCATION . '/executionlog.txt';
+        if(file_exists($fileToWrite) && is_writable($fileToWrite))
+        {
+           file_put_contents($fileToWrite, $messageToWrite."\n", FILE_APPEND);
+        }
     }
 }
