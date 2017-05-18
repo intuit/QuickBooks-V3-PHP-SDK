@@ -9,6 +9,7 @@ use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
+use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Core\Configuration\LocalConfigReader;
@@ -666,13 +667,14 @@ class DataService
     }
 
     /**
-     * Returns PDF for entities which can be downloaded as PDF
-     * @param type $entity
+     * Sends entity by email for entities that have this operation
+     * @param IPPIntuitEntity $entity
+     * @param string|null $email
      * @return boolean
      * @throws IdsException, SdkException
      *
      */
-    public function SendEmail($entity, $email=null)
+    public function SendEmail($entity, $email = null)
     {
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
