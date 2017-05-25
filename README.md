@@ -262,8 +262,9 @@ $dataService = DataService::Configure(array(
 		 'consumerSecret' => "Your Consumer secrets",
 		 'accessTokenKey' => "Your Access Token",
 		 'accessTokenSecret' => "Your Access Token Secrets",
-		 'QBORealmID' => "193514489870599",
-		 'baseUrl' => "https://sandbox.api.intuit.com/"
+		 'QBORealmID' => "Your RealmID",
+		 //sandbox.api.intuit.com/ will be the sandbox url and quickbooks.api.intuit.com/ will be the product url
+		 'baseUrl' => "Your sandbox URL or Product URL"
 ));
 
 if (!$dataService)
