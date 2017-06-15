@@ -207,6 +207,7 @@ Considerations for using sparse updating include:
 
 For other Entity Endpoints that are not in the list, you have to use the old object oriented way to create. 
 Please refer to the CRUD Examples here: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP
+and Class Library reference here: https://developer-static.intuit.com/SDKDocs/QBV3Doc/IPPPHPDevKitV3/index.html
 
 For example, to create an Invoice, you can also do the following:
 ~~~php
