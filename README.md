@@ -135,6 +135,7 @@ Currently the below API entity Endpoints support creating Objects from Array:
 * Deposit
 * Employee
 * Estimate
+* Line (For excessive usage of Line objects, we create easy way of contructing Line items as well. However, Line is not an API endpoint entity)
 * Invoice
 * Item
 * JournalEntry
