@@ -31,6 +31,11 @@ class BaseUrl
     public function __construct($Qbo=null, $Ipp=null)
     {
         $this->Qbo=$Qbo;
-        $this->Ipp=$Ipp;
+        if(isset($Ipp))
+        {
+          $this->Ipp = $Ipp;
+        }else {
+          $this->Ipp = "https://appcenter.intuit.com/api/";
+        }
     }
 }
