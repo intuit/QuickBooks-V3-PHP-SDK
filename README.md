@@ -19,7 +19,7 @@ Requirements
 ------------
 To use PHP SDK, you need to have: 
 - PHP 5.6 or greater
-- PHP PECL OAuth 1.2.3 extension enabled
+- PHP PECL OAuth 1.2.3 extension enabled (This is a requirement before SDK Version 3.2.4)
 
 QuickBooks Online API use OAuth 1.0 as an authorization protocol. 
 <br/><br/>
