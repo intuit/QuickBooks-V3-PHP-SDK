@@ -1038,7 +1038,7 @@ class ReportService
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
 
         try {
-            list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, null, null);
+            list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
         } catch (Exception $e) {
             return null;
         }

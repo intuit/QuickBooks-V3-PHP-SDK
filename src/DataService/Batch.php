@@ -295,7 +295,7 @@ class Batch
             }
             $httpsPostBody = $doc->saveXML();
 
-            list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, $httpsPostBody, null);
+            list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
             $faultHandler = $restRequestHandler->getFaultHandler();
             if (isset($faultHandler)) {
                 $this->lastError = $faultHandler;
@@ -349,10 +349,10 @@ class Batch
         if (empty($fault)) {
             return null;
         }
-        if (!$fault instanceof SimpleXMLElement) {
+        if (!$fault instanceof \SimpleXMLElement) {
             return null;
         }
-        if (!$fault->attributes() instanceof SimpleXMLElement) {
+        if (!$fault->attributes() instanceof \SimpleXMLElement) {
             return null;
         }
         if (!isset($fault->attributes()->type)) {
@@ -366,19 +366,19 @@ class Batch
     {
         $errors = array();
         if (isset($fault->Error)
-                && ($fault->Error instanceof SimpleXMLElement)
+                && ($fault->Error instanceof \SimpleXMLElement)
                 && $fault->Error->count()) {
             foreach ($fault->Error as $item) {
                 if (!isset($item->Message)) {
                     continue;
                 }
-                if (!$item->Message instanceof SimpleXMLElement) {
+                if (!$item->Message instanceof \SimpleXMLElement) {
                     continue;
                 }
-                $error = new stdClass();
+                $error = new \stdClass();
                 $error->message = (string)$item->Message;
                 $error->code = null;
-                if ($item->attributes() instanceof SimpleXMLElement
+                if ($item->attributes() instanceof \SimpleXMLElement
                             && isset($item->attributes()->code)) {
                     $error->code = (string)$item->attributes()->code;
                 }
@@ -510,7 +510,7 @@ class Batch
     /**
      * Maps some values from the response xml to the result instance object
      * @param IntuitBatchResponse $batchResponse
-     * @param SimpleXMLElement $simpleXML
+     * @param \SimpleXMLElement $simpleXML
      */
     private function applyAttributes($batchResponse, $simpleXML)
     {

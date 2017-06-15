@@ -7,6 +7,9 @@ use QuickBooksOnline\API\Utility\IntuitErrorHandler;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Exception\IdsException;
+use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
+use QuickBooksOnline\API\Exception\SdkException;
+
 
 /**
  * SyncRestHandler contains the logic for preparing the REST request, calls REST services and returns the response.
@@ -25,6 +28,8 @@ class SyncRestHandler extends RestHandler
      */
     private $context;
 
+    private $curlHttpClient;
+
     /**
      * Initializes a new instance of the SyncRestHandler class.
      *
@@ -34,6 +39,7 @@ class SyncRestHandler extends RestHandler
     {
         parent::__construct($context);
         $this->context = $context;
+        $this->curlHttpClient = new CurlHttpClient();
         return $this;
     }
 
@@ -44,10 +50,14 @@ class SyncRestHandler extends RestHandler
     * @return null if no error
     *         An object contain error information
   */
-  public function getFaultHandler()
-  {
-      return $this->faultHandler;
-  }
+    public function getFaultHandler()
+    {
+       return $this->faultHandler;
+    }
+
+    public function closeCurlClient(){
+       $curlHttpClient->closeConnection();
+    }
 
     /**
      * Returns the response by calling REST service.
@@ -111,65 +121,13 @@ class SyncRestHandler extends RestHandler
     }
 
 
-
-    /**
-     * Returns the response headers, response body and response code from a called OAuth object
-     * deprecated on Version 2.6.0. Need to refactor
-     * @param OAuth $oauth A called OAuth object
-     * @return array elements are 0: HTTP response code; 1: response content, 2: HTTP response headers
-     * @deprecated
-     */
-    private function GetOAuthResponseHeaders($oauth)
-    {
-        $response_code = null;
-        $response_xml = null;
-        $response_headers = array();
-
-        try {
-            $response_xml = $oauth->getLastResponse();
-
-            $response_headers = array();
-            $response_headers_raw = $oauth->getLastResponseHeaders();
-            $response_headers_rows = explode("\r\n", $response_headers_raw);
-            foreach ($response_headers_rows as $header) {
-                $keyval = explode(":", $header);
-                if (2==count($keyval)) {
-                    $response_headers[$keyval[0]] = trim($keyval[1]);
-                }
-
-                if (false !== strpos($header, 'HTTP')) {
-                    list(, $response_code, ) = explode(' ', $header);
-                }
-            }
-
-            // Decompress, if applicable
-            if (CoreConstants::IntuitServicesTypeQBO==$this->context->serviceType) {
-                // Even if accept-encoding is set to deflate, server never (as far as we know) actually chooses
-                // to respond with Content-Encoding: deflate.  Thus, the inspection of 'Content-Encoding' response
-                // header rather than assuming that server will respond with encoding specified by accept-encoding
-                if ($this->ResponseCompressor &&
-                    $response_headers &&
-                    array_key_exists('Content-Encoding', $response_headers)) {
-                    $response_xml = $this->ResponseCompressor->Decompress($response_xml, $response_headers);
-                }
-            }
-        } catch (\Exception $e) {
-            throw new \Exception("Error on GetOAuthResponseHeaders.");
-        }
-
-        return array($response_code, $response_xml, $response_headers);
+    public function closeConnection(){
+        $this->curlHttpClient->closeConnection();
     }
-
-
     /**
-     * Returns the response by calling REST service.
-     *
-     * @param ServiceContext $requestParameters The parameters
-     * @param string $requestBody The request body
-     * @param string $oauthRequestUri The OAuth request uri
-     * @return array elements are 0: HTTP response code; 1: HTTP response body
+     * The main method for making Request.
      */
-    public function GetResponse($requestParameters, $requestBody, $oauthRequestUri)
+    public function sendRequest($requestParameters, $requestBody, $oauthRequestUri)
     {
         if (isset($this->context->IppConfiguration->Logger->CustomLogger)) {
             $this->context->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Called PrepareRequest method");
@@ -181,8 +139,8 @@ class SyncRestHandler extends RestHandler
         $this->RequestSerializer = CoreHelper::GetSerializer($this->context, true);
         $this->ResponseSerializer = CoreHelper::GetSerializer($this->context, false);
 
+
         // Determine dest URI
-        $requestUri='';
         if ($requestParameters->ApiName) {
             // Example: "https://appcenter.intuit.com/api/v1/Account/AppMenu"
             $requestUri = $this->context->baseserviceURL . $requestParameters->ApiName;
@@ -192,6 +150,7 @@ class SyncRestHandler extends RestHandler
         } elseif ($requestParameters->ResourceUri) {
             $requestUri = $this->context->baseserviceURL . $requestParameters->ResourceUri;
         } else {
+            throw new SdkException("Unhandled URI for sending request.");
         }
 
         //minorVersion support
@@ -203,35 +162,39 @@ class SyncRestHandler extends RestHandler
             }
         }
 
-    //When call OAuth, check if the user has OAuth installed.
-        if (!extension_loaded('OAuth')) {
-            throw new \Exception('The PHP exention OAuth 1.2.3 must be installed to use this library.');
+        //Check for the HTTP method
+        if ('POST'==$requestParameters->HttpVerbType) {
+            $HttpMethod = OAUTH_HTTP_METHOD_POST;
+        } elseif ('GET'==$requestParameters->HttpVerbType) {
+            $HttpMethod = OAUTH_HTTP_METHOD_GET;
+        }else{
+            throw new \Exception("THe HTTP verb is not supported.");
         }
 
+        $queryParameters = $this->parseURL($requestUri);
+        $baseURL = $this->getBaseURL($requestUri);
 
-        $oauth = new \OAuth($this->context->requestValidator->ConsumerKey, $this->context->requestValidator->ConsumerSecret);
-        $oauth->setToken($this->context->requestValidator->AccessToken, $this->context->requestValidator->AccessTokenSecret);
-        $oauth->enableDebug();
-        $oauth->setAuthType(OAUTH_AUTH_TYPE_AUTHORIZATION);
-        $oauth->enableSSLChecks();
+        $oauth1 = new OAuth1(
+          $this->context->requestValidator->ConsumerKey, $this->context->requestValidator->ConsumerSecret,
+          $this->context->requestValidator->AccessToken, $this->context->requestValidator->AccessTokenSecret
+        );
 
-
-        // Disables oauth SSLChecks
-        if (!$this->context->IppConfiguration->SSLCheckStatus) {
-            $oauth->disableSSLChecks();
-        }
+        $AuthorizationHeader = $oauth1->getOAuthHeader($baseURL, $queryParameters, $HttpMethod);
 
         $httpHeaders = array();
         //We only support QBO for PHP SDK. No QBD support, change
         // from: if ('QBO'==$this->context->serviceType || 'QBD'==$this->context->serviceType)
         if (CoreConstants::IntuitServicesTypeQBO ==$this->context->serviceType) {
             // IDS call
-            $httpHeaders = array('host'          => parse_url($requestUri, PHP_URL_HOST),
+            $httpHeaders = array(
+                'Authorization' => $AuthorizationHeader,
+                'host'          => parse_url($requestUri, PHP_URL_HOST),
                 'user-agent'    => CoreConstants::USERAGENT,
                 'accept'        => $this->getAcceptContentType($requestParameters->ContentType),
                 'connection'    => 'close',
                 'content-type'  => $requestParameters->ContentType,
-                'content-length'=> strlen($requestBody));
+                'content-length'=> strlen($requestBody)
+            );
 
             // Log Request Body to a file
             $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
@@ -248,37 +211,29 @@ class SyncRestHandler extends RestHandler
             $httpHeaders = array('user-agent' => CoreConstants::USERAGENT);
         }
 
-        try {
-            if ('POST'==$requestParameters->HttpVerbType) {
-                $OauthMethod = OAUTH_HTTP_METHOD_POST;
-            } elseif ('GET'==$requestParameters->HttpVerbType) {
-                $OauthMethod = OAUTH_HTTP_METHOD_GET;
-            }
-
-            $oauth->fetch($requestUri, $requestBody, $OauthMethod, $httpHeaders);
-        }
+        $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
+        $this->closeConnection();
+        $faultHandler = $intuitResponse->getFaultHandler();
+        $this->RequestLogging->LogPlatformRequests($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
         //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
         //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
-        catch (\OAuthException $e) {
-            //Logging
-            list($response_code, $response_xml, $response_headers) = $this->GetOAuthResponseHeaders($oauth);
-            $this->RequestLogging->LogPlatformRequests($response_xml, $requestUri, $response_headers, false);
-            //Save Error on faultHandler
-            $this->faultHandler = new FaultHandler($this->context, $e);
-            //echo "Response: {$response_code} - {$response_xml} \n";
-            //var_dump($oauth->debugInfo);
-            //echo "\n";
-            //echo "ERROR MESSAGE: " . $oauth->debugInfo['body_recv'] . "\n"; // Useful info from Intuit
-            //echo "\n";
+        if(isset($faultHandler)) {
+            $this->faultHandler = $faultHandler;
             return null;
         }
 
-        list($response_code, $response_xml, $response_headers) = $this->GetOAuthResponseHeaders($oauth);
-//		echo "$response_xml\n";
-        // Log Request Body to a file
-        $this->RequestLogging->LogPlatformRequests($response_xml, $requestUri, $response_headers, false);
+        return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
+    }
 
-        return array($response_code,$response_xml);
+    private function getBaseURL($url){
+      return strtok($url, '?');
+    }
+
+    //Get the query parameters from URL
+    private function parseURL($url){
+       $query_str = parse_url($url, PHP_URL_QUERY);
+       parse_str($query_str, $parameters);
+       return $parameters;
     }
 
   /**

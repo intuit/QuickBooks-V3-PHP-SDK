@@ -341,6 +341,36 @@ class IPPSalesTransaction extends IPPTransaction
      * @var com\intuit\schema\finance\v3\IPPEmailAddress
      */
     public $BillEmail;
+
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Identifies the e-mail address where the invoice is sent. At present, you can provide only one e-mail address.[br /]If the ToBeEmailed attribute is true and the BillEmail attribute contains an e-mail address, the user can send an e-mail message to the e-mail address that is specified in the BillEmail attribute.[br /]If the BillEmail attribute contains an invalid e-mail address, QBO does not send the e-mail message to the invalid e-mail address. QBO also does not return any error message to indicate that the e-mail address is invalid.[br /]The maximum length for BillEmail is 100 characters.
+                                Product: QBW
+                                Description: Identifies the email address where the bill or invoice is sent. Available in Version 8
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName BillEmailCc
+     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     */
+    public $BillEmailCc;
+
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Identifies the e-mail address where the invoice is sent. At present, you can provide only one e-mail address.[br /]If the ToBeEmailed attribute is true and the BillEmail attribute contains an e-mail address, the user can send an e-mail message to the e-mail address that is specified in the BillEmail attribute.[br /]If the BillEmail attribute contains an invalid e-mail address, QBO does not send the e-mail message to the invalid e-mail address. QBO also does not return any error message to indicate that the e-mail address is invalid.[br /]The maximum length for BillEmail is 100 characters.
+                                Product: QBW
+                                Description: Identifies the email address where the bill or invoice is sent. Available on Minor Version 8.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName BillEmailBcc
+     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     */
+    public $BillEmailBcc;
     /**
      * @Definition
                                 Product: QBW

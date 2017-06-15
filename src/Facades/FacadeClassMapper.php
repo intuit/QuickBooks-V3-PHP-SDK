@@ -154,6 +154,8 @@ class FacadeClassMapper
          'VendorAddr' => 'PhysicalAddress',
          'PrimaryAddr' => 'PhysicalAddress',
          'BillEmail' => 'EmailAddress',
+         'BillEmailCc' => 'EmailAddress',
+         'BillEmailBcc' => 'EmailAddress',
          'ReplyEmail' => 'EmailAddress',
          'POEmail' => 'EmailAddress',
          //CCDetail was mapped to different entity on BillPaymentCreditCard

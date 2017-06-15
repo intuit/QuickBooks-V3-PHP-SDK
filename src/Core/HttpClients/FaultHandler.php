@@ -19,21 +19,22 @@ class FaultHandler
     private $httpStatusCode;
 
     /**
-        * The response body from Intuit
-        */
-        private $responseBody;
+    * The response body from Intuit
+    */
+    private $responseBody;
 
     /**
         *The call is made through OAuth, if any code other than 2xx is returned, OAuth will have an error message generated as well.
         * The OAuth error message will store here.
         */
-        private $oAuthHelperError;
+     private $oAuthHelperError;
     /**
      * Initializes a new instance of the FaultHandler class.
      * @param ServiceContext context
      */
-    public function __construct($context, $OAuthException)
+    public function __construct($context = null, $OAuthException = null)
     {
+        if($context == null && $OAuthException == null) return;
         $this->context = $context;
         $this->generateErrorFromOAuthMsg($OAuthException);
     }
@@ -50,6 +51,21 @@ class FaultHandler
         } else {
             throw new \Exception("OAuthException required for generate error from Intuit. The passed parameters for Fault handler is not OAuthException");
         }
+    }
+
+    public function setHttpStatusCode($statusCode)
+    {
+         $this->httpStatusCode = $statusCode;
+    }
+
+    public function setOAuthHelperError($error)
+    {
+         $this->oAuthHelperError = $error;
+    }
+
+    public function setResponseBody($_responseBody)
+    {
+         $this->responseBody = $_responseBody;
     }
 
     public function getHttpStatusCode()

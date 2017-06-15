@@ -26,7 +26,7 @@ $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 $rnd = rand();
 $taxRateDetails = new IPPTaxRateDetails();
 $taxRateDetails->TaxRateName = "myNewTaxRateName_$rnd";
-$taxRateDetails->RateValue = "7";
+$taxRateDetails->RateValue = "7777";//As Invalid number
 $taxRateDetails->TaxAgencyId = "1";
 $taxRateDetails->TaxApplicableOn = "Sales";
 

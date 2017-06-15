@@ -427,11 +427,10 @@ class DataService
         }
         //$restRequestHandler = new SyncRestHandler($this->serviceContext);
         $restRequestHandler = $this->getRestHandler();
-        list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, $httpsPostBody, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if (isset($faultHandler)) {
             $this->lastError = $faultHandler;
-
             return null;
         } else {
             if (strcmp($CALLINGMETHOD, DataService::ADD) == 0) {
@@ -696,7 +695,7 @@ class DataService
         $restRequestHandler = $this->getRestHandler();
 
 
-        list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, null, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if (isset($faultHandler)) {
             $this->lastError = $faultHandler;
@@ -764,7 +763,7 @@ class DataService
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
-        list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, $httpsPostBody, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if (isset($faultHandler)) {
             $this->lastError = $faultHandler;
@@ -821,7 +820,7 @@ class DataService
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
-        list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, $httpsPostBody, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if (isset($faultHandler)) {
             $this->lastError = $faultHandler;
@@ -877,7 +876,7 @@ class DataService
         $requestParameters = $this->getGetRequestParameters($uri, CoreConstants::CONTENTTYPE_APPLICATIONXML);
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
 
-        list($responseCode, $responseBody) = $restRequestHandler->GetResponse($requestParameters, null, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if (isset($faultHandler)) {
             $this->lastError = $faultHandler;
