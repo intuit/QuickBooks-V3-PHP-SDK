@@ -72,6 +72,6 @@ class OAuthRequestValidator extends RequestValidator
         $this->AccessTokenSecret = $accessTokenSecret;
         $this->ConsumerKey = $consumerKey;
         $this->ConsumerSecret = $consumerSecret;
-        $this->oauthSignatureMethod = OAUTH_SIG_METHOD_HMACSHA1;
+        $this->oauthSignatureMethod = 'HMAC-SHA1';
     }
 }
