@@ -164,9 +164,9 @@ class SyncRestHandler extends RestHandler
 
         //Check for the HTTP method
         if ('POST'==$requestParameters->HttpVerbType) {
-            $HttpMethod = OAUTH_HTTP_METHOD_POST;
+            $HttpMethod = 'POST';
         } elseif ('GET'==$requestParameters->HttpVerbType) {
-            $HttpMethod = OAUTH_HTTP_METHOD_GET;
+            $HttpMethod = 'GET';
         }else{
             throw new \Exception("THe HTTP verb is not supported.");
         }
