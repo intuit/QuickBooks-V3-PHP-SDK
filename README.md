@@ -89,9 +89,9 @@ $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 For OAuth values under Development Keys, use "https://sandbox-quickbooks.api.intuit.com/" as baseUrl<br>
 For OAuth values under Production Keys, use "https://quickbooks.api.intuit.com/" as baseUrl.
 
-Currently the default minor version for PHP SDK is set to 4. To set up the minor Version with a different value, use:
+Currently the default minor version for PHP SDK is set to 8. To set up the minor Version with a different value, use:
 ~~~php
-$dataService->setMinorVersion("3");
+$dataService->setMinorVersion("9");
 ~~~
 
 To set up your own Log location for complete request and response, use:
@@ -105,6 +105,18 @@ PHP SDK has two kinds of logs. One is the request/response log and the other one
 ~~~php
 $dataService->disableLog();
 ~~~
+
+For using Platform Service to Reconnect/Disconnect your OAuth 1.0a tokens(As the documentation here listed: https://developer.intuit.com/docs/0100_quickbooks_online/0100_essentials/000500_authentication_and_authorization/oauth_management_api), you can use the following platform methods:
+~~~php
+$serviceContext = $dataService->getServiceContext();
+//Create a platform Service
+$platformService = new PlatformService($serviceContext);
+//Call Reconnect if you need to refresh your OAuth 1.0a tokens
+$result = $platformService->Disconnect();
+//QBO will always return 200 on status code, so look into the error msg
+var_dump($result);
+~~~
+
 
 Test your OAuth settings
 ------------------------
@@ -146,6 +158,7 @@ Currently the below API entity Endpoints support creating Objects from Array:
 * TimeActivity
 * Transfer
 * VendorCredit
+* Vendor
 
 For create/update above entity endpoints, you are going to import corresponding facade class:
 ~~~php
@@ -195,6 +208,48 @@ To update an Invoice with new content, here is the sample code:
             "DocNumber" => "12223322"
     ]);
   $resultingUpdatedInvoiceObj = $dataService->Add($updatedInvoice);
+~~~
+
+The Facade class members now can also accept objects as a reference in the array. For example, when we created multiple lines within the Line Facade, we can easily pass it to the Invoice Facade to create an Invoice:
+
+~~~php
+for($i = 1; $i<= 3; $i ++){
+   $LineObj = Line::create([
+       "Id" => $i,
+       "LineNum" => $i,
+       "Description" => "Pest Control Services",
+       "Amount" => 35.0,
+       "DetailType" => "SalesItemLineDetail",
+       "SalesItemLineDetail" => [
+           "ItemRef" => [
+               "value" => "1",
+               "name" => "Pest Control"
+           ],
+           "UnitPrice" => 35,
+           "Qty" => 1,
+           "TaxCodeRef" => [
+               "value" => "NON"
+           ]
+       ]
+   ]);
+   $lineArray[] = $LineObj;
+}
+//Add a new Invoice
+$theResourceObj = Invoice::create([
+     "Line" =>  $lineArray,
+    "CustomerRef"=> [
+     "value"=> "1"
+     ],
+      "BillEmail" => [
+            "Address" => "Familiystore@intuit.com"
+      ],
+      "BillEmailCc" => [
+            "Address" => "a@intuit.com"
+      ],
+      "BillEmailBcc" => [
+            "Address" => "v@intuit.com"
+      ]
+]);
 ~~~
 
 **Be careful when you trying to use the update method. QuickBooks Online Provide Two Updates: Full Update and Sparse Update. The sparse update operation provides the ability to update a subset of attributes for a given object; only those specified in the request are updated. Missing attributes are left untouched.This is in contrast to the full update operation, where elements missing from the request are cleared.**
@@ -462,6 +517,7 @@ succeed.
 Every method will return false if an error occurred, and you should always
 check for this before acting on the results of the method call.
 
+After v3.2.6, you can also check for Intuit Error Message in the code:
 ~~~php
 $resultingCustomerObj = $dataService->Add($customerObj);
 $error = $dataService->getLastError();
@@ -469,6 +525,9 @@ if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
+    //After v3.2.6
+        echo "The Intuit Helper message is: IntuitErrorType:{" . $error->getIntuitErrorType() . "} IntuitErrorCode:{" . $error->getIntuitErrorCode() . "} IntuitErrorMessage:{" . $error->getIntuitErrorMessage() . "} IntuitErrorDetail:{" . $error->getIntuitErrorDetail() . "}";
+
 }
 else {
     # code...
