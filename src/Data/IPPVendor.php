@@ -205,6 +205,21 @@ class IPPVendor extends IPPNameBase
      * @var float
      */
     public $Balance;
+
+    /**
+     * @Definition
+                                Product: ALL
+                                Description: The Bill Rate for that vendor.
+                                Filterable: QBW
+                                Sortable: QBW
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName BillRate
+     * @var float
+     */
+    public $BillRate;
     /**
      * @Definition Specifies the date of the Open Balance.
                                 Non QB-writable.

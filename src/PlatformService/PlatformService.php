@@ -83,7 +83,7 @@ class PlatformService
         $this->requestXmlDocument = '';
         $uriFragment = implode(CoreConstants::SLASH_CHAR, array('v1', 'Account', 'AppMenu'));
         $requestParameters = new RequestParameters(null, 'GET', null, $uriFragment);
-        list($respCode, $respHtml) = $this->restRequestHandler->GetResponse($requestParameters, $this->requestXmlDocument, null);
+        list($respCode, $respHtml) = $this->restRequestHandler->sendRequest($requestParameters, $this->requestXmlDocument, null);
         return $respHtml;
     }
 
@@ -98,7 +98,7 @@ class PlatformService
         $this->requestXmlDocument = '';
         $uriFragment = implode(CoreConstants::SLASH_CHAR, array('v1', 'Connection', 'Reconnect'));
         $requestParameters = new RequestParameters(null, 'GET', null, $uriFragment);
-        list($respCode, $respXml) = $this->restRequestHandler->GetResponse($requestParameters, $this->requestXmlDocument, null);
+        list($respCode, $respXml) = $this->restRequestHandler->sendRequest($requestParameters, $this->requestXmlDocument, null);
         return simplexml_load_string($respXml);
     }
 
@@ -113,7 +113,7 @@ class PlatformService
         $this->requestXmlDocument = '';
         $uriFragment = implode(CoreConstants::SLASH_CHAR, array('v1', 'Connection', 'Disconnect'));
         $requestParameters = new RequestParameters(null, 'GET', null, $uriFragment);
-        list($respCode, $respXml) = $this->restRequestHandler->GetResponse($requestParameters, $this->requestXmlDocument, null);
+        list($respCode, $respXml) = $this->restRequestHandler->sendRequest($requestParameters, $this->requestXmlDocument, null);
         return simplexml_load_string($respXml);
     }
 
@@ -128,7 +128,7 @@ class PlatformService
         $this->requestXmlDocument = '';
         $uriFragment = implode(CoreConstants::SLASH_CHAR, array('v1', 'user', 'current'));
         $requestParameters = new RequestParameters(null, 'GET', null, $uriFragment);
-        list($respCode, $respXml) = $this->restRequestHandler->GetResponse($requestParameters, $this->requestXmlDocument, null);
+        list($respCode, $respXml) = $this->restRequestHandler->sendRequest($requestParameters, $this->requestXmlDocument, null);
         return simplexml_load_string($respXml);
     }
 }

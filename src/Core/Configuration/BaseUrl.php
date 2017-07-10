@@ -1,6 +1,9 @@
 <?php
 namespace QuickBooksOnline\API\Core\Configuration;
 
+use QuickBooksOnline\API\Core\CoreConstants;
+
+
 /**
 * Base Urls for QBO, QBD and IPP
 * -----------------
@@ -35,7 +38,7 @@ class BaseUrl
         {
           $this->Ipp = $Ipp;
         }else {
-          $this->Ipp = "https://appcenter.intuit.com/api/";
+          $this->Ipp =  CoreConstants::IPP_BASEURL;
         }
     }
 }

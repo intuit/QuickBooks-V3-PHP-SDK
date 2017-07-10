@@ -1,6 +1,7 @@
 <?php
 namespace QuickBooksOnline\API\Core\HttpClients;
 
+use QuickBooksOnline\API\Data\IPPFault;
 /**
  * Handles the 3xx, 4xx and 5xx response status code in the response and handles them.
  * This class use the pecl OAuth Extension. Rewrite it to be native cURL request @Hao
@@ -28,6 +29,17 @@ class FaultHandler
         * The OAuth error message will store here.
         */
      private $oAuthHelperError;
+
+
+     //Intuit Error helper information
+     private $intuitErrorType;
+
+     private $intuitErrorCode;
+
+     private $intuitErrorMessage;
+
+     private $intuitErrorDetail;
+
     /**
      * Initializes a new instance of the FaultHandler class.
      * @param ServiceContext context
@@ -81,5 +93,28 @@ class FaultHandler
     public function getResponseBody()
     {
         return $this->responseBody;
+    }
+
+    public function getIntuitErrorType(){
+        return $this->intuitErrorType;
+    }
+
+    public function getIntuitErrorCode(){
+        return $this->intuitErrorCode;
+    }
+
+    public function getIntuitErrorMessage(){
+        return $this->intuitErrorMessage;
+    }
+
+    public function getIntuitErrorDetail(){
+        return $this->intuitErrorDetail;
+    }
+    public function parseResponse($message){
+      $xmlObj = simplexml_load_string($message);
+      $this->intuitErrorType = (string)$xmlObj->Fault->attributes()['type'];
+      $this->intuitErrorCode = (string)$xmlObj->Fault->Error->attributes()['code'];
+      $this->intuitErrorMessage = (string)$xmlObj->Fault->Error->Message;
+      $this->intuitErrorDetail = (string)$xmlObj->Fault->Error->Detail;
     }
 }

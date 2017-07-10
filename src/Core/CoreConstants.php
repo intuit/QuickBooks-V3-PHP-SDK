@@ -6,6 +6,8 @@ namespace QuickBooksOnline\API\Core;
  */
 class CoreConstants
 {
+    //Set the default minor version to 8
+    const DEFAULT_SDK_MINOR_VERSION = "8";
     const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
 
     const PHP_CLASS_PREFIX = 'IPP';
@@ -157,6 +159,8 @@ class CoreConstants
      */
     const QBO_BASEURL = "https://quickbooks.api.intuit.com/";
 
+    const IPP_BASEURL = "https://appcenter.intuit.com/api/";
+
     /**
      * Id Parameter Name.
      * @var string Id
@@ -239,7 +243,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK3.2.0";
+    const USERAGENT = "V3PHPSDK3.2.6";
 
     public static function getType($string, $return=1)
     {

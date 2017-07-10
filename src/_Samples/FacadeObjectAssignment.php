@@ -7,6 +7,10 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Invoice;
+use QuickBooksOnline\API\Facades\Line;
+use QuickBooksOnline\API\Data\IPPReferenceType;
+use QuickBooksOnline\API\Data\IPPLineDetailTypeEnum;
+
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
@@ -21,23 +25,40 @@ $dataService = DataService::Configure(array(
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
+$IPPReferenceType = new IPPReferenceType();
+$IPPReferenceType->value = "1";
+$IPPReferenceType->name = "Services";
+
+$detailType = new IPPLineDetailTypeEnum();
+$detailType->value = "SalesItemLineDetail";
+
+$lineArray = array();
+// create three Lines
+$i = 0;
+for($i = 1; $i<= 3; $i ++){
+   $LineObj = Line::create([
+       "Id" => $i,
+       "LineNum" => $i,
+       "Description" => "Pest Control Services",
+       "Amount" => 35.0,
+       "DetailType" => $detailType,
+       "SalesItemLineDetail" => [
+           "ItemRef" => $IPPReferenceType,
+           "UnitPrice" => 35,
+           "Qty" => 1,
+           "TaxCodeRef" => [
+               "value" => "NON"
+           ]
+       ]
+   ]);
+   $lineArray[] = $LineObj;
+}
 //Add a new Invoice
 $theResourceObj = Invoice::create([
-     "Line" => [
-   [
-    "Amount" => 100.00,
-    "DetailType" => "SalesItemLineDetail",
-    "SalesItemLineDetail" => [
-      "ItemRef" => [
-        "value" => "1",
-        "name" => "Services"
-      ]
-    ]
-  ]
-],
-"CustomerRef"=> [
-  "value"=> "1"
-],
+     "Line" =>  $lineArray,
+    "CustomerRef"=> [
+     "value"=> "1"
+     ],
       "BillEmail" => [
             "Address" => "Familiystore@intuit.com"
       ],
@@ -48,12 +69,14 @@ $theResourceObj = Invoice::create([
             "Address" => "v@intuit.com"
       ]
 ]);
+
 $resultingObj = $dataService->Add($theResourceObj);
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
+    echo "The Intuit Helper message is: IntuitErrorType:{" . $error->getIntuitErrorType() . "} IntuitErrorCode:{" . $error->getIntuitErrorCode() . "} IntuitErrorMessage:{" . $error->getIntuitErrorMessage() . "} IntuitErrorDetail:{" . $error->getIntuitErrorDetail() . "}";
 }
 else {
     echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";

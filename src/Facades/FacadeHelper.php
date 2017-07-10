@@ -26,6 +26,13 @@ class FacadeHelper{
    public static function reflectArrayToObject($classNameOrKeyName, $data, $throwException = TRUE) {
      if(!isset($classNameOrKeyName)){ throw new \Exception("The Class Name or Key Name cannot be NULL when generating Objects.");}
      if(!isset($data) || empty($data)){ throw new \Exception("The passed data cannot be NULL.");}
+     if(is_object($data)){
+       if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($classNameOrKeyName,$data)){
+         throw new \Exception("The assigned object is not an instance of required object:{" . $classNameOrKeyName . "}.");
+       }else{
+         return $data;
+       }
+     }
      //Get reflection class of FacadeHelper
      $trimedData = FacadeHelper::trimSpacesForArrayKeys($data);
      //Any key in the Ignored List will not be processed
@@ -66,22 +73,37 @@ class FacadeHelper{
                        // }as $val
                        $obj = FacadeHelper::reflectArrayToObject($key, $val, $throwException);
                        FacadeHelper::assignValue($currentObj, $key, $obj);
-                    }
-                    else if(FacadeHelper::isRecurrsiveArray($val)){
+                    } else if(FacadeHelper::isArrayOfObj($val)){
+                         // Array of LineItem object, for example
+                         foreach($val as $valobj){
+                            if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$valobj)){
+                              throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
+                            }
+                         }
+                         FacadeHelper::assignValue($currentObj, $key, $val);
+                    } else{
                         //The array is a recursive array. It can be an Line or LinkedTxn
                         //Example:
                         // Line": [{ ....}, {...}]
                         //For each element in the array, it is a line
+                        //or It can be an mix of lines and Objects
+                        //Line": [{ ....}, $obj1, {...}]
                         $list = array();
                         foreach ($val as $index => $element) {
-                            $obj = FacadeHelper::reflectArrayToObject($key, $element, $throwException);
-                            array_push($list, $obj);
-                        }
+                            if(is_object($element)){
+                              if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$element)){
+                                throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
+                              }
+                              array_push($list, $element);
+                            }else if(is_array($element)){
+                              $obj = FacadeHelper::reflectArrayToObject($key, $element, $throwException);
+                              array_push($list, $obj);
+                            }else{
+                              throw new \Exception("Format Error. Expect an element of an array or an object.");
+                            }
+                          }
                         FacadeHelper::assignValue($currentObj, $key, $list);
-                    }else{
-                        throw new \Exception("Internal Error. The Passed Array is neither associated array or recursive array.");
-                    }
-
+                     }
                 }else{
                     //Even the value is a key, the key can be an Enum type or a wrapper
                     if(FacadeHelper::isKeyInComplexList($key)){
@@ -95,9 +117,14 @@ class FacadeHelper{
                         $createdObj = FacadeHelper::getEnumType($enumTypeClassName, $val);
                         FacadeHelper::assignValue($currentObj, $key, $createdObj);
                     }
-                    //It is a simple type
                     else
                     {
+                      //If it is an object
+                      if(is_object($val)){
+                        if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$val)){
+                          throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
+                        }
+                      }
                       FacadeHelper::assignValue($currentObj, $key, $val);
                     }
                 }
@@ -176,6 +203,13 @@ class FacadeHelper{
    public static function getEnumType($clazz, $val){
       if(!isset($val)) throw new \Exception("Passed param for Enum can't be null.");
       if(class_exists($clazz)){
+          if(is_object($val)){
+              if($val instanceof $clazz){
+                return $val;
+              }else{
+                throw new \Exception("The assigned obj to the enum class Type:{" . $clazz . "} is not matched.");
+              }
+          }
           $enumObj = new $clazz();
           //If $val is string
           if(is_array($val) && !empty($val)){
@@ -212,12 +246,20 @@ class FacadeHelper{
    /**
     * Construct an IPPReferenceType based on passed Array or String.
     * If it is passed as an array, handle it.
-    * If it is passed an a String. Construct an array and put the String on the value
+    * If it is passed as a String. Construct an array and put the String on the value
+    * If it is passed as an obj, compare it with IPPReferenceType and return the object
     * @param $data
-    *       It can either be an array or a String
+    *       It can either be an array or a String, or obj
     */
    public static function getIPPReferenceTypeBasedOnArray($data){
       $trimedDataArray = FacadeHelper::trimSpacesForArrayKeys($data);
+      if(is_object($trimedDataArray)){
+           if($trimedDataArray instanceof IPPReferenceType){
+               return $trimedDataArray;
+           }else{
+               throw new \Exception("The assigned obj to IPPReferenceType is not matched with IPPReferenceType.");
+           }
+      }
       //THe ReferenceDataType should only contain at most Two elements
       if(is_array($trimedDataArray)){
         if(sizeof($trimedDataArray) >= 3){
@@ -249,12 +291,20 @@ class FacadeHelper{
   /**
    * If passed params is array, the first element of Array is used in IPPid.
    * If passed params is not an array, the the value is used for Ippid.
+   * If passed params is an obj, the the value is simply returned.
    * @param $data
    *       It can either be an array or a numeric representation
    */
   public static function getIPPId($data){
     //Convert an IPPId based on the Data
     if(!isset($data)) throw new \Exception("Passed param for IPPid can't be null");
+    if(is_object($data)){
+         if($data instanceof IPPid){
+             return $data;
+         }else{
+             throw new \Exception("The assigned obj to IPPid is not matched with IPPid.");
+         }
+    }
     if(is_array($data)){
        $firstElementValue = reset($data);
     }else if(is_numeric($data)){
@@ -305,11 +355,19 @@ class FacadeHelper{
        if(!isset($data) || empty($data)) return $data;
        if(is_array($data))
        {
-           $trimedKeys = array_map('trim', array_keys($data));
-           $trimedResult = array_combine($trimedKeys, $data);
-           return $trimedResult;
+           if(FacadeHelper::isArrayOfObj($data)){
+                return $data;
+           }else{
+             $trimedKeys = array_map('trim', array_keys($data));
+             $trimedResult = array_combine($trimedKeys, $data);
+             return $trimedResult;
+           }
        }else{
-           return trim($data);
+           if(is_object($data)){
+               return $data;
+           }else{
+             return trim($data);
+           }
        }
    }
 
@@ -377,6 +435,31 @@ class FacadeHelper{
      }else{
        throw new \Exception("No Reflection Property Found.");
      }
+   }
+
+   private static function checkIfTheObjectIsAnInstanceOfTheClass($className, $object){
+      if($object instanceof $className){
+          return true;
+      }else{
+          $className = FacadeHelper::decorateKeyWithNameSpaceAndPrefix($className);
+          if($object instanceof $className){
+              return true;
+          }
+      }
+      return false;
+   }
+
+   private static function isArrayOfObj($data){
+       if(is_array($data)){
+           foreach($data as $dataMemeber){
+               if(!is_object($dataMemeber)){
+                   return false;
+               }
+           }
+           return true;
+       }
+
+       return false;
    }
 
 }

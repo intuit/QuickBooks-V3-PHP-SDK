@@ -180,8 +180,7 @@ class ServiceContext
         $baseURL = $settings['baseUrl'];
         $checkedBaseURL = ServiceContext::checkAndAddBaseURLSlash($baseURL);
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
-        //Set the default minor version to 4
-        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, "4");
+        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION);
         $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
         return $serviceContextInstance;
     }
@@ -210,7 +209,8 @@ class ServiceContext
             if ($this->serviceType === CoreConstants::IntuitServicesTypeQBO) {
                 $baseurl = $this->IppConfiguration->BaseUrl->Qbo . implode(CoreConstants::SLASH_CHAR, array(CoreConstants::VERSION)) . CoreConstants::SLASH_CHAR;
             }
-            else {
+            else if($this->serviceType === CoreConstants::IntuitServicesTypeIPP){
+                $this->IppConfiguration->BaseUrl->Ipp  =  CoreConstants::IPP_BASEURL;
                 $baseurl = $this->IppConfiguration->BaseUrl->Ipp;
             }
         } catch (\Exception $e) {

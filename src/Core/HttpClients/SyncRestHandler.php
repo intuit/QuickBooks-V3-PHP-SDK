@@ -208,7 +208,21 @@ class SyncRestHandler extends RestHandler
             }
         } else {
             // IPP call
-            $httpHeaders = array('user-agent' => CoreConstants::USERAGENT);
+            $httpHeaders = array(
+              'Authorization' => $AuthorizationHeader,
+              'host'          => parse_url($requestUri, PHP_URL_HOST),
+              'user-agent' => CoreConstants::USERAGENT
+            );
+            // Log Request Body to a file
+            $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
+
+            if ($requestBody && $this->RequestCompressor) {
+                $this->RequestCompressor->Compress($httpHeaders, $requestBody);
+            }
+
+            if ($this->ResponseCompressor) {
+                $this->ResponseCompressor->PrepareDecompress($httpHeaders);
+            }
         }
 
         $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
@@ -283,7 +297,7 @@ class SyncRestHandler extends RestHandler
         $this->context->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Getting the response from service.");
 
         // Call the service and get response.
-        list($httpWebResponseCode, $httpWebResponseBody) = $request->GetResponse($requestParameters, $requestBody, $oauthRequestUri);
+        list($httpWebResponseCode, $httpWebResponseBody) = $request->sendRequest($requestParameters, $requestBody, $oauthRequestUri);
 
         $this->context->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Got the response from service.");
 

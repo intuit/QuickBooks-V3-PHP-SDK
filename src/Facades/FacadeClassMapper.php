@@ -34,7 +34,7 @@ class FacadeClassMapper
                //IPPBill
                'PayerRef','VendorRef','APAccountRef',
                //IPPAccount
-               'ParentRef',
+               'ParentRef', 'VendorTypeRef','TermRef', 'PrefillAccountRef',
                //IPPCustomer
                'RootCustomerRef', 'CustomerTypeRef' ,'TaxGroupCodeRef', 'JobTypeRef',
                //IPPBillPayment
