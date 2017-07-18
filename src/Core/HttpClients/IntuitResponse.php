@@ -20,10 +20,10 @@ class IntuitResponse{
               throw new SdkException("Headers are null.");
           }
 
-          if(isset($passedBody)){
+          if(isset($passedBody) && !empty($passedBody)){
               $this->body = $passedBody;
           }else{
-              throw new SdkException("Response Body are null.");
+              throw new SdkException("Http Response Body are null or Empty.");
           }
 
           if(isset($passedHttpResponseCode)){

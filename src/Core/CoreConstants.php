@@ -59,13 +59,13 @@ class CoreConstants
      * OAuth 1 Mode constant.
      * @var int Deflate
      */
-    const OAUTH1 = "OAuth1";
+    const OAUTH1 = "oauth1";
 
     /**
      * OAuth 2 Mode constant.
      * @var int Deflate
      */
-    const OAUTH2 = "OAuth2";
+    const OAUTH2 = "oauth2";
 
 
     /**

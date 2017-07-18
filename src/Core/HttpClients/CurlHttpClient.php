@@ -40,6 +40,7 @@ class CurlHttpClient{
         $curl_opt = [
             CURLOPT_URL => $url,
             CURLOPT_CUSTOMREQUEST => trim($method),
+            //Set return transfer to true so the curl_exec will return the result
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER => $this->getHeaders($headerArray),
             //10 seconds is allowed to make the connection to the server
@@ -68,7 +69,7 @@ class CurlHttpClient{
     }
 
     private function handleErrors(){
-        if($this->basecURL->errno()){
+        if($this->basecURL->errno() || $this->basecURL->error()){
            $errorMsg = $this->basecURL->error();
            $errorNumber = $this->basecURL->errno();
            throw new SdkException("cURL error during making API call. cURL Error Number:[" . $errorNumber . "] with error:[" . $errorMsg . "]");
@@ -99,11 +100,11 @@ class CurlHttpClient{
       }
     }
 
-    private function setSSL($curl_opt, $verifySSL){
+    private function setSSL(&$curl_opt, $verifySSL){
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
-          $curl_opt[URLOPT_CAINFO] = "";//"Some File Location."
+          $curl_opt[CURLOPT_CAINFO] = dirname(dirname(__FILE__)) . "/OAuth/OAuth2/certs/apiintuitcom.pem"; //Pem certification Key Path
       }
     }
 

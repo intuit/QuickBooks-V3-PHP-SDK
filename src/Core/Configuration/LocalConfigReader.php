@@ -10,6 +10,7 @@ use QuickBooksOnline\API\Core\Http\Request;
 use QuickBooksOnline\API\Core\Http\Response;
 use QuickBooksOnline\API\Diagnostics\Logger;
 use QuickBooksOnline\API\Core\Configuration\OperationControlList;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 
 /**
  * Specifies the Default Configuration Reader implmentation used by the SDK. The ConfigReader can either read a file or from passed arrays
@@ -100,24 +101,29 @@ class LocalConfigReader
     {
         $ippConfig = new IppConfiguration();
         try {
-            //Set OAuth
+                //Set OAuth1 or OAuth2
                 if (isset($OAuthConfig)) {
                     $ippConfig->Security = $OAuthConfig;
                 } else {
                     throw new \Exception("Empty OAuth Config from Constuct IPP Configuration on LocalConfigReader");
                 }
+                if($OAuthConfig instanceof OAuthRequestValidator){
+                  $ippConfig->OAuthMode = CoreConstants::OAUTH1;
+                }else{
+                  $ippConfig->OAuthMode = CoreConstants::OAUTH2;
+                }
                 //Set Logger and Searlization format. The default one is XML
                 LocalConfigReader::intializeMessage($ippConfig);
-            LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, CompressionFormat::None, CompressionFormat::None, SerializationFormat::Xml, SerializationFormat::Xml);
+                LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, CompressionFormat::None, CompressionFormat::None, SerializationFormat::Xml, SerializationFormat::Xml);
                 //Set base Urls
                 $ippConfig->BaseUrl = new BaseUrl();
-            $ippConfig->BaseUrl->Qbo = $baseUrl;
+                $ippConfig->BaseUrl->Qbo = $baseUrl;
                 //Set content writer and logger
                 LocalConfigReader::setupLogger($ippConfig, $defaultLoggingLocation, "TRUE");
-            LocalConfigReader::setupContentWriter($ippConfig, CoreConstants::FILE_STRATEGY, CoreConstants::PHP_CLASS_PREFIX, null, false);
+                LocalConfigReader::setupContentWriter($ippConfig, CoreConstants::FILE_STRATEGY, CoreConstants::PHP_CLASS_PREFIX, null, false);
                 //Set API Entity Rules
                 $rules=CoreConstants::getQuickBooksOnlineAPIEntityRules();
-            LocalConfigReader::initOperationControlList($ippConfig, $rules);
+                LocalConfigReader::initOperationControlList($ippConfig, $rules);
                 //Set minor version
                 $ippConfig->minorVersion = $minorVersion;
 
@@ -225,6 +231,7 @@ class LocalConfigReader
                  $currentConsumerKey = $xmlObj->intuit->ipp->security->oauth1->attributes()['consumerKey'];
                  $currentConsumerSecret =    $xmlObj->intuit->ipp->security->oauth1->attributes()['consumerSecret'];
                  $ippConfig->RealmID =  $xmlObj->intuit->ipp->security->oauth1->attributes()['QBORealmID'];
+                 $ippConfig->OAuthMode = CoreConstants::OAUTH1;
              } catch (\Exception $e) {
                  throw new \Exception("Can't Read OAuth1 values from config file.");
              }
@@ -238,6 +245,14 @@ class LocalConfigReader
              //Implement OAuth 2 parts here
             // Set SSL check status to be true
             $ippConfig->SSLCheckStatus = true;
+            $currentOAuth2AccessTokenKey = $xmlObj->intuit->ipp->security->oauth2->attributes()['accessTokenKey'];
+            $currentOAuth2RefreshTokenKey = $xmlObj->intuit->ipp->security->oauth1->attributes()['refreshTokenKey'];
+            $currentConsumerKey = $xmlObj->intuit->ipp->security->oauth1->attributes()['ClientID'];
+            $currentConsumerSecret =    $xmlObj->intuit->ipp->security->oauth1->attributes()['ClientSecret'];
+            $ippConfig->RealmID =  $xmlObj->intuit->ipp->security->oauth1->attributes()['QBORealmID'];
+            $OAuth2AccessToken = new OAuth2AccessToken($currentOAuth2AccessTokenKey, $currentOAuth2RefreshTokenKey, $currentConsumerKey, $currentConsumerSecret);
+            $ippConfig->Security = $OAuth2AccessToken;
+            $ippConfig->OAuthMode = CoreConstants::OAUTH2;
          } else {
              throw new \Exception("Can't load " .$OAuthOption .  " config from config file or the OAuth option is not supported.");
          }

@@ -11,6 +11,7 @@ use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Security\RequestValidator;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 
 /**
  * THe Service Context Class contains necessary settings for RestCalls
@@ -137,45 +138,21 @@ class ServiceContext
 
     public static function ConfigureFromPassedArray(array $settings)
     {
-        if (!isset($settings) || empty($settings)) {
-            throw new \Exception("Empty OAuth Array passed. Can't construct ServiceContext based on Empty Array");
-        }
+      ServiceContext::checkIfOAuthIsValid($settings);
 
-
-        //Currently Only Support OAuth 1.0
-        if (!isset($settings['auth_mode']) || strcasecmp($settings['auth_mode'], CoreConstants::OAUTH1)) {
-            throw new \Exception("'auth_mode' must be provided with oauth1");
-        }
-
-        if (!isset($settings['consumerKey'])) {
-            throw new \Exception("'consumerKey' must be provided");
-        }
-
-        if (!isset($settings['consumerSecret'])) {
-            throw new \Exception("'consumerSecret' must be provided");
-        }
-
-        if (!isset($settings['accessTokenKey'])) {
-            throw new \Exception("'accessTokenKey' must be provided");
-        }
-
-        if (!isset($settings['accessTokenSecret'])) {
-            throw new \Exception("'accessTokenSecret' must be provided");
-        }
-
-        if (!isset($settings['QBORealmID'])) {
-            throw new \Exception("'QBORealmID' must be provided");
-        }
-
-        if (!isset($settings['baseUrl'])) {
-            throw new \Exception("'baseUrl' must be provided");
-        }
-
-
+      if(strcasecmp($settings['auth_mode'], CoreConstants::OAUTH1) == 0) {
         $OAuthConfig = new OAuthRequestValidator($settings['accessTokenKey'],
             $settings['accessTokenSecret'],
             $settings['consumerKey'],
             $settings['consumerSecret']);
+      }else{
+         $OAuthConfig = new OAuth2AccessToken(
+            $settings['accessTokenKey'],
+            $settings['refreshTokenKey'],
+            $settings['ClientID'],
+            $settings['ClientSecret']
+         );
+      }
         $QBORealmID = $settings['QBORealmID'];
         $baseURL = $settings['baseUrl'];
         $checkedBaseURL = ServiceContext::checkAndAddBaseURLSlash($baseURL);
@@ -183,6 +160,47 @@ class ServiceContext
         $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION);
         $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
         return $serviceContextInstance;
+    }
+
+    public static function checkIfOAuthIsValid(array $settings){
+      if (!isset($settings) || empty($settings)) {
+          throw new SdkException("Empty OAuth Array passed. Can't construct ServiceContext based on Empty Array.");
+      }
+
+      if(!isset($settings['auth_mode'])){
+          throw new SdkException("No OAuth 1 or OAuth 2 Mode specified. Can't validate OAuth tokens.");
+      }
+
+      $mode = $settings['auth_mode'];
+
+      //OAuth 1 settings
+      if (strcasecmp($mode, CoreConstants::OAUTH1) == 0) {
+        if (!isset($settings['accessTokenKey'])) {
+            throw new SdkException("'accessTokenKey' must be provided in OAuth1.");
+        }
+
+        if (!isset($settings['accessTokenSecret'])) {
+            throw new SdkException("'accessTokenSecret' must be provided in OAuth1.");
+        }
+      }else if(strcasecmp($mode, CoreConstants::OAUTH2) == 0){
+        if (!isset($settings['accessTokenKey'])) {
+            throw new SdkException("'accessTokenKey' must be provided in OAuth2.");
+        }
+
+        if (!isset($settings['refreshTokenKey'])) {
+            throw new SdkException("'refreshTokenKey' must be provided in OAuth2.");
+        }
+      }else{
+        throw new SdkException("OAuth Mode is not supported.");
+      }
+
+      if (!isset($settings['QBORealmID'])) {
+          throw new SdkException("'QBORealmID' must be provided.");
+      }
+
+      if (!isset($settings['baseUrl'])) {
+          throw new SdkException("'baseUrl' must be provided.");
+      }
     }
 
     /**

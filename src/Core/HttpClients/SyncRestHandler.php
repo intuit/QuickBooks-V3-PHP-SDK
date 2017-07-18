@@ -8,7 +8,10 @@ use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\Exception\SdkException;
+
+
 
 
 /**
@@ -173,71 +176,145 @@ class SyncRestHandler extends RestHandler
 
         $queryParameters = $this->parseURL($requestUri);
         $baseURL = $this->getBaseURL($requestUri);
+        $oMode =  $this->context->IppConfiguration->OAuthMode;
+        if($oMode == CoreConstants::OAUTH1){
+          return $this->OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody);
+        } else if ($oMode == CoreConstants::OAUTH2){
+          return $this->OAuth2APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody);
+        } else{
+           throw new SdkException("OAuth Mode not supported.");
+        }
+    }
 
-        $oauth1 = new OAuth1(
-          $this->context->requestValidator->ConsumerKey, $this->context->requestValidator->ConsumerSecret,
-          $this->context->requestValidator->AccessToken, $this->context->requestValidator->AccessTokenSecret
-        );
+    /**
+     * The API call to generate OAuth 1 signatures and make API call
+     * @param $baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody
+     * @return Response and HTTP Status code
+     */
+    private function OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody){
+      $oauth1 = new OAuth1(
+        $this->context->requestValidator->ConsumerKey, $this->context->requestValidator->ConsumerSecret,
+        $this->context->requestValidator->AccessToken, $this->context->requestValidator->AccessTokenSecret
+      );
 
-        $AuthorizationHeader = $oauth1->getOAuthHeader($baseURL, $queryParameters, $HttpMethod);
+      $AuthorizationHeader = $oauth1->getOAuthHeader($baseURL, $queryParameters, $HttpMethod);
 
-        $httpHeaders = array();
-        //We only support QBO for PHP SDK. No QBD support, change
-        // from: if ('QBO'==$this->context->serviceType || 'QBD'==$this->context->serviceType)
-        if (CoreConstants::IntuitServicesTypeQBO ==$this->context->serviceType) {
-            // IDS call
-            $httpHeaders = array(
-                'Authorization' => $AuthorizationHeader,
-                'host'          => parse_url($requestUri, PHP_URL_HOST),
-                'user-agent'    => CoreConstants::USERAGENT,
-                'accept'        => $this->getAcceptContentType($requestParameters->ContentType),
-                'connection'    => 'close',
-                'content-type'  => $requestParameters->ContentType,
-                'content-length'=> strlen($requestBody)
-            );
-
-            // Log Request Body to a file
-            $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
-
-            if ($requestBody && $this->RequestCompressor) {
-                $this->RequestCompressor->Compress($httpHeaders, $requestBody);
-            }
-
-            if ($this->ResponseCompressor) {
-                $this->ResponseCompressor->PrepareDecompress($httpHeaders);
-            }
-        } else {
-            // IPP call
-            $httpHeaders = array(
+      $httpHeaders = array();
+      //We only support QBO for PHP SDK. No QBD support, change
+      // from: if ('QBO'==$this->context->serviceType || 'QBD'==$this->context->serviceType)
+      if (CoreConstants::IntuitServicesTypeQBO ==$this->context->serviceType) {
+          // IDS call
+          $httpHeaders = array(
               'Authorization' => $AuthorizationHeader,
               'host'          => parse_url($requestUri, PHP_URL_HOST),
-              'user-agent' => CoreConstants::USERAGENT
-            );
-            // Log Request Body to a file
-            $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
+              'user-agent'    => CoreConstants::USERAGENT,
+              'accept'        => $this->getAcceptContentType($requestParameters->ContentType),
+              'connection'    => 'close',
+              'content-type'  => $requestParameters->ContentType,
+              'content-length'=> strlen($requestBody)
+          );
 
-            if ($requestBody && $this->RequestCompressor) {
-                $this->RequestCompressor->Compress($httpHeaders, $requestBody);
-            }
+          // Log Request Body to a file
+          $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
 
-            if ($this->ResponseCompressor) {
-                $this->ResponseCompressor->PrepareDecompress($httpHeaders);
-            }
-        }
+          if ($requestBody && $this->RequestCompressor) {
+              $this->RequestCompressor->Compress($httpHeaders, $requestBody);
+          }
 
-        $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
-        $this->closeConnection();
-        $faultHandler = $intuitResponse->getFaultHandler();
-        $this->RequestLogging->LogPlatformRequests($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
-        //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
-        //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
-        if(isset($faultHandler)) {
-            $this->faultHandler = $faultHandler;
-            return null;
-        }
+          if ($this->ResponseCompressor) {
+              $this->ResponseCompressor->PrepareDecompress($httpHeaders);
+          }
+      } else {
+          // IPP call
+          $httpHeaders = array(
+            'Authorization' => $AuthorizationHeader,
+            'host'          => parse_url($requestUri, PHP_URL_HOST),
+            'user-agent' => CoreConstants::USERAGENT
+          );
+          // Log Request Body to a file
+          $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
 
-        return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
+          if ($requestBody && $this->RequestCompressor) {
+              $this->RequestCompressor->Compress($httpHeaders, $requestBody);
+          }
+
+          if ($this->ResponseCompressor) {
+              $this->ResponseCompressor->PrepareDecompress($httpHeaders);
+          }
+      }
+
+      $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
+      $this->closeConnection();
+      $faultHandler = $intuitResponse->getFaultHandler();
+      $this->RequestLogging->LogPlatformRequests($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
+      //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
+      //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
+      if(isset($faultHandler)) {
+          $this->faultHandler = $faultHandler;
+          return null;
+      }
+
+      return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
     }
+
+
+    /**
+     * The API call to generate OAuth 1 signatures and make API call
+     * @param $baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody
+     * @return Response and HTTP Status code
+     */
+    private function OAuth2APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody){
+        $OAuth2AccessToken = $this->context->requestValidator;
+        if($OAuth2AccessToken instanceof OAuth2AccessToken){
+            $accessToken = $OAuth2AccessToken->getAccessToken();
+            $AuthorizationHeader = "Bearer " . $accessToken;
+
+            $httpHeaders = array();
+            //We only support QBO for PHP SDK. No QBD support, change
+            // from: if ('QBO'==$this->context->serviceType || 'QBD'==$this->context->serviceType)
+            if (CoreConstants::IntuitServicesTypeQBO ==$this->context->serviceType) {
+                // IDS call
+                $httpHeaders = array(
+                    'Authorization' => $AuthorizationHeader,
+                    'host'          => parse_url($requestUri, PHP_URL_HOST),
+                    'user-agent'    => CoreConstants::USERAGENT,
+                    'accept'        => $this->getAcceptContentType($requestParameters->ContentType),
+                    'connection'    => 'close',
+                    'content-type'  => $requestParameters->ContentType,
+                    'content-length'=> strlen($requestBody)
+                );
+
+                // Log Request Body to a file
+                $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
+
+                if ($requestBody && $this->RequestCompressor) {
+                    $this->RequestCompressor->Compress($httpHeaders, $requestBody);
+                }
+
+                if ($this->ResponseCompressor) {
+                    $this->ResponseCompressor->PrepareDecompress($httpHeaders);
+                }
+            } else {
+               throw new SdkException("IPP or other Call is not supported in OAuth2 Mode.");
+            }
+
+            $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, true);
+            $this->closeConnection();
+            $faultHandler = $intuitResponse->getFaultHandler();
+            $this->RequestLogging->LogPlatformRequests($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
+            //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
+            //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
+            if(isset($faultHandler)) {
+                $this->faultHandler = $faultHandler;
+                return null;
+            }
+
+            return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
+        }
+
+
+    }
+
 
     private function getBaseURL($url){
       return strtok($url, '?');

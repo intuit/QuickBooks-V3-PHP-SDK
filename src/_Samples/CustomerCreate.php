@@ -9,6 +9,7 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
+/*
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
          'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
@@ -17,6 +18,17 @@ $dataService = DataService::Configure(array(
          'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
          'QBORealmID' => "193514489870599",
          'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+));
+*/
+
+$dataService = DataService::Configure(array(
+       'auth_mode' => 'oauth2',
+         'ClientID' => "Q0lCkcEshsGMHOEula2r5RKc2yhxvMsYEpKN1lw1WZwyfd1Si6",
+         'ClientSecret' => "gE0F9hLgwx9OBzRpNxyOvWJH6L2fIhzAwBugPJHq",
+         'accessTokenKey' => "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..JeoaEgWW8VjXoBfGABrGkQ.f0XFa7IKDumJ4fLhUPhnnFsZD2Rkon7t_kTcWJyrb1_4RLU4s8L5RB714Kw8zcc0Q5Bn48gGvLcotO6uKY2_MQ_D9l2RGUCO5NsFRAgr4NN4FO6WK-3sJp454Ck7AawoR86INEYW5GYFzgvqFwguQE9h4P0G1_6Ve3_3Vo8sjDKRXIY39SjT_3FfrShhsDSJXUCTahBE32wYYHltEQdy-Z4hRHVDjB4NM5sGaxsoWdpAzKhp60RC3xSV6IhniyJiGA-_DyzXVEhT7lORD50QJU-gwn1dmHB3MlfJryO4U-kMA3hrE6EXhgld6xQ27cUBERthObs2aV22tT-_0ZznwYUrFA9lbBWP5tK_KpzvcHsAD0ujQvaXEFqSemrm9KiPCT-7ZvZZR0bRd2cbL0tQ44PxsVe2I2d7QwZIJqa6U0DAl1GALlaNgkF96JToxiI8NRrndZoEYDvepa8cf6PVt2O8KUwmmeTvpjgkQ7ucX68e81xN9R19MdAj8Mu46i40k-m4VK1UPpZ_cGuqLQojFiOerivOy_hJjalo2KWdLQYD9N_s5dfLH_BAB1ElVz5dPHz1aIPe_sxvc2VQEBkCu4xtmE0g4oLNszhD_Kh7-U7hK6RA5y7RQUGaZ1L05-9YIi5-XBx4FuVkYK3MZTqbHf9cmq6asAGvNNRKVe5mXOZeskZp25OUVU-QUHfFo_Pd.Rq4OPgznx4GamOXKam6Y1g",
+         'refreshTokenKey' => 'Q01150906066615eVPaXZ1bJn7WhLJVu1cN0ngQXZeI5X1QziK',
+         'QBORealmID' => "123145857569084",
+         'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
 ));
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
@@ -54,11 +66,7 @@ if ($error != null) {
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
 } else {
-    # code...
-    // Echo some formatted output
-    echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingCustomerObj, $urlResource);
-    echo $xmlBody . "\n";
+    var_dump($resultingCustomerObj);
 }
 
 /*

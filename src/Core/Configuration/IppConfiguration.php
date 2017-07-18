@@ -14,7 +14,7 @@ class IppConfiguration
 
     /**
      * Gets or sets the Security mechanism like OAuth, Cookie.
-     * @var RequestValidator
+     * @var RequestValidator or OAuth2AccessToken
      */
     public $Security;
 
@@ -65,4 +65,11 @@ class IppConfiguration
     * @var string
     */
     public $RealmID;
+
+    /**
+    * Specify if it is OAuth 1 or OAuth 2
+    * @var string
+    *       The value can be either CoreConstants:OAUTH1Mode or CoreConstants:OAUTH2Mode
+    */
+    public $OAuthMode;
 }
