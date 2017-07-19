@@ -67,6 +67,18 @@ class CoreConstants
      */
     const OAUTH2 = "oauth2";
 
+    /**
+    * HTTP GET METHOD
+    * @var
+    */
+    const HTTP_GET = "GET";
+
+    /**
+    * HTTP POST METHOD
+    * @var
+    */
+    const HTTP_POST = "POST";
+
 
     /**
      * QuickBooks Online Data through IDS.
@@ -243,7 +255,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK3.2.6";
+    const USERAGENT = "V3PHPSDK3.3.0";
 
     public static function getType($string, $return=1)
     {

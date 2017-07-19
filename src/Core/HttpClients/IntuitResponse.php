@@ -23,7 +23,7 @@ class IntuitResponse{
           if(isset($passedBody) && !empty($passedBody)){
               $this->body = $passedBody;
           }else{
-              throw new SdkException("Http Response Body are null or Empty.");
+              throw new SdkException("Http Status Code:[" .$passedHttpResponseCode . "] Http Response Body are null or Empty.");
           }
 
           if(isset($passedHttpResponseCode)){
