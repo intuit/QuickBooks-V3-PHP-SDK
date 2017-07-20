@@ -285,6 +285,18 @@ class IPPSalesFormsPrefs
      * @var boolean
      */
     public $PrintItemWithZeroAmount;
+
+    /**
+     * @Definition
+                        Product:QBO
+                        If Email Copy To Company
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName EmailCopyToCompany
+     * @var boolean
+     */
+    public $EmailCopyToCompany;
     /**
      * @Definition
                         Product:QBW

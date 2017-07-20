@@ -7,8 +7,9 @@ use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
-use QuickBooksOnline\API\Data\IPPTaxRateDetails;
-use QuickBooksOnline\API\Data\IPPTaxService;
+use QuickBooksOnline\API\Facades\TaxService;
+use QuickBooksOnline\API\Facades\TaxRate;
+
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
@@ -23,19 +24,26 @@ $dataService = DataService::Configure(array(
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
+$TaxRateDetails = array();
 $rnd = rand();
-$taxRateDetails = new IPPTaxRateDetails();
-$taxRateDetails->TaxRateName = "myNewTaxRateName_$rnd";
-$taxRateDetails->RateValue = "7777";//As Invalid number
-$taxRateDetails->TaxAgencyId = "1";
-$taxRateDetails->TaxApplicableOn = "Sales";
+for($int = 1; $int <=2 ; $int++){
+   $rateValue = $int + 5;
+   $currentTaxServiceDetail = TaxRate::create([
+     "TaxRateName" => "myNewTaxRateName_" . $int . "_$rnd",
+     "RateValue" =>  $rateValue,
+     "TaxAgencyId" => "1",
+     "TaxApplicableOn" => "Sales"
+   ]);
+   $TaxRateDetails[] = $currentTaxServiceDetail;
+}
 
-$taxService = new IPPTaxService();
-$taxService->TaxCode = 'MyTaxCodeName_' . $rnd;
-$taxService->TaxRateDetails = array($taxRateDetails);
+$TaxService = TaxService::create([
+  "TaxCode" => "TestValue_$rnd",
+  "TaxRateDetails" => $TaxRateDetails
+]);
 
-
-$result = $dataService->Add($taxService);
+var_dump($TaxService);
+$result = $dataService->Add($TaxService);
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
@@ -45,7 +53,7 @@ if ($error != null) {
 }
 
 
-print_r($result);
+print_r($result->TaxService->TaxCodeId);
 
 
 

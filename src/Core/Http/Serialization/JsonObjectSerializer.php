@@ -6,6 +6,7 @@ use QuickBooksOnline\API\Utility\MetadataExtractor;
 use QuickBooksOnline\API\Diagnostics\TraceLogger;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Facades\FacadeHelper;
 
 /**
  * Json Serializer to serialize and de serialize.
@@ -163,8 +164,44 @@ class JsonObjectSerializer extends IEntitySerializer
     public function Serialize($entity)
     {
         $this->collectResourceURL($entity);
-           //TODO pre-processing for objects (ones which lack support in PHP 5.2)
-           return $this->checkResult(json_encode($entity));
+        $arrayObj = $this->customerConvertObjectToArray($entity);
+        $array = $this->removeNullProperties($arrayObj);
+        return $this->checkResult(json_encode($array, true));
+    }
+
+    private function customerConvertObjectToArray($obj){
+      if(is_object($obj)) $obj = (array) $obj;
+      if(is_array($obj)) {
+        $new = array();
+        foreach($obj as $key => $val) {
+          $new[$key] = $this->customerConvertObjectToArray($val);
+        }
+      }
+      else $new = $obj;
+      return $new;
+    }
+
+    /**
+     * The input will always be an asscoiate array
+     * So we will judge based on this two situration
+     */
+    private function removeNullProperties($val){
+        $filterArray = array_filter($val);
+        $returned = array();
+        foreach($filterArray as $k => $v){
+          if(is_array($v)){
+            if(FacadeHelper::isRecurrsiveArray($v)){
+              $list = array();
+              foreach($v as $kk => $vv){
+                  $list[] = array_filter($vv);
+              }
+              $returned[$k] = $list;
+            }
+          }else{
+            $returned[$k] = $v;
+          }
+        }
+        return $returned;
     }
 
     /**

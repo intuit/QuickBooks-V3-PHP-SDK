@@ -34,7 +34,7 @@ class IntuitResponse{
                  $this->faultHandler->setResponseBody($this->body);
                  $this->faultHandler->parseResponse($this->body);
                  //Manually set the error message
-                 $this->faultHandler->setOAuthHelperError("Invalid auth/bad request (got a 401, expected HTTP/1.1 20X or a redirect)");
+                 $this->faultHandler->setOAuthHelperError("Invalid auth/bad request (got a " .$passedHttpResponseCode . ", expected HTTP/1.1 20X or a redirect)");
               }
           }else{
               throw new SdkException("Passed Http status code is null.");

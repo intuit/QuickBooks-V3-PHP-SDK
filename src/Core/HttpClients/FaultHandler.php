@@ -111,10 +111,46 @@ class FaultHandler
         return $this->intuitErrorDetail;
     }
     public function parseResponse($message){
+      if(!$this->isValidXml($message)){
+          return;
+      }
+
       $xmlObj = simplexml_load_string($message);
-      $this->intuitErrorType = (string)$xmlObj->Fault->attributes()['type'];
-      $this->intuitErrorCode = (string)$xmlObj->Fault->Error->attributes()['code'];
-      $this->intuitErrorMessage = (string)$xmlObj->Fault->Error->Message;
-      $this->intuitErrorDetail = (string)$xmlObj->Fault->Error->Detail;
+      $type = (string)$xmlObj->Fault->attributes()['type'];
+      if(isset($type) && !empty($type)){
+        $this->intuitErrorType = $type;
+      }
+
+      $code = (string)$xmlObj->Fault->Error->attributes()['code'];
+      if(isset($code) && !empty($code)){
+        $this->intuitErrorCode = $code;
+      }
+
+      $message = (string)$xmlObj->Fault->Error->Message;
+      if(isset($message) && !empty($message)){
+        $this->intuitErrorMessage = $message;
+      }
+
+      $detail = (string)$xmlObj->Fault->Error->Detail;
+      if(isset($detail) && !empty($detail)){
+        $this->intuitErrorDetail = $detail;
+      }
+
     }
+
+    private function isValidXml($content)
+   {
+      $content = trim($content);
+      if (empty($content)) {
+          return false;
+        }
+
+      libxml_use_internal_errors(true);
+      simplexml_load_string($content);
+      $errors = libxml_get_errors();
+      libxml_clear_errors();
+
+      return empty($errors);
+    }
+
 }
