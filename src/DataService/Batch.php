@@ -95,7 +95,7 @@ class Batch
      */
     public function Count()
     {
-        return count($this->batchRequest);
+        return count($this->batchRequests);
     }
 
     /**
