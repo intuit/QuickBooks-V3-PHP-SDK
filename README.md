@@ -172,6 +172,7 @@ Currently the below API entity Endpoints support creating Objects from Array:
 * Transfer
 * VendorCredit
 * Vendor
+* TaxSerivce and TaxRate (for Creation Only)
 
 For create/update above entity endpoints, you are going to import corresponding facade class:
 ~~~php
