@@ -324,7 +324,7 @@ class FacadeHelper{
    * Remove the !empty check. For integer or string that is 0, it needs to be passed and set.
    */
   public static function mergeObj($objA, $objB){
-      if(get_class($objA) != get_class($objB)) throw new \Excetpion("Can't assign object value to a different type.");
+      if(get_class($objA) != get_class($objB)) throw new \Exception("Can't assign object value to a different type.");
       $property_fields = get_object_vars($objA);
       foreach ($property_fields as $propertyName => $val){
           $BsValue = $objB->$propertyName;
