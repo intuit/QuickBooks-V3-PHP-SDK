@@ -185,7 +185,7 @@ class FacadeHelper{
    private static function getComplexListObject($objectMethodName, $key, $val){
      //call helper method with method name as $objectmethodName
      $correspondingClassMethodOfFacadeHelper = FacadeHelper::getClassMethod(FacadeConstants::FACADE_HELPER_CLASS_NAME, $objectMethodName);
-     if(!isset($correspondingClassMethodOfFacadeHelper)) throw new \Excetpion("The given Method " . $objectMethodName . " can't find at FacadeHelper.php class");
+     if(!isset($correspondingClassMethodOfFacadeHelper)) throw new \Exception("The given Method " . $objectMethodName . " can't find at FacadeHelper.php class");
      $setObject = $correspondingClassMethodOfFacadeHelper->invoke(null, $val, $key);
      return $setObject;
    }
@@ -324,7 +324,7 @@ class FacadeHelper{
    * Remove the !empty check. For integer or string that is 0, it needs to be passed and set.
    */
   public static function mergeObj($objA, $objB){
-      if(get_class($objA) != get_class($objB)) throw new \Excetpion("Can't assign object value to a different type.");
+      if(get_class($objA) != get_class($objB)) throw new \Exception("Can't assign object value to a different type.");
       $property_fields = get_object_vars($objA);
       foreach ($property_fields as $propertyName => $val){
           $BsValue = $objB->$propertyName;

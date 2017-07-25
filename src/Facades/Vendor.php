@@ -16,7 +16,7 @@ class Vendor{
        }
        $newVendorObj = Vendor::create($data);
        $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);
-       FacadeHelper::mergeObj($clonedOfObj, $newVendorCreditObj);
+       FacadeHelper::mergeObj($clonedOfObj, $newVendorObj);
        return $clonedOfObj;
     }
 
