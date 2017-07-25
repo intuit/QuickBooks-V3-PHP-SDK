@@ -185,7 +185,7 @@ class FacadeHelper{
    private static function getComplexListObject($objectMethodName, $key, $val){
      //call helper method with method name as $objectmethodName
      $correspondingClassMethodOfFacadeHelper = FacadeHelper::getClassMethod(FacadeConstants::FACADE_HELPER_CLASS_NAME, $objectMethodName);
-     if(!isset($correspondingClassMethodOfFacadeHelper)) throw new \Excetpion("The given Method " . $objectMethodName . " can't find at FacadeHelper.php class");
+     if(!isset($correspondingClassMethodOfFacadeHelper)) throw new \Exception("The given Method " . $objectMethodName . " can't find at FacadeHelper.php class");
      $setObject = $correspondingClassMethodOfFacadeHelper->invoke(null, $val, $key);
      return $setObject;
    }
