@@ -19,7 +19,7 @@ class Line{
         }
         $newLineObj = Line::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);
-        FacadeHelper::mergeObj($clonedOfObj, $newAccountObj);
+        FacadeHelper::mergeObj($clonedOfObj, $newLineObj);
         return $clonedOfObj;
     }
 
