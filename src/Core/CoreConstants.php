@@ -118,6 +118,12 @@ class CoreConstants
     const RESOURCE = "resource";
 
     /**
+     * The Content Type String.
+     * @var string CONTENT_TYPE
+     */
+    const CONTENT_TYPE = "Content-Type";
+
+    /**
      * Content type: text/xml.
      * @var string CONTENTTYPE_TEXTXML
      */
@@ -170,8 +176,13 @@ class CoreConstants
      * @var string QBO_BASEURL
      */
     const QBO_BASEURL = "https://quickbooks.api.intuit.com/";
+    const PRODUCTION_QBO = "Production";
+
 
     const IPP_BASEURL = "https://appcenter.intuit.com/api/";
+
+    const DEVELOPMENT_SANDBOX = "Development";
+    const SANDBOX_DEVELOPMENT = "https://sandbox-quickbooks.api.intuit.com";
 
     /**
      * Id Parameter Name.
@@ -255,7 +266,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK3.3.0";
+    const USERAGENT = "V3PHPSDK3.4.0";
 
     public static function getType($string, $return=1)
     {
@@ -285,4 +296,14 @@ class CoreConstants
                                     "IPPEstimate"     => array( "DownloadPDF" => true, "SendEmail" => true  ),
                             );
     }
+
+    //--------------------------------------------------------------------------------------------------
+    //OAuth 2
+    const OAUTH2_TOKEN_ENDPOINT_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
+    const OAUTH2_REFRESH_GRANTYPE = "refresh_token";
+    const OAUTH2_AUTHORIZATION_TYPE = "Basic ";
+    const EXPIRES_IN = "expires_in";
+    const X_REFRESH_TOKEN_EXPIRES_IN = "x_refresh_token_expires_in";
+    const ACCESS_TOKEN = "access_token";
+
 }

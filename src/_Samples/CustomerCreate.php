@@ -9,18 +9,18 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
-/*
+
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
-         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-         'QBORealmID' => "193514489870599",
-         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
+         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
+         'accessTokenKey' => "lvprdBYrv22L2vEsSRJgcAeljxRkKdh0QLcYJDWcBU2GXVDE",
+         'accessTokenSecret' => "T7F4DzbdU0bWWK5qIjZGEVhZEQytDEUM2XYASKnE",
+         'QBORealmID' => "193514340994122",
+         'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
 ));
-*/
 
+/*
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth2',
          'ClientID' => "Q0lCkcEshsGMHOEula2r5RKc2yhxvMsYEpKN1lw1WZwyfd1Si6",
@@ -30,7 +30,7 @@ $dataService = DataService::Configure(array(
          'QBORealmID' => "123145857569084",
          'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
 ));
-
+*/
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 
@@ -45,18 +45,18 @@ $customerObj = Customer::create([
  ],
  "Notes" =>  "Here are other details.",
  "Title"=>  "Mr",
- "GivenName"=>  "James",
- "MiddleName"=>  "B",
+ "GivenName"=>  "Evil",
+ "MiddleName"=>  "1B",
  "FamilyName"=>  "King",
  "Suffix"=>  "Jr",
- "FullyQualifiedName"=>  "King Groceries",
- "CompanyName"=>  "King Groceries",
- "DisplayName"=>  "King's Groceries",
+ "FullyQualifiedName"=>  "Evil King",
+ "CompanyName"=>  "King Evial",
+ "DisplayName"=>  "Evil King",
  "PrimaryPhone"=>  [
      "FreeFormNumber"=>  "(555) 555-5555"
  ],
  "PrimaryEmailAddr"=>  [
-     "Address" => "jdrew@myemail.com"
+     "Address" => "evilkingw@myemail.com"
  ]
 ]);
 $resultingCustomerObj = $dataService->Add($customerObj);

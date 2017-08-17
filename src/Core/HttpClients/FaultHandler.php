@@ -110,12 +110,19 @@ class FaultHandler
     public function getIntuitErrorDetail(){
         return $this->intuitErrorDetail;
     }
-    public function parseResponse($message){
+
+    /**
+     * Only parse XML format to string values now
+     */
+    public function parseResponse($message, $contentType){
       if(!$this->isValidXml($message)){
           return;
       }
-
       $xmlObj = simplexml_load_string($message);
+
+      if(!$this->isStandardFormat($xmlObj)){
+          return;
+      }
       $type = (string)$xmlObj->Fault->attributes()['type'];
       if(isset($type) && !empty($type)){
         $this->intuitErrorType = $type;
@@ -138,8 +145,19 @@ class FaultHandler
 
     }
 
+    /**
+     * Check if the format is standard Intuit Response format
+     */
+    private function isStandardFormat($xmlObj)
+    {
+        if(!isset($xmlObj->Fault) || !isset($xmlObj->Fault->Error)){
+           return false;
+        }
+        return true;
+    }
+
     private function isValidXml($content)
-   {
+    {
       $content = trim($content);
       if (empty($content)) {
           return false;

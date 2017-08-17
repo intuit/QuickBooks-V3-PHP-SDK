@@ -11,32 +11,31 @@ use QuickBooksOnline\API\Facades\Invoice;
 // Prep Data Services
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
-         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-         'QBORealmID' => "193514489870599",
-         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
+         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
+         'accessTokenKey' => "lvprdBYrv22L2vEsSRJgcAeljxRkKdh0QLcYJDWcBU2GXVDE",
+         'accessTokenSecret' => "T7F4DzbdU0bWWK5qIjZGEVhZEQytDEUM2XYASKnE",
+         'QBORealmID' => "193514340994122",
+         'baseUrl' => "production"
 ));
-
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 //Add a new Invoice
 $theResourceObj = Invoice::create([
      "Line" => [
    [
-    "Amount" => 100.00,
-    "DetailType" => "SalesItemLineDetail",
-    "SalesItemLineDetail" => [
-      "ItemRef" => [
-        "value" => "1",
-        "name" => "Services"
+     "Amount" => 100.00,
+     "DetailType" => "SalesItemLineDetail",
+     "SalesItemLineDetail" => [
+       "ItemRef" => [
+         "value" => 20,
+         "name" => "Hours"
+        ]
       ]
-    ]
-  ]
-],
+      ]
+    ],
 "CustomerRef"=> [
-  "value"=> "1"
+  "value"=> 59
 ],
       "BillEmail" => [
             "Address" => "Familiystore@intuit.com"
@@ -49,6 +48,8 @@ $theResourceObj = Invoice::create([
       ]
 ]);
 $resultingObj = $dataService->Add($theResourceObj);
+
+
 $error = $dataService->getLastError();
 if ($error != null) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";

@@ -147,14 +147,19 @@ class ServiceContext
             $settings['consumerSecret']);
       }else{
          $OAuthConfig = new OAuth2AccessToken(
-            $settings['accessTokenKey'],
-            $settings['refreshTokenKey'],
             $settings['ClientID'],
-            $settings['ClientSecret']
+            $settings['ClientSecret'],
+            $settings['accessTokenKey'],
+            $settings['refreshTokenKey']
          );
       }
         $QBORealmID = $settings['QBORealmID'];
         $baseURL = $settings['baseUrl'];
+        if(strcasecmp($baseURL, CoreConstants::DEVELOPMENT_SANDBOX) == 0){
+           $baseURL = CoreConstants::SANDBOX_DEVELOPMENT;
+        }else if(strcasecmp($baseURL, CoreConstants::PRODUCTION_QBO) == 0){
+           $baseURL = CoreConstants::QBO_BASEURL;
+        }
         $checkedBaseURL = ServiceContext::checkAndAddBaseURLSlash($baseURL);
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
         $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION);
@@ -325,5 +330,13 @@ class ServiceContext
         } else {
             throw new \Exception("Return Null or Empty IppConfiguration.");
         }
+    }
+
+    public function updateOAuth2Token($OAuth2AccessToken){
+      if($OAuth2AccessToken instanceof OAuth2AccessToken && $this->requestValidator instanceof OAuth2AccessToken){
+        $this->IppConfiguration->Security = $OAuth2AccessToken;
+        $this->requestValidator = $OAuth2AccessToken;
+      }
+
     }
 }

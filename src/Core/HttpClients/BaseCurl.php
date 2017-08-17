@@ -83,10 +83,12 @@ class BaseCurl{
 
   /**
    * Close the resource connection to curl
+   * Remove the pointer after closed 
   */
   public function close()
   {
       curl_close($this->curl);
+      $this->curl = null;
   }
 }
 

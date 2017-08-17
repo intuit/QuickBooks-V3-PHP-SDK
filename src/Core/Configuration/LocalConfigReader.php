@@ -246,11 +246,12 @@ class LocalConfigReader
             // Set SSL check status to be true
             $ippConfig->SSLCheckStatus = true;
             $currentOAuth2AccessTokenKey = $xmlObj->intuit->ipp->security->oauth2->attributes()['accessTokenKey'];
-            $currentOAuth2RefreshTokenKey = $xmlObj->intuit->ipp->security->oauth1->attributes()['refreshTokenKey'];
-            $currentConsumerKey = $xmlObj->intuit->ipp->security->oauth1->attributes()['ClientID'];
-            $currentConsumerSecret =    $xmlObj->intuit->ipp->security->oauth1->attributes()['ClientSecret'];
-            $ippConfig->RealmID =  $xmlObj->intuit->ipp->security->oauth1->attributes()['QBORealmID'];
-            $OAuth2AccessToken = new OAuth2AccessToken($currentOAuth2AccessTokenKey, $currentOAuth2RefreshTokenKey, $currentConsumerKey, $currentConsumerSecret);
+            $currentOAuth2RefreshTokenKey = $xmlObj->intuit->ipp->security->oauth2->attributes()['refreshTokenKey'];
+            $clientID = $xmlObj->intuit->ipp->security->oauth2->attributes()['ClientID'];
+            $clientSecret =    $xmlObj->intuit->ipp->security->oauth2->attributes()['ClientSecret'];
+            $ippConfig->RealmID =  $xmlObj->intuit->ipp->security->oauth2->attributes()['QBORealmID'];
+            $OAuth2AccessToken = new OAuth2AccessToken($clientID, $clientSecret, $currentOAuth2AccessTokenKey, $currentOAuth2RefreshTokenKey);
+
             $ippConfig->Security = $OAuth2AccessToken;
             $ippConfig->OAuthMode = CoreConstants::OAUTH2;
          } else {

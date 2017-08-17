@@ -12,6 +12,8 @@ use QuickBooksOnline\API\Data\IPPLine;
 use QuickBooksOnline\API\Data\IPPMarkupInfo;
 use QuickBooksOnline\API\Data\IPPLineDetailTypeEnum;
 use QuickBooksOnline\API\Facades\Common\LineDetailFacade;
+use QuickBooksOnline\API\Exception\SdkException;
+
 
 use QuickBooksOnline\API\Core\CoreConstants;
 
@@ -431,16 +433,38 @@ class FacadeHelper{
      $reflectionClassOfTargetObject = new \ReflectionClass($targetObject);
      $property = $reflectionClassOfTargetObject->getProperty($key);
      if($property instanceof \ReflectionProperty){
+        $value = FacadeHelper::convertValueTypeToAppropriateString($value);
         $property->setValue($targetObject,$value);
      }else{
        throw new \Exception("No Reflection Property Found.");
      }
    }
 
+   private static function convertValueTypeToAppropriateString($value){
+      if(is_bool($value)){
+        $converted_val = ($value) ? 'true' : 'false';
+        return $converted_val;
+      } else if(is_numeric($value) || is_string($value)){
+        return $value;
+      } else if($value instanceof \DateTime){
+          $result = $value->format('Y-m-d');
+          if($result){
+            return $result;
+          }else{
+            throw new SdkException("Cannot Convert the DateTime Object in the Line to String format using format function. Use String value instead.");
+          }
+      } else {
+         return $value;
+      }
+   }
+
    private static function checkIfTheObjectIsAnInstanceOfTheClass($className, $object){
       if($object instanceof $className){
           return true;
-      }else{
+      } else if($object instanceof \DateTime){
+          return true;
+      }
+      else{
           $className = FacadeHelper::decorateKeyWithNameSpaceAndPrefix($className);
           if($object instanceof $className){
               return true;

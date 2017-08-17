@@ -6,6 +6,7 @@ use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Facades\Item;
 
 
 $dataService = DataService::Configure(array(
@@ -33,33 +34,46 @@ if ($error != null) {
 }
 $dataService->updateOAuth2Token($accessToken);
 
+$dateTime = new \DateTime('NOW');
+$Item = Item::create([
+      "Name" => "1111Office Sudfsfasdfpplies",
+      "Description" => "This is the sales description.",
+      "Active" => true,
+      "FullyQualifiedName" => "Office Supplies",
+      "Taxable" => true,
+      "UnitPrice" => 25,
+      "Type" => "Inventory",
+      "IncomeAccountRef"=> [
+        "value"=> 79,
+        "name" => "Landscaping Services:Job Materials:Fountains and Garden Lighting"
+      ],
+      "PurchaseDesc"=> "This is the purchasing description.",
+      "PurchaseCost"=> 35,
+      "ExpenseAccountRef"=> [
+        "value"=> 80,
+        "name"=> "Cost of Goods Sold"
+      ],
+      "AssetAccountRef"=> [
+        "value"=> 81,
+        "name"=> "Inventory Asset"
+      ],
+      "TrackQtyOnHand" => true,
+      "QtyOnHand"=> 100,
+      "InvStartDate"=> $dateTime
+]);
 
-$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
-// Iterate through all Accounts, even if it takes multiple pages
-$i = 1;
-while (1) {
-    $allAccounts = $dataService->FindAll('Account', $i, 500);
-    $error = $dataService->getLastError();
-    if ($error != null) {
-        echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
-        echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
-        echo "The Response message is: " . $error->getResponseBody() . "\n";
-        exit();
-    }
-
-    if (!$allAccounts || (0==count($allAccounts))) {
-        break;
-    }
-
-    foreach ($allAccounts as $oneAccount) {
-        echo "Account[".($i++)."]: {$oneAccount->Name}\n";
-        echo "\t * Id: [{$oneAccount->Id}]\n";
-        echo "\t * AccountType: [{$oneAccount->AccountType}]\n";
-        echo "\t * AccountSubType: [{$oneAccount->AccountSubType}]\n";
-        echo "\t * Active: [{$oneAccount->Active}]\n";
-        echo "\n";
-    }
+$resultingObj = $dataService->Add($Item);
+$error = $dataService->getLastError();
+if ($error != null) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+}
+else {
+    echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+    echo $xmlBody . "\n";
 }
 
 /*

@@ -21,6 +21,8 @@ use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Diagnostics\ContentWriter;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 
 /**
  * This file contains DataService performs CRUD operations on IPP REST APIs.
@@ -100,6 +102,11 @@ class DataService
     private $lastError = null;
 
     /**
+     * The OAuth 2 Login helper for get RefreshToken
+     */
+    private $OAuth2LoginHelper;
+
+    /**
      * Initializes a new instance of the DataService class.
      *
      * @param ServiceContext $serviceContext IPP Service Context
@@ -145,7 +152,11 @@ class DataService
 
     private function setupRestHandler($serviceContext)
     {
-        $this->restHandler = new SyncRestHandler($serviceContext);
+       if(!isset($this->restHandler)){
+          $this->restHandler = new SyncRestHandler($serviceContext);
+       }else{
+          $this->restHandler->updateContext($serviceContext);
+       }
     }
 
     /**
@@ -239,6 +250,18 @@ class DataService
         } else {
             throw new SdkException("Passed Null to Configure method. It expects either a file path for the config file or an array containing OAuth settings and BaseURL.");
         }
+    }
+
+    public function getOAuth2LoginHelper(){
+        if(!isset($this->OAuth2LoginHelper)){
+            $this->OAuth2LoginHelper = new OAuth2LoginHelper(null, null, $this->serviceContext);
+        }
+        return $this->OAuth2LoginHelper;
+    }
+
+    public function updateOAuth2Token($newOAuth2AccessToken){
+        $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
+        $this->setupRestHandler($this->serviceContext);
     }
 
     /**

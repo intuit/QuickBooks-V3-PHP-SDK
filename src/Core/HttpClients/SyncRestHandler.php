@@ -46,6 +46,14 @@ class SyncRestHandler extends RestHandler
         return $this;
     }
 
+    public function updateContext($newServiceContext){
+        if($newServiceContext instanceof ServiceContext){
+            $this->context = $newServiceContext;
+        }else{
+           throw new SdkException("Cannot Update Service Context.");
+        }
+    }
+
     //----------------New Added Method to get Last error
     /**
   * Return an representation of an error returned by the last request, or null

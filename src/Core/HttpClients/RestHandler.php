@@ -42,6 +42,12 @@ class RestHandler
     protected $RequestSerializer;
 
     /**
+     * Get the Logging component for the REST service
+     * @var RequestLogging
+     */
+    protected $RequestLogging;
+
+    /**
      *
      * Initializes a new instance of the RestHandler class.
      *

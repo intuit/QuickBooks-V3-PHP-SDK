@@ -86,7 +86,6 @@ class CurlHttpClient{
     }
 
     private function intializeCurl(){
-
         if($this->basecURL->isCurlSet()){ return; }
         else {$this->basecURL->init();}
     }
@@ -104,7 +103,7 @@ class CurlHttpClient{
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
-          $curl_opt[CURLOPT_CAINFO] = dirname(dirname(__FILE__)) . "/OAuth/OAuth2/certs/apiintuitcom.pem"; //Pem certification Key Path
+          $curl_opt[CURLOPT_CAINFO] = dirname(dirname(__FILE__)) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
       }
     }
 

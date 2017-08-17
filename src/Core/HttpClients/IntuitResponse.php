@@ -2,6 +2,9 @@
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Exception\SdkException;
+use QuickBooksOnline\API\Core\CoreConstants;
+
+
 
 class IntuitResponse{
 
@@ -12,6 +15,8 @@ class IntuitResponse{
    private $httpResponseCode;
 
    private $faultHandler;
+
+   private $contentType;
 
    public function __construct($passedHeaders, $passedBody, $passedHttpResponseCode){
           if(isset($passedHeaders)){
@@ -32,7 +37,7 @@ class IntuitResponse{
                  $this->faultHandler = new FaultHandler();
                  $this->faultHandler->setHttpStatusCode($this->httpResponseCode);
                  $this->faultHandler->setResponseBody($this->body);
-                 $this->faultHandler->parseResponse($this->body);
+                 $this->faultHandler->parseResponse($this->body, $this->contentType);
                  //Manually set the error message
                  $this->faultHandler->setOAuthHelperError("Invalid auth/bad request (got a " .$passedHttpResponseCode . ", expected HTTP/1.1 20X or a redirect)");
               }
@@ -50,9 +55,18 @@ class IntuitResponse{
             }else {
                 list($key, $value) = explode(': ', $line);
                 $this->headers[$key] = $value;
+                //set response content type
+                $this->setContentType($key, $value);
             }
         }
 
+   }
+
+   private function setContentType($key, $val){
+     $trimedKey = trim($key);
+     if(strcasecmp($trimedKey, CoreConstants::CONTENT_TYPE) == 0){
+         $this->contentType = trim($val);
+     }
    }
 
    public function getHeaders(){
@@ -69,6 +83,10 @@ class IntuitResponse{
 
    public function getFaultHandler(){
        return $this->faultHandler;
+   }
+
+   public function getResponseContentType(){
+       return $this->contentType;
    }
 
 }
