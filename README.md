@@ -49,7 +49,7 @@ https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/02
 
 ##### Or you can use the "releases" page at https://github.com/intuit/QuickBooks-V3-PHP-SDK/releases to manually download the PHP SDK:
 
-If you are not familiar with Composer, you can go to the "release" tab in this Github to download the zip file for PHP SDK. See example scripts in https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples for how to make QuickBooks Online API call without Composer. 
+If you are not familiar with Composer, you can also go to the "releases" tab to download the zip file version of our PHP SDK. See example scripts here https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples for how to make QuickBooks Online API call without Composer. 
 
 Configuration
 -------------
