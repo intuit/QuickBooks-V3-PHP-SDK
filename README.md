@@ -102,8 +102,8 @@ You use the sdk.config file located in /src as a template for the config file fo
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
 
-For Development Keys, use URL "https://sandbox-quickbooks.api.intuit.com/" or keyword "Development" as baseUrl<br>
-For Production Keys, use URL "https://quickbooks.api.intuit.com/" or keyword "Production" as baseUrl.
+For Development Keys, use URL "https://sandbox-quickbooks.api.intuit.com/" or keyword **"Development"** as baseUrl<br>
+For Production Keys, use URL "https://quickbooks.api.intuit.com/" or keyword **"Production"** as baseUrl.
 
 
 Currently the default minor version for PHP SDK is set to 8. To set up the minor Version with a different value, use:
