@@ -34,7 +34,7 @@ https://appcenter.intuit.com/Playground/OAuth/IA/
 
 Installation
 ------------
-Use the following Composer command to install the PHP SDK:
+*Use the following Composer command to install the PHP SDK:*
 
 ~~~shell
  $ composer require quickbooks/v3-php-sdk
@@ -46,6 +46,9 @@ https://getcomposer.org/doc/00-intro.md
 
 If you haven't installed PECL OAuth 1.2.3 libraray, you need to install it to run the PHP SDK. Please refer to the documentation here for how to install it:
 https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/0209_php/0002_install_the_php_sdk
+
+*Use the "release" page: https://github.com/intuit/QuickBooks-V3-PHP-SDK/releases to manually download the SDK:*
+If you are not familiar with Composer, you can go to the "release" tab in this Github to download the zip file for PHP SDK. See example scripts in https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples for how to make QuickBooks Online API call without Composer. 
 
 Configuration
 -------------
@@ -73,22 +76,22 @@ $dataService = DataService::Configure(array(
          'auth_mode' => 'oauth1',
          'consumerKey' => "Your Consumer key",
          'consumerSecret' => "Your Consumer secret",
-         'accessTokenKey' => "Your Access Tokens",
-         'accessTokenSecret' => "Your Access Token secrets",
+         'accessTokenKey' => "Your Access Token",
+         'accessTokenSecret' => "Your Access Token secret",
          'QBORealmID' => "Your CompanyID",
-         'baseUrl' => "either sandbox or Production QBO URL"
+         'baseUrl' => "Development/Production"
 ));
 ~~~
 for oauth 2:
 ~~~php
 $dataService = DataService::Configure(array(
          'auth_mode' => 'oauth2',
-         'ClientID' => "Q0lCkcEshsGMHOEula2r5RKc2yhxvMsYEpKN1lw1WZwyfd1Si6",
-         'ClientSecret' => "gE0F9hLgwx9OBzRpNxyOvWJH6L2fIhzAwBugPJHq",
-         'accessTokenKey' => 'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..4z4Assj4x1qt8H4DtQco6A.nmV2jTxaDMVdFWEUO16q5qhbd5aD6U-U-RYnSNywqg-HPC_3_jvwpMJU1a1S5X-PgPUy60WvVy_8p1awY7kIoFzTV4IhdFLrZpYtBUGCjcsvjxWeOSgP6oCayBEmCv7zzabtgB6vxU46jQqKX2IXYUGPPtyYO64hrgELFR4SKUK6boZiVnh8z19gnvsReKMmIINA3-NgC6QJqMRp6HWgzCa9RuDN9tCtrAK2dy5xmJRNSNgdv_gyg1bfdX4l4b30fLPzFk31fsTT9NTJq9PuGtdTsvUuCj7Hme6HPldD9TKYRXWU8TKrQQrQWEpdlbPr6F3rhP6IdmCv9t1XH_WzF_1IseRUoYhiTUjubig-j8gzwajIdYQTzpJQKJ92QiAEyt8k40WWg0v69hEC0w7WRBuUE-IJ50xWypqS_P28IWt1G14rovZ97soGOteSik-41g1icR2zxfNhXGq7zO7oU5B8r-ej5Pb52T0MCMktgd6y32bqwo2pcEzblL2bZs7DZ7LDx5peY4TIfGW21crTE6xjhRr7LdqB8K505pRqIOP20eaRgwtGHLZ3bdBt1_negw2AGjc409BM0nLzzmODxr3yo-YdGwkcOjm5QgbGAsrnpoSo9tSpxPHoN0vMRneRdsKCd6CZG5M1OIOMuj7spkm442tvwiAMCx2Fh-STG6fMnhOq7l_f8NW_3kscxtF2.obQxJKjPfi1KlaQQ_OUoNg',
-         'refreshTokenKey' => "L011509163184Q0K7DT40SVXhJXAfyoj6B6EbSr3Ty64yVvF5A",
-         'QBORealmID' => "123145857569084",
-         'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
+         'ClientID' => "Your Client ID",
+         'ClientSecret' => "Your Client Secret",
+         'accessTokenKey' => 'Your Access Token',
+         'refreshTokenKey' => "Your refresh Token",
+         'QBORealmID' => "Your CompanyID",
+         'baseUrl' => "Development/Production"
 ));
 ~~~
 or:
@@ -98,8 +101,8 @@ You use the sdk.config file located in /src as a template for the config file fo
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
 
-For OAuth values under Development Keys, use the full URL "https://sandbox-quickbooks.api.intuit.com/" or keyword "development" as baseUrl<br>
-For OAuth values under Production Keys, use the full URL "https://quickbooks.api.intuit.com/" or keyword "production" as baseUrl.
+For Development Keys, use URL "https://sandbox-quickbooks.api.intuit.com/" or keyword "Development" as baseUrl<br>
+For Production Keys, use URL "https://quickbooks.api.intuit.com/" or keyword "Production" as baseUrl.
 
 
 Currently the default minor version for PHP SDK is set to 8. To set up the minor Version with a different value, use:
@@ -131,8 +134,7 @@ var_dump($result);
 ~~~
 
 ### OAuth 2.0 Refresh Token 
-To get a refresh Token, you can use the ~~~php OAuth2LoginHelper~~~ Object from ~~~php $dataService~~~ to make refreshToken() function call. See https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/refreshTokenSample.php
-
+To get a refresh Token, you will use the OAuth2LoginHelper Object from $dataService to make refreshToken() function call. See https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/refreshTokenSample.php as an example. The core part is listed below:
 ~~~php
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $accessToken = $OAuth2LoginHelper->refreshToken();
@@ -147,9 +149,9 @@ $dataService->updateOAuth2Token($accessToken);
 ~~~
 
 ### OAuth 2.0 SSL Certificate Settings and Issues
-The PHP SDK use the Mozilla CA certificates(https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.
-To disbale the cURL certificate settings from the SDK, comment out Line 106 in https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php (You must update the curl.cainfo in your php.ini file)<\br>
-You can also append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem <\br>
+The PHP SDK use the Mozilla CA certificates(https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.<br/>
+To disbale the cURL certificate settings from the SDK, comment out Line 106 at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php (You must update the curl.cainfo in your php.ini file)<br/>
+You can also append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem <br/>
 Below is the code for settings the certificate path for cURL in the SDK.
 ~~~php
  private function setSSL(&$curl_opt, $verifySSL){
@@ -159,7 +161,6 @@ Below is the code for settings the certificate path for cURL in the SDK.
           $curl_opt[CURLOPT_CAINFO] = dirname(dirname(__FILE__)) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
       }
     }
-
 ~~~
 
 Test your OAuth settings
