@@ -152,9 +152,9 @@ $dataService->updateOAuth2Token($accessToken);
 ### OAuth 2.0 SSL Certificate Settings 
 The PHP SDK use the Mozilla CA certificates(https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.<br/>
 
-To disbale the cURL certificate settings from the PHP SDK, comment out Line 106 at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php <br/>
+To disable the cURL certificate settings from PHP SDK, comment out Line 106 at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php <br/>
 
-You can also append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem <br/>
+or you can append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem <br/>
 
 Test your OAuth settings
 ------------------------
