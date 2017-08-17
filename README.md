@@ -98,8 +98,9 @@ You use the sdk.config file located in /src as a template for the config file fo
 $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 ~~~
 
-For OAuth values under Development Keys, use "https://sandbox-quickbooks.api.intuit.com/" as baseUrl<br>
-For OAuth values under Production Keys, use "https://quickbooks.api.intuit.com/" as baseUrl.
+For OAuth values under Development Keys, use the full URL "https://sandbox-quickbooks.api.intuit.com/" or keyword "development" as baseUrl<br>
+For OAuth values under Production Keys, use the full URL "https://quickbooks.api.intuit.com/" or keyword "production" as baseUrl.
+
 
 Currently the default minor version for PHP SDK is set to 8. To set up the minor Version with a different value, use:
 ~~~php
@@ -129,6 +130,37 @@ $result = $platformService->Disconnect();
 var_dump($result);
 ~~~
 
+### OAuth 2.0 Refresh Token 
+To get a refresh Token, you can use the ~~~php OAuth2LoginHelper~~~ Object from ~~~php $dataService~~~ to make refreshToken() function call. See https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/refreshTokenSample.php
+
+~~~php
+$OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+$accessToken = $OAuth2LoginHelper->refreshToken();
+$error = $OAuth2LoginHelper->getLastError();
+if ($error != null) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+    return;
+}
+$dataService->updateOAuth2Token($accessToken);
+~~~
+
+### OAuth 2.0 SSL Certificate Settings and Issues
+The PHP SDK use the Mozilla CA certificates(https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.
+To disbale the cURL certificate settings from the SDK, comment out Line 106 in https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php (You must update the curl.cainfo in your php.ini file)<\br>
+You can also append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem <\br>
+Below is the code for settings the certificate path for cURL in the SDK.
+~~~php
+ private function setSSL(&$curl_opt, $verifySSL){
+      if($verifySSL){
+          $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
+          $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
+          $curl_opt[CURLOPT_CAINFO] = dirname(dirname(__FILE__)) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
+      }
+    }
+
+~~~
 
 Test your OAuth settings
 ------------------------
@@ -320,117 +352,7 @@ However, all corresponding objects need to be imported before using them.
 Create new resources (PUT)
 -----------------------------------------
 To create a new resource in QuickBooks Online(Invoice will be used an Example here):
-
-~~~php
-<?php
-require "vendor/autoload.php";
-
-use QuickBooksOnline\API\DataService\DataService;
-use QuickBooksOnline\API\Facades\Invoice;
-use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
-
-$dataService = DataService::Configure(array(
-	         'auth_mode' => 'oauth1',
-		 'consumerKey' => "Your Cosumer Key",
-		 'consumerSecret' => "Your Consumer secrets",
-		 'accessTokenKey' => "Your Access Token",
-		 'accessTokenSecret' => "Your Access Token Secrets",
-		 'QBORealmID' => "Your RealmID",
-		 //sandbox.api.intuit.com/ will be the sandbox url and quickbooks.api.intuit.com/ will be the product url
-		 'baseUrl' => "Your sandbox URL or Product URL"
-));
-
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
-
-// Add the Invoice resource
-$theResourceObj = Invoice::create([
-       "Deposit" => 0,
-      "domain" => "QBO",
-      "sparse" => false,
-      "Id" => $IdGenerated,
-      "SyncToken" => 0,
-      "MetaData" => [
-          "CreateTime" => "2015-07-24T10:35:08-07:00",
-          "LastUpdatedTime" => "2015-07-24T10:35:08-07:00"
-      ],
-      "CustomField"=>  [ [
-          "DefinitionId" => "1",
-          "Name" => "Crew #",
-          "Type" => "StringType"
-      ]],
-      "DocNumber" => "1070",
-      "TxnDate" => "2015-07-24",
-      "LinkedTxn" => [],
-      "Line" => [[
-          "Id" => "1",
-          "LineNum" => 1,
-          "Amount" => 150.0,
-          "DetailType" => "SalesItemLineDetail",
-          "SalesItemLineDetail" => [
-              "ItemRef" => [
-                  "value" => "1",
-                  "name" => "Services"
-              ],
-              "TaxCodeRef" => [
-                  "value" => "NON"
-              ]
-          ]
-      ], [
-          "Amount" => 150.0,
-          "DetailType" => "SubTotalLineDetail",
-          "SubTotalLineDetail" => []
-      ]],
-      "TxnTaxDetail" => [
-          "TotalTax" => 0
-      ],
-      "CustomerRef" => [
-          "value" => "1",
-          "name" => "Amy's Bird Sanctuary"
-      ],
-      "CustomerMemo" => [
-          "value" => "Added customer memo."
-      ],
-      "BillAddr" => [
-          "Id" => "2",
-          "Line1" => "4581 Finch St.",
-          "City" => "Bayshore",
-          "CountrySubDivisionCode" => "CA",
-          "PostalCode" => "94326",
-          "Lat" => "INVALID",
-          "Long"=> "INVALID"
-      ],
-      "ShipAddr" => [
-          "Id" => "109",
-          "Line1" => "4581 Finch St.",
-          "City" => "Bayshore",
-          "CountrySubDivisionCode" => "CA",
-          "PostalCode" => "94326",
-          "Lat" => "INVALID",
-          "Long" => "INVALID"
-      ],
-      "DueDate" => "2015-08-23",
-      "TotalAmt" => 150.0,
-      "ApplyTaxAfterDiscount" => false,
-      "PrintStatus" => "NeedToPrint",
-      "EmailStatus" => "NotSet",
-      "Balance" => 150.0
-]);
-$resultingObj = $dataService->Add($theResourceObj);
-$error = $dataService->getLastError();
-if ($error != null) {
-    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
-    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
-    echo "The Response message is: " . $error->getResponseBody() . "\n";
-    echo "The Intuit Helper message is: IntuitErrorType:{" . $error->getIntuitErrorType() . "} IntuitErrorCode:{" . $error->getIntuitErrorCode() . "} IntuitErrorMessage:{" . $error->getIntuitErrorMessage() . "} IntuitErrorDetail:{" . $error->getIntuitErrorDetail() . "}";
-}
-else {
-    echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";
-    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
-    echo $xmlBody . "\n";
-}
-?>
-~~~
+See https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/LineSample.php
 
 
 Update existing resources (PUT)
@@ -523,6 +445,14 @@ For QuickBooks Online, SQL comparision value is required to use *SINGLE QUOTATIO
 //You will get a 400 from QBO for error parsing string
 $theInvoice = $dataServices->Query("select * from Invoice where docNumber=1038");
 ~~~
+
+Pagination (Query)
+-------------------------------------------
+Pagination is supported in the QuickBooks Online API. However, tt needs to be specified in the Query itself. To page through the results, specify STARTPOSITION (position of the entity in the query results) and MAXRESULTS (maximum number of entities in the result). For example,
+~~~php
+$entities = $dataService->Query("SELECT * FROM Invoice STARTPOSITION 1 MAXRESULTS 10");
+
+More information can be found here: https://developer.intuit.com/docs/0100_quickbooks_online/0300_references/0000_programming_guide/0050_data_queries
 
 Handling Errors And Timeouts
 ----------------------------
