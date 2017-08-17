@@ -135,7 +135,7 @@ var_dump($result);
 ~~~
 
 ### OAuth 2.0 Refresh Token 
-To get a refresh Token, you will use the OAuth2LoginHelper Object from $dataService to make refreshToken() function call. See https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/refreshTokenSample.php as an example. The core part is listed below:
+To get a refresh Token, you will use the OAuth2LoginHelper Object from $dataService to make refreshToken() function call. You can find the example at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/_Samples/refreshTokenSample.php. The core function is listed below:
 ~~~php
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 $accessToken = $OAuth2LoginHelper->refreshToken();
