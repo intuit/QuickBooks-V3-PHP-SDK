@@ -34,7 +34,7 @@ https://appcenter.intuit.com/Playground/OAuth/IA/
 
 Installation
 ------------
-*Use the following Composer command to install the PHP SDK:*
+##### Use the following Composer command to install the PHP SDK:
 
 ~~~shell
  $ composer require quickbooks/v3-php-sdk
@@ -47,7 +47,8 @@ https://getcomposer.org/doc/00-intro.md
 If you haven't installed PECL OAuth 1.2.3 libraray, you need to install it to run the PHP SDK. Please refer to the documentation here for how to install it:
 https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/0209_php/0002_install_the_php_sdk
 
-*Use the "release" page: https://github.com/intuit/QuickBooks-V3-PHP-SDK/releases to manually download the SDK:*
+##### Use the "release" page: https://github.com/intuit/QuickBooks-V3-PHP-SDK/releases to manually download the SDK:
+
 If you are not familiar with Composer, you can go to the "release" tab in this Github to download the zip file for PHP SDK. See example scripts in https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples for how to make QuickBooks Online API call without Composer. 
 
 Configuration
