@@ -442,9 +442,10 @@ $theInvoice = $dataServices->Query("select * from Invoice where docNumber=1038")
 
 Pagination (Query)
 -------------------------------------------
-Pagination is supported in the QuickBooks Online API. However, tt needs to be specified in the Query itself. To page through the results, specify STARTPOSITION (position of the entity in the query results) and MAXRESULTS (maximum number of entities in the result). For example,
+Pagination is supported for QuickBooks Online. However, it needs to be specified in the Query itself. To page through the results, specify STARTPOSITION (position of the entity in the query results) and MAXRESULTS (maximum number of entities in the result). For example,
 ~~~php
 $entities = $dataService->Query("SELECT * FROM Invoice STARTPOSITION 1 MAXRESULTS 10");
+~~~
 
 More information can be found here: https://developer.intuit.com/docs/0100_quickbooks_online/0300_references/0000_programming_guide/0050_data_queries
 
