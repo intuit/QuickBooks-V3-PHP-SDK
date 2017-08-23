@@ -440,7 +440,7 @@ For QuickBooks Online, SQL comparision value is required to use *SINGLE QUOTATIO
 $theInvoice = $dataServices->Query("select * from Invoice where docNumber=1038");
 ~~~
 
-For Query *ReferenceType*, DO NOT USE **ReferenceType.value**, just use **ReferenceType**. For example, query an Invoice from Customer ID 59, you will use:
+For Query *ReferenceType*(ending with keyword **Ref**), DO NOT USE **TypeRef.value**, just use **TypeRef**. For example, query an Invoice from Customer ID 59, you will use:
 ~~~sql
 SELECT * FROM Invoice WHERE CustomerRef='58' 
 ~~~
