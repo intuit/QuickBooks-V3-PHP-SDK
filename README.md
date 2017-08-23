@@ -440,6 +440,12 @@ For QuickBooks Online, SQL comparision value is required to use *SINGLE QUOTATIO
 $theInvoice = $dataServices->Query("select * from Invoice where docNumber=1038");
 ~~~
 
+For Query *ReferenceType*, DO NOT USE **ReferenceType.value**, just use **ReferenceType**. For example, query an Invoice from Customer ID 59, you will use:
+~~~sql
+SELECT * FROM Invoice WHERE CustomerRef='58' 
+~~~
+
+
 Pagination (Query)
 -------------------------------------------
 Pagination is supported for QuickBooks Online. However, it needs to be specified in the Query itself. To page through the results, specify STARTPOSITION (position of the entity in the query results) and MAXRESULTS (maximum number of entities in the result). For example,
