@@ -15,7 +15,7 @@ class PurchaseOrder{
     public static function update($objToUpdate, array $data){
         $classOfObj = get_class($objToUpdate);
         if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("PurchaseOrder")) != 0){
-            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of PurchaseOrder.");
+            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of PurchaseOrder.");
         }
         $newPurchaseOrderObj = PurchaseOrder::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);

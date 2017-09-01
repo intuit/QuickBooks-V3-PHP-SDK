@@ -15,7 +15,7 @@ class Deposit{
     public static function update($objToUpdate, array $data){
         $classOfObj = get_class($objToUpdate);
         if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("Deposit")) != 0){
-            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of Deposit.");
+            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of Deposit.");
         }
         $newDepositObj = Deposit::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);

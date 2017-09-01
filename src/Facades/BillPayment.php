@@ -12,7 +12,7 @@ class BillPayment{
     public static function update($objToUpdate, array $data){
         $classOfObj = get_class($objToUpdate);
         if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("BillPayment")) != 0){
-            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of BillPayment.");
+            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of BillPayment.");
         }
         $newBillPaymentObj = BillPayment::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);
