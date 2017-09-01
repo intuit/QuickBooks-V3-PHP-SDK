@@ -65,7 +65,7 @@ class Php2Xml extends Common
 
         // @todo implement logger injection
         // this does not work due to PHP bug @see http://bugs.php.net/bug.php?id=46813
-        if (class_exists('\Zend_Registry') && \Zend_Registry::isRegistered('logger')) {
+        if (class_exists('\Zend_Registry', false) && \Zend_Registry::isRegistered('logger')) {
             $this->logger = \Zend_Registry::get('logger');
         } else {
             $this->logger = new NullLogger();
