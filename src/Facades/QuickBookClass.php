@@ -15,7 +15,7 @@ class QuickBookClass{
     public static function update($objToUpdate, array $data){
         $classOfObj = get_class($objToUpdate);
         if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("Class")) != 0){
-            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of Class.");
+            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of Class.");
         }
         $newClassObj = QuickBookClass::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);

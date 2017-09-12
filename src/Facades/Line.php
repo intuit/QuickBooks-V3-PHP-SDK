@@ -15,7 +15,7 @@ class Line{
     public static function update($objToUpdate, array $data){
         $classOfObj = get_class($objToUpdate);
         if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("Line")) != 0){
-            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of Line.");
+            throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of Line.");
         }
         $newLineObj = Line::create($data);
         $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);

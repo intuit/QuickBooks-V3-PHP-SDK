@@ -12,7 +12,7 @@ class VendorCredit{
     public static function update($objToUpdate, array $data){
        $classOfObj = get_class($objToUpdate);
        if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("VendorCredit")) != 0){
-         throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of VendorCredit.");
+         throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of VendorCredit.");
        }
        $newVendorCreditObj = VendorCredit::create($data);
        $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);

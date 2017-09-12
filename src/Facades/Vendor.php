@@ -12,7 +12,7 @@ class Vendor{
     public static function update($objToUpdate, array $data){
        $classOfObj = get_class($objToUpdate);
        if(strcmp($classOfObj, FacadeHelper::simpleAppendClassNameSpace("Vendor")) != 0){
-         throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instace of Vendor.");
+         throw new \Exception("Target object class:{" .  $classOfObj . "} is not an instance of Vendor.");
        }
        $newVendorObj = Vendor::create($data);
        $clonedOfObj = FacadeHelper::cloneObj($objToUpdate);
