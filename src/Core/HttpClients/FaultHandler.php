@@ -36,6 +36,8 @@ class FaultHandler
 
      private $intuitErrorCode;
 
+     private $intuitErrorElement;
+
      private $intuitErrorMessage;
 
      private $intuitErrorDetail;
@@ -103,6 +105,10 @@ class FaultHandler
         return $this->intuitErrorCode;
     }
 
+    public function getIntuitErrorElement(){
+        return $this->intuitErrorElement;
+    }
+
     public function getIntuitErrorMessage(){
         return $this->intuitErrorMessage;
     }
@@ -131,6 +137,11 @@ class FaultHandler
       $code = (string)$xmlObj->Fault->Error->attributes()['code'];
       if(isset($code) && !empty($code)){
         $this->intuitErrorCode = $code;
+      }
+
+      $element = (string)$xmlObj->Fault->Error->attributes()['element'];
+      if(isset($element) && !empty($element)){
+        $this->intuitErrorElement = $element;
       }
 
       $message = (string)$xmlObj->Fault->Error->Message;
