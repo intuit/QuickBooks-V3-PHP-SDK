@@ -888,7 +888,7 @@ class DataService
         $uri = null;
 
 
-        $formattedChangedSince = date("Y-m-d\TH:m:s", $this->verifyChangedSince($changedSince));
+        $formattedChangedSince = date("Y-m-d\TH:i:s", $this->verifyChangedSince($changedSince));
         $query = "entities=" . $entityString . "&changedSince=" . $formattedChangedSince;
         $uri = "company/{1}/cdc?{2}";
         //$uri = str_replace("{0}", CoreConstants::VERSION, $uri);
