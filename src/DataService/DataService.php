@@ -445,7 +445,7 @@ class DataService
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
                 break;
             case DataService::SENDEMAIL:
-                $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . $email), CoreConstants::CONTENTTYPE_OCTETSTREAM);
+                $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . urlencode($email)), CoreConstants::CONTENTTYPE_OCTETSTREAM);
                 break;
         }
         //$restRequestHandler = new SyncRestHandler($this->serviceContext);
