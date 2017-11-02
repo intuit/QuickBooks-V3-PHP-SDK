@@ -233,6 +233,13 @@ class XmlObjectSerializer extends IEntitySerializer
         $resultObjects = null;
 
         $responseXmlObj = simplexml_load_string($message);
+
+        // handle count(*) style queries
+        if (isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition'])) {
+            $totalCount = (array)$responseXmlObj;
+            return (int)array_pop(array_pop($totalCount));
+        }
+
         foreach ($responseXmlObj as $oneXmlObj) {
             $oneXmlElementName = (string)$oneXmlObj->getName();
 
