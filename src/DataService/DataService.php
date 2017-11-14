@@ -1,5 +1,19 @@
 <?php
-
+/*******************************************************************************
+ * Copyright (c) 2017 Intuit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 namespace QuickBooksOnline\API\DataService;
 
 use QuickBooksOnline\API\Core\CoreHelper;
@@ -17,14 +31,17 @@ use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\Data\IPPTaxService;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
+use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Diagnostics\ContentWriter;
-use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
+use QuickBooksOnline\API\Core\HttpClients\ClientFactory;
 
 /**
+ * Class DataServicd
+ *
  * This file contains DataService performs CRUD operations on IPP REST APIs.
  */
 class DataService
@@ -32,48 +49,55 @@ class DataService
 
     /**
      * The METHOD UPDATE.
+     * @var String
      */
     const UPDATE = 'update';
 
     /**
      * The METHOD FINDBYID.
+     * @var String
      */
     const FINDBYID = 'FindById';
 
     /**
      * The METHOD ADD.
+     * @var String
      */
     const ADD = 'Add';
 
     /**
      * The METHOD Delete.
+     * @var String
      */
     const DELETE = 'Delete';
 
     /**
      * The METHOD VOID.
+     * @var String
      */
     const VOID = 'Void';
 
     /**
      * The METHOD UPLOAD.
+     * @var String
      */
     const UPLOAD = 'upload';
 
     /**
      * The METHOD SENDEMAIL.
+     * @var String
      */
     const SENDEMAIL = 'SendEmail';
 
     /**
      * The Service context object.
-     * @var ServiceContext
+     * @var ServiceContext The service Context of the request
      */
     private $serviceContext;
 
     /**
-     * Rest Request Handler.
-     * @var RestHandler
+     * Rest Request Handler for actually sending the request
+     * @var SyncRestHandler
      */
     private $restHandler;
 
@@ -96,20 +120,34 @@ class DataService
     private $verbose;
 
     /**
-     * If not null, the request from last dataService did not return 2xx
+     * If not false, the request from last dataService did not return 2xx
      * @var FaultHandler
      */
-    private $lastError = null;
+    private $lastError = false;
 
     /**
      * The OAuth 2 Login helper for get RefreshToken
+     * @var OAuth2LoginHelper
      */
     private $OAuth2LoginHelper;
 
     /**
-     * Initializes a new instance of the DataService class.
+     * A boolean value to decide if excetion will be thrown on non-200 request
+     * @var Boolean
+     */
+    private $throwExceptionOnError = false;
+
+    /**
+     * The client to be used for HTTP request. You can choose either defaukt(cURL) or GuzzleHttpClient if that is available
+     * @var String
+     */
+    private $clientName = CoreConstants::CLIENT_CURL;
+
+
+    /**
+     * Initializes a new instance of the DataService class. The old way to construct the dataService. Used by PHP SDK < 3.0.0
      *
-     * @param ServiceContext $serviceContext IPP Service Context
+     * @param ServiceContext $serviceContext      IPP Service Context
      * @throws SdkException
      */
     public function __construct($serviceContext)
@@ -117,18 +155,26 @@ class DataService
         if (null == $serviceContext || !is_object($serviceContext)) {
             throw new SdkException('Undefined ServiceContext. DataService constructor has NULL or Non_Object ServiceContext as Constructor');
         }
+        $this->updateServiceContextSettingsForOthers($serviceContext);
+    }
 
-        //Make them into functions for clear ideas
-        //Hao
-        //ServiceContextValidation(serviceContext);
-
+    /**
+     * Set the corresponding settings for the dataService based on ServiceContext
+     * @var ServiceContext $serviceContext        The service Context for this DataService
+     */
+    public function updateServiceContextSettingsForOthers($serviceContext)
+    {
         $this->setupServiceContext($serviceContext);
         $this->setupSerializers();
         $this->useMinorVersion();
         $this->setupRestHandler($serviceContext);
     }
 
-
+    /**
+     * Set or Update the ServiceContext of this DataService.
+     *
+     * @var ServiceContext  $serviceContext        The new ServiceContext passed by.
+     */
     private function setupServiceContext($serviceContext)
     {
         $this->serviceContext = $serviceContext;
@@ -138,35 +184,48 @@ class DataService
      * Return the ServiceContext of this DataService
      *
      * @return ServiceContext
-     * @throws \Exception
+     * @throws \Exception ServiceContext is NULL.
      */
     public function getServiceContext()
     {
-        $_ServiceContext = $this->serviceContext;
-        if (isset($_ServiceContext)) {
-            return $_ServiceContext;
+        if (isset($this->serviceContext)) {
+            return $this->serviceContext;
         } else {
-            throw new \Exception("Trying to Return an Empty Service Context.");
+            throw new SdkException("Trying to Return an Empty Service Context.");
         }
     }
 
+    /**
+     * Set the SyncRest Handler for the DataService. If the client Name changed, the underlying Client that SyncRestHandler used will also changed.
+     *
+     * @var ServiceContext $serviceContext         The service Context for this DataService
+     *
+     */
     private function setupRestHandler($serviceContext)
     {
-       if(!isset($this->restHandler)){
-          $this->restHandler = new SyncRestHandler($serviceContext);
+       if(isset($serviceContext)){
+          $client = ClientFactory::createClient($this->getClientName());
+          $this->restHandler = new SyncRestHandler($serviceContext, $client);
        }else{
-          $this->restHandler->updateContext($serviceContext);
+          throw new SdkException("Can not set the Rest Client based on null ServiceContext.");
        }
     }
 
+    /**
+     * Return the current Client Name used by DataService
+     * @return String clientName
+     */
+    public function getClientName(){
+        return $this->clientName;
+    }
     /**
      * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
      */
     public function useXml()
     {
-        $_ServiceContext = $this->getServiceContext();
-        $_ServiceContext->useXml();
-        $this->updateServiceContextSettingsForOthers($_ServiceContext);
+        $serviceContext = $this->getServiceContext();
+        $serviceContext->useXml();
+        $this->updateServiceContextSettingsForOthers($serviceContext);
     }
 
     /**
@@ -174,31 +233,33 @@ class DataService
      */
     public function useJson()
     {
-        $_ServiceContext = $this->getServiceContext();
-        $_ServiceContext->useJson();
-        $this->updateServiceContextSettingsForOthers($_ServiceContext);
+        $serviceContext = $this->getServiceContext();
+        $serviceContext->useJson();
+        $this->updateServiceContextSettingsForOthers($serviceContext);
     }
 
     /**
      * Set a new directory for request and response log
+     *
+     * @param String $new_log_location     The directory path for storing request and response log
      */
     public function setLogLocation($new_log_location)
     {
-        $_ServiceContext = $this->getServiceContext();
-        $_ServiceContext->setLogLocation($new_log_location);
-        $this->updateServiceContextSettingsForOthers($_ServiceContext);
+        $serviceContext = $this->getServiceContext();
+        $serviceContext->setLogLocation($new_log_location);
+        $this->updateServiceContextSettingsForOthers($serviceContext);
     }
 
     /**
      * Set a new Minor Version
      *
-     * @param $newMinorVersion the new minor version that passed
+     * @param String $newMinorVersion     The new minor version that passed
      */
     public function setMinorVersion($newMinorVersion)
     {
-        $_ServiceContext = $this->getServiceContext();
-        $_ServiceContext->setMinorVersion($newMinorVersion);
-        $this->updateServiceContextSettingsForOthers($_ServiceContext);
+        $serviceContext = $this->getServiceContext();
+        $serviceContext->setMinorVersion($newMinorVersion);
+        $this->updateServiceContextSettingsForOthers($serviceContext);
     }
 
     /**
@@ -206,16 +267,44 @@ class DataService
      */
     public function disableLog()
     {
-        $_ServiceContext = $this->getServiceContext();
-        $_ServiceContext->disableLog();
-        $this->updateServiceContextSettingsForOthers($_ServiceContext);
+        $serviceContext = $this->getServiceContext();
+        $serviceContext->disableLog();
+        $this->updateServiceContextSettingsForOthers($serviceContext);
     }
 
-    public function updateServiceContextSettingsForOthers($_ServiceContext)
-    {
-        $this->setupSerializers();
-        $this->useMinorVersion();
-        $this->setupRestHandler($_ServiceContext);
+
+    /**
+     * Choose if want to throw exception when there is an non-200 http status code returned.
+     * @param Boolean $bool                 Turn on exception throwing error or not
+     */
+    public function throwExceptionOnError($bool){
+        $this->throwExceptionOnError = $bool;
+    }
+
+    /**
+     * Return the settings for thrown exception on non-200 error code
+     * @return Boolean   Thrown Exception on Error or not
+     */
+    public function isThrownExceptionOnError(){
+        return $this->throwExceptionOnError;
+    }
+
+    /**
+     * Return the client Name used by this DataSerivce
+     * @return String the Client Name. It can be curl or GuzzleHttpClient
+     */
+    public function getClinetName(){
+       return $this->clientName;
+    }
+
+    /**
+     * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
+     * @param String $clientName              The client Name used by the service
+     */
+    public function setClientName($clientName){
+       $this->clientName = $clientName;
+       $serviceContext = $this->getServiceContext();
+       $this->setupRestHandler($serviceContext);
     }
 
     /**
@@ -225,43 +314,94 @@ class DataService
      * @param $settings
      * @return DataService
      * @throws SdkException
-     * @throws \Exception
+     * @throws SdkException
      */
     public static function Configure($settings)
     {
         if (isset($settings)) {
             if (is_array($settings)) {
-                $ServiceContextFromPassedArray = ServiceContext::ConfigureFromPassedArray($settings);
-                if (!isset($ServiceContextFromPassedArray)) {
-                    throw new \Exception('Construct ServiceContext from OAuthSettigs failed.');
+                $ServiceContext = ServiceContext::ConfigureFromPassedArray($settings);
+                if (!isset($ServiceContext)) {
+                    throw new SdkException('Construct ServiceContext from OAuthSettigs failed.');
                 }
-                $DataServiceInstance = new DataService($ServiceContextFromPassedArray);
+                $DataServiceInstance = new DataService($ServiceContext);
 
-                return $DataServiceInstance;
             } elseif (is_string($settings)) {
-                $ServiceContextFromFile = ServiceContext::ConfigureFromLocalFile($settings);
-                if (!isset($ServiceContextFromFile)) {
-                    throw new \Exception('Construct ServiceContext from File failed.');
+                $ServiceContext = ServiceContext::ConfigureFromLocalFile($settings);
+                if (!isset($ServiceContext)) {
+                    throw new SdkException('Construct ServiceContext from File failed.');
                 }
-                $DataServiceInstance = new DataService($ServiceContextFromFile);
+                $DataServiceInstance = new DataService($ServiceContext);
 
-                return $DataServiceInstance;
             }
+
+            if($ServiceContext->IppConfiguration->OAuthMode = CoreConstants::OAUTH2)
+            {
+                $oauth2Config = $ServiceContext->IppConfiguration->Security;
+                if($oauth2Config instanceof OAuth2AccessToken){
+                    $DataServiceInstance->configureOAuth2LoginHeloer($oauth2Config, $settings);
+                }else{
+                    throw new SdkException("SDK Error. OAuth mode is not OAuth 2.");
+                }
+            }
+
+            return $DataServiceInstance;
+
         } else {
             throw new SdkException("Passed Null to Configure method. It expects either a file path for the config file or an array containing OAuth settings and BaseURL.");
         }
     }
 
+    /**
+     * After the ServiceContext is complete, also set the LoginHelper based on the ServiceContext.
+     * @param OAuth2AccessToken $oauth2Conifg      OAuth 2 Token related information
+     * @param Array $settings                      The array that include the redirectURL, scope, state information
+     */
+    private function configureOAuth2LoginHeloer($oauth2Conifg, $settings){
+          $refreshToken = CoreConstants::getRefreshTokenFromArray($settings);
+          if(isset($refreshToken)){
+               //Login helper for refresh token API call
+               $this->OAuth2LoginHelper = new OAuth2LoginHelper(null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                $this->getServiceContext());
+          }else{
+                $redirectURL = CoreConstants::getRedirectURL($settings);
+                $scope = array_key_exists('scope', $settings) ? $settings['scope'] : null;
+                $state = array_key_exists('state', $settings) ? $settings['state'] : null;
+                $this->OAuth2LoginHelper = new OAuth2LoginHelper($oauth2Conifg->getClientID(),
+                                                                 $oauth2Conifg->getClientSecret(),
+                                                                 $redirectURL,
+                                                                 $scope,
+                                                                 $state);
+          }
+    }
+
+
+
+    /**
+     * Return the OAuth 2 Login Helper. The OAuth 2 Login helper can be used to generate OAuth code, get refresh Token, etc.
+     * @return $OAuth2LoginHelper      A helper to get OAuth 2 related values.
+     */
     public function getOAuth2LoginHelper(){
-        if(!isset($this->OAuth2LoginHelper)){
-            $this->OAuth2LoginHelper = new OAuth2LoginHelper(null, null, $this->serviceContext);
-        }
         return $this->OAuth2LoginHelper;
     }
 
+    /**
+     * Update the OAuth 2 Token that will be used for API calls later.
+     * @param OAuth2AccessToken $newOAuth2AccessToken   The OAuth 2 Access Token that will be used later.
+     */
     public function updateOAuth2Token($newOAuth2AccessToken){
-        $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
-        $this->setupRestHandler($this->serviceContext);
+        try{
+          $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
+          $realmID = $newOAuth2AccessToken->getRealmID();
+          $this->serviceContext->realmId = $realmID;
+          $this->setupRestHandler($this->serviceContext);
+        } catch (SdkException $e){
+          echo $e->getTraceAsString();
+        }
     }
 
     /**
@@ -450,12 +590,13 @@ class DataService
         }
         //$restRequestHandler = new SyncRestHandler($this->serviceContext);
         $restRequestHandler = $this->getRestHandler();
-        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
-        if (isset($faultHandler)) {
+        if ($faultHandler) {
             $this->lastError = $faultHandler;
             return null;
         } else {
+            $this->lastError = false;
             if (strcmp($CALLINGMETHOD, DataService::ADD) == 0) {
                 $responseBody = $this->fixTaxServicePayload($entity, $responseBody);
             }
@@ -515,58 +656,54 @@ class DataService
     }
 
     /**
-     * Returns an entity under the specified realm. The realm must be set in the context.
+     * The Read request. You can either pass an object that contains the Id that you want to read, or
+     * pass the Entity Name and the Id.
+     * Before v4.0.0, it supports the read of CompanyInfo and Preferences.
+     * After v4.0.0, it DOES NOT support read of CompanyInfo or Preferences. Please use getCompanyInfo() or getCompanyPreferences() method instead.
+     * Only use this one to do READ request with ID.
      *
-     * @param object $entity Entity to Find
+     * Developer has two ways to call the GET request. Take Invoice for an example:
+     * 1) FindById($invoice);
+     * or
+     * 2) FindById("invoice", 1);
+     *
+     * @param object|String $entity Entity to Find, or the String Name of the Entity
      * @return IPPIntuitEntity Returns an entity of specified Id.
      * @throws IdsException
      */
-    public function FindById($entity)
+    public function FindById($entity, $Id = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindById.");
-
-        $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
-
-        // Validate parameter
-        if ($entity && (strtolower('preferences') == strtolower($urlResource))) {
-            // Exempt from general-purpose bad parameter check.  This is a special, allowable case.
-        } elseif (!$entity || !$entity->Id) {
-            $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
-            throw new IdsException('Argument Null Exception');
+        if(is_object($entity)){
+           $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
+           // Validate parameter
+           if (!$entity || !$entity->Id) {
+              $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
+              throw new IdsException('Argument Null Exception when calling FindById for Endpoint:' . get_class($entity));
+          }
+          $this->verifyOperationAccess($entity, __FUNCTION__);
+          $entityId = $entity->Id;
+          // Normal case
+          $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
+          // Send request
+          return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
+        }else if(is_string($entity) && isset($Id)){
+          $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
+          $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+          $restRequestHandler = $this->getRestHandler();
+          list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
+          $faultHandler = $restRequestHandler->getFaultHandler();
+          //$faultHandler now is true or false
+          if ($faultHandler) {
+              $this->lastError = $faultHandler;
+              return null;
+          } else {
+              //clean the error
+              $this->lastError = false;
+              $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+              return $parsedResponseBody;
+          }
         }
-        $this->verifyOperationAccess($entity, __FUNCTION__);
-
-        $entityId = $entity->Id;
-
-        // Handle some special cases
-        if (strtolower('preferences') == strtolower($urlResource)) {
-            // FindById semantics for CompanyInfo are unusual.  Handle via special case.
-            $allEntities = $this->FindAll('Preferences');
-
-            foreach ($allEntities as $singletonPreferences) {
-                return $singletonPreferences;
-            }
-
-            return null;
-        } elseif ((strtolower('company') == strtolower($urlResource)) ||
-            (strtolower('companyinfo') == strtolower($urlResource))
-        ) {
-            // FindById semantics for CompanyInfo are unusual.  Handle via special case.
-            $allEntities = $this->FindAll('Company');
-            foreach ($allEntities as $oneCompany) {
-                if (0 == strcmp($oneCompany->Id, $entity->Id)) {
-                    return $oneCompany;
-                }
-            }
-
-            return null;
-        } else {
-            // Normal case
-            $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
-        }
-
-        // Send request
-        return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
     }
 
     /**
@@ -653,13 +790,13 @@ class DataService
     }
 
     /**
-     * Uploads an image
+     * Uploads an attachment to an Entity on QuickBooks Online. For security reason, text file is not supported for uploading.
      *
-     * @param string $imgBits image bytes
-     * @param string $fileName Filename to use for this file
-     * @param string $mimeType MIME type to send in the HTTP Headers
-     * @param IPPAttachable $objAttachable entity describing the attachement
-     * @return array Returns an array of entities fulfilling the query.
+     * @param string $bits                        Encoded Base64 bytes for the attachment
+     * @param string $fileName                    Filename to use for this file
+     * @param string $mimeType                    MIME type to send in the HTTP Headers
+     * @param IPPAttachable $objAttachable        Entity including the attachment, it can be invoice, bill, etc
+     * @return array                              Returns an array of entities fulfilling the query.
      * @throws IdsException
      */
     public function Upload($imgBits, $fileName, $mimeType, $objAttachable)
@@ -718,14 +855,14 @@ class DataService
         $restRequestHandler = $this->getRestHandler();
 
 
-        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
-        if (isset($faultHandler)) {
+        if ($faultHandler) {
             $this->lastError = $faultHandler;
-
             //Add allow for through exception if users set it up
             return null;
         } else {
+            $this->lastError = false;
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
@@ -785,14 +922,14 @@ class DataService
         $httpsPostBody = $query;
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
-        $restRequestHandler = new SyncRestHandler($this->serviceContext);
-        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
-        if (isset($faultHandler)) {
+        if ($faultHandler) {
             $this->lastError = $faultHandler;
-
             return null;
         } else {
+            $this->lastError = false;
             $parsedResponseBody = null;
             try {
                 $responseXmlObj = simplexml_load_string($responseBody);
@@ -843,13 +980,13 @@ class DataService
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
-        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
-        if (isset($faultHandler)) {
+        if ($faultHandler) {
             $this->lastError = $faultHandler;
-
             return null;
         } else {
+            $this->lastError = false;
             $parsedResponseBody = null;
             try {
                 $responseXmlObj = simplexml_load_string($responseBody);
@@ -899,13 +1036,13 @@ class DataService
         $requestParameters = $this->getGetRequestParameters($uri, CoreConstants::CONTENTTYPE_APPLICATIONXML);
         $restRequestHandler = new SyncRestHandler($this->serviceContext);
 
-        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
-        if (isset($faultHandler)) {
+        if ($faultHandler) {
             $this->lastError = $faultHandler;
-
             return null;
         } else {
+            $this->lastError = false;
             $returnValue = new IntuitCDCResponse();
             try {
                 $xmlObj = simplexml_load_string($responseBody);
@@ -1117,6 +1254,7 @@ class DataService
      *
      * @param object $entity Entity to Find
      * @return IPPIntuitEntity Returns an entity of specified Id.
+     * @deprecated The download for QuickBooksOnline is only supporting download PDF for Invoice and SalesReceipt. Other download function are not defined now.
      */
     public function Download($entity)
     {
@@ -1148,12 +1286,16 @@ class DataService
     }
 
     /**
-     * Returns new instance of rest handler
-     * @return SyncRestHandler
+     * Returns the Sync Resthandler associated with the dataserivce
+     * @return SyncRestHandler          The SyncRestHandler with the DataService
      */
     protected function getRestHandler()
     {
-        return new SyncRestHandler($this->serviceContext);
+        if(isset($this->restHandler)){
+             return $this->restHandler;
+        }else{
+             throw new SdkException("The SyncRest handler associated with the DataService is not set.");
+        }
     }
 
     /**
@@ -1373,24 +1515,56 @@ class DataService
     }
 
     /**
-     * A sample Test call to see if the connect is setup correctly
+     * Get the Company Information
+     * @return IPPCompanyInfo   CompanyInformation
      */
     public function getCompanyInfo()
     {
-        $currentServiceContext = $this->serviceContext;
+        $currentServiceContext = $this->getServiceContext();
         if (!isset($currentServiceContext) || empty($currentServiceContext->realmId)) {
-            throw new \Exception("Please Setup Service Context realmID before making get CompanyInfo call.");
+            throw new SdkException("Please Setup Service Context before making get CompanyInfo call.");
         }
-
-        $result = $this->Query("SELECT * FROM CompanyInfo");
-        if (!isset($result)) {
+        //The CompanyInfo URL
+        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $currentServiceContext->realmId, 'companyinfo', $currentServiceContext->realmId));
+        $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
             return null;
         } else {
-            if (empty($result) || sizeof($result) > 1) throw new \Exception("Internal Error. Returned CompanyInfo from QBO is either empty or contain multiple records. Something is Wrong.");
-            $firstElementValue = reset($result);
-
-            return $firstElementValue;
+            $this->lastError = false;
+            $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            return $parsedResponseBody;
         }
+    }
 
+    /**
+     * Get the Company Preferences Information
+     * @return JSON/XML String      CompanyInformation
+     */
+    public function getCompanyPreferences()
+    {
+        $currentServiceContext = $this->getServiceContext();
+        if (!isset($currentServiceContext) || empty($currentServiceContext->realmId)) {
+           throw new SdkException("Please Setup Service Context before making get Company Preferences call.");
+        }
+        //The Preferences URL
+        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $currentServiceContext->realmId, 'preferences'));
+        $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            return $parsedResponseBody;
+        }
     }
 }

@@ -13,13 +13,14 @@ $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
          'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
          'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-         'accessTokenKey' => "lvprdBYrv22L2vEsSRJgcAeljxRkKdh0QLcYJDWcBU2GXVDE",
-         'accessTokenSecret' => "T7F4DzbdU0bWWK5qIjZGEVhZEQytDEUM2XYASKnE",
-         'QBORealmID' => "193514340994122",
-         'baseUrl' => "production"
+         'accessTokenKey' => "qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g",
+         'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
+         'QBORealmID' => "193514464689044",
+         'baseUrl' => "Development"
 ));
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
+$dataService->throwExceptionOnError(true);
 //Add a new Invoice
 $theResourceObj = Invoice::create([
      "Line" => [

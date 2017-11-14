@@ -1,5 +1,19 @@
 <?php
-
+/*******************************************************************************
+ * Copyright (c) 2017 Intuit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 namespace QuickBooksOnline\API\Core;
 
 use QuickBooksOnline\API\Core\Configuration\IppConfiguration;
@@ -15,7 +29,6 @@ use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 
 /**
  * THe Service Context Class contains necessary settings for RestCalls
- * @Hao Update the fields to be private April.2th, 2017
  */
 class ServiceContext
 {
@@ -95,13 +108,7 @@ class ServiceContext
             //$this->IppConfiguration = LocalConfigReader::ReadConfiguration();
             $this->IppConfiguration = $ippConfiguration;
         } else {
-            throw new \Exception("You shouldn't pass a null ippConfiguration in Current release");
-        }
-
-        // Validate Parameters
-        if (empty($realmId)) {
-            throw new SdkException('Invalid Realm.');
-            //IdsExceptionManager.HandleException(new InvalidRealmException(Properties.Resources.ParameterNotNullEmptyMessage, new ArgumentException(Properties.Resources.ParameterNotNullMessage, Properties.Resources.RealmIdParameterName)));
+            throw new SdkException("You shouldn't pass a null ippConfiguration in Current release");
         }
 
         $this->realmId = $realmId;
@@ -126,7 +133,7 @@ class ServiceContext
         $localIppConfiguration = LocalConfigReader::ReadConfigurationFromFile($filePath);
         $QBORealmID = $localIppConfiguration->RealmID;
         if (empty($QBORealmID)) {
-            throw new \Exception('Sdk.config files contain empty RealmID.');
+            throw new SdkException('Sdk.config files contain empty RealmID.');
         }
 
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
@@ -136,37 +143,55 @@ class ServiceContext
         return $serviceContextInstance;
     }
 
+    /**
+     * Configure the OAuth 1 or OAuth 2 values from a passed array
+     * @param Array $settings    The array that contains OAuth 1 or OAuth 2 settings
+     */
     public static function ConfigureFromPassedArray(array $settings)
     {
-      ServiceContext::checkIfOAuthIsValid($settings);
+        ServiceContext::checkIfOAuthIsValid($settings);
 
-      if(strcasecmp($settings['auth_mode'], CoreConstants::OAUTH1) == 0) {
-        $OAuthConfig = new OAuthRequestValidator($settings['accessTokenKey'],
-            $settings['accessTokenSecret'],
-            $settings['consumerKey'],
-            $settings['consumerSecret']);
-      }else{
-         $OAuthConfig = new OAuth2AccessToken(
-            $settings['ClientID'],
-            $settings['ClientSecret'],
-            $settings['accessTokenKey'],
-            $settings['refreshTokenKey']
-         );
-      }
-        $QBORealmID = $settings['QBORealmID'];
-        $baseURL = $settings['baseUrl'];
+        if(strcasecmp($settings['auth_mode'], CoreConstants::OAUTH1) == 0) {
+             $OAuthConfig = new OAuthRequestValidator(
+               $settings['accessTokenKey'],
+               $settings['accessTokenSecret'],
+               $settings['consumerKey'],
+               $settings['consumerSecret']
+             );
+        }else{
+             $OAuthConfig = new OAuth2AccessToken(
+               $settings['ClientID'],
+               $settings['ClientSecret'],
+               CoreConstants::getAccessTokenFromArray($settings),
+               CoreConstants::getRefreshTokenFromArray($settings)
+             );
+        }
+        $QBORealmID = array_key_exists('QBORealmID', $settings) ? $settings['QBORealmID'] : null;
+        $baseURL =    array_key_exists('baseUrl', $settings) ? $settings['baseUrl']: null;
         if(strcasecmp($baseURL, CoreConstants::DEVELOPMENT_SANDBOX) == 0){
            $baseURL = CoreConstants::SANDBOX_DEVELOPMENT;
         }else if(strcasecmp($baseURL, CoreConstants::PRODUCTION_QBO) == 0){
            $baseURL = CoreConstants::QBO_BASEURL;
         }
         $checkedBaseURL = ServiceContext::checkAndAddBaseURLSlash($baseURL);
+
+        if($OAuthConfig instanceof OAuth2AccessToken){
+           $OAuthConfig->setRealmID($QBORealmID);
+           $OAuthConfig->setBaseURL($checkedBaseURL);
+        }
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
         $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION);
         $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
         return $serviceContextInstance;
     }
 
+
+
+    /**
+     * Check if passed array has mininum required fields
+     *
+     * @param Array $settings        The array contain OAuth 1 or OAuth 2 settings
+     */
     public static function checkIfOAuthIsValid(array $settings){
       if (!isset($settings) || empty($settings)) {
           throw new SdkException("Empty OAuth Array passed. Can't construct ServiceContext based on Empty Array.");
@@ -178,7 +203,7 @@ class ServiceContext
 
       $mode = $settings['auth_mode'];
 
-      //OAuth 1 settings
+      //OAuth 1 settings, OAuth 1 must provide all four values.
       if (strcasecmp($mode, CoreConstants::OAUTH1) == 0) {
         if (!isset($settings['accessTokenKey'])) {
             throw new SdkException("'accessTokenKey' must be provided in OAuth1.");
@@ -187,29 +212,26 @@ class ServiceContext
         if (!isset($settings['accessTokenSecret'])) {
             throw new SdkException("'accessTokenSecret' must be provided in OAuth1.");
         }
-      }else if(strcasecmp($mode, CoreConstants::OAUTH2) == 0){
-        if (!isset($settings['accessTokenKey'])) {
-            throw new SdkException("'accessTokenKey' must be provided in OAuth2.");
+      }
+      //OAuth 2 settings, Only client ID and Client Secret is required. For making API call, all four values, Client ID, Client Secret, Access Token, Access Token Secret are required.
+      else if(strcasecmp($mode, CoreConstants::OAUTH2) == 0){
+        if (!isset($settings['ClientID'])) {
+            throw new SdkException("'ClientID' must be provided in OAuth2.");
         }
 
-        if (!isset($settings['refreshTokenKey'])) {
-            throw new SdkException("'refreshTokenKey' must be provided in OAuth2.");
+        if (!isset($settings['ClientSecret'])) {
+            throw new SdkException("'ClientSecret' must be provided in OAuth2.");
         }
-      }else{
+      }
+      //Now other OAuth is supported
+      else{
         throw new SdkException("OAuth Mode is not supported.");
-      }
-
-      if (!isset($settings['QBORealmID'])) {
-          throw new SdkException("'QBORealmID' must be provided.");
-      }
-
-      if (!isset($settings['baseUrl'])) {
-          throw new SdkException("'baseUrl' must be provided.");
       }
     }
 
     /**
      * When user passing the URL from Code. Sometimes they forget to add "/" at the end of string. Add it for them.
+     * @param String $baseURL          return the formated string for the
      */
     private static function checkAndAddBaseURLSlash($baseURL){
         $lastChar = substr($baseURL, -1);
