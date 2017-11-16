@@ -22,6 +22,6 @@ class ServiceException extends IdsException
      */
     public function __toString()
     {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+        return __CLASS__ . ": Http Status Code [{$this->code}]: {$this->message}\n";
     }
 }

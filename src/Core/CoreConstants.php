@@ -11,12 +11,12 @@ class CoreConstants
     const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
 
     const PHP_CLASS_PREFIX = 'IPP';
-  /*
-    * All content writer strategy we support. Append this lists with new strategies
-    */
+    /*
+     * All content writer strategy we support. Append this lists with new strategies
+     */
     const CONTENTWRITER_STRATEGIES = array('file','handler','export');
 
-  /*
+    /*
      * Specific file strategy that we used for Content Writter
      */
     const FILE_STRATEGY    = "file";
@@ -24,12 +24,27 @@ class CoreConstants
     /*
      * Specific file strategy that we used for Content Writter
      */
-  const HANDLER_STRATEGY = "handler";
+    const HANDLER_STRATEGY = "handler";
 
     /*
      * Specific file strategy that we used for Content Writter
      */
-  const EXPORT_STRATEGY  = "export";
+    const EXPORT_STRATEGY  = "export";
+
+    /**
+     * The http client name for curl
+     */
+    const CLIENT_CURL = 'curl';
+
+    /**
+     * The standard name for guzzle.
+     */
+    const CLIENT_GUZZLE = 'guzzle';
+
+    /**
+     * The full name for guzzle
+     */
+    const CLIENT_GUZZLE_FULL = 'guzzlehttp';
 
     /**
      * No compression.
@@ -191,6 +206,12 @@ class CoreConstants
     const Id = "Id";
 
     /**
+     * Intuit tid
+     * @var string
+     */
+    const INTUIT_TID = "intuit_tid";
+
+    /**
      * Sync Token Parameter Name.
      * @var string SYNC_TOKEN
      */
@@ -266,7 +287,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK3.4.0";
+    const USERAGENT = "V3PHPSDK4.0.0";
 
     public static function getType($string, $return=1)
     {
@@ -282,28 +303,97 @@ class CoreConstants
     {
         return
                          array(
-                                    '*' => array(
-                                                                                                            "DownloadPDF" => false,
-                                                                                                            "jsonOnly" => false,
-                                                                                                            "SendEmail"=> false
-                                                                                                        ),
-                                    "IPPTaxService" => array( '*' => false,
-                                                                                     'Add' => true,
-                                                                                     'jsonOnly' => true
-                                                                                    ),
+                                    '*'               => array(
+                                                                "DownloadPDF" => false,
+                                                                "jsonOnly" => false,
+                                                                "SendEmail"=> false),
+                                    "IPPTaxService"   => array( '*' => false,
+                                                                'Add' => true,
+                                                                'jsonOnly' => true),
                                     "IPPSalesReceipt" => array( "DownloadPDF" => true, "SendEmail" => true ),
                                     "IPPInvoice"      => array( "DownloadPDF" => true, "SendEmail" => true  ),
                                     "IPPEstimate"     => array( "DownloadPDF" => true, "SendEmail" => true  ),
                             );
     }
 
+    /**
+     * A helper method to get Access Token Key. People may have a typo on the key name
+     * @param Array $settings     The array contains all the key values
+     * @return String | null      The access token developer provided
+     */
+    public static function getAccessTokenFromArray(array $settings){
+        if(array_key_exists('accessTokenKey', $settings)){
+            return $settings['accessTokenKey'];
+        }else if(array_key_exists('accessToken', $settings)){
+            return $settings['accessToken'];
+        } else if(array_key_exists('AccessToken', $settings)){
+            return $settings['AccessToken'];
+        } else{
+            return null;
+        }
+    }
+
+    /**
+     * A helper method to get Refresh Token Key. People may have a typo on the key name
+     * @param Array $settings     The array contains all the key values
+     * @return String | null      The refresh token developer provided
+     */
+    public static function getRefreshTokenFromArray(array $settings){
+        if(array_key_exists('refreshTokenKey', $settings)){
+            return $settings['refreshTokenKey'];
+        }else if(array_key_exists('refreshToken', $settings)){
+            return $settings['refreshToken'];
+        } else if(array_key_exists('RefreshToken', $settings)){
+            return $settings['RefreshToken'];
+        } else{
+            return null;
+        }
+    }
+
+    /**
+     * A helper method to get redirect URL. People may have a typo on the key name
+     * @param Array $settings     The array contains all the key values
+     * @return String | null      The redirect url developer provide
+     */
+    public static function getRedirectURL(array $settings){
+        if(array_key_exists('redirectURL', $settings)){
+            return $settings['redirectURL'];
+        }else if(array_key_exists('RedirectUrl', $settings)){
+            return $settings['RedirectUrl'];
+        } else if(array_key_exists('redirecturl', $settings)){
+            return $settings['redirecturl'];
+        } else if(array_key_exists('redirectUrl', $settings)){
+            return $settings['redirectUrl'];
+        } else if(array_key_exists('RedirectURL', $settings)){
+            return $settings['RedirectURL'];
+        } else if(array_key_exists('redirectURI', $settings)){
+            return $settings['redirectURI'];
+        }else if(array_key_exists('RedirectUri', $settings)){
+            return $settings['RedirectUri'];
+        } else if(array_key_exists('redirecturi', $settings)){
+            return $settings['redirecturl'];
+        } else if(array_key_exists('redirectUri', $settings)){
+            return $settings['redirectUrl'];
+        } else if(array_key_exists('RedirectURI', $settings)){
+            return $settings['RedirectURI'];
+        }
+        else{
+            return null;
+        }
+    }
+
     //--------------------------------------------------------------------------------------------------
     //OAuth 2
     const OAUTH2_TOKEN_ENDPOINT_URL = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
+    const OAUTH2_AUTHORIZATION_REQUEST_URL = "https://appcenter.intuit.com/connect/oauth2";
+    const REVOCATION_ENDPONT = "https://developer.api.intuit.com/v2/oauth2/tokens/revoke";
     const OAUTH2_REFRESH_GRANTYPE = "refresh_token";
     const OAUTH2_AUTHORIZATION_TYPE = "Basic ";
     const EXPIRES_IN = "expires_in";
     const X_REFRESH_TOKEN_EXPIRES_IN = "x_refresh_token_expires_in";
     const ACCESS_TOKEN = "access_token";
 
+    public static function getCertPath(){
+        return dirname(__FILE__) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
+    }
 }

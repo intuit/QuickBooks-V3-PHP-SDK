@@ -3,7 +3,7 @@
 PHP client for connecting to the QuickBooks Online V3 REST API.
 
 To find out more, visit the official documentation website:
-http://developer.intuit.com/
+https://developer.intuit.com/
 
 For current known issues and progress for PHP SDK, please refer to the wiki page:
 https://github.com/intuit/QuickBooks-V3-PHP-SDK/wiki

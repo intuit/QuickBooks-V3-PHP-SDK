@@ -13,12 +13,12 @@ use QuickBooksOnline\API\Data\IPPPurchase;
 // Prep Data Services
 $dataService = DataService::Configure(array(
        'auth_mode' => 'oauth1',
-         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-         'QBORealmID' => "193514489870599",
-         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+         'consumerKey' => "qyprd2GFGDPhy1oKmCshpO3eicTFxR",
+         'consumerSecret' => "mMbYSI3IfPoAjAQx8he3jEZBfBm0tFM5NIRqAY5A",
+         'accessTokenKey' => "lvprdSAqdfEpemN18jfuLGXp4paB1tXHKYx5YEn688ziwrZs",
+         'accessTokenSecret' => "OXPtyhbkDjjgnFdFnbYv6iJm0FoN1ciXuLr5lKuf",
+         'QBORealmID' => "123145796620484",
+         'baseUrl' => "production"
 ));
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
