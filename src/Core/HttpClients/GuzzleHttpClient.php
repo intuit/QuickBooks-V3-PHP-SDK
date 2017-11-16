@@ -73,7 +73,7 @@
             if($e->hasResponse()){
                 throw new SdkException("A networking error occurs during Guzzle client request:" . Psr7\str($e->getResponse));
             }else{
-                throw new SdkException("Network Error:" . $e->getMessage);
+                throw new SdkException("Network Error:" . $e->getMessage());
             }
         }
      }
@@ -89,10 +89,10 @@
         }
 
         if(isset($verifySSL) && $verifySSL == true){
-            $opts['cert'] =>CoreConstants::CERT_PATH;
+            $opts['cert'] = CoreConstants::getCertPath();
         }
 
-        $opts['timeout'] => isset($timeOut) ? $timeOut : 100;
+        $opts['timeout'] = isset($timeOut) ? $timeOut : 100;
         $opts['headers'] = $headers;
         $this->guzzleOpts = $opts;
      }
