@@ -481,6 +481,28 @@ else {
 }
 ~~~
 
+
+
+In v4.0.0, the $error will either be an $fault object, or False. If you are suing v4.0.0, the code should be:
+~~~php
+$resultingCustomerObj = $dataService->Add($customerObj);
+$error = $dataService->getLastError();
+if ($error) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+    echo "The Intuit Helper message is: IntuitErrorType:{" . $error->getIntuitErrorType() . "} IntuitErrorCode:{" . $error->getIntuitErrorCode() . "} IntuitErrorMessage:{" . $error->getIntuitErrorMessage() . "} IntuitErrorDetail:{" . $error->getIntuitErrorDetail() . "}";
+
+}
+else {
+    # code...
+    // Echo some formatted output
+    echo "Created Customer Id={$resultingCustomerObj->Id}. Reconstructed response body:\n\n";
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingCustomerObj, $urlResource);
+    echo $xmlBody . "\n";
+}
+~~~
+
 See our Tool documentation for more information: https://developer.intuit.com/docs/0100_quickbooks_online/0400_tools/0005_sdks/0209_php
 
 Examples
