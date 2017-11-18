@@ -335,7 +335,7 @@ class DataService
 
             }
 
-            if($ServiceContext->IppConfiguration->OAuthMode = CoreConstants::OAUTH2)
+            if($ServiceContext->IppConfiguration->OAuthMode == CoreConstants::OAUTH2)
             {
                 $oauth2Config = $ServiceContext->IppConfiguration->Security;
                 if($oauth2Config instanceof OAuth2AccessToken){
