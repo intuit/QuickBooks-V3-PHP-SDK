@@ -89,7 +89,7 @@
         }
 
         if(isset($verifySSL) && $verifySSL == true){
-            $opts['cert'] = CoreConstants::getCertPath();
+            $opts['verify'] = CoreConstants::getCertPath();
         }
 
         $opts['timeout'] = isset($timeOut) ? $timeOut : 100;
