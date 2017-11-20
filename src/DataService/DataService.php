@@ -339,7 +339,7 @@ class DataService
             {
                 $oauth2Config = $ServiceContext->IppConfiguration->Security;
                 if($oauth2Config instanceof OAuth2AccessToken){
-                    $DataServiceInstance->configureOAuth2LoginHeloer($oauth2Config, $settings);
+                    $DataServiceInstance->configureOAuth2LoginHelper($oauth2Config, $settings);
                 }else{
                     throw new SdkException("SDK Error. OAuth mode is not OAuth 2.");
                 }
@@ -357,7 +357,7 @@ class DataService
      * @param OAuth2AccessToken $oauth2Conifg      OAuth 2 Token related information
      * @param Array $settings                      The array that include the redirectURL, scope, state information
      */
-    private function configureOAuth2LoginHeloer($oauth2Conifg, $settings){
+    private function configureOAuth2LoginHelper($oauth2Conifg, $settings){
           $refreshToken = CoreConstants::getRefreshTokenFromArray($settings);
           if(isset($refreshToken)){
                //Login helper for refresh token API call
