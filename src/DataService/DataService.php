@@ -591,7 +591,6 @@ class DataService
                 $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . urlencode($email)), CoreConstants::CONTENTTYPE_OCTETSTREAM);
                 break;
         }
-        //$restRequestHandler = new SyncRestHandler($this->serviceContext);
         $restRequestHandler = $this->getRestHandler();
         list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
@@ -982,7 +981,7 @@ class DataService
         $httpsPostBody = "select * from $entityName startPosition $pageNumber maxResults $pageSize";
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
-        $restRequestHandler = new SyncRestHandler($this->serviceContext);
+        $restRequestHandler = $this->getRestHandler();
         list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
         if ($faultHandler) {
@@ -1037,7 +1036,7 @@ class DataService
 
         // Creates request parameters
         $requestParameters = $this->getGetRequestParameters($uri, CoreConstants::CONTENTTYPE_APPLICATIONXML);
-        $restRequestHandler = new SyncRestHandler($this->serviceContext);
+        $restRequestHandler = $this->getRestHandler();
 
         list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
         $faultHandler = $restRequestHandler->getFaultHandler();
