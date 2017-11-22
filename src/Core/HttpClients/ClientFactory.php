@@ -55,6 +55,3 @@ class ClientFactory{
       throw new SdkException("The client Name you passed is not supported. Please use either 'curl' or 'guzzle' for the client Name.");
   }
 }
-
-
- ?>

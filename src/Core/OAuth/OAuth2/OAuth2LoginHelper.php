@@ -389,5 +389,3 @@ class OAuth2LoginHelper
         return http_build_query($parameters);
     }
 }
-
- ?>

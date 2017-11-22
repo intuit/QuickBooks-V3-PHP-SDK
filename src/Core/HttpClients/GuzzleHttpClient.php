@@ -121,7 +121,4 @@
      public function clearResponse(){
        $this->intuitResponse = false;
      }
-
- }
-
- ?>
+}

@@ -335,7 +335,7 @@ class DataService
 
             }
 
-            if($ServiceContext->IppConfiguration->OAuthMode = CoreConstants::OAUTH2)
+            if($ServiceContext->IppConfiguration->OAuthMode == CoreConstants::OAUTH2)
             {
                 $oauth2Config = $ServiceContext->IppConfiguration->Security;
                 if($oauth2Config instanceof OAuth2AccessToken){
@@ -357,7 +357,8 @@ class DataService
      * @param OAuth2AccessToken $oauth2Conifg      OAuth 2 Token related information
      * @param Array $settings                      The array that include the redirectURL, scope, state information
      */
-    private function configureOAuth2LoginHelper($oauth2Conifg, $settings){
+    private function configureOAuth2LoginHelper($oauth2Conifg, $settings)
+    {
           $refreshToken = CoreConstants::getRefreshTokenFromArray($settings);
           if(isset($refreshToken)){
                //Login helper for refresh token API call
@@ -385,7 +386,8 @@ class DataService
      * Return the OAuth 2 Login Helper. The OAuth 2 Login helper can be used to generate OAuth code, get refresh Token, etc.
      * @return $OAuth2LoginHelper      A helper to get OAuth 2 related values.
      */
-    public function getOAuth2LoginHelper(){
+    public function getOAuth2LoginHelper()
+    {
         return $this->OAuth2LoginHelper;
     }
 
@@ -393,7 +395,8 @@ class DataService
      * Update the OAuth 2 Token that will be used for API calls later.
      * @param OAuth2AccessToken $newOAuth2AccessToken   The OAuth 2 Access Token that will be used later.
      */
-    public function updateOAuth2Token($newOAuth2AccessToken){
+    public function updateOAuth2Token($newOAuth2AccessToken)
+    {
         try{
           $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
           $realmID = $newOAuth2AccessToken->getRealmID();
@@ -585,7 +588,7 @@ class DataService
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
                 break;
             case DataService::SENDEMAIL:
-                $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . $email), CoreConstants::CONTENTTYPE_OCTETSTREAM);
+                $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . urlencode($email)), CoreConstants::CONTENTTYPE_OCTETSTREAM);
                 break;
         }
         //$restRequestHandler = new SyncRestHandler($this->serviceContext);

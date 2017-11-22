@@ -292,7 +292,4 @@ class FaultHandler
     public function getIntuitErrorDetail(){
         return $this->intuitErrorDetail;
     }
-
-
-
 }

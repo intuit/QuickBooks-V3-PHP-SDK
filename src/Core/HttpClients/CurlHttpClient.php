@@ -194,5 +194,3 @@ class CurlHttpClient implements HttpClientInterface{
     }
 
 }
-
- ?>

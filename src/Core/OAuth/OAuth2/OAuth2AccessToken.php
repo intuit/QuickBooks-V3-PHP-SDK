@@ -354,5 +354,3 @@ class OAuth2AccessToken{
       return date('Y/m/d H:i:s', $seconds);
     }
 }
-
- ?>

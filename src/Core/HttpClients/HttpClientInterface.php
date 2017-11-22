@@ -60,5 +60,4 @@ namespace QuickBooksOnline\API\Core\HttpClients;
       * @param mix  The response from the http client
       */
      public function setIntuitResponse($response);
- }
- ?>
+}

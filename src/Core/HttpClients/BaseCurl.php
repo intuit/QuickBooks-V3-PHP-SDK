@@ -149,5 +149,3 @@ class BaseCurl{
       $this->curl = null;
   }
 }
-
- ?>
