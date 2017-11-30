@@ -99,11 +99,12 @@ Contributing
 Guidelines
 ----------
 
-1. Guzzle utilizes PSR-1, PSR-2, PSR-4, and PSR-7.
-2. Guzzle is meant to be lean and fast with very few dependencies. This means
+1. We are graduatelly changing the code style to utilizes PSR-1, PSR-2, PSR-4, and PSR-7. It will
+   take some time, however, all pull requests in the future should follow the same standards.
+2. QuickBooks V3 SDK is meant to be lean and fast with very few dependencies. This means
    that not every feature request will be accepted.
-3. Guzzle has a minimum PHP version requirement of PHP 5.5. Pull requests must
-   not require a PHP version greater than PHP 5.5 unless the feature is only
+3. QuickBooks V3 SDK has a minimum PHP version requirement of PHP 5.6. Pull requests must
+   not require a PHP version greater than PHP 5.6 unless the feature is only
    utilized conditionally.
 
 
