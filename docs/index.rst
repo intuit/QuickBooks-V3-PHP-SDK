@@ -21,9 +21,9 @@ User Guide
     :maxdepth: 3
 
     overview
-    quickstart
-    OAuth
+    Authorization
     Configuration
     CRUD requests
     Logging
+    QuickStart
     faq
