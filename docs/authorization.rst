@@ -109,45 +109,43 @@ display this URL to your clients and they will click the "Authorize" button to a
 
     to display the authorization screen to your customers. Do not use cURL.
 
-Once the clients have authorized your app, an authorization code and realmID will be returned to your ReditrectURI. Provide these parameters to exchange an OAuth 2 Access Token:
+Once the clients have authorized the app, an authorization code and realmID will be returned to the ReditrectURI. Provide these parameters to exchange an OAuth 2 Access Token:
 
 .. code-block:: php
 
    $accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("authorizationCode", "RealmID");
 
-update the DataService object and you are ready to make API calls with OAuth 2 Tokens. 
+update the DataService object and the app is ready to make API calls with OAuth 2 Tokens. 
 
+.. code-block:: php
 
+   $dataService->updateOAuth2Token($accessToken);
 
-
-
-
-
-Environment Variables
-=====================
-
-Guzzle exposes a few environment variables that can be used to customize the
-behavior of the library.
-
-``GUZZLE_CURL_SELECT_TIMEOUT``
-    Controls the duration in seconds that a curl_multi_* handler will use when
-    selecting on curl handles using ``curl_multi_select()``. Some systems
-    have issues with PHP's implementation of ``curl_multi_select()`` where
-    calling this function always results in waiting for the maximum duration of
-    the timeout.
-``HTTP_PROXY``
-    Defines the proxy to use when sending requests using the "http" protocol.
-    
-    Note: because the HTTP_PROXY variable may contain arbitrary user input on some (CGI) environments, the variable is only used on the CLI SAPI. See https://httpoxy.org for more information.
-``HTTPS_PROXY``
-    Defines the proxy to use when sending requests using the "https" protocol.
-
-
-Relevant ini Settings
+Use OAuth 2.0 Tokens
 ---------------------
 
-Guzzle can utilize PHP ini settings when configuring clients.
+If developers have already retrieved OAuth 2 tokens, they can simply provide it to DataService. It is very similar to OAuth 1.0a, just change the auth_mode from oauth1 to oauth 2.
 
-``openssl.cafile``
-    Specifies the path on disk to a CA file in PEM format to use when sending
-    requests over "https". See: https://wiki.php.net/rfc/tls-peer-verification#phpini_defaults
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth2',
+         'ClientID' => "Client ID from the app's keys tab",
+         'ClientSecret' => "Client Secret from the app's keys tab",
+         'accessTokenKey' => 'OAuth 2 Access Token',
+         'refreshTokenKey' => "OAuth 2 Refresh Token",
+         'QBORealmID' => "The Company ID which the app wants to access",
+         'baseUrl' => "Development/Production"
+    ));
+    
+.. note::
+
+    Similar to OAuth 1.0 Playground, QuickBooks Online also provides OAuth 2.0 Playground to help developers generate OAuth 
+    2.0 tokens without writing code. To access OAuth 2.0 Playground, you will need to log into https://developer.intuit.com,
+    go to your app' dashboard and click "Test connect to app (OAuth)" link there.
+   
+
+
