@@ -62,17 +62,63 @@ Here is an actual example for configuring OAuth 1.0a value for a sandbox Company
 OAuth 2.0
 ================
 
+Most recent QucikBooks Online apps will have OAuth 2.0 as their default protocol. If you see "Client ID" and "Client Secret" under your "Keys" tab, then your app is using OAuth 2.0 protocol. QuickBooks V3 SDK provides methods to generate OAuth 2.0a tokens, and methods to use them like OAuth 1.0a provided.
+
+
+Generate OAuth 2.0 Tokens
+---------------------
+
+In order for the SDK to generate OAuth 2.0 tokens for the app, developers will need to provide necessary parameters. All these parameters can be found in the app or our documentation here: https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0 
 
 .. code-block:: php
 
-    use GuzzleHttp\Client;
+    use QuickBooksOnline\API\DataService\DataService;
 
-    $client = new Client([
-        // Base URI is used with relative requests
-        'base_uri' => 'http://httpbin.org',
-        // You can set any number of default request options.
-        'timeout'  => 2.0,
-    ]);
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+          'auth_mode' => 'oauth2',
+          'ClientID' => "Client ID from the app's keys tab",
+          'ClientSecret' => "Client Secret from the app's keys tab",
+          'RedirectURI' => "The redirect URI provided on the Redirect URIs part under keys tab",
+          'scope' => "com.intuit.quickbooks.accounting or com.intuit.quickbooks.payment",
+          'baseUrl' => "Development/Production"
+    ));
+    
+After we have provided necessary parameters, get the OAuth2LoginHelper from the DataService Object:
+
+.. code-block:: php
+
+   $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+
+The OAuth2LoginHelper will help developers to complete all the neccesary steps for retreiving OAuth 2 tokens. 
+
+First, use the OAuth2LoginHelper to generate Authorization URL:
+
+.. code-block:: php
+
+   $authorizationUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+
+display this URL to your clients and they will click the "Authorize" button to authorize your app. 
+
+.. note::
+
+    Use 
+    .. code-block:: php
+    
+        header("Location: ".$authorizationUrl);
+
+    to display the authorization screen to your customers. Do not use cURL.
+
+Once the clients have authorized your app, an authorization code and realmID will be returned to your ReditrectURI. Provide these parameters to exchange an OAuth 2 Access Token:
+
+.. code-block:: php
+
+   $accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("authorizationCode", "RealmID");
+
+update the DataService object and you are ready to make API calls with OAuth 2 Tokens. 
+
+
+
 
 
 
