@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authorization &mdash; PHPDocs 4.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="PHPDocs 4.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PHPDocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#oauth-1-0a">OAuth 1.0a</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oauth-2-0">OAuth 2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generate-oauth-2-0-tokens">Generate OAuth 2.0 Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-oauth-2-0-tokens">Use OAuth 2.0 Tokens</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PHPDocs</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Authorization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/authorization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authorization">
+<h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<p>This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the <a class="reference internal" href="overview.html#installation"><span class="std std-ref">Installation</span></a>
+page.</p>
+<div class="section" id="oauth-1-0a">
+<h2>OAuth 1.0a<a class="headerlink" href="#oauth-1-0a" title="Permalink to this headline">¶</a></h2>
+<p>For all developer accounts registered at <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a> before <strong>July.17th, 2017</strong>, they will have OAuth 1.0a protocol default for their apps.</p>
+<p>The developer will see “App Token”, “OAuth Consumer Key”, and “OAuth Consumer Secret” on the “Keys” tab in the app.</p>
+<p>QuickBooks V3 SDK didn’t provide a way to generate OAuth 1.0a tokens from OAuth Consumer Key and OAuth Consumer Secret. Developers must generate their own OAuth 1.0a tokens <em>BEFORE</em> they use the SDK.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">QuickBooks Online provides an online tool called OAuth 1.0 Playground to help developers generate OAuth 1.0a tokens:
+<a class="reference external" href="https://appcenter.intuit.com/Playground/OAuth/IA/">https://appcenter.intuit.com/Playground/OAuth/IA/</a> without writing any code.
+For server side web application implementing OAuth 1.0a, please refer here:
+<a class="reference external" href="https://intuitdeveloper.github.io/">https://intuitdeveloper.github.io/</a> for sample code. For implementation details, please refer to here:
+<a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a">https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a</a></p>
+</div>
+<p>After developer managed to get OAuth 1.0a tokens, provides it to the DataService object:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth Consumer key Value from Keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth Consumer secret Value from Keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth 1.0a access token returned from QuickBooks Online&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth 1.0a access token secret retruned from QuickBooks Online&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The Company ID which the app wants to access&quot;</span><span class="p">,</span>
+     <span class="c1">//If you are using Development Keys, use Development here. If you are using Production Keys, use Production.</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>Here is an actual example for configuring OAuth 1.0a value for a sandbox Company:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;qyprdUSoVpIHrtBp0eDMTHGz8UXuSz&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514464689044&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oauth-2-0">
+<h2>OAuth 2.0<a class="headerlink" href="#oauth-2-0" title="Permalink to this headline">¶</a></h2>
+<p>Most recent QucikBooks Online apps will have OAuth 2.0 as their default protocol. If you see “Client ID” and “Client Secret” under your “Keys” tab, then your app is using OAuth 2.0 protocol. QuickBooks V3 SDK provides methods to generate OAuth 2.0a tokens, and methods to use them like OAuth 1.0a provided.</p>
+<div class="section" id="generate-oauth-2-0-tokens">
+<h3>Generate OAuth 2.0 Tokens<a class="headerlink" href="#generate-oauth-2-0-tokens" title="Permalink to this headline">¶</a></h3>
+<p>In order for the SDK to generate OAuth 2.0 tokens for the app, developers will need to provide necessary parameters. All these parameters can be found in the app or our documentation here: <a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0">https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0</a></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+      <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;RedirectURI&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The redirect URI provided on the Redirect URIs part under keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;com.intuit.quickbooks.accounting or com.intuit.quickbooks.payment&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>After we have provided necessary parameters, get the OAuth2LoginHelper from the DataService Object:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$OAuth2LoginHelper</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getOAuth2LoginHelper</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The OAuth2LoginHelper will help developers to complete all the neccesary steps for retreiving OAuth 2 tokens.</p>
+<p>First, use the OAuth2LoginHelper to generate Authorization URL:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$authorizationUrl</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">getAuthorizationCodeURL</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>display this URL to your clients and they will click the “Authorize” button to authorize your app.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Use
+.. code-block:: php</p>
+<blockquote>
+<div>header(“Location: “.$authorizationUrl);</div></blockquote>
+<p class="last">to display the authorization screen to your customers. Do not use cURL.</p>
+</div>
+<p>Once the clients have authorized the app, an authorization code and realmID will be returned to the ReditrectURI. Provide these parameters to exchange an OAuth 2 Access Token:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$accessToken</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">exchangeAuthorizationCodeForToken</span><span class="p">(</span><span class="s2">&quot;authorizationCode&quot;</span><span class="p">,</span> <span class="s2">&quot;RealmID&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>update the DataService object and the app is ready to make API calls with OAuth 2 Tokens.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">updateOAuth2Token</span><span class="p">(</span><span class="nv">$accessToken</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-oauth-2-0-tokens">
+<h3>Use OAuth 2.0 Tokens<a class="headerlink" href="#use-oauth-2-0-tokens" title="Permalink to this headline">¶</a></h3>
+<p>If developers have already retrieved OAuth 2 tokens, they can simply provide it to DataService. It is very similar to OAuth 1.0a, just change the auth_mode from oauth1 to oauth 2.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OAuth 2 Access Token&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;OAuth 2 Refresh Token&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The Company ID which the app wants to access&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Similar to OAuth 1.0 Playground, QuickBooks Online also provides OAuth 2.0 Playground to help developers generate OAuth
+2.0 tokens without writing code. To access OAuth 2.0 Playground, you will need to log into <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a>,
+go to your app’ dashboard and click “Test connect to app (OAuth)” link there.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Hao Lu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'4.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
