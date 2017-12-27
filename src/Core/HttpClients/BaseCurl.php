@@ -50,7 +50,7 @@ class BaseCurl{
    * @return True or False
    */
   public function isCurlSet(){
-      if(!isset($this->curl)) return false;
+      if(!isset($this->curl) || $this->curl === 0) return false;
       return true;
   }
 
