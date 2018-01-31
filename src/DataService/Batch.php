@@ -297,7 +297,7 @@ class Batch
 
             list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null);
             $faultHandler = $restRequestHandler->getFaultHandler();
-            if (isset($faultHandler)) {
+            if (!empty($faultHandler)) {
                 $this->lastError = $faultHandler;
                 return null;
             }
