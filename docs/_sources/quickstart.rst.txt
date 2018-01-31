@@ -1,0 +1,641 @@
+==========
+Quickstart
+==========
+
+This pages demonstrate how to make API calls to QuickBooks Online through QuickBooks V3 PHP SDK. It is assuming developers have obtained OAuth 1.0 or OAuth 2.0 tokens, and have configured their dataService correctly. If not, please refer to the :ref:`Authorization part<auth_page>` and :ref:`Configuration part<conf_page>`
+
+
+Create new resources (POST)
+===========================
+
+QuickBooks Online API has a list API endpoints that support creating new entities. For example, you can create a new Invoice, a new SalesReceipt, or a new Item through QuickBooks Online API. For a list of API endpoints that support ``create`` operation, please refer to our API Reference:
+https://developer.intuit.com/docs/api/accounting
+
+We use ``Invoice`` as our example here (Other API entities have very similar data structure compared with Invoice, developers should have no difficulty replacing Invoice with other entities by using our API reference page).
+
+Constructing Entities
+---------------------
+
+Last week, we provide a sewing service to our Customer ``Alex``. We need to charge him ``$150`` dollars. How can we record this in QuickBooks Online?
+
+When creating an Invoice, it will need to have at least a target Customer, a documentation Number that identifies the Invoice, and information for goods/services that we provide.
+
+The first thing we need to figure out is how to tell QuickBooks Online that this Invoice is for our Customer ``Alex``.
+
+In QuickBooks Online, all Name list resource (like Customer, Employee, Vendor, Item, etc, they are grouped under ``Name list resources`` in the API Reference page) will be referred by their ``Id`` in QuickBooks Online. For our example, "Alex" has ``Id=1``.
+
+Refer back to Invoice documentation page <https://developer.intuit.com/docs/api/accounting/invoice>, we found ``CustomerRef`` is exactly what we are looking for:
+
+.. figure::  images/example.jpg
+   :align:   center
+
+   Document for CustomerRef
+
+we follow the instruction, use the same name ``CustomerRef`` from our docs as our key, and passing ``1`` to its ``value`` attribute. Record them in an array format:
+
+.. code-block:: php
+
+   "CustomerRef" => [
+         "value" => "1",
+         "name" => "Alex"
+   ]
+
+and this will be the part specifying a ``Customer`` for an Invoice.
+
+.. note::
+
+  1) The key, ``CustomerRef`` we use in our array has the **SAME** name displayed on our documentation page. This is not by coincidence. For all the keys we use in the QuickBooks V3 SDK, they all have the same name as our docs.
+  2) The field ``name`` is not required here, only ``value`` is.
+  3) Refer to the :ref:`Query and Access resources (GET)` section for how to find the ``Id`` of a Name list resources
+
+After the Customer is provided, QuickBooks Online will need information about the goods/services we provide.
+
+QuickBooks Online identifies the goods/services for an entity by extracting information from what it called ``Line`` Item. An ``Line`` item represents a transaction. QuickBooks Online has five types of Line Item: ``SalesItemLine``, ``GroupItemLine`` , ``DescriptionOnly``, ``DiscountLine``, and ``SubtotalLine``. Each ``Line`` type has a specific usage. For our Invoice, we will use ``SalesItemLine`` to represent the sewing service we provide to ``Alex``.
+
+To find out what information we need to provide in the SalesItemLine, we refer back to the API reference page again: <https://developer.intuit.com/docs/api/accounting/invoice>
+
+.. figure::  images/example2.jpg
+   :align:   center
+
+   Document for SalesItemLine
+
+The fields that are labelled as ``required`` is what we need to provide. We found that we need to specify the ``Amount`` we charge for ``Alex``, which is ``$150`` dollars; the ``DetailType`` for the LineItem, which is ``SalesItemLineDetail``. Under the ``SalesItemLineDetail``, we also need to specify the ``Item`` we sell as well (The docs said it is optional, however, for ``Invoice`` creation with Service, it is required).
+
+In QuickBooks Online, an ``Item`` is a thing that your company buys, sells, or re-sells, such as products and services. An item is shown as a line on an invoice or other sales form. Since ``Item`` is located under ``Name list resources``, it will be a ``Reference`` type.  We find that QuickBooks Online has a default ``Item`` called ``Services``, which has ``Id=1``. We use this ``Services`` item to represent our sewing service. Again, we store these information in an associate array, adding description to make it clear.
+
+.. code-block:: php
+
+    "Line" => [
+        [
+          "Description" => "Sewing Service for Alex",
+          "Amount" => 150.00,
+          "DetailType" => "SalesItemLineDetail",
+          "SalesItemLineDetail" => [
+            "ItemRef" => [
+              "value" => 1,
+              "name" => "Services"
+            ]
+          ]
+        ]
+    ]
+
+
+Searching the API reference page for documentation number, we have:
+
+.. code-block:: php
+
+    "DocNumber" => "101",
+
+
+Putting everything together for our Invoice, we have the following associate array:
+
+.. code-block:: php
+
+    [
+      "DocNumber" => "101",
+      "Line" => [
+      [
+        "Description" => "Sewing Service for Alex",
+        "Amount" => 150.00,
+        "DetailType" => "SalesItemLineDetail",
+        "SalesItemLineDetail" => [
+          "ItemRef" => [
+            "value" => 1,
+            "name" => "Services"
+          ]
+        ]
+      ]],
+      "CustomerRef" => [
+         "value" => "1",
+         "name" => "Alex"
+      ]
+    ]
+
+This associate array contains all the information we want to store in the Invoice. To actually use this array to construct an Invoice Object with this information, we will import our Invoice Facade class:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\Facades\Invoice;
+
+and pass the array to the ``create()`` static method:
+
+.. code-block:: php
+
+    $invoiceToCreate = Invoice::create([
+      "DocNumber" => "101",
+      "Line" => [
+        [
+          "Description" => "Sewing Service for Alex",
+          "Amount" => 150.00,
+          "DetailType" => "SalesItemLineDetail",
+          "SalesItemLineDetail" => [
+            "ItemRef" => [
+              "value" => 1,
+              "name" => "Services"
+            ]
+          ]
+        ]
+      ],
+      "CustomerRef" => [
+          "value" => "1",
+          "name" => "Alex"
+      ]
+    ]);
+
+and the ``$invoiceToCreate`` object will our final object sent to QuickBooks Online.
+
+
+Sending Requests
+----------------
+
+After the object is constructed, sending it to QuickBooks Online will be very straightforward.
+
+We will use the ``$dataService->Add()`` method to complete our task:
+
+.. code-block:: php
+
+    $resultObj = $dataService->Add($invoiceToCreate);
+
+
+Handling Response
+-----------------
+
+If everything works as expected, the ``$resultObj`` will be a copy of the ``Invoice`` we just created, you can directly access all its public fields. However, if there is any error occurred, we need to use ``$error = $dataService->getLastError();`` to track for the error:
+
+.. code-block:: php
+
+      $error = $dataService->getLastError();
+      if ($error) {
+          echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+          echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+          echo "The Response message is: " . $error->getResponseBody() . "\n";
+      }else {
+          echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
+          $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+          echo $xmlBody . "\n";
+      }
+
+
+Example and Result
+------------------
+
+Here is the Complete example and what the result looks like in QuickBooks Online:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\Core\ServiceContext;
+    use QuickBooksOnline\API\DataService\DataService;
+    use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+    use QuickBooksOnline\API\Facades\Invoice;
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+        'auth_mode' => 'oauth1',
+        'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
+        'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
+        'accessTokenKey' => "qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g",
+        'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
+        'QBORealmID' => "193514464689044",
+        'baseUrl' => "Development"
+    ));
+    $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+    $dataService->throwExceptionOnError(true);
+    //Add a new Invoice
+    $invoiceToCreate = Invoice::create([
+      "DocNumber" => "101",
+      "Line" => [
+        [
+          "Description" => "Sewing Service for Alex",
+          "Amount" => 150.00,
+          "DetailType" => "SalesItemLineDetail",
+          "SalesItemLineDetail" => [
+            "ItemRef" => [
+              "value" => 1,
+              "name" => "Services"
+            ]
+          ]
+        ]
+      ],
+      "CustomerRef" => [
+          "value" => "1",
+          "name" => "Alex"
+      ]
+    ]);
+
+    $resultObj = $dataService->Add($invoiceToCreate);
+    $error = $dataService->getLastError();
+    if ($error) {
+        echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+        echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+        echo "The Response message is: " . $error->getResponseBody() . "\n";
+    }else {
+        echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
+        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+        echo $xmlBody . "\n";
+    }
+
+.. figure::  images/example3.jpg
+       :align:   center
+
+       Result shown on QuickBooks Online
+
+
+Query and access resources (GET)
+================================
+
+Most API requests sent to QuickBooks Online are either ``Query`` or ``GetById``. For example, creating Invoice would require retrieving the ``Id`` stored for a specific ``Customer`` in QuickBooks Online. QuickBooks V3 PHP SDK provides easier way to perform these operations.
+
+Get by Entity Id
+----------------
+
+If you already possess the object contains the ``Id``, you can use the ``FindById()`` method directly:
+
+.. code-block:: php
+
+    //The $invoice object which has an Id
+    $dataService->FindById($invoice);
+
+or if you know the ``Id`` and which ``API endpoint`` it belongs, you can use a variation of the ``FindById()`` method by passing the string name of the API endpoint and the Id:
+
+.. code-block:: php
+
+    //We are looking for Invoice with id=1. You can use
+    //Bill, Customer, Purchase, etc
+    $dataService->FindById("Invoice", 1);
+
+Depends if the first parameter is a string or an object, the method will perform differently.
+
+Get Company Info or Preference
+------------------------------
+
+For getting Company Info, please use ``getCompanyInfo()`` directly from ``DataService``:
+
+.. code-block:: php
+
+    $CompanyInfo = $dataService->getCompanyInfo();
+
+Similarly, for getting CompanyPreference, you can use ``getCompanyPreferences()``:
+
+.. code-block:: php
+
+    $CompanyPrefs = $dataService->getCompanyPreferences();
+
+The ``getCompanyInfo()`` and ``getCompanyPreferences()`` are also regarded as sample methods to test OAuth 1&2 settings.
+
+Query resources
+---------------
+
+The query operation is the method for creating a guided query against an entity. The select statement in the request enables you to specify the selection criteria, entity properties, sort order, and pagination. To perform a query in QuickBooks Online, developers will use ``$dataServices->Query()`` method. It is similar to a pared down SQL query select statement with constraints in place to ensure the request doesn’t overload server-side resources. For example, to find all invoices from a QuickBooks Online Company, the query method would look like this:
+
+.. code-block:: php
+
+    $allInvoices = $dataServices->Query("SELECT * FROM Invoice");
+
+In QuickBooks Online, not all SQL statement is supported. The following are query operation limitations:
+
+* The response set always returns all properties for each object. That is, projections are not supported.
+* Only those properties with values are returned in the response set.
+* Wild card character support with LIKE clauses is limited to “%” (wildcard that substitutes for 0 or more characters).
+* The OR operation is not supported in WHERE clauses.
+* The GROUP BY clause is not supported.
+* The JOIN clause is not supported.
+
+When using QuickBooks PHP V3 SDK to perform a query, it is suggested to construct the SQL statement **OUTSIDE OF** the ``Query()`` method, as developers may need to use backslash to escape special characters like apostrophe. For query operation, the returned result would always be ``array``.
+
+Maximum number of entities in a response
+++++++++++++++++++++++++++++++++++++++++
+
+The maximum number of entities that can be returned in a response is 1000.  If the result size is not specified, the default number is 100. If a query returns many entities, fetch the entities in chunks, as described in :ref:`Pagination`.  To determine the number of entities that a particular query returns, probe by using the COUNT keyword in the query. See :ref:`Count` for details.
+
+Pagination
+++++++++++
+
+To page through the results, specify STARTPOSITION (position of the entity in the query results) and MAXRESULTS (maximum number of entities in the result).
+
+For example, suppose you have 25  invoices.  The following query gets invoices 1 - 10:
+
+.. code-block:: php
+
+    $firstTenInvoices = $dataServices->Query("SELECT * FROM Invoice STARTPOSITION 1 MAXRESULTS 10");
+
+Count
++++++
+
+To find out how many object will be returned by a query, specify the COUNT keyword.  The number of entities is returned in the totalCount attribute of the <QueryResponse> element.  The QuickBooks Online data objects, such as Customer, are not in the response.
+
+The following query returns the total number of customers that belong to the QuickBooks company:
+
+.. code-block:: php
+
+    $statement = "SELECT COUNT" . "(" . "*" . ")" . "FROM CUSTOMER";
+    $numberOfCustomers = $dataServices->Query($statement);
+
+Filters
++++++++
+
+The filter in the WHERE clause determines which entities are returned by a query.  The filter criteria is based on the value of a property.  For example, the following query returns all Invoice entities with a TotalAmt property greater than 1000.0:
+
+.. code-block:: php
+
+    $invoicesGreaterThenThousand = $dataServices->Query("SELECT * FROM Invoice WHERE TotalAmt > '1000.0'");
+
+Note that not all properties support filters. Refer back to the API reference page (https://developer.intuit.com/docs/api/accounting/), only fields that contain keywords "filterable" are filterable.
+
+.. note::
+
+    1. For QuickBooks Online, a SQL comparison value is required to use SINGLE QUOTATION MARKS. SQL statements that use double quotes or only an integer value for comparison **WILL NOT WORK**:
+
+    .. code-block:: php
+
+        //You will get a 400 from QBO for error parsing string
+        $theInvoice = $dataServices->Query("select * from Invoice where docNumber=1038");
+
+    2. For Query ReferenceType (ending with keyword Ref), DO NOT USE TypeRef.value. Just use TypeRef. For example, to query an invoice from customer ID 59, you will use:
+
+    .. code-block:: php
+
+        //You will get a 400 from QBO for error parsing string
+        $theInvoice = $dataServices->Query("SELECT * FROM Invoice WHERE CustomerRef='58'");
+
+Sorting
++++++++
+
+To sort the results of a query, include the ORDERBY clause, specifying a property as the sort field. Similar to filters, only fields that contain keywords "sortable" in the API reference page are sortable.
+
+For example, the following query sorts Customer objects by the FamilyName property:
+
+.. code-block:: php
+
+    $customers = $dataServices->Query("SELECT * FROM Customer ORDERBY FamilyName");
+
+Please refer to our API Data Query page for more information:
+https://developer.intuit.com/docs/00_quickbooks_online/2_build/20_explore_the_quickbooks_online_api/50_data_queries
+
+
+Update resources (PUT)
+======================
+
+Update resources
+----------------
+
+Update resources often require a ``GET`` operation first. Similar to :ref:`Create new resources (POST)`, we use an associate array to pass our updated data.
+
+For example, we want to change the ``Invoice #101`` we just created (see example created at :ref:`Create new resources (POST)`) for ``Alex`` with an additional line item. Besides the sewing service, we also want to give ``Alex`` a discount, ``10 dollars``.
+
+After refer back to the API reference page, we add our discount Line with the sewing service(If you don't have a Service called ``Discount``, you will need to create it first, refer to Item API reference Page: https://developer.intuit.com/docs/api/accounting/item for instruction):
+
+.. code-block:: php
+
+  "Line" => [
+      [
+        "Description" => "Sewing Service for Alex",
+        "Amount" => 150.00,
+        "DetailType" => "SalesItemLineDetail",
+        "SalesItemLineDetail" => [
+          "ItemRef" => [
+            "value" => 1,
+            "name" => "Services"
+          ]
+        ]
+      ],
+      [
+        "Description" => "Discount for Alex",
+        "Amount" => -10.00,
+        "DetailType" => "SalesItemLineDetail",
+        "SalesItemLineDetail" => [
+          "ItemRef" => [
+            "value" => 21,
+            "name" => "Discount"
+          ]
+        ]
+      ]
+    ]
+
+This associate array will be our updated Content.
+
+Next step is finding our target invoice. We already know that the Invoice has ``DocNumber = 101``, so we use query operation to find the Invoice:
+
+.. code-block:: php
+
+      $targetInvoiceArray = $dataService->Query("select * from Invoice where DocNumber='101'");
+
+The $targetInvoiceArray should only contain one element, and it will be our target to update:
+
+.. code-block:: php
+
+      if(!empty($targetInvoiceArray) && sizeof($targetInvoiceArray) == 1){
+          $theInvoice = current($targetInvoiceArray);
+      }
+
+At this point, we have both the target ``Invoice``, and the updated content, we can use ``Invoice::update()`` method to update the Invoice with our new line item, and using ``DataService->Update()`` method to send the request:
+
+.. code-block:: php
+
+      $updatedInvoice = Invoice::update($theInvoice, [
+          "sparse" => true,
+          "Line" => [
+            [
+              "Description" => "Sewing Service for Alex",
+              "Amount" => 150.00,
+              "DetailType" => "SalesItemLineDetail",
+              "SalesItemLineDetail" => [
+                "ItemRef" => [
+                  "value" => 1,
+                  "name" => "Services"
+                ]
+              ]
+            ],
+            [
+              "Description" => "Discount for Alex",
+              "Amount" => -10.00,
+              "DetailType" => "SalesItemLineDetail",
+              "SalesItemLineDetail" => [
+                "ItemRef" => [
+                  "value" => 21,
+                  "name" => "Discount"
+                ]
+              ]
+            ]
+           ]
+      ]);
+      $updatedResult = dataService->Update($updatedInvoice);
+
+and our ``update`` operation is complete.
+
+For ``Line`` item update, QuickBooks Online will replace current ``Line`` with the updated ``Line``, therefore, it requires us to provide the **FULL** ``Line`` details each time when we update ``Line`` item.
+
+In QuickBooks Online PHP V3 SDK, you can use helper class ``Line`` to create the additional ``Line`` item, and merge this ``Line`` with existed ``Line`` from target object:
+
+.. code-block:: php
+
+    $LineObj = Line::create([
+        "Description" => "Discount for Alex",
+        "Amount" => -10.00,
+        "DetailType" => "SalesItemLineDetail",
+        "SalesItemLineDetail" => [
+          "ItemRef" => [
+            "value" => 21,
+            "name" => "Discount"
+          ]
+        ]
+    ]);
+    //Remove last element of Line Item.
+    $lineArray = array_pop($theInvoice->Line);
+    $lineArray[] = $LineObj;
+    $updatedInvoice = Invoice::update($theInvoice, [
+        "sparse" => true,
+        "Line" => $lineArray
+    ]);
+    $updatedResult = dataService->Update($updatedInvoice);
+
+The example remove the last element of Line Item, because the last Line of a read request would always be a ``SubTotalLineDetail``. We can rely on QuickBooks Online to re-calculate this line for us.
+
+Sparse Update & Full Update
+---------------------------
+
+Be careful when you use the update method. The example we present all use ``sparse => true`` when update the invoice. QuickBooks Online provides two updates: full update and sparse update. The sparse update operation provides the ability to update a subset of attributes for a given object; only those specified in the request are updated. Missing attributes are left untouched. This is in contrast to the full update operation, where elements missing from the request are cleared.
+
+Considerations for using sparse updates include:
+
+ * Prevent unintended overwrites: A client application often does not use all the fields of an entity, so when it sends a full update request with only fields they use, it results in an erroneous blanking out of fields that were not sent.
+ * Reduce request payload: Always desired, but is more relevant when the client application is mobile because of lower speeds, spotty connections, and the fact that mobile users are sensitive to amount of the data usage in each billing cycle.
+ * Facilitate future field additions: New fields can be added to an entity without past versions of production applications clearing all other existing fields inadvertently, as would happen with a full update operation.
+
+
+Delete resources(DELETE)
+========================
+
+There are three ways to "delete" an entity in QuickBooks Online: ``DELETE``, ``VOID``, and ``Inactivate``. Please refer to our API reference docs: https://developer.intuit.com/docs/api/ for more details.
+
+To ``Delete`` an entity, you need to provide the ``Id`` and ``SyncToken`` of that entity. If we want to delete the ``Invoice`` that has ``Id=1``, here is how we do it:
+
+.. code-block:: php
+
+      $invoice = Invoice::create([
+          "Id" => "1",
+          "SyncToken" => "0"
+      ]);
+      $currentResultObj = $dataService->Delete($invoice);
+
+Developers can also ``GET`` the entity through a ``READ`` or ``QUERY`` operation, then passing the whole object to ``Delete`` method. (For ``void`` operation, simply replace ``$dataService->Delete()`` with ``$dataService->Void()``)
+
+For those entities only support ``Inactivate``, ``Delete`` or ``Void`` will not work. In QuickBooks Online, ``Inactivate`` is not considered as ``Delete`` operation, it is considered as ``Update``. It is achieved by setting the Active attribute to false in an object update request. Please refer to :ref:`Update resources` part for more details.
+
+
+
+Accessing Entity Fields Directly
+================================
+
+So far, all the REST examples we present show how to change an object through an associate array. It is the suggested way to create/update an entity resource.
+
+However, developers are welcomed to use objects fields directly. You can also create an invoice in this way:
+
+.. code-block:: php
+
+  // Add an invoice
+  $invoice = new IPPInvoice();
+  $invoice->Deposit       = 0;
+  $invoice->domain        =  "QBO";
+  $invoice->AutoDocNumber = true;
+  $invoice->TxnDate = date('Y-m-d', time());
+  $invoice->CustomerRef   = "66";
+  $invoice->PrivateNote   = "SomeNote";
+  $invoice->TxnStatus     = "Payable";
+
+  $line = new IPPLine();
+  $line->Id = "0";
+  $line->LineNum          = "1";
+  $line->Description      = "test";
+  $line->Amount           = 1000;
+  $line->DetailType = "DescriptionOnly";
+
+  $sub_line = new IPPLine();
+  $sub_line->Id           = "0";
+  $sub_line->LineNum      = "2";
+  $sub_line->Description  = "Sub Total";
+  $sub_line->Amount       = 2000;
+  $sub_line->DetailType   = "SubtotalLineDetail";
+
+
+  $invoice->Line          = array($line, $sub_line);
+  $invoice->RemitToRef    = "66";
+  $invoice->TotalAmt      = 1000;
+  $invoice->FinanceCharge = 'false';
+
+  // Add a invoice
+  $resultingInvoiceObj = $dataService->Add($invoice);
+
+The type of ``value`` will need to match type displayed on our Entity Reference page: https://developer-static.intuit.com/SDKDocs/QBV3Doc/IPPPHPDevKitV3/entities/index.html.
+
+For example, if the ``Id`` type is ``String``, then ``$sub_line->Id= "0";`` will work but ``$sub_line->Id= 0;`` will not.
+
+Below is a list of entities that support create/update operation through static methods in the SDK:
+
+* Account
+* Bill
+* BillPayment
+* CompanyCurrency
+* CreditMemo
+* Customer
+* Class
+* Department
+* Deposit
+* Employee
+* Estimate
+* Line --- For excessive usage of Line objects, we create easy way of contructing Line items as well. However, Line is not an API endpoint entity
+* Invoice
+* Item
+* JournalEntry
+* Payment
+* Purchase
+* PurchaseOrder
+* RefundReceipt
+* SalesReceipt
+* TimeActivity
+* Transfer
+* VendorCredit
+* Vendor
+* TaxSerivce and TaxRate (for Creation Only)
+
+Other Supported Operations
+==========================
+
+Below is a list of operations that currently are supported by the SDK.
+
+Sending E-mail
+--------------
+
+For those entities that supports ``send`` operation, you can use ``dataService->SendEmail()`` method to send an E-mail to user/users:
+
+.. code-block:: php
+
+    $invoice = $dataService->FindById("invoice", 1);
+    $result = $dataSerivce->SendEmail($invoice, "abc@xyz.com");
+
+Batch Request
+-------------
+
+The SDK also support batch requests.
+
+Developers will need to create a ``$batch`` object first, then add the operation in the batch request:
+
+.. code-block:: php
+
+    $batch = $dataService->CreateNewBatch();
+    $batch->AddQuery("select * from Customer startPosition 0 maxResults 20", "queryCustomer", "uniqueQuery");
+    $batch->AddEntity($invoice, "uniqueIdentifier", "create");
+    $batch->Execute();
+
+
+To add a ``query`` to the batch request, use ``AddQuery()`` method.
+
+To add an operation to the batch request, ``AddEntity()`` method will be used.
+
+Both method will have its second parameter as a string to uniquely identify the operation.
+
+The ``AddEntity()`` method will have its third parameter as ``Operation Name``, it is either ``create``, ``update``, or ``delete``.
+
+The result of batch request will be inside its ``intuitBatchItemResponses``, use ``uniqueIdentifier`` to find the specific batch response:
+
+.. code-block:: php
+
+    $batchItemResponse = $batch->intuitBatchItemResponses["uniqueIdentifier"];

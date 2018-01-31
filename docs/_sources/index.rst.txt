@@ -18,7 +18,10 @@ User Guide
 ==========
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 5
 
     overview
     authorization
+    configuration
+    quickstart
+    handle-error

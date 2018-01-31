@@ -5,72 +5,73 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title>Authorization &mdash; QuickBooks V3 PHP SDK 4.0.1 documentation</title>
-  
 
-  
-  
-  
-  
 
-  
 
-  
-  
-    
 
-  
 
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
 
-  
 
-  
+
+
+
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="QuickBooks V3 PHP SDK 4.0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Overview" href="overview.html"/> 
+        <link rel="next" title="Configuration" href="configuration.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/>
 
-  
+
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
-   
+
   <div class="wy-grid-for-nav">
 
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
-          
 
-          
+
+
             <a href="index.html" class="icon icon-home"> QuickBooks V3 PHP SDK
-          
 
-          
+
+
           </a>
 
-          
-            
-            
+
+
+
               <div class="version">
                 4.0.1
               </div>
-            
-          
 
-          
+
+
+
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,16 +80,16 @@
   </form>
 </div>
 
-          
+
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+
+
+
+
+
+
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization</a><ul>
@@ -101,34 +102,38 @@
 <li class="toctree-l3"><a class="reference internal" href="#generate-oauth-2-0-tokens">Generate OAuth 2.0 Tokens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#directly-use-oauth-2-0-tokens">Directly Use OAuth 2.0 Tokens</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#refresh-your-oauth-2-0-token">Refresh your OAuth 2.0 token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oauth-2-0-ssl-certificate-settings">OAuth 2.0 SSL certificate settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#oauth-2-0-vs-1-0a-in-quickbooks-online">OAuth 2.0 vs 1.0a in QuickBooks Online</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
 </ul>
 
-            
-          
+
+
         </div>
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
+
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">QuickBooks V3 PHP SDK</a>
-        
+
       </nav>
 
 
-      
+
       <div class="wy-nav-content">
         <div class="rst-content">
-          
+
 
 
 
@@ -147,30 +152,29 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-    
+
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
+
       <li>Authorization</li>
-    
-    
+
+
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/authorization.rst.txt" rel="nofollow"> View page source</a>
+
+
           
-        
+
       </li>
-    
+
   </ul>
 
-  
+
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+
   <div class="section" id="authorization">
-<h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<span id="auth-page"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
 <p>This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the <a class="reference internal" href="overview.html#installation"><span class="std std-ref">Installation</span></a>
 page.</p>
 <div class="section" id="oauth-1-0a">
@@ -403,6 +407,12 @@ go to your app’ dashboard and click “Test connect to app (OAuth)” link the
 </div>
 <p>For each new OAuth 2 access token and OAuth 2 refresh token returned from QuickBooks Online, you will need to use getRefreshToken() method to get the latest refresh token again.</p>
 </div>
+<div class="section" id="oauth-2-0-ssl-certificate-settings">
+<h3>OAuth 2.0 SSL certificate settings<a class="headerlink" href="#oauth-2-0-ssl-certificate-settings" title="Permalink to this headline">¶</a></h3>
+<p>The PHP SDK uses the Mozilla CA certificates (<a class="reference external" href="https://curl.haxx.se/ca/cacert.pem">https://curl.haxx.se/ca/cacert.pem</a>) for authorizing peer certificates.</p>
+<p>To disable the cURL certificate settings from the PHP SDK, comment out Line 106 at <a class="reference external" href="https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php">https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php</a></p>
+<p>or you can append your self-signed certificate at <a class="reference external" href="https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem">https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem</a></p>
+</div>
 <div class="section" id="oauth-2-0-vs-1-0a-in-quickbooks-online">
 <h3>OAuth 2.0 vs 1.0a in QuickBooks Online<a class="headerlink" href="#oauth-2-0-vs-1-0a-in-quickbooks-online" title="Permalink to this headline">¶</a></h3>
 <p>The way how OAuth 2.0 works is different with OAuth 1.0a. When you work with OAuth 1.0a, the expire time of the access token can be set up to 180 days. However, for OAuth 2.0, the expire time of an access token is <strong>ALWAYS</strong> set to one hour. It <strong>CAN NOT</strong> be changed. You will need to use the refresh token to get a new access token whenever you are going to make API calls with QuickBooks Online.</p>
@@ -428,18 +438,20 @@ go to your app’ dashboard and click “Test connect to app (OAuth)” link the
 
            </div>
            <div class="articleComments">
-            
+
            </div>
           </div>
           <footer>
-  
+
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
+
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
         <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+
     </div>
-  
+
 
   <hr/>
 
@@ -449,7 +461,7 @@ go to your app’ dashboard and click “Test connect to app (OAuth)” link the
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 
@@ -459,10 +471,10 @@ go to your app’ dashboard and click “Test connect to app (OAuth)” link the
     </section>
 
   </div>
-  
 
 
-  
+
+
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
@@ -478,21 +490,21 @@ go to your app’ dashboard and click “Test connect to app (OAuth)” link the
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
 
-  
 
-  
-  
+
+
+
     <script type="text/javascript" src="_static/js/theme.js"></script>
-  
 
-  
-  
+
+
+
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-   
+
 
 </body>
 </html>

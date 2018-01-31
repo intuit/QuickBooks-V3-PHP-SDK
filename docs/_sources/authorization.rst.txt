@@ -1,9 +1,12 @@
+.. _auth_page:
+
 =============
 Authorization
 =============
 
 This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the :ref:`installation`
 page.
+
 
 
 OAuth 1.0a
@@ -291,6 +294,14 @@ To refresh your OAuth 2 access token, you will pass your Client ID, Client Secre
 
 For each new OAuth 2 access token and OAuth 2 refresh token returned from QuickBooks Online, you will need to use getRefreshToken() method to get the latest refresh token again.
 
+OAuth 2.0 SSL certificate settings
+----------------------------------
+
+The PHP SDK uses the Mozilla CA certificates (https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.
+
+To disable the cURL certificate settings from the PHP SDK, comment out Line 106 at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php
+
+or you can append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem
 
 OAuth 2.0 vs 1.0a in QuickBooks Online
 --------------------------------------

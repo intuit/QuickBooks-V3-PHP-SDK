@@ -17,8 +17,6 @@ Requirements
     integrity. As of December 31, 2017, the required version will be TLS 1.2 or
     higher.
 
-.. _installation:
-
 
 Installation
 ============
