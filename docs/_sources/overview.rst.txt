@@ -12,32 +12,31 @@ Requirements
 
 .. note::
 
-    Intuit has required QuickBooks Online apps to upgrade to TLS 1.1 or above
-    by July 31, 2017 to align with industry best practices for security and data
-    integrity. As of December 31, 2017, the required version will be TLS 1.2 or
-    higher.
+    QuickBooks Online apps must use TLS 1.1 or higher to align with industry 
+    best practices for security and data integrity. Beginning March 31, 2018, 
+    the required version will be TLS 1.2 or higher.
 
 
 Installation
 ============
 
-The recommended way to install QuickBooks V3 SDK is with
+The recommended way to install the QuickBooks PHP SDK is with
 `Composer <http://getcomposer.org>`_. Composer is a dependency management tool
 for PHP that allows you to declare the dependencies your project needs and
-installs them into your project.
+installs them into your project. To install Composer:
 
 .. code-block:: bash
 
     # Install Composer
     curl -sS https://getcomposer.org/installer | php
 
-You can add QuickBooks V3 SDK as a dependency using the composer.phar CLI:
+You can add the SDK as a dependency using the composer.phar CLI:
 
 .. code-block:: bash
 
     composer require quickbooks/v3-php-sdk
 
-Alternatively, you can specify QuickBooks V3 SDK as a dependency in your project's
+Alternatively, you can specify the SDK as a dependency in your project's
 existing composer.json file:
 
 .. code-block:: js
@@ -48,27 +47,26 @@ existing composer.json file:
       }
    }
 
-After installing, you need to require Composer's autoloader:
+After installing, require Composer's autoloader:
 
 .. code-block:: php
 
     require 'vendor/autoload.php';
 
 You can find out more on how to install Composer, configure autoloading, and
-other best-practices for defining dependencies at `getcomposer.org <http://getcomposer.org>`_.
+other best practices for defining dependencies at `getcomposer.org <http://getcomposer.org>`_.
 
 .. note::
 
-    If you are not famailar with Composer or Composer is not possible to be used in your enviornment,
-    you can also go to the "releases" tab to download the zip file version of our PHP SDK.
+    If you are not famailar with Composer or if Composer cannot be used in your environment,
+    you can go to the "releases" tab to download the zip file version of the SDK.
     See example scripts here https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples for
-    how to make QuickBooks Online API call without Composer. You will need to use the
+    how to make QuickBooks Online API calls without Composer. Use the following to include the 
+    necessary autoloader:
 
     .. code-block:: php
 
         include('../config.php');
-
-    to include the necessary autoloader.
 
 
 License
@@ -97,10 +95,10 @@ Contributing
 Guidelines
 ----------
 
-1. We are graduatelly changing the code style to utilizes PSR-1, PSR-2, PSR-4, and PSR-7. It will
-   take some time, however, all pull requests in the future should follow the same standards.
-2. QuickBooks V3 SDK is meant to be lean and fast with very few dependencies. This means
+1. Intuit is gradually changing the code style to utilize PSR-1, PSR-2, PSR-4, and PSR-7. This will
+   take some time; however, all pull requests in the future should follow the same standards.
+2. The PHP SDK is meant to be lean and fast with very few dependencies. This means
    that not every feature request will be accepted.
-3. QuickBooks V3 SDK has a minimum PHP version requirement of PHP 5.6. Pull requests must
+3. The PHP SDK has a minimum PHP version requirement of PHP 5.6. Pull requests must
    not require a PHP version greater than PHP 5.6 unless the feature is only
    utilized conditionally.
