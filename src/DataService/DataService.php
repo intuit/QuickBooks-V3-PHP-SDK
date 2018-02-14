@@ -1445,7 +1445,7 @@ class DataService
      */
     public function CreateNewBatch()
     {
-        $batch = new Batch($this->serviceContext, $this->restHandler);
+        $batch = new Batch($this->serviceContext, $this->getRestHandler(), $this->isThrownExceptionOnError());
 
         return $batch;
     }
