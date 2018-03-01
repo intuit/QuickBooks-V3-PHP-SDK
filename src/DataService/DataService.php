@@ -201,7 +201,7 @@ class DataService
      * @var ServiceContext $serviceContext         The service Context for this DataService
      *
      */
-    private function setupRestHandler($serviceContext)
+    protected function setupRestHandler($serviceContext)
     {
        if(isset($serviceContext)){
           $client = ClientFactory::createClient($this->getClientName());
