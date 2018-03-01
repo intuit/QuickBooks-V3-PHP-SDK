@@ -77,6 +77,11 @@ class IntuitResponse{
     */
    public function __construct($passedHeaders, $passedBody, $passedHttpResponseCode, $parse = false, $clientName = CoreConstants::CLIENT_CURL){
           if($parse == false){
+              foreach ($passedHeaders as &$passedHeader ){
+                  if( is_array( $passedHeader ) ){
+                      $passedHeader = implode( "; ", $passedHeader );
+                  }
+              }
               $this->setResponseAsItIs($passedHeaders, $passedBody, $passedHttpResponseCode);
           }else{
               $this->parseResponseToIntuitResponse($passedHeaders, $passedBody, $passedHttpResponseCode, $clientName);
