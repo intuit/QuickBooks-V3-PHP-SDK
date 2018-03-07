@@ -258,9 +258,28 @@ class OAuth2LoginHelper
     }
 
     /**
+     * Get a new access token based on the refresh token. Static function to make easy refreshToken API call.
+     * @return OAuth2AccessToken     A new OAuth2AccessToken that contains all the information(accessTokenkey, RefreshTokenKey, ClientID, and ClientSecret, Expiration Time, etc)
+     */
+    public function refreshAccessTokenWithRefreshToken($refreshToken){
+       $http_header = $this->constructRefreshTokenHeader();
+       $requestBody = $this->constructRefreshTokenBody($refreshToken);
+       $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
+       $this->faultHandler = $intuitResponse->getFaultHandler();
+       if($this->faultHandler) {
+          throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
+       }else{
+          $this->faultHandler = false;
+          $this->oauth2AccessToken = $this->parseNewAccessTokenFromResponse($intuitResponse->getBody());
+          return $this->getAccessToken();
+       }
+    }
+
+    /**
      * Revoke an OAuth 2 access token or refresh token
      * @param String $accessTokenOrRefreshToken      THe access token or the refreshToken
      * @throws any non-200 status code will cause an exception to throw
+     * @return Boolean True | False
      */
     public function revokeToken($accessTokenOrRefreshToken){
       if(!isset($accessTokenOrRefreshToken) ){
@@ -281,9 +300,8 @@ class OAuth2LoginHelper
          throw new ServiceException("Revoke Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
       }else{
          $this->faultHandler = false;
-         var_dump($intuitResponse);
+         return true;
       }
-
     }
 
     /**

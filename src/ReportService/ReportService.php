@@ -34,6 +34,18 @@ class ReportService
     private $responseSerializer;
 
     /**
+     * Throw exception on Error. Default is false;
+     * @var Boolean
+     */
+    private $throwExceptionOnError = false;
+
+    /**
+     * If not false, the request from last dataService did not return 2xx
+     * @var FaultHandler
+     */
+    private $lastError = false;
+
+    /**
      * Serializer needs to be used for request object
      * @var IEntitySerializer
      */
@@ -808,6 +820,20 @@ class ReportService
     }
 
     /**
+     * If any non 200 status code is return, throw an exception.
+     */
+    public function turnOnThrowExceptionOnError(){
+        $this->throwExceptionOnError = true;
+    }
+
+    /**
+     * If any non 200 status code is return, do not throw an exception. Default is OFF.
+     */
+    public function turnOffThrowExceptionOnError(){
+        $this->throwExceptionOnError = false;
+    }
+
+    /**
      * Initializes a new instance of the DataService class.
      *
      * @param ServiceContext $serviceContext IPP Service Context
@@ -1035,24 +1061,16 @@ class ReportService
             $requestParameters = new RequestParameters($httpRequestUri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
         }
 
-        $restRequestHandler = new SyncRestHandler($this->serviceContext);
-
-        try {
-            list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null);
-        } catch (Exception $e) {
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->throwExceptionOnError);
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
             return null;
-        }
-
-        CoreHelper::CheckNullResponseAndThrowException($responseBody);
-
-        try {
-            //The modification is no longer necessary
-            //$responseBody = $this->modifyReportResponse($responseBody);
+        } else {
+            $this->lastError = false;
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
-        } catch (Exception $e) {
-            return null;
+            return ($parsedResponseBody);
         }
-
-        return ($parsedResponseBody);
     }
 }
