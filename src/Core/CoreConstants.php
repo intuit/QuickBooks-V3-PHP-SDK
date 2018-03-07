@@ -163,6 +163,12 @@ class CoreConstants
     const CONTENTTYPE_APPLICATIONXML = "application/xml";
 
     /**
+     * Content type: application/xml;charset=UTF-8.
+     * @var string CONTENTTYPE_APPLICATIONXML_WITH_CHARSET
+     */
+    const CONTENTTYPE_APPLICATIONXML_WITH_CHARSET = "application/xml;charset=UTF-8";
+
+    /**
      * Content type: application/xml.
      * @var string CONTENTTYPE_APPLICATIONJSON
      */
