@@ -234,8 +234,8 @@ class XmlObjectSerializer extends IEntitySerializer
 
         $responseXmlObj = simplexml_load_string($message);
 
-        //handle count(*) case, for example Select count(*) from Invoice
-        if(isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition'])){
+        //handle count(*) case, for example Select count(*) from Invoice, and also handle the CDC case
+        if(isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition']) && !isset($responseXmlObj->attributes()['maxResults'])){
             return (int) $responseXmlObj->attributes()['totalCount'];
         }
 

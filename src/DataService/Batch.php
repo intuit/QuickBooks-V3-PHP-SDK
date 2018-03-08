@@ -314,6 +314,8 @@ class Batch
             if ($faultHandler) {
                 $this->lastError = $faultHandler;
                 return null;
+            }else{
+                $this->lastError = false;
             }
         } catch (\Exception $e) {
             IdsExceptionManager::HandleException($e);

@@ -30,6 +30,7 @@ use QuickBooksOnline\API\Data\IPPAttachable;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\Data\IPPTaxService;
 use QuickBooksOnline\API\Exception\IdsException;
+use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
@@ -944,8 +945,8 @@ class DataService
                 //echo "Parsed Body is: \n";
                 //var_dump($parsedResponseBody);
                 //echo "\n Parsed Body over.\n";
-            } catch (Exception $e) {
-                throw new Exception("Exception appears in converting Response to XML.");
+            } catch (\Exception $e) {
+                throw new \Exception("Exception appears in converting Response to XML.");
             }
 
             return $parsedResponseBody;
@@ -995,8 +996,8 @@ class DataService
                 if ($responseXmlObj && $responseXmlObj->QueryResponse) {
                     $parsedResponseBody = $this->responseSerializer->Deserialize($responseXmlObj->QueryResponse->asXML(), false);
                 }
-            } catch (Exception $e) {
-                throw new Exception("Exception appears in converting Response to XML.");
+            } catch (\Exception $e) {
+                throw new \Exception("Exception appears in converting Response to XML.");
             }
 
             return $parsedResponseBody;
@@ -1026,8 +1027,12 @@ class DataService
         $query = null;
         $uri = null;
 
+        if(is_string($changedSince)){
+           $formattedChangedSince = trim($changedSince);
+        }else{
+            $formattedChangedSince = date("Y-m-d\TH:i:s", $this->verifyChangedSince($changedSince));
+        }
 
-        $formattedChangedSince = date("Y-m-d\TH:i:s", $this->verifyChangedSince($changedSince));
         $query = "entities=" . $entityString . "&changedSince=" . $formattedChangedSince;
         $uri = "company/{1}/cdc?{2}";
         //$uri = str_replace("{0}", CoreConstants::VERSION, $uri);
@@ -1048,15 +1053,21 @@ class DataService
             $returnValue = new IntuitCDCResponse();
             try {
                 $xmlObj = simplexml_load_string($responseBody);
-                foreach ($xmlObj->CDCResponse->QueryResponse as $oneObj) {
-                    $entities = $this->responseSerializer->Deserialize($oneObj->asXML(), false);
+                $responseArray = $xmlObj->CDCResponse->QueryResponse;
+                if(sizeof($responseArray) != sizeof($entityList)){
+                    throw new ServiceException("The number of Entities requested on CDC does not match the number of Response.");
+                }
 
-                    $entityName = null;
-                    foreach ($oneObj->children() as $oneObjChild) {
-                        $entityName = (string)$oneObjChild->getName();
+                for($i = 0; $i < sizeof($responseArray); $i++){
+                    $currentResponse = $responseArray[$i];
+                    $currentEntityName = $entityList[$i];
+                    $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
+                    $entityName = $currentEntityName;
+                    //If we find the actual name, update it.
+                    foreach ($currentResponse->children() as $currentResponseChild) {
+                        $entityName = (string)$currentResponseChild->getName();
                         break;
                     }
-
                     $returnValue->entities[$entityName] = $entities;
                 }
             } catch (Exception $e) {
@@ -1064,7 +1075,6 @@ class DataService
             }
 
             $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Method CDC.");
-
             return $returnValue;
         }
     }
