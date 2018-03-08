@@ -172,6 +172,32 @@ class IPPAccount extends IPPIntuitEntity
      * @var string
      */
     public $AcctNum;
+
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: A user friendly name for the account. It must be unique across all account categories. For France locales, only.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName AccountAlias
+     * @var string
+     */
+    public $AccountAlias;
+
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: The account location.  default is WithinFrance. For France locales, only.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName TxnLocationType
+     * @var string
+     */
+    public $TxnLocationType;
     /**
      * @Definition
                                 Product: QBO
