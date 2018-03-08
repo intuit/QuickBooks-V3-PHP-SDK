@@ -909,7 +909,7 @@ class DataService
      * @param string $query Query to issue
      * @param int $pageNumber Starting page number
      * @param int $pageSize Page size
-     * @return array Returns an array of entities fulfilling the query.
+     * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
     public function Query($query, $pageNumber = 0, $pageSize = 500)
     {
@@ -936,8 +936,6 @@ class DataService
             $parsedResponseBody = null;
             try {
                 $responseXmlObj = simplexml_load_string($responseBody);
-                //
-                //var_dump($responseXmlObj);
                 if ($responseXmlObj && $responseXmlObj->QueryResponse) {
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
                 }
