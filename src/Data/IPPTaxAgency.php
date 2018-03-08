@@ -103,6 +103,15 @@ class IPPTaxAgency extends IPPVendor
      * @var boolean
      */
     public $TaxTrackedOnSales;
+
+    /**
+    * @xmlType element
+    * @xmlNamespace http://schema.intuit.com/finance/v3
+    * @xmlMinOccurs 0
+    * @xmlName LastFileDate
+    * @var string
+    */
+    public $LastFileDate;
     /**
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
