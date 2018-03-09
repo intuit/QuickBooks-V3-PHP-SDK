@@ -6,7 +6,6 @@ php:
 before_install:
 - composer self-update
 before_script:
-- pecl install oauth-1.2.3
 - composer install
 script:
 - phpunit --configuration phpunit.xml
