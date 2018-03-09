@@ -1,6 +1,6 @@
 <?php
 
-class DependencyTest extends \PHPUnit_Framework_TestCase
+class DependencyTest extends \PHPUnit\Framework\TestCase
 {
     public function testTrueIsTrue()
     {
