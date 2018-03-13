@@ -10,13 +10,14 @@ use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
-       'auth_mode' => 'oauth1',
-         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-         'QBORealmID' => "193514489870599",
-         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+    'auth_mode' => 'oauth2',
+    'ClientID' => "Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f",
+    'ClientSecret' => "NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq",
+    'accessTokenKey' =>
+    'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..vnndgB6ep5asUsDzhZgrRA.YdIGb7DxfyKsB1yIp6_Ii2PXw-XveMa6pzWbPwU5YBQ8iJQYffwLaA2BqLDxNHub7rvF6q7BzZPCtcL47OIin-5LIx8g-QJUuAzstO14dP9Y8D-xWS8_qeCmWrVBhNNMrT86lyOmUcLOCIu_60smKUgcH7OnHWlBNYWGaaIis3axtotxkFJ_lqw2MN6kjYsle0PC_d2TWZhSEbrJgXG6_xM9hsU90rk3s2txOk8K_ERFFtRSBWtolNp2T3uhZIstkoRY_Ob_-TwSASEvTa75Av-_IB8v6JquPAEE01fJJotTxPoFszDYLm6agb6RqXVVAoNcqN_1s-DQjJ93ixY6dnMrf9f0vv-GEtfhV_MPwhtF0kGKa2f7k_5T4GPtiC8Pq819wPF9NSen9hHvRNAOd0N4oUjLSddeMEeIaYoLWFckc5VcBKJla59TQpRJWzV_8W7WiCUouRUe2G0V4fc2JHqz8kKFFBx0YH56np8gVwnWUjoVRMnd7l4NWWfKKw8ONhiIyZy8Dva8oFPHnXF1_UaM97nE5szLdIiL8mWP31WWLhvH6PvQ5L8CIsX_C93FaqiGyApMR0c31x8lQUJUyRtiY0ua0rkAIJOr8wdHLBpDCu0qQF-WHOc76Xd6drcElh8_WdT7n9cENnLLu90BLbXafFWhQjNuRzxPFsooc7dsogLQelixxjjLFOrE4oF-.IWkfHVtKf9bsU3Ghk3agMg',
+    'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
+    'QBORealmID' => "193514718078509",
+    'baseUrl' => "Production"
 ));
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
@@ -26,7 +27,7 @@ $i = 0;
 while (1) {
     $allCustomers = $dataService->FindAll('Customer', $i, 500);
     $error = $dataService->getLastError();
-    if ($error != null) {
+    if ($error) {
         echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
         echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
         echo "The Response message is: " . $error->getResponseBody() . "\n";

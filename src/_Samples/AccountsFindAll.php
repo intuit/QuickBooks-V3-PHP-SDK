@@ -25,7 +25,7 @@ $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 
 $accessToken = $OAuth2LoginHelper->refreshToken();
 $error = $OAuth2LoginHelper->getLastError();
-if ($error != null) {
+if ($error) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
     echo "The Response message is: " . $error->getResponseBody() . "\n";
@@ -41,7 +41,7 @@ $i = 1;
 while (1) {
     $allAccounts = $dataService->FindAll('Account', $i, 500);
     $error = $dataService->getLastError();
-    if ($error != null) {
+    if ($error) {
         echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
         echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
         echo "The Response message is: " . $error->getResponseBody() . "\n";
