@@ -22,6 +22,7 @@ use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Core\HttpClients\CurlHttpClient;
 use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
 
 /**
  * Class OAuth2LoginHelper
@@ -302,6 +303,41 @@ class OAuth2LoginHelper
          $this->faultHandler = false;
          return true;
       }
+    }
+
+    /**
+     * Provide OAuth 1 token generation for OAuth 2 token. This function currently is not available on QUickBooks Online yet.
+     * @param String $consumerKey           The consumer key of OAuth 1
+     * @param String $consumerSecre         The consumer Secre of OAuth 1
+     * @param String $accessToken           The access token key of OAuth 1
+     * @param String $accessTokenSecret     The access Token Secret key of OAuth 1
+     * @param String $scope                 The scope of the key
+     * @return OAuth2AccessToken
+     */
+    public function OAuth1ToOAuth2Migration($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret, $scope){
+        $oauth1Encrypter = new OAuth1($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+        $parameters = array(
+          'scope' => $scope,
+          'redirect_uri' => "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl",
+          'client_id' => $this->getClientID(),
+          'client_secret' => $this->getClientSecret()
+        );
+        $baseURL = "https://developer.api.intuit.com/v2/oauth2/tokens/migrate";
+        $authorizationHeaderInfo = $oauth1Encrypter->getOAuthHeader($baseURL, array(), "POST");
+        $http_header = array(
+          'Accept' => 'application/json',
+          'Authorization' => $authorizationHeaderInfo,
+          'Content-Type' => 'application/json'
+        );
+        $intuitResponse = $this->curlHttpClient->makeAPICall($baseURL, CoreConstants::HTTP_POST, $http_header, json_encode($parameters), null, false);
+        $this->faultHandler = $intuitResponse->getFaultHandler();
+        if($this->faultHandler) {
+           throw new ServiceException("Migrate OAuth 1 token to OAuth 2 token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
+        }else{
+           $this->faultHandler = false;
+           $this->oauth2AccessToken = $this->parseNewAccessTokenFromResponse($intuitResponse->getBody());
+           return $this->getAccessToken();
+        }
     }
 
     /**

@@ -29,6 +29,7 @@ use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Data\IPPAttachable;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\Data\IPPTaxService;
+use QuickBooksOnline\API\Data\IPPid;
 use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
@@ -685,7 +686,7 @@ class DataService
               throw new IdsException('Argument Null Exception when calling FindById for Endpoint:' . get_class($entity));
           }
           $this->verifyOperationAccess($entity, __FUNCTION__);
-          $entityId = $entity->Id;
+          $entityId = $this->getIDString($entity->Id);
           // Normal case
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
           // Send request
@@ -840,19 +841,22 @@ class DataService
     /**
      * Returns PDF for entities which can be downloaded as PDF
      * @param IPPIntuitEntity $entity
+     * @param Directory a writable directory for the PDF to be saved.
      * @return boolean
      * @throws IdsException, SdkException
      *
      */
-    public function DownloadPDF($entity)
+    public function DownloadPDF($entity, $dir=null)
     {
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
 
+        //Find the ID
+        $entityID =  $this->getIDString($entity->Id);
         $uri = implode(CoreConstants::SLASH_CHAR, array('company',
                 $this->serviceContext->realmId,
                 self::getEntityResourceName($entity),
-                $entity->Id,
+                $entityID,
                 CoreConstants::getType(CoreConstants::CONTENTTYPE_APPLICATIONPDF)));
         $requestParameters = $this->getGetRequestParameters($uri, CoreConstants::CONTENTTYPE_APPLICATIONPDF);
         $restRequestHandler = $this->getRestHandler();
@@ -866,7 +870,7 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
-            return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"));
+            return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"), $dir);
         }
     }
 
@@ -884,16 +888,17 @@ class DataService
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
 
+        $entityId=$this->getIDString($entity->Id);
         $uri = implode(CoreConstants::SLASH_CHAR, array('company',
                 $this->serviceContext->realmId,
                 self::getEntityResourceName($entity),
-                $entity->Id,
+                $entityId,
                 'send'));
 
         if (is_null($email)) {
-            $this->logInfo("Entity " . get_class($entity) . " with id=" . $entity->Id . " is using default email");
+            $this->logInfo("Entity " . get_class($entity) . " with id=" . $entityId . " is using default email");
         } else {
-            $this->logInfo("Entity " . get_class($entity) . " with id=" . $entity->Id . " is using $email");
+            $this->logInfo("Entity " . get_class($entity) . " with id=" . $entityId . " is using $email");
             if (!$this->verifyEmailAddress($email)) {
                 $this->logError("Valid email is expected, but received $email");
                 throw new SdkException("Valid email is expected, but received $email");
@@ -907,11 +912,11 @@ class DataService
      * Retrieves specified entities based passed page number and page size and query
      *
      * @param string $query Query to issue
-     * @param int $pageNumber Starting page number
-     * @param int $pageSize Page size
+     * @param int $startPosition Starting page number
+     * @param int $maxResults Page size
      * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
-    public function Query($query, $pageNumber = 0, $pageSize = 500)
+    public function Query($query, $startPosition = null, $maxResults = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
 
@@ -922,7 +927,7 @@ class DataService
         }
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
-        $httpsPostBody = $query;
+        $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
@@ -949,6 +954,38 @@ class DataService
 
             return $parsedResponseBody;
         }
+    }
+
+    /**
+     * Append the Pagination Data to the Query string if it is not appended
+     * @param Integer StartPostion
+     * @param Integer MaxResults
+     * @return String The query string
+     */
+    private function appendPaginationInfo($query, $startPosition, $maxResults){
+       $query = trim($query);
+       if(isset($startPosition) && !empty($startPosition)){
+           if(stripos($query, "STARTPOSITION") === false){
+              if(stripos($query, "MAXRESULTS") !== false){
+                //In MaxResult is defined,we don't set startPosition
+              }else{
+                $query = $query . " " . "STARTPOSITION " . $startPosition;
+              }
+           }else{
+             //Ignore the startPosition if it is already used on the query
+           }
+       }
+
+       if(isset($maxResults) && !empty($maxResults)){
+           if(stripos($query, "MAXRESULTS") === false){
+                $query = $query . " " . "MAXRESULTS " . $maxResults;
+           }else{
+             //Ignore the maxResults if it is already used on the query
+           }
+       }
+
+       return $query;
+
     }
 
     /**
@@ -1292,7 +1329,7 @@ class DataService
         //TODO: add timestamp or GUID
         $this->validateEntityId($entity);
 
-        return self::getEntityResourceName($entity) . "_" . $entity->Id . ($usetimestamp ? "_" . time() : "") . ".$ext";
+        return self::getEntityResourceName($entity) . "_" . $this->getIDString($entity->Id) . ($usetimestamp ? "_" . time() : "") . ".$ext";
     }
 
     /**
@@ -1315,11 +1352,13 @@ class DataService
      * @param string $fileName
      * @return mixed full path with filename or open handler
      */
-    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $fileName = null)
+    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $fileName = null, $dir)
     {
         $writer->setPrefix($this->getPrefixFromSettings());
         try {
-            if ($this->isTempFile()) {
+            if(isset($dir) && !empty($dir)){
+                $writer->saveFile($dir, $fileName);
+            }else if ($this->isTempFile()) {
                 $writer->saveTemp();
             } elseif ($this->isFileExport()) {
                 $writer->saveFile($this->getFileExportDir(), $fileName);
@@ -1575,6 +1614,19 @@ class DataService
             $this->lastError = false;
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
+        }
+    }
+
+    /**
+     * Get the actual ID string value of either an IPPid object, or an Id string
+     * @param Object $id
+     * @return String Id
+     */
+    private function getIDString($id){
+        if($id instanceof IPPid || $id instanceof QuickBooksOnline\API\Data\IPPid){
+            return (String)$id->value;
+        }else{
+            return (String)$id;
         }
     }
 }

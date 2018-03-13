@@ -17,6 +17,7 @@
 namespace QuickBooksOnline\API\Core\OAuth\OAuth2;
 
 use QuickBooksOnline\API\Exception\SdkException;
+use QuickbooksOnline\API\Core\CoreConstants;
 
 /**
  * Class OAuth2AccessToken
@@ -146,7 +147,14 @@ class OAuth2AccessToken{
      * @param Long $realmID            The realmID for the access token
      */
     public function setBaseURL($baseURL){
-      $this->baseURL = $baseURL;
+      if(strcasecmp($baseURL, CoreConstants::DEVELOPMENT_SANDBOX) == 0){
+         $this->baseURL = CoreConstants::SANDBOX_DEVELOPMENT;
+      }else if(strcasecmp($baseURL, CoreConstants::PRODUCTION_QBO) == 0){
+         $this->baseURL = CoreConstants::QBO_BASEURL;
+      }else{
+         $this->baseURL = $baseURL;
+      }
+
     }
 
     /**
@@ -313,7 +321,7 @@ class OAuth2AccessToken{
         if(isset($this->realmID) && !empty($this->realmID)){
             return $this->realmID;
         }else{
-          throw new SdkException("Can't get OAuth 2 realmID from Access Token Object. It is not set.");
+            return "";
         }
     }
 
@@ -325,7 +333,7 @@ class OAuth2AccessToken{
         if(isset($this->baseURL) && !empty($this->baseURL)){
             return $this->baseURL;
         }else{
-          throw new SdkException("Can't get OAuth 2 baseURL from Access Token Object. It is not set.");
+            return "";
         }
     }
 

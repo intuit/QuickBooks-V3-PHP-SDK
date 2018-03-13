@@ -354,6 +354,10 @@ class ServiceContext
         }
     }
 
+    /**
+     * Update OAuth 2 Access Token with the new Token Value
+     * @param OAuth2AccessToken  The OAuth 2 token that contains access token, refresh token
+     */
     public function updateOAuth2Token($OAuth2AccessToken){
       if($OAuth2AccessToken instanceof OAuth2AccessToken && $this->requestValidator instanceof OAuth2AccessToken){
         $this->IppConfiguration->Security = $OAuth2AccessToken;
