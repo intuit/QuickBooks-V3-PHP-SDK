@@ -21,7 +21,7 @@ User Guide
     :maxdepth: 5
 
     overview
-    authorization
     configuration
+    authorization
     quickstart
     handle-error

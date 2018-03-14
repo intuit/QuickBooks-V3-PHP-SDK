@@ -292,7 +292,47 @@ To refresh your OAuth 2 access token, you will pass your Client ID, Client Secre
       ...
     }
 
+After v4.0.5 release, developers are able to construct ``OAuth2LoginHelper`` directly. They can use ``refreshAccessTokenWithRefreshToken`` method to achieve the same purpose:
+
+.. code-block:: php
+
+      <?php
+      require 'vendor/autoload.php';
+
+      use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+
+      //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
+      $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+      $accessTokenObj = $oauth2LoginHelper->
+                          refreshAccessTokenWithRefreshToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+      $accessTokenValue = $accessTokenObj->getAccessToken();
+      $refreshTokenValue = $accessTokenObj->getRefreshToken();
+      echo "Access Token is:";
+      print_r($accessTokenValue);
+      echo "RefreshToken Token is:";
+      print_r($refreshTokenValue);
+      ?>
+
 For each new OAuth 2 access token and OAuth 2 refresh token returned from QuickBooks Online, you will need to use getRefreshToken() method to get the latest refresh token again.
+
+Revoke your OAuth 2.0 token
+---------------------------
+
+Similar to refresh token, the V3 PHP SDK also allows you to revoke an existed OAuth 2 token. It can be a refresh token, or access token:
+
+.. code-block:: php
+
+  <?php
+  require 'vendor/autoload.php';
+
+  use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+  //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
+  $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+  $revokeResult = $oauth2LoginHelper->revokeToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+  if($revokeResult){
+      echo "RefreshToken Token revoked.";
+  }
+  ?>
 
 OAuth 2.0 SSL certificate settings
 ----------------------------------

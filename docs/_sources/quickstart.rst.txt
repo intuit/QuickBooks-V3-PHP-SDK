@@ -239,6 +239,76 @@ Here is the Complete example and what the result looks like in QuickBooks Online
        Result shown on QuickBooks Online
 
 
+Constructing Entities with Tax
+------------------------------
+
+Many QuickBooks Online users need to create entities with Tax. It is achieved on V3 PHP SDK by specifying the ``value`` on ``SalesItemLineDetail.TaxCodeRef`` when creating entities. Below is an example with creating Invoice with Tax on a Canadian QuickBooks Online Company:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\Core\ServiceContext;
+    use QuickBooksOnline\API\DataService\DataService;
+    use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+    use QuickBooksOnline\API\Facades\Invoice;
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+      'auth_mode' => 'oauth2',
+      'ClientID' => "Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f",
+      'ClientSecret' => "NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq",
+      'accessTokenKey' =>
+      'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A',
+      'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
+      'QBORealmID' => "193514708967874",
+      'baseUrl' => "Production"
+    ));
+    $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+    $dataService->throwExceptionOnError(true);
+    //Add a new Invoice
+    $invoiceToCreate = Invoice::create([
+      "DocNumber" => "101",
+      "Line" => [
+        [
+          "Description" => "Sewing Service for Jimmy in Canada",
+          "Amount" => 150.00,
+          "DetailType" => "SalesItemLineDetail",
+          "SalesItemLineDetail" => [
+            "ItemRef" => [
+              "value" => 1,
+              "name" => "Services"
+            ],
+            "TaxCodeRef" => [
+              "value" => 2
+            ]
+          ]
+        ]
+      ],
+      "CustomerRef" => [
+          "value" => "2",
+          "name" => "Jimmy"
+      ]
+    ]);
+
+    $resultObj = $dataService->Add($invoiceToCreate);
+    $error = $dataService->getLastError();
+    if ($error) {
+        echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+        echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+        echo "The Response message is: " . $error->getResponseBody() . "\n";
+    }else {
+        echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
+        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+        echo $xmlBody . "\n";
+    }
+
+.. note::
+
+  US Company do not have a numeric value for TaxCode. It is either ``TAX`` or ``NON``.
+
+Notice we didn't provide ``TxnTaxDetail`` when creating sales transactions, however, it is returned as part of READ response. In QuickBooks Online, it automatically calculates tax and returns the amount in the TxnTaxDetail.TotalTax attribute of the transaction based on the TaxCode assigned to each line.
+
+For more information, please refer to this docs: https://developer.intuit.com/docs/00_quickbooks_online/2_build/60_tutorials/0060_manage_sales_tax_for_non-us_locales
+
+
 Query and access resources (GET)
 ================================
 
@@ -316,6 +386,14 @@ For example, suppose you have 25  invoices.  The following query gets invoices 1
 .. code-block:: php
 
     $firstTenInvoices = $dataServices->Query("SELECT * FROM Invoice STARTPOSITION 1 MAXRESULTS 10");
+
+Starting from v4.0.5 release, developers can pass pagination as additional query parameters:
+
+.. code-block:: php
+
+    $firstTenInvoices = $dataServices->Query("SELECT * FROM Invoice", 1, 10);
+
+The above two code snippets perform the same query operation.
 
 Count
 +++++
@@ -489,6 +567,305 @@ In QuickBooks Online PHP V3 SDK, you can use helper class ``Line`` to create the
 
 The example remove the last element of Line Item, because the last Line of a read request would always be a ``SubTotalLineDetail``. We can rely on QuickBooks Online to re-calculate this line for us.
 
+Update resources with Tax
+-------------------------
+
+QuickBooks Online does allow developers to update Tax on an existed entity. In order to update the tax used for an entity, the developer needs to do the following for the company(this rule applied for non-us Company):
+
+1. Override the TxnTaxDetail.TotalTax with the new total tax amount.
+2. Override the TxnTaxDetail.TaxLine.TaxLineDetail.TaxRateRef. You must send all TaxRateRefs of a TaxCode even if you are modifying just one of them.
+3. Override the TxnTaxDetail.TaxLine.Amount
+4. Override the TxnTaxDetail.TaxLine.TaxLineDetail.TaxPercent
+5. Override the TaxCodeRef.value on LineDetail
+
+Pretty much, if a developer wants to update TaxCode used for a LineItem, he/she needs to update everything. QuickBooks Online will not be able to calculate tax anymore, it is the developer's job to calculate the tax correctly and provide it to QuickBooks Online.
+
+For example, we have a invoice on a Canada Company:
+
+.. figure::  images/example4.jpg
+   :align:   center
+
+   Document for a Canadian Invoice with Tax
+
+When we read this Invoice from API, here is what we have:
+
+.. code-block:: php
+
+  {
+    "Deposit": 0,
+    "AllowIPNPayment": false,
+    "AllowOnlinePayment": false,
+    "AllowOnlineCreditCardPayment": false,
+    "AllowOnlineACHPayment": false,
+    "domain": "QBO",
+    "sparse": false,
+    "Id": "1",
+    "SyncToken": "0",
+    "MetaData": {
+      "CreateTime": "2018-03-13T16:33:42-07:00",
+      "LastUpdatedTime": "2018-03-13T16:33:42-07:00"
+    },
+    "CustomField": [],
+    "DocNumber": "1001",
+    "TxnDate": "2018-03-13",
+    "CurrencyRef": {
+      "value": "CAD",
+      "name": "Canadian Dollar"
+    },
+    "LinkedTxn": [],
+    "Line": [
+    {
+      "Id": "1",
+      "LineNum": 1,
+      "Description": "Jimmy Service hours",
+      "Amount": 200.0,
+      "DetailType": "SalesItemLineDetail",
+      "SalesItemLineDetail": {
+        "ItemRef": {
+          "value": "2",
+          "name": "Hours"
+        },
+        "UnitPrice": 200,
+        "Qty": 1,
+        "TaxCodeRef": {
+          "value": "6"
+        }
+      }
+     },
+     {
+      "Id": "2",
+      "LineNum": 2,
+      "Description": "Jimmy extra hours",
+      "Amount": 100.0,
+      "DetailType": "SalesItemLineDetail",
+      "SalesItemLineDetail": {
+        "ItemRef": {
+          "value": "2",
+          "name": "Hours"
+        },
+        "UnitPrice": 100,
+        "Qty": 1,
+        "TaxCodeRef": {
+          "value": "2"
+        }
+      }
+     },
+     {
+      "Amount": 300.0,
+      "DetailType": "SubTotalLineDetail",
+      "SubTotalLineDetail": {}
+     }
+   ],
+   "TxnTaxDetail": {
+    "TotalTax": 30.0,
+    "TaxLine": [
+      {
+        "Amount": 30.0,
+        "DetailType": "TaxLineDetail",
+        "TaxLineDetail": {
+          "TaxRateRef": {
+            "value": "12"
+          },
+          "PercentBased": true,
+          "TaxPercent": 15,
+          "NetAmountTaxable": 200.0
+        }
+      },
+      {
+        "Amount": 0,
+        "DetailType": "TaxLineDetail",
+        "TaxLineDetail": {
+          "TaxRateRef": {
+            "value": "2"
+          },
+          "PercentBased": true,
+          "TaxPercent": 0,
+          "NetAmountTaxable": 100.0
+        }
+      }
+     ]
+   },
+   "CustomerRef": {
+    "value": "1",
+    "name": "Jimmy"
+   },
+   "SalesTermRef": {
+    "value": "3"
+   },
+   "DueDate": "2018-04-12",
+   "GlobalTaxCalculation": "TaxExcluded",
+   "TotalAmt": 330.0,
+   "PrintStatus": "NotSet",
+   "EmailStatus": "NotSet",
+   "Balance": 330.0
+  }
+
+from the Invoice, we find out we actually provided wrong TaxCode for the second line, ``Jimmy extra hours``, it should use the same TaxCode as first line, ``15%``, not ``0%``.
+
+We follow the instruction to update the TaxCode:
+
+1. TxnTaxDetail.TotalTax should be 45 (the extra hours now have 15 tax on it, 15 + 30 = 45)
+2. TxnTaxDetail.TaxLine.TaxLineDetail.TaxRateRef now should be using 12 now, which is the same as first lineItem.
+3. TxnTaxDetail.TaxLine.Amount should be 15(100 * 15% = 15).
+4. TxnTaxDetail.TaxLine.TaxLineDetail.TaxPercent should be same 15% as well.
+5. The TaxCode used on LineItem now should be 6 instead of 2.
+
+After we changed the value, we found out that there is no longer two ``TaxLine``, we should only have one TaxLine. Therefore, we delete the second TaxLine, only left the first one. Here is what our updating request looks like in JSON:
+
+.. code-block:: php
+
+  {
+    "Deposit": 0,
+    "AllowIPNPayment": false,
+    "AllowOnlinePayment": false,
+    "AllowOnlineCreditCardPayment": false,
+    "AllowOnlineACHPayment": false,
+    "domain": "QBO",
+    "sparse": false,
+    "Id": "1",
+    "SyncToken": "4",
+    "MetaData": {
+      "CreateTime": "2018-03-13T16:33:42-07:00",
+      "LastUpdatedTime": "2018-03-13T17:05:39-07:00"
+    },
+    "CustomField": [],
+    "DocNumber": "1001",
+    "TxnDate": "2018-03-13",
+    "CurrencyRef": {
+      "value": "CAD",
+      "name": "Canadian Dollar"
+    },
+    "LinkedTxn": [],
+    "Line": [
+      {
+        "Id": "1",
+        "LineNum": 1,
+        "Description": "Jimmy Service hours",
+        "Amount": 200.0,
+        "DetailType": "SalesItemLineDetail",
+        "SalesItemLineDetail": {
+          "ItemRef": {
+            "value": "2",
+            "name": "Hours"
+          },
+          "UnitPrice": 200,
+          "Qty": 1,
+          "TaxCodeRef": {
+            "value": "6"
+          }
+        }
+      },
+      {
+        "Id": "2",
+        "LineNum": 2,
+        "Description": "Jimmy extra hours",
+        "Amount": 100.0,
+        "DetailType": "SalesItemLineDetail",
+        "SalesItemLineDetail": {
+          "ItemRef": {
+            "value": "2",
+            "name": "Hours"
+          },
+          "UnitPrice": 100,
+          "Qty": 1,
+          "TaxCodeRef": {
+            "value": "6"
+          }
+        }
+      },
+      {
+        "Amount": 300.0,
+        "DetailType": "SubTotalLineDetail",
+        "SubTotalLineDetail": {}
+      }
+    ],
+    "TxnTaxDetail": {
+      "TotalTax": 45.0,
+      "TaxLine": [
+        {
+          "Amount": 45.0,
+          "DetailType": "TaxLineDetail",
+          "TaxLineDetail": {
+            "TaxRateRef": {
+              "value": "12"
+            },
+            "PercentBased": true,
+            "TaxPercent": 15,
+            "NetAmountTaxable": 200.0
+          }
+        }
+      ]
+    },
+    "CustomerRef": {
+      "value": "1",
+      "name": "Jimmy"
+    },
+    "SalesTermRef": {
+      "value": "3"
+    },
+    "DueDate": "2018-04-12",
+    "GlobalTaxCalculation": "TaxExcluded",
+    "TotalAmt": 330.0,
+    "PrintStatus": "NotSet",
+    "EmailStatus": "NotSet",
+    "Balance": 330.0
+  }
+
+We put this body in our code, and make an update call. Our Invoice has been updated successfully.
+
+.. figure::  images/example5.jpg
+   :align:   center
+
+   Document for a Canadian Invoice after updating the Tax
+
+Due to the complexity of updating TaxCode, Some developers prefer not updating the TaxCode used, just override the Tax amount used. In this case, they only need to override the ``TxnTaxDetail.TotalTax`` and ``TxnTaxDetail.TaxLine.Amount``.
+
+For example, we just want to update the TaxAmount to 45 instead of updating the TaxCode we use, we can provide this JSON body:
+
+.. code-block:: php
+
+  {
+    "sparse" : "true",
+    "Id": "1",
+    "SyncToken": "9",
+    "TxnTaxDetail": {
+      "TotalTax": 45.0,
+      "TaxLine": [
+      {
+        "Amount": 30.0,
+        "DetailType": "TaxLineDetail",
+        "TaxLineDetail": {
+          "TaxRateRef": {
+            "value": "12"
+          },
+          "PercentBased": true,
+          "TaxPercent": 15,
+          "NetAmountTaxable": 200.0
+        }
+      },
+      {
+        "Amount": 15,
+        "DetailType": "TaxLineDetail",
+        "TaxLineDetail": {
+          "TaxRateRef": {
+            "value": "2"
+          },
+          "PercentBased": true,
+          "TaxPercent": 0,
+          "NetAmountTaxable": 100.0
+          }
+       }
+      ]
+    }
+  }
+
+and the UI will have the correct TotalTaxAmount, with wrong taxCode.
+
+.. figure::  images/example6.jpg
+   :align:   center
+
+   Document for a Canadian Invoice after overriding the Tax
+
 Sparse Update & Full Update
 ---------------------------
 
@@ -639,3 +1016,140 @@ The result of batch request will be inside its ``intuitBatchItemResponses``, use
 .. code-block:: php
 
     $batchItemResponse = $batch->intuitBatchItemResponses["uniqueIdentifier"];
+
+Change Data Capture(CDC)
+------------------------
+
+The change data capture (cdc) operation returns a list of objects that have changed since a specified time. This operation is for an app that periodically polls data services in order to refresh its local copy of object data. The V3 PHP SDK supports this function as well. For example, if I want to capture all the change for Invoice, Item and Bill from ``2017803-07T12:28:32``, I will use below code:
+
+.. code-block:: php
+
+  <?php
+  require 'vendor/autoload.php';
+
+  use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+  use QuickBooksOnline\API\DataService\DataService;
+
+  // Prep Data Services
+  $dataService = DataService::Configure(array(
+    'auth_mode' => 'oauth2',
+    'ClientID' => "Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f",
+    'ClientSecret' => "NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq",
+    'accessTokenKey' =>
+    'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A',
+    'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
+    'QBORealmID' => "193514708967874",
+    'baseUrl' => "Production"
+  ));
+
+
+  // Use CDC APIs
+  $entityList = array('invoice','item', 'bill');
+
+  $cdcResponse = $dataService->CDC($entityList, "2017-03-07T12:28:32-08:00");
+  $error = $dataService->getLastError();
+  if ($error) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+    exit();
+  }
+
+  if ($cdcResponse->entities) {
+    foreach ($cdcResponse->entities as $entityName => $entityArray) {
+        echo "CDC Says " . count($entityArray) . " Updated Entities of Type = {$entityName}\n";
+    }
+  }
+  ?>
+
+A few points to remember when using the CDC function on V3 SDK:
+
+1. If an entity has no change, the SDK will return NULL for that entity. For example, if no invoice has been changed, then ``$cdcResponse->entities['invoice']`` will be NULL
+2. The response does not distinguish Create vs Delete. Developers must query the correspodning entity again with the ``Id`` field returned from response.
+
+Generating Reports
+------------------
+
+In V3 PHP SDK, the report service is separate from data service. To use the Report Service, developers will need to create the ``ReportService`` object first, then set the parameters on the report service:
+
+.. code-block:: php
+
+  <?php
+  require 'vendor/autoload.php';
+
+  use QuickBooksOnline\API\DataService\DataService;
+  use QuickBooksOnline\API\ReportService\ReportService;
+  use QuickBooksOnline\API\ReportService\ReportName;
+  // Prep Data Services
+  $dataService = DataService::Configure(array(
+      'auth_mode' => 'oauth2',
+      'ClientID' => "Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f",
+      'ClientSecret' => "NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq",
+      'accessTokenKey' =>
+      'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK -RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A',
+      'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
+      'QBORealmID' => "193514708967874",
+      'baseUrl' => "Production"
+    ));
+
+    $serviceContext = $dataService->getServiceContext();
+
+    // Prep Data Services
+    $reportService = new ReportService($serviceContext);
+    if (!$reportService) {
+      exit("Problem while initializing ReportService.\n");
+    }
+
+
+    $reportService->setStartDate("2015-01-01");
+    $reportService->setAccountingMethod("Accrual");
+    $profitAndLossReport = $reportService->executeReport(ReportName::PROFITANDLOSS);
+    if (!$profitAndLossReport) {
+      exit("ProfitAndLossReport Is Null.\n");
+    } else {
+      $reportName = strtolower($profitAndLossReport->Header->ReportName);
+      echo("ReportName: " . $reportName . "\n");
+      echo("Profit And Loss Report Execution Successful!" . "\n");
+    }
+
+The ``ReportService`` constructor requires a ``ServiceContext`` Object, developers can get it from DataService. For a list of accepted query parameters, please refer to our documentation here: https://developer.intuit.com/docs/api/accounting/profit%20and%20loss
+
+Download As PDF
+---------------
+
+For a few endpoint entities, developers can get the entity as PDF. Invoice is one good example. To get an invoice from QuickBooks Online as PDF, use the ``DownloadPDF`` function:
+
+.. note::
+
+  To specify where the PDF is downloaded, developers can manually pass the directory to the function, ``DownloadPDF($invoice, $dir)``, or specify it at sdk.config file on the sdk, as
+  ``<contentWriter strategy="export" exportDirectory="/path/to/target/folder">``
+
+
+.. code-block:: php
+
+  <?php
+  require 'vendor/autoload.php';
+
+
+  use QuickBooksOnline\API\DataService\DataService;
+  use QuickBooksOnline\API\Facades\Invoice;
+
+  // Prep Data Services
+  $dataService = DataService::Configure(array(
+      'auth_mode' => 'oauth2',
+      'ClientID' => "Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f",
+      'ClientSecret' => "NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq",
+      'accessTokenKey' =>
+      'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A',
+      'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
+      'QBORealmID' => "193514708967874",
+      'baseUrl' => "Production"
+  ));
+
+  $dataService->throwExceptionOnError(true);
+  $invoice = Invoice::create([
+      "Id" => 2
+  ]);
+
+  $directoryForThePDF = $dataService->DownloadPDF($invoice, "/Users/hlu2/Desktop/newFolderForLog");
+  echo "PDF is download at: " .$directoryForThePDF;

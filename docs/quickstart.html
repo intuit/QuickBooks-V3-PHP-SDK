@@ -5,73 +5,73 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quickstart &mdash; QuickBooks V3 PHP SDK 4.0.5 documentation</title>
+  
 
-  <title>Quickstart &mdash; QuickBooks V3 PHP SDK 4.0.1 documentation</title>
+  
+  
+  
+  
 
+  
 
+  
+  
+    
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
 
+  
 
-
-
-
+  
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.1 documentation" href="index.html"/>
+    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.5 documentation" href="index.html"/>
         <link rel="next" title="Error Handling" href="handle-error.html"/>
-        <link rel="prev" title="Configuration" href="configuration.html"/>
+        <link rel="prev" title="Authorization" href="authorization.html"/> 
 
-
+  
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
-
+   
   <div class="wy-grid-for-nav">
 
-
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
+          
 
-
-
+          
             <a href="index.html" class="icon icon-home"> QuickBooks V3 PHP SDK
+          
 
-
-
+          
           </a>
 
-
-
-
+          
+            
+            
               <div class="version">
-                4.0.1
+                4.0.5
               </div>
+            
+          
 
-
-
-
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,26 +80,27 @@
   </form>
 </div>
 
-
+          
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-
-
-
-
-
-
+          
+            
+            
+              
+            
+            
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#create-new-resources-post">Create new resources (POST)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#constructing-entities">Constructing Entities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sending-requests">Sending Requests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#handling-response">Handling Response</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-and-result">Example and Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constructing-entities-with-tax">Constructing Entities with Tax</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#query-and-access-resources-get">Query and access resources (GET)</a><ul>
@@ -117,6 +118,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#update-resources-put">Update resources (PUT)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#update-resources">Update resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-resources-with-tax">Update resources with Tax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sparse-update-full-update">Sparse Update &amp; Full Update</a></li>
 </ul>
 </li>
@@ -125,6 +127,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#other-supported-operations">Other Supported Operations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sending-e-mail">Sending E-mail</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#batch-request">Batch Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-data-capture-cdc">Change Data Capture(CDC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-reports">Generating Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-as-pdf">Download As PDF</a></li>
 </ul>
 </li>
 </ul>
@@ -132,27 +137,27 @@
 <li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
 </ul>
 
-
-
+            
+          
         </div>
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-
+      
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">QuickBooks V3 PHP SDK</a>
-
+        
       </nav>
 
 
-
+      
       <div class="wy-nav-content">
         <div class="rst-content">
-
+          
 
 
 
@@ -171,27 +176,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-
+    
       <li><a href="index.html">Docs</a> &raquo;</li>
-
+        
       <li>Quickstart</li>
-
-
+    
+    
       <li class="wy-breadcrumbs-aside">
-
-
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
           
-
+        
       </li>
-
+    
   </ul>
 
-
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+            
   <div class="section" id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
 <p>This pages demonstrate how to make API calls to QuickBooks Online through QuickBooks V3 PHP SDK. It is assuming developers have obtained OAuth 1.0 or OAuth 2.0 tokens, and have configured their dataService correctly. If not, please refer to the <a class="reference internal" href="authorization.html#auth-page"><span class="std std-ref">Authorization part</span></a> and <a class="reference internal" href="configuration.html#conf-page"><span class="std std-ref">Configuration part</span></a></p>
@@ -389,6 +395,71 @@
 <p class="caption"><span class="caption-text">Result shown on QuickBooks Online</span></p>
 </div>
 </div>
+<div class="section" id="constructing-entities-with-tax">
+<h3>Constructing Entities with Tax<a class="headerlink" href="#constructing-entities-with-tax" title="Permalink to this headline">¶</a></h3>
+<p>Many QuickBooks Online users need to create entities with Tax. It is achieved on V3 PHP SDK by specifying the <code class="docutils literal"><span class="pre">value</span></code> on <code class="docutils literal"><span class="pre">SalesItemLineDetail.TaxCodeRef</span></code> when creating entities. Below is an example with creating Invoice with Tax on a Canadian QuickBooks Online Company:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\Core\ServiceContext</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Facades\Invoice</span><span class="p">;</span>
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span>
+  <span class="s1">&#39;eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514708967874&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Production&quot;</span>
+<span class="p">));</span>
+<span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">setLogLocation</span><span class="p">(</span><span class="s2">&quot;/Users/hlu2/Desktop/newFolderForLog&quot;</span><span class="p">);</span>
+<span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">throwExceptionOnError</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="c1">//Add a new Invoice</span>
+<span class="nv">$invoiceToCreate</span> <span class="o">=</span> <span class="nx">Invoice</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
+  <span class="s2">&quot;DocNumber&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;101&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Line&quot;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;Description&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Sewing Service for Jimmy in Canada&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Amount&quot;</span> <span class="o">=&gt;</span> <span class="mf">150.00</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;SalesItemLineDetail&quot;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s2">&quot;ItemRef&quot;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s2">&quot;value&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Services&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;TaxCodeRef&quot;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+          <span class="s2">&quot;value&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+        <span class="p">]</span>
+      <span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;CustomerRef&quot;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+      <span class="s2">&quot;value&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Jimmy&quot;</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
+
+<span class="nv">$resultObj</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">Add</span><span class="p">(</span><span class="nv">$invoiceToCreate</span><span class="p">);</span>
+<span class="nv">$error</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getLastError</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;The Status code is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getHttpStatusCode</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;The Helper message is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getOAuthHelperError</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;The Response message is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getResponseBody</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Created Id=</span><span class="si">{</span><span class="nv">$resultObj</span><span class="o">-&gt;</span><span class="na">Id</span><span class="si">}</span><span class="s2">. Reconstructed response body:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nv">$xmlBody</span> <span class="o">=</span> <span class="nx">XmlObjectSerializer</span><span class="o">::</span><span class="na">getPostXmlFromArbitraryEntity</span><span class="p">(</span><span class="nv">$resultingObj</span><span class="p">,</span> <span class="nv">$urlResource</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nv">$xmlBody</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">US Company do not have a numeric value for TaxCode. It is either <code class="docutils literal"><span class="pre">TAX</span></code> or <code class="docutils literal"><span class="pre">NON</span></code>.</p>
+</div>
+<p>Notice we didn’t provide <code class="docutils literal"><span class="pre">TxnTaxDetail</span></code> when creating sales transactions, however, it is returned as part of READ response. In QuickBooks Online, it automatically calculates tax and returns the amount in the TxnTaxDetail.TotalTax attribute of the transaction based on the TaxCode assigned to each line.</p>
+<p>For more information, please refer to this docs: <a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/60_tutorials/0060_manage_sales_tax_for_non-us_locales">https://developer.intuit.com/docs/00_quickbooks_online/2_build/60_tutorials/0060_manage_sales_tax_for_non-us_locales</a></p>
+</div>
 </div>
 <div class="section" id="query-and-access-resources-get">
 <h2>Query and access resources (GET)<a class="headerlink" href="#query-and-access-resources-get" title="Permalink to this headline">¶</a></h2>
@@ -447,6 +518,11 @@
 <div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$firstTenInvoices</span> <span class="o">=</span> <span class="nv">$dataServices</span><span class="o">-&gt;</span><span class="na">Query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Invoice STARTPOSITION 1 MAXRESULTS 10&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Starting from v4.0.5 release, developers can pass pagination as additional query parameters:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$firstTenInvoices</span> <span class="o">=</span> <span class="nv">$dataServices</span><span class="o">-&gt;</span><span class="na">Query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Invoice&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The above two code snippets perform the same query operation.</p>
 </div>
 <div class="section" id="count">
 <h4>Count<a class="headerlink" href="#count" title="Permalink to this headline">¶</a></h4>
@@ -595,6 +671,290 @@
 </div>
 <p>The example remove the last element of Line Item, because the last Line of a read request would always be a <code class="docutils literal"><span class="pre">SubTotalLineDetail</span></code>. We can rely on QuickBooks Online to re-calculate this line for us.</p>
 </div>
+<div class="section" id="update-resources-with-tax">
+<h3>Update resources with Tax<a class="headerlink" href="#update-resources-with-tax" title="Permalink to this headline">¶</a></h3>
+<p>QuickBooks Online does allow developers to update Tax on an existed entity. In order to update the tax used for an entity, the developer needs to do the following for the company(this rule applied for non-us Company):</p>
+<ol class="arabic simple">
+<li>Override the TxnTaxDetail.TotalTax with the new total tax amount.</li>
+<li>Override the TxnTaxDetail.TaxLine.TaxLineDetail.TaxRateRef. You must send all TaxRateRefs of a TaxCode even if you are modifying just one of them.</li>
+<li>Override the TxnTaxDetail.TaxLine.Amount</li>
+<li>Override the TxnTaxDetail.TaxLine.TaxLineDetail.TaxPercent</li>
+<li>Override the TaxCodeRef.value on LineDetail</li>
+</ol>
+<p>Pretty much, if a developer wants to update TaxCode used for a LineItem, he/she needs to update everything. QuickBooks Online will not be able to calculate tax anymore, it is the developer’s job to calculate the tax correctly and provide it to QuickBooks Online.</p>
+<p>For example, we have a invoice on a Canada Company:</p>
+<div class="figure align-center" id="id4">
+<img alt="_images/example4.jpg" src="_images/example4.jpg" />
+<p class="caption"><span class="caption-text">Document for a Canadian Invoice with Tax</span></p>
+</div>
+<p>When we read this Invoice from API, here is what we have:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;Deposit&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;AllowIPNPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlinePayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlineCreditCardPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlineACHPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;domain&quot;</span><span class="o">:</span> <span class="s2">&quot;QBO&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sparse&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;SyncToken&quot;</span><span class="o">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;MetaData&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;CreateTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13T16:33:42-07:00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LastUpdatedTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13T16:33:42-07:00&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;CustomField&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;DocNumber&quot;</span><span class="o">:</span> <span class="s2">&quot;1001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;TxnDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;CurrencyRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;CAD&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Canadian Dollar&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;LinkedTxn&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;Line&quot;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LineNum&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;Description&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy Service hours&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">200.0</span><span class="p">,</span>
+    <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;ItemRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Hours&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;UnitPrice&quot;</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+      <span class="s2">&quot;Qty&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;TaxCodeRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;6&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+    <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LineNum&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;Description&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy extra hours&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">100.0</span><span class="p">,</span>
+    <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;ItemRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Hours&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;UnitPrice&quot;</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="s2">&quot;Qty&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;TaxCodeRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+    <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">300.0</span><span class="p">,</span>
+    <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SubTotalLineDetail&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SubTotalLineDetail&quot;</span><span class="o">:</span> <span class="p">{}</span>
+   <span class="p">}</span>
+ <span class="p">],</span>
+ <span class="s2">&quot;TxnTaxDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;TotalTax&quot;</span><span class="o">:</span> <span class="mf">30.0</span><span class="p">,</span>
+  <span class="s2">&quot;TaxLine&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">30.0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TaxLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;TaxRateRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;12&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;PercentBased&quot;</span><span class="o">:</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s2">&quot;TaxPercent&quot;</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s2">&quot;NetAmountTaxable&quot;</span><span class="o">:</span> <span class="mf">200.0</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TaxLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;TaxRateRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;PercentBased&quot;</span><span class="o">:</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s2">&quot;TaxPercent&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;NetAmountTaxable&quot;</span><span class="o">:</span> <span class="mf">100.0</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+   <span class="p">]</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;CustomerRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;SalesTermRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;3&quot;</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;DueDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-04-12&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;GlobalTaxCalculation&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxExcluded&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;TotalAmt&quot;</span><span class="o">:</span> <span class="mf">330.0</span><span class="p">,</span>
+ <span class="s2">&quot;PrintStatus&quot;</span><span class="o">:</span> <span class="s2">&quot;NotSet&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;EmailStatus&quot;</span><span class="o">:</span> <span class="s2">&quot;NotSet&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;Balance&quot;</span><span class="o">:</span> <span class="mf">330.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>from the Invoice, we find out we actually provided wrong TaxCode for the second line, <code class="docutils literal"><span class="pre">Jimmy</span> <span class="pre">extra</span> <span class="pre">hours</span></code>, it should use the same TaxCode as first line, <code class="docutils literal"><span class="pre">15%</span></code>, not <code class="docutils literal"><span class="pre">0%</span></code>.</p>
+<p>We follow the instruction to update the TaxCode:</p>
+<ol class="arabic simple">
+<li>TxnTaxDetail.TotalTax should be 45 (the extra hours now have 15 tax on it, 15 + 30 = 45)</li>
+<li>TxnTaxDetail.TaxLine.TaxLineDetail.TaxRateRef now should be using 12 now, which is the same as first lineItem.</li>
+<li>TxnTaxDetail.TaxLine.Amount should be 15(100 * 15% = 15).</li>
+<li>TxnTaxDetail.TaxLine.TaxLineDetail.TaxPercent should be same 15% as well.</li>
+<li>The TaxCode used on LineItem now should be 6 instead of 2.</li>
+</ol>
+<p>After we changed the value, we found out that there is no longer two <code class="docutils literal"><span class="pre">TaxLine</span></code>, we should only have one TaxLine. Therefore, we delete the second TaxLine, only left the first one. Here is what our updating request looks like in JSON:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;Deposit&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;AllowIPNPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlinePayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlineCreditCardPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;AllowOnlineACHPayment&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;domain&quot;</span><span class="o">:</span> <span class="s2">&quot;QBO&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sparse&quot;</span><span class="o">:</span> <span class="k">false</span><span class="p">,</span>
+  <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;SyncToken&quot;</span><span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;MetaData&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;CreateTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13T16:33:42-07:00&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LastUpdatedTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13T17:05:39-07:00&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;CustomField&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;DocNumber&quot;</span><span class="o">:</span> <span class="s2">&quot;1001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;TxnDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-03-13&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;CurrencyRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;CAD&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Canadian Dollar&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;LinkedTxn&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;Line&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;LineNum&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;Description&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy Service hours&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">200.0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ItemRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Hours&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;UnitPrice&quot;</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s2">&quot;Qty&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;TaxCodeRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;6&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;LineNum&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;Description&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy extra hours&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">100.0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;SalesItemLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ItemRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Hours&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;UnitPrice&quot;</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s2">&quot;Qty&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;TaxCodeRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;6&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">300.0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;SubTotalLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;SubTotalLineDetail&quot;</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;TxnTaxDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;TotalTax&quot;</span><span class="o">:</span> <span class="mf">45.0</span><span class="p">,</span>
+    <span class="s2">&quot;TaxLine&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">45.0</span><span class="p">,</span>
+        <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxLineDetail&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TaxLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;TaxRateRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;12&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;PercentBased&quot;</span><span class="o">:</span> <span class="k">true</span><span class="p">,</span>
+          <span class="s2">&quot;TaxPercent&quot;</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+          <span class="s2">&quot;NetAmountTaxable&quot;</span><span class="o">:</span> <span class="mf">200.0</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;CustomerRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jimmy&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;SalesTermRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;3&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;DueDate&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-04-12&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;GlobalTaxCalculation&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxExcluded&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;TotalAmt&quot;</span><span class="o">:</span> <span class="mf">330.0</span><span class="p">,</span>
+  <span class="s2">&quot;PrintStatus&quot;</span><span class="o">:</span> <span class="s2">&quot;NotSet&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;EmailStatus&quot;</span><span class="o">:</span> <span class="s2">&quot;NotSet&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Balance&quot;</span><span class="o">:</span> <span class="mf">330.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We put this body in our code, and make an update call. Our Invoice has been updated successfully.</p>
+<div class="figure align-center" id="id5">
+<img alt="_images/example5.jpg" src="_images/example5.jpg" />
+<p class="caption"><span class="caption-text">Document for a Canadian Invoice after updating the Tax</span></p>
+</div>
+<p>Due to the complexity of updating TaxCode, Some developers prefer not updating the TaxCode used, just override the Tax amount used. In this case, they only need to override the <code class="docutils literal"><span class="pre">TxnTaxDetail.TotalTax</span></code> and <code class="docutils literal"><span class="pre">TxnTaxDetail.TaxLine.Amount</span></code>.</p>
+<p>For example, we just want to update the TaxAmount to 45 instead of updating the TaxCode we use, we can provide this JSON body:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;sparse&quot;</span> <span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;Id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;SyncToken&quot;</span><span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;TxnTaxDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;TotalTax&quot;</span><span class="o">:</span> <span class="mf">45.0</span><span class="p">,</span>
+    <span class="s2">&quot;TaxLine&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mf">30.0</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TaxLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;TaxRateRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;12&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;PercentBased&quot;</span><span class="o">:</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s2">&quot;TaxPercent&quot;</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s2">&quot;NetAmountTaxable&quot;</span><span class="o">:</span> <span class="mf">200.0</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;Amount&quot;</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+      <span class="s2">&quot;DetailType&quot;</span><span class="o">:</span> <span class="s2">&quot;TaxLineDetail&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;TaxLineDetail&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;TaxRateRef&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;PercentBased&quot;</span><span class="o">:</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s2">&quot;TaxPercent&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;NetAmountTaxable&quot;</span><span class="o">:</span> <span class="mf">100.0</span>
+        <span class="p">}</span>
+     <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and the UI will have the correct TotalTaxAmount, with wrong taxCode.</p>
+<div class="figure align-center" id="id6">
+<img alt="_images/example6.jpg" src="_images/example6.jpg" />
+<p class="caption"><span class="caption-text">Document for a Canadian Invoice after overriding the Tax</span></p>
+</div>
+</div>
 <div class="section" id="sparse-update-full-update">
 <h3>Sparse Update &amp; Full Update<a class="headerlink" href="#sparse-update-full-update" title="Permalink to this headline">¶</a></h3>
 <p>Be careful when you use the update method. The example we present all use <code class="docutils literal"><span class="pre">sparse</span> <span class="pre">=&gt;</span> <span class="pre">true</span></code> when update the invoice. QuickBooks Online provides two updates: full update and sparse update. The sparse update operation provides the ability to update a subset of attributes for a given object; only those specified in the request are updated. Missing attributes are left untouched. This is in contrast to the full update operation, where elements missing from the request are cleared.</p>
@@ -721,26 +1081,155 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="change-data-capture-cdc">
+<h3>Change Data Capture(CDC)<a class="headerlink" href="#change-data-capture-cdc" title="Permalink to this headline">¶</a></h3>
+<p>The change data capture (cdc) operation returns a list of objects that have changed since a specified time. This operation is for an app that periodically polls data services in order to refresh its local copy of object data. The V3 PHP SDK supports this function as well. For example, if I want to capture all the change for Invoice, Item and Bill from <code class="docutils literal"><span class="pre">2017803-07T12:28:32</span></code>, I will use below code:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span>
+  <span class="s1">&#39;eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514708967874&quot;</span><span class="p">,</span>
+  <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Production&quot;</span>
+<span class="p">));</span>
+
+
+<span class="c1">// Use CDC APIs</span>
+<span class="nv">$entityList</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;invoice&#39;</span><span class="p">,</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;bill&#39;</span><span class="p">);</span>
+
+<span class="nv">$cdcResponse</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">CDC</span><span class="p">(</span><span class="nv">$entityList</span><span class="p">,</span> <span class="s2">&quot;2017-03-07T12:28:32-08:00&quot;</span><span class="p">);</span>
+<span class="nv">$error</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getLastError</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;The Status code is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getHttpStatusCode</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">&quot;The Helper message is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getOAuthHelperError</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">&quot;The Response message is: &quot;</span> <span class="o">.</span> <span class="nv">$error</span><span class="o">-&gt;</span><span class="na">getResponseBody</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$cdcResponse</span><span class="o">-&gt;</span><span class="na">entities</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">foreach</span> <span class="p">(</span><span class="nv">$cdcResponse</span><span class="o">-&gt;</span><span class="na">entities</span> <span class="k">as</span> <span class="nv">$entityName</span> <span class="o">=&gt;</span> <span class="nv">$entityArray</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">echo</span> <span class="s2">&quot;CDC Says &quot;</span> <span class="o">.</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$entityArray</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot; Updated Entities of Type = </span><span class="si">{</span><span class="nv">$entityName</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>A few points to remember when using the CDC function on V3 SDK:</p>
+<ol class="arabic simple">
+<li>If an entity has no change, the SDK will return NULL for that entity. For example, if no invoice has been changed, then <code class="docutils literal"><span class="pre">$cdcResponse-&gt;entities['invoice']</span></code> will be NULL</li>
+<li>The response does not distinguish Create vs Delete. Developers must query the correspodning entity again with the <code class="docutils literal"><span class="pre">Id</span></code> field returned from response.</li>
+</ol>
+</div>
+<div class="section" id="generating-reports">
+<h3>Generating Reports<a class="headerlink" href="#generating-reports" title="Permalink to this headline">¶</a></h3>
+<p>In V3 PHP SDK, the report service is separate from data service. To use the Report Service, developers will need to create the <code class="docutils literal"><span class="pre">ReportService</span></code> object first, then set the parameters on the report service:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\ReportService\ReportService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\ReportService\ReportName</span><span class="p">;</span>
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span>
+    <span class="s1">&#39;eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK -RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514708967874&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Production&quot;</span>
+  <span class="p">));</span>
+
+  <span class="nv">$serviceContext</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getServiceContext</span><span class="p">();</span>
+
+  <span class="c1">// Prep Data Services</span>
+  <span class="nv">$reportService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReportService</span><span class="p">(</span><span class="nv">$serviceContext</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$reportService</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="s2">&quot;Problem while initializing ReportService.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+
+  <span class="nv">$reportService</span><span class="o">-&gt;</span><span class="na">setStartDate</span><span class="p">(</span><span class="s2">&quot;2015-01-01&quot;</span><span class="p">);</span>
+  <span class="nv">$reportService</span><span class="o">-&gt;</span><span class="na">setAccountingMethod</span><span class="p">(</span><span class="s2">&quot;Accrual&quot;</span><span class="p">);</span>
+  <span class="nv">$profitAndLossReport</span> <span class="o">=</span> <span class="nv">$reportService</span><span class="o">-&gt;</span><span class="na">executeReport</span><span class="p">(</span><span class="nx">ReportName</span><span class="o">::</span><span class="na">PROFITANDLOSS</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$profitAndLossReport</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="s2">&quot;ProfitAndLossReport Is Null.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$reportName</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$profitAndLossReport</span><span class="o">-&gt;</span><span class="na">Header</span><span class="o">-&gt;</span><span class="na">ReportName</span><span class="p">);</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;ReportName: &quot;</span> <span class="o">.</span> <span class="nv">$reportName</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s2">&quot;Profit And Loss Report Execution Successful!&quot;</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">ReportService</span></code> constructor requires a <code class="docutils literal"><span class="pre">ServiceContext</span></code> Object, developers can get it from DataService. For a list of accepted query parameters, please refer to our documentation here: <a class="reference external" href="https://developer.intuit.com/docs/api/accounting/profit%20and%20loss">https://developer.intuit.com/docs/api/accounting/profit%20and%20loss</a></p>
+</div>
+<div class="section" id="download-as-pdf">
+<h3>Download As PDF<a class="headerlink" href="#download-as-pdf" title="Permalink to this headline">¶</a></h3>
+<p>For a few endpoint entities, developers can get the entity as PDF. Invoice is one good example. To get an invoice from QuickBooks Online as PDF, use the <code class="docutils literal"><span class="pre">DownloadPDF</span></code> function:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To specify where the PDF is downloaded, developers can manually pass the directory to the function, <code class="docutils literal"><span class="pre">DownloadPDF($invoice,</span> <span class="pre">$dir)</span></code>, or specify it at sdk.config file on the sdk, as
+<code class="docutils literal"><span class="pre">&lt;contentWriter</span> <span class="pre">strategy=&quot;export&quot;</span> <span class="pre">exportDirectory=&quot;/path/to/target/folder&quot;&gt;</span></code></p>
+</div>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Facades\Invoice</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Q094uKi203zS1V1ZxH6dyff236cHa2CQhFiXs3JZFjRq1Gmu9f&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;NacL2Q92jmFEKjycARHEw8qrGGD1fv89OMxbjjbq&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span>
+    <span class="s1">&#39;eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-JhZXI7fxx9AnbF8z6vHtQ.g7RjYe2a2JmQk9ergWwqUoQiSBWVcoOT_rEo9SXpmdh4UdIgpC91HqEIiyFRh9j9XYD48P3E4E9IDN1kZy2kOHIH6FgV4yLeKJVja3jhs9mFvOEy13Z-T0cU9XpnbfvUDWBPpW9sC20G3GOj1Y9DBI9N-DzwKfTMp3PBg_RGPzDOgtAnqZ1on0bcBOpZ89WcL10_31mscfdyrL1Pl49MIdK3pclkqtjbP_jecBklC8xo-jXeOAyNAfuxgndWmIcnkbx5uK3UrqCJxgWUbQxG63r1lPpNif_BEKj8nymkMIUHuAA4dCvmDOrGZQMmWWkj2_mDk3ntRaploccFEn40GXLPNSYq-P8u2McruB74C4nb2SkW1RsxPSBhNWAQk1dVlDjbcd_9LltGE6JbwgeEGRbK4qro9jjRHQvIK-RBPLl1yBavHuOuJZYuHsQvq6eDxlc3_J7rjOfgC8QB1pix93GpPiNcqBK5aTGU37UuPQ05F39Fi9lIinI543p7kmafANyFBOgsxZ6NDg_HH0GEOtrsCgWdlRKWDgGoaklpdd727gvPmK3mTN6rp6ew5gtUrQjTsx9IiTl58SgLb_WuVWMf8a4fdA6tiL8Z12Zf86ymDjzlRrhlei5XFBqwPC55ulvgQ3x491fFj9q6D2ItgMjHb7vz1z1KI8dOVK1e31Q2ez3F4-1EhpJTG77GMHfM.IdURYPB5ZiD_FwTnqZpz7A&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514708967874&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Production&quot;</span>
+<span class="p">));</span>
+
+<span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">throwExceptionOnError</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="nv">$invoice</span> <span class="o">=</span> <span class="nx">Invoice</span><span class="o">::</span><span class="na">create</span><span class="p">([</span>
+    <span class="s2">&quot;Id&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+<span class="p">]);</span>
+
+<span class="nv">$directoryForThePDF</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">DownloadPDF</span><span class="p">(</span><span class="nv">$invoice</span><span class="p">,</span> <span class="s2">&quot;/Users/hlu2/Desktop/newFolderForLog&quot;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;PDF is download at: &quot;</span> <span class="o">.</span><span class="nv">$directoryForThePDF</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
 
            </div>
            <div class="articleComments">
-
+            
            </div>
           </div>
           <footer>
-
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-
+      
         <a href="handle-error.html" class="btn btn-neutral float-right" title="Error Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-
-
-        <a href="configuration.html" class="btn btn-neutral" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-
+      
+      
+        <a href="authorization.html" class="btn btn-neutral" title="Authorization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-
+  
 
   <hr/>
 
@@ -750,7 +1239,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -760,15 +1249,15 @@
     </section>
 
   </div>
+  
 
 
-
-
+  
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'4.0.1',
+            VERSION:'4.0.5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -779,21 +1268,21 @@
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
 
+  
 
-
-
-
+  
+  
     <script type="text/javascript" src="_static/js/theme.js"></script>
+  
 
-
-
-
+  
+  
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-
+   
 
 </body>
 </html>
