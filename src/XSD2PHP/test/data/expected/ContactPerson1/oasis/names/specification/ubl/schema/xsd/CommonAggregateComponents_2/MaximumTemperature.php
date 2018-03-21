@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName MaximumTemperature
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\MaximumTemperature
  */
-class MaximumTemperature
-	extends TemperatureType
-	{
-
-
-
+class MaximumTemperature extends TemperatureType
+{
 } // end class MaximumTemperature

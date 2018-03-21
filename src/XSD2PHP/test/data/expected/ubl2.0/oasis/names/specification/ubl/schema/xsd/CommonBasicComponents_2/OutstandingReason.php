@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OutstandingReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OutstandingReason
  */
-class OutstandingReason
-	extends OutstandingReasonType
-	{
-
-
-
+class OutstandingReason extends OutstandingReasonType
+{
 } // end class OutstandingReason

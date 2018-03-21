@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxEvidenceIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxEvidenceIndicator
  */
-class TaxEvidenceIndicator
-	extends TaxEvidenceIndicatorType
-	{
-
-
-
+class TaxEvidenceIndicator extends TaxEvidenceIndicatorType
+{
 } // end class TaxEvidenceIndicator

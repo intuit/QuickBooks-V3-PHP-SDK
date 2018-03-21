@@ -1,6 +1,8 @@
 <?php
 namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
+
 use QuickBooksOnline\API\Core\CoreConstants;
+
 /**
  * Copyright 2010 Mike Bevz <myb@mikebevz.com>
  *
@@ -23,7 +25,8 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * @author Mike Bevz <myb@mikebevz.com>
  * @version 0.0.5
  */
-class Bind extends Common {
+class Bind extends Common
+{
 
     //protected $dom;
     //protected $namespaces;
@@ -37,7 +40,7 @@ class Bind extends Common {
      */
     public function __construct($classPrefix)
     {
-    	parent::__construct($classPrefix);
+        parent::__construct($classPrefix);
     }
 
     /**
@@ -47,7 +50,8 @@ class Bind extends Common {
      *
      * @return object PHP binding object
      */
-    public function unmarshal($xml) {
+    public function unmarshal($xml)
+    {
         // Get all namespaces
         $this->dom = new \DOMDocument();
         if ($this->debug) {
@@ -64,7 +68,7 @@ class Bind extends Common {
         $root = $xpath->query($query);
         $ns = $code = "";
         foreach ($root as $rt) {
-            list ($ns, $name) = $this->parseQName($rt->nodeName, true);
+            list($ns, $name) = $this->parseQName($rt->nodeName, true);
         }
 
         $className = $this->urnToPhpName($ns)."\\".$this->classPrefix.$name;
@@ -89,7 +93,8 @@ class Bind extends Common {
      *
      * @return object PHP model
      */
-    public function bindXml($xml, $model) {
+    public function bindXml($xml, $model)
+    {
 
         //print_r($xml."\n ".get_class($model));
 
@@ -116,15 +121,13 @@ class Bind extends Common {
         // Adding namesapce now for
         //echo "Class name is:" . $refl->name . "\n";
         if ($refl->name != 'QuickBooksOnline\API\Data\IPPIntuitAnyType') {
-
             $xpath = new \DOMXPath($this->dom);
 
             $query = "child::*";
             $childs = $xpath->query($query);
 
             foreach ($childs as $child) {
-
-                list ($ns, $name) = $this->parseQName($child->nodeName, true);
+                list($ns, $name) = $this->parseQName($child->nodeName, true);
                 //$className = $this->urnToPhpName($ns)."\\".$name;
                 try {
                     $propertyDocs = $refl->getProperty($name)->getDocComment();
@@ -148,22 +151,18 @@ class Bind extends Common {
                          *Vish Singh: Solution to Bug # IPP-4748
                          *Add Check if the class Exists. @Hao
                          */
-                         if(class_exists($className))
-                     		{
-                     				//Do nothing
-                     		}else if(class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className)){
-                     				$className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;
-                     		}else{
-                          throw new \Exception("Can't find corresponding CLASS for className" . $className . " in Bind.php");
-                        }
+                         if (class_exists($className)) {
+                             //Do nothing
+                         } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className)) {
+                             $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;
+                         } else {
+                             throw new \Exception("Can't find corresponding CLASS for className" . $className . " in Bind.php");
+                         }
 
-                        if ($model->{$name}) //If this property has been seen before then turn this into an array if it's not already
-                        {
-                            if (!is_array($model->{$name})) //If this property is not already an array, then turn it into one
-                            {
+                        if ($model->{$name}) { //If this property has been seen before then turn this into an array if it's not already
+                            if (!is_array($model->{$name})) { //If this property is not already an array, then turn it into one
                                 $model->{$name} = array($model->{$name}, $this->bindXml($doc->saveXml(), new $className()));
-                            } else //If it is already an array then, just append to this array.
-                            {
+                            } else { //If it is already an array then, just append to this array.
                                 array_push($model->{$name}, $this->bindXml($doc->saveXml(), new $className()));
                             }
                         } //If this property hasn't been seen before then just treat it normally
@@ -171,11 +170,9 @@ class Bind extends Common {
                             $model->{$name} = $this->bindXml($doc->saveXml(), new $className());
                         }
                         // end of fix
-
                     } else {
                         throw new \RuntimeException('Class ' . get_class($model) . ' does not have property ' . $name);
                     }
-
                 } else {
                     if (!property_exists($model, $name)) {
                         throw new \RuntimeException("Model " . get_class($model) . " does not have property " . $name);
@@ -202,7 +199,6 @@ class Bind extends Common {
                         $cModel->value = $child->nodeValue;
                         $model->{$name} = $cModel;
                     }
-
                 }
             }
         }
@@ -210,18 +206,20 @@ class Bind extends Common {
         return $model;
     }
 
-    private function hasChild($node) {
+    private function hasChild($node)
+    {
         if ($node->hasChildNodes()) {
-          foreach ($node->childNodes as $c) {
-            if ($c->nodeType === XML_ELEMENT_NODE) {
-                return true;
+            foreach ($node->childNodes as $c) {
+                if ($c->nodeType === XML_ELEMENT_NODE) {
+                    return true;
+                }
             }
-          }
-         }
-         return false;
+        }
+        return false;
     }
 
-    public function bindXmlRec($node, $dom, $modelName) {
+    public function bindXmlRec($node, $dom, $modelName)
+    {
         $model = '';
 
         if (class_exists($modelName)) {
@@ -237,21 +235,21 @@ class Bind extends Common {
         $childs = $xpath->query($query, $node);
         foreach ($childs as $child) {
             if ($this->hasChild($child)) {
-             if (property_exists($model, $child->nodeName)) {
+                if (property_exists($model, $child->nodeName)) {
                     $model->{$child->nodeName} = $this->bindXMlRec($child, $dom, $child->nodeName);
                 }
             } else {
                 if (!property_exists($model, $child->nodeName)) {
                     throw new \RuntimeException("Model does not have property ".$child->nodeName);
                 }
-               if (!class_exists($child->nodeName)) {
+                if (!class_exists($child->nodeName)) {
                     $propertyDocs = $refl->getProperty($child->nodeName)->getDocComment();
                     $docs = $this->parseDocComments($propertyDocs);
                     $type = $docs['xmlType'];
                     if ($type == 'attribute') {
                         $model->{$child->nodeName} = $child->nodeValue;
                     } else {
-                    //print_r($propertyType);
+                        //print_r($propertyType);
                      throw new \RuntimeException('Class '.$child->nodeName.' does not exist');
                     }
                 } else {
@@ -264,8 +262,5 @@ class Bind extends Common {
         }
 
         return $model;
-
     }
-
-
 }

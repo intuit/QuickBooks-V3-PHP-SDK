@@ -1,0 +1,27 @@
+.. title:: QuickBooks, PHP HTTP client
+
+===================================
+QuickBooks V3 PHP SDK Documentation
+===================================
+
+QuickBooks V3 PHP SDK is a PHP HTTP client that help you integrate your app with QuickBooks Online Accounting API: https://developer.intuit.com/docs/00_quickbooks_online/5_api_reference/00_overview It has a set of PHP classes that make it easier to call QuickBooks Online APIs. Some of the features included in this SDK are:
+
+- Ability to perform single and batch processing of CRUD operations on all supported QuickBooks Online entities.
+- Support for XML/JSON Request and Response format.
+- Ability to configure app settings in the configuration file requiring no additional code change.
+- Logging mechanisms for trace and request/response.
+- Query Filters that enable you to retrieve QuickBooks Online entities whose properties meet specified criteria.
+- Sparse Update to update writable properties specified in a request and leave the others unchanged.
+
+
+User Guide
+==========
+
+.. toctree::
+    :maxdepth: 5
+
+    overview
+    configuration
+    authorization
+    quickstart
+    handle-error

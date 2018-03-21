@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SpecialTerms
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SpecialTerms
  */
-class SpecialTerms
-	extends SpecialTermsType
-	{
-
-
-
+class SpecialTerms extends SpecialTermsType
+{
 } // end class SpecialTerms

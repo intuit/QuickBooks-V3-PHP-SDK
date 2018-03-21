@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxLevelCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxLevelCode
  */
-class TaxLevelCode
-	extends TaxLevelCodeType
-	{
-
-
-
+class TaxLevelCode extends TaxLevelCodeType
+{
 } // end class TaxLevelCode

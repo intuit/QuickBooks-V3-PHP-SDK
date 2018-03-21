@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MaximumBackorderQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MaximumBackorderQuantity
  */
-class MaximumBackorderQuantity
-	extends MaximumBackorderQuantityType
-	{
-
-
-
+class MaximumBackorderQuantity extends MaximumBackorderQuantityType
+{
 } // end class MaximumBackorderQuantity

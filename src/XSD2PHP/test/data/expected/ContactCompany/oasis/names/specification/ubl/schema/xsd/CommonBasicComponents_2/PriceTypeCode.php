@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PriceTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PriceTypeCode
  */
-class PriceTypeCode
-	extends PriceTypeCodeType
-	{
-
-
-
+class PriceTypeCode extends PriceTypeCodeType
+{
 } // end class PriceTypeCode

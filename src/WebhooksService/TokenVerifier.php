@@ -20,7 +20,8 @@ final class TokenVerifier
      * Private TokenVerifier constructor.
      * @param $token
      */
-    public function __construct($token){
+    public function __construct($token)
+    {
         $this->verifierToken = $token;
     }
 
@@ -37,12 +38,13 @@ final class TokenVerifier
      *      True if same false otherwise
      */
 
-    public function verifyPayLoad($payLoad, $sig, $algo = null){
+    public function verifyPayLoad($payLoad, $sig, $algo = null)
+    {
         $encryptedPayload = $this->encryptPayLoadBasedOnToken($payLoad, $algo);
-        if(strcmp($sig, $encryptedPayload) == 0){
-            return TRUE;
-        }else{
-            return FALSE;
+        if (strcmp($sig, $encryptedPayload) == 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -53,13 +55,13 @@ final class TokenVerifier
      * @param null $hashAlgorithm
      * @return string
      */
-    private function encryptPayLoadBasedOnToken($payLoad, $hashAlgorithm = null){
-        if($hashAlgorithm == null){
+    private function encryptPayLoadBasedOnToken($payLoad, $hashAlgorithm = null)
+    {
+        if ($hashAlgorithm == null) {
             $hashAlgorithm = TokenVerifier::HASH_ALGORITHM;
         }
         $hashedPayLoad = hash_hmac($hashAlgorithm, $payLoad, $this->verifierToken);
         $encodedHashedPayLoad = base64_encode(hex2bin($hashedPayLoad));
         return $encodedHashedPayLoad;
     }
-
 }

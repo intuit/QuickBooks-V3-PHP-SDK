@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SurchargePercent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SurchargePercent
  */
-class SurchargePercent
-	extends SurchargePercentType
-	{
-
-
-
+class SurchargePercent extends SurchargePercentType
+{
 } // end class SurchargePercent

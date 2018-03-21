@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName VersionID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\VersionID
  */
-class VersionID
-	extends VersionIDType
-	{
-
-
-
+class VersionID extends VersionIDType
+{
 } // end class VersionID

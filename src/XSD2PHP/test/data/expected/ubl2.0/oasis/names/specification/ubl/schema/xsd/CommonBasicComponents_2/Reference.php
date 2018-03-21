@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Reference
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Reference
  */
-class Reference
-	extends ReferenceType
-	{
-
-
-
+class Reference extends ReferenceType
+{
 } // end class Reference

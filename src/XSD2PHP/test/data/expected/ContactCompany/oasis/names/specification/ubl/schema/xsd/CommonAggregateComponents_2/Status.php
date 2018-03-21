@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Status
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Status
  */
-class Status
-	extends StatusType
-	{
-
-
-
+class Status extends StatusType
+{
 } // end class Status

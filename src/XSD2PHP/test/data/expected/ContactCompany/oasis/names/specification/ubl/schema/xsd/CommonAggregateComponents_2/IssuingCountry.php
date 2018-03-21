@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName IssuingCountry
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\IssuingCountry
  */
-class IssuingCountry
-	extends CountryType
-	{
-
-
-
+class IssuingCountry extends CountryType
+{
 } // end class IssuingCountry

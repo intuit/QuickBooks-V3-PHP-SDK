@@ -1,66 +1,67 @@
 <?php
-/***
- *  PLEASE FIX ME!!
- * 
- * 
- * 
- */
-require_once('../config.php');
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+//The TaxService is still the old example. Add TaxService Support will be on later release
+include('../config.php');
 
-require_once(PATH_SDK_ROOT . 'Core/ServiceContext.php');
-require_once(PATH_SDK_ROOT . 'DataService/DataService.php');
-require_once(PATH_SDK_ROOT . 'PlatformService/PlatformService.php');
-require_once(PATH_SDK_ROOT . 'Utility/Configuration/ConfigurationManager.php');
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Facades\TaxService;
+use QuickBooksOnline\API\Facades\TaxRate;
 
-//Specify QBO or QBD
-$serviceType = IntuitServicesType::QBO;
-
-// Get App Config
-$realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
-    exit("Please add realm to App.Config before running this sample.\n");
-
-// Prep Service Context
-$requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
-    ConfigurationManager::AppSettings('AccessTokenSecret'),
-    ConfigurationManager::AppSettings('ConsumerKey'),
-    ConfigurationManager::AppSettings('ConsumerSecret'));
-$serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-
-if (!$serviceContext)
-    exit("Problem while initializing ServiceContext.\n");
 
 // Prep Data Services
-$dataService = new DataService($serviceContext);
-if (!$dataService)
-    exit("Problem while initializing DataService.\n");
+$dataService = DataService::Configure(array(
+       'auth_mode' => 'oauth1',
+         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
+         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
+         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
+         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
+         'QBORealmID' => "193514489870599",
+         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+));
 
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+
+$TaxRateDetails = array();
 $rnd = rand();
-$taxRateDetails = new IPPTaxRateDetails();
-$taxRateDetails->TaxRateName = "myNewTaxRateName_$rnd";
-$taxRateDetails->RateValue = "7";
-$taxRateDetails->TaxAgencyId = "1";
-$taxRateDetails->TaxApplicableOn = "Sales";
-
-$taxService = new IPPTaxService();
-$taxService->TaxCode = 'MyTaxCodeName_' . $rnd;
-$taxService->TaxRateDetails = array($taxRateDetails);
-
-
-$result = $dataService->Add($taxService);
-if(empty($result)) {
-    echo "\n Something was wrong. Please check logs";
-} else {
-    print_r($result);
-    
+for($int = 1; $int <=2 ; $int++){
+   $rateValue = $int + 5;
+   $currentTaxServiceDetail = TaxRate::create([
+     "TaxRateName" => "myNewTaxRateName_" . $int . "_$rnd",
+     "RateValue" =>  $rateValue,
+     "TaxAgencyId" => "1",
+     "TaxApplicableOn" => "Sales"
+   ]);
+   $TaxRateDetails[] = $currentTaxServiceDetail;
 }
+
+$TaxService = TaxService::create([
+  "TaxCode" => "TestValue_$rnd",
+  "TaxRateDetails" => $TaxRateDetails
+]);
+
+var_dump($TaxService);
+$result = $dataService->Add($TaxService);
+$error = $dataService->getLastError();
+if ($error) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+    exit();
+}
+
+
+print_r($result->TaxService->TaxCodeId);
+
 
 
 ####
 # Var-dump output
 ####
 /**
- * 
+ *
 object(IPPTaxService)#40 (4) {
   ["TaxCode"]=>
   string(23) "MyTaxCodeName_482378853"

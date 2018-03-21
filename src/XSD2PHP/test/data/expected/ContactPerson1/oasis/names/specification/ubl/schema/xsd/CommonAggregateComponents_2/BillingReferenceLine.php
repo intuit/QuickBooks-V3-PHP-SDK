@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName BillingReferenceLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\BillingReferenceLine
  */
-class BillingReferenceLine
-	extends BillingReferenceLineType
-	{
-
-
-
+class BillingReferenceLine extends BillingReferenceLineType
+{
 } // end class BillingReferenceLine

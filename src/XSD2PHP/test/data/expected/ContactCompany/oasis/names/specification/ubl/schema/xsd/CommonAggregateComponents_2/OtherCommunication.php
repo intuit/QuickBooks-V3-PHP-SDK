@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OtherCommunication
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OtherCommunication
  */
-class OtherCommunication
-	extends CommunicationType
-	{
-
-
-
+class OtherCommunication extends CommunicationType
+{
 } // end class OtherCommunication

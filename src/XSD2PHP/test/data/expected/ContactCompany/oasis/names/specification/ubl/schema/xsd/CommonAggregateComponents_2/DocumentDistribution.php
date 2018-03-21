@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DocumentDistribution
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DocumentDistribution
  */
-class DocumentDistribution
-	extends DocumentDistributionType
-	{
-
-
-
+class DocumentDistribution extends DocumentDistributionType
+{
 } // end class DocumentDistribution

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PreparationParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PreparationParty
  */
-class PreparationParty
-	extends PartyType
-	{
-
-
-
+class PreparationParty extends PartyType
+{
 } // end class PreparationParty

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CustomerAssignedAccountID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CustomerAssignedAccountID
  */
-class CustomerAssignedAccountID
-	extends CustomerAssignedAccountIDType
-	{
-
-
-
+class CustomerAssignedAccountID extends CustomerAssignedAccountIDType
+{
 } // end class CustomerAssignedAccountID

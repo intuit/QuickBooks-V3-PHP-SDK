@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authorization &mdash; QuickBooks V3 PHP SDK 4.0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.5 documentation" href="index.html"/>
+        <link rel="next" title="Quickstart" href="quickstart.html"/>
+        <link rel="prev" title="Configuration" href="configuration.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QuickBooks V3 PHP SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#oauth-1-0a">OAuth 1.0a</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directly-use-oauth-1-0a-tokens">Directly Use OAuth 1.0a Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disconnect-or-reconnect-oauth-1-0a-tokens">Disconnect or Reconnect OAuth 1.0a Tokens</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#oauth-2-0">OAuth 2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generate-oauth-2-0-tokens">Generate OAuth 2.0 Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directly-use-oauth-2-0-tokens">Directly Use OAuth 2.0 Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#refresh-your-oauth-2-0-token">Refresh your OAuth 2.0 token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#revoke-your-oauth-2-0-token">Revoke your OAuth 2.0 token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oauth-2-0-ssl-certificate-settings">OAuth 2.0 SSL certificate settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oauth-2-0-vs-1-0a-in-quickbooks-online">OAuth 2.0 vs 1.0a in QuickBooks Online</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QuickBooks V3 PHP SDK</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Authorization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/authorization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authorization">
+<span id="auth-page"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<p>This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the <a class="reference internal" href="overview.html#installation"><span class="std std-ref">Installation</span></a>
+page.</p>
+<div class="section" id="oauth-1-0a">
+<h2>OAuth 1.0a<a class="headerlink" href="#oauth-1-0a" title="Permalink to this headline">¶</a></h2>
+<p>For all developer accounts registered at <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a> before <strong>July.17th, 2017</strong>, they will have OAuth 1.0a protocol default for their apps.</p>
+<p>The developer will see “App Token”, “OAuth Consumer Key”, and “OAuth Consumer Secret” on the “Keys” tab in the app.</p>
+<div class="section" id="directly-use-oauth-1-0a-tokens">
+<h3>Directly Use OAuth 1.0a Tokens<a class="headerlink" href="#directly-use-oauth-1-0a-tokens" title="Permalink to this headline">¶</a></h3>
+<p>QuickBooks V3 SDK didn’t provide a way to generate OAuth 1.0a tokens from OAuth Consumer Key and OAuth Consumer Secret. Developers must generate their own OAuth 1.0a tokens <em>BEFORE</em> they use the SDK.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">QuickBooks Online provides an online tool called OAuth 1.0 Playground to help developers generate OAuth 1.0a tokens:
+<a class="reference external" href="https://appcenter.intuit.com/Playground/OAuth/IA/">https://appcenter.intuit.com/Playground/OAuth/IA/</a> without writing any code.
+For server side web application implementing OAuth 1.0a, please refer here:
+<a class="reference external" href="https://intuitdeveloper.github.io/">https://intuitdeveloper.github.io/</a> for sample code. For implementation details, please refer to here:
+<a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a">https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a</a></p>
+</div>
+<p>After developer managed to get OAuth 1.0a tokens, provides it to the DataService object:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth Consumer key Value from Keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth Consumer secret Value from Keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth 1.0a access token returned from QuickBooks Online&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The OAuth 1.0a access token secret retruned from QuickBooks Online&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The Company ID which the app wants to access&quot;</span><span class="p">,</span>
+     <span class="c1">//If you are using Development Keys, use Development here. If you are using Production Keys, use Production.</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>Here is an actual example for configuring OAuth 1.0a value for a sandbox Company:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;qyprdUSoVpIHrtBp0eDMTHGz8UXuSz&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;193514464689044&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="disconnect-or-reconnect-oauth-1-0a-tokens">
+<h3>Disconnect or Reconnect OAuth 1.0a Tokens<a class="headerlink" href="#disconnect-or-reconnect-oauth-1-0a-tokens" title="Permalink to this headline">¶</a></h3>
+<p>Although the SDK cannot help users to generate OAuth 1.0a tokens, QuickBooks V3 SDK does provide a way for developers to disconnect or reconnect OAuth 1.0a tokens for the Company.</p>
+<p>To disconnect your OAuth 1.0a access token, use $platformService-&gt;Disconnect() method. You will need to get the $serviceContext object from $dataService Object first. Here is an example:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\PlatformService\PlatformService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 consumer key&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 consumer secret&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 access token&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 access token secret&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;123456789012345&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development&quot;</span>
+<span class="p">));</span>
+
+<span class="nv">$serviceContext</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getServiceContext</span><span class="p">();</span>
+<span class="nv">$platformService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PlatformService</span><span class="p">(</span><span class="nv">$serviceContext</span><span class="p">);</span>
+<span class="c1">//$result will be a xml-based string.</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$platformService</span><span class="o">-&gt;</span><span class="na">Disconnect</span><span class="p">();</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>after you have disconnected the OAuth 1.0a tokens, you can no longer use it to access QuickBooks Online API for the specific company.</p>
+<p>To reconnect for a QuickBooks Online Company, use $platformService-&gt;Reconnect() method:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\PlatformService\PlatformService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth1&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 consumer key&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;consumerSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 consumer secret&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 access token&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;My OAuth 1 access token secret&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;123456789012345&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development&quot;</span>
+<span class="p">));</span>
+
+<span class="nv">$serviceContext</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getServiceContext</span><span class="p">();</span>
+<span class="nv">$platformService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PlatformService</span><span class="p">(</span><span class="nv">$serviceContext</span><span class="p">);</span>
+<span class="c1">//$result will be a xml-based string.</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$platformService</span><span class="o">-&gt;</span><span class="na">Reconnect</span><span class="p">();</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Reconnect will only work during the last 30 days of OAuth 1 access token’s expiration date. For example, for an OAuth 1 access token that is valid for 180 days, you can only call Reconnect() method between 150 days to 180 days.</p>
+<p>More information for OAuth 1.0a can be found here:
+<a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a">https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a</a></p>
+</div>
+</div>
+<div class="section" id="oauth-2-0">
+<h2>OAuth 2.0<a class="headerlink" href="#oauth-2-0" title="Permalink to this headline">¶</a></h2>
+<p>Most recent QuickBooks Online apps will have OAuth 2.0 as their default authentication protocol. If you see “Client ID” and “Client Secret” under your “Keys” tab, then your app is using OAuth 2.0 protocol. QuickBooks V3 SDK provides methods to generate OAuth 2.0 tokens, and how to use them.</p>
+<div class="section" id="generate-oauth-2-0-tokens">
+<h3>Generate OAuth 2.0 Tokens<a class="headerlink" href="#generate-oauth-2-0-tokens" title="Permalink to this headline">¶</a></h3>
+<p>In order for the SDK to generate OAuth 2.0 tokens for the app, developers will need to provide following necessary parameters to the SDK:</p>
+<ul class="simple">
+<li>auth_mode: It will be ‘oauth2’ here</li>
+<li>Client ID: Login to <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a>, go to your app, you can find “Client ID” from the app’s keys tab</li>
+<li>Client Secret: Login to <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a>, go to your app, you can find “Client Secret” from the app’s keys tab</li>
+<li>RedirectURI: Determines where the response is sent. The value of this parameter must exactly match one of the values listed for this app in the app settings</li>
+<li>scope: A String value. It is either “com.intuit.quickbooks.accounting” or “com.intuit.quickbooks.payment”</li>
+<li>baseUrl: If you use “Development Keys”, use “Development” here. Otherwise, use “Production”</li>
+</ul>
+<p>More details can be found in our documentation here: <a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0">https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0</a></p>
+<p>Here is an example:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+      <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;RedirectURI&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The redirect URI provided on the Redirect URIs part under keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;com.intuit.quickbooks.accounting or com.intuit.quickbooks.payment&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>After we have provided necessary parameters, get the OAuth2LoginHelper from the DataService Object:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$OAuth2LoginHelper</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getOAuth2LoginHelper</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The OAuth2LoginHelper will help developers to complete all the necessary steps for retrieving OAuth 2 tokens.</p>
+<p>First, use the $OAuth2LoginHelper object to generate Authorization Code URL:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$authorizationCodeUrl</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">getAuthorizationCodeURL</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>You will initial the OAuth 2 process by presenting this $authorizationCodeUrl to your customers on a browser. It has to be done <strong>OUTSIDE OF</strong> the SDK, and this step <strong>CAN NOT</strong> be completed with a script. The $authorizationCodeUrl will let your customers choose which Company they would like to connect, and they will click the “Authorize” button in order for your app to access their companies. A human interaction is required at this step and it can not be avoided.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In your PHP code, use header(“Location: “.$authorizationCodeUrl);</p>
+<p class="last">to display the authorization screen to your customers. Do not use cURL.</p>
+</div>
+<p>Once your customers have authorized your app, an authorization code with realmID will be returned to the RedirectURI you specified on previous step as query parameters. Provide these parameters to “exchangeAuthorizationCodeForToken” method to exchange for OAuth 2 tokens:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$accessToken</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">exchangeAuthorizationCodeForToken</span><span class="p">(</span><span class="s2">&quot;authorizationCode&quot;</span><span class="p">,</span> <span class="s2">&quot;RealmID&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>An example will look like this:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$accessTokenObj</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">exchangeAuthorizationCodeForToken</span><span class="p">(</span><span class="s2">&quot;Q011510688430mhfd9mAwpsiB8eWAMPqjDO4j2WKmMWyeN96Ru&quot;</span><span class="p">,</span> <span class="s2">&quot;1231434565226279&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The $accessTokenObj is an object contains both access token and refresh token.</p>
+<p>After this step, the OAuth 2 token generation step is considered as complete.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If any of the previous step cannot be completed successfully, a ServiceException will be thrown with error message.</p>
+</div>
+<p>If you want to use the access token and refresh token directly for your application, use:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">updateOAuth2Token</span><span class="p">(</span><span class="nv">$accessTokenObj</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>to update the $dataService object, and the $dataService is ready to make API calls with OAuth 2 Tokens.</p>
+<p>If you would like to store either the refresh token or access token to your own database, you can use:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$accessTokenValue</span> <span class="o">=</span> <span class="nv">$accessTokenObj</span><span class="o">-&gt;</span><span class="na">getAccessToken</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>to get the OAuth 2 Access Token Value, or:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$refreshTokenValue</span> <span class="o">=</span> <span class="nv">$accessTokenObj</span><span class="o">-&gt;</span><span class="na">getRefreshToken</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>to get the OAuth 2 Refresh Token Value.</p>
+<p>It is suggested that you <strong>ALWAYS</strong> store your OAuth 2 refresh token to your own session or database.</p>
+</div>
+<div class="section" id="directly-use-oauth-2-0-tokens">
+<h3>Directly Use OAuth 2.0 Tokens<a class="headerlink" href="#directly-use-oauth-2-0-tokens" title="Permalink to this headline">¶</a></h3>
+<p>If developers have already retrieved OAuth 2 tokens, they can simply provide it to DataService. It is very similar to OAuth 1.0a, just change the auth_mode from oauth1 to oauth 2.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;accessTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;OAuth 2 Access Token&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;OAuth 2 Refresh Token&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The Company ID which the app wants to access&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>and now your app is ready to make API calls.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Similar to OAuth 1.0 Playground, QuickBooks Online also provides OAuth 2.0 Playground to help developers generate OAuth
+2.0 tokens without writing code. To access OAuth 2.0 Playground, you will need to log into <a class="reference external" href="https://developer.intuit.com">https://developer.intuit.com</a>,
+go to your app’ dashboard and click “Test connect to app (OAuth)” link there.</p>
+</div>
+</div>
+<div class="section" id="refresh-your-oauth-2-0-token">
+<h3>Refresh your OAuth 2.0 token<a class="headerlink" href="#refresh-your-oauth-2-0-token" title="Permalink to this headline">¶</a></h3>
+<p>In QBO, since each OAuth 2 access token is only valid for one hour, you often need to use the refresh token to request for a new access token.</p>
+<p>To refresh your OAuth 2 access token, you will pass your Client ID, Client Secret, OAuth 2 refresh token, the realmID, and baseURL to the $dataService object, then use the $OAuth2LoginHelper to request for a new refresh token:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+     <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+     <span class="c1">//get the refresh token from session or database</span>
+     <span class="s1">&#39;refreshTokenKey&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Your latest OAuth 2 Refresh Token&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;QBORealmID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The Company ID which the app wants to access&quot;</span><span class="p">,</span>
+     <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+
+<span class="nv">$OAuth2LoginHelper</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getOAuth2LoginHelper</span><span class="p">();</span>
+<span class="nv">$refreshedAccessTokenObj</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">refreshToken</span><span class="p">();</span>
+<span class="nv">$error</span> <span class="o">=</span> <span class="nv">$OAuth2LoginHelper</span><span class="o">-&gt;</span><span class="na">getLastError</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="nv">$error</span><span class="p">){</span>
+  <span class="o">...</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+  <span class="c1">//Refresh Token is called successfully</span>
+  <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">updateOAuth2Token</span><span class="p">(</span><span class="nv">$refreshedAccessTokenObj</span><span class="p">);</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After v4.0.5 release, developers are able to construct <code class="docutils literal"><span class="pre">OAuth2LoginHelper</span></code> directly. They can use <code class="docutils literal"><span class="pre">refreshAccessTokenWithRefreshToken</span></code> method to achieve the same purpose:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper</span><span class="p">;</span>
+
+<span class="c1">//The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret</span>
+<span class="nv">$oauth2LoginHelper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OAuth2LoginHelper</span><span class="p">(</span><span class="s2">&quot;Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D&quot;</span><span class="p">,</span><span class="s2">&quot;stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P&quot;</span><span class="p">);</span>
+<span class="nv">$accessTokenObj</span> <span class="o">=</span> <span class="nv">$oauth2LoginHelper</span><span class="o">-&gt;</span>
+                    <span class="na">refreshAccessTokenWithRefreshToken</span><span class="p">(</span><span class="s2">&quot;L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo&quot;</span><span class="p">);</span>
+<span class="nv">$accessTokenValue</span> <span class="o">=</span> <span class="nv">$accessTokenObj</span><span class="o">-&gt;</span><span class="na">getAccessToken</span><span class="p">();</span>
+<span class="nv">$refreshTokenValue</span> <span class="o">=</span> <span class="nv">$accessTokenObj</span><span class="o">-&gt;</span><span class="na">getRefreshToken</span><span class="p">();</span>
+<span class="k">echo</span> <span class="s2">&quot;Access Token is:&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$accessTokenValue</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;RefreshToken Token is:&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$refreshTokenValue</span><span class="p">);</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>For each new OAuth 2 access token and OAuth 2 refresh token returned from QuickBooks Online, you will need to use getRefreshToken() method to get the latest refresh token again.</p>
+</div>
+<div class="section" id="revoke-your-oauth-2-0-token">
+<h3>Revoke your OAuth 2.0 token<a class="headerlink" href="#revoke-your-oauth-2-0-token" title="Permalink to this headline">¶</a></h3>
+<p>Similar to refresh token, the V3 PHP SDK also allows you to revoke an existed OAuth 2 token. It can be a refresh token, or access token:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper</span><span class="p">;</span>
+<span class="c1">//The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret</span>
+<span class="nv">$oauth2LoginHelper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OAuth2LoginHelper</span><span class="p">(</span><span class="s2">&quot;Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D&quot;</span><span class="p">,</span><span class="s2">&quot;stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P&quot;</span><span class="p">);</span>
+<span class="nv">$revokeResult</span> <span class="o">=</span> <span class="nv">$oauth2LoginHelper</span><span class="o">-&gt;</span><span class="na">revokeToken</span><span class="p">(</span><span class="s2">&quot;L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="nv">$revokeResult</span><span class="p">){</span>
+    <span class="k">echo</span> <span class="s2">&quot;RefreshToken Token revoked.&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="oauth-2-0-ssl-certificate-settings">
+<h3>OAuth 2.0 SSL certificate settings<a class="headerlink" href="#oauth-2-0-ssl-certificate-settings" title="Permalink to this headline">¶</a></h3>
+<p>The PHP SDK uses the Mozilla CA certificates (<a class="reference external" href="https://curl.haxx.se/ca/cacert.pem">https://curl.haxx.se/ca/cacert.pem</a>) for authorizing peer certificates.</p>
+<p>To disable the cURL certificate settings from the PHP SDK, comment out Line 106 at <a class="reference external" href="https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php">https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php</a></p>
+<p>or you can append your self-signed certificate at <a class="reference external" href="https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem">https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem</a></p>
+</div>
+<div class="section" id="oauth-2-0-vs-1-0a-in-quickbooks-online">
+<h3>OAuth 2.0 vs 1.0a in QuickBooks Online<a class="headerlink" href="#oauth-2-0-vs-1-0a-in-quickbooks-online" title="Permalink to this headline">¶</a></h3>
+<p>The way how OAuth 2.0 works is different with OAuth 1.0a. When you work with OAuth 1.0a, the expire time of the access token can be set up to 180 days. However, for OAuth 2.0, the expire time of an access token is <strong>ALWAYS</strong> set to one hour. It <strong>CAN NOT</strong> be changed. You will need to use the refresh token to get a new access token whenever you are going to make API calls with QuickBooks Online.</p>
+<ol class="arabic simple">
+<li>For OAuth 2.0, why do I need both an access token and a refresh token?</li>
+</ol>
+<blockquote>
+<div>The access token is used to make API calls. For example, if you want to create an invoice for a company, you will need to have the access token in your Authorization header. However, access token is always short-lived. Each access token can only be valid for an hour after its creation. If you try to make an API call after an hour with the same access token, the request will be blocked by QBO. That is what refresh token used for. It is used to request a new access token after access token expired, so you can still access to the QBO company after an hour. Just remember, whenever you make a refreshToken API call, always <strong>STORE THE LATEST REFRESH TOKEN</strong> value in your session or database. In QuickBooks Online OAuth 2 protocol, it is not the access token you should store, it is the refresh token you need to store. Even the refresh token is valid for 101 days, however, it CAN BE CHANGED when you make the refreshToken() call. Once it is changed, the previous refresh token will no longer be valid. Potentially causing a request being blocked by QuickBooks Online.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>For OAuth 2.0, when should we request a new access token?</li>
+</ol>
+<blockquote>
+<div>Each time the user <strong>STARTS</strong> to use the app, the app should requests for a new OAuth 2 access token using the refresh token. Based on our research, most users won’t use an app for more than one hour. Therefore, QuickBooks Online designs the access token to be valid for only one hour. However, if the user does use the app for a longer time, you will need to update the access token again.</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Isn’t the refresh token is valid for 101 days based on the docs? Why my refresh Token seems like is only valid for “24 hours”, not 101 days?</li>
+</ol>
+<blockquote>
+<div>Each day(every 24 hours), QuickBooks Online will return a new Refresh Token for every Refresh Token API call. If a new refresh token is returned, the previous refresh token will be forced to expire. For example, On day 1, developer makes a refresh token API call using refresh token A, it returned access token C, refresh Token A. On day 2, developer makes a refresh token API call using refresh token A, it will return access token D, refresh Token B. That is, on day 2, a new refresh token is returned, and the refresh token A is forced to expire. For simplicity, we tell our developers always store the <strong>LATEST</strong> refresh token returned from QBO. In this sense, you do not need to worry about 24 hours or 101 days.</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configuration.html" class="btn btn-neutral" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Intuit, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'4.0.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

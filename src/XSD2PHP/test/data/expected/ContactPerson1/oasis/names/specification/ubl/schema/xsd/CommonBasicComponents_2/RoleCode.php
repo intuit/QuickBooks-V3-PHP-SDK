@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RoleCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RoleCode
  */
-class RoleCode
-	extends RoleCodeType
-	{
-
-
-
+class RoleCode extends RoleCodeType
+{
 } // end class RoleCode

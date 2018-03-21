@@ -45,10 +45,10 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence extends Zend_Soap_Wsdl_Strateg
     {
         $nestedCounter = $this->_getNestedCount($type);
 
-        if($nestedCounter > 0) {
+        if ($nestedCounter > 0) {
             $singularType = $this->_getSingularType($type);
 
-            for($i = 1; $i <= $nestedCounter; $i++) {
+            for ($i = 1; $i <= $nestedCounter; $i++) {
                 $complexTypeName = substr($this->_getTypeNameBasedOnNestingLevel($singularType, $i), 4);
                 $childTypeName = $this->_getTypeNameBasedOnNestingLevel($singularType, $i-1);
 
@@ -58,7 +58,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence extends Zend_Soap_Wsdl_Strateg
             $this->getContext()->addType($complexTypeName);
 
             return "tns:$complexTypeName";
-        } else if (!in_array($type, $this->getContext()->getTypes())) {
+        } elseif (!in_array($type, $this->getContext()->getTypes())) {
             // New singular complex type
             return parent::addComplexType($type);
         } else {
@@ -76,7 +76,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence extends Zend_Soap_Wsdl_Strateg
      */
     protected function _getTypeNameBasedOnNestingLevel($singularType, $level)
     {
-        if($level == 0) {
+        if ($level == 0) {
             // This is not an Array anymore, return the xsd simple type
             return $singularType;
         } else {
@@ -140,8 +140,8 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence extends Zend_Soap_Wsdl_Strateg
             $sequence = $dom->createElement('xsd:sequence');
 
             $element = $dom->createElement('xsd:element');
-            $element->setAttribute('name',      'item');
-            $element->setAttribute('type',      $childTypeName);
+            $element->setAttribute('name', 'item');
+            $element->setAttribute('type', $childTypeName);
             $element->setAttribute('minOccurs', 0);
             $element->setAttribute('maxOccurs', 'unbounded');
             $sequence->appendChild($element);

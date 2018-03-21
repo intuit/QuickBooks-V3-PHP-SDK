@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReceiverParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReceiverParty
  */
-class ReceiverParty
-	extends PartyType
-	{
-
-
-
+class ReceiverParty extends PartyType
+{
 } // end class ReceiverParty

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RevisionTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RevisionTime
  */
-class RevisionTime
-	extends RevisionTimeType
-	{
-
-
-
+class RevisionTime extends RevisionTimeType
+{
 } // end class RevisionTime

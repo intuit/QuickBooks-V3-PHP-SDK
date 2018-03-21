@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ResponseCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ResponseCode
  */
-class ResponseCode
-	extends ResponseCodeType
-	{
-
-
-
+class ResponseCode extends ResponseCodeType
+{
 } // end class ResponseCode

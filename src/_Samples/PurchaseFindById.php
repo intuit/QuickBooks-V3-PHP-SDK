@@ -1,37 +1,48 @@
 <?php
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+include('../config.php');
 
-require_once('../config.php');
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Facades\Purchase;
+use QuickBooksOnline\API\Data\IPPPurchase;
 
-require_once(PATH_SDK_ROOT . 'Core/ServiceContext.php');
-require_once(PATH_SDK_ROOT . 'DataService/DataService.php');
-require_once(PATH_SDK_ROOT . 'PlatformService/PlatformService.php');
-require_once(PATH_SDK_ROOT . 'Utility/Configuration/ConfigurationManager.php');
-require_once(PATH_SDK_ROOT . 'QueryFilter/QueryMessage.php');
-
-//Specify QBO or QBD
-$serviceType = IntuitServicesType::QBO;
-
-// Get App Config
-$realmId = ConfigurationManager::AppSettings('RealmID');
-if (!$realmId)
-	exit("Please add realm to App.Config before running this sample.\n");
-
-// Prep Service Context
-$requestValidator = new OAuthRequestValidator(ConfigurationManager::AppSettings('AccessToken'),
-                                              ConfigurationManager::AppSettings('AccessTokenSecret'),
-                                              ConfigurationManager::AppSettings('ConsumerKey'),
-                                              ConfigurationManager::AppSettings('ConsumerSecret'));
-$serviceContext = new ServiceContext($realmId, $serviceType, $requestValidator);
-if (!$serviceContext)
-	exit("Problem while initializing ServiceContext.\n");
 
 // Prep Data Services
-$dataService = new DataService($serviceContext);
-if (!$dataService)
-	exit("Problem while initializing DataService.\n");
+$dataService = DataService::Configure(array(
+       'auth_mode' => 'oauth1',
+         'consumerKey' => "qyprd2GFGDPhy1oKmCshpO3eicTFxR",
+         'consumerSecret' => "mMbYSI3IfPoAjAQx8he3jEZBfBm0tFM5NIRqAY5A",
+         'accessTokenKey' => "lvprdSAqdfEpemN18jfuLGXp4paB1tXHKYx5YEn688ziwrZs",
+         'accessTokenSecret' => "OXPtyhbkDjjgnFdFnbYv6iJm0FoN1ciXuLr5lKuf",
+         'QBORealmID' => "123145796620484",
+         'baseUrl' => "production"
+));
+
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 // Create a new Purchase Object
-$randomPurchaseObj = CreatePurchaseObj($dataService);
+$randomPurchaseObj = Purchase::create([
+  "AccountRef" => [
+ "value"=> "42",
+ "name"=> "Visa"
+],
+"PaymentType"=> "CreditCard",
+"Line"=> [
+ [
+   "Amount"=> 10.00,
+   "DetailType"=> "AccountBasedExpenseLineDetail",
+   "AccountBasedExpenseLineDetail"=> [
+    "AccountRef"=> [
+       "name"=> "Meals and Entertainment",
+       "value"=> "13"
+     ]
+   ]
+ ]
+]
+]);
 $purchaseObjConfirmation = $dataService->Add($randomPurchaseObj);
 echo "Created Purchase object, and received Id={$purchaseObjConfirmation->Id}\n";
 
@@ -40,53 +51,14 @@ $purchaseObj = new IPPPurchase();
 $purchaseObj->Id=$purchaseObjConfirmation->Id;
 $purchaseObj->domain=$purchaseObjConfirmation->domain;
 $crudResultObj = $dataService->FindById($purchaseObj);
-if ($crudResultObj)
-	echo "Found the purchase object that we just created.\n";
-else
-	echo "Did not find the purchase object that we just created.\n";
-
-
-
-/**
- * Create a valid Purchase object locally, caller will convey to the cloud via CREATE
- */
-function CreatePurchaseObj($dataServices)
-{
-	$AccountArray=array();
-
-	$AccountArray['Banks'] = $dataServices->Query("SELECT * FROM Account WHERE AccountType='Bank'", 1,10);
-	if (!$AccountArray['Banks'])
-		return array();
-	$bankAccountId = $AccountArray['Banks'][0]->Id;
-
-	$AccountArray['Expense'] = $dataServices->Query("SELECT * FROM Account WHERE AccountType='Expense'", 1,10);
-	if (!$AccountArray['Expense'])
-		return array();
-	$expenseAccountId = $AccountArray['Expense'][0]->Id;
-				
-	$oneLine = new IPPLine(array('Description'=>'some line item',
-	                                 'Amount'     =>'7.50',
-	                                 'DetailType' =>'AccountBasedExpenseLineDetail',
-	                                 'AccountBasedExpenseLineDetail'=>
-	                                  	new IPPAccountBasedExpenseLineDetail(
-	                                  	    array('AccountRef'=>
-	                                  	        new IPPReferenceType(array('value'=>$expenseAccountId)),
-	                                  	        'DetailType' =>'AccountBasedExpenseLineDetail',
-	                                         )
-	                                    ),
-	                                 )
-	                          );	
-	
-	$targetObj = new IPPPurchase();
-	$targetObj->Name = 'Some Name'.rand();
-	$targetObj->TotalAmt='15.00';
-	$targetObj->PaymentType='Check';
-	$targetObj->AccountRef=new IPPReferenceType(array('value'=>$bankAccountId));
-	$targetObj->Line=array($oneLine,$oneLine);
-
-	return $targetObj;
-
+if ($crudResultObj) {
+    echo "Found the purchase object that we just created.\n";
+} else {
+    echo "Did not find the purchase object that we just created.\n";
 }
+
+
+
 
 /*
 Example output:
@@ -94,5 +66,3 @@ Example output:
 Created Purchase object, and received Id=807
 Found the purchase object that we just created.
 */
-
-?>

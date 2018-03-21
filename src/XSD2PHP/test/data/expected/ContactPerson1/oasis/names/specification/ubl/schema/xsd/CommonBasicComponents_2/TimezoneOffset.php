@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TimezoneOffset
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TimezoneOffset
  */
-class TimezoneOffset
-	extends TimezoneOffsetType
-	{
-
-
-
+class TimezoneOffset extends TimezoneOffsetType
+{
 } // end class TimezoneOffset

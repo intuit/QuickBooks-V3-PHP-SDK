@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ChipApplicationID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ChipApplicationID
  */
-class ChipApplicationID
-	extends ChipApplicationIDType
-	{
-
-
-
+class ChipApplicationID extends ChipApplicationIDType
+{
 } // end class ChipApplicationID

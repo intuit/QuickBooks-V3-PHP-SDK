@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LossRisk
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LossRisk
  */
-class LossRisk
-	extends LossRiskType
-	{
-
-
-
+class LossRisk extends LossRiskType
+{
 } // end class LossRisk

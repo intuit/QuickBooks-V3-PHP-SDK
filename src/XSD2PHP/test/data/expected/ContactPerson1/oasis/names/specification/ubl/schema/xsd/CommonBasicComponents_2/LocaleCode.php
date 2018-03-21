@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LocaleCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LocaleCode
  */
-class LocaleCode
-	extends LocaleCodeType
-	{
-
-
-
+class LocaleCode extends LocaleCodeType
+{
 } // end class LocaleCode

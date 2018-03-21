@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CustomsImportClassifiedIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CustomsImportClassifiedIndicator
  */
-class CustomsImportClassifiedIndicator
-	extends CustomsImportClassifiedIndicatorType
-	{
-
-
-
+class CustomsImportClassifiedIndicator extends CustomsImportClassifiedIndicatorType
+{
 } // end class CustomsImportClassifiedIndicator

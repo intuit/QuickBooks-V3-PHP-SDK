@@ -14,14 +14,15 @@ class ReflectionUtil
      *
      * @return array
      */
-    public static function loadWebServicesClassAndReturnNames($dir = null){
-        if($dir == null) {
+    public static function loadWebServicesClassAndReturnNames($dir = null)
+    {
+        if ($dir == null) {
             $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . UtilityConstants::WEBHOOKSDIR;
         }
 
         $webhooksClassNames = array();
 
-        foreach( glob("{$dir}/*.php") as $fileName){
+        foreach (glob("{$dir}/*.php") as $fileName) {
             require_once($fileName);
             //get class name
             $className = substr($fileName, strrpos($fileName, '/') + 1);
@@ -43,18 +44,21 @@ class ReflectionUtil
      *      If the class name can be found in Webhooks Service, return the name; otherwise, return null.
      *
      */
-    public static function isValidWebhooksClass($className, $classCollection = null){
-        if(!isset($classCollection)){
+    public static function isValidWebhooksClass($className, $classCollection = null)
+    {
+        if (!isset($classCollection)) {
             $classCollection = ReflectionUtil::loadWebServicesClassAndReturnNames();
         }
 
-        if(!isset($className) || trim($className) === '') return null;
+        if (!isset($className) || trim($className) === '') {
+            return null;
+        }
 
         $singlerClassName = ClassNamingUtil::singularize($className);
         $capitalFirstSinglerClassName = ucfirst($singlerClassName);
 
-        foreach($classCollection as $k => $v){
-            if(strcmp($capitalFirstSinglerClassName, $v) == 0){
+        foreach ($classCollection as $k => $v) {
+            if (strcmp($capitalFirstSinglerClassName, $v) == 0) {
                 return $capitalFirstSinglerClassName;
             }
         }
@@ -73,11 +77,12 @@ class ReflectionUtil
      * @param $value
      *      The value to be assigned to the setter
      */
-    public static function assignValue($object, $key, $value){
+    public static function assignValue($object, $key, $value)
+    {
         $setter = 'set' . ucfirst($key);
-        if(method_exists($object, $setter)){
+        if (method_exists($object, $setter)) {
             $object->$setter($value);
-        }else{
+        } else {
             $object->__set($value);
         }
     }
@@ -94,18 +99,21 @@ class ReflectionUtil
      *      A user defined class collection. Default is null and default use all WebhooksService classes
      * @return null
      */
-    public static function constructObjectFromWebhooksArray($array, $arrayContainerClassName){
+    public static function constructObjectFromWebhooksArray($array, $arrayContainerClassName)
+    {
         $clazz = ReflectionUtil::isValidWebhooksClass($arrayContainerClassName);
-        if(!isset($clazz)){ return null;}
+        if (!isset($clazz)) {
+            return null;
+        }
         $wrapObject = new $clazz();
 
-        if(isset($array) && !empty($array)){
-            foreach ($array  as $key => $value){
-                if(is_array($value)){
+        if (isset($array) && !empty($array)) {
+            foreach ($array  as $key => $value) {
+                if (is_array($value)) {
                     //Case 1: key is string, value is array and it is not associate Array
                     //create an array holder, loop through each element in the value, convert the array and put it
                     //in the list
-                    if(!ArrayUtil::isAssociateArray($value)) {
+                    if (!ArrayUtil::isAssociateArray($value)) {
                         $list = array();
                         foreach ($value as $index => $element) {
                             $obj = ReflectionUtil::constructObjectFromWebhooksArray($element, $key);
@@ -115,14 +123,14 @@ class ReflectionUtil
                     }
                     //Case 2: key is string, value is array and also it is associate array
                     //we then just pass the array to next recursive call
-                    else{
+                    else {
                         $obj = ReflectionUtil::constructObjectFromWebhooksArray($value, $key);
 
                         ReflectionUtil::assignValue($wrapObject, $key, $obj);
                     }
                 }
                 //Case 3: key is string and value is String. Call the setter method for the key.
-                else{
+                else {
                     ReflectionUtil::assignValue($wrapObject, $key, $value);
                 }
             }

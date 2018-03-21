@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CorporateRegistrationScheme
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CorporateRegistrationScheme
  */
-class CorporateRegistrationScheme
-	extends CorporateRegistrationSchemeType
-	{
-
-
-
+class CorporateRegistrationScheme extends CorporateRegistrationSchemeType
+{
 } // end class CorporateRegistrationScheme

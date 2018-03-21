@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DeliveryAddress
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DeliveryAddress
  */
-class DeliveryAddress
-	extends AddressType
-	{
-
-
-
+class DeliveryAddress extends AddressType
+{
 } // end class DeliveryAddress

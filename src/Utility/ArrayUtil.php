@@ -15,7 +15,7 @@ class ArrayUtil
      */
     public static function isAssociateArray(array $arr)
     {
-        if(!empty($arr)){
+        if (!empty($arr)) {
             foreach ($arr as $k => $v) {
                 if (is_int($k)) {
                     return false;

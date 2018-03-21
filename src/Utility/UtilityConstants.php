@@ -6,25 +6,25 @@ namespace QuickBooksOnline\API\Utility;
  */
 class UtilityConstants
 {
-	/**
-	 * batch response has single entity
-	 */
+    /**
+     * batch response has single entity
+     */
     const Entity = 1;
 
-	/**
-	 * batch response has more than one enitity.
-	 */
+    /**
+     * batch response has more than one enitity.
+     */
     const Query = 2;
 
-	/**
-	 * batch response has exception.
-	 */
+    /**
+     * batch response has exception.
+     */
     const Exception = 3;
-	/**
-	 * XPath for errcode tag.
-	 * @var string ERRCODEXPATH
-	 */
-	const ERRCODEXPATH = "//errcode";
+    /**
+     * XPath for errcode tag.
+     * @var string ERRCODEXPATH
+     */
+    const ERRCODEXPATH = "//errcode";
 
     /**
      * XPath for errtext tag.
@@ -66,5 +66,4 @@ class UtilityConstants
      * WehbooksService Path
      */
     const WEBHOOKSDIR = "WebhooksService";
-
 }

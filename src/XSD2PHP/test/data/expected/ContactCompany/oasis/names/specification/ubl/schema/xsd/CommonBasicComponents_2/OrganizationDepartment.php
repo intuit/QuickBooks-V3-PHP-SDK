@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrganizationDepartment
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrganizationDepartment
  */
-class OrganizationDepartment
-	extends OrganizationDepartmentType
-	{
-
-
-
+class OrganizationDepartment extends OrganizationDepartmentType
+{
 } // end class OrganizationDepartment

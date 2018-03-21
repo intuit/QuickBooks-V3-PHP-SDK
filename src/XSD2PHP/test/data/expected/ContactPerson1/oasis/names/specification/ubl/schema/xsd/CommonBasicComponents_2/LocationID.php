@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LocationID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LocationID
  */
-class LocationID
-	extends LocationIDType
-	{
-
-
-
+class LocationID extends LocationIDType
+{
 } // end class LocationID

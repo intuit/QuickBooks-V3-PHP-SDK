@@ -1,6 +1,9 @@
 <?php
 namespace QuickBooksOnline\API\Core\Configuration;
 
+use QuickBooksOnline\API\Core\CoreConstants;
+
+
 /**
 * Base Urls for QBO, QBD and IPP
 * -----------------
@@ -10,27 +13,32 @@ namespace QuickBooksOnline\API\Core\Configuration;
 */
 class BaseUrl
 {
-	/**
-	 * Gets or sets the url for QuickBooks Online Rest Service.
-	 * @var string
-	 */
+    /**
+     * Gets or sets the url for QuickBooks Online Rest Service.
+     * @var string
+     */
     public $Qbo;
 
-	/**
-	 * Gets or sets the url for Platform Rest Service.
-	 * @var string
-	 */
+    /**
+     * Gets or sets the url for Platform Rest Service.
+     * @var string
+     */
     public $Ipp;
 
-	/**
-	 * Initializes a new instance of the BaseUrl class.
-	 *
-	 * @param string $Qbo url for QuickBooks Online Rest Service
-	 * @param string $Ipp url for Platform Rest Service
-	 */
-    public function __construct($Qbo=NULL, $Ipp=NULL)
+    /**
+     * Initializes a new instance of the BaseUrl class.
+     *
+     * @param string $Qbo url for QuickBooks Online Rest Service
+     * @param string $Ipp url for Platform Rest Service
+     */
+    public function __construct($Qbo=null, $Ipp=null)
     {
-    	$this->Qbo=$Qbo;
-    	$this->Ipp=$Ipp;
+        $this->Qbo=$Qbo;
+        if(isset($Ipp))
+        {
+          $this->Ipp = $Ipp;
+        }else {
+          $this->Ipp =  CoreConstants::IPP_BASEURL;
+        }
     }
 }

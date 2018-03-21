@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName HazardClassID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\HazardClassID
  */
-class HazardClassID
-	extends HazardClassIDType
-	{
-
-
-
+class HazardClassID extends HazardClassIDType
+{
 } // end class HazardClassID

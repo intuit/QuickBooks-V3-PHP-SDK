@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DeclaredCarriageValueAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DeclaredCarriageValueAmount
  */
-class DeclaredCarriageValueAmount
-	extends DeclaredCarriageValueAmountType
-	{
-
-
-
+class DeclaredCarriageValueAmount extends DeclaredCarriageValueAmountType
+{
 } // end class DeclaredCarriageValueAmount

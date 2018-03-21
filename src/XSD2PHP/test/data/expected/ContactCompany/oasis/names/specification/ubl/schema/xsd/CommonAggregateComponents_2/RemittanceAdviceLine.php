@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RemittanceAdviceLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RemittanceAdviceLine
  */
-class RemittanceAdviceLine
-	extends RemittanceAdviceLineType
-	{
-
-
-
+class RemittanceAdviceLine extends RemittanceAdviceLineType
+{
 } // end class RemittanceAdviceLine

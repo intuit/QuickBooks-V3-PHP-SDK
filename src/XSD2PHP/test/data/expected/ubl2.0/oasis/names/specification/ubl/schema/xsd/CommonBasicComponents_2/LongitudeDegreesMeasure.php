@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LongitudeDegreesMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LongitudeDegreesMeasure
  */
-class LongitudeDegreesMeasure
-	extends LongitudeDegreesMeasureType
-	{
-
-
-
+class LongitudeDegreesMeasure extends LongitudeDegreesMeasureType
+{
 } // end class LongitudeDegreesMeasure

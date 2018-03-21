@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Signature
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Signature
  */
-class Signature
-	extends SignatureType
-	{
-
-
-
+class Signature extends SignatureType
+{
 } // end class Signature

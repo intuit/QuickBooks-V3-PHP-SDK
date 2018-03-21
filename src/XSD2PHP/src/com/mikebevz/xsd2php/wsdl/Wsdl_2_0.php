@@ -4,9 +4,9 @@ namespace com\mikebevz\xsd2php\wsdl;
 require_once 'AbstractWsdl.php';
 require_once 'IWsdl.php';
 
-class Wsdl_2_0 extends AbstractWsdl implements IWsdl {
-    
-    protected $namespaces = array (
+class Wsdl_2_0 extends AbstractWsdl implements IWsdl
+{
+    protected $namespaces = array(
         'wsdl' => 'http://www.w3.org/ns/wsdl',
         'wsdli' => 'http://www.w3.org/ns/wsdl-instance',
         'wsdlx' => 'http://www.w3.org/ns/wsdl-extensions',
@@ -18,7 +18,7 @@ class Wsdl_2_0 extends AbstractWsdl implements IWsdl {
         
     );
     
-    public function prepare() {
-        
+    public function prepare()
+    {
     }
 }

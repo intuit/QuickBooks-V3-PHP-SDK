@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NumberID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NumberID
  */
-class NumberID
-	extends NumberIDType
-	{
-
-
-
+class NumberID extends NumberIDType
+{
 } // end class NumberID

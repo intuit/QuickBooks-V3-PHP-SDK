@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DocumentBinaryObject
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DocumentBinaryObject
  */
-class DocumentBinaryObject
-	extends DocumentBinaryObjectType
-	{
-
-
-
+class DocumentBinaryObject extends DocumentBinaryObjectType
+{
 } // end class DocumentBinaryObject

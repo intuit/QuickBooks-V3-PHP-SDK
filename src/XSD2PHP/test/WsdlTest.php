@@ -11,29 +11,29 @@ use com\mikebevz\xsd2php\wsdl;
 
 class WsdlTest extends PHPUnit_Framework_TestCase
 {
-/**
+    /**
      * XSD to PHP convertor class
      * @var com\mikebevz\xsd2php\AbstractWsdl
      */
-    private $tclass; 
+    private $tclass;
 
     private $expDir = "data/expected/ContactPersonWsdl";
     private $genDir = "data/generated/ContactPersonWsdl";
     
-    protected function setUp ()
+    protected function setUp()
     {
         //$this->xsd = dirname(__FILE__)."/../resources/ubl2.0/maindoc/UBL-Order-2.0.xsd";
         $this->tclass = new wsdl\WsdlFactory();
     }
-    protected function tearDown ()
+    protected function tearDown()
     {
-        $this->tclass = null;        
+        $this->tclass = null;
     }
     
-    public function testWsdlNavService() {
-        
+    public function testWsdlNavService()
+    {
         if (file_exists($this->genDir)) {
-            rmdir_recursive($this->genDir);    
+            rmdir_recursive($this->genDir);
         }
         
         mkdir($this->genDir."/public/schemas", 0777, true);
@@ -47,7 +47,7 @@ class WsdlTest extends PHPUnit_Framework_TestCase
         $this->tclass->setPublicUrl("/schemas");
         $this->tclass->setDebug(true);
         
-        $schemas = array("CodeList_CurrencyCode_ISO_7_04.xsd", 
+        $schemas = array("CodeList_CurrencyCode_ISO_7_04.xsd",
                          "CodeList_LanguageCode_ISO_7_04.xsd",
                          "CodeList_MIMEMediaTypeCode_IANA_7_04.xsd",
                          "CodeList_UnitCode_UNECE_7_04.xsd",
@@ -75,7 +75,7 @@ class WsdlTest extends PHPUnit_Framework_TestCase
         }
         
         if (file_exists($this->genDir)) {
-            rmdir_recursive($this->genDir);    
+            rmdir_recursive($this->genDir);
         }
     }
 }

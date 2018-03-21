@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Terms
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Terms
  */
-class Terms
-	extends TermsType
-	{
-
-
-
+class Terms extends TermsType
+{
 } // end class Terms

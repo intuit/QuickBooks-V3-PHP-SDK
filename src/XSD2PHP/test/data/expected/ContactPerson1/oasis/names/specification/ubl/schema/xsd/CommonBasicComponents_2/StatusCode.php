@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName StatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\StatusCode
  */
-class StatusCode
-	extends StatusCodeType
-	{
-
-
-
+class StatusCode extends StatusCodeType
+{
 } // end class StatusCode

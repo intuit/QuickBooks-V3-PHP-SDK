@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransactionCurrencyTaxAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransactionCurrencyTaxAmount
  */
-class TransactionCurrencyTaxAmount
-	extends TransactionCurrencyTaxAmountType
-	{
-
-
-
+class TransactionCurrencyTaxAmount extends TransactionCurrencyTaxAmountType
+{
 } // end class TransactionCurrencyTaxAmount

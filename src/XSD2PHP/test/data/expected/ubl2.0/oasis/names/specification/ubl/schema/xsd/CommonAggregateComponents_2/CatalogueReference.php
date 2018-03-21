@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CatalogueReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CatalogueReference
  */
-class CatalogueReference
-	extends CatalogueReferenceType
-	{
-
-
-
+class CatalogueReference extends CatalogueReferenceType
+{
 } // end class CatalogueReference

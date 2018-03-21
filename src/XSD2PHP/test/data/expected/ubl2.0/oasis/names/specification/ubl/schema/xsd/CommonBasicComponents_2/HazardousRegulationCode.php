@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName HazardousRegulationCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\HazardousRegulationCode
  */
-class HazardousRegulationCode
-	extends HazardousRegulationCodeType
-	{
-
-
-
+class HazardousRegulationCode extends HazardousRegulationCodeType
+{
 } // end class HazardousRegulationCode

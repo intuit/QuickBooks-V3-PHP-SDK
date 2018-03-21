@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderableUnit
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderableUnit
  */
-class OrderableUnit
-	extends OrderableUnitType
-	{
-
-
-
+class OrderableUnit extends OrderableUnitType
+{
 } // end class OrderableUnit

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName JurisdictionRegionAddress
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\JurisdictionRegionAddress
  */
-class JurisdictionRegionAddress
-	extends AddressType
-	{
-
-
-
+class JurisdictionRegionAddress extends AddressType
+{
 } // end class JurisdictionRegionAddress

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LocationCoordinate
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LocationCoordinate
  */
-class LocationCoordinate
-	extends LocationCoordinateType
-	{
-
-
-
+class LocationCoordinate extends LocationCoordinateType
+{
 } // end class LocationCoordinate

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SealIssuerTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SealIssuerTypeCode
  */
-class SealIssuerTypeCode
-	extends SealIssuerTypeCodeType
-	{
-
-
-
+class SealIssuerTypeCode extends SealIssuerTypeCodeType
+{
 } // end class SealIssuerTypeCode

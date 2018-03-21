@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LastRevisionDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LastRevisionDate
  */
-class LastRevisionDate
-	extends LastRevisionDateType
-	{
-
-
-
+class LastRevisionDate extends LastRevisionDateType
+{
 } // end class LastRevisionDate

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName HazardousCategoryCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\HazardousCategoryCode
  */
-class HazardousCategoryCode
-	extends HazardousCategoryCodeType
-	{
-
-
-
+class HazardousCategoryCode extends HazardousCategoryCodeType
+{
 } // end class HazardousCategoryCode

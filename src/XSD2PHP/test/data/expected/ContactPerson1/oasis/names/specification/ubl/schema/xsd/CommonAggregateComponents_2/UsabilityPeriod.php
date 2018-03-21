@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName UsabilityPeriod
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\UsabilityPeriod
  */
-class UsabilityPeriod
-	extends PeriodType
-	{
-
-
-
+class UsabilityPeriod extends PeriodType
+{
 } // end class UsabilityPeriod

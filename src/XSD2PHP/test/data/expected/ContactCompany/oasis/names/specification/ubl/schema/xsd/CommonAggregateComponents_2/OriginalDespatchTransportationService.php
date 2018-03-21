@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OriginalDespatchTransportationService
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OriginalDespatchTransportationService
  */
-class OriginalDespatchTransportationService
-	extends TransportationServiceType
-	{
-
-
-
+class OriginalDespatchTransportationService extends TransportationServiceType
+{
 } // end class OriginalDespatchTransportationService

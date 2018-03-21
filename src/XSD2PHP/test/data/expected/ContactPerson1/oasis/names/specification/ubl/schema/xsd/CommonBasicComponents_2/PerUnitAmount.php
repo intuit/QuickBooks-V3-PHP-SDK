@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PerUnitAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PerUnitAmount
  */
-class PerUnitAmount
-	extends PerUnitAmountType
-	{
-
-
-
+class PerUnitAmount extends PerUnitAmountType
+{
 } // end class PerUnitAmount

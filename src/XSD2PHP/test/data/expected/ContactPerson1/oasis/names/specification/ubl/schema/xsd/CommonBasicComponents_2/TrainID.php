@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TrainID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TrainID
  */
-class TrainID
-	extends TrainIDType
-	{
-
-
-
+class TrainID extends TrainIDType
+{
 } // end class TrainID

@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; QuickBooks V3 PHP SDK 4.0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.5 documentation" href="index.html"/>
+        <link rel="next" title="Configuration" href="configuration.html"/>
+        <link rel="prev" title="QuickBooks V3 PHP SDK Documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QuickBooks V3 PHP SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines">Guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QuickBooks V3 PHP SDK</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>PHP 5.6 or greater</li>
+<li>To use the PHP Guzzle handler, guzzlehttp/guzzle needs to be installed via Composer.</li>
+<li>To use the cURL handler, you must have a recent version of cURL &gt;= 7.19.7
+compiled with OpenSSL.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">QuickBooks Online apps must use TLS 1.1 or higher to align with industry
+best practices for security and data integrity. Beginning March 31, 2018,
+the required version will be TLS 1.2 or higher.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The recommended way to install the QuickBooks PHP SDK is with
+<a class="reference external" href="http://getcomposer.org">Composer</a>. Composer is a dependency management tool
+for PHP that allows you to declare the dependencies your project needs and
+installs them into your project. To install Composer:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Install Composer</span>
+curl -sS https://getcomposer.org/installer <span class="p">|</span> php
+</pre></div>
+</div>
+<p>You can add the SDK as a dependency using the composer.phar CLI:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>composer require quickbooks/v3-php-sdk
+</pre></div>
+</div>
+<p>Alternatively, you can specify the SDK as a dependency in your project’s
+existing composer.json file:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span> <span class="p">{</span>
+   <span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;quickbooks/v3-php-sdk&quot;</span><span class="o">:</span> <span class="s2">&quot;&gt;=4.0.1&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After installing, require Composer’s autoloader:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can find out more on how to install Composer, configure autoloading, and
+other best practices for defining dependencies at <a class="reference external" href="http://getcomposer.org">getcomposer.org</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you are not famailar with Composer or if Composer cannot be used in your environment,
+you can go to the “releases” tab to download the zip file version of the SDK.
+See example scripts here <a class="reference external" href="https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples">https://github.com/intuit/QuickBooks-V3-PHP-SDK/tree/master/src/_Samples</a> for
+how to make QuickBooks Online API calls without Composer. Use the following to include the
+necessary autoloader:</p>
+<div class="last highlight-php"><div class="highlight"><pre><span></span><span class="k">include</span><span class="p">(</span><span class="s1">&#39;../config.php&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Licensed using the <cite>Apache License, Version 2.0</cite></p>
+<blockquote>
+<div><p>Copyright (c) 2017 Intuit</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div></blockquote>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="guidelines">
+<h3>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Intuit is gradually changing the code style to utilize PSR-1, PSR-2, PSR-4, and PSR-7. This will
+take some time; however, all pull requests in the future should follow the same standards.</li>
+<li>The PHP SDK is meant to be lean and fast with very few dependencies. This means
+that not every feature request will be accepted.</li>
+<li>The PHP SDK has a minimum PHP version requirement of PHP 5.6. Pull requests must
+not require a PHP version greater than PHP 5.6 unless the feature is only
+utilized conditionally.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="QuickBooks V3 PHP SDK Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Intuit, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'4.0.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

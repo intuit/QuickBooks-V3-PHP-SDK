@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrderQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrderQuantity
  */
-class OrderQuantity
-	extends OrderQuantityType
-	{
-
-
-
+class OrderQuantity extends OrderQuantityType
+{
 } // end class OrderQuantity

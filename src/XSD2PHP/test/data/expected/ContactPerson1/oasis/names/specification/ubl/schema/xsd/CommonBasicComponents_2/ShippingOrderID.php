@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ShippingOrderID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ShippingOrderID
  */
-class ShippingOrderID
-	extends ShippingOrderIDType
-	{
-
-
-
+class ShippingOrderID extends ShippingOrderIDType
+{
 } // end class ShippingOrderID

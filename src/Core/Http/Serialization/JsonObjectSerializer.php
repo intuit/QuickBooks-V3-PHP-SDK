@@ -6,14 +6,15 @@ use QuickBooksOnline\API\Utility\MetadataExtractor;
 use QuickBooksOnline\API\Diagnostics\TraceLogger;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Facades\FacadeHelper;
 
 /**
  * Json Serializer to serialize and de serialize.
  * It seems an uncompleted class. Finish this class later @Hao March.21th.2017
  */
-class JsonObjectSerializer extends IEntitySerializer {
-
-  private $lastError = null;
+class JsonObjectSerializer extends IEntitySerializer
+{
+    private $lastError = null;
 
   /**
   * Contains name of class which will be serialized or deserialized
@@ -21,22 +22,24 @@ class JsonObjectSerializer extends IEntitySerializer {
   */
   private $entityName = null;
 
-	/**
-	 * The ids logger.
-	 * @var ILogger IDSLogger
-	 */
-	 private $IDSLogger;
+    /**
+     * The ids logger.
+     * @var ILogger IDSLogger
+     */
+     private $IDSLogger;
 
-	/**
-	 * Initializes a new instance of the JsonObjectSerializer class.
-	 * @param IDSLogger idsLogger The ids logger.
-	 */
-	public function __construct($idsLogger=NULL) {
-		if ($idsLogger)
-			$this->IDSLogger = $idsLogger;
-		else
-			$this->IDSLogger = new TraceLogger();
-	}
+    /**
+     * Initializes a new instance of the JsonObjectSerializer class.
+     * @param IDSLogger idsLogger The ids logger.
+     */
+    public function __construct($idsLogger=null)
+    {
+        if ($idsLogger) {
+            $this->IDSLogger = $idsLogger;
+        } else {
+            $this->IDSLogger = new TraceLogger();
+        }
+    }
 
   /**
    * Handle possible errors and react
@@ -45,10 +48,10 @@ class JsonObjectSerializer extends IEntitySerializer {
   */
   private function checkResult($result)
   {
-        $this->lastError = json_last_error();
-        if(JSON_ERROR_NONE !== $this->lastError) {
-              IdsExceptionManager::HandleException($this->getMessageFromErrorCode($this->lastError));
-        }
+      $this->lastError = json_last_error();
+      if (JSON_ERROR_NONE !== $this->lastError) {
+          IdsExceptionManager::HandleException($this->getMessageFromErrorCode($this->lastError));
+      }
             //TODO add logger here
         return $result;
   }
@@ -60,7 +63,7 @@ class JsonObjectSerializer extends IEntitySerializer {
          */
         private function getMessageFromErrorCode($error)
         {
-            if(function_exists('json_last_error_msg')) {
+            if (function_exists('json_last_error_msg')) {
                 return json_last_error_msg();
             }
             $errors = array(
@@ -71,7 +74,7 @@ class JsonObjectSerializer extends IEntitySerializer {
                JSON_ERROR_SYNTAX           => 'Syntax error, malformed JSON',
                JSON_ERROR_UTF8             => 'Malformed UTF-8 characters, possibly incorrectly encoded'
            );
-           return array_key_exists($error, $errors) ? $errors[$error] : "Unknown error ({$error})";
+            return array_key_exists($error, $errors) ? $errors[$error] : "Unknown error ({$error})";
         }
 
         /**
@@ -98,10 +101,10 @@ class JsonObjectSerializer extends IEntitySerializer {
          * @param type $intuitEntityName
          * @return type
          */
- 	private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
-	{
-		return CoreConstatnts::PHP_CLASS_PREFIX . $intuitEntityName;
-	}
+    private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
+    {
+        return CoreConstatnts::PHP_CLASS_PREFIX . $intuitEntityName;
+    }
 
         /**
          * Converts stdClass objects into object with specified type
@@ -113,25 +116,30 @@ class JsonObjectSerializer extends IEntitySerializer {
          */
         private function convertObject($object, $limitToOne)
         {
-            if($object instanceof stdClass) {
+            if ($object instanceof stdClass) {
                 $result = array();
                 $vars = get_object_vars($object);
-                if(empty($vars)) { return null; }
+                if (empty($vars)) {
+                    return null;
+                }
                 foreach ($vars as $key=>$value) {
                     $className = self::decorateIntuitEntityToPhpClassName($key);
-                    if(!class_exists($className)) { continue; }
+                    if (!class_exists($className)) {
+                        continue;
+                    }
                     $entity = DomainEntityBuilder::create($className, $value);
 
-                    if($limitToOne) { return $entity; }
+                    if ($limitToOne) {
+                        return $entity;
+                    }
                     $result[] = $entity;
                 }
-                if(empty($result)) {
+                if (empty($result)) {
                     // Reutrn original parsed object and don't try to convert types
                     return $limitToOne ? $object : array($object);
                 } else {
                     return $result;
                 }
-
             }
 
             return $object;
@@ -142,31 +150,68 @@ class JsonObjectSerializer extends IEntitySerializer {
          * @override
          * @return String
          */
-        public function getResourceURL() {
+        public function getResourceURL()
+        {
             return $this->entityName;
         }
 
 
         /**
-	 * Serializes the specified entity.
-	 * @param object entity The entity
-	 * @return string Returns the serialize entity in string format.
-	 */
-	public function Serialize($entity)
-	{
-            $this->collectResourceURL($entity);
-           //TODO pre-processing for objects (ones which lack support in PHP 5.2)
-           return $this->checkResult( json_encode($entity) );
-	}
+     * Serializes the specified entity.
+     * @param object entity The entity
+     * @return string Returns the serialize entity in string format.
+     */
+    public function Serialize($entity)
+    {
+        $this->collectResourceURL($entity);
+        $arrayObj = $this->customerConvertObjectToArray($entity);
+        $array = $this->removeNullProperties($arrayObj);
+        return $this->checkResult(json_encode($array, true));
+    }
 
-	/**
-	 * DeSerializes the specified action entity type.
-	 * @param string message The message.
-	 * @return Returns the de serialized object.
-	 */
-	public function Deserialize($message, $limitToOne = FALSE)
-	{
-            return $this->convertObject( $this->checkResult( json_decode($message) ),
+    private function customerConvertObjectToArray($obj){
+      if(is_object($obj)) $obj = (array) $obj;
+      if(is_array($obj)) {
+        $new = array();
+        foreach($obj as $key => $val) {
+          $new[$key] = $this->customerConvertObjectToArray($val);
+        }
+      }
+      else $new = $obj;
+      return $new;
+    }
+
+    /**
+     * The input will always be an asscoiate array
+     * So we will judge based on this two situration
+     */
+    private function removeNullProperties($val){
+        $filterArray = array_filter($val);
+        $returned = array();
+        foreach($filterArray as $k => $v){
+          if(is_array($v)){
+            if(FacadeHelper::isRecurrsiveArray($v)){
+              $list = array();
+              foreach($v as $kk => $vv){
+                  $list[] = array_filter($vv);
+              }
+              $returned[$k] = $list;
+            }
+          }else{
+            $returned[$k] = $v;
+          }
+        }
+        return $returned;
+    }
+
+    /**
+     * DeSerializes the specified action entity type.
+     * @param string message The message.
+     * @return Returns the de serialized object.
+     */
+    public function Deserialize($message, $limitToOne = false)
+    {
+        return $this->convertObject($this->checkResult(json_decode($message)),
                                          $limitToOne);
-	}
+    }
 }

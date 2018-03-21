@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName EstimatedDespatchTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\EstimatedDespatchTime
  */
-class EstimatedDespatchTime
-	extends EstimatedDespatchTimeType
-	{
-
-
-
+class EstimatedDespatchTime extends EstimatedDespatchTimeType
+{
 } // end class EstimatedDespatchTime

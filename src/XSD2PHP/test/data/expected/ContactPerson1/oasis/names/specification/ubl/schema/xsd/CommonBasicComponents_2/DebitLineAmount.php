@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DebitLineAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DebitLineAmount
  */
-class DebitLineAmount
-	extends DebitLineAmountType
-	{
-
-
-
+class DebitLineAmount extends DebitLineAmountType
+{
 } // end class DebitLineAmount

@@ -37,7 +37,8 @@ namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
  * @author Mike Bevz <myb@mikebevz.com>
  *
  */
-class SoapServer extends \SoapServer {
+class SoapServer extends \SoapServer
+{
 
     /**
      *
@@ -51,8 +52,8 @@ class SoapServer extends \SoapServer {
      */
     private $xsdTypes = array();
 
-    public function __construct ($wsdl, $options) {
-
+    public function __construct($wsdl, $options)
+    {
         $this->common = new Common();
 
         $types = $this->getXSDTypes($wsdl);
@@ -67,8 +68,8 @@ class SoapServer extends \SoapServer {
         parent::SoapServer($wsdl, $options);
     }
 
-    public static function unmarshalRoot($string) {
-
+    public static function unmarshalRoot($string)
+    {
         $dom = new \DomDocument();
         $dom->loadXml($string);
         $xpath = new \DomXPath($dom);
@@ -85,7 +86,8 @@ class SoapServer extends \SoapServer {
         return $binding;
     }
 
-    public static function marshalRoot($object) {
+    public static function marshalRoot($object)
+    {
         //@todo Check return result on Java/.Net sides
         $marshal = new Php2Xml();
         $xml = $marshal->getXml($object);
@@ -93,8 +95,8 @@ class SoapServer extends \SoapServer {
         return $xml;
     }
 
-    private function getXSDTypes($wsdl) {
-
+    private function getXSDTypes($wsdl)
+    {
         $dom = new \DOMDocument();
         $dom->load($wsdl);
         $xpath = new \DOMXPath($dom);
@@ -110,7 +112,7 @@ class SoapServer extends \SoapServer {
             $mdom->appendChild($mdom->importNode($s, true));
             //$this->common->dom = $mdom;
             list($ns, $name) = $this->common->parseQName($s->nodeName, true);
-            if ($ns == 'http://www.w3.org/2001/XMLSchema' && $name == 'schema'){
+            if ($ns == 'http://www.w3.org/2001/XMLSchema' && $name == 'schema') {
                 $xsdDom = $mdom;
             }
         }
@@ -142,12 +144,12 @@ class SoapServer extends \SoapServer {
         return $this->xsdTypes;
     }
 
-    private function parseNode($node, $tNs) {
+    private function parseNode($node, $tNs)
+    {
         $nodeNs = $nodeName = '';
 
         if ($this->common->isQName($node->nodeName)) {
             list($nodeNs, $nodeName) = $this->common->parseQName($node->nodeName, true);
-
         } else {
             $nodeNs = $tNs;
             $nodeName = $node->nodeName;
@@ -180,39 +182,37 @@ class SoapServer extends \SoapServer {
             case 'sequence':
                    //print_r('Sequence or All'."\n");
                 foreach ($node->childNodes as $child) {
-                   $this->parseNode($child, $tNs);
+                    $this->parseNode($child, $tNs);
                 }
                 break;
             default:
                 break;
         }
-
     }
 
-    private function parseElementNode($node, $tNs) {
-
+    private function parseElementNode($node, $tNs)
+    {
         if ($node->getAttribute('name') != '') {
             $res = $this->parseElementNameNode($node, $tNs);
             //return $res;
-        } elseif($node->getAttribute('ref') != '') {
+        } elseif ($node->getAttribute('ref') != '') {
             return $this->parseElementRefNode($node, $tNs);
         } else {
             // wrong element?
         }
     }
 
-    private function parseElementNameNode($node, $tNs) {
-
+    private function parseElementNameNode($node, $tNs)
+    {
         if ($node->getAttribute('type') != '') {
             $type = $node->getAttribute('type');
-            list ($typeNs, $typeName) = $this->common->parseQName($type, true);
+            list($typeNs, $typeName) = $this->common->parseQName($type, true);
             //print_r($typeName."\n");
             if ($typeNs != 'http://www.w3.org/2001/XMLSchema') {
                 //print_r(array('name' => $node->getAttribute('name'), 'type' => 'element', 'namespace' => $tNs));
-                array_push($this->xsdTypes,array('name' => $node->getAttribute('name'), 'type' => 'element', 'namespace' => $tNs));
-                array_push($this->xsdTypes,array('name' => $typeName, 'type' => 'element', 'namespace' => $typeNs));
+                array_push($this->xsdTypes, array('name' => $node->getAttribute('name'), 'type' => 'element', 'namespace' => $tNs));
+                array_push($this->xsdTypes, array('name' => $typeName, 'type' => 'element', 'namespace' => $typeNs));
             }
-
         } else {
             // Parse child notes is there is not type specified
             //
@@ -223,28 +223,30 @@ class SoapServer extends \SoapServer {
         }
     }
 
-    private function parseElementRefNode($node, $tNs) {
+    private function parseElementRefNode($node, $tNs)
+    {
         if ($node->getAttribute('ref') != '') {
             $element = $node->getAttribute('ref');
-            list ($elNs, $elName) = $this->common->parseQName($element, true);
+            list($elNs, $elName) = $this->common->parseQName($element, true);
             if ($elNs != 'http://www.w3.org/2001/XMLSchema') {
                 array_push($this->xsdTypes, array('name' => $elName, 'type' => 'element', 'namespace' => $elNs));
             }
         }
     }
 
-    private function parseComplexTypeNode($node, $tNs) {
+    private function parseComplexTypeNode($node, $tNs)
+    {
         if ($node->getAttribute('name') != '') {
             //print_r('Name Type'."\n");
             $res = $this->parseComplexTypeName($node, $tNs);
-
         } else {
             //print_r('No Name Type'."\n");
             $this->parseComplexTypeNoName($node, $tNs);
         }
     }
 
-    private function parseComplexTypeName($node, $tNs) {
+    private function parseComplexTypeName($node, $tNs)
+    {
         //$resp = array();
         foreach ($node->childNodes as $child) {
             $resp[] = $this->parseNode($child, $tNs);
@@ -252,16 +254,12 @@ class SoapServer extends \SoapServer {
         //return $resp;
     }
 
-    private function parseComplexTypeNoName($node, $tNs) {
+    private function parseComplexTypeNoName($node, $tNs)
+    {
         //$resp = array();
         foreach ($node->childNodes as $child) {
             $this->parseNode($child, $tNs);
         }
         //return $resp;
     }
-
-
-
-
-
 }

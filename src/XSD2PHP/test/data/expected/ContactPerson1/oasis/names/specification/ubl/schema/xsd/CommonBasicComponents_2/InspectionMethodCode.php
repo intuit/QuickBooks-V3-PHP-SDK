@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InspectionMethodCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InspectionMethodCode
  */
-class InspectionMethodCode
-	extends InspectionMethodCodeType
-	{
-
-
-
+class InspectionMethodCode extends InspectionMethodCodeType
+{
 } // end class InspectionMethodCode

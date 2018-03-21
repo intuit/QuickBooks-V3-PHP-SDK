@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CertificateType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CertificateType
  */
-class CertificateType
-	extends CertificateTypeType
-	{
-
-
-
+class CertificateType extends CertificateTypeType
+{
 } // end class CertificateType

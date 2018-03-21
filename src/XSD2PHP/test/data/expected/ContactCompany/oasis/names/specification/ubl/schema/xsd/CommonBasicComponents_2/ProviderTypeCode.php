@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ProviderTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ProviderTypeCode
  */
-class ProviderTypeCode
-	extends ProviderTypeCodeType
-	{
-
-
-
+class ProviderTypeCode extends ProviderTypeCodeType
+{
 } // end class ProviderTypeCode

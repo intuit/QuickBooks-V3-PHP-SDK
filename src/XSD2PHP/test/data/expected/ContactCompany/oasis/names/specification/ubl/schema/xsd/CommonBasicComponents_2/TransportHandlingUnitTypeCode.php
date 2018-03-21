@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportHandlingUnitTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportHandlingUnitTypeCode
  */
-class TransportHandlingUnitTypeCode
-	extends TransportHandlingUnitTypeCodeType
-	{
-
-
-
+class TransportHandlingUnitTypeCode extends TransportHandlingUnitTypeCodeType
+{
 } // end class TransportHandlingUnitTypeCode

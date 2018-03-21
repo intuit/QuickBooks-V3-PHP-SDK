@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DurationMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DurationMeasure
  */
-class DurationMeasure
-	extends DurationMeasureType
-	{
-
-
-
+class DurationMeasure extends DurationMeasureType
+{
 } // end class DurationMeasure

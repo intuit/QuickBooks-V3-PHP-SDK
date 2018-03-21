@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PackingCriteriaCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PackingCriteriaCode
  */
-class PackingCriteriaCode
-	extends PackingCriteriaCodeType
-	{
-
-
-
+class PackingCriteriaCode extends PackingCriteriaCodeType
+{
 } // end class PackingCriteriaCode

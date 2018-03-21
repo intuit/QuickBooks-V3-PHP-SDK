@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ComponentRelatedItem
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ComponentRelatedItem
  */
-class ComponentRelatedItem
-	extends RelatedItemType
-	{
-
-
-
+class ComponentRelatedItem extends RelatedItemType
+{
 } // end class ComponentRelatedItem

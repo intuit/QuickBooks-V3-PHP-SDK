@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ItemClassificationCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ItemClassificationCode
  */
-class ItemClassificationCode
-	extends ItemClassificationCodeType
-	{
-
-
-
+class ItemClassificationCode extends ItemClassificationCodeType
+{
 } // end class ItemClassificationCode

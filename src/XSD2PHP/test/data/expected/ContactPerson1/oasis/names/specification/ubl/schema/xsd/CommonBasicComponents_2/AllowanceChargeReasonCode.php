@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AllowanceChargeReasonCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AllowanceChargeReasonCode
  */
-class AllowanceChargeReasonCode
-	extends AllowanceChargeReasonCodeType
-	{
-
-
-
+class AllowanceChargeReasonCode extends AllowanceChargeReasonCodeType
+{
 } // end class AllowanceChargeReasonCode

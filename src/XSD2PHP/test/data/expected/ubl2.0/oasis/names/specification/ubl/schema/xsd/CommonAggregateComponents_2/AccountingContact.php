@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AccountingContact
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AccountingContact
  */
-class AccountingContact
-	extends ContactType
-	{
-
-
-
+class AccountingContact extends ContactType
+{
 } // end class AccountingContact

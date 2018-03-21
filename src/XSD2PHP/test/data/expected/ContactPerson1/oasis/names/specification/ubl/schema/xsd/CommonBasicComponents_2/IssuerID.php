@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName IssuerID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\IssuerID
  */
-class IssuerID
-	extends IssuerIDType
-	{
-
-
-
+class IssuerID extends IssuerIDType
+{
 } // end class IssuerID

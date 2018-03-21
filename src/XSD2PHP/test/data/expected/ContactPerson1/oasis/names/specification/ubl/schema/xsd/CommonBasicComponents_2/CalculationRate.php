@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CalculationRate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CalculationRate
  */
-class CalculationRate
-	extends CalculationRateType
-	{
-
-
-
+class CalculationRate extends CalculationRateType
+{
 } // end class CalculationRate

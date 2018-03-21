@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransportEquipment
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransportEquipment
  */
-class TransportEquipment
-	extends TransportEquipmentType
-	{
-
-
-
+class TransportEquipment extends TransportEquipmentType
+{
 } // end class TransportEquipment

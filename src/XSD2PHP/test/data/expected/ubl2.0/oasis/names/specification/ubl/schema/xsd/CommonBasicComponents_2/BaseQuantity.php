@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BaseQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BaseQuantity
  */
-class BaseQuantity
-	extends BaseQuantityType
-	{
-
-
-
+class BaseQuantity extends BaseQuantityType
+{
 } // end class BaseQuantity

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ApprovalStatus
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ApprovalStatus
  */
-class ApprovalStatus
-	extends ApprovalStatusType
-	{
-
-
-
+class ApprovalStatus extends ApprovalStatusType
+{
 } // end class ApprovalStatus

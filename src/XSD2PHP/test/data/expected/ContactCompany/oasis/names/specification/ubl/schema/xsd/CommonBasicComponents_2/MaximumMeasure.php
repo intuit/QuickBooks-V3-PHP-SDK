@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName MaximumMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\MaximumMeasure
  */
-class MaximumMeasure
-	extends MaximumMeasureType
-	{
-
-
-
+class MaximumMeasure extends MaximumMeasureType
+{
 } // end class MaximumMeasure

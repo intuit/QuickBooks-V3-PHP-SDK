@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AdditionalDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AdditionalDocumentReference
  */
-class AdditionalDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class AdditionalDocumentReference extends DocumentReferenceType
+{
 } // end class AdditionalDocumentReference

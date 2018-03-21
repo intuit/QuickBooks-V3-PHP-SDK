@@ -17,29 +17,27 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType decimal
  */
 class MeasureType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var float
-		 */
-		public $value;	
-	/**
-	 * @UniqueID UDT0000013-SC2
-	 * @CategoryCode SC
-	 * @DictionaryEntryName Measure Unit. Code
-	 * @Definition The type of unit of measure.
-	 * @ObjectClass Measure Unit
-	 * @PropertyTermName Code
-	 * @RepresentationTermName Code
-	 * @PrimitiveType string
-	 * @BuiltinType normalizedString
-	 * @UsageRule Reference UN/ECE Rec 20 and X12 355.
-	 * @xmlType attribute
-	 * @xmlName unitCode
-	 * @var un\unece\uncefact\codelist\specification\_66411\_2001\UnitCodeContentType
-	 */
-	public $unitCode;
-
-
+        /**
+         * @xmlType value
+         * @var float
+         */
+        public $value;
+    /**
+     * @UniqueID UDT0000013-SC2
+     * @CategoryCode SC
+     * @DictionaryEntryName Measure Unit. Code
+     * @Definition The type of unit of measure.
+     * @ObjectClass Measure Unit
+     * @PropertyTermName Code
+     * @RepresentationTermName Code
+     * @PrimitiveType string
+     * @BuiltinType normalizedString
+     * @UsageRule Reference UN/ECE Rec 20 and X12 355.
+     * @xmlType attribute
+     * @xmlName unitCode
+     * @var un\unece\uncefact\codelist\specification\_66411\_2001\UnitCodeContentType
+     */
+    public $unitCode;
 } // end class MeasureType

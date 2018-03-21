@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CreditAccount
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CreditAccount
  */
-class CreditAccount
-	extends CreditAccountType
-	{
-
-
-
+class CreditAccount extends CreditAccountType
+{
 } // end class CreditAccount

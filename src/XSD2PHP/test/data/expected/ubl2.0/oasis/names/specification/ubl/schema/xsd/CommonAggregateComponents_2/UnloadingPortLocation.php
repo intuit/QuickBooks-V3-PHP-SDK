@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName UnloadingPortLocation
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\UnloadingPortLocation
  */
-class UnloadingPortLocation
-	extends LocationType
-	{
-
-
-
+class UnloadingPortLocation extends LocationType
+{
 } // end class UnloadingPortLocation

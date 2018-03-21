@@ -16,12 +16,11 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType decimal
  */
 class RateType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var decimal
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var decimal
+         */
+        public $value;
 } // end class RateType

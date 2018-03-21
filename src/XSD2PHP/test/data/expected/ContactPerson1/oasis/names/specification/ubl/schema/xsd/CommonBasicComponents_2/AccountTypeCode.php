@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AccountTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AccountTypeCode
  */
-class AccountTypeCode
-	extends AccountTypeCodeType
-	{
-
-
-
+class AccountTypeCode extends AccountTypeCodeType
+{
 } // end class AccountTypeCode

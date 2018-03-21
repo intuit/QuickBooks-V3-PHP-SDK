@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CopyIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CopyIndicator
  */
-class CopyIndicator
-	extends CopyIndicatorType
-	{
-
-
-
+class CopyIndicator extends CopyIndicatorType
+{
 } // end class CopyIndicator

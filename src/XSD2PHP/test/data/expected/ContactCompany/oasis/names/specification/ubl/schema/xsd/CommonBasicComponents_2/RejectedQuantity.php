@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RejectedQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RejectedQuantity
  */
-class RejectedQuantity
-	extends RejectedQuantityType
-	{
-
-
-
+class RejectedQuantity extends RejectedQuantityType
+{
 } // end class RejectedQuantity

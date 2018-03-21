@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ChannelCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ChannelCode
  */
-class ChannelCode
-	extends ChannelCodeType
-	{
-
-
-
+class ChannelCode extends ChannelCodeType
+{
 } // end class ChannelCode

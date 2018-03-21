@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PrintQualifier
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PrintQualifier
  */
-class PrintQualifier
-	extends PrintQualifierType
-	{
-
-
-
+class PrintQualifier extends PrintQualifierType
+{
 } // end class PrintQualifier

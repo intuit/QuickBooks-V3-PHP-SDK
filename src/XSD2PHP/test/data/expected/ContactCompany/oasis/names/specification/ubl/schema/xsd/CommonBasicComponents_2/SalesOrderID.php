@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SalesOrderID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SalesOrderID
  */
-class SalesOrderID
-	extends SalesOrderIDType
-	{
-
-
-
+class SalesOrderID extends SalesOrderIDType
+{
 } // end class SalesOrderID

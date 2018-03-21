@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PackageLevelCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PackageLevelCode
  */
-class PackageLevelCode
-	extends PackageLevelCodeType
-	{
-
-
-
+class PackageLevelCode extends PackageLevelCodeType
+{
 } // end class PackageLevelCode

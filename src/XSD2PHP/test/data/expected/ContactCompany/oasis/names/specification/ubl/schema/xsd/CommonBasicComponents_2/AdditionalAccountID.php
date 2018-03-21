@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AdditionalAccountID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AdditionalAccountID
  */
-class AdditionalAccountID
-	extends AdditionalAccountIDType
-	{
-
-
-
+class AdditionalAccountID extends AdditionalAccountIDType
+{
 } // end class AdditionalAccountID

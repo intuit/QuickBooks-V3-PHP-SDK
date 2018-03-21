@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PositionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PositionCode
  */
-class PositionCode
-	extends PositionCodeType
-	{
-
-
-
+class PositionCode extends PositionCodeType
+{
 } // end class PositionCode

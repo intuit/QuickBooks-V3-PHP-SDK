@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName PartyLegalEntity
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\PartyLegalEntity
  */
-class PartyLegalEntity
-	extends PartyLegalEntityType
-	{
-
-
-
+class PartyLegalEntity extends PartyLegalEntityType
+{
 } // end class PartyLegalEntity

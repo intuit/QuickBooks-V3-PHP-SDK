@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DeletedCatalogueReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DeletedCatalogueReference
  */
-class DeletedCatalogueReference
-	extends CatalogueReferenceType
-	{
-
-
-
+class DeletedCatalogueReference extends CatalogueReferenceType
+{
 } // end class DeletedCatalogueReference

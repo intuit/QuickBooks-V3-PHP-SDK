@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName AddressLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\AddressLine
  */
-class AddressLine
-	extends AddressLineType
-	{
-
-
-
+class AddressLine extends AddressLineType
+{
 } // end class AddressLine

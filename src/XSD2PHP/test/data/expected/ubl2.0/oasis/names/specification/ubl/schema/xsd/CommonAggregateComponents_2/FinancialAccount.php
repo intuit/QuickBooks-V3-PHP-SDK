@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FinancialAccount
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FinancialAccount
  */
-class FinancialAccount
-	extends FinancialAccountType
-	{
-
-
-
+class FinancialAccount extends FinancialAccountType
+{
 } // end class FinancialAccount

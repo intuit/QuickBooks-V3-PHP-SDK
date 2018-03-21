@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CreditNoteDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CreditNoteDocumentReference
  */
-class CreditNoteDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class CreditNoteDocumentReference extends DocumentReferenceType
+{
 } // end class CreditNoteDocumentReference

@@ -1,0 +1,54 @@
+==============
+Error Handling
+==============
+
+Check Error Code and Message
+----------------------------
+
+If ``throwExceptionOnError()`` is not turned on, then for all requests that are not made successful, ``DataService`` will store the ``error`` object.
+
+To retrieve the ``error`` object, call the ``getLastError()`` method of the ``DataService`` object:
+
+.. code-block:: php
+
+    // Make the API call
+    $result = $dataService->Add($theTargetObj);
+    $error =  $dataService->getLastError();
+
+By default, ``$dataService->getLastError()`` returns ``FALSE`` for a successful API call, so you can simply use an ``if`` statement to check if the last API request was successful:
+
+.. code-block:: php
+
+    // Make the API call
+    $result = $dataService->Add($theTargetObj);
+    $error =  $dataService->getLastError();
+    if($error) {
+        ...
+    } else {
+        ....
+    }
+
+If the API request fails, use ``getHttpStatusCode()`` and ``getResponseBody()`` to get the status code and response message of the failed request, which provides information to help you identify the cause:
+
+.. code-block:: php
+
+    //Make the API call
+    $result = $dataService->Add($theTargetObj);
+    $error =  $dataService->getLastError();
+    if($error) {
+        echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+        echo "The Response message is: " . $error->getResponseBody() . "\n";
+    } else {
+        ....
+    }
+
+Report an Error to Intuit
+-------------------------
+
+Sometimes the error returned by QuickBooks Online may not be clear, and you would like Intuit Support to help identify the cause. If so, use the following code to record the Intuit-tid from the response, and send us this value along with the Request and Response log you recorded, so we can help you diagnose the issue:
+
+.. code-block:: php
+
+    $intuit_tid = $error->getIntuitTid();
+
+

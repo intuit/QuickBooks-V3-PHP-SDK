@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TransportMeansTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TransportMeansTypeCode
  */
-class TransportMeansTypeCode
-	extends TransportMeansTypeCodeType
-	{
-
-
-
+class TransportMeansTypeCode extends TransportMeansTypeCodeType
+{
 } // end class TransportMeansTypeCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TotalTransportHandlingUnitQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TotalTransportHandlingUnitQuantity
  */
-class TotalTransportHandlingUnitQuantity
-	extends TotalTransportHandlingUnitQuantityType
-	{
-
-
-
+class TotalTransportHandlingUnitQuantity extends TotalTransportHandlingUnitQuantityType
+{
 } // end class TotalTransportHandlingUnitQuantity

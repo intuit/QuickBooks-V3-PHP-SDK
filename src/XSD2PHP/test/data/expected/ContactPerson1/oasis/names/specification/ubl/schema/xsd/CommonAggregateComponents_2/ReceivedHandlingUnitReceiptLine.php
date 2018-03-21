@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReceivedHandlingUnitReceiptLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReceivedHandlingUnitReceiptLine
  */
-class ReceivedHandlingUnitReceiptLine
-	extends ReceiptLineType
-	{
-
-
-
+class ReceivedHandlingUnitReceiptLine extends ReceiptLineType
+{
 } // end class ReceivedHandlingUnitReceiptLine

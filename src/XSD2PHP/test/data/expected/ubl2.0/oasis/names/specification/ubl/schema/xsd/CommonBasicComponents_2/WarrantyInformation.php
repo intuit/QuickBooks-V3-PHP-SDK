@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName WarrantyInformation
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\WarrantyInformation
  */
-class WarrantyInformation
-	extends WarrantyInformationType
-	{
-
-
-
+class WarrantyInformation extends WarrantyInformationType
+{
 } // end class WarrantyInformation

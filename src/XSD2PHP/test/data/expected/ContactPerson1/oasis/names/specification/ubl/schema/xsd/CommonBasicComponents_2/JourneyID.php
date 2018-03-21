@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName JourneyID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\JourneyID
  */
-class JourneyID
-	extends JourneyIDType
-	{
-
-
-
+class JourneyID extends JourneyIDType
+{
 } // end class JourneyID

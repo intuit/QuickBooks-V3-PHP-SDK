@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2;
  * @xmlName ExtensionAgencyID
  * @var oasis\names\specification\ubl\schema\xsd\CommonExtensionComponents_2\ExtensionAgencyID
  */
-class ExtensionAgencyID
-	extends ExtensionAgencyIDType
-	{
-
-
-
+class ExtensionAgencyID extends ExtensionAgencyIDType
+{
 } // end class ExtensionAgencyID

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ApplicableTerritoryAddress
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ApplicableTerritoryAddress
  */
-class ApplicableTerritoryAddress
-	extends AddressType
-	{
-
-
-
+class ApplicableTerritoryAddress extends AddressType
+{
 } // end class ApplicableTerritoryAddress

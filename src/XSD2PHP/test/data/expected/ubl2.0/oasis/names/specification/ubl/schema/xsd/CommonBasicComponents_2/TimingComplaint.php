@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TimingComplaint
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TimingComplaint
  */
-class TimingComplaint
-	extends TimingComplaintType
-	{
-
-
-
+class TimingComplaint extends TimingComplaintType
+{
 } // end class TimingComplaint

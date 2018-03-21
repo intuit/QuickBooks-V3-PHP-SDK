@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PayableAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PayableAmount
  */
-class PayableAmount
-	extends PayableAmountType
-	{
-
-
-
+class PayableAmount extends PayableAmountType
+{
 } // end class PayableAmount

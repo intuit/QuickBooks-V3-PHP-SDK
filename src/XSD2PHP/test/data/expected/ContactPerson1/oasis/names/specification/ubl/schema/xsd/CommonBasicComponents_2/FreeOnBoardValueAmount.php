@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName FreeOnBoardValueAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\FreeOnBoardValueAmount
  */
-class FreeOnBoardValueAmount
-	extends FreeOnBoardValueAmountType
-	{
-
-
-
+class FreeOnBoardValueAmount extends FreeOnBoardValueAmountType
+{
 } // end class FreeOnBoardValueAmount

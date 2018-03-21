@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration &mdash; QuickBooks V3 PHP SDK 4.0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.5 documentation" href="index.html"/>
+        <link rel="next" title="Authorization" href="authorization.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> QuickBooks V3 PHP SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-dataservice">Creating DataService</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-dataservice">Setting DataService</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minor-version">Minor version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors-and-timeouts">Errors and Timeouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#servicecontext">ServiceContext</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QuickBooks V3 PHP SDK</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<span id="conf-page"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>This page provides a introduction on how to configure necessary settings for QuickBooks V3 SDK before making actual API call.</p>
+<p>On QuickBooks V3 SDK, all API requests are made through DataService Object. It is equivalent to “Client” in other library.</p>
+<div class="section" id="creating-dataservice">
+<h2>Creating DataService<a class="headerlink" href="#creating-dataservice" title="Permalink to this headline">¶</a></h2>
+<p>Depends on your authorization protocol, OAuth 1.0 or OAuth 2.0, you will need to pass corresponding OAuth values to your DataService Object. For OAuth 2, if you already know your access token and refresh token, you can use:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nx">QuickBooksOnline\API\DataService\DataService</span><span class="p">;</span>
+
+
+<span class="c1">// Prep Data Services</span>
+<span class="nv">$dataService</span> <span class="o">=</span> <span class="nx">DataService</span><span class="o">::</span><span class="na">Configure</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+      <span class="s1">&#39;auth_mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;oauth2&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientID&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client ID from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;ClientSecret&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Client Secret from the app&#39;s keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;RedirectURI&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The redirect URI provided on the Redirect URIs part under keys tab&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;scope&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;com.intuit.quickbooks.accounting or com.intuit.quickbooks.payment&quot;</span><span class="p">,</span>
+      <span class="s1">&#39;baseUrl&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Development/Production&quot;</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>to initialize your DataService object. For passing OAuth 1 value, or how to generate OAuth 2 tokens from beginning, refer to the <a class="reference internal" href="authorization.html#oauth-1-0a"><span class="std std-ref">OAuth 1.0a</span></a> page, or <a class="reference internal" href="authorization.html#generate-oauth-2-0-tokens"><span class="std std-ref">Generate OAuth 2.0 Tokens</span></a> page.</p>
+<p>The DataService configure method accepts an associative array of options:</p>
+<p><code class="docutils literal"><span class="pre">auth_mode</span></code></p>
+<blockquote>
+<div>(String, required for all cases)  OAuth protocol used by your app. It is either ‘oauth2’ or ‘oauth1’, case insensitive.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">ClientID</span></code></p>
+<blockquote>
+<div>(String, required for OAuth 2) Used when the ‘auth_mode’ is equal to ‘oauth2’. The client ID found from your app’s keys tab.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">ClientSecret</span></code></p>
+<blockquote>
+<div>(String, required for OAuth 2) Used when the ‘auth_mode’ is equal to ‘oauth2’. The client Secret found from your app’s keys tab.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">accessTokenKey</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth2’. The access token value received from QuickBooks Online by exchanging authorization code. Required if DataService is making API calls directly.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">refreshTokenKey</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth2’. The refresh token value received from QuickBooks Online by exchanging authorization code. Required if requesting for a new access token.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">consumerKey</span></code></p>
+<blockquote>
+<div>(String, required for OAuth 1) Used when the ‘auth_mode’ is equal to ‘oauth1’. The consumer key found from your app’s keys tab.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">consumerSecret</span></code></p>
+<blockquote>
+<div>(String, required for OAuth 1) Used when the ‘auth_mode’ is equal to ‘oauth1’. The consumer secret found from your app’s keys tab.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">accessTokenKey</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth1’. The oauth_token value returned from QuickBooks Online during the last step of OAuth 1.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">accessTokenSecret</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth1’. The oauth_token_secret value returned from QuickBooks Online during the last step of OAuth 1.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">QBORealmID</span></code></p>
+<blockquote>
+<div>(String) The Company ID that the API request is called against to, it is returned during OAuth 1&amp;2 protocol with authorization code. Required when making API call with your OAuth 1&amp;2 tokens.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">baseUrl</span></code></p>
+<blockquote>
+<div>(String) Identify the base URL the request is making. It is either “Development” or “Production”. You can also use the full url “<a class="reference external" href="https://sandbox-quickbooks.api.intuit.com">https://sandbox-quickbooks.api.intuit.com</a>” for sandbox, or “<a class="reference external" href="https://quickbooks.api.intuit.com">https://quickbooks.api.intuit.com</a>” for production. Required when QBORealmID is used.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">RedirectURI</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth2’. The redirect URI provided on the Redirect URIs part under keys tab. Required for OAuth 2 when generating OAuth 2 token</div></blockquote>
+<p><code class="docutils literal"><span class="pre">scope</span></code></p>
+<blockquote>
+<div>(String) Used when the ‘auth_mode’ is equal to ‘oauth2’. It is either “com.intuit.quickbooks.accounting” or “com.intuit.quickbooks.payment” , required for OAuth 2 when RedirectURI is used.</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For directly using OAuth 1&amp;2 values, you can also put your values from file, and configure the dataService directly from file:</p>
+<blockquote>
+<div>$dataService = DataService::Configure(“/Your/Path/To/sdk.config”);</div></blockquote>
+<p class="last">However, this is only suggested for OAuth 1.0 tokens, since it is relatively long-lived tokens. For OAuth 2.0, this is not recommended. See the sdk.config file located in /src folder as a template for configuring DataService.</p>
+</div>
+</div>
+<div class="section" id="setting-dataservice">
+<h2>Setting DataService<a class="headerlink" href="#setting-dataservice" title="Permalink to this headline">¶</a></h2>
+<p>DataService provides a list of methods to help you use QuickBooks Online API.</p>
+<div class="section" id="minor-version">
+<h3>Minor version<a class="headerlink" href="#minor-version" title="Permalink to this headline">¶</a></h3>
+<p>You can use <code class="docutils literal"><span class="pre">setMinorVersion()</span></code> to specify which minor version you want to use against QuickBooks Online API. If developer didn’t specify a minor version, the default minor version, <strong>8</strong> , would be used.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">setMinorVersion</span><span class="p">(</span><span class="s2">&quot;9&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<p>Logging is default to be turned <strong>ON</strong> QuickBooks V3 PHP SDK. You can use <code class="docutils literal"><span class="pre">disableLog()</span></code> to disable logging.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">disableLog</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>If logging is enabled, QuickBooks will record all requests and responses to the default directory <code class="docutils literal"><span class="pre">tmp/IdsLogs</span></code>. To change the default log location, use <code class="docutils literal"><span class="pre">setLogLocation()</span></code> method:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">setLogLocation</span><span class="p">(</span><span class="s2">&quot;/Your/Path/ForLog&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The logging function will only work if the specified directory exists, and is accessible. The requests/responses <strong>may</strong> contain sensitive company data, please be aware of the directory you used to store logs.</p>
+</div>
+<div class="section" id="errors-and-timeouts">
+<h3>Errors and Timeouts<a class="headerlink" href="#errors-and-timeouts" title="Permalink to this headline">¶</a></h3>
+<p>For whatever reason, the HTTP(s) requests to QuickBooks Online API may not always succeed. For QuickBooks V3 PHP SDK, any response with status code that is <strong>not 200 level</strong> will be considered as a failed request.</p>
+<p>If a request failed, the DataService will record the error on its <code class="docutils literal"><span class="pre">lastError</span></code> object, and developer should always use <code class="docutils literal"><span class="pre">$dataService-&gt;getLastError()</span></code> to check what the error is before acting on the results of the method call.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$error</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getLastError</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="nv">$error</span><span class="p">){</span>
+   <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If no error occurred, the <code class="docutils literal"><span class="pre">$dataService-&gt;getLastError()</span></code> will return <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On version &lt;4.0.1, the <code class="docutils literal"><span class="pre">$dataService-&gt;getLastError()</span></code> will return <code class="docutils literal"><span class="pre">NULL</span></code> on success instead of <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</div>
+<p>Developers also can configure the API client to throw exceptions when request failed. However, if you do this, you will need to catch and handle the exception in code yourself.</p>
+<p>To throw exceptions when a request failed, you will use <code class="docutils literal"><span class="pre">throwExceptionOnError(true)</span></code></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">throwExceptionOnError</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The default behavior for QuickBooks V3 PHP SDK is <strong>NOT</strong> thrown exception on error. If developers want this behavior, they need to turn it on.</p>
+</div>
+<div class="section" id="servicecontext">
+<h3>ServiceContext<a class="headerlink" href="#servicecontext" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">ServiceContext</span></code> contains all the information associated with the <code class="docutils literal"><span class="pre">DataService</span></code>, like OAuth values, Log location, etc. It is often necessary to return the <code class="docutils literal"><span class="pre">ServiceContext</span></code> for various purpose. To get the <code class="docutils literal"><span class="pre">ServiceContext</span></code> associated with <code class="docutils literal"><span class="pre">DataService</span></code> object, you will use:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">getServiceContext</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="authorization.html" class="btn btn-neutral float-right" title="Authorization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Intuit, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'4.0.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

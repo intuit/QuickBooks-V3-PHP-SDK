@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RequestedInvoiceCurrencyCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RequestedInvoiceCurrencyCode
  */
-class RequestedInvoiceCurrencyCode
-	extends RequestedInvoiceCurrencyCodeType
-	{
-
-
-
+class RequestedInvoiceCurrencyCode extends RequestedInvoiceCurrencyCodeType
+{
 } // end class RequestedInvoiceCurrencyCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DocumentType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DocumentType
  */
-class DocumentType
-	extends DocumentTypeType
-	{
-
-
-
+class DocumentType extends DocumentTypeType
+{
 } // end class DocumentType

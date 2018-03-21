@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName InvoiceTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\InvoiceTypeCode
  */
-class InvoiceTypeCode
-	extends InvoiceTypeCodeType
-	{
-
-
-
+class InvoiceTypeCode extends InvoiceTypeCodeType
+{
 } // end class InvoiceTypeCode

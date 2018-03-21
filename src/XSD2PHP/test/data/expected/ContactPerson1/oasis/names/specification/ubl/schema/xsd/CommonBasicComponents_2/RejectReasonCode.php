@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RejectReasonCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RejectReasonCode
  */
-class RejectReasonCode
-	extends RejectReasonCodeType
-	{
-
-
-
+class RejectReasonCode extends RejectReasonCodeType
+{
 } // end class RejectReasonCode

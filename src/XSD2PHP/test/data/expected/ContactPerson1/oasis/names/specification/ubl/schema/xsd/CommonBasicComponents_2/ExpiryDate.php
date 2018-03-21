@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ExpiryDate
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ExpiryDate
  */
-class ExpiryDate
-	extends ExpiryDateType
-	{
-
-
-
+class ExpiryDate extends ExpiryDateType
+{
 } // end class ExpiryDate

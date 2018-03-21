@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Consignment
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Consignment
  */
-class Consignment
-	extends ConsignmentType
-	{
-
-
-
+class Consignment extends ConsignmentType
+{
 } // end class Consignment

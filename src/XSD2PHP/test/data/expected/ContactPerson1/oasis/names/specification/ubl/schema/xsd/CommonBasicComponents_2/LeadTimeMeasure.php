@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LeadTimeMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LeadTimeMeasure
  */
-class LeadTimeMeasure
-	extends LeadTimeMeasureType
-	{
-
-
-
+class LeadTimeMeasure extends LeadTimeMeasureType
+{
 } // end class LeadTimeMeasure

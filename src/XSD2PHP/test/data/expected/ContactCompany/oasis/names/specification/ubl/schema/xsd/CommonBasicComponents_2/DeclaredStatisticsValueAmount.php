@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DeclaredStatisticsValueAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DeclaredStatisticsValueAmount
  */
-class DeclaredStatisticsValueAmount
-	extends DeclaredStatisticsValueAmountType
-	{
-
-
-
+class DeclaredStatisticsValueAmount extends DeclaredStatisticsValueAmountType
+{
 } // end class DeclaredStatisticsValueAmount

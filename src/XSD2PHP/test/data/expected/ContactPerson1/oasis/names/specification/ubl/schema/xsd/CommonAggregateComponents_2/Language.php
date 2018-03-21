@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Language
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Language
  */
-class Language
-	extends LanguageType
-	{
-
-
-
+class Language extends LanguageType
+{
 } // end class Language

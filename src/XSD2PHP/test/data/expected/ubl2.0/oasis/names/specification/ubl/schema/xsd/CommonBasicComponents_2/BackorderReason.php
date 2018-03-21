@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName BackorderReason
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\BackorderReason
  */
-class BackorderReason
-	extends BackorderReasonType
-	{
-
-
-
+class BackorderReason extends BackorderReasonType
+{
 } // end class BackorderReason

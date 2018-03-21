@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PartialDeliveryIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PartialDeliveryIndicator
  */
-class PartialDeliveryIndicator
-	extends PartialDeliveryIndicatorType
-	{
-
-
-
+class PartialDeliveryIndicator extends PartialDeliveryIndicatorType
+{
 } // end class PartialDeliveryIndicator

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TariffDescription
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TariffDescription
  */
-class TariffDescription
-	extends TariffDescriptionType
-	{
-
-
-
+class TariffDescription extends TariffDescriptionType
+{
 } // end class TariffDescription

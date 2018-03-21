@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OrangeHazardPlacardID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OrangeHazardPlacardID
  */
-class OrangeHazardPlacardID
-	extends OrangeHazardPlacardIDType
-	{
-
-
-
+class OrangeHazardPlacardID extends OrangeHazardPlacardIDType
+{
 } // end class OrangeHazardPlacardID

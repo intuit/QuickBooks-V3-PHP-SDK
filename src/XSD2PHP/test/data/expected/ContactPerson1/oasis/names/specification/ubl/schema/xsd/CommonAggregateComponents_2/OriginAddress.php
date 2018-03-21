@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName OriginAddress
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\OriginAddress
  */
-class OriginAddress
-	extends AddressType
-	{
-
-
-
+class OriginAddress extends AddressType
+{
 } // end class OriginAddress

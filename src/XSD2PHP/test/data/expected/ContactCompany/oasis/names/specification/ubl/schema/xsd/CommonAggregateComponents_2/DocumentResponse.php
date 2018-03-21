@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName DocumentResponse
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\DocumentResponse
  */
-class DocumentResponse
-	extends DocumentResponseType
-	{
-
-
-
+class DocumentResponse extends DocumentResponseType
+{
 } // end class DocumentResponse

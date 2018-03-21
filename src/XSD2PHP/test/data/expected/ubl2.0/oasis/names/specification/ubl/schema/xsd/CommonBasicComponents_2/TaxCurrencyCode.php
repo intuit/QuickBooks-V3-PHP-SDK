@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TaxCurrencyCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TaxCurrencyCode
  */
-class TaxCurrencyCode
-	extends TaxCurrencyCodeType
-	{
-
-
-
+class TaxCurrencyCode extends TaxCurrencyCodeType
+{
 } // end class TaxCurrencyCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CertificateOfOriginApplication
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CertificateOfOriginApplication
  */
-class CertificateOfOriginApplication
-	extends CertificateOfOriginApplicationType
-	{
-
-
-
+class CertificateOfOriginApplication extends CertificateOfOriginApplicationType
+{
 } // end class CertificateOfOriginApplication

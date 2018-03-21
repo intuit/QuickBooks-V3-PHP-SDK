@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName RegistrationName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\RegistrationName
  */
-class RegistrationName
-	extends RegistrationNameType
-	{
-
-
-
+class RegistrationName extends RegistrationNameType
+{
 } // end class RegistrationName

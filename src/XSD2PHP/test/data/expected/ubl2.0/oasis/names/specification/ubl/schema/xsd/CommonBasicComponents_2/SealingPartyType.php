@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SealingPartyType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SealingPartyType
  */
-class SealingPartyType
-	extends SealingPartyTypeType
-	{
-
-
-
+class SealingPartyType extends SealingPartyTypeType
+{
 } // end class SealingPartyType

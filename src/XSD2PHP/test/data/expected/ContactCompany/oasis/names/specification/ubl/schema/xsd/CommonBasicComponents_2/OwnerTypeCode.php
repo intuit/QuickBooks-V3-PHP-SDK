@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OwnerTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OwnerTypeCode
  */
-class OwnerTypeCode
-	extends OwnerTypeCodeType
-	{
-
-
-
+class OwnerTypeCode extends OwnerTypeCodeType
+{
 } // end class OwnerTypeCode

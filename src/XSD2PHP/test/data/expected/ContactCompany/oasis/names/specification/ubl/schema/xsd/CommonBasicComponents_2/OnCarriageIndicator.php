@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OnCarriageIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OnCarriageIndicator
  */
-class OnCarriageIndicator
-	extends OnCarriageIndicatorType
-	{
-
-
-
+class OnCarriageIndicator extends OnCarriageIndicatorType
+{
 } // end class OnCarriageIndicator

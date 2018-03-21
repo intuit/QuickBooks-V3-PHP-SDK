@@ -1,0 +1,365 @@
+.. _auth_page:
+
+=============
+Authorization
+=============
+
+This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the :ref:`installation`
+page.
+
+
+
+OAuth 1.0a
+==========
+
+For all developer accounts registered at https://developer.intuit.com before **July.17th, 2017**, they will have OAuth 1.0a protocol default for their apps.
+
+The developer will see "App Token", "OAuth Consumer Key", and "OAuth Consumer Secret" on the "Keys" tab in the app.
+
+Directly Use OAuth 1.0a Tokens
+------------------------------
+
+QuickBooks V3 SDK didn't provide a way to generate OAuth 1.0a tokens from OAuth Consumer Key and OAuth Consumer Secret. Developers must generate their own OAuth 1.0a tokens *BEFORE* they use the SDK.
+
+.. note::
+
+    QuickBooks Online provides an online tool called OAuth 1.0 Playground to help developers generate OAuth 1.0a tokens:
+    https://appcenter.intuit.com/Playground/OAuth/IA/ without writing any code.
+    For server side web application implementing OAuth 1.0a, please refer here:
+    https://intuitdeveloper.github.io/ for sample code. For implementation details, please refer to here:
+    https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a
+
+
+After developer managed to get OAuth 1.0a tokens, provides it to the DataService object:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth1',
+         'consumerKey' => "The OAuth Consumer key Value from Keys tab",
+         'consumerSecret' => "The OAuth Consumer secret Value from Keys tab",
+         'accessTokenKey' => "The OAuth 1.0a access token returned from QuickBooks Online",
+         'accessTokenSecret' => "The OAuth 1.0a access token secret retruned from QuickBooks Online",
+         'QBORealmID' => "The Company ID which the app wants to access",
+         //If you are using Development Keys, use Development here. If you are using Production Keys, use Production.
+         'baseUrl' => "Development/Production"
+    ));
+
+Here is an actual example for configuring OAuth 1.0a value for a sandbox Company:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth1',
+         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
+         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
+         'accessTokenKey' => "qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g",
+         'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
+         'QBORealmID' => "193514464689044",
+         'baseUrl' => "Development"
+    ));
+
+Disconnect or Reconnect OAuth 1.0a Tokens
+-----------------------------------------
+
+Although the SDK cannot help users to generate OAuth 1.0a tokens, QuickBooks V3 SDK does provide a way for developers to disconnect or reconnect OAuth 1.0a tokens for the Company.
+
+To disconnect your OAuth 1.0a access token, use $platformService->Disconnect() method. You will need to get the $serviceContext object from $dataService Object first. Here is an example:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+    use QuickBooksOnline\API\PlatformService\PlatformService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth1',
+         'consumerKey' => "My OAuth 1 consumer key",
+         'consumerSecret' => "My OAuth 1 consumer secret",
+         'accessTokenKey' => "My OAuth 1 access token",
+         'accessTokenSecret' => "My OAuth 1 access token secret",
+         'QBORealmID' => "123456789012345",
+         'baseUrl' => "Development"
+    ));
+
+    $serviceContext = $dataService->getServiceContext();
+    $platformService = new PlatformService($serviceContext);
+    //$result will be a xml-based string.
+    $result = $platformService->Disconnect();
+    ...
+
+after you have disconnected the OAuth 1.0a tokens, you can no longer use it to access QuickBooks Online API for the specific company.
+
+To reconnect for a QuickBooks Online Company, use $platformService->Reconnect() method:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+    use QuickBooksOnline\API\PlatformService\PlatformService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth1',
+         'consumerKey' => "My OAuth 1 consumer key",
+         'consumerSecret' => "My OAuth 1 consumer secret",
+         'accessTokenKey' => "My OAuth 1 access token",
+         'accessTokenSecret' => "My OAuth 1 access token secret",
+         'QBORealmID' => "123456789012345",
+         'baseUrl' => "Development"
+    ));
+
+    $serviceContext = $dataService->getServiceContext();
+    $platformService = new PlatformService($serviceContext);
+    //$result will be a xml-based string.
+    $result = $platformService->Reconnect();
+    ...
+
+Reconnect will only work during the last 30 days of OAuth 1 access token's expiration date. For example, for an OAuth 1 access token that is valid for 180 days, you can only call Reconnect() method between 150 days to 180 days.
+
+More information for OAuth 1.0a can be found here:
+https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a
+
+OAuth 2.0
+=========
+
+Most recent QuickBooks Online apps will have OAuth 2.0 as their default authentication protocol. If you see "Client ID" and "Client Secret" under your "Keys" tab, then your app is using OAuth 2.0 protocol. QuickBooks V3 SDK provides methods to generate OAuth 2.0 tokens, and how to use them.
+
+
+Generate OAuth 2.0 Tokens
+-------------------------
+
+In order for the SDK to generate OAuth 2.0 tokens for the app, developers will need to provide following necessary parameters to the SDK:
+
+- auth_mode: It will be 'oauth2' here
+- Client ID: Login to https://developer.intuit.com, go to your app, you can find "Client ID" from the app's keys tab
+- Client Secret: Login to https://developer.intuit.com, go to your app, you can find "Client Secret" from the app's keys tab
+- RedirectURI: Determines where the response is sent. The value of this parameter must exactly match one of the values listed for this app in the app settings
+- scope: A String value. It is either "com.intuit.quickbooks.accounting" or "com.intuit.quickbooks.payment"
+- baseUrl: If you use "Development Keys", use "Development" here. Otherwise, use "Production"
+
+More details can be found in our documentation here: https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/10_oauth_2.0
+
+Here is an example:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+          'auth_mode' => 'oauth2',
+          'ClientID' => "Client ID from the app's keys tab",
+          'ClientSecret' => "Client Secret from the app's keys tab",
+          'RedirectURI' => "The redirect URI provided on the Redirect URIs part under keys tab",
+          'scope' => "com.intuit.quickbooks.accounting or com.intuit.quickbooks.payment",
+          'baseUrl' => "Development/Production"
+    ));
+
+After we have provided necessary parameters, get the OAuth2LoginHelper from the DataService Object:
+
+.. code-block:: php
+
+   $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+
+The OAuth2LoginHelper will help developers to complete all the necessary steps for retrieving OAuth 2 tokens.
+
+First, use the $OAuth2LoginHelper object to generate Authorization Code URL:
+
+.. code-block:: php
+
+   $authorizationCodeUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+
+You will initial the OAuth 2 process by presenting this $authorizationCodeUrl to your customers on a browser. It has to be done **OUTSIDE OF** the SDK, and this step **CAN NOT** be completed with a script. The $authorizationCodeUrl will let your customers choose which Company they would like to connect, and they will click the "Authorize" button in order for your app to access their companies. A human interaction is required at this step and it can not be avoided.
+
+.. note::
+
+    In your PHP code, use header("Location: ".$authorizationCodeUrl);
+
+    to display the authorization screen to your customers. Do not use cURL.
+
+Once your customers have authorized your app, an authorization code with realmID will be returned to the RedirectURI you specified on previous step as query parameters. Provide these parameters to "exchangeAuthorizationCodeForToken" method to exchange for OAuth 2 tokens:
+
+.. code-block:: php
+
+   $accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("authorizationCode", "RealmID");
+
+An example will look like this:
+
+.. code-block:: php
+
+   $accessTokenObj = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("Q011510688430mhfd9mAwpsiB8eWAMPqjDO4j2WKmMWyeN96Ru", "1231434565226279");
+
+The $accessTokenObj is an object contains both access token and refresh token.
+
+After this step, the OAuth 2 token generation step is considered as complete.
+
+.. note::
+
+   If any of the previous step cannot be completed successfully, a ServiceException will be thrown with error message.
+
+If you want to use the access token and refresh token directly for your application, use:
+
+.. code-block:: php
+
+   $dataService->updateOAuth2Token($accessTokenObj);
+
+to update the $dataService object, and the $dataService is ready to make API calls with OAuth 2 Tokens.
+
+If you would like to store either the refresh token or access token to your own database, you can use:
+
+.. code-block:: php
+
+   $accessTokenValue = $accessTokenObj->getAccessToken();
+
+to get the OAuth 2 Access Token Value, or:
+
+.. code-block:: php
+
+   $refreshTokenValue = $accessTokenObj->getRefreshToken();
+
+to get the OAuth 2 Refresh Token Value.
+
+It is suggested that you **ALWAYS** store your OAuth 2 refresh token to your own session or database.
+
+
+
+Directly Use OAuth 2.0 Tokens
+-----------------------------
+
+If developers have already retrieved OAuth 2 tokens, they can simply provide it to DataService. It is very similar to OAuth 1.0a, just change the auth_mode from oauth1 to oauth 2.
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth2',
+         'ClientID' => "Client ID from the app's keys tab",
+         'ClientSecret' => "Client Secret from the app's keys tab",
+         'accessTokenKey' => 'OAuth 2 Access Token',
+         'refreshTokenKey' => "OAuth 2 Refresh Token",
+         'QBORealmID' => "The Company ID which the app wants to access",
+         'baseUrl' => "Development/Production"
+    ));
+
+and now your app is ready to make API calls.
+
+.. note::
+
+    Similar to OAuth 1.0 Playground, QuickBooks Online also provides OAuth 2.0 Playground to help developers generate OAuth
+    2.0 tokens without writing code. To access OAuth 2.0 Playground, you will need to log into https://developer.intuit.com,
+    go to your app' dashboard and click "Test connect to app (OAuth)" link there.
+
+
+
+Refresh your OAuth 2.0 token
+----------------------------
+
+In QBO, since each OAuth 2 access token is only valid for one hour, you often need to use the refresh token to request for a new access token.
+
+To refresh your OAuth 2 access token, you will pass your Client ID, Client Secret, OAuth 2 refresh token, the realmID, and baseURL to the $dataService object, then use the $OAuth2LoginHelper to request for a new refresh token:
+
+.. code-block:: php
+
+    use QuickBooksOnline\API\DataService\DataService;
+
+    // Prep Data Services
+    $dataService = DataService::Configure(array(
+         'auth_mode' => 'oauth2',
+         'ClientID' => "Client ID from the app's keys tab",
+         'ClientSecret' => "Client Secret from the app's keys tab",
+         //get the refresh token from session or database
+         'refreshTokenKey' => "Your latest OAuth 2 Refresh Token",
+         'QBORealmID' => "The Company ID which the app wants to access",
+         'baseUrl' => "Development/Production"
+    ));
+
+    $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+    $refreshedAccessTokenObj = $OAuth2LoginHelper->refreshToken();
+    $error = $OAuth2LoginHelper->getLastError();
+    if($error){
+      ...
+    }else{
+      //Refresh Token is called successfully
+      $dataService->updateOAuth2Token($refreshedAccessTokenObj);
+      ...
+    }
+
+After v4.0.5 release, developers are able to construct ``OAuth2LoginHelper`` directly. They can use ``refreshAccessTokenWithRefreshToken`` method to achieve the same purpose:
+
+.. code-block:: php
+
+      <?php
+      require 'vendor/autoload.php';
+
+      use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+
+      //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
+      $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+      $accessTokenObj = $oauth2LoginHelper->
+                          refreshAccessTokenWithRefreshToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+      $accessTokenValue = $accessTokenObj->getAccessToken();
+      $refreshTokenValue = $accessTokenObj->getRefreshToken();
+      echo "Access Token is:";
+      print_r($accessTokenValue);
+      echo "RefreshToken Token is:";
+      print_r($refreshTokenValue);
+      ?>
+
+For each new OAuth 2 access token and OAuth 2 refresh token returned from QuickBooks Online, you will need to use getRefreshToken() method to get the latest refresh token again.
+
+Revoke your OAuth 2.0 token
+---------------------------
+
+Similar to refresh token, the V3 PHP SDK also allows you to revoke an existed OAuth 2 token. It can be a refresh token, or access token:
+
+.. code-block:: php
+
+  <?php
+  require 'vendor/autoload.php';
+
+  use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+  //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
+  $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+  $revokeResult = $oauth2LoginHelper->revokeToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+  if($revokeResult){
+      echo "RefreshToken Token revoked.";
+  }
+  ?>
+
+OAuth 2.0 SSL certificate settings
+----------------------------------
+
+The PHP SDK uses the Mozilla CA certificates (https://curl.haxx.se/ca/cacert.pem) for authorizing peer certificates.
+
+To disable the cURL certificate settings from the PHP SDK, comment out Line 106 at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/HttpClients/CurlHttpClient.php
+
+or you can append your self-signed certificate at https://github.com/intuit/QuickBooks-V3-PHP-SDK/blob/master/src/Core/OAuth/OAuth2/certs/cacert.pem
+
+OAuth 2.0 vs 1.0a in QuickBooks Online
+--------------------------------------
+
+The way how OAuth 2.0 works is different with OAuth 1.0a. When you work with OAuth 1.0a, the expire time of the access token can be set up to 180 days. However, for OAuth 2.0, the expire time of an access token is **ALWAYS** set to one hour. It **CAN NOT** be changed. You will need to use the refresh token to get a new access token whenever you are going to make API calls with QuickBooks Online.
+
+1) For OAuth 2.0, why do I need both an access token and a refresh token?
+
+  The access token is used to make API calls. For example, if you want to create an invoice for a company, you will need to have the access token in your Authorization header. However, access token is always short-lived. Each access token can only be valid for an hour after its creation. If you try to make an API call after an hour with the same access token, the request will be blocked by QBO. That is what refresh token used for. It is used to request a new access token after access token expired, so you can still access to the QBO company after an hour. Just remember, whenever you make a refreshToken API call, always **STORE THE LATEST REFRESH TOKEN** value in your session or database. In QuickBooks Online OAuth 2 protocol, it is not the access token you should store, it is the refresh token you need to store. Even the refresh token is valid for 101 days, however, it CAN BE CHANGED when you make the refreshToken() call. Once it is changed, the previous refresh token will no longer be valid. Potentially causing a request being blocked by QuickBooks Online.
+
+
+
+2) For OAuth 2.0, when should we request a new access token?
+
+  Each time the user **STARTS** to use the app, the app should requests for a new OAuth 2 access token using the refresh token. Based on our research, most users won't use an app for more than one hour. Therefore, QuickBooks Online designs the access token to be valid for only one hour. However, if the user does use the app for a longer time, you will need to update the access token again.
+
+
+
+3) Isn't the refresh token is valid for 101 days based on the docs? Why my refresh Token seems like is only valid for "24 hours", not 101 days?
+
+  Each day(every 24 hours), QuickBooks Online will return a new Refresh Token for every Refresh Token API call. If a new refresh token is returned, the previous refresh token will be forced to expire. For example, On day 1, developer makes a refresh token API call using refresh token A, it returned access token C, refresh Token A. On day 2, developer makes a refresh token API call using refresh token A, it will return access token D, refresh Token B. That is, on day 2, a new refresh token is returned, and the refresh token A is forced to expire. For simplicity, we tell our developers always store the **LATEST** refresh token returned from QBO. In this sense, you do not need to worry about 24 hours or 101 days.

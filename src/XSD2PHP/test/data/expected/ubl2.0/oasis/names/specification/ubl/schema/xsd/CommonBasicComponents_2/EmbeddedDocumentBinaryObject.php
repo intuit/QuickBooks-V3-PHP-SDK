@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName EmbeddedDocumentBinaryObject
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\EmbeddedDocumentBinaryObject
  */
-class EmbeddedDocumentBinaryObject
-	extends EmbeddedDocumentBinaryObjectType
-	{
-
-
-
+class EmbeddedDocumentBinaryObject extends EmbeddedDocumentBinaryObjectType
+{
 } // end class EmbeddedDocumentBinaryObject

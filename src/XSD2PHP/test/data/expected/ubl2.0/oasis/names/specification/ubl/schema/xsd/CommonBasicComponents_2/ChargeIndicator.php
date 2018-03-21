@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ChargeIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ChargeIndicator
  */
-class ChargeIndicator
-	extends ChargeIndicatorType
-	{
-
-
-
+class ChargeIndicator extends ChargeIndicatorType
+{
 } // end class ChargeIndicator

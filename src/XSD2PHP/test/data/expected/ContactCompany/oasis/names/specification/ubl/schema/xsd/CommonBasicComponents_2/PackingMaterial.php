@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PackingMaterial
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PackingMaterial
  */
-class PackingMaterial
-	extends PackingMaterialType
-	{
-
-
-
+class PackingMaterial extends PackingMaterialType
+{
 } // end class PackingMaterial

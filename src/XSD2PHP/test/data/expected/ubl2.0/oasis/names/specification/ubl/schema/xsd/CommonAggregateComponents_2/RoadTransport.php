@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName RoadTransport
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\RoadTransport
  */
-class RoadTransport
-	extends RoadTransportType
-	{
-
-
-
+class RoadTransport extends RoadTransportType
+{
 } // end class RoadTransport

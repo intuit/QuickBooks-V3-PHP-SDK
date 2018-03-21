@@ -27,7 +27,8 @@ namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
  * @version 0.0.1
  *
  */
-class PHPClass extends Common {
+class PHPClass extends Common
+{
     /**
      * Class name
      *
@@ -104,7 +105,7 @@ class PHPClass extends Common {
      */
     public function __construct($classPrefix='')
     {
-    	parent::__construct($classPrefix);
+        parent::__construct($classPrefix);
     }
 
     /**
@@ -112,26 +113,29 @@ class PHPClass extends Common {
      *
      * @return array
      */
-    public function getPhpCode() {
+    public function getPhpCode()
+    {
         $code = "\n";
         if ($this->extendsNamespace != '') {
-	        if (false === $this->overrideAsSingleNamespace)
-				$code .= "use ".$this->extendsNamespace.";\n";
+            if (false === $this->overrideAsSingleNamespace) {
+                $code .= "use ".$this->extendsNamespace.";\n";
+            }
         }
 
         if (!empty($this->classDocBlock)) {
             $code .= $this->getDocBlock($this->classDocBlock);
         }
 
-        if ($this->name == $this->classPrefix.$this->extends)
-        	$this->name = $this->name . "Wrapper";
+        if ($this->name == $this->classPrefix.$this->extends) {
+            $this->name = $this->name . "Wrapper";
+        }
 
         $code .= 'class '.$this->name."\n";
         if ($this->extends != '') {
             if ($this->extendsNamespace != '') {
                 $nsLastName = array_reverse(explode('\\', $this->extendsNamespace));
                 $code .= "\t".'extends '.$this->classPrefix.$nsLastName[0];
-                $code = "require_once('".$this->classPrefix.implode('/',$nsLastName).".php');\n" . $code;
+                $code = "require_once('".$this->classPrefix.implode('/', $nsLastName).".php');\n" . $code;
             } else {
                 $code .= "\t".'extends '.$this->classPrefix.$this->extends."\n";
             }
@@ -139,35 +143,36 @@ class PHPClass extends Common {
         $code .= "\t".'{'."\n";
 
 
-		$propNames = array();
-		foreach($this->classProperties as $oneProp)
-			$propNames[] = $oneProp['name'];
+        $propNames = array();
+        foreach ($this->classProperties as $oneProp) {
+            $propNames[] = $oneProp['name'];
+        }
         $code .= ''."\n";
 
-		$code .= "\t\t".'/**                                                                       '."\n";
-		$code .= "\t\t".'* Initializes this object, optionally with pre-defined property values    '."\n";
-		$code .= "\t\t".'*                                                                         '."\n";
-		$code .= "\t\t".'* Initializes this object and it\'s property members, using the dictionary'."\n";
-		$code .= "\t\t".'* of key/value pairs passed as an optional argument.                      '."\n";
-		$code .= "\t\t".'*                                                                         '."\n";
-		$code .= "\t\t".'* @param dictionary $keyValInitializers key/value pairs to be populated into object\'s properties '."\n";
-		$code .= "\t\t".'* @param boolean $verbose specifies whether object should echo warnings   '."\n";
-		$code .= "\t\t".'*/                                                                        '."\n";
-		$code .= "\t\t".'public function __construct($keyValInitializers=array(), $verbose=FALSE)'."\n";
-		$code .= "\t\t".'{'."\n";
-	    $code .= "\t\t\t".'foreach($keyValInitializers as $initPropName => $initPropVal)'."\n";
-	    $code .= "\t\t\t".'{'."\n";
-	    $code .= "\t\t\t\t".'if (property_exists(\''. $this->name . '\',$initPropName))'."\n";
-	    $code .= "\t\t\t\t".'{'."\n";
-	    $code .= "\t\t\t\t\t".'$this->{$initPropName} = $initPropVal;'."\n";
-	    $code .= "\t\t\t\t".'}'."\n";
-	    $code .= "\t\t\t\t".'else'."\n";
-	    $code .= "\t\t\t\t".'{'."\n";
-	    $code .= "\t\t\t\t\t".'if ($verbose)'."\n";
-	    $code .= "\t\t\t\t\t\t".'echo "Property does not exist ($initPropName) in class (".get_class($this).")'."\";\n";
-	    $code .= "\t\t\t\t".'}'."\n";
-	    $code .= "\t\t\t".'}'."\n";
-		$code .= "\t\t".'}'."\n";
+        $code .= "\t\t".'/**                                                                       '."\n";
+        $code .= "\t\t".'* Initializes this object, optionally with pre-defined property values    '."\n";
+        $code .= "\t\t".'*                                                                         '."\n";
+        $code .= "\t\t".'* Initializes this object and it\'s property members, using the dictionary'."\n";
+        $code .= "\t\t".'* of key/value pairs passed as an optional argument.                      '."\n";
+        $code .= "\t\t".'*                                                                         '."\n";
+        $code .= "\t\t".'* @param dictionary $keyValInitializers key/value pairs to be populated into object\'s properties '."\n";
+        $code .= "\t\t".'* @param boolean $verbose specifies whether object should echo warnings   '."\n";
+        $code .= "\t\t".'*/                                                                        '."\n";
+        $code .= "\t\t".'public function __construct($keyValInitializers=array(), $verbose=FALSE)'."\n";
+        $code .= "\t\t".'{'."\n";
+        $code .= "\t\t\t".'foreach($keyValInitializers as $initPropName => $initPropVal)'."\n";
+        $code .= "\t\t\t".'{'."\n";
+        $code .= "\t\t\t\t".'if (property_exists(\''. $this->name . '\',$initPropName))'."\n";
+        $code .= "\t\t\t\t".'{'."\n";
+        $code .= "\t\t\t\t\t".'$this->{$initPropName} = $initPropVal;'."\n";
+        $code .= "\t\t\t\t".'}'."\n";
+        $code .= "\t\t\t\t".'else'."\n";
+        $code .= "\t\t\t\t".'{'."\n";
+        $code .= "\t\t\t\t\t".'if ($verbose)'."\n";
+        $code .= "\t\t\t\t\t\t".'echo "Property does not exist ($initPropName) in class (".get_class($this).")'."\";\n";
+        $code .= "\t\t\t\t".'}'."\n";
+        $code .= "\t\t\t".'}'."\n";
+        $code .= "\t\t".'}'."\n";
 
         $code .= ''."\n";
         if (in_array($this->type, $this->basicTypes)) {
@@ -198,7 +203,8 @@ class PHPClass extends Common {
      *
      * @return string
      */
-    public function getClassProperties($props, $indent = "\t") {
+    public function getClassProperties($props, $indent = "\t")
+    {
         $code = $indent."\n";
 
         foreach ($props as $prop) {
@@ -211,7 +217,8 @@ class PHPClass extends Common {
     }
 
 
-    public function getClassConstants($const, $indent = "\t") {
+    public function getClassConstants($const, $indent = "\t")
+    {
         $code = array();
 
         foreach ($const as $value) {
@@ -233,7 +240,8 @@ class PHPClass extends Common {
      *
      * return string
      */
-    public function getDocBlock($docs, $indent = "") {
+    public function getDocBlock($docs, $indent = "")
+    {
         $code  = '/**'."\n";
         foreach ($docs as $key => $value) {
             $code .= $indent.' * @'.$key.' '.$value."\n";

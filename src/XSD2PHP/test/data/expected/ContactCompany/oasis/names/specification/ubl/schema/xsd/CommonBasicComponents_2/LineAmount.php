@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LineAmount
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LineAmount
  */
-class LineAmount
-	extends LineAmountType
-	{
-
-
-
+class LineAmount extends LineAmountType
+{
 } // end class LineAmount

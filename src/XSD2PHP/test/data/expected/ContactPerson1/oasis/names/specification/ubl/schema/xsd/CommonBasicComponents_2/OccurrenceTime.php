@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName OccurrenceTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\OccurrenceTime
  */
-class OccurrenceTime
-	extends OccurrenceTimeType
-	{
-
-
-
+class OccurrenceTime extends OccurrenceTimeType
+{
 } // end class OccurrenceTime

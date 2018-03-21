@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName District
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\District
  */
-class District
-	extends DistrictType
-	{
-
-
-
+class District extends DistrictType
+{
 } // end class District

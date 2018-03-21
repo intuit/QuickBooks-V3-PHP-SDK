@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AddressTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AddressTypeCode
  */
-class AddressTypeCode
-	extends AddressTypeCodeType
-	{
-
-
-
+class AddressTypeCode extends AddressTypeCodeType
+{
 } // end class AddressTypeCode

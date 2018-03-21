@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Region
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Region
  */
-class Region
-	extends RegionType
-	{
-
-
-
+class Region extends RegionType
+{
 } // end class Region

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PackSizeNumeric
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PackSizeNumeric
  */
-class PackSizeNumeric
-	extends PackSizeNumericType
-	{
-
-
-
+class PackSizeNumeric extends PackSizeNumericType
+{
 } // end class PackSizeNumeric

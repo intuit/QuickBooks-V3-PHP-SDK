@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SchemeURI
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SchemeURI
  */
-class SchemeURI
-	extends SchemeURIType
-	{
-
-
-
+class SchemeURI extends SchemeURIType
+{
 } // end class SchemeURI

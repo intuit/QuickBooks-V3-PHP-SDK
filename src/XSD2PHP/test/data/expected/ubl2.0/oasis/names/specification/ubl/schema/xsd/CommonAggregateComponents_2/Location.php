@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Location
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Location
  */
-class Location
-	extends LocationType
-	{
-
-
-
+class Location extends LocationType
+{
 } // end class Location

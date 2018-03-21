@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Text
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Text
  */
-class Text
-	extends TextType
-	{
-
-
-
+class Text extends TextType
+{
 } // end class Text

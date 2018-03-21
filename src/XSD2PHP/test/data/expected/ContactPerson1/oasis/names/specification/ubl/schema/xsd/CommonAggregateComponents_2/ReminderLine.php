@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName ReminderLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\ReminderLine
  */
-class ReminderLine
-	extends ReminderLineType
-	{
-
-
-
+class ReminderLine extends ReminderLineType
+{
 } // end class ReminderLine

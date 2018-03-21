@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PlacardEndorsement
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PlacardEndorsement
  */
-class PlacardEndorsement
-	extends PlacardEndorsementType
-	{
-
-
-
+class PlacardEndorsement extends PlacardEndorsementType
+{
 } // end class PlacardEndorsement

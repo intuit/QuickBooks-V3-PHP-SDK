@@ -195,7 +195,7 @@ class Zend_Soap_Client
      */
     public function setOptions($options)
     {
-        if($options instanceof Zend_Config) {
+        if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
 
@@ -445,7 +445,6 @@ class Zend_Soap_Client
         }
 
         return true;
-
     }
 
     /**
@@ -806,7 +805,7 @@ class Zend_Soap_Client
      */
     public function setStreamContext($context)
     {
-        if(!is_resource($context) || get_resource_type($context) !== "stream-context") {
+        if (!is_resource($context) || get_resource_type($context) !== "stream-context") {
             /**
              * @see Zend_Soap_Client_Exception
              */

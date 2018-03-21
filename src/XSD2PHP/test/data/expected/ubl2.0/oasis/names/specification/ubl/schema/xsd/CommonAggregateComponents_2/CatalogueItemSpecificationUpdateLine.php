@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CatalogueItemSpecificationUpdateLine
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CatalogueItemSpecificationUpdateLine
  */
-class CatalogueItemSpecificationUpdateLine
-	extends CatalogueItemSpecificationUpdateLineType
-	{
-
-
-
+class CatalogueItemSpecificationUpdateLine extends CatalogueItemSpecificationUpdateLineType
+{
 } // end class CatalogueItemSpecificationUpdateLine

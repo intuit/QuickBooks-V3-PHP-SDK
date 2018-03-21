@@ -2,16 +2,13 @@
 namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
 
 use un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\_2;
+
 /**
  * @xmlNamespace urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2
  * @xmlType TextType
  * @xmlName HandlingInstructionsType
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\HandlingInstructionsType
  */
-class HandlingInstructionsType
-	extends _2\TextType
-	{
-
-
-
+class HandlingInstructionsType extends _2\TextType
+{
 } // end class HandlingInstructionsType

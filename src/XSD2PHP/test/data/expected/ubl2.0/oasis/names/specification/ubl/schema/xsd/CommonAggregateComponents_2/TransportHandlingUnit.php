@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransportHandlingUnit
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransportHandlingUnit
  */
-class TransportHandlingUnit
-	extends TransportHandlingUnitType
-	{
-
-
-
+class TransportHandlingUnit extends TransportHandlingUnitType
+{
 } // end class TransportHandlingUnit

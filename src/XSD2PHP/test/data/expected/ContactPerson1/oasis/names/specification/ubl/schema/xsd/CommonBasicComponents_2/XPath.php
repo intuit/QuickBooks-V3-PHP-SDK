@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName XPath
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\XPath
  */
-class XPath
-	extends XPathType
-	{
-
-
-
+class XPath extends XPathType
+{
 } // end class XPath

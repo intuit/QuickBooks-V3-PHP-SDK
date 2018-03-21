@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName CardAccount
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\CardAccount
  */
-class CardAccount
-	extends CardAccountType
-	{
-
-
-
+class CardAccount extends CardAccountType
+{
 } // end class CardAccount

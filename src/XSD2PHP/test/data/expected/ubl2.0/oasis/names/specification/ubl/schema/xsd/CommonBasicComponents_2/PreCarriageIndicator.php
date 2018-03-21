@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PreCarriageIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PreCarriageIndicator
  */
-class PreCarriageIndicator
-	extends PreCarriageIndicatorType
-	{
-
-
-
+class PreCarriageIndicator extends PreCarriageIndicatorType
+{
 } // end class PreCarriageIndicator

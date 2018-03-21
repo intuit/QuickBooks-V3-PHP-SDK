@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LineStatusCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LineStatusCode
  */
-class LineStatusCode
-	extends LineStatusCodeType
-	{
-
-
-
+class LineStatusCode extends LineStatusCodeType
+{
 } // end class LineStatusCode

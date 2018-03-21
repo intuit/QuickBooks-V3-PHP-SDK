@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ParentDocumentID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ParentDocumentID
  */
-class ParentDocumentID
-	extends ParentDocumentIDType
-	{
-
-
-
+class ParentDocumentID extends ParentDocumentIDType
+{
 } // end class ParentDocumentID

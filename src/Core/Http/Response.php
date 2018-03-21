@@ -6,5 +6,4 @@ namespace QuickBooksOnline\API\Core\Http;
  */
 class Response extends RequestResponse
 {
-
 }

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName AdditionalStreetName
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\AdditionalStreetName
  */
-class AdditionalStreetName
-	extends AdditionalStreetNameType
-	{
-
-
-
+class AdditionalStreetName extends AdditionalStreetNameType
+{
 } // end class AdditionalStreetName

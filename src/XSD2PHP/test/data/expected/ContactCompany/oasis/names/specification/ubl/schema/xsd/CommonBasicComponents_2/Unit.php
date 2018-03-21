@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Unit
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Unit
  */
-class Unit
-	extends UnitType
-	{
-
-
-
+class Unit extends UnitType
+{
 } // end class Unit

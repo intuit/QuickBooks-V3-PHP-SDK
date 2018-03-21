@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TransshipPortLocation
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TransshipPortLocation
  */
-class TransshipPortLocation
-	extends LocationType
-	{
-
-
-
+class TransshipPortLocation extends LocationType
+{
 } // end class TransshipPortLocation

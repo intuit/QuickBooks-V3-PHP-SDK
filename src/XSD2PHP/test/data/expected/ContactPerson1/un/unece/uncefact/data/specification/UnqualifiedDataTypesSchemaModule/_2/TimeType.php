@@ -16,12 +16,11 @@ namespace un\unece\uncefact\data\specification\UnqualifiedDataTypesSchemaModule\
  * @xmlBuiltinType time
  */
 class TimeType
-	{
+{
 
-		/**
-		 * @xmlType value
-		 * @var time
-		 */
-		public $value;
-
+        /**
+         * @xmlType value
+         * @var time
+         */
+        public $value;
 } // end class TimeType

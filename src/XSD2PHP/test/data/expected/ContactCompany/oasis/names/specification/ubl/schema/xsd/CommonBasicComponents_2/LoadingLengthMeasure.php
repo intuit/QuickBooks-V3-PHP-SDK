@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LoadingLengthMeasure
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LoadingLengthMeasure
  */
-class LoadingLengthMeasure
-	extends LoadingLengthMeasureType
-	{
-
-
-
+class LoadingLengthMeasure extends LoadingLengthMeasureType
+{
 } // end class LoadingLengthMeasure

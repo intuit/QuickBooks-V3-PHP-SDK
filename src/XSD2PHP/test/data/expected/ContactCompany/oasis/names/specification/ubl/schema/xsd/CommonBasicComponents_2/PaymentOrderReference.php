@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PaymentOrderReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PaymentOrderReference
  */
-class PaymentOrderReference
-	extends PaymentOrderReferenceType
-	{
-
-
-
+class PaymentOrderReference extends PaymentOrderReferenceType
+{
 } // end class PaymentOrderReference

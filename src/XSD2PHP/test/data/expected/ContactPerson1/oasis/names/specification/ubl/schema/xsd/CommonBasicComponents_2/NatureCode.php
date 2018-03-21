@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName NatureCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\NatureCode
  */
-class NatureCode
-	extends NatureCodeType
-	{
-
-
-
+class NatureCode extends NatureCodeType
+{
 } // end class NatureCode

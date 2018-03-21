@@ -25,14 +25,15 @@ namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
  * @author Mike Bevz <myb@mikebevz.com>
  * @version 0.0.1
  */
-class Common {
+class Common
+{
 
-	/**
-	 * Prefix for generated class names
-	 *
-	 * @var classPrefix
-	 */
-	protected $classPrefix;
+    /**
+     * Prefix for generated class names
+     *
+     * @var classPrefix
+     */
+    protected $classPrefix;
 
 
     public $basicTypes = array('decimal', 'base64Binary', 'normalizedString',
@@ -54,7 +55,7 @@ class Common {
         'int', 'integer', 'float', 'string', 'boolean', 'bool', 'object'
     );
 
-    public $reservedWords = array (
+    public $reservedWords = array(
         'and', 'or', 'xor', '__FILE__', 'exception',
         '__LINE__', 'array', 'as', 'break', 'case',
         'class', 'const', 'continue', 'declare', 'default',
@@ -84,11 +85,11 @@ class Common {
      */
     public $dom;
 
-	/**
-	 * If all classes should be treated as members of a single namespace, set that string here
-	 * @var overrideAsSingleNamespace
-	 */
-	public $overrideAsSingleNamespace = false;
+    /**
+     * If all classes should be treated as members of a single namespace, set that string here
+     * @var overrideAsSingleNamespace
+     */
+    public $overrideAsSingleNamespace = false;
 
     /**
      * __construct
@@ -102,7 +103,8 @@ class Common {
         $this->classPrefix = $classPrefix;
     }
 
-    public function getDocNamespaces($dom) {
+    public function getDocNamespaces($dom)
+    {
         $xpath = new \DOMXPath($dom);
 
 
@@ -111,16 +113,14 @@ class Common {
         $namespaces = $xpath->query($query);
 
         foreach ($namespaces as $node) {
-
             $key = "";
             if (preg_match("/:/", $node->nodeName)) {
-                list ($pref, $key) = explode(":", $node->nodeName);
+                list($pref, $key) = explode(":", $node->nodeName);
                 if ($key === "xml") {
                     continue;
                 }
                 $nss[$key] = $node->nodeValue;
             }
-
         }
 
         return $nss;
@@ -133,13 +133,14 @@ class Common {
      *
      * @return array($namespace, $nodeName)
      */
-    public function parseQName($qname, $resolveNamespace = false) {
+    public function parseQName($qname, $resolveNamespace = false)
+    {
         if (!preg_match('/:/', $qname)) {
-	        return array('', $qname);
+            return array('', $qname);
             //throw new \RuntimeException("Given argument is not of QName type: ".$qname);
         }
 
-        list ($ns, $name) = explode(":", $qname);
+        list($ns, $name) = explode(":", $qname);
 
         if ($resolveNamespace === true) {
             $ns = $this->resolveNamespace($ns);
@@ -149,16 +150,17 @@ class Common {
         return array($ns, $name);
     }
 
-    public function isQName($name) {
-        if (preg_match('/:/',$name)) {
+    public function isQName($name)
+    {
+        if (preg_match('/:/', $name)) {
             return true;
         }
 
         return false;
-
     }
 
-    public function urnToPhpName($urn) {
+    public function urnToPhpName($urn)
+    {
         $urn = preg_replace('/urn:|http:\/\//', '', $urn);
         $urn = preg_replace('/-/', '_', $urn);
         return preg_replace('/:|\//', '\\', $urn);
@@ -171,7 +173,8 @@ class Common {
      *
      * @return string Long namespace
      */
-    public function resolveNamespace($shortNs) {
+    public function resolveNamespace($shortNs)
+    {
         if (!($this->dom instanceof \DOMDocument)) {
             throw new RuntimeException("DOM is not initialized");
         }
@@ -194,7 +197,8 @@ class Common {
      *
      * @return array
      */
-    public function parseDocComments($comments) {
+    public function parseDocComments($comments)
+    {
         $comments = explode("\n", $comments);
         $commentsOut = array();
         $params = array();
@@ -223,15 +227,15 @@ class Common {
         return $commentsOut;
     }
 
-    public function parseParamDocs($string) {
-
+    public function parseParamDocs($string)
+    {
         $resp = array();
         $data = explode(" ", $string, 3);
         //print_r($data);
         if (count($data) == 2) {
             $resp['type'] = $data[0];
             $resp['name'] = preg_replace('/\$/', '', $data[1]);
-        } elseif(count($data) == 3) {
+        } elseif (count($data) == 3) {
             $resp['type'] = $data[0];
             $resp['name'] = preg_replace('/\$/', '', $data[1]);
             $resp['docs'] = $data[2];
@@ -242,7 +246,8 @@ class Common {
         return $resp;
     }
 
-    public function parseReturnDocs($string) {
+    public function parseReturnDocs($string)
+    {
         $resp = array();
         $data = explode(" ", $string, 2);
         if (count($data) == 1) {
@@ -257,7 +262,8 @@ class Common {
         return $resp;
     }
 
-    public function getNsCode($longNs, $rt = false) {
+    public function getNsCode($longNs, $rt = false)
+    {
         // if namespace exists - just use its name
         // otherwise add it as nsatrribute to root and use its name
         if (!is_array($this->namespaces)) {
@@ -283,7 +289,8 @@ class Common {
      *
      * @return string
      */
-    public function normalizeType($type) {
+    public function normalizeType($type)
+    {
         switch ($type) {
             case 'decimal':
             case 'double':
@@ -337,7 +344,8 @@ class Common {
         }
     }
 
-    public function phpTypeToSoap($phpType) {
+    public function phpTypeToSoap($phpType)
+    {
         switch ($phpType) {
             case 'bool':
             case 'boolean':
@@ -362,5 +370,4 @@ class Common {
             //case 'object':
         }
     }
-
 }

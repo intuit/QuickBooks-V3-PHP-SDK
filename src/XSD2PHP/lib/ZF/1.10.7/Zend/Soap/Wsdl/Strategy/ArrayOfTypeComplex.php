@@ -46,7 +46,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
      */
     public function addComplexType($type)
     {
-        if(in_array($type, $this->_inProcess)) {
+        if (in_array($type, $this->_inProcess)) {
             require_once "Zend/Soap/Wsdl/Exception.php";
             throw new Zend_Soap_Wsdl_Exception("Infinite recursion, cannot nest '".$type."' into itself.");
         }
@@ -54,7 +54,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
 
         $nestingLevel = $this->_getNestedCount($type);
 
-        if($nestingLevel > 1) {
+        if ($nestingLevel > 1) {
             require_once "Zend/Soap/Wsdl/Exception.php";
             throw new Zend_Soap_Wsdl_Exception(
                 "ArrayOfTypeComplex cannot return nested ArrayOfObject deeper than ".
@@ -64,7 +64,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
 
         $singularType = $this->_getSingularPhpType($type);
 
-        if(!class_exists($singularType)) {
+        if (!class_exists($singularType)) {
             require_once "Zend/Soap/Wsdl/Exception.php";
             throw new Zend_Soap_Wsdl_Exception(sprintf(
                 "Cannot add a complex type %s that is not an object or where ".
@@ -72,7 +72,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
             ));
         }
 
-        if($nestingLevel == 1) {
+        if ($nestingLevel == 1) {
             // The following blocks define the Array of Object structure
             $xsdComplexTypeName = $this->_addArrayOfComplexType($singularType, $type);
         } else {
@@ -80,7 +80,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
         }
 
         // The array for the objects has been created, now build the object definition:
-        if(!in_array($singularType, $this->getContext()->getTypes())) {
+        if (!in_array($singularType, $this->getContext()->getTypes())) {
             parent::addComplexType($singularType);
         }
 
@@ -94,7 +94,7 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex extends Zend_Soap_Wsdl_Strategy
 
         $xsdComplexTypeName = $this->_getXsdComplexTypeName($singularType);
 
-        if(!in_array($xsdComplexTypeName, $this->getContext()->getTypes())) {
+        if (!in_array($xsdComplexTypeName, $this->getContext()->getTypes())) {
             $complexType = $dom->createElement('xsd:complexType');
             $complexType->setAttribute('name', $xsdComplexTypeName);
 

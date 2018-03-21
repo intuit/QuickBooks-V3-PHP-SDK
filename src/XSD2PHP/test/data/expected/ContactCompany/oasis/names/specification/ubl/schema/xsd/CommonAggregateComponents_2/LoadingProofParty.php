@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName LoadingProofParty
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\LoadingProofParty
  */
-class LoadingProofParty
-	extends PartyType
-	{
-
-
-
+class LoadingProofParty extends PartyType
+{
 } // end class LoadingProofParty

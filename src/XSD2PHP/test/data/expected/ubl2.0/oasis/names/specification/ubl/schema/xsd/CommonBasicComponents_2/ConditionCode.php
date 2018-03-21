@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ConditionCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ConditionCode
  */
-class ConditionCode
-	extends ConditionCodeType
-	{
-
-
-
+class ConditionCode extends ConditionCodeType
+{
 } // end class ConditionCode

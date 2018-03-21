@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CanonicalizationMethod
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CanonicalizationMethod
  */
-class CanonicalizationMethod
-	extends CanonicalizationMethodType
-	{
-
-
-
+class CanonicalizationMethod extends CanonicalizationMethodType
+{
 } // end class CanonicalizationMethod

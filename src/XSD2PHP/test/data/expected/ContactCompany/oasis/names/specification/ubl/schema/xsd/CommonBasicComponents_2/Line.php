@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Line
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Line
  */
-class Line
-	extends LineType
-	{
-
-
-
+class Line extends LineType
+{
 } // end class Line

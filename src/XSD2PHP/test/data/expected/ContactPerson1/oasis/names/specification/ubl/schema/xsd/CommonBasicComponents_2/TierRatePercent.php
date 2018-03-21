@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName TierRatePercent
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\TierRatePercent
  */
-class TierRatePercent
-	extends TierRatePercentType
-	{
-
-
-
+class TierRatePercent extends TierRatePercentType
+{
 } // end class TierRatePercent

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName Branch
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\Branch
  */
-class Branch
-	extends BranchType
-	{
-
-
-
+class Branch extends BranchType
+{
 } // end class Branch

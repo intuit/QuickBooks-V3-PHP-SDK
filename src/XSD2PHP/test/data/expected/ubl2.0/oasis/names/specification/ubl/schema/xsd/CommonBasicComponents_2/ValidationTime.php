@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ValidationTime
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ValidationTime
  */
-class ValidationTime
-	extends ValidationTimeType
-	{
-
-
-
+class ValidationTime extends ValidationTimeType
+{
 } // end class ValidationTime

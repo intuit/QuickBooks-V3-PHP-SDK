@@ -1,0 +1,96 @@
+<?php
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+include('../config.php');
+
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Facades\Item;
+
+
+$dataService = DataService::Configure(array(
+  'auth_mode' => 'oauth2',
+  'ClientID' => "Q0lCkcEshsGMHOEula2r5RKc2yhxvMsYEpKN1lw1WZwyfd1Si6",
+  'ClientSecret' => "gE0F9hLgwx9OBzRpNxyOvWJH6L2fIhzAwBugPJHq",
+  'accessTokenKey' =>  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TXebi6e9BC-aOzSI7M4WUw.Z62GmowY3D_OmnkbWm-iFYssdFAxGHpAvmrj77rpe2d03ja713TOMidKHjooCTkSEplTyqwT9q4LEYgvZRgMGFogGQ2uG3HaiLOphPb32HWC4nEOdRdXwxIaevOw-dcXn1nVFxI7S0aTPrb39H3cmL0UOvNin6DFi_nNG-E58bUEMe-5AwLjFp36FZTBoKg6egCWyyUBXAQFnwLqlUbtqxq_0q2hSTS1TOmD65Fd48iisJHp7VecYcpUEUqaiW4Wo9VtcSvQu4HD9iuE1pZ5Rp4tliyerV7k2jqUrvLDCKxng2AMCcvDUknFu5aDz8o_0OAjBEAfO46VcJwLScHgHqPSSmwv5tbmppZCah_GEoiFTw6yLquDLX5wc-eK9vf8lxYJTOoiy6PvCIMUj_644R8r9rTzbZb8sCqI5_atk9RfKfA9h7cZyYCMUph_JLvVMnGj-V8NvgLdrDe5SDu9kheRZ_tmul4Rae7tTJ7-r5j1s5YcvWtmCM5yw7iXSeX8s7O7ch9LMkm0IV499g_FbHqfr11Ux9iZ2ML36mzc-c6epzuMBrrZJMnU4w_N4nnbOznN-10X6JP4mv072aTBVgupTnagpzCv8TR5rGAilDWOw88uTIAJw6vQIahuJF4KimNlM2tEhTYzRWeDwGdP0PZel2FBJoMhywsj4XT5MExplHoDu-34_iOuc3eUwDfB.YIF5Hdre3QgkIh7S1JsClA',
+  'refreshTokenKey' => "L011511574974fGhEsYBWdVTxHcvSpp5fk2ucEeVVACWUU3JkT",
+  'QBORealmID' => "123145857569084",
+  'baseUrl' => "development"
+));
+
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+
+
+$OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+
+$accessToken = $OAuth2LoginHelper->refreshToken();
+$error = $OAuth2LoginHelper->getLastError();
+if ($error != null) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+    return;
+}
+$dataService->updateOAuth2Token($accessToken);
+
+$dateTime = new \DateTime('NOW');
+$Item = Item::create([
+      "Name" => "1111Office Sudfsfasdfpplies",
+      "Description" => "This is the sales description.",
+      "Active" => true,
+      "FullyQualifiedName" => "Office Supplies",
+      "Taxable" => true,
+      "UnitPrice" => 25,
+      "Type" => "Inventory",
+      "IncomeAccountRef"=> [
+        "value"=> 79,
+        "name" => "Landscaping Services:Job Materials:Fountains and Garden Lighting"
+      ],
+      "PurchaseDesc"=> "This is the purchasing description.",
+      "PurchaseCost"=> 35,
+      "ExpenseAccountRef"=> [
+        "value"=> 80,
+        "name"=> "Cost of Goods Sold"
+      ],
+      "AssetAccountRef"=> [
+        "value"=> 81,
+        "name"=> "Inventory Asset"
+      ],
+      "TrackQtyOnHand" => true,
+      "QtyOnHand"=> 100,
+      "InvStartDate"=> $dateTime
+]);
+
+
+$resultingObj = $dataService->Add($Item);
+$error = $dataService->getLastError();
+if ($error) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+}
+else {
+    echo "Created Id={$resultingObj->Id}. Reconstructed response body:\n\n";
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+    echo $xmlBody . "\n";
+}
+
+/*
+
+Example output:
+
+Account[0]: Travel Meals
+     * Id: NG:42315
+     * AccountType: Expense
+     * AccountSubType:
+
+Account[1]: COGs
+     * Id: NG:40450
+     * AccountType: Cost of Goods Sold
+     * AccountSubType:
+
+...
+
+*/
+ ?>

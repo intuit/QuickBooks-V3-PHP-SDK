@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName DespatchAdviceTypeCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\DespatchAdviceTypeCode
  */
-class DespatchAdviceTypeCode
-	extends DespatchAdviceTypeCodeType
-	{
-
-
-
+class DespatchAdviceTypeCode extends DespatchAdviceTypeCodeType
+{
 } // end class DespatchAdviceTypeCode

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName CatalogueIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\CatalogueIndicator
  */
-class CatalogueIndicator
-	extends CatalogueIndicatorType
-	{
-
-
-
+class CatalogueIndicator extends CatalogueIndicatorType
+{
 } // end class CatalogueIndicator

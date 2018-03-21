@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName PricingUpdateRequestIndicator
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\PricingUpdateRequestIndicator
  */
-class PricingUpdateRequestIndicator
-	extends PricingUpdateRequestIndicatorType
-	{
-
-
-
+class PricingUpdateRequestIndicator extends PricingUpdateRequestIndicatorType
+{
 } // end class PricingUpdateRequestIndicator

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName Qualifier
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\Qualifier
  */
-class Qualifier
-	extends QualifierType
-	{
-
-
-
+class Qualifier extends QualifierType
+{
 } // end class Qualifier

@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName IdentificationCode
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\IdentificationCode
  */
-class IdentificationCode
-	extends IdentificationCodeType
-	{
-
-
-
+class IdentificationCode extends IdentificationCodeType
+{
 } // end class IdentificationCode

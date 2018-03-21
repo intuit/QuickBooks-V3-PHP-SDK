@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName FinancialInstitution
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\FinancialInstitution
  */
-class FinancialInstitution
-	extends FinancialInstitutionType
-	{
-
-
-
+class FinancialInstitution extends FinancialInstitutionType
+{
 } // end class FinancialInstitution

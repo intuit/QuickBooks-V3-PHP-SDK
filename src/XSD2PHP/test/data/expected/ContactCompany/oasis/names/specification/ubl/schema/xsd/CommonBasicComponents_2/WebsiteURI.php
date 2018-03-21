@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName WebsiteURI
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\WebsiteURI
  */
-class WebsiteURI
-	extends WebsiteURIType
-	{
-
-
-
+class WebsiteURI extends WebsiteURIType
+{
 } // end class WebsiteURI

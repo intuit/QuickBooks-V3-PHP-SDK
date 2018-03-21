@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName SelfBilledInvoiceDocumentReference
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\SelfBilledInvoiceDocumentReference
  */
-class SelfBilledInvoiceDocumentReference
-	extends DocumentReferenceType
-	{
-
-
-
+class SelfBilledInvoiceDocumentReference extends DocumentReferenceType
+{
 } // end class SelfBilledInvoiceDocumentReference

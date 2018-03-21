@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName LineID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\LineID
  */
-class LineID
-	extends LineIDType
-	{
-
-
-
+class LineID extends LineIDType
+{
 } // end class LineID

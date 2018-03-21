@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QuickBooks, PHP HTTP client &mdash; QuickBooks V3 PHP SDK 4.0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="QuickBooks V3 PHP SDK 4.0.5 documentation" href="#"/>
+        <link rel="next" title="Overview" href="overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> QuickBooks V3 PHP SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">QuickBooks V3 PHP SDK</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>QuickBooks, PHP HTTP client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickbooks-v3-php-sdk-documentation">
+<h1>QuickBooks V3 PHP SDK Documentation<a class="headerlink" href="#quickbooks-v3-php-sdk-documentation" title="Permalink to this headline">¶</a></h1>
+<p>QuickBooks V3 PHP SDK is a PHP HTTP client that help you integrate your app with QuickBooks Online Accounting API: <a class="reference external" href="https://developer.intuit.com/docs/00_quickbooks_online/5_api_reference/00_overview">https://developer.intuit.com/docs/00_quickbooks_online/5_api_reference/00_overview</a> It has a set of PHP classes that make it easier to call QuickBooks Online APIs. Some of the features included in this SDK are:</p>
+<ul class="simple">
+<li>Ability to perform single and batch processing of CRUD operations on all supported QuickBooks Online entities.</li>
+<li>Support for XML/JSON Request and Response format.</li>
+<li>Ability to configure app settings in the configuration file requiring no additional code change.</li>
+<li>Logging mechanisms for trace and request/response.</li>
+<li>Query Filters that enable you to retrieve QuickBooks Online entities whose properties meet specified criteria.</li>
+<li>Sparse Update to update writable properties specified in a request and leave the others unchanged.</li>
+</ul>
+<div class="section" id="user-guide">
+<h2>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#guidelines">Guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#creating-dataservice">Creating DataService</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#setting-dataservice">Setting DataService</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#minor-version">Minor version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#errors-and-timeouts">Errors and Timeouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#servicecontext">ServiceContext</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html#oauth-1-0a">OAuth 1.0a</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#directly-use-oauth-1-0a-tokens">Directly Use OAuth 1.0a Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#disconnect-or-reconnect-oauth-1-0a-tokens">Disconnect or Reconnect OAuth 1.0a Tokens</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authorization.html#oauth-2-0">OAuth 2.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#generate-oauth-2-0-tokens">Generate OAuth 2.0 Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#directly-use-oauth-2-0-tokens">Directly Use OAuth 2.0 Tokens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#refresh-your-oauth-2-0-token">Refresh your OAuth 2.0 token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#revoke-your-oauth-2-0-token">Revoke your OAuth 2.0 token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#oauth-2-0-ssl-certificate-settings">OAuth 2.0 SSL certificate settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authorization.html#oauth-2-0-vs-1-0a-in-quickbooks-online">OAuth 2.0 vs 1.0a in QuickBooks Online</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-new-resources-post">Create new resources (POST)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#constructing-entities">Constructing Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#sending-requests">Sending Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#handling-response">Handling Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#example-and-result">Example and Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#constructing-entities-with-tax">Constructing Entities with Tax</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#query-and-access-resources-get">Query and access resources (GET)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#get-by-entity-id">Get by Entity Id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#get-company-info-or-preference">Get Company Info or Preference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#query-resources">Query resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#maximum-number-of-entities-in-a-response">Maximum number of entities in a response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#pagination">Pagination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#count">Count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#sorting">Sorting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#update-resources-put">Update resources (PUT)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#update-resources">Update resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#update-resources-with-tax">Update resources with Tax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#sparse-update-full-update">Sparse Update &amp; Full Update</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#delete-resources-delete">Delete resources(DELETE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-entity-fields-directly">Accessing Entity Fields Directly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#other-supported-operations">Other Supported Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#sending-e-mail">Sending E-mail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#batch-request">Batch Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#change-data-capture-cdc">Change Data Capture(CDC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#generating-reports">Generating Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#download-as-pdf">Download As PDF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="handle-error.html">Error Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="handle-error.html#check-error-code-and-message">Check Error Code and Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="handle-error.html#report-an-error-to-intuit">Report an Error to Intuit</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Intuit, Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'4.0.5',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

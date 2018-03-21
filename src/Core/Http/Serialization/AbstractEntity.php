@@ -4,7 +4,8 @@ namespace QuickBooksOnline\API\Core\Http\Serialization;
 /**
  * Descirbes meta data for domain model entity
  */
-abstract class AbstractEntity {
+abstract class AbstractEntity
+{
     /**
      * Type (or class) of the entity
      * @var string
@@ -27,7 +28,8 @@ abstract class AbstractEntity {
      * Specify type of the property if it's known
      * @param string $value
      */
-    public function __construct($value = null) {
+    public function __construct($value = null)
+    {
         $this->setType($value);
     }
 

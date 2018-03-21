@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName ReceivedQuantity
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\ReceivedQuantity
  */
-class ReceivedQuantity
-	extends ReceivedQuantityType
-	{
-
-
-
+class ReceivedQuantity extends ReceivedQuantityType
+{
 } // end class ReceivedQuantity

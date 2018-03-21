@@ -5,7 +5,8 @@ use com\mikebevz\xsd2php;
 
 require_once dirname(__FILE__) . '/../Common.php';
 
-abstract class AbstractWsdl {
+abstract class AbstractWsdl
+{
     
     
     
@@ -46,7 +47,7 @@ abstract class AbstractWsdl {
     protected $wsdlXmlSource;
     
     /**
-     * 
+     *
      * @var boolean
      */
     public $debug = false;
@@ -104,7 +105,7 @@ abstract class AbstractWsdl {
     protected $responseSuffix = "Response";
     
     /**
-     * Request 
+     * Request
      * @var unknown_type
      */
     protected $requestSuffix = "Request";
@@ -125,7 +126,7 @@ abstract class AbstractWsdl {
     
     /**
      * Path to publicly accessable folder to store imported/included schemas
-     * 
+     *
      * @var string
      */
     private $publicPath = null;
@@ -154,14 +155,14 @@ abstract class AbstractWsdl {
     protected $xmlSchemaImports = array();
     
     /**
-     * 
-     * 
+     *
+     *
      * @param object|class $service Class name or object of the service to build WSDL for
-     * 
+     *
      * @return void
      */
-    public function __construct($service) {
-        
+    public function __construct($service)
+    {
         if ($service != null) {
             $this->service = $service;
         } elseif ($this->service == null) {
@@ -175,7 +176,7 @@ abstract class AbstractWsdl {
         if (is_string($this->service)) {
             if (!class_exists($this->service)) {
                 throw new \RuntimeException("Class ".$service." is not found. Did you forget to include it?");
-            } 
+            }
             $this->service = new $this->service();
         }
         
@@ -184,16 +185,16 @@ abstract class AbstractWsdl {
         $this->refl = new \ReflectionClass($this->service);
         $this->wsdlName = $this->refl->getShortName();
         $this->wsdlTargetNamespace = $this->namespaceToUrn($this->refl->getNamespaceName());
-        
     }
     
     
     /**
      * Prepare DOM
-     * 
-     * @return void 
+     *
+     * @return void
      */
-    private function prepareDom() {
+    private function prepareDom()
+    {
         $this->dom = new \DOMDocument('1.0', 'UTF-8');
         if ($this->debug) {
             $this->dom->formatOutput = true;
@@ -204,31 +205,32 @@ abstract class AbstractWsdl {
         $this->wsDefinitions->setAttribute('targetNamespace', $this->wsdlTargetNamespace);
         $this->dom->createAttributeNS($this->wsdlTargetNamespace, $this->targetNsPrefix.':definitions'); // This NS
         $this->common->dom = $this->dom;
-        
     }
     
     
     
     /**
      * Prepare service class reflection
-     * 
+     *
      * @return void
      */
-    private function prepareReflection() {
+    private function prepareReflection()
+    {
         $methods = $this->getClassMethods();
         foreach ($methods as $method) {
             $this->methodsMeta[$method->name] = $this->getMethodIO($method->name);
-        }   
+        }
     }
     
     /**
      * Return method input/output
-     * 
+     *
      * @param string $method Method name
-     * 
+     *
      * @return array
      */
-    private function getMethodIO($method) {
+    private function getMethodIO($method)
+    {
         $methodDocs = $this->refl->getMethod($method)->getDocComment();
         return $this->common->parseDocComments($methodDocs);
     }
@@ -236,20 +238,22 @@ abstract class AbstractWsdl {
     
     /**
      * Get service class public methods
-     * 
+     *
      * @return array<ReflectionMethod>
      */
-    private function getClassMethods() {
+    private function getClassMethods()
+    {
         return $this->refl->getMethods(\ReflectionMethod::IS_PUBLIC);
     }
     
     
     /**
      * Return WSDL as XML string
-     * 
+     *
      * @return string
      */
-    public function toXml() {
+    public function toXml()
+    {
         if (is_string($this->wsdlXmlSource) && $this->wsdlXmlSource != '') {
             return $this->wsdlXmlSource;
         } else {
@@ -263,12 +267,13 @@ abstract class AbstractWsdl {
     
     /**
      * Convert PHP namespace to URN
-     * 
+     *
      * @param string $namespace
-     * 
+     *
      * @return string
      */
-    protected function namespaceToUrn($namespace) {
+    protected function namespaceToUrn($namespace)
+    {
         $namespace = "urn:".preg_replace('/\\\/', ':', $namespace);
         return $namespace;
     }
@@ -276,16 +281,17 @@ abstract class AbstractWsdl {
     /**
      * Get QName style for given type
      * @param string $type Type name
-     * 
+     *
      * @return string
      * @throws RuntimeException If class of type cannot be found
      */
-    protected function getTypeName($type) {
+    protected function getTypeName($type)
+    {
         
         //@todo Check must be performed against PHP data types not XMLSchema
         if (!in_array($type, $this->common->phpTypes)) {
             if (!class_exists($type)) {
-                throw new \RuntimeException("Cannot find class ".$type);                
+                throw new \RuntimeException("Cannot find class ".$type);
             }
             
             $typeNamespace = $this->getClassNamespace($type);
@@ -294,15 +300,15 @@ abstract class AbstractWsdl {
             //print_r($typeNamespace);
             $this->addImportToSchema($typeNamespace, $nsCode);
             return $nsCode.":".$typeName;
-            
         } else {
-            return $this->xmlSchemaPreffix.":".$type; 
+            return $this->xmlSchemaPreffix.":".$type;
         }
     }
     
-    public function getNsCode($longNs, $rt = false) {
+    public function getNsCode($longNs, $rt = false)
+    {
         // if namespace exists - just use its name
-        // otherwise add it as nsatrribute to root and use its name 
+        // otherwise add it as nsatrribute to root and use its name
         if (!is_array($this->docNamespaces)) {
             $this->docNamespaces = array();
         }
@@ -321,15 +327,15 @@ abstract class AbstractWsdl {
     
     /**
      * Add xsd:import tag to XML schema before any childs added
-     * 
+     *
      * @param string $namespace Namespace URI
      * @param string $code      Shortcut for namespace, fx, ns0. Returned by getNsCode()
-     * 
+     *
      * @return void
      */
-    private function addImportToSchema($namespace, $code) {
+    private function addImportToSchema($namespace, $code)
+    {
         if (array_key_exists($namespace, $this->docNamespaces)) {
-            
             if (in_array($namespace, $this->importedNamespaces)) {
                 return;
             }
@@ -351,7 +357,7 @@ abstract class AbstractWsdl {
             $publicSchema = $this->copyToPublic($schemaLocation, true);
             $schemaUrl = $this->importsToAbsUrl($publicSchema, $this->getSchemasPath());
              
-            $txtNode2  = $this->dom->createTextNode($schemaUrl); 
+            $txtNode2  = $this->dom->createTextNode($schemaUrl);
             $nsAttr2->appendChild($txtNode2);
             
             $importEl->appendChild($nsAttr);
@@ -377,9 +383,9 @@ abstract class AbstractWsdl {
         
     /**
      * Get path to schema in schemasPath with targetNamespace = $ns
-     * 
+     *
      * @param string $ns Namespace to match
-     * 
+     *
      * @return string absolut path to schema file
      * @throws RuntimeException If SchemaPath is not specified
      * @throws RuntimeException If Public folder is not specified
@@ -387,10 +393,11 @@ abstract class AbstractWsdl {
      * @throws RuntimeException If PublicPath is not writable
      * @throws RuntimeException If namespace cannot be found in SchemaPath
      */
-    public function getSchemaLocation($ns) {
+    public function getSchemaLocation($ns)
+    {
         if ($this->getSchemasPath() == null) {
             throw new \RuntimeException("Schemas path is not specified - cannot start search for imports");
-        }       
+        }
         
         if (!file_exists($this->getSchemasPath())) {
             throw new \RuntimeException("Schemas path doesn't exist - cannot start search for imports");
@@ -411,7 +418,7 @@ abstract class AbstractWsdl {
         
         $dir   = new \RecursiveDirectoryIterator(realpath($this->getSchemasPath()));
         $iter  = new \RecursiveIteratorIterator($dir);
-        $regex = new \RegexIterator($iter, '/\.xsd$/', \RecursiveRegexIterator::MATCH);   
+        $regex = new \RegexIterator($iter, '/\.xsd$/', \RecursiveRegexIterator::MATCH);
         $files = array();
         foreach ($regex as $key => $value) {
             array_push($files, $key);
@@ -428,17 +435,17 @@ abstract class AbstractWsdl {
         }
         
         return $schema;
-        
     }
     
     /**
-     * Convert relative paths in XMLSchema's imports and includes to URLs using $location 
-     * 
+     * Convert relative paths in XMLSchema's imports and includes to URLs using $location
+     *
      * @param string $schemaPath Absolute path to XML Schema file
-     * 
+     *
      * @return string URL of the schema
      */
-    public function importsToAbsUrl($schemaPath, $relPath = '') {
+    public function importsToAbsUrl($schemaPath, $relPath = '')
+    {
         $dom = new \DOMDocument();
         $dom->load($schemaPath);
         
@@ -455,8 +462,7 @@ abstract class AbstractWsdl {
         $urlParts = parse_url($this->getLocation());
         $rootUrl = $this->composeUrl($urlParts);
         
-        foreach($imports as $import) {
-            
+        foreach ($imports as $import) {
             $scPath = realpath($relPath.DIRECTORY_SEPARATOR.$import->getAttribute('schemaLocation'));
             $copiedSchema = $this->copyToPublic($scPath, true);
             
@@ -471,45 +477,47 @@ abstract class AbstractWsdl {
     
     /**
      * Return class XML namespace taken from @xmlNamespace doc
-     *  
+     *
      * @param string $class Class name
-     * 
+     *
      * @return string XML namespace
      * @throws RuntimeException If namespace cannot be found in class DocBlock
      */
-    protected function getClassNamespace($class) {
+    protected function getClassNamespace($class)
+    {
         $refl = new \ReflectionClass($class);
         
         $docs = $this->common->parseDocComments($refl->getDocComment());
         if (!array_key_exists("xmlNamespace", $docs)) {
-            throw new \RuntimeException('Cannot find namespace in class description in '.$class);        
+            throw new \RuntimeException('Cannot find namespace in class description in '.$class);
         }
         return $docs['xmlNamespace'];
     }
     
     /**
      * Get class name without namespace
-     * 
+     *
      * @param string $longName Class full name
-     * 
+     *
      * @return string Class base name
      */
-    protected function getShortName($longName) {
-        
-        $arr = array_reverse(explode('\\',$longName));
+    protected function getShortName($longName)
+    {
+        $arr = array_reverse(explode('\\', $longName));
         $shortName = $arr[0];
         return $shortName;
     }
     
     /**
      * Check if $schema XML Schema file belongs to $ns
-     * 
+     *
      * @param string $schema Path to XML Schema file
      * @param string $ns     Target namespace to match
-     * 
+     *
      * @return boolean
      */
-    public function isTargetNamespaceEqualsTo($schema, $ns) {
+    public function isTargetNamespaceEqualsTo($schema, $ns)
+    {
         $dom = new \DOMDocument();
         $dom->load($schema);
 
@@ -525,19 +533,19 @@ abstract class AbstractWsdl {
         } else {
             return false;
         }
-        
     }
     
     /**
      * Copy given file to publicSchemaPath
-     * 
+     *
      * @param string  $path      Path to file
      * @param boolean $overwrite Overwrite file if it exists? default false
-     * 
+     *
      * @return string Path to new file
      * @throws RuntimeException If file cannot be copied
      */
-    public function copyToPublic($path, $overwrite = false) {
+    public function copyToPublic($path, $overwrite = false)
+    {
         $publicPath = realpath($this->getPublicPath());
         $targetFilePath   = $publicPath.DIRECTORY_SEPARATOR.basename($path);
         
@@ -545,19 +553,20 @@ abstract class AbstractWsdl {
             if (!copy($path, $targetFilePath)) {
                 throw new \RuntimeException("Cannot copy ".basename($path)." to ".$publicPath);
             }
-        } 
+        }
         
         return $targetFilePath;
     }
     
     /**
      * Compose URL of kind schema://host:port
-     * 
+     *
      * @param array $parts
-     * 
+     *
      *  @return string URL
      */
-    public function composeUrl($parts) {
+    public function composeUrl($parts)
+    {
         $url = "";
         if (array_key_exists('scheme', $parts)) {
             $url .= $parts['scheme']."://";
@@ -575,9 +584,9 @@ abstract class AbstractWsdl {
         }
         
         return $url;
-    }    
+    }
     
-	/**
+    /**
      * @return the $soapBindingStyle
      */
     public function getSoapBindingStyle()
@@ -585,7 +594,7 @@ abstract class AbstractWsdl {
         return $this->soapBindingStyle;
     }
 
-	/**
+    /**
      * @param $soapBindingStyle the $soapBindingStyle to set
      */
     public function setSoapBindingStyle($soapBindingStyle)
@@ -627,7 +636,7 @@ abstract class AbstractWsdl {
     
 /**
      * Get SOAP service location (service->port->address->location)
-     * 
+     *
      * @return string $location
      */
     public function getLocation()
@@ -674,7 +683,4 @@ abstract class AbstractWsdl {
     {
         $this->debug = $debug;
     }
-
-    
-    
 }

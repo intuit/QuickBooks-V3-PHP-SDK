@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2;
  * @xmlName TaxScheme
  * @var oasis\names\specification\ubl\schema\xsd\CommonAggregateComponents_2\TaxScheme
  */
-class TaxScheme
-	extends TaxSchemeType
-	{
-
-
-
+class TaxScheme extends TaxSchemeType
+{
 } // end class TaxScheme

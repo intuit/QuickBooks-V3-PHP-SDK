@@ -7,10 +7,6 @@ namespace oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2;
  * @xmlName SequenceID
  * @var oasis\names\specification\ubl\schema\xsd\CommonBasicComponents_2\SequenceID
  */
-class SequenceID
-	extends SequenceIDType
-	{
-
-
-
+class SequenceID extends SequenceIDType
+{
 } // end class SequenceID
