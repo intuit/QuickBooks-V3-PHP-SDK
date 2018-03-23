@@ -93,9 +93,12 @@ class IntuitBatchResponse
     /**
      * Set the Entities to an entity list
      * @param Array $newEntities
+     *
+     * @return $this
      */
     public function setEntities($newEntities){
         $this->entities = $newEntities;
+        return $this;
     }
 
     /**

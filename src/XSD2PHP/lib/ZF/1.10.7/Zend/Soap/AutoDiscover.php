@@ -263,6 +263,8 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      * @param string $class Class Name
      * @param string $namespace Class Namspace - Not Used
      * @param array $argv Arguments to instantiate the class - Not Used
+     *
+     * @return $this
      */
     public function setClass($class, $namespace = '', $argv = null)
     {
@@ -282,6 +284,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
             $this->_addFunctionToWsdl($method, $wsdl, $port, $binding);
         }
         $this->_wsdl = $wsdl;
+        return $this;
     }
 
     /**
