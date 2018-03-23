@@ -52,10 +52,13 @@ class ContentWriter
      * Set prefix for a temporary filename.
      * It is used only by saveTemp()
      * @param string $prefix
+     *
+     * @return $this
      */
     public function setPrefix($prefix)
     {
         $this->prefix = $prefix;
+        return $this;
     }
 
     /**
