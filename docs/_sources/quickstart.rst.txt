@@ -196,9 +196,8 @@ Here is the Complete example and what the result looks like in QuickBooks Online
         'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
         'QBORealmID' => "193514464689044",
         'baseUrl' => "Development"
-    ));
-    $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
-    $dataService->throwExceptionOnError(true);
+    ))->setLogLocation("/Users/hlu2/Desktop/newFolderForLog")
+      ->throwExceptionOnError(true);
     //Add a new Invoice
     $invoiceToCreate = Invoice::create([
       "DocNumber" => "101",
@@ -260,9 +259,8 @@ Many QuickBooks Online users need to create entities with Tax. It is achieved on
       'refreshTokenKey' => "L011529104721Bb4GIrEKlXQ03Zw8pyGAHSsVxUt3prTKiNoVO",
       'QBORealmID' => "193514708967874",
       'baseUrl' => "Production"
-    ));
-    $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
-    $dataService->throwExceptionOnError(true);
+    ))->setLogLocation("/Users/hlu2/Desktop/newFolderForLog")
+      ->throwExceptionOnError(true);
     //Add a new Invoice
     $invoiceToCreate = Invoice::create([
       "DocNumber" => "101",
@@ -1101,9 +1099,9 @@ In V3 PHP SDK, the report service is separate from data service. To use the Repo
     }
 
 
-    $reportService->setStartDate("2015-01-01");
-    $reportService->setAccountingMethod("Accrual");
-    $profitAndLossReport = $reportService->executeReport(ReportName::PROFITANDLOSS);
+    $profitAndLossReport = $reportService->setStartDate("2015-01-01")
+                                         ->setAccountingMethod("Accrual")
+                                         ->executeReport(ReportName::PROFITANDLOSS);
     if (!$profitAndLossReport) {
       exit("ProfitAndLossReport Is Null.\n");
     } else {
