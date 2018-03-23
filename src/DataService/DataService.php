@@ -175,11 +175,13 @@ class DataService
     /**
      * Set or Update the ServiceContext of this DataService.
      *
-     * @var ServiceContext  $serviceContext        The new ServiceContext passed by.
+     * @var ServiceContext $serviceContext The new ServiceContext passed by.
+     * @return $this
      */
     private function setupServiceContext($serviceContext)
     {
         $this->serviceContext = $serviceContext;
+        return $this;
     }
 
     /**
@@ -201,6 +203,7 @@ class DataService
      * Set the SyncRest Handler for the DataService. If the client Name changed, the underlying Client that SyncRestHandler used will also changed.
      *
      * @var ServiceContext $serviceContext         The service Context for this DataService
+     * @return $this
      *
      */
     protected function setupRestHandler($serviceContext)
@@ -211,6 +214,7 @@ class DataService
        }else{
           throw new SdkException("Can not set the Rest Client based on null ServiceContext.");
        }
+       return $this;
     }
 
     /**
@@ -222,56 +226,71 @@ class DataService
     }
     /**
      * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
+     *
+     * @return $this
      */
     public function useXml()
     {
         $serviceContext = $this->getServiceContext();
         $serviceContext->useXml();
         $this->updateServiceContextSettingsForOthers($serviceContext);
+        return $this;
     }
 
     /**
      * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
+     *
+     * @return $this
      */
     public function useJson()
     {
         $serviceContext = $this->getServiceContext();
         $serviceContext->useJson();
         $this->updateServiceContextSettingsForOthers($serviceContext);
+        return $this;
     }
 
     /**
      * Set a new directory for request and response log
      *
      * @param String $new_log_location     The directory path for storing request and response log
+     *
+     * @return $this
      */
     public function setLogLocation($new_log_location)
     {
         $serviceContext = $this->getServiceContext();
         $serviceContext->setLogLocation($new_log_location);
         $this->updateServiceContextSettingsForOthers($serviceContext);
+        return $this;
     }
 
     /**
      * Set a new Minor Version
      *
      * @param String $newMinorVersion     The new minor version that passed
+     *
+     * @return $this
      */
     public function setMinorVersion($newMinorVersion)
     {
         $serviceContext = $this->getServiceContext();
         $serviceContext->setMinorVersion($newMinorVersion);
         $this->updateServiceContextSettingsForOthers($serviceContext);
+        return $this;
     }
 
     /**
      * Disable the logging function
+     *
+     * @return $this
      */
     public function disableLog()
     {
         $serviceContext = $this->getServiceContext();
         $serviceContext->disableLog();
         $this->updateServiceContextSettingsForOthers($serviceContext);
+        return $this;
     }
 
 
@@ -301,12 +320,16 @@ class DataService
 
     /**
      * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
+     *
      * @param String $clientName              The client Name used by the service
+     *
+     * @return $this
      */
     public function setClientName($clientName){
        $this->clientName = $clientName;
        $serviceContext = $this->getServiceContext();
        $this->setupRestHandler($serviceContext);
+       return $this;
     }
 
     /**
@@ -395,7 +418,10 @@ class DataService
 
     /**
      * Update the OAuth 2 Token that will be used for API calls later.
+     *
      * @param OAuth2AccessToken $newOAuth2AccessToken   The OAuth 2 Access Token that will be used later.
+     *
+     * @return $this
      */
     public function updateOAuth2Token($newOAuth2AccessToken)
     {
@@ -407,6 +433,7 @@ class DataService
         } catch (SdkException $e){
           echo $e->getTraceAsString();
         }
+        return $this;
     }
 
     /**
@@ -434,6 +461,7 @@ class DataService
         if (is_numeric($version) && !empty($version)) {
             $this->serviceContext->minorVersion = $version;
         }
+        return $this;
     }
 
     /**

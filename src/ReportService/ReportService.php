@@ -106,10 +106,13 @@ class ReportService
 
     /**
      * @param null $report_date
+     *
+     * @return $this
      */
     public function setReportDate($report_date)
     {
         $this->report_date = $report_date;
+        return $this;
     }
 
     /**
@@ -122,10 +125,13 @@ class ReportService
 
     /**
      * @param null $start_date
+     *
+     * @return $this
      */
     public function setStartDate($start_date)
     {
         $this->start_date = $start_date;
+        return $this;
     }
 
     /**
@@ -138,10 +144,13 @@ class ReportService
 
     /**
      * @param null $end_date
+     *
+     * @return $this
      */
     public function setEndDate($end_date)
     {
         $this->end_date = $end_date;
+        return $this;
     }
 
     /**
@@ -154,10 +163,13 @@ class ReportService
 
     /**
      * @param null $date_macro
+     *
+     * @return $this
      */
     public function setDateMacro($date_macro)
     {
         $this->date_macro = $date_macro;
+        return $this;
     }
 
     /**
@@ -170,10 +182,13 @@ class ReportService
 
     /**
      * @param null $past_due
+     *
+     * @return $this
      */
     public function setPastDue($past_due)
     {
         $this->past_due = $past_due;
+        return $this;
     }
 
     /**
@@ -186,10 +201,13 @@ class ReportService
 
     /**
      * @param null $end_duedate
+     *
+     * @return $this
      */
     public function setEndDuedate($end_duedate)
     {
         $this->end_duedate = $end_duedate;
+        return $this;
     }
 
     /**
@@ -202,10 +220,13 @@ class ReportService
 
     /**
      * @param null $start_duedate
+     *
+     * @return $this
      */
     public function setStartDuedate($start_duedate)
     {
         $this->start_duedate = $start_duedate;
+        return $this;
     }
 
     /**
@@ -218,10 +239,13 @@ class ReportService
 
     /**
      * @param null $duedate_macro
+     *
+     * @return $this
      */
     public function setDuedateMacro($duedate_macro)
     {
         $this->duedate_macro = $duedate_macro;
+        return $this;
     }
 
     /**
@@ -234,10 +258,13 @@ class ReportService
 
     /**
      * @param null $accounting_method
+     *
+     * @return $this
      */
     public function setAccountingMethod($accounting_method)
     {
         $this->accounting_method = $accounting_method;
+        return $this;
     }
 
     /**
@@ -250,10 +277,13 @@ class ReportService
 
     /**
      * @param null $account
+     *
+     * @return $this
      */
     public function setAccount($account)
     {
         $this->account = $account;
+        return $this;
     }
 
     /**
@@ -266,10 +296,13 @@ class ReportService
 
     /**
      * @param null $source_account
+     *
+     * @return $this
      */
     public function setSourceAccount($source_account)
     {
         $this->source_account = $source_account;
+        return $this;
     }
 
     /**
@@ -282,10 +315,13 @@ class ReportService
 
     /**
      * @param null $account_type
+     *
+     * @return $this
      */
     public function setAccountType($account_type)
     {
         $this->account_type = $account_type;
+        return $this;
     }
 
     /**
@@ -298,10 +334,13 @@ class ReportService
 
     /**
      * @param null $source_account_type
+     *
+     * @return $this
      */
     public function setSourceAccountType($source_account_type)
     {
         $this->source_account_type = $source_account_type;
+        return $this;
     }
 
     /**
@@ -314,10 +353,13 @@ class ReportService
 
     /**
      * @param null $summarize_column_by
+     *
+     * @return $this
      */
     public function setSummarizeColumnBy($summarize_column_by)
     {
         $this->summarize_column_by = $summarize_column_by;
+        return $this;
     }
 
     /**
@@ -330,10 +372,13 @@ class ReportService
 
     /**
      * @param null $customer
+     *
+     * @return $this
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+        return $this;
     }
 
     /**
@@ -346,10 +391,13 @@ class ReportService
 
     /**
      * @param null $vendor
+     *
+     * @return $this
      */
     public function setVendor($vendor)
     {
         $this->vendor = $vendor;
+        return $this;
     }
 
     /**
@@ -362,10 +410,13 @@ class ReportService
 
     /**
      * @param null $item
+     *
+     * @return $this
      */
     public function setItem($item)
     {
         $this->item = $item;
+        return $this;
     }
 
     /**
@@ -378,10 +429,13 @@ class ReportService
 
     /**
      * @param null $classid
+     *
+     * @return $this
      */
     public function setClassid($classid)
     {
         $this->classid = $classid;
+        return $this;
     }
 
     /**
@@ -394,10 +448,13 @@ class ReportService
 
     /**
      * @param null $appaid
+     *
+     * @return $this
      */
     public function setAppaid($appaid)
     {
         $this->appaid = $appaid;
+        return $this;
     }
 
     /**
@@ -410,10 +467,13 @@ class ReportService
 
     /**
      * @param null $department
+     *
+     * @return $this
      */
     public function setDepartment($department)
     {
         $this->department = $department;
+        return $this;
     }
 
     /**
@@ -426,10 +486,13 @@ class ReportService
 
     /**
      * @param null $qzurl
+     *
+     * @return $this
      */
     public function setQzurl($qzurl)
     {
         $this->qzurl = $qzurl;
+        return $this;
     }
 
     /**
@@ -442,10 +505,13 @@ class ReportService
 
     /**
      * @param null $aging_period
+     *
+     * @return $this
      */
     public function setAgingPeriod($aging_period)
     {
         $this->aging_period = $aging_period;
+        return $this;
     }
 
     /**
@@ -458,10 +524,13 @@ class ReportService
 
     /**
      * @param null $aging_method
+     *
+     * @return $this
      */
     public function setAgingMethod($aging_method)
     {
         $this->aging_method = $aging_method;
+        return $this;
     }
 
     /**
@@ -474,10 +543,13 @@ class ReportService
 
     /**
      * @param null $num_periods
+     *
+     * @return $this
      */
     public function setNumPeriods($num_periods)
     {
         $this->num_periods = $num_periods;
+        return $this;
     }
 
     /**
@@ -490,10 +562,13 @@ class ReportService
 
     /**
      * @param null $term
+     *
+     * @return $this
      */
     public function setTerm($term)
     {
         $this->term = $term;
+        return $this;
     }
 
     /**
@@ -506,10 +581,13 @@ class ReportService
 
     /**
      * @param null $columns
+     *
+     * @return $this
      */
     public function setColumns($columns)
     {
         $this->columns = $columns;
+        return $this;
     }
 
     /**
@@ -522,10 +600,13 @@ class ReportService
 
     /**
      * @param null $sort_by
+     *
+     * @return $this
      */
     public function setSortBy($sort_by)
     {
         $this->sort_by = $sort_by;
+        return $this;
     }
 
     /**
@@ -538,10 +619,13 @@ class ReportService
 
     /**
      * @param null $sort_order
+     *
+     * @return $this
      */
     public function setSortOrder($sort_order)
     {
         $this->sort_order = $sort_order;
+        return $this;
     }
 
     /**
@@ -554,10 +638,13 @@ class ReportService
 
     /**
      * @param null $group_by
+     *
+     * @return $this
      */
     public function setGroupBy($group_by)
     {
         $this->group_by = $group_by;
+        return $this;
     }
 
     /**
@@ -570,10 +657,13 @@ class ReportService
 
     /**
      * @param null $createdate_macro
+     *
+     * @return $this
      */
     public function setCreatedateMacro($createdate_macro)
     {
         $this->createdate_macro = $createdate_macro;
+        return $this;
     }
 
     /**
@@ -586,10 +676,13 @@ class ReportService
 
     /**
      * @param null $end_createdate
+     *
+     * @return $this
      */
     public function setEndCreatedate($end_createdate)
     {
         $this->end_createdate = $end_createdate;
+        return $this;
     }
 
     /**
@@ -602,10 +695,13 @@ class ReportService
 
     /**
      * @param null $start_createdate
+     *
+     * @return $this
      */
     public function setStartCreatedate($start_createdate)
     {
         $this->start_createdate = $start_createdate;
+        return $this;
     }
 
     /**
@@ -618,10 +714,13 @@ class ReportService
 
     /**
      * @param null $moddate_macro
+     *
+     * @return $this
      */
     public function setModdateMacro($moddate_macro)
     {
         $this->moddate_macro = $moddate_macro;
+        return $this;
     }
 
     /**
@@ -634,10 +733,13 @@ class ReportService
 
     /**
      * @param null $end_moddate
+     *
+     * @return $this
      */
     public function setEndModdate($end_moddate)
     {
         $this->end_moddate = $end_moddate;
+        return $this;
     }
 
     /**
@@ -650,10 +752,13 @@ class ReportService
 
     /**
      * @param null $start_moddate
+     *
+     * @return $this
      */
     public function setStartModdate($start_moddate)
     {
         $this->start_moddate = $start_moddate;
+        return $this;
     }
 
     /**
@@ -666,10 +771,13 @@ class ReportService
 
     /**
      * @param null $payment_method
+     *
+     * @return $this
      */
     public function setPaymentMethod($payment_method)
     {
         $this->payment_method = $payment_method;
+        return $this;
     }
 
     /**
@@ -682,10 +790,13 @@ class ReportService
 
     /**
      * @param null $name
+     *
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -698,10 +809,13 @@ class ReportService
 
     /**
      * @param null $transaction_type
+     *
+     * @return $this
      */
     public function setTransactionType($transaction_type)
     {
         $this->transaction_type = $transaction_type;
+        return $this;
     }
 
     /**
@@ -714,10 +828,13 @@ class ReportService
 
     /**
      * @param null $cleared
+     *
+     * @return $this
      */
     public function setCleared($cleared)
     {
         $this->cleared = $cleared;
+        return $this;
     }
 
     /**
@@ -730,10 +847,13 @@ class ReportService
 
     /**
      * @param null $arpaid
+     *
+     * @return $this
      */
     public function setArpaid($arpaid)
     {
         $this->arpaid = $arpaid;
+        return $this;
     }
 
     /**
@@ -746,10 +866,13 @@ class ReportService
 
     /**
      * @param null $printed
+     *
+     * @return $this
      */
     public function setPrinted($printed)
     {
         $this->printed = $printed;
+        return $this;
     }
 
     /**
@@ -762,10 +885,13 @@ class ReportService
 
     /**
      * @param null $both_amount
+     *
+     * @return $this
      */
     public function setBothAmount($both_amount)
     {
         $this->both_amount = $both_amount;
+        return $this;
     }
 
     /**
@@ -778,10 +904,13 @@ class ReportService
 
     /**
      * @param null $memo
+     *
+     * @return $this
      */
     public function setMemo($memo)
     {
         $this->memo = $memo;
+        return $this;
     }
 
     /**
@@ -794,10 +923,13 @@ class ReportService
 
     /**
      * @param null $doc_num
+     *
+     * @return $this
      */
     public function setDocNum($doc_num)
     {
         $this->doc_num = $doc_num;
+        return $this;
     }
 
     /**
