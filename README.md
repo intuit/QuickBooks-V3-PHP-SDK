@@ -8,6 +8,8 @@ https://intuit.github.io/QuickBooks-V3-PHP-SDK/
 For current known issues and progress for PHP SDK, please refer to the wiki page:
 https://github.com/intuit/QuickBooks-V3-PHP-SDK/wiki
 
+Create, Update, Read, and Delete Examples: https://github.com/IntuitDeveloper/SampleApp-CRUD-PHP/tree/master/CRUD_Examples
+
 **Help:** [Support](https://developer.intuit.com/help)<br/>
 **Documentation:** [Documentation](https://intuit.github.io/QuickBooks-V3-PHP-SDK/)<br/>
 **Continuous Integration:**![Build status](https://travis-ci.org/intuit/QuickBooks-V3-PHP-SDK.svg?branch=master)
