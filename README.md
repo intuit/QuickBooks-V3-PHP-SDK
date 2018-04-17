@@ -1,3 +1,5 @@
+[![SDK Banner](views/SDK.png)][ss1]
+
 # QuickBooks API PHP SDK
 
 PHP client for connecting to the QuickBooks Online V3 REST API.
@@ -16,3 +18,4 @@ Create, Update, Read, and Delete Examples: https://github.com/IntuitDeveloper/Sa
 [![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk)<br/>
 **License:** [![License](https://poser.pugx.org/quickbooks/v3-php-sdk/license)](https://packagist.org/packages/quickbooks/v3-php-sdk)
 
+[ss1]: https://help.developer.intuit.com/s/SDKFeedback?cid=1105
