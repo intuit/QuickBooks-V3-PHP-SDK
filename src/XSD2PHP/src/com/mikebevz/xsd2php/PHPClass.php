@@ -222,7 +222,7 @@ class PHPClass extends Common
         $code = array();
 
         foreach ($const as $value) {
-            $code[] = $indent.'const ' . $this->constNameFromValue($value) . " = \"$value\";"  ;
+            //$code[] = $indent.'const ' . $this->constNameFromValue($value) . " = \"$value\";"  ;
         }
         return implode("\n", $code);
     }
