@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPPurchaseOrderItemLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: PurchaseOrder item detail for a transaction line.
+                Description: PurchaseOrder item detail
+                for a transaction line.
 
  */
 class IPPPurchaseOrderItemLineDetail extends IPPSalesItemLineDetail
@@ -23,24 +24,26 @@ class IPPPurchaseOrderItemLineDetail extends IPPSalesItemLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPPurchaseOrderItemLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPPurchaseOrderItemLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPPurchaseOrderItemLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchaseOrderItemLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL
-                                Description: The identifier provided by manufacturer for the Item. For example, the model number.
+                                Description: The identifier
+                                provided by manufacturer for the Item. For example, the model
+                                number.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +55,9 @@ class IPPPurchaseOrderItemLineDetail extends IPPSalesItemLineDetail
     /**
      * @Definition
                                 Product: ALL
-                                Description: The item on the line is marked as if fully receiveded, but it is closed as no longer available.
+                                Description: The item on the line
+                                is marked as if fully receiveded, but it is closed as no longer
+                                available.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +69,9 @@ class IPPPurchaseOrderItemLineDetail extends IPPSalesItemLineDetail
     /**
      * @Definition
                                 Product: ALL
-                                Description: Represents the difference between the quantity ordered and actually received.[br /]Cannot be written to QuickBooks.
+                                Description: Represents the
+                                difference between the quantity ordered and actually
+                                received.[br /]Cannot be written to QuickBooks.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +83,8 @@ class IPPPurchaseOrderItemLineDetail extends IPPSalesItemLineDetail
     /**
      * @Definition
                                 Product: ALL
-                                Description: Internal use only: extension place holder for PurchaseOrderItemDetail
+                                Description: Internal use only:
+                                extension place holder for PurchaseOrderItemDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

@@ -8,9 +8,11 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPDiscountLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: Discount detail for a transaction line.
+                Description: Discount detail for a
+                transaction line.
                 Product: QBO
-                Description: Discount detail representing the total discount on a transaction.
+                Description: Discount detail
+                representing the total discount on a transaction.
 
  */
 class IPPDiscountLineDetail extends IPPDiscountOverride
@@ -25,24 +27,25 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPDiscountLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPDiscountLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPDiscountLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPDiscountLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL
-                                Description: Date when the service is performed.
+                                Description: Date when the service
+                                is performed.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -54,7 +57,8 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
     /**
      * @Definition
                                 Product: ALL
-                                Description: Reference to the Class for the discount.
+                                Description: Reference to the Class
+                                for the discount.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -66,7 +70,8 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
     /**
      * @Definition
                                 Product: ALL
-                                Description: Reference to the TaxCode for the discount.
+                                Description: Reference to the
+                                TaxCode for the discount.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -78,7 +83,8 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
     /**
      * @Definition
                                 Product: ALL
-                                Description: Internal use only: extension place holder for DiscountDetail
+                                Description: Internal use only:
+                                extension place holder for DiscountDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

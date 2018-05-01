@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPTDSLineDetail
  * @xmlDefinition
                 Product: QBO
-                Description: TDS line detail for the transaction.
+                Description: TDS line detail for the
+                transaction.
 
  */
 class IPPTDSLineDetail
@@ -23,24 +24,25 @@ class IPPTDSLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPTDSLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPTDSLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPTDSLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTDSLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: QBO
-                        Description: Reference to TDS account associated with this transaction
+                        Description: Reference to TDS account
+                        associated with this transaction
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,8 @@ class IPPTDSLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: TDS section type of the transaction.
+                        Description: TDS section type of the
+                        transaction.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +67,8 @@ class IPPTDSLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Extension place holder for TDSLineDetail
+                        Description: Extension place holder
+                        for TDSLineDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

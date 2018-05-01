@@ -6,7 +6,8 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType IntuitEntity
  * @xmlName IPPCustomerMsg
  * @var IPPCustomerMsg
- * @xmlDefinition A standard message to a customer that can be included at the bottom of a sales form.
+ * @xmlDefinition A standard message to a customer that can be
+                included at the bottom of a sales form.
 
  */
 class IPPCustomerMsg extends IPPIntuitEntity
@@ -21,20 +22,20 @@ class IPPCustomerMsg extends IPPIntuitEntity
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPCustomerMsg', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPCustomerMsg', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPCustomerMsg', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCustomerMsg', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition Contains the message to a customer.[br /]
                                 Length Restriction:
@@ -49,7 +50,9 @@ class IPPCustomerMsg extends IPPIntuitEntity
      */
     public $Name;
     /**
-     * @Definition Whether or not active inactive customer message may be hidden from most display purposes and may not be used on financial transactions.
+     * @Definition Whether or not active inactive customer message
+                                may be hidden from most display purposes and may not be used on
+                                financial transactions.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -58,7 +61,8 @@ class IPPCustomerMsg extends IPPIntuitEntity
      */
     public $Active;
     /**
-     * @Definition Internal use only: extension place holder for CustomerMsg
+     * @Definition Internal use only: extension place holder for
+                                CustomerMsg
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0

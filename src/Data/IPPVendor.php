@@ -20,20 +20,20 @@ class IPPVendor extends IPPNameBase
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPVendor', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPVendor', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPVendor', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendor', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition  Name of the contact within the vendor. Used by QBD only
 
@@ -205,13 +205,9 @@ class IPPVendor extends IPPNameBase
      * @var float
      */
     public $Balance;
-
     /**
      * @Definition
-                                Product: ALL
-                                Description: The Bill Rate for that vendor.
-                                Filterable: QBW
-                                Sortable: QBW
+                                 BillRate can be set to specify this vendor's hourly billing rate.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

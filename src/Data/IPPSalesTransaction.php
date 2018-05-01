@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPSalesTransaction
  * @xmlDefinition
                 Product: ALL
-                Description: Base class of all Sales transaction entities.
+                Description: Base class of all Sales
+                transaction entities.
 
  */
 class IPPSalesTransaction extends IPPTransaction
@@ -23,24 +24,26 @@ class IPPSalesTransaction extends IPPTransaction
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPSalesTransaction', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSalesTransaction', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSalesTransaction', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesTransaction', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: QBO
-                                Description: If AutoDocNumber is true, DocNumber is generated automatically.  If false or null, the DocNumber is generated based on preference of the user.
+                                Description: If AutoDocNumber is true, DocNumber is generated automatically.
+                                If false or null, the DocNumber is generated based on preference
+                                of the user.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -55,7 +58,8 @@ class IPPSalesTransaction extends IPPTransaction
                                 Description: Reference to a Customer or job.
                                 Filterable: QBW
                                 InputType: ReadWrite
-                                BusinessRules: QBW: CustomerRef is mandatory for some SalesTransactions like Invoice
+                                BusinessRules: QBW: CustomerRef is mandatory for some SalesTransactions like
+                                Invoice
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -67,8 +71,17 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: QBO: For an Invoice, this is the user-entered message to the customer that does appear in the invoice, and does appear in the printed invoice. The maximum length for Invoice Msg is 1000 characters.[br /]For a Bill, this is the memo of the transaction to provide more detail, and does not appear in the printed message of the bill. The maximum length for Bill Msg is 4000 characters.[br /]For a CreditCardCharge, this message appears in the printed record; maximum length is 4000 characters.[br /]Not supported for BillPayment, JournalEntry or Payment.
-                                Description: QBW: User-entered message to the customer; this message will be visible to end user on their transactions.
+                                Description: QBO: For an Invoice, this is the user-entered message to the
+                                customer that does appear in the invoice, and does appear in the
+                                printed invoice. The maximum length for Invoice Msg is 1000
+                                characters.[br /]For a Bill, this is the memo of the transaction
+                                to provide more detail, and does not appear in the printed
+                                message of the bill. The maximum length for Bill Msg is 4000
+                                characters.[br /]For a CreditCardCharge, this message appears in
+                                the printed record; maximum length is 4000 characters.[br /]Not
+                                supported for BillPayment, JournalEntry or Payment.
+                                Description: QBW: User-entered message to the customer; this message will be
+                                visible to end user on their transactions.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -81,8 +94,12 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: QBO: Bill-to address of the Invoice.[br]See [a href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
-                                Description: QBW: The physical (postal) address where the bill or invoice is sent.[br]See [a href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+                                Description: QBO: Bill-to address
+                                of the Invoice.[br]See [a
+                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+                                Description: QBW: The physical (postal) address where the bill
+                                or invoice is sent.[br]See [a
+                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -95,8 +112,15 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: QBO: Shipping address of the Invoice.[br]See [a href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
-                                Description: QBW: Identifies the address where the goods must be shipped. [br /]QuickBooks Note: If ShipAddr is not specified, and a default ship-to address is specified in QuickBooks for this customer, the default ship-to address will be used by QuickBooks.[br]See [a href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+                                Description: QBO: Shipping address
+                                of the Invoice.[br]See [a
+                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+                                Description: QBW: Identifies the address where the goods must be
+                                shipped. [br /]QuickBooks Note: If ShipAddr is not specified,
+                                and a default ship-to address is specified in QuickBooks for
+                                this customer, the default ship-to address will be used by
+                                QuickBooks.[br]See [a
+                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -107,8 +131,22 @@ class IPPSalesTransaction extends IPPTransaction
     public $ShipAddr;
     /**
      * @Definition
+                                                                Product: QBO
+                                                                Description: Specifies whether
+                                                                shipping address is in free-form or structured-form (city/state etc.)
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName FreeFormAddress
+     * @var boolean
+     */
+    public $FreeFormAddress;
+    /**
+     * @Definition
                                 Product: QBW
-                                Description: Reference to the party receiving payment.
+                                Description: Reference to the party
+                                receiving payment.
                                 InputType: ReadOnly
 
      * @xmlType element
@@ -121,7 +159,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Reference to the Class associated with the transaction.
+                                Description: Reference to the Class
+                                associated with the transaction.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -134,7 +173,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Reference to the SalesTerm associated with the transaction.
+                                Description: Reference to the
+                                SalesTerm associated with the transaction.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -146,8 +186,13 @@ class IPPSalesTransaction extends IPPTransaction
     public $SalesTermRef;
     /**
      * @br
-     * @ul If DueDate is not included when creating an invoice, QuickBooks may determine the due date according to the terms set for this customer.
-                                               If the Terms are not provided, the Due Date is set to the transaction date.
+     * @ul
+                                    If DueDate is not included when creating an invoice,
+                                        QuickBooks may determine the due date according to the terms
+                                        set for this customer.
+                                    If the Terms are not provided, the Due Date is set to the
+                                        transaction date.
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -158,7 +203,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Reference to the SalesRep associated with the transaction.
+                                Description: Reference to the
+                                SalesRep associated with the transaction.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -185,8 +231,13 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: "Free On Board", the terms between buyer and seller regarding transportation costs; does not have any bookkeeping implications.
-                                Description: "Free On Board", the terms between buyer and seller regarding transportation costs; does not have any bookkeeping implications.
+                                Description: "Free On Board", the
+                                terms between buyer and seller regarding transportation costs;
+                                does not have any bookkeeping implications.
+                                Description: "Free On
+                                Board", the terms between buyer and seller regarding
+                                transportation costs; does not have any bookkeeping
+                                implications.
                                 ValidRange: QBW: max=13
                                 ValidRange: QBO: max=15
 
@@ -213,7 +264,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Date for delivery of goods or services.
+                                Description: Date for delivery of
+                                goods or services.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -226,7 +278,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Shipping provider's tracking number for the delivery of the goods associated with the transaction.
+                                Description: Shipping provider's
+                                tracking number for the delivery of the goods associated with
+                                the transaction.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -238,7 +292,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Indicates the GlobalTax model if the model inclusive of tax, exclusive of taxes or not applicable
+                                Description: Indicates the
+                                GlobalTax model if the model inclusive of tax, exclusive of
+                                taxes or not applicable
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -250,8 +306,14 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: All
-                                Description: QBO: Indicates the total amount of the transaction. This includes the total of all the charges, allowances and taxes. By default, this is recalculated based on sub items total and overridden.
-                                Description: QBW: Indicates the total amount of the transaction. This includes the total of all the charges, allowances and taxes.[br /]Calculated by QuickBooks business logic; cannot be written to QuickBooks.
+                                Description: QBO: Indicates the
+                                total amount of the transaction. This includes the total of all
+                                the charges, allowances and taxes. By default, this is
+                                recalculated based on sub items total and overridden.
+                                Description: QBW: Indicates the total amount of the transaction.
+                                This includes the total of all the charges, allowances and
+                                taxes.[br /]Calculated by QuickBooks business logic; cannot be
+                                written to QuickBooks.
                                 Filterable: QBW
                                 Sortable: QBW
                                 InputType: QBW: OverrideOnSync
@@ -266,7 +328,12 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: QBW: Total amount of the transaction in the home currency for multi-currency enabled companies. Single currency companies will not have this field. Includes the total of all the charges, allowances and taxes. Calculated by QuickBooks business logic. Cannot be written to QuickBooks.
+                                Description: QBW: Total amount of
+                                the transaction in the home currency for multi-currency enabled
+                                companies. Single currency companies will not have this field.
+                                Includes the total of all the charges, allowances and taxes.
+                                Calculated by QuickBooks business logic. Cannot be written to
+                                QuickBooks.
                                 InputType: QBW: ReadOnly
 
      * @xmlType element
@@ -279,7 +346,10 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: If false or null, calculate the sales tax first, and then apply the discount. If true, subtract the discount first and then calculate the sales tax.
+                                Description: If false or null,
+                                calculate the sales tax first, and then apply the discount. If
+                                true, subtract the discount first and then calculate the sales
+                                tax.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -291,7 +361,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Reference to the Template for the invoice form.
+                                Description: Reference to the
+                                Template for the invoice form.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -304,7 +375,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: Printing status of the invoice.[br /]
+                                Description: Printing status of the
+                                invoice.[br /]
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -317,7 +389,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: Email status of the invoice.[br /]
+                                Description: Email status of the
+                                invoice.[br /]
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -330,9 +403,20 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Identifies the e-mail address where the invoice is sent. At present, you can provide only one e-mail address.[br /]If the ToBeEmailed attribute is true and the BillEmail attribute contains an e-mail address, the user can send an e-mail message to the e-mail address that is specified in the BillEmail attribute.[br /]If the BillEmail attribute contains an invalid e-mail address, QBO does not send the e-mail message to the invalid e-mail address. QBO also does not return any error message to indicate that the e-mail address is invalid.[br /]The maximum length for BillEmail is 100 characters.
+                                Description: Identifies the e-mail
+                                address where the invoice is sent. At present, you can provide
+                                only one e-mail address.[br /]If the ToBeEmailed attribute is
+                                true and the BillEmail attribute contains an e-mail address, the
+                                user can send an e-mail message to the e-mail address that is
+                                specified in the BillEmail attribute.[br /]If the BillEmail
+                                attribute contains an invalid e-mail address, QBO does not send
+                                the e-mail message to the invalid e-mail address. QBO also does
+                                not return any error message to indicate that the e-mail address
+                                is invalid.[br /]The maximum length for BillEmail is 100
+                                characters.
                                 Product: QBW
-                                Description: Identifies the email address where the bill or invoice is sent. [br /]UNSUPPORTED FIELD.
+                                Description: Identifies the email address
+                                where the bill or invoice is sent. [br /]UNSUPPORTED FIELD.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -341,13 +425,22 @@ class IPPSalesTransaction extends IPPTransaction
      * @var com\intuit\schema\finance\v3\IPPEmailAddress
      */
     public $BillEmail;
-
     /**
      * @Definition
                                 Product: QBO
-                                Description: Identifies the e-mail address where the invoice is sent. At present, you can provide only one e-mail address.[br /]If the ToBeEmailed attribute is true and the BillEmail attribute contains an e-mail address, the user can send an e-mail message to the e-mail address that is specified in the BillEmail attribute.[br /]If the BillEmail attribute contains an invalid e-mail address, QBO does not send the e-mail message to the invalid e-mail address. QBO also does not return any error message to indicate that the e-mail address is invalid.[br /]The maximum length for BillEmail is 100 characters.
+                                Description: Identifies the cc
+                                e-mail address where the invoice is sent. If the ToBeEmailed
+                                attribute is true and the BillEmailCc attribute contains an
+                                e-mail address, the user can send an e-mail message to the
+                                e-mail address that is specified in the BillEmailCc
+                                attribute.[br /] If the BillEmailCc attribute contains an
+                                invalid e-mail address, QBO does not send the e-mail message to
+                                the invalid cc e-mail address. [br /]The maximum length for
+                                BillEmailCc is 200 characters.
                                 Product: QBW
-                                Description: Identifies the email address where the bill or invoice is sent. Available in Version 8
+                                Description:
+                                Identifies the cc email address where the bill or invoice is
+                                sent. [br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -356,13 +449,22 @@ class IPPSalesTransaction extends IPPTransaction
      * @var com\intuit\schema\finance\v3\IPPEmailAddress
      */
     public $BillEmailCc;
-
     /**
      * @Definition
                                 Product: QBO
-                                Description: Identifies the e-mail address where the invoice is sent. At present, you can provide only one e-mail address.[br /]If the ToBeEmailed attribute is true and the BillEmail attribute contains an e-mail address, the user can send an e-mail message to the e-mail address that is specified in the BillEmail attribute.[br /]If the BillEmail attribute contains an invalid e-mail address, QBO does not send the e-mail message to the invalid e-mail address. QBO also does not return any error message to indicate that the e-mail address is invalid.[br /]The maximum length for BillEmail is 100 characters.
+                                Description: Identifies the bcc
+                                e-mail address where the invoice is sent. If the ToBeEmailed
+                                attribute is true and the BillEmailBcc attribute contains an
+                                e-mail address, the user can send an e-mail message to the
+                                e-mail address that is specified in the BillEmailBcc
+                                attribute.[br /] If the BillEmailCc attribute contains an
+                                invalid bcc e-mail address, QBO does not send the e-mail message
+                                to the invalid bcc e-mail address. [br /]The maximum length for
+                                BillEmailBcc is 200 characters.
                                 Product: QBW
-                                Description: Identifies the email address where the bill or invoice is sent. Available on Minor Version 8.
+                                Description:
+                                Identifies the bcc email address where the bill or invoice is
+                                sent as bcc. [br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -374,7 +476,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: Reference to the ARAccount (accounts receivable account) associated with the transaction.
+                                Description: Reference to the
+                                ARAccount (accounts receivable account) associated with the
+                                transaction.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -387,9 +491,12 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: The balance reflecting any payments made against the transaction. Initially this will be equal to the TotalAmt.
+                                Description: The balance reflecting
+                                any payments made against the transaction. Initially this will
+                                be equal to the TotalAmt.
                                 Product: QBW
-                                Description: Indicates the unpaid amount of the transaction.
+                                Description: Indicates the
+                                unpaid amount of the transaction.
                                 Filterable: ALL
                                 Sortable: QBW
                                 InputType: ReadOnly
@@ -404,9 +511,14 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: The balance reflecting any payments made against the transaction in home currency. Initially this will be equal to the HomeTotalAmt.[br /]Read-only field.
+                                Description: The balance reflecting
+                                any payments made against the transaction in home currency.
+                                Initially this will be equal to the HomeTotalAmt.[br /]Read-only
+                                field.
                                 Product: QBW
-                                Description: Indicates the unpaid amount of the transaction in home currency.[br /]Cannot be written to QuickBooks.
+                                Description: Indicates the unpaid amount of
+                                the transaction in home currency.[br /]Cannot be written to
+                                QuickBooks.
                                 Filterable: ALL
                                 Sortable: QBW
 
@@ -420,7 +532,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: Indicates whether the transaction is a finance charge.
+                                Description: Indicates whether the
+                                transaction is a finance charge.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -433,7 +546,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: Reference to the PaymentMethod.
+                                Description: Reference to the
+                                PaymentMethod.
                                 InputType: ReadWrite
 
      * @xmlType element
@@ -446,7 +560,10 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: The reference number for the payment received (I.e. Check # for a check, envelope # for a cash donation, CreditCardTransactionID for a credit card payment)
+                                Description: The reference number
+                                for the payment received (I.e. Check # for a check, envelope #
+                                for a cash donation, CreditCardTransactionID for a credit card
+                                payment)
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -458,7 +575,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Valid values are Cash, Check, CreditCard, or Other. No defaults. Cash based expense is not supported by QuickBooks Windows.
+                                Description: Valid values are Cash, Check, CreditCard, or
+                                Other. No defaults. Cash based expense is not supported by
+                                QuickBooks Windows.
                                 NotApplicableTo: Estimate, SalesOrder
 
      * @xmlType element
@@ -471,7 +590,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                     Product: ALL
-                                    Description Information about a check payment for the Invoice.
+                                    Description Information about a check payment for the
+                                    Invoice.
                                     NotApplicableTo: Estimate, SalesOrder
 
      * @xmlType element
@@ -484,7 +604,8 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                     Product: ALL
-                                    Description Information about a credit card payment for the Invoice.
+                                    Description Information about a credit card payment for the
+                                    Invoice.
                                     NotApplicableTo: Estimate, SalesOrder
 
      * @xmlType element
@@ -497,8 +618,12 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: ALL
-                                Description: QBW: Reference to the DepositToAccount entity. If not specified, the Undeposited Funds account will be used.
-                                Description: QBO: Asset account where the payment money is deposited. If you do not specify this account, QBO uses the Undeposited Funds account. Supported for Payment and SalesReceipt only.
+                                Description: QBW: Reference to the
+                                DepositToAccount entity. If not specified, the Undeposited Funds
+                                account will be used.
+                                Description: QBO: Asset account where the payment money is deposited. If you
+                                do not specify this account, QBO uses the Undeposited Funds
+                                account. Supported for Payment and SalesReceipt only.
                                 NotApplicableTo: QBW: Estimate, SalesOrder
 
      * @xmlType element
@@ -523,7 +648,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Indicates the discount rate that is applied on the transaction as a whole. This will be pro-rated through item lines for tax calculation.
+                                Description: Indicates the discount
+                                rate that is applied on the transaction as a whole. This will be
+                                pro-rated through item lines for tax calculation.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -535,7 +662,9 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Indicates the discount amount that is applied on the transaction as a whole. This will be pro-rated through item lines for tax calculation.
+                                Description: Indicates the discount
+                                amount that is applied on the transaction as a whole. This will
+                                be pro-rated through item lines for tax calculation.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -547,8 +676,10 @@ class IPPSalesTransaction extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: this is the reference to the NotaFiscal created for the salesTransaction.
-                                ValidRange: QBO: max=30
+                                Description: this is the reference
+                                to the NotaFiscal created for the salesTransaction.
+                                ValidRange:
+                                QBO: max=30
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -557,4 +688,17 @@ class IPPSalesTransaction extends IPPTransaction
      * @var string
      */
     public $GovtTxnRefIdentifier;
+    /**
+     * @Definition
+                                Product: ALL
+                                Description: Reference to the
+                                TaxExemptionId and TaxExemptionReason for this customer.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName TaxExemptionRef
+     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     */
+    public $TaxExemptionRef;
 } // end class IPPSalesTransaction

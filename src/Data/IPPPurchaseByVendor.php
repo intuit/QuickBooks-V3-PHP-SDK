@@ -6,7 +6,8 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType Transaction
  * @xmlName IPPPurchaseByVendor
  * @var IPPPurchaseByVendor
- * @xmlDefinition Financial Transaction information that pertains to the entire Bill.
+ * @xmlDefinition Financial Transaction information that pertains to
+                the entire Bill.
  */
 class IPPPurchaseByVendor extends IPPTransaction
 {
@@ -20,25 +21,25 @@ class IPPPurchaseByVendor extends IPPTransaction
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPPurchaseByVendor', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPPurchaseByVendor', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPPurchaseByVendor', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchaseByVendor', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
-                            Product: ALL
-                            Description: Specifies the vendor reference for this transaction
-                            Filterable: QBW
+                                Product: ALL
+                                Description: Specifies the vendor reference for this transaction
+                                Filterable: QBW
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -48,9 +49,14 @@ class IPPPurchaseByVendor extends IPPTransaction
      */
     public $VendorRef;
     /**
-     * @Definition Specifies which AP account the bill will be credited to. Many/most small businesses have a single AP account, so the account is implied.  When specified, the account must be a Liability account, and further, the sub-type must be of type "Payables"
+     * @Definition Specifies which AP account the bill will be
+                                credited to. Many/most small businesses have a single AP
+                                account, so the account is implied. When specified, the account
+                                must be a Liability account, and further, the sub-type must be
+                                of type "Payables"
                                 [b]QuickBooks Notes[/b][br /]
-                                The AP Account should always be specified or a default will be used.
+                                The AP Account
+                                should always be specified or a default will be used.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -61,13 +67,15 @@ class IPPPurchaseByVendor extends IPPTransaction
     public $APAccountRef;
     /**
      * @Definition
-                            Product: ALL
-                            Description: The total amount due, determined by taking the sum of all lines associated.  This includes all charges, allowances, taxes, discounts, etc...
+                                Product: ALL
+                                Description: The total amount due, determined by taking the sum of all lines
+                                associated. This includes all charges, allowances, taxes,
+                                discounts, etc...
                                 [b]QuickBooks Notes[/b][br /]
                                 Non QB-writable.
                                 Output only field in case of QBO
-                            Filterable: QBW
-                            Sortable: QBW
+                                Filterable: QBW
+                                Sortable: QBW
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -79,7 +87,8 @@ class IPPPurchaseByVendor extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: The email address to which this bill is/was sent. [br/] Non QB-writable.
+                                Description: The email address to
+                                which this bill is/was sent. [br/] Non QB-writable.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -91,7 +100,9 @@ class IPPPurchaseByVendor extends IPPTransaction
     /**
      * @Definition
                                 Product: QBW
-                                Description: The email address to which inquiries about the bill may be directed. (Also appropriate for paypal payments). [br/] Non QB-writable.
+                                Description: The email address to
+                                which inquiries about the bill may be directed. (Also
+                                appropriate for paypal payments). [br/] Non QB-writable.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -113,7 +124,9 @@ class IPPPurchaseByVendor extends IPPTransaction
     /**
      * @Definition
                                 Product: QBO
-                                Description: Indicates the GlobalTax model if the model inclusive of tax, exclusive of taxes or not applicable
+                                Description: Indicates the
+                                GlobalTax model if the model inclusive of tax, exclusive of
+                                taxes or not applicable
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPEmailDeliveryInfo
  * @xmlDefinition
                 Product: QBO
-                Description: Specifies various fields required for emailing different transaction
+                Description: Specifies various fields
+                required for emailing different transaction
 
  */
 class IPPEmailDeliveryInfo extends IPPIntuitEntity
@@ -23,24 +24,25 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPEmailDeliveryInfo', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPEmailDeliveryInfo', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPEmailDeliveryInfo', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEmailDeliveryInfo', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: QBO
-                                Description: Email address of recipients. Multiple email address seperated with comma.
+                                Description: Email address of
+                                recipients. Multiple email address seperated with comma.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,34 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Custom Email subject and message to be used for this email.
+                                Description: Cc email address of
+                                recipients. Multiple email address seperated with comma.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName DeliveryAddressCc
+     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     */
+    public $DeliveryAddressCc;
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Bcc email address of
+                                recipients. Multiple email address seperated with comma.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName DeliveryAddressBcc
+     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     */
+    public $DeliveryAddressBcc;
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Custom Email subject
+                                and message to be used for this email.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +93,8 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Specifies whether online payment should be enabled for this transaction
+                                Description: Specifies whether
+                                online payment should be enabled for this transaction
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +106,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Specifies whether customer is allowed to use eInvoicing(online payment -credit card) to pay the Invoice
+                                Description: Specifies whether
+                                customer is allowed to use eInvoicing(online payment -credit
+                                card) to pay the Invoice
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +120,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Specifies whether customer is allowed to use eInvoicing(online payment -bank or ach) to pay the Invoice
+                                Description: Specifies whether
+                                customer is allowed to use eInvoicing(online payment -bank or
+                                ach) to pay the Invoice
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +134,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Delivery information like DeliveryTime, DeliveryType and DeliveryErrorType (if applicable)
+                                Description: Delivery information
+                                like DeliveryTime, DeliveryType and DeliveryErrorType (if
+                                applicable)
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -112,7 +148,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: Specifies ETransaction status of this transaction. Applicable if ETransaction is enabled and this transaction is a ETransaction.
+                                Description: Specifies ETransaction
+                                status of this transaction. Applicable if ETransaction is
+                                enabled and this transaction is a ETransaction.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

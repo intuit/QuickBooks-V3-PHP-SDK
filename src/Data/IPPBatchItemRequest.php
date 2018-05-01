@@ -11,28 +11,28 @@ namespace QuickBooksOnline\API\Data;
 class IPPBatchItemRequest
 {
 
+
         /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPBatchItemRequest', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPBatchItemRequest', $initPropName)) {
+         * Initializes this object, optionally with pre-defined property values
+         *
+         * Initializes this object and it's property members, using the dictionary
+         * of key/value pairs passed as an optional argument.
+         *
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param boolean    $verbose            specifies whether object should echo warnings
+         */
+    public function __construct($keyValInitializers = [], $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPBatchItemRequest', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBatchItemRequest', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+            } else {
+                if ($verbose) {
+                        echo "Property does not exist ($initPropName) in class (".get_class($this).')';
                 }
             }
         }
-
+    }//end __construct()
 
     /**
      * @xmlType element
@@ -40,6 +40,7 @@ class IPPBatchItemRequest
      * @var IntuitObject
      */
     public $IntuitObject;
+
     /**
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -49,6 +50,7 @@ class IPPBatchItemRequest
      * @var string
      */
     public $Query;
+
     /**
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -58,6 +60,7 @@ class IPPBatchItemRequest
      * @var string
      */
     public $ReportQuery;
+
     /**
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -67,6 +70,7 @@ class IPPBatchItemRequest
      * @var com\intuit\schema\finance\v3\IPPCDCQuery
      */
     public $CDCQuery;
+
     /**
      * @Definition Specifies the batch id for which the response corresponds to
      * @xmlType attribute
@@ -74,6 +78,7 @@ class IPPBatchItemRequest
      * @var string
      */
     public $bId;
+
     /**
      * @Definition Specifies the batch id for which the response corresponds to
      * @xmlType attribute
@@ -81,6 +86,7 @@ class IPPBatchItemRequest
      * @var OperationEnum
      */
     public $operation;
+
     /**
      * @Definition Specifies name value pair of options other than operations
      * @xmlType attribute
@@ -88,4 +94,6 @@ class IPPBatchItemRequest
      * @var string
      */
     public $optionsData;
-} // end class IPPBatchItemRequest
+}//end class
+
+ // end class IPPBatchItemRequest

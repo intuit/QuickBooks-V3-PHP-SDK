@@ -25,20 +25,20 @@ class IPPCustomer extends IPPNameBase
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPCustomer', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPCustomer', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPCustomer', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCustomer', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: QBO only
@@ -189,7 +189,7 @@ class IPPCustomer extends IPPNameBase
     public $Level;
     /**
      * @Definition
-                                Product: QBW
+                                Product: ALL
                                 Description: Reference to a CustomerType associated with the Customer.
 
      * @xmlType element
@@ -494,4 +494,30 @@ class IPPCustomer extends IPPNameBase
      * @var string
      */
     public $PrimaryTaxIdentifier;
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Specifies tax exemption reason to be associated with Customer
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlMaxOccurs 1
+     * @xmlName TaxExemptionReasonId
+     * @var string
+     */
+    public $TaxExemptionReasonId;
+    /**
+     * @Definition
+                                Product: QBO
+                                Description: Specifies whether this customer is a project.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlMaxOccurs 1
+     * @xmlName IsProject
+     * @var boolean
+     */
+    public $IsProject;
 } // end class IPPCustomer

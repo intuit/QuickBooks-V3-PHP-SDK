@@ -9,33 +9,32 @@ namespace QuickBooksOnline\API\Data;
  * @xmlDefinition
                 Product: QBW
                 Description: generic meta data response for any add mod
-
  */
 class IPPStatus extends IPPIntuitEntity
 {
 
+
         /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPStatus', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPStatus', $initPropName)) {
+         * Initializes this object, optionally with pre-defined property values
+         *
+         * Initializes this object and it's property members, using the dictionary
+         * of key/value pairs passed as an optional argument.
+         *
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param boolean    $verbose            specifies whether object should echo warnings
+         */
+    public function __construct($keyValInitializers = [], $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPStatus', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStatus', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+            } else {
+                if ($verbose) {
+                        echo "Property does not exist ($initPropName) in class (".get_class($this).')';
                 }
             }
         }
-
+    }//end __construct()
 
     /**
      * @Definition
@@ -50,6 +49,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $RequestId;
+
     /**
      * @Definition
                             Product: QBW
@@ -63,6 +63,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $BatchId;
+
     /**
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -70,6 +71,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $ObjectType;
+
     /**
      * @Definition
                             Product: QBW
@@ -83,6 +85,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $StateCode;
+
     /**
      * @Definition
                             Product: QBW
@@ -95,6 +98,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $StateDesc;
+
     /**
      * @Definition
                             Product: QBW
@@ -107,6 +111,7 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $MessageCode;
+
     /**
      * @Definition
                         Product: QBW
@@ -119,4 +124,6 @@ class IPPStatus extends IPPIntuitEntity
      * @var string
      */
     public $MessageDesc;
-} // end class IPPStatus
+}//end class
+
+ // end class IPPStatus

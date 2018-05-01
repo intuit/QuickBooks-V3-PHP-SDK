@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPTxnSourceEnum
  * @xmlDefinition
                 Product: QBO
-                Description: Enumeration of transaction source.
+                Description: Enumeration of transaction
+                source.
 
  */
 class IPPTxnSourceEnum
@@ -23,22 +24,22 @@ class IPPTxnSourceEnum
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPTxnSourceEnum', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPTxnSourceEnum', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPTxnSourceEnum', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTxnSourceEnum', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
         /**
          * @xmlType value
          * @var string
          */
-        public $value;
+    public $value;
 } // end class IPPTxnSourceEnum
