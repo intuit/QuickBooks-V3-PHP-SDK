@@ -73,7 +73,7 @@ class Bind extends Common
 
         $className = $this->urnToPhpName($ns)."\\".$this->classPrefix.$name;
 
-        if (!class_exists($className)) {
+        if (!class_exists($className, CoreConstants::USE_AUTOLOADER)) {
             throw new \RuntimeException('Class '.$className. ' is not found. Make sure it was included');
         }
 
@@ -151,7 +151,7 @@ class Bind extends Common
                          *Vish Singh: Solution to Bug # IPP-4748
                          *Add Check if the class Exists. @Hao
                          */
-                         if (class_exists($className)) {
+                         if (class_exists($className, CoreConstants::USE_AUTOLOADER)) {
                              //Do nothing
                          } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className)) {
                              $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;

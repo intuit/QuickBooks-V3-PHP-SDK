@@ -26,7 +26,7 @@ use QuickBooksOnline\API\Core\ServiceContext;
 class RestHandler
 {
     /**
-     * The contex
+     * The Service context
      * @var ServiceContext
      */
     protected $serviceContext;

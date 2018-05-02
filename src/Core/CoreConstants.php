@@ -402,4 +402,7 @@ class CoreConstants
     public static function getCertPath(){
         return dirname(__FILE__) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
     }
+
+    //AutoLoader Settings
+    const USE_AUTOLOADER = true;
 }

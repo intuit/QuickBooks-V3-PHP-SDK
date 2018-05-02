@@ -83,9 +83,9 @@ class XmlObjectSerializer extends IEntitySerializer
     private static function PhpObjFromXml($className, $xmlStr)
     {
         $className = trim($className);
-        if (class_exists($className)) {
+        if (class_exists($className, CoreConstants::USE_AUTOLOADER)) {
             $phpObj = new $className;
-        } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className)) {
+        } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className, CoreConstants::USE_AUTOLOADER)) {
             $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;
             $phpObj = new $className;
         } else {
