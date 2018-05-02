@@ -7,6 +7,7 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPAdvancedInventoryPrefs
  * @var IPPAdvancedInventoryPrefs
  * @xmlDefinition QBW: only. Defines advance inventory Prefs details
+
  */
 class IPPAdvancedInventoryPrefs
 {
@@ -20,20 +21,20 @@ class IPPAdvancedInventoryPrefs
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPAdvancedInventoryPrefs', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPAdvancedInventoryPrefs', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPAdvancedInventoryPrefs', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAdvancedInventoryPrefs', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition QBW: ONLY. MLI available
      * @xmlType element
@@ -127,7 +128,8 @@ class IPPAdvancedInventoryPrefs
     /**
      * @Definition
                         Product: QBW
-                        Description: Indicates whether Row/Shelf/Bin location tracking is enabled
+                        Description: Indicates whether
+                        Row/Shelf/Bin location tracking is enabled
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -139,7 +141,8 @@ class IPPAdvancedInventoryPrefs
     /**
      * @Definition
                         Product: QBW
-                        Description: Indicates whether barcoding is enabled
+                        Description: Indicates whether
+                        barcoding is enabled
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

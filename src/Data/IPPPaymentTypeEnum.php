@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPPaymentTypeEnum
  * @xmlDefinition
                 Product: ALL
-                Description: Enumeration of payment types.
+                Description: Enumeration of payment
+                types.
 
  */
 class IPPPaymentTypeEnum
@@ -23,22 +24,22 @@ class IPPPaymentTypeEnum
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPPaymentTypeEnum', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPPaymentTypeEnum', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPPaymentTypeEnum', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPaymentTypeEnum', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
         /**
          * @xmlType value
          * @var string
          */
-        public $value;
+    public $value;
 } // end class IPPPaymentTypeEnum

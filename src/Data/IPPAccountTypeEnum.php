@@ -8,7 +8,10 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPAccountTypeEnum
  * @xmlDefinition
                 Product: ALL
-                Description: Enumeration of Account sub-types(QBW) and Account types(QBO) used to specifically categorize accounts.  Note: QBO doesn't support the "Non-Posting" Account type.
+                Description: Enumeration of Account
+                sub-types(QBW) and Account types(QBO) used to specifically
+                categorize accounts. Note: QBO doesn't support the "Non-Posting"
+                Account type.
 
  */
 class IPPAccountTypeEnum
@@ -23,22 +26,22 @@ class IPPAccountTypeEnum
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPAccountTypeEnum', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPAccountTypeEnum', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPAccountTypeEnum', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAccountTypeEnum', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
         /**
          * @xmlType value
          * @var string
          */
-        public $value;
+    public $value;
 } // end class IPPAccountTypeEnum

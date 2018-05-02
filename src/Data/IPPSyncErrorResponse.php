@@ -10,33 +10,32 @@ namespace QuickBooksOnline\API\Data;
                 Product: QBW
                 Description: Provides a wrapper for SyncError for Conflict API Response
                 Consists of list of SyncError objects
-
  */
 class IPPSyncErrorResponse
 {
 
+
         /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPSyncErrorResponse', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSyncErrorResponse', $initPropName)) {
+         * Initializes this object, optionally with pre-defined property values
+         *
+         * Initializes this object and it's property members, using the dictionary
+         * of key/value pairs passed as an optional argument.
+         *
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param boolean    $verbose            specifies whether object should echo warnings
+         */
+    public function __construct($keyValInitializers = [], $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSyncErrorResponse', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSyncErrorResponse', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+            } else {
+                if ($verbose) {
+                        echo "Property does not exist ($initPropName) in class (".get_class($this).')';
                 }
             }
         }
-
+    }//end __construct()
 
     /**
      * @Definition
@@ -52,6 +51,7 @@ class IPPSyncErrorResponse
      * @var com\intuit\schema\finance\v3\IPPSyncError
      */
     public $SyncError;
+
     /**
      * @Definition
                            Product: QBW
@@ -62,6 +62,7 @@ class IPPSyncErrorResponse
      * @var string
      */
     public $latestUploadTime;
+
     /**
      * @Definition Specifies the starting row number in this result
      * @xmlType attribute
@@ -69,6 +70,7 @@ class IPPSyncErrorResponse
      * @var integer
      */
     public $startPosition;
+
     /**
      * @Definition Specifies the number of records in this result
      * @xmlType attribute
@@ -76,6 +78,7 @@ class IPPSyncErrorResponse
      * @var integer
      */
     public $maxResults;
+
     /**
      * @Definition Specifies the total count of records that satisfy the filter condition
      * @xmlType attribute
@@ -83,4 +86,6 @@ class IPPSyncErrorResponse
      * @var integer
      */
     public $totalCount;
-} // end class IPPSyncErrorResponse
+}//end class
+
+ // end class IPPSyncErrorResponse

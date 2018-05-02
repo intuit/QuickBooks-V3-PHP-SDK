@@ -19,24 +19,25 @@ class IPPFinanceChargePrefs
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPFinanceChargePrefs', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPFinanceChargePrefs', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPFinanceChargePrefs', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPFinanceChargePrefs', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product:QBW
                         Annual Interest Rate in percent
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -69,8 +70,10 @@ class IPPFinanceChargePrefs
     /**
      * @Definition
                         Product:QBW
-                        If true, the Finance Charges are calculated from the transaction date (Invoice, or Bill).[br /]
-                        If false, the Finance Charges are calculated from the due date.
+                        If true, the Finance Charges are
+                        calculated from the transaction date (Invoice, or Bill).[br /]
+                        If
+                        false, the Finance Charges are calculated from the due date.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -82,7 +85,9 @@ class IPPFinanceChargePrefs
     /**
      * @Definition
                         Product:QBW
-                        true if finance charges should apply to overdue charges, in which case the charges will be applied to the account referenced in FinChrgAccountRef
+                        true if finance charges should apply
+                        to overdue charges, in which case the charges will be applied to
+                        the account referenced in FinChrgAccountRef
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -95,7 +100,8 @@ class IPPFinanceChargePrefs
      * @Definition
                         Product:QBW
                         [b]QuickBooks Notes[/b][br /]
-                        Max Length: 31 or 159 (for a fully qualified name)
+                        Max
+                        Length: 31 or 159 (for a fully qualified name)
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

@@ -23,20 +23,20 @@ class IPPEffectiveTaxRate
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPEffectiveTaxRate', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPEffectiveTaxRate', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPEffectiveTaxRate', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEffectiveTaxRate', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
@@ -52,7 +52,8 @@ class IPPEffectiveTaxRate
     /**
      * @Definition
                         Product: QBO
-                        Description: Effective starting date for which this taxrate is applicable
+                        Description: Effective starting date
+                        for which this taxrate is applicable
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +65,8 @@ class IPPEffectiveTaxRate
     /**
      * @Definition
                         Product: QBO
-                        Description: End date of this taxrate applicability
+                        Description: End date of this taxrate
+                        applicability
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +78,8 @@ class IPPEffectiveTaxRate
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for TaxLine.
+                        Description: Internal use only:
+                        extension place holder for TaxLine.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

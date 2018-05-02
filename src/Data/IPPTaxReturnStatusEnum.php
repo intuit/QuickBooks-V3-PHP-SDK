@@ -4,14 +4,11 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPBudgetTypeEnum
- * @var IPPBudgetTypeEnum
- * @xmlDefinition
-                Product: ALL
-                Description: Enumeration of Budget Types
-
+ * @xmlName IPPTaxReturnStatusEnum
+ * @var IPPTaxReturnStatusEnum
+ * @xmlDefinition Enumeration of the filing status that a TaxReturn can have
  */
-class IPPBudgetTypeEnum
+class IPPTaxReturnStatusEnum
 {
 
         /**
@@ -26,7 +23,7 @@ class IPPBudgetTypeEnum
     public function __construct($keyValInitializers = array(), $verbose = false)
     {
         foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPBudgetTypeEnum', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBudgetTypeEnum', $initPropName)) {
+            if (property_exists('IPPTaxReturnStatusEnum', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxReturnStatusEnum', $initPropName)) {
                 $this->{$initPropName} = $initPropVal;
             } else {
                 if ($verbose) {
@@ -41,4 +38,4 @@ class IPPBudgetTypeEnum
          * @var string
          */
     public $value;
-} // end class IPPBudgetTypeEnum
+} // end class IPPTaxReturnStatusEnum

@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPGroupLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: Detail for a group item line, including the lines expanded from the group item.
+                Description: Detail for a group item
+                line, including the lines expanded from the group item.
 
  */
 class IPPGroupLineDetail
@@ -23,24 +24,25 @@ class IPPGroupLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPGroupLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPGroupLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPGroupLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPGroupLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to a group item for all the lines that belong to the group.
+                        Description: Reference to a group
+                        item for all the lines that belong to the group.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -51,7 +53,8 @@ class IPPGroupLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Quantity of the group item.
+                        Description: Quantity of the group
+                        item.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -63,7 +66,8 @@ class IPPGroupLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Unit of Measure reference.
+                        Description: Unit of Measure
+                        reference.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -75,7 +79,8 @@ class IPPGroupLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Date when the service is performed.
+                        Description: Date when the service is
+                        performed.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -87,7 +92,9 @@ class IPPGroupLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: The list of lines expanded from the group item. Note that a group line cannot itself contain group lines.
+                        Description: The list of lines
+                        expanded from the group item. Note that a group line cannot itself
+                        contain group lines.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +107,8 @@ class IPPGroupLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for GroupLineDetail
+                        Description: Internal use only:
+                        extension place holder for GroupLineDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
