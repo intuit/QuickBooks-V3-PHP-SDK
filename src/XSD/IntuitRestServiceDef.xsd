@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schema.intuit.com/finance/v3"
+    targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <xs:include schemaLocation="Finance.xsd"/>
+    <xs:include schemaLocation="Report.xsd"/>
+    <xs:element name="IntuitObject" type="IntuitEntity" abstract="true"/>
+    <xs:element name="IntuitResponse" type="IntuitResponse"/>
+    <xs:element name="IntuitBatchRequest" type="IntuitBatchRequest"/>
+    <xs:element name="Customer" type="Customer" substitutionGroup="IntuitObject"/>
+    <xs:element name="CustomerType" type="CustomerType" substitutionGroup="IntuitObject"/>
+    <xs:element name="Employee" type="Employee" substitutionGroup="IntuitObject"/>
+    <xs:element name="Vendor" type="Vendor" substitutionGroup="IntuitObject"/>
+    <xs:element name="OtherName" type="OtherName" substitutionGroup="IntuitObject"/>
+    <xs:element name="Estimate" type="Estimate" substitutionGroup="IntuitObject"/>
+    <xs:element name="SalesOrder" type="SalesOrder" substitutionGroup="IntuitObject"/>
+    <xs:element name="SalesReceipt" type="SalesReceipt" substitutionGroup="IntuitObject"/>
+    <xs:element name="PurchaseOrder" type="PurchaseOrder" substitutionGroup="IntuitObject"/>
+    <xs:element name="Purchase" type="Purchase" substitutionGroup="IntuitObject"/>
+    <xs:element name="BillPayment" type="BillPayment" substitutionGroup="IntuitObject"/>
+    <xs:element name="Payment" type="Payment" substitutionGroup="IntuitObject"/>
+    <xs:element name="CreditMemo" type="CreditMemo" substitutionGroup="IntuitObject"/>
+    <xs:element name="StatementCharge" type="StatementCharge" substitutionGroup="IntuitObject"/>
+    <xs:element name="ChargeCredit" type="ChargeCredit" substitutionGroup="IntuitObject"/>
+    <xs:element name="ReimburseCharge" type="ReimburseCharge" substitutionGroup="IntuitObject"/>
+    <xs:element name="PaymentMethod" type="PaymentMethod" substitutionGroup="IntuitObject"/>
+    <xs:element name="Term" type="Term" substitutionGroup="IntuitObject"/>
+    <xs:element name="JournalEntry" type="JournalEntry" substitutionGroup="IntuitObject"/>
+    <xs:element name="Transfer" type="Transfer" substitutionGroup="IntuitObject"/>
+    <xs:element name="Deposit" type="Deposit" substitutionGroup="IntuitObject"/>
+    <xs:element name="Class" type="Class" substitutionGroup="IntuitObject"/>
+    <xs:element name="TimeActivity" type="TimeActivity" substitutionGroup="IntuitObject"/>
+    <xs:element name="Item" type="Item" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxCode" type="TaxCode" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxReturn" type="TaxReturn" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxRate" type="TaxRate" substitutionGroup="IntuitObject"/>
+    <xs:element name="VendorCredit" type="VendorCredit" substitutionGroup="IntuitObject"/>
+    <xs:element name="SalesRep" type="SalesRep" substitutionGroup="IntuitObject"/>
+    <xs:element name="InventorySite" type="InventorySite" substitutionGroup="IntuitObject"/>
+    <xs:element name="Task" type="Task" substitutionGroup="IntuitObject"/>
+    <xs:element name="UserAlert" type="UserAlert" substitutionGroup="IntuitObject"/>
+    <xs:element name="VendorType" type="VendorType" substitutionGroup="IntuitObject"/>
+    <xs:element name="PriceLevel" type="PriceLevel" substitutionGroup="IntuitObject"/>
+    <xs:element name="Company" type="Company" substitutionGroup="IntuitObject"/>
+    <xs:element name="CompanyInfo" type="CompanyInfo" substitutionGroup="IntuitObject"/>
+    <xs:element name="FixedAsset" type="FixedAsset" substitutionGroup="IntuitObject"/>
+    <xs:element name="RefundReceipt" type="RefundReceipt" substitutionGroup="IntuitObject"/>
+    <xs:element name="Account" type="Account" substitutionGroup="IntuitObject"/>
+    <xs:element name="Preferences" type="Preferences" substitutionGroup="IntuitObject"/>
+    <xs:element name="Invoice" type="Invoice" substitutionGroup="IntuitObject"/>
+    <xs:element name="EmailDeliveryInfo" type="EmailDeliveryInfo" substitutionGroup="IntuitObject"/>
+    <xs:element name="Department" type="Department" substitutionGroup="IntuitObject"/>
+    <xs:element name="Bill" type="Bill" substitutionGroup="IntuitObject"/>
+    <xs:element name="Attachable" type="Attachable" substitutionGroup="IntuitObject"/>
+    <xs:element name="BooleanTypeCustomFieldDefinition" type="BooleanTypeCustomFieldDefinition"
+        substitutionGroup="IntuitObject"/>
+    <xs:element name="CustomFieldDefinition" type="CustomFieldDefinition"
+        substitutionGroup="IntuitObject"/>
+    <xs:element name="DateTypeCustomFieldDefinition" type="DateTypeCustomFieldDefinition"
+        substitutionGroup="IntuitObject"/>
+    <xs:element name="NumberTypeCustomFieldDefinition" type="NumberTypeCustomFieldDefinition"
+        substitutionGroup="IntuitObject"/>
+    <xs:element name="StringTypeCustomFieldDefinition" type="StringTypeCustomFieldDefinition"
+        substitutionGroup="IntuitObject"/>
+    <xs:element name="Status" type="Status" substitutionGroup="IntuitObject"/>
+    <xs:element name="SyncActivity" type="SyncActivity" substitutionGroup="IntuitObject"/>
+    <xs:element name="Report" type="Report"/>
+    <xs:element name="SyncErrorResponse" type="SyncErrorResponse"/>    
+    <xs:element name="Budget" type="Budget" substitutionGroup="IntuitObject"/>
+    <xs:element name="OLBStatus" type="OLBStatus"/>
+    <xs:element name="TaxAgency" type="TaxAgency" substitutionGroup="IntuitObject"/>
+	<xs:element name="TDSMetadata" type="TDSMetadata" substitutionGroup="IntuitObject"/>
+	<xs:element name="CompanyCurrency" type="CompanyCurrency" substitutionGroup="IntuitObject"/>
+	<xs:element name="ExchangeRate" type="ExchangeRate" substitutionGroup="IntuitObject"/> 
+	<xs:element name="JournalCode" type="JournalCode" substitutionGroup="IntuitObject"/>  
+	<xs:element name="QbdtEntityIdMapping" type="QbdtEntityIdMapping" substitutionGroup="IntuitObject"/>
+    <xs:element name="MasterAccount" type="MasterAccount" substitutionGroup="IntuitObject"/>
+	  	
+    <xs:simpleType name="FaultTypeEnum">
+        <xs:annotation>
+            <xs:documentation>FaultTypeEnumeration list</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AuthenticationFault"/>
+            <xs:enumeration value="AuthorizatonFault"/>
+            <xs:enumeration value="ValidationFault"/>
+            <xs:enumeration value="SystemFault"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Warnings">
+        <xs:annotation>
+            <xs:documentation>Detailed data about warnings that occurred when a request was processed</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Warning" type="Warning" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Warning details specifies each warning</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Warning">
+        <xs:annotation>
+            <xs:documentation>Detailed data about a warning condition that occurred when a request was processed</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Message" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Localized standard message associated with the warning</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Detail" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Detailed message regarding the warning condition with specifics</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Warning code, this is a required field</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="element" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>The element (if any) directly involved in the warning (i.e. an ignored element)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="Error">
+        <xs:annotation>
+            <xs:documentation>Error Type detailing error </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Message" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Localized standard message associated with the error code</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Detail" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Detailed error localized or unlocalized error that is thrown by the business logic backend that caused the error</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>Error code number, this is a required field </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="element" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Element that caused the error</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="Fault">
+        <xs:annotation>
+            <xs:documentation>Fault entity describing the fault</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Error" type="Error" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Error entity that describes the details of the error, if there are multiple errors, multiple occurrence of error object will be represented as multiple errors</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Element that caused the error</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="IntuitResponse">
+        <xs:annotation>
+            <xs:documentation>IntuitResponse is a holder of all types of entities that come as part of response</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Warnings" type="Warnings" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indication that a request was processed, but with possible exceptional circumstances (i.e. ignored unsupported fields) that the client may want to be aware of</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="1">
+                <xs:element ref="IntuitObject">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitEntity derived entity like Customer, Invoice can be part of response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation> Fault or Object should be returned</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Report" type="Report" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns Report entity in case of report request</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="QueryResponse" type="QueryResponse" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns QueryResponse entity in case of query</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="BatchItemResponse" type="BatchItemResponse" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Returns BatchItems in response in case of Batch request</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CDCResponse" type="CDCResponse" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Returns CDCResponse</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="AttachableResponse" type="AttachableResponse" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Returns AttachableResponse entity with response to file upload requests</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SyncErrorResponse" type="SyncErrorResponse" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitResponseType type derived from IntuitResponseType</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="OLBTransaction" type="OLBTransaction" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>OLBTransaction object in the response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="OLBStatus" type="OLBStatus" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>OLBStatus object in the response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="requestId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the RequestId associated with the request </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="time" type="xs:dateTime" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the time at which request started processing in the server </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="status" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the HTTP codes result of the operation</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="QueryResponse">
+        <xs:annotation>
+            <xs:documentation>QueryResponse entity describing the response of query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Warnings" type="Warnings" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indication that a request was processed, but with possible exceptional circumstances (i.e. ignored unsupported fields) that the client may want to be aware of</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="1">
+                <xs:element ref="IntuitObject" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitEntity derived object like Customer, Invoice can be part of response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation> Fault or Object should be returned</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="startPosition" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the starting row number in this result</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="maxResults" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the number of records in this result </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="totalCount" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the total count of records that satisfy the filter condition </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="CDCResponse">
+        <xs:annotation>
+            <xs:documentation>QueryResponse entity describing the response of query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice minOccurs="1">
+                <xs:element name="QueryResponse" type="QueryResponse" minOccurs="0"
+                    maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitEntity derived object like Customer, Invoice can be part of response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation> Fault or Object should be returned</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="size" type="xs:int" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the number of rows in this result</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="BatchItemResponse">
+        <xs:annotation>
+            <xs:documentation>QueryResponse entity describing the response of query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Warnings" type="Warnings" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Indication that a request was processed, but with possible exceptional circumstances (i.e. ignored unsupported fields) that the client may want to be aware of</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="1">
+                <xs:element ref="IntuitObject">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitEntity derived object like Customer, Invoice can be part of response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation> Fault or Object should be returned</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Report" type="Report" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns Report entity in case of report request</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="QueryResponse" type="QueryResponse" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns QueryResponse entity in case of query</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CDCResponse" type="CDCResponse" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns CDCResponse in this envelop</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CascadeResponse" type="CascadeResponse" minOccurs="0"  maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Returns CascadeResponse in this envelop</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="bId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the batch id for which the response corresponds to </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="BatchItemRequest">
+        <xs:annotation>
+            <xs:documentation>QueryResponse entity describing the response of query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element ref="IntuitObject"/>
+                <xs:element name="Query" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="ReportQuery" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="CDCQuery" type="CDCQuery" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="bId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the batch id for which the response corresponds to </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="operation" type="OperationEnum" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies the batch id for which the response corresponds to </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="optionsData" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Specifies name value pair of options other than operations</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="CDCQuery">
+        <xs:annotation>
+            <xs:documentation>CDCQuery entity describing need for query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Entities" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Coma separated entity list of entities required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ChangedSince" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Time after which changes are required on the entities that are updated, created, deleted</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IntuitBatchRequest">
+        <xs:annotation>
+            <xs:documentation>QueryResponse entity describing the response of query</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="BatchItemRequest" type="BatchItemRequest" minOccurs="1"
+                maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AttachableResponse">
+        <xs:annotation>
+            <xs:documentation>AttachableResponse entity describing the response of upload results</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice minOccurs="1">
+                <xs:element name="Attachable" type="Attachable" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Upload file metat data</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Fault if upload file is not successful</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType final="" name="OperationEnum">
+        <xs:annotation>
+            <xs:documentation>Enumerates list of CUD operations</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="create"/>
+            <xs:enumeration value="update"/>
+            <xs:enumeration value="revert"/>
+            <xs:enumeration value="delete"/>
+            <xs:enumeration value="void"/>
+			<xs:enumeration value="send"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Status">
+        <xs:annotation>
+            <xs:documentation>
+		        Product: QBW
+		        Description: generic meta data response for any add mod
+		      </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="IntuitEntity">
+                <xs:sequence>
+                    <xs:element name="RequestId" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: Request Id to create/update object
+            				Filterable: QBW
+         				 </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="BatchId" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: Batch Id to create/update object
+            				Filterable: QBW
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ObjectType" type="xs:string"/>
+                    <xs:element name="StateCode" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: Code for Current State of object
+            				Filterable: QBW
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="StateDesc" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+	            			Product: QBW
+	            				Description: Description for Current State of object
+	          			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MessageCode" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: Status Message Code 
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MessageDesc" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            			Product: QBW
+            			Description: Status Message if error occurred else null
+          			</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SyncActivity">
+        <xs:annotation>
+            <xs:documentation>
+       			 Product: QBW
+        		 Description: Provides upload/writeback activity for a given period of time. Query activity using 
+        		 			  StartSyncTMS OR EndSyncTMS
+      		</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="IntuitEntity">
+                <xs:sequence>
+                    <xs:element name="LatestUploadDateTime" type="xs:dateTime" minOccurs="0"
+                        maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+          					 Product:QBW
+            				 Description: indicates when the data sync upload or write back started
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="LatestWriteBackDateTime" type="xs:dateTime" minOccurs="0"
+                        maxOccurs="1">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: indicates when the data sync upload or write back completed
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SyncType" type="SyncType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: can be either Upload or Write back sync type
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="StartSyncTMS" type="xs:dateTime" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: indicates when the data sync upload or write back started
+            				Filterable: QBW
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="EndSyncTMS" type="xs:dateTime" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: indicates when the data sync upload or write back completed
+            				Filterable: QBW
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="EntityName" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: name of the entity that is part of the data sync
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="EntityRowCount" type="xs:int" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+            				Product: QBW
+            				Description: number of rows of this entity that have been uploaded or written back to QB
+          				</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="SyncType">
+        <xs:annotation>
+            <xs:documentation>
+        Product: QBW
+        Description: must be either upload or writeback
+      </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Upload"/>
+            <xs:enumeration value="Writeback"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="SyncErrorResponse">
+        <xs:annotation>
+            <xs:documentation>
+                Product: QBW
+                Description: Provides a wrapper for SyncError for Conflict API Response
+                Consists of list of SyncError objects
+             </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SyncError" type="SyncError" minOccurs="0"
+                maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product:QBW
+                        Description: Wrapper of both types of Objects CloudVersion and QBVersion of objects
+                        If there are multiple errored objects you will get a list of errored objects
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="latestUploadTime" type="xs:dateTime" use="optional">
+		       <xs:annotation>
+		           <xs:documentation>
+		           		Product: QBW
+		           		Description: Specifies the latest time when Upload happened.
+		           </xs:documentation>
+		       </xs:annotation>
+		</xs:attribute>
+        <xs:attribute name="startPosition" type="xs:int" use="optional">
+		       <xs:annotation>
+		           <xs:documentation>Specifies the starting row number in this result</xs:documentation>
+		       </xs:annotation>
+		</xs:attribute>
+     	<xs:attribute name="maxResults" type="xs:int" use="optional">
+	         <xs:annotation>
+	             <xs:documentation>Specifies the number of records in this result </xs:documentation>
+	         </xs:annotation>
+     	</xs:attribute>
+     	<xs:attribute name="totalCount" type="xs:int" use="optional">
+         	<xs:annotation>
+             	<xs:documentation>Specifies the total count of records that satisfy the filter condition </xs:documentation>
+         	</xs:annotation>
+     	</xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="SyncError">
+        <xs:annotation>
+            <xs:documentation>
+                Product: QBW
+                Description: Wrapper object for specifying both version of the objects
+                If there is any warnings on a object basis that is also send back
+                This object is output object only
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Error" type="Error" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Indicates the type of error that happened in the sync to desktop</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CloudVersion" type="SyncObject" minOccurs="0"
+                maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product: QBW
+                        Description: Indicates the cloud version of the synced object
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="QBVersion" type="SyncObject" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product: QBW
+                        Description: Indicates the QB version of the synced object
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+        <xs:attribute name="Type" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Product: QBW
+                    Description: Indicates error type of entity. The value must correspond to SyncErrorType.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="AppToken" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    Product: ALL
+                    Description: Indicates the apptoken of the entity.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="SyncObject">
+        <xs:annotation>
+            <xs:documentation>
+            	Product: QBW
+            	Description: SyncObject that has an error
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice minOccurs="1">
+                <xs:element ref="IntuitObject" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Any IntuitEntity derived object like Customer, Invoice can be part of response</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Fault" type="Fault" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation> Fault or Object should be returned</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="SyncErrorType">
+        <xs:annotation>
+            <xs:documentation>
+        Product: QBW
+        Description: must be either of the following values
+      </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OutOfSync"/>
+            <xs:enumeration value="BusinessLogic"/>
+            <xs:enumeration value="SystemError"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ========================================================================================================= 
+		Please don't expose this object externally, this object should ONLY be used 
+		for publishing JMS events 
+		========================================================================================================= -->
+    <xs:complexType name="Cascade">
+        <xs:annotation>
+            <xs:documentation> Product: QBO Description: Object representing cascading events on entities resulting from a transaction event. Used by messaging. Not intended for external clients. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="EntityName" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation> Any IntuitEntity derived object name like Customer, Item, Invoice, ... </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Id" type="id" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="en"> Description: Unique identifier for an Intuit entity. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="KeyValue" type="NameValue" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation> Cascading events resulting from a transaction event in the form of key value pairs. Key names are user defined. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ========================================================================================================= 
+		Please don't expose this object externally, this object should ONLY be used 
+		for publishing JMS events 
+		========================================================================================================= -->
+    <xs:complexType name="CascadeResponse">
+        <xs:annotation>
+            <xs:documentation> Product: QBO Description: Holder for a collection of Cascade objects. Used by messaging. Not intended for external clients.  </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Cascade" type="Cascade" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation> Cascading events for an entity </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

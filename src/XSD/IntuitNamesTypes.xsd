@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schema.intuit.com/finance/v3"
+	targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="IntuitBaseTypes.xsd"/>
+	<!-- Element definitions -->
+	<!--Simple type definitions -->
+	<xs:simpleType name="EmployeeTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Employee type enumeration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Officer"/>
+			<xs:enumeration value="Owner"/>
+			<xs:enumeration value="Regular"/>
+			<xs:enumeration value="Statutory"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JobStatusEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Job status enumeration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Awarded"/>
+			<xs:enumeration value="Closed"/>
+			<xs:enumeration value="InProgress"/>
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="NotAwarded"/>
+			<xs:enumeration value="Pending"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimeEntryUsedForPaychecksEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Enumeration of types for time entries with paychecks.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NotSet"/>
+			<xs:enumeration value="DoNotUseTimeEntry"/>
+			<xs:enumeration value="UseTimeEntry"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="TaxReportBasisTypeEnum">
+        <xs:annotation>
+            <xs:documentation>
+                Product: QBO
+                Description: Enumeration of Tax Report Basis for France
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Cash"/>
+            <xs:enumeration value="Accrual"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+	<!--Start complex type definitions -->
+	<xs:complexType name="NameBase">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Describes the base class of name entities (Customer, Employee, Vendor, OtherName)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="IntuitId" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBO
+								Description: IntuitId represents the realm id, authid or an entity id. An entity is a new type of IAM identity that represents a person or a business which has no Intuit authentication context
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Organization" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: True if the entity represents an organization; otherwise the entity represents a person. Default is NULL or False, representing a person.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Title" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: QBW: Title of the person. The person can have zero or more titles.
+								Description: QBO: Title of the person. The person can have zero or more titles.
+								InputType: ReadWrite
+								ValidRange: QBW: Min=0, Max=15
+								ValidationRules: QBW: At least one of the name elements is required: Title, GivenName, MiddleName, or FamilyName.
+								ValidationRules: QBO: At least one of the name elements is required: Title, GivenName, MiddleName, FamilyName, or Suffix.
+								I18n: ALL
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GivenName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: Given name or first name of a person.[br /]Max. length: 25 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, or FamilyName.
+								Product: QBO
+								Description: Given name or first name of a person.[br /]Max. length: 25 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, FamilyName, or Suffix.
+								Filterable: ALL
+								Sortable: ALL
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MiddleName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: Middle name of the person. The person can have zero or more middle names.[br /]Max. length: 5 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, or FamilyName.
+								Product: QBO
+								Description: Middle name of the person. The person can have zero or more middle names.[br /]Max. length: 15 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, FamilyName, or Suffix.
+								Filterable: ALL
+								Sortable: ALL
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FamilyName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: Family name or the last name of the person.[br /]Max. length: 25 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, or FamilyName.
+								Product: QBO
+								Description: Family name or the last name of the person.[br /]Max. length: 15 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, FamilyName, or Suffix.
+								Filterable: ALL
+								Sortable: ALL
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Suffix" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBO
+								Description: Suffix appended to the name of a person. For example, Senior, Junior, etc. QBO only field.[br /]Max. length: 15 characters.[br /]At least one of the name elements is required: Title, GivenName, MiddleName, FamilyName, or Suffix.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FullyQualifiedName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Fully qualified name of the entity. The fully qualified name prepends the topmost parent, followed by each sub element separated by colons. Takes the form of Parent:Customer:Job:Sub-job. Limited to 5 levels.[br /]Max. length: 41 characters (single name) or 209 characters (fully qualified name).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CompanyName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: The name of the company associated with the person or organization.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DisplayName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The name of the person or organization as displayed. If not provided, this is populated from FullName.
+								Product: QBW
+								Description: The name of the person or organization as displayed.
+								Required: ALL
+								Filterable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrintOnCheckName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Name of the person or organization as printed on a check. If not provided, this is populated from FullName.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UserId" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: The ID of the Intuit user associated with this name.  Note: this is NOT the Intuit AuthID of the user.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Active" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: If true, this entity is currently enabled for use by QuickBooks. The default value is true.
+								Filterable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryPhone" type="TelephoneNumber" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Primary phone number.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AlternatePhone" type="TelephoneNumber" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Alternate phone number.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Mobile" type="TelephoneNumber" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Mobile phone number.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Fax" type="TelephoneNumber" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Fax number.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryEmailAddr" type="EmailAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Primary email address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WebAddr" type="WebSiteAddress" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Website address (URI).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherContactInfo" type="ContactInfo" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: List of ContactInfo entities of any contact info type. The ContactInfo Type values are defined in the ContactTypeEnum.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DefaultTaxCodeRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to the tax code associated with the Customer or Vendor by default for sales or purchase taxes.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Customer">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: QBO: The Customer entityrepresents the consumer of the service or the product that your business offers. QBO allows categorizing the customers in a way that is meaningful to the business. For example, you can set up a category of customers to indicate which industry a customer represents, the geographic location of a customer, or how a customer came to know about the business. The categorization can be then used for reports or mails.
+				Description: QBW: The Customer entity is a consumer of the service or product that your business offers. While creating a customer, avoid entering  job data. If you enter a job data, the system can prevent you from adding   more jobs for that customer. You must first create the customer, and then create a job using that customer as a parent.
+				Business Rules: [li]The customer name must be unique.[/li][li]The customer name must not contain a colon (:).[/li][li]The e-mail address of the customer must contain "@" and "." (dot).[/li][li]The customer address field is mandatory.[/li]
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="NameBase">
+				<xs:sequence>
+				    <xs:element name="Taxable" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBO only
+								Description: True if the customer is taxable.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Default billing address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ShipAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Default shipping address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW only.
+								Description: An address other than default billing  or shipping.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ContactName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Name of the Customer contact.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AltContactName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Name of the Alternate Customer contact.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Notes" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Free form text describing the Customer.[br /]Max. length: 1024 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Job" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: If true, this is a Job or sub-customer. If false or null, this is a top level customer, not a Job or sub-customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillWithParent" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: If true, this Customer is billed with its parent. If false, or null the customer is not to be billed with its parent. This property is valid only if this entity is a Job or sub Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RootCustomerRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The top level Customer in the hierarchy to which this Job or sub customer belongs.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ParentRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: The immediate parent of the Sub-Customer/Job in the hierarchical "Customer:Job" list.[br /]Required for the create operation if the Customer is a sub-customer or Job.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Level" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Specifies the level of the hirearchy in which the entity is located. Zero specifies the top level of the hierarchy; anything above will be level with respect to the parent.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomerTypeRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to a CustomerType associated with the Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SalesTermRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to a SalesTerm associated with the Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SalesRepRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Reference to a SalesRep associated with the Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="TaxGroupCodeRef" type="ReferenceType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									Product: QBW
+									Description: US-only, reference to a TaxCode entity where the group field of the referenced entity is true, that is, a TaxCode representing a list of tax rates that apply for the customer.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="TaxRateRef" type="ReferenceType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+									Product: QBW
+									Description: US-only, reference to a TaxRate entity indicating the sales tax to apply by default for the customer.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="PaymentMethodRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to a PaymentMethod associated with the Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CCDetail" type="CreditChargeInfo" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Credit-card information to request a credit card payment from a merchant account service.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PriceLevelRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Reference to a PriceLevel associated with the Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Balance" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Specifies the open balance amount or the amount unpaid by the customer. For the create operation, this represents the opening balance for the customer. When returned in response to the query request it represents the current open balance (unpaid amount) for that customer.
+								Filterable: QBW
+								Sortable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OpenBalanceDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Date of the Open Balance for the create operation.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BalanceWithJobs" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Cumulative open balance amount for the Customer (or Job) and all its sub-jobs. Cannot be written to QuickBooks.
+								Product: QBO
+								Description: Cumulative open balance amount for the Customer (or Job) and all its sub-jobs.
+								Filterable: ALL
+								Non-default: ALL
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CreditLimit" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Specifies the maximum amount of an unpaid customer balance.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AcctNum" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: Name or number of the account associated with this customer.[br /]Max. length: 99 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CurrencyRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to the currency code for all the business transactions created for or received from the customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OverDueBalance" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: Over-due balance amount. Cannot be written to QuickBooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TotalRevenue" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: The total revenue amount from the Customer. Cannot be written to QuickBooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TotalExpense" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBW
+								Description: The total expense amount for the Customer. Cannot be written to QuickBooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PreferredDeliveryMethod" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Preferred delivery method. Vales are Print, Email, or None.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ResaleNum" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Resale number or some additional info about the customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="JobInfo" type="JobInfo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Information about the job. Relevant only if the Customer represents the actual task or project, not just a person or organization.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TDSEnabled" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: True, if TDS (Tax Deducted at Source) is enabled for this customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomerEx" type="IntuitAnyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Internal use only: extension place holder for Customer.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+                    <xs:element name="SecondaryTaxIdentifier" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: Specifies secondary Tax ID of the Person or Organization. Applicable for IN companies for CST Registration No. and in future can be extended to other regions.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ARAccountRef" type="ReferenceType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: The A/R account ID for the customer. This is applicable only in FR where each customer needs to have his own AR account.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PrimaryTaxIdentifier" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description:  Specifies primary Tax ID of the Person or Organization.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TaxExemptionReasonId" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies tax exemption reason to be associated with Customer
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsProject" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies whether this customer is a project.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="User">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a User with an Intuit account.  Note that based on privacy restrictions, information returned may be
+				limited depending on calling origin and/or calling user permissions (ex: a user may be able to look up all of
+				their information, but not the information regarding other users).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="DisplayName" type="xs:string" minOccurs="0"/>
+					<xs:element name="Title" type="xs:string" minOccurs="0" />
+					<xs:element name="GivenName" type="xs:string" minOccurs="0"/>
+					<xs:element name="MiddleName" type="xs:string" minOccurs="0"/>
+					<xs:element name="FamilyName" type="xs:string" minOccurs="0"/>
+					<xs:element name="Suffix" type="xs:string" minOccurs="0"/>
+					<xs:element name="EmailAddr" type="EmailAddress" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Returned only if caller passes necessary security checks to prevent e-mail address harvesting</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Addr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<xs:element name="PhoneNumber" type="TelephoneNumber" maxOccurs="unbounded"/>
+					<xs:element name="LocaleCountry" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocaleLanguage" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocalePostalCode" type="xs:string" minOccurs="0"/>
+					<xs:element name="LocaleTimeZone" type="xs:string" minOccurs="0"/>
+					<xs:element name="NameValueAttr" type="NameValue" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Represents a list of UserAttribute name/value pairs if the user query provided names of extended attributes to include</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Vendor">
+		<xs:annotation>
+			<xs:documentation> Describes the Party as a Vendor Role view </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="NameBase">
+				<xs:sequence>
+					<xs:element name="ContactName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation> Name of the contact within the vendor. Used by QBD only
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AltContactName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation> Name of the Alternate contact within the vendor. Used by QBD only
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Notes" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Free form text describing the Vendor.[br /]Max. length: 1024 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Default billing address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ShipAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Default shipping address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW only.
+								Description: An address other than default billing  or shipping.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxCountry" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW.
+								Description: Country of Vendor.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxIdentifier" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">Specifies the Tax ID of the Person or Organization </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+                    <xs:element name="TaxIdEffectiveDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: Specifies the date of registeration of Supplier. Applicable for IN Region and in future can be extended to other regions.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+					<xs:element name="BusinessNumber" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW.
+								Description: Business Number of the Vendor. Applicable for CA/UK versions of QuickBooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ParentRef" type="ReferenceType" minOccurs="0"/>
+					<xs:element name="VendorTypeRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW.
+								Description: Reference to the VendorType.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TermRef" type="ReferenceType" minOccurs="0"/>
+					<xs:element name="PrefillAccountRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW.
+								Description: Reference to the PrefillAccount.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Balance" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Specifies the open balance amount or the amount unpaid by the vendor. For the create operation, this represents the opening balance for the vendor. When returned in response to the query request it represents the current open balance (unpaid amount) for that vendor.
+								Filterable: QBW
+								Sortable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillRate" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								 BillRate can be set to specify this vendor's hourly billing rate.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OpenBalanceDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the date of the Open Balance.
+								Non QB-writable.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CreditLimit" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the maximum amount of an unpaid vendor balance.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AcctNum" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Name or number of the account associated with this vendor.
+								Length Restriction:
+								QBO: 15
+								QBD: 1024
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Vendor1099" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The Vendor is an independent contractor, someone who is given a 1099-MISC form at the end of the year. The "1099 Vendor" is paid with regular checks, and taxes are not withhold on their behalf.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="T4AEligible" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: True if vendor is T4A eligible. Applicable for CA/UK versions of quickbooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="T5018Eligible" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: True if vendor is T5018 eligible. Applicable for CA/UK versions of quickbooks.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CurrencyRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Reference to the currency all the business transactions created for or received from that vendor are created in.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TDSEnabled" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: True, if TDS (Tax Deducted at Source) is enabled for this Vendor.
+								If enabled, TDS metadata needs to be passsed in VendorEx field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TDSEntityTypeId" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Entity Type of the Vendor.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TDSSectionTypeId" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Default TDS section type for the vendor to be used in transaction.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TDSOverrideThreshold" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: True, if TDS threshold calculation should be overriden.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+                    <xs:element name="TaxReportingBasis" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: The tax reporting basis for the supplier. The applicable values are those exposed through the TaxReportBasisTypeEnum.  This is applicable only in FR.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="APAccountRef" type="ReferenceType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: The A/P account ID for the supplier. This is applicable only in FR where each supplier needs to have his own AP account.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="VendorEx" type="IntuitAnyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Internal use only: extension place holder for Vendor.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+                    </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CustomerType">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Customer types allow categorizing customers in ways that are meaningful to the business. For example, one could set up customer types so that they indicate which industry a customer represents, a customer's geographic location, or how a customer first heard about the business. The categorization then can be used for reporting or mailings.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="Name" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: User recognizable name for the CustomerType.[br /]Max. length: 31 characters.
+								Product: QBO
+								Description: User recognizable name for the CustomerType.[br /]Max. length: 15 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ParentRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to the CustomerTypeParent.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FullyQualifiedName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Fully qualified name of the entity. The fully qualified name prepends the topmost parent, followed by each sub element separated by colons. Takes the form of Parent:Customer:Job:Sub-job. Limited to 5 levels.[br /]Max. length: 41 characters (single name) or 209 characters (fully qualified name).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Active" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: True if the Customer is active. Inactive customer types may be hidden from display and may not be used on financial transactions.
+								Filterable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Employee">
+		<xs:annotation>
+			<xs:documentation> Describes the Party as a Employee Role view </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="NameBase">
+				<xs:sequence>
+					<xs:element name="EmployeeType" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the Employee type. For QuickBooks Desktop the valid values are defined in the EmployeeTypeEnum.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EmployeeNumber" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the number of the employee (or account) in the employer's directory.
+								Length Restriction:
+								QBO: 15
+								QBD: 99
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SSN" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the SSN of the employee.
+								Length Restriction:
+								QBO: 15
+								QBD: 1024
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation> Represents primary PhysicalAddress list
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation> Represents other PhysicalAddress list
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillableTime" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>BillableTime should be true if this employee’s hours are typically billed to customers. QBO only.
+									QBD Unsupported field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BillRate" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>If BillableTime is true, BillRate can be set to specify this employee’s hourly billing rate. QBO only.
+								QBD Unsupported field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BirthDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Employee birth date </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Gender" type="gender" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Gender details </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HiredDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Employee hired date </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReleasedDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Date at which employee was releaved from the company</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UseTimeEntry" type="TimeEntryUsedForPaychecksEnum"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies whether the Time Entry (time sheets) should be used to create paychecks for the employee.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EmployeeEx" type="IntuitAnyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Internal use only: extension place holder for Employee.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="JobInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBW
+				Description: Details for the Job. This is applicable only to QuickBooks Windows desktop.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Status" type="JobStatusEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: ALL
+						Description: Current status of the job. Valid values are: Awarded, Closed, InProgress, None, NotAwarded, Pending, as defined in the JobStatusEnum.[br /]
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBW
+						Description: Starting date of the Job.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProjectedEndDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBW
+						Description: Projected end date of the job.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBW
+						Description: End date of the job.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBW
+						Description: Job description. Max. length: 99 characters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="JobTypeRef" type="ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBW
+						Description: Reference to the JobType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="JobType">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Job types allow for categorizing jobs so that similar jobs can be grouped and subtotaled on reports. Ultimately, they will help in determining which jobs are most profitable for the business.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="Name" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBW
+								Description: User recognizable name for the Job Type.[br /]Max. length: 31 characters.
+								Product: QBO
+								Description: User recognizable name for the Job Type.[br /]Max. length: 15 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ParentRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to the JobTypeParent entity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FullyQualifiedName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Fully qualified name of the entity. The fully qualified name prepends the topmost parent, followed by each sub element separated by colons. Takes the form of Parent:Customer:Job:Sub-job. Limited to 5 levels.[br /]Max. length: 41 characters (single name) or 209 characters (fully qualified name).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Active" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: True if the Job is active. Inactive job types may be hidden from display and may not be used on financial transactions.
+								Filterable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OtherName">
+		<xs:annotation>
+			<xs:documentation> Describes the Other Name (aka Payee). QBD only</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="NameBase">
+				<xs:sequence>
+					<xs:element name="AcctNum" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Name or number of the account associated with this other name (payee).
+								Length Restriction:
+								QBO: 15
+								QBD: 1024
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation> Represents primary PhysicalAddress list
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
+						maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation> Represents other PhysicalAddress list
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherNameEx" type="IntuitAnyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Internal use only: extension place holder for OtherName.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VendorType">
+		<xs:annotation>
+			<xs:documentation>Vendor types allow categorizing vendors in ways that are meaningful to the business. For example, one could set up vendor types so that they indicate a vendor's industry or geographic location. The categorization then can be used for reporting.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="Name" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>User recognizable name for the Vendor Type.
+								Length Restriction:
+								QBD: 1024
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ParentRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>VendorType Parent referene</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FullyQualifiedName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Fully qualified name of the entity. The fully qualified name prepends the topmost parent, followed by each sub element separated by colons. Takes the form of Parent:Customer:Job:Sub-job. Limited to 5 levels.[br /]Max. length: 41 characters (single name) or 209 characters (fully qualified name).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Active" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Whether or not active inactive customer types may be hidden from most display purposes and may not be used on financial transactions</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TaxAgency">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Represents a tax agency to whom sales/purchase/VAT taxes collected are paid
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Vendor">
+				<xs:sequence>
+					<xs:element name="SalesTaxCodeRef" type="ReferenceType" minOccurs="0"/>
+					<xs:element name="SalesTaxCountry" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>We'll need an Enum for the usual countries</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SalesTaxReturnRef" type="ReferenceType" minOccurs="0"/>
+					<xs:element name="TaxRegistrationNumber" type="xs:string" minOccurs="0"/>
+					<xs:element name="ReportingPeriod" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>We'll need an Enum for the reporting periods</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxTrackedOnPurchases" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="TaxOnPurchasesAccountRef" type="ReferenceType" minOccurs="0"/>
+					<xs:element name="TaxTrackedOnSales" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="TaxTrackedOnSalesAccountRef" type="ReferenceType"
+						minOccurs="0"/>
+					<xs:element name="TaxOnTax" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="LastFileDate" type="xs:date" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: QBO
+                                Description: This specifies the last filing date for this tax agency.
+                                InputType: QBO: ReadOnly
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TaxAgencyExt" type="IntuitAnyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

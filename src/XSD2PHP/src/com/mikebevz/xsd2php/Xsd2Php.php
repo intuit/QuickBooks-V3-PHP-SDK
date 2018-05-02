@@ -661,7 +661,7 @@ class Xsd2Php extends Common
             }
 
             if ($this->overrideAsSingleNamespace) {
-                $namespaceClause = "";
+                $namespaceClause = "namespace QuickBooksOnline\API\Data;"."\n";
                 $phpClass->namespace = $this->overrideAsSingleNamespace;
                 $docBlock['xmlNamespace'] = $this->overrideAsSingleNamespace;
             }
