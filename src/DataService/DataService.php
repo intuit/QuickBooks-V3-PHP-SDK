@@ -314,7 +314,7 @@ class DataService
      * Return the client Name used by this DataSerivce
      * @return String the Client Name. It can be curl or GuzzleHttpClient
      */
-    public function getClinetName(){
+    public function getClientName(){
        return $this->clientName;
     }
 
