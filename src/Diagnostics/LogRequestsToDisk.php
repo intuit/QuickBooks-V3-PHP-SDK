@@ -30,7 +30,7 @@ class LogRequestsToDisk
      */
     public function __construct($enableServiceRequestLogging=false, $serviceRequestLoggingLocation=null)
     {
-        $this->EnableServiceRequestsLogging = $enableServiceRequestLogging;
+        $this->EnableServiceRequestsLogging = (!empty($enableServiceRequestLogging) && ("false" !== strtolower(trim($enableServiceRequestLogging))));
         $this->ServiceRequestLoggingLocation = $serviceRequestLoggingLocation;
     }
 
