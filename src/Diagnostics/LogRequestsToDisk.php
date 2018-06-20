@@ -30,8 +30,24 @@ class LogRequestsToDisk
      */
     public function __construct($enableServiceRequestLogging=false, $serviceRequestLoggingLocation=null)
     {
-        $this->EnableServiceRequestsLogging = (!empty($enableServiceRequestLogging) && ("false" !== strtolower(trim($enableServiceRequestLogging))));
+        $this->EnableServiceRequestsLogging = $enableServiceRequestLogging;
         $this->ServiceRequestLoggingLocation = $serviceRequestLoggingLocation;
+    }
+
+    /**
+     * Enabled or disable the log
+     * @param Boolean $status
+     */
+    public function setLogStatus($status){
+        $this->EnableServiceRequestsLogging = $status;
+    }
+
+    /**
+     * Set Log directory
+     * @param String $logDirectory
+     */
+    public function setLogDirectory($logDirectory){
+        $this->ServiceRequestLoggingLocation = $logDirectory;
     }
 
     /**

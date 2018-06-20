@@ -82,6 +82,14 @@ class SyncRestHandler extends RestHandler
         }
     }
 
+    /**
+     * Return the RequestLogger
+     * @return LogRequestsToDisk $requestLogger;
+     */
+     public function getRequestLogger(){
+       return $this->RequestLogging;
+     }
+
 
    /**
     * Return an representation of an error returned by the last request, or false if the last request was not an error.
