@@ -1178,7 +1178,7 @@ class ReportService
         $querySeparator = "?";
         $reportQueryParameters = $this->getReportQueryParameters();
 
-        if ($reportQueryParameters) {
+        if (strlen($reportQueryParameters) > 0) {
             $httpRequestUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $reportName, $querySeparator));
             $httpRequestUri .=  $reportQueryParameters;
         } else {
