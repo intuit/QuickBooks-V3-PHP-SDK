@@ -1015,7 +1015,7 @@ class ReportService
     private function getReportQueryParameters()
     {
         $uriParameterList = array();
-        $uriParameterString = null;
+        $uriParameterString = '';
 
         if (!is_null($this->report_date)) {
             array_push($uriParameterList, array("report_date", $this->getReportDate()));
@@ -1156,7 +1156,7 @@ class ReportService
 
 
         foreach ($uriParameterList as $uriParameter) {
-            if (sizeof($uriParameterString) > 0) {
+            if (strlen($uriParameterString) > 0) {
                 $uriParameterString .= "&";
             }
             $uriParameterString .= $uriParameter[0];
@@ -1178,7 +1178,7 @@ class ReportService
         $querySeparator = "?";
         $reportQueryParameters = $this->getReportQueryParameters();
 
-        if ($reportQueryParameters) {
+        if (strlen($reportQueryParameters) > 0) {
             $httpRequestUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $reportName, $querySeparator));
             $httpRequestUri .=  $reportQueryParameters;
         } else {
