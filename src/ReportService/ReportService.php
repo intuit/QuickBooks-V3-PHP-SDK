@@ -1070,7 +1070,7 @@ class ReportService
             array_push($uriParameterList, array("item", $this->getItem()));
         }
         if (!is_null($this->classid)) {
-            array_push($uriParameterList, array("class", $this->getClassid()));
+            array_push($uriParameterList, array("klass", $this->getClassid()));
         }
         if (!is_null($this->appaid)) {
             array_push($uriParameterList, array("appaid", $this->getAppaid()));
