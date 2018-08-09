@@ -138,7 +138,9 @@ class FacadeClassMapper
         'Gender' => 'gender',
         'UseTimeEntry' => 'TimeEntryUsedForPaychecksEnum',
         'SpecialItemType' => 'SpecialItemTypeEnum',
-        'TaxTypeApplicable' => 'TaxTypeApplicablityEnum'
+        'TaxTypeApplicable' => 'TaxTypeApplicablityEnum',
+        'PostingType' => 'PostingTypeEnum',
+        'JournalEntryType' => 'EntityTypeEnum'
        ];
     }
 
@@ -179,7 +181,9 @@ class FacadeClassMapper
          'ItemAssemblyLine' => 'ItemComponentLine',
          'SalesTaxRateList' => 'TaxRateList',
          'PurchaseTaxRateList' => 'TaxRateList',
-         'AdjustmentTaxRateList' => 'TaxRateList'
+         'AdjustmentTaxRateList' => 'TaxRateList',
+         //Use JournalEntryEntity to replace Entity
+         'JournalEntryEntity' => 'EntityTypeRef'
        ];
     }
 

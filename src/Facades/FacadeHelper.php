@@ -431,6 +431,11 @@ class FacadeHelper{
    private static function assignValue($targetObject, $key, $value){
      //Reflection Class
      $reflectionClassOfTargetObject = new \ReflectionClass($targetObject);
+     if(strcasecmp($key, "JournalEntryEntity") == 0){
+         $key = "Entity";
+     }else if(strcasecmp($key, "JournalEntryType") == 0){
+         $key = "Type";
+     }
      $property = $reflectionClassOfTargetObject->getProperty($key);
      if($property instanceof \ReflectionProperty){
         $value = FacadeHelper::convertValueTypeToAppropriateString($value);
