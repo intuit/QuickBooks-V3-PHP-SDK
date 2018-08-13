@@ -606,7 +606,7 @@ class DataService
      * @param string $CALLINGMETHOD
      * @param string|null $boundaryString
      * @param string|null $email
-     * @return null|Excepiton
+     * @return null|Exception
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
@@ -649,7 +649,7 @@ class DataService
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             } catch (Exception $e) {
-                return new Excepiton("Exception in deserialize ResponseBody.");
+                return new Exception("Exception in deserialize ResponseBody.");
             }
 
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Finished Executing Method " . $CALLINGMETHOD);
@@ -787,7 +787,7 @@ class DataService
      * Deletes an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Delete.
-     * @return null|Excepiton
+     * @return null|Exception
      * @throws IdsException
      */
     public function Delete($entity)
@@ -813,7 +813,7 @@ class DataService
      * Voids an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Void.
-     * @return null|Excepiton
+     * @return null|Exception
      * @throws IdsException
      */
     public function Void($entity)
