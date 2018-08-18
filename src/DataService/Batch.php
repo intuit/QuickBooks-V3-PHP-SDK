@@ -383,7 +383,12 @@ class Batch
                     continue;
                 }
                 $error = new \stdClass();
-                $error->message = (string)$item->Message;
+                $detail = (string)$item->Detail;
+                if($detail) {
+                    $error->message = (string)$item->Message . ' - ' . $detail;                    
+                } else {
+                    $error->message = (string)$item->Message;                    
+                }
                 $error->code = null;
                 if ($item->attributes() instanceof \SimpleXMLElement
                             && isset($item->attributes()->code)) {
