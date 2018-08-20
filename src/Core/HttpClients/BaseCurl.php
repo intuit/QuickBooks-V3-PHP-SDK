@@ -116,11 +116,23 @@ class BaseCurl{
   }
 
   /**
-   * retrun the curl Version
-   * @return curl version
+   * Set the curl TLS Version and check if TLS 1.2 is supported
+   * @return int TLSversion
    */
-  public function version(){
-      return curl_version();
+  public function versionOfTLS(){
+      $tlsVersion = "";
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, "https://www.howsmyssl.com/a/check");
+      curl_setopt($curl, CURLOPT_SSLVERSION, 6);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      $curlVersionResponse = curl_exec($curl);
+      if($curlVersionResponse === false){
+         throw new SdkException("Error in checking cURL version for TLS 1.2. Error Num:[" . curl_errno($curl) . "] Error message:[" . curl_error($curl) . "]");
+      }else{
+         $tlsVersion = json_decode($curlVersionResponse)->tls_version;
+      }
+      curl_close($curl);
+      return $tlsVersion;
   }
 
   /**
