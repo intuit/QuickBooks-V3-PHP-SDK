@@ -166,7 +166,8 @@ class CurlHttpClient implements HttpClientInterface{
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
-          $curl_opt[CURLOPT_SSLVERSION] = 6;
+          //based on spec, if TSL 1.2 is supported, it will use the TLS 1.2 or latest version by default
+          //$curl_opt[CURLOPT_SSLVERSION] = 6;
           $curl_opt[CURLOPT_CAINFO] = CoreConstants::getCertPath(); //Pem certification Key Path
       }
     }
