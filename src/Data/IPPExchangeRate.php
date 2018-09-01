@@ -90,7 +90,7 @@ class IPPExchangeRate extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ExchangeRateEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $ExchangeRateEx;
 } // end class IPPExchangeRate

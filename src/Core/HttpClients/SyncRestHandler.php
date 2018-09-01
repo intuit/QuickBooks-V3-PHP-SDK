@@ -33,7 +33,7 @@ use QuickBooksOnline\API\Exception\ServiceException;
  * Class SyncRestHandler
  *
  * SyncRestHandler contains the logic for preparing the REST request, calls REST services and returns the response.
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class SyncRestHandler extends RestHandler

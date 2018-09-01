@@ -51,7 +51,7 @@ class IPPStatementCharge extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CustomerRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CustomerRef;
     /**
@@ -63,7 +63,7 @@ class IPPStatementCharge extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName RemitToRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $RemitToRef;
     /**
@@ -74,7 +74,7 @@ class IPPStatementCharge extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ARAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ARAccountRef;
     /**
@@ -82,7 +82,7 @@ class IPPStatementCharge extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -121,7 +121,7 @@ class IPPStatementCharge extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName StatementChargeEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $StatementChargeEx;
 } // end class IPPStatementCharge

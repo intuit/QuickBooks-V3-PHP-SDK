@@ -105,7 +105,7 @@ class IPPCheckPayment
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName CheckPaymentEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $CheckPaymentEx;
 } // end class IPPCheckPayment

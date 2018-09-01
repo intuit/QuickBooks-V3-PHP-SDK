@@ -8,7 +8,8 @@
         "php": ">=5.6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "phpstan/phpstan": "^0.10.3"
     },
     "autoload": {
         "psr-4": {
@@ -21,5 +22,8 @@
             "name": "hlu2",
             "email": "Hao_Lu@intuit.com"
         }
-    ]
+    ],
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan --memory-limit=1G --level=0 analyse src"
+    }
 }

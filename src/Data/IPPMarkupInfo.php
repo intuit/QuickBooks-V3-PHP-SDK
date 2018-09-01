@@ -82,7 +82,7 @@ class IPPMarkupInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PriceLevelRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PriceLevelRef;
 } // end class IPPMarkupInfo

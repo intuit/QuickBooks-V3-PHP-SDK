@@ -61,7 +61,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName NameOf
-     * @var com\intuit\schema\finance\v3\IPPTimeActivityTypeEnum
+     * @var IPPTimeActivityTypeEnum
      */
     public $NameOf;
     /**
@@ -70,7 +70,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName EmployeeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $EmployeeRef;
     /**
@@ -79,7 +79,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName VendorRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $VendorRef;
     /**
@@ -88,7 +88,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName OtherNameRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $OtherNameRef;
     /**
@@ -98,7 +98,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CustomerRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CustomerRef;
     /**
@@ -107,7 +107,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DepartmentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DepartmentRef;
     /**
@@ -119,7 +119,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ItemRef;
     /**
@@ -127,7 +127,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -138,7 +138,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PayrollItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PayrollItemRef;
     /**
@@ -147,7 +147,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName BillableStatus
-     * @var com\intuit\schema\finance\v3\IPPBillableStatusEnum
+     * @var IPPBillableStatusEnum
      */
     public $BillableStatus;
     /**
@@ -252,7 +252,7 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TimeActivityEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $TimeActivityEx;
 } // end class IPPTimeActivity

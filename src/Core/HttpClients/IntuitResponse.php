@@ -24,7 +24,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * Class IntuitResponse
  *
  * An Object to store all response related information
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class IntuitResponse{

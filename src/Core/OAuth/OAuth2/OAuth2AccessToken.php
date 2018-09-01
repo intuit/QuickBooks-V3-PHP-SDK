@@ -17,14 +17,14 @@
 namespace QuickBooksOnline\API\Core\OAuth\OAuth2;
 
 use QuickBooksOnline\API\Exception\SdkException;
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 
 /**
  * Class OAuth2AccessToken
  *
  * A helper class to store the OAuth 2 Token related information
  *
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class OAuth2AccessToken{

@@ -41,7 +41,7 @@ class IPPColumns
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Column
-     * @var com\intuit\schema\finance\v3\IPPColumn
+     * @var IPPColumn
      */
     public $Column;
 } // end class IPPColumns

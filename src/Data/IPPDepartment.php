@@ -63,7 +63,7 @@ class IPPDepartment extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ParentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ParentRef;
     /**
@@ -93,7 +93,7 @@ class IPPDepartment extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DepartmentEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $DepartmentEx;
 } // end class IPPDepartment

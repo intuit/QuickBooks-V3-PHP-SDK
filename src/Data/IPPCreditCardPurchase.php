@@ -39,7 +39,7 @@ class IPPCreditCardPurchase
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AccountRef;
     /**

@@ -46,7 +46,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ItemRef;
     /**
@@ -58,7 +58,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -94,7 +94,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PriceLevelRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PriceLevelRef;
     /**
@@ -106,7 +106,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName MarkupInfo
-     * @var com\intuit\schema\finance\v3\IPPMarkupInfo
+     * @var IPPMarkupInfo
      */
     public $MarkupInfo;
     /**
@@ -130,7 +130,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName UOMRef
-     * @var com\intuit\schema\finance\v3\IPPUOMRef
+     * @var IPPUOMRef
      */
     public $UOMRef;
     /**
@@ -142,7 +142,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ItemAccountRef;
     /**
@@ -154,7 +154,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName InventorySiteRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $InventorySiteRef;
     /**
@@ -166,7 +166,7 @@ class IPPItemLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxCodeRef;
 } // end class IPPItemLineDetail

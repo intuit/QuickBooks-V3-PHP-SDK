@@ -70,7 +70,7 @@ class IPPCreditChargeResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Status
-     * @var com\intuit\schema\finance\v3\IPPCCPaymentStatusEnum
+     * @var IPPCCPaymentStatusEnum
      */
     public $Status;
     /**
@@ -118,7 +118,7 @@ class IPPCreditChargeResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CardSecurityCodeMatch
-     * @var com\intuit\schema\finance\v3\IPPCCSecurityCodeMatchEnum
+     * @var IPPCCSecurityCodeMatchEnum
      */
     public $CardSecurityCodeMatch;
     /**
@@ -142,7 +142,7 @@ class IPPCreditChargeResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AvsStreet
-     * @var com\intuit\schema\finance\v3\IPPCCAVSMatchEnum
+     * @var IPPCCAVSMatchEnum
      */
     public $AvsStreet;
     /**
@@ -151,7 +151,7 @@ class IPPCreditChargeResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AvsZip
-     * @var com\intuit\schema\finance\v3\IPPCCAVSMatchEnum
+     * @var IPPCCAVSMatchEnum
      */
     public $AvsZip;
     /**
@@ -236,7 +236,7 @@ class IPPCreditChargeResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CreditChargeResponseEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $CreditChargeResponseEx;
 } // end class IPPCreditChargeResponse

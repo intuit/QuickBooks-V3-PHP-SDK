@@ -46,7 +46,7 @@ class IPPContactInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Type
-     * @var com\intuit\schema\finance\v3\IPPContactTypeEnum
+     * @var IPPContactTypeEnum
      */
     public $Type;
     /**
@@ -58,7 +58,7 @@ class IPPContactInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Telephone
-     * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+     * @var IPPTelephoneNumber
      */
     public $Telephone;
     /**
@@ -70,7 +70,7 @@ class IPPContactInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Email
-     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     * @var IPPEmailAddress
      */
     public $Email;
     /**
@@ -82,7 +82,7 @@ class IPPContactInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName WebSite
-     * @var com\intuit\schema\finance\v3\IPPWebSiteAddress
+     * @var IPPWebSiteAddress
      */
     public $WebSite;
     /**
@@ -94,7 +94,7 @@ class IPPContactInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName OtherContact
-     * @var com\intuit\schema\finance\v3\IPPGenericContactType
+     * @var IPPGenericContactType
      */
     public $OtherContact;
 } // end class IPPContactInfo

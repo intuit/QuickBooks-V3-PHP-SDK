@@ -60,7 +60,7 @@ class IPPCustomerType extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ParentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ParentRef;
     /**

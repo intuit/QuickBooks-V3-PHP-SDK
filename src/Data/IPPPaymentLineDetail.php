@@ -44,7 +44,7 @@ class IPPPaymentLineDetail
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName ItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ItemRef;
     /**
@@ -67,7 +67,7 @@ class IPPPaymentLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -102,7 +102,7 @@ class IPPPaymentLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Discount
-     * @var com\intuit\schema\finance\v3\IPPDiscountOverride
+     * @var IPPDiscountOverride
      */
     public $Discount;
     /**
@@ -114,7 +114,7 @@ class IPPPaymentLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PaymentLineEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $PaymentLineEx;
 } // end class IPPPaymentLineDetail

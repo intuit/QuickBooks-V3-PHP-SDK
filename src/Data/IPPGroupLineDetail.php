@@ -45,7 +45,7 @@ class IPPGroupLineDetail
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName GroupItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $GroupItemRef;
     /**
@@ -69,7 +69,7 @@ class IPPGroupLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName UOMRef
-     * @var com\intuit\schema\finance\v3\IPPUOMRef
+     * @var IPPUOMRef
      */
     public $UOMRef;
     /**
@@ -94,7 +94,7 @@ class IPPGroupLineDetail
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Line
-     * @var com\intuit\schema\finance\v3\IPPLine
+     * @var IPPLine
      */
     public $Line;
     /**
@@ -107,7 +107,7 @@ class IPPGroupLineDetail
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName GroupLineDetailEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $GroupLineDetailEx;
 } // end class IPPGroupLineDetail

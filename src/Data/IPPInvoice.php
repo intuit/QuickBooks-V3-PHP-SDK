@@ -111,7 +111,7 @@ class IPPInvoice extends IPPSalesTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName EInvoiceStatus
-     * @var com\intuit\schema\finance\v3\IPPETransactionStatusEnum
+     * @var IPPETransactionStatusEnum
      */
     public $EInvoiceStatus;
     /**
@@ -136,7 +136,7 @@ class IPPInvoice extends IPPSalesTransaction
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName InvoiceEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $InvoiceEx;
 } // end class IPPInvoice

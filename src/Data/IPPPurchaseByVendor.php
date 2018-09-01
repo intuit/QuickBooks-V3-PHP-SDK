@@ -44,7 +44,7 @@ class IPPPurchaseByVendor extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName VendorRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $VendorRef;
     /**
@@ -56,7 +56,7 @@ class IPPPurchaseByVendor extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName APAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $APAccountRef;
     /**
@@ -85,7 +85,7 @@ class IPPPurchaseByVendor extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName BillEmail
-     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     * @var IPPEmailAddress
      */
     public $BillEmail;
     /**
@@ -97,7 +97,7 @@ class IPPPurchaseByVendor extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ReplyEmail
-     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     * @var IPPEmailAddress
      */
     public $ReplyEmail;
     /**
@@ -119,7 +119,7 @@ class IPPPurchaseByVendor extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName GlobalTaxCalculation
-     * @var com\intuit\schema\finance\v3\IPPGlobalTaxCalculationEnum
+     * @var IPPGlobalTaxCalculationEnum
      */
     public $GlobalTaxCalculation;
 } // end class IPPPurchaseByVendor

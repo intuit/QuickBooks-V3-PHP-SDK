@@ -142,7 +142,7 @@ class IPPCreditChargeInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CCTxnMode
-     * @var com\intuit\schema\finance\v3\IPPCCTxnModeEnum
+     * @var IPPCCTxnModeEnum
      */
     public $CCTxnMode;
     /**
@@ -154,7 +154,7 @@ class IPPCreditChargeInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CCTxnType
-     * @var com\intuit\schema\finance\v3\IPPCCTxnTypeEnum
+     * @var IPPCCTxnTypeEnum
      */
     public $CCTxnType;
     /**
@@ -203,7 +203,7 @@ class IPPCreditChargeInfo
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CreditCardChargeInfoEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $CreditCardChargeInfoEx;
 } // end class IPPCreditChargeInfo

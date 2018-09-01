@@ -73,7 +73,7 @@ class IPPSyncActivity extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName SyncType
-     * @var com\intuit\schema\finance\v3\IPPSyncType
+     * @var IPPSyncType
      */
     public $SyncType;
     /**

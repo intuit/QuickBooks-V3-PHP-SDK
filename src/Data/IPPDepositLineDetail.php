@@ -46,7 +46,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Entity
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $Entity;
     /**
@@ -58,7 +58,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -70,7 +70,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AccountRef;
     /**
@@ -82,7 +82,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PaymentMethodRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PaymentMethodRef;
     /**
@@ -106,7 +106,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TxnType
-     * @var com\intuit\schema\finance\v3\IPPTxnTypeEnum
+     * @var IPPTxnTypeEnum
      */
     public $TxnType;
     /**
@@ -118,7 +118,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxCodeRef;
     /**
@@ -130,7 +130,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxApplicableOn
-     * @var com\intuit\schema\finance\v3\IPPTaxApplicableOnEnum
+     * @var IPPTaxApplicableOnEnum
      */
     public $TaxApplicableOn;
     /**
@@ -142,7 +142,7 @@ class IPPDepositLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DepositLineDetailEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $DepositLineDetailEx;
 } // end class IPPDepositLineDetail

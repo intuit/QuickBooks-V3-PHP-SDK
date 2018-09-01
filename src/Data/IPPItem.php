@@ -121,7 +121,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ParentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ParentRef;
     /**
@@ -221,7 +221,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Type
-     * @var com\intuit\schema\finance\v3\IPPItemTypeEnum
+     * @var IPPItemTypeEnum
      */
     public $Type;
     /**
@@ -233,7 +233,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PaymentMethodRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PaymentMethodRef;
     /**
@@ -245,7 +245,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName UOMSetRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $UOMSetRef;
     /**
@@ -258,7 +258,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName IncomeAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $IncomeAccountRef;
     /**
@@ -307,7 +307,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ExpenseAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ExpenseAccountRef;
     /**
@@ -320,7 +320,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName COGSAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $COGSAccountRef;
     /**
@@ -333,7 +333,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AssetAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AssetAccountRef;
     /**
@@ -345,7 +345,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PrefVendorRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PrefVendorRef;
     /**
@@ -442,7 +442,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DepositToAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DepositToAccountRef;
     /**
@@ -454,7 +454,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName SalesTaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $SalesTaxCodeRef;
     /**
@@ -466,7 +466,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PurchaseTaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PurchaseTaxCodeRef;
     /**
@@ -527,7 +527,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName SpecialItemType
-     * @var com\intuit\schema\finance\v3\IPPSpecialItemTypeEnum
+     * @var IPPSpecialItemTypeEnum
      */
     public $SpecialItemType;
     /**
@@ -539,7 +539,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemGroupDetail
-     * @var com\intuit\schema\finance\v3\IPPItemGroupDetail
+     * @var IPPItemGroupDetail
      */
     public $ItemGroupDetail;
     /**
@@ -551,7 +551,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemAssemblyDetail
-     * @var com\intuit\schema\finance\v3\IPPItemAssemblyDetail
+     * @var IPPItemAssemblyDetail
      */
     public $ItemAssemblyDetail;
     /**
@@ -608,7 +608,7 @@ class IPPItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $ItemEx;
 } // end class IPPItem

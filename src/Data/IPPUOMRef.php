@@ -49,7 +49,7 @@ class IPPUOMRef
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 1
      * @xmlName UOMSetRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $UOMSetRef;
 } // end class IPPUOMRef

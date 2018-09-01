@@ -41,7 +41,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxCodeRef;
     /**
@@ -49,7 +49,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -58,7 +58,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ReimbursableInfoRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ReimbursableInfoRef;
     /**
@@ -66,7 +66,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName SalesTermRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $SalesTermRef;
     /**
@@ -96,7 +96,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName VendorAddr
-     * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+     * @var IPPPhysicalAddress
      */
     public $VendorAddr;
     /**
@@ -106,7 +106,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DropShipToEntity
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DropShipToEntity;
     /**
@@ -114,7 +114,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName InventorySiteRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $InventorySiteRef;
     /**
@@ -123,7 +123,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ShipAddr
-     * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+     * @var IPPPhysicalAddress
      */
     public $ShipAddr;
     /**
@@ -131,7 +131,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ShipMethodRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ShipMethodRef;
     /**
@@ -157,7 +157,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName POEmail
-     * @var com\intuit\schema\finance\v3\IPPEmailAddress
+     * @var IPPEmailAddress
      */
     public $POEmail;
     /**
@@ -165,7 +165,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TemplateRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TemplateRef;
     /**
@@ -173,7 +173,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PrintStatus
-     * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+     * @var IPPPrintStatusEnum
      */
     public $PrintStatus;
     /**
@@ -181,7 +181,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName EmailStatus
-     * @var com\intuit\schema\finance\v3\IPPEmailStatusEnum
+     * @var IPPEmailStatusEnum
      */
     public $EmailStatus;
     /**
@@ -198,7 +198,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName POStatus
-     * @var com\intuit\schema\finance\v3\IPPPurchaseOrderStatusEnum
+     * @var IPPPurchaseOrderStatusEnum
      */
     public $POStatus;
     /**
@@ -207,7 +207,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PurchaseOrderEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $PurchaseOrderEx;
 } // end class IPPPurchaseOrder

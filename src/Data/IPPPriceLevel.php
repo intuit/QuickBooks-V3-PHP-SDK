@@ -58,7 +58,7 @@ class IPPPriceLevel extends IPPIntuitEntity
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName PriceLevelType
-     * @var com\intuit\schema\finance\v3\IPPPriceLevelTypeEnum
+     * @var IPPPriceLevelTypeEnum
      */
     public $PriceLevelType;
     /**
@@ -82,7 +82,7 @@ class IPPPriceLevel extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName PriceLevelPerItem
-     * @var com\intuit\schema\finance\v3\IPPPriceLevelPerItem
+     * @var IPPPriceLevelPerItem
      */
     public $PriceLevelPerItem;
     /**
@@ -94,7 +94,7 @@ class IPPPriceLevel extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CurrencyRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CurrencyRef;
     /**
@@ -103,7 +103,7 @@ class IPPPriceLevel extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PriceLevelEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $PriceLevelEx;
 } // end class IPPPriceLevel

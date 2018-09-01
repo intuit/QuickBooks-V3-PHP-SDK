@@ -99,7 +99,7 @@ class IPPTaxRateDetails
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName TaxApplicableOn
-     * @var com\intuit\schema\finance\v3\IPPTaxRateApplicableOnEnum
+     * @var IPPTaxRateApplicableOnEnum
      */
     public $TaxApplicableOn;
 } // end class IPPTaxRateDetails

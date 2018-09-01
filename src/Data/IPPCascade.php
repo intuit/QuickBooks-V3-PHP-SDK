@@ -49,7 +49,7 @@ class IPPCascade
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 1
      * @xmlName Id
-     * @var com\intuit\schema\finance\v3\IPPid
+     * @var IPPid
      */
     public $Id;
     /**
@@ -59,7 +59,7 @@ class IPPCascade
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName KeyValue
-     * @var com\intuit\schema\finance\v3\IPPNameValue
+     * @var IPPNameValue
      */
     public $KeyValue;
 } // end class IPPCascade

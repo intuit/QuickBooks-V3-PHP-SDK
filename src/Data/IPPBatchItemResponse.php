@@ -40,7 +40,7 @@ class IPPBatchItemResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Warnings
-     * @var com\intuit\schema\finance\v3\IPPWarnings
+     * @var IPPWarnings
      */
     public $Warnings;
     /**
@@ -57,7 +57,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Fault
-     * @var com\intuit\schema\finance\v3\IPPFault
+     * @var IPPFault
      */
     public $Fault;
     /**
@@ -67,7 +67,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Report
-     * @var com\intuit\schema\finance\v3\IPPReport
+     * @var IPPReport
      */
     public $Report;
     /**
@@ -77,7 +77,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName QueryResponse
-     * @var com\intuit\schema\finance\v3\IPPQueryResponse
+     * @var IPPQueryResponse
      */
     public $QueryResponse;
     /**
@@ -87,7 +87,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CDCResponse
-     * @var com\intuit\schema\finance\v3\IPPCDCResponse
+     * @var IPPCDCResponse
      */
     public $CDCResponse;
     /**
@@ -97,7 +97,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CascadeResponse
-     * @var com\intuit\schema\finance\v3\IPPCascadeResponse
+     * @var IPPCascadeResponse
      */
     public $CascadeResponse;
     /**

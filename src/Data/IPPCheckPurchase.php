@@ -39,7 +39,7 @@ class IPPCheckPurchase
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AccountRef;
     /**
@@ -48,7 +48,7 @@ class IPPCheckPurchase
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PayeeAddr
-     * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+     * @var IPPPhysicalAddress
      */
     public $PayeeAddr;
     /**
@@ -68,7 +68,7 @@ class IPPCheckPurchase
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PrintStatus
-     * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+     * @var IPPPrintStatusEnum
      */
     public $PrintStatus;
 } // end class IPPCheckPurchase

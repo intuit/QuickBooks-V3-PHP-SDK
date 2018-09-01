@@ -111,7 +111,7 @@ class IPPInventorySite extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Addr
-     * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+     * @var IPPPhysicalAddress
      */
     public $Addr;
     /**
@@ -124,7 +124,7 @@ class IPPInventorySite extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName ContactInfo
-     * @var com\intuit\schema\finance\v3\IPPContactInfo
+     * @var IPPContactInfo
      */
     public $ContactInfo;
     /**
@@ -133,7 +133,7 @@ class IPPInventorySite extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName InventorySiteEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $InventorySiteEx;
 } // end class IPPInventorySite

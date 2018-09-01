@@ -60,7 +60,7 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ClassRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ClassRef;
     /**
@@ -72,7 +72,7 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxCodeRef;
     /**
@@ -85,7 +85,7 @@ class IPPDiscountLineDetail extends IPPDiscountOverride
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName DiscountLineDetailEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $DiscountLineDetailEx;
 } // end class IPPDiscountLineDetail

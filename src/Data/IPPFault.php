@@ -41,7 +41,7 @@ class IPPFault
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Error
-     * @var com\intuit\schema\finance\v3\IPPError
+     * @var IPPError
      */
     public $Error;
     /**

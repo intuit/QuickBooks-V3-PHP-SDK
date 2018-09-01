@@ -38,7 +38,7 @@ class IPPBillPaymentCreditCard
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CCAccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CCAccountRef;
     /**
@@ -46,7 +46,7 @@ class IPPBillPaymentCreditCard
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CCDetail
-     * @var com\intuit\schema\finance\v3\IPPCreditCardPayment
+     * @var IPPCreditCardPayment
      */
     public $CCDetail;
     /**
@@ -55,7 +55,7 @@ class IPPBillPaymentCreditCard
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName BillPaymentCreditCardEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $BillPaymentCreditCardEx;
 } // end class IPPBillPaymentCreditCard

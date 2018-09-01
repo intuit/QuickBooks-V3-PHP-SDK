@@ -48,7 +48,7 @@ class IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Id
-     * @var com\intuit\schema\finance\v3\IPPid
+     * @var IPPid
      */
     public $Id;
     /**
@@ -73,7 +73,7 @@ class IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName MetaData
-     * @var com\intuit\schema\finance\v3\IPPModificationMetaData
+     * @var IPPModificationMetaData
      */
     public $MetaData;
     /**
@@ -87,7 +87,7 @@ class IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName CustomField
-     * @var com\intuit\schema\finance\v3\IPPCustomField
+     * @var IPPCustomField
      */
     public $CustomField;
     /**
@@ -98,7 +98,7 @@ class IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName AttachableRef
-     * @var com\intuit\schema\finance\v3\IPPAttachableRef
+     * @var IPPAttachableRef
      */
     public $AttachableRef;
     /**

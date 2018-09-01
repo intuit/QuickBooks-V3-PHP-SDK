@@ -49,7 +49,7 @@ class IPPSyncErrorResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName SyncError
-     * @var com\intuit\schema\finance\v3\IPPSyncError
+     * @var IPPSyncError
      */
     public $SyncError;
     /**

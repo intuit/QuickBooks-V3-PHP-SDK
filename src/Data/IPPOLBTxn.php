@@ -43,7 +43,7 @@ class IPPOLBTxn
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountId
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AccountId;
     /**
@@ -77,7 +77,7 @@ class IPPOLBTxn
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName OLBTxnDetail
-     * @var com\intuit\schema\finance\v3\IPPOLBTxnDetail
+     * @var IPPOLBTxnDetail
      */
     public $OLBTxnDetail;
     /**

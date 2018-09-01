@@ -47,7 +47,7 @@ class IPPTDSMetadata extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName TDSEntityTypes
-     * @var com\intuit\schema\finance\v3\IPPNameValue
+     * @var IPPNameValue
      */
     public $TDSEntityTypes;
     /**
@@ -60,7 +60,7 @@ class IPPTDSMetadata extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName TDSSectionTypes
-     * @var com\intuit\schema\finance\v3\IPPNameValue
+     * @var IPPNameValue
      */
     public $TDSSectionTypes;
 } // end class IPPTDSMetadata

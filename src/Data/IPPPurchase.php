@@ -44,7 +44,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $AccountRef;
     /**
@@ -56,7 +56,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PaymentMethodRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $PaymentMethodRef;
     /**
@@ -80,7 +80,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PaymentType
-     * @var com\intuit\schema\finance\v3\IPPPaymentTypeEnum
+     * @var IPPPaymentTypeEnum
      */
     public $PaymentType;
     /**
@@ -88,7 +88,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CheckPayment
-     * @var com\intuit\schema\finance\v3\IPPCheckPayment
+     * @var IPPCheckPayment
      */
     public $CheckPayment;
     /**
@@ -96,7 +96,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CreditCardPayment
-     * @var com\intuit\schema\finance\v3\IPPCreditCardPayment
+     * @var IPPCreditCardPayment
      */
     public $CreditCardPayment;
     /**
@@ -106,7 +106,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName EntityRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $EntityRef;
     /**
@@ -127,7 +127,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName RemitToAddr
-     * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+     * @var IPPPhysicalAddress
      */
     public $RemitToAddr;
     /**
@@ -162,7 +162,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PrintStatus
-     * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+     * @var IPPPrintStatusEnum
      */
     public $PrintStatus;
     /**
@@ -174,7 +174,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName GlobalTaxCalculation
-     * @var com\intuit\schema\finance\v3\IPPGlobalTaxCalculationEnum
+     * @var IPPGlobalTaxCalculationEnum
      */
     public $GlobalTaxCalculation;
     /**
@@ -183,7 +183,7 @@ class IPPPurchase extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PurchaseEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $PurchaseEx;
 } // end class IPPPurchase

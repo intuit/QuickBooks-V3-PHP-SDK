@@ -23,7 +23,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * Class CurlHttpClient
  *
  * A Http Client using PHP cURL extension to send HTTP/HTTPS request to QuickBooks Online
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class CurlHttpClient implements HttpClientInterface{

@@ -47,7 +47,7 @@ class IPPPhysicalAddress
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Id
-     * @var com\intuit\schema\finance\v3\IPPid
+     * @var IPPid
      */
     public $Id;
     /**

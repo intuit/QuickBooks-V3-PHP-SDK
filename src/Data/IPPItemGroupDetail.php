@@ -47,7 +47,7 @@ class IPPItemGroupDetail
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName ItemGroupLine
-     * @var com\intuit\schema\finance\v3\IPPItemComponentLine
+     * @var IPPItemComponentLine
      */
     public $ItemGroupLine;
 } // end class IPPItemGroupDetail

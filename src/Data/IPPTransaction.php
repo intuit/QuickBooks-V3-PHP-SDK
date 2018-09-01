@@ -79,7 +79,7 @@ class IPPTransaction extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DepartmentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DepartmentRef;
     /**
@@ -92,7 +92,7 @@ class IPPTransaction extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CurrencyRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CurrencyRef;
     /**
@@ -145,7 +145,7 @@ class IPPTransaction extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName LinkedTxn
-     * @var com\intuit\schema\finance\v3\IPPLinkedTxn
+     * @var IPPLinkedTxn
      */
     public $LinkedTxn;
     /**
@@ -160,7 +160,7 @@ class IPPTransaction extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Line
-     * @var com\intuit\schema\finance\v3\IPPLine
+     * @var IPPLine
      */
     public $Line;
     /**
@@ -172,7 +172,7 @@ class IPPTransaction extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TxnTaxDetail
-     * @var com\intuit\schema\finance\v3\IPPTxnTaxDetail
+     * @var IPPTxnTaxDetail
      */
     public $TxnTaxDetail;
     /**

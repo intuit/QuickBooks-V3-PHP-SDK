@@ -41,7 +41,7 @@ class IPPAttachableResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Attachable
-     * @var com\intuit\schema\finance\v3\IPPAttachable
+     * @var IPPAttachable
      */
     public $Attachable;
     /**
@@ -51,7 +51,7 @@ class IPPAttachableResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Fault
-     * @var com\intuit\schema\finance\v3\IPPFault
+     * @var IPPFault
      */
     public $Fault;
 } // end class IPPAttachableResponse

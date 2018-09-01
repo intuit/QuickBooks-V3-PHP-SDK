@@ -41,7 +41,7 @@ class IPPWarnings
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Warning
-     * @var com\intuit\schema\finance\v3\IPPWarning
+     * @var IPPWarning
      */
     public $Warning;
 } // end class IPPWarnings

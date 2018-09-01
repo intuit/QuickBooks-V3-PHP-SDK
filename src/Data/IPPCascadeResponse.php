@@ -41,7 +41,7 @@ class IPPCascadeResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Cascade
-     * @var com\intuit\schema\finance\v3\IPPCascade
+     * @var IPPCascade
      */
     public $Cascade;
 } // end class IPPCascadeResponse

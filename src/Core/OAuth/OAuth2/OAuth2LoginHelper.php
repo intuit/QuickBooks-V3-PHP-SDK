@@ -28,7 +28,7 @@ use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
  * Class OAuth2LoginHelper
  *
  * A helper class to handle OAuth 2 related requests
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class OAuth2LoginHelper

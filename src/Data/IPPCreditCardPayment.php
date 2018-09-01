@@ -42,7 +42,7 @@ class IPPCreditCardPayment
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CreditChargeInfo
-     * @var com\intuit\schema\finance\v3\IPPCreditChargeInfo
+     * @var IPPCreditChargeInfo
      */
     public $CreditChargeInfo;
     /**
@@ -50,7 +50,7 @@ class IPPCreditCardPayment
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CreditChargeResponse
-     * @var com\intuit\schema\finance\v3\IPPCreditChargeResponse
+     * @var IPPCreditChargeResponse
      */
     public $CreditChargeResponse;
 } // end class IPPCreditCardPayment

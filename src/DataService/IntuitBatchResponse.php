@@ -16,6 +16,9 @@
  *******************************************************************************/
 namespace QuickBooksOnline\API\DataService;
 
+use QuickBooksOnline\API\Data\IPPIntuitEntity;
+use QuickBooksOnline\API\Exception\IdsException;
+
 /**
  * This class processes the batch request.
  */
@@ -30,13 +33,13 @@ class IntuitBatchResponse
 
     /**
      * enum representing ResponseType after batch execution.
-     * @var ResponseType responseType
+     * @var int responseType
      */
     public $responseType;
 
     /**
      * entity in case response type is entity.
-     * @var IEntity entity
+     * @var IPPIntuitEntity entity
      */
     public $entity;
 
@@ -118,7 +121,7 @@ class IntuitBatchResponse
 
     /**
      * Return the result of the Request if there is no error. If the Batch request is Query, the result will be an array of items. If the Batch request is create, update, or ddelete, it will be the entity.
-     * @return Array|Entity
+     * @return Array|IPPIntuitEntity
      */
     public function getResult(){
         if(isset($this->entity)){

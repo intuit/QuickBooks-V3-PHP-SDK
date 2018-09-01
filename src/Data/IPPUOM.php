@@ -69,7 +69,7 @@ class IPPUOM extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName BaseType
-     * @var com\intuit\schema\finance\v3\IPPUOMBaseTypeEnum
+     * @var IPPUOMBaseTypeEnum
      */
     public $BaseType;
     /**
@@ -78,7 +78,7 @@ class IPPUOM extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName ConvUnit
-     * @var com\intuit\schema\finance\v3\IPPUOMConvUnit
+     * @var IPPUOMConvUnit
      */
     public $ConvUnit;
 } // end class IPPUOM

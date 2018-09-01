@@ -42,7 +42,7 @@ class IPPReportPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ReportBasis
-     * @var com\intuit\schema\finance\v3\IPPReportBasisEnum
+     * @var IPPReportBasisEnum
      */
     public $ReportBasis;
     /**

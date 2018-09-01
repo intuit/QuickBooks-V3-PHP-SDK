@@ -61,7 +61,7 @@ class IPPTemplateName extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Type
-     * @var com\intuit\schema\finance\v3\IPPTemplateTypeEnum
+     * @var IPPTemplateTypeEnum
      */
     public $Type;
 } // end class IPPTemplateName

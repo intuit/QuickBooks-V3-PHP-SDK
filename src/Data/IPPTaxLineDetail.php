@@ -56,7 +56,7 @@ class IPPTaxLineDetail
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName TaxRateRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxRateRef;
     /**
@@ -145,7 +145,7 @@ class IPPTaxLineDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxLineDetailEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $TaxLineDetailEx;
 } // end class IPPTaxLineDetail

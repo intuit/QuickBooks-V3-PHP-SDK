@@ -83,7 +83,7 @@ class IPPBudget extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName BudgetType
-     * @var com\intuit\schema\finance\v3\IPPBudgetTypeEnum
+     * @var IPPBudgetTypeEnum
      */
     public $BudgetType;
     /**
@@ -96,7 +96,7 @@ class IPPBudget extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName BudgetEntryType
-     * @var com\intuit\schema\finance\v3\IPPBudgetEntryTypeEnum
+     * @var IPPBudgetEntryTypeEnum
      */
     public $BudgetEntryType;
     /**
@@ -122,7 +122,7 @@ class IPPBudget extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName BudgetDetail
-     * @var com\intuit\schema\finance\v3\IPPBudgetDetail
+     * @var IPPBudgetDetail
      */
     public $BudgetDetail;
 } // end class IPPBudget

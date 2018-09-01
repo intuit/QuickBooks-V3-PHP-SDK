@@ -57,7 +57,7 @@ class IPPColumn
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName MetaData
-     * @var com\intuit\schema\finance\v3\IPPNameValue
+     * @var IPPNameValue
      */
     public $MetaData;
     /**
@@ -66,7 +66,7 @@ class IPPColumn
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Columns
-     * @var com\intuit\schema\finance\v3\IPPColumns
+     * @var IPPColumns
      */
     public $Columns;
 } // end class IPPColumn

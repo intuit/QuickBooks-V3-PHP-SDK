@@ -102,7 +102,7 @@ class IPPJournalEntry extends IPPTransaction
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName JournalEntryEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $JournalEntryEx;
 } // end class IPPJournalEntry

@@ -69,7 +69,7 @@ class IPPCurrency extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Code
-     * @var com\intuit\schema\finance\v3\IPPcurrencyCode
+     * @var IPPcurrencyCode
      */
     public $Code;
     /**
@@ -132,7 +132,7 @@ class IPPCurrency extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName SymbolPosition
-     * @var com\intuit\schema\finance\v3\IPPSymbolPositionEnum
+     * @var IPPSymbolPositionEnum
      */
     public $SymbolPosition;
     /**
@@ -170,7 +170,7 @@ class IPPCurrency extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CurrencyEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $CurrencyEx;
 } // end class IPPCurrency

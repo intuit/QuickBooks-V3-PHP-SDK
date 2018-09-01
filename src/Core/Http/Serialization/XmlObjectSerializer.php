@@ -2,7 +2,7 @@
 
 namespace QuickBooksOnline\API\Core\Http\Serialization;
 
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
 

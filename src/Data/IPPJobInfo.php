@@ -46,7 +46,7 @@ class IPPJobInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Status
-     * @var com\intuit\schema\finance\v3\IPPJobStatusEnum
+     * @var IPPJobStatusEnum
      */
     public $Status;
     /**
@@ -106,7 +106,7 @@ class IPPJobInfo
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName JobTypeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $JobTypeRef;
 } // end class IPPJobInfo

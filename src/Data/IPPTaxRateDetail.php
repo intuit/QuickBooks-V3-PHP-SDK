@@ -42,7 +42,7 @@ class IPPTaxRateDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxRateRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxRateRef;
     /**
@@ -54,7 +54,7 @@ class IPPTaxRateDetail
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxTypeApplicable
-     * @var com\intuit\schema\finance\v3\IPPTaxTypeApplicablityEnum
+     * @var IPPTaxTypeApplicablityEnum
      */
     public $TaxTypeApplicable;
     /**

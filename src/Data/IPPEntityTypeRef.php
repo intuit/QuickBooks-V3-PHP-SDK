@@ -46,7 +46,7 @@ class IPPEntityTypeRef
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Type
-     * @var com\intuit\schema\finance\v3\IPPEntityTypeEnum
+     * @var IPPEntityTypeEnum
      */
     public $Type;
     /**
@@ -58,7 +58,7 @@ class IPPEntityTypeRef
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName EntityRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $EntityRef;
 } // end class IPPEntityTypeRef

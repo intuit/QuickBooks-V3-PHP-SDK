@@ -51,7 +51,7 @@ class IPPTimeTrackingPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DefaultTimeItem
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DefaultTimeItem;
     /**
@@ -84,7 +84,7 @@ class IPPTimeTrackingPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName WorkWeekStartDate
-     * @var com\intuit\schema\finance\v3\IPPWeekEnum
+     * @var IPPWeekEnum
      */
     public $WorkWeekStartDate;
     /**

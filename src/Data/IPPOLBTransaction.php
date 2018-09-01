@@ -53,7 +53,7 @@ class IPPOLBTransaction
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName OLBTxn
-     * @var com\intuit\schema\finance\v3\IPPOLBTxn
+     * @var IPPOLBTxn
      */
     public $OLBTxn;
 } // end class IPPOLBTransaction

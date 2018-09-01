@@ -71,7 +71,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ParentRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ParentRef;
     /**
@@ -124,7 +124,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Classification
-     * @var com\intuit\schema\finance\v3\IPPAccountClassificationEnum
+     * @var IPPAccountClassificationEnum
      */
     public $Classification;
     /**
@@ -138,7 +138,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName AccountType
-     * @var com\intuit\schema\finance\v3\IPPAccountTypeEnum
+     * @var IPPAccountTypeEnum
      */
     public $AccountType;
     /**
@@ -282,7 +282,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName CurrencyRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $CurrencyRef;
     /**
@@ -307,7 +307,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName TaxCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $TaxCodeRef;
     /**
@@ -346,7 +346,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName JournalCodeRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $JournalCodeRef;
     /**
@@ -359,7 +359,7 @@ class IPPAccount extends IPPIntuitEntity
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName AccountEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $AccountEx;
 } // end class IPPAccount

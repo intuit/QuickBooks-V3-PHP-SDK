@@ -42,7 +42,7 @@ class IPPPriceLevelPerItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ItemRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $ItemRef;
     /**
@@ -75,7 +75,7 @@ class IPPPriceLevelPerItem extends IPPIntuitEntity
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName PriceLevelPerItemEx
-     * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+     * @var IPPIntuitAnyType
      */
     public $PriceLevelPerItemEx;
 } // end class IPPPriceLevelPerItem

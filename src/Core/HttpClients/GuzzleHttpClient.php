@@ -28,7 +28,7 @@
   *
   * Use GuzzleHttp Client to make HTTP/HTTPS request.
   *
-  * @package QuickbooksOnline
+  * @package QuickBooksOnline
   */
  class GuzzleHttpClient implements HttpClientInterface
  {

@@ -40,7 +40,7 @@ class IPPRows
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName Row
-     * @var com\intuit\schema\finance\v3\IPPRow
+     * @var IPPRow
      */
     public $Row;
 } // end class IPPRows

@@ -47,7 +47,7 @@ class IPPItemAssemblyDetail
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName ItemAssemblyLine
-     * @var com\intuit\schema\finance\v3\IPPItemComponentLine
+     * @var IPPItemComponentLine
      */
     public $ItemAssemblyLine;
 } // end class IPPItemAssemblyDetail

@@ -54,7 +54,7 @@ class IPPSalesFormsPrefs
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName CustomField
-     * @var com\intuit\schema\finance\v3\IPPCustomFieldDefinition
+     * @var IPPCustomFieldDefinition
      */
     public $CustomField;
     /**
@@ -138,7 +138,7 @@ class IPPSalesFormsPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName ETransactionEnabledStatus
-     * @var com\intuit\schema\finance\v3\IPPETransactionEnabledStatusEnum
+     * @var IPPETransactionEnabledStatusEnum
      */
     public $ETransactionEnabledStatus;
     /**
@@ -227,7 +227,7 @@ class IPPSalesFormsPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DefaultItem
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DefaultItem;
     /**
@@ -238,7 +238,7 @@ class IPPSalesFormsPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DefaultTerms
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DefaultTerms;
     /**
@@ -308,7 +308,7 @@ class IPPSalesFormsPrefs
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName DefaultShipMethodRef
-     * @var com\intuit\schema\finance\v3\IPPReferenceType
+     * @var IPPReferenceType
      */
     public $DefaultShipMethodRef;
     /**
