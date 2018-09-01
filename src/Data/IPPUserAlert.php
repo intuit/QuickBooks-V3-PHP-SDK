@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPUserAlert
  * @xmlDefinition
                 Product: ALL
-                Description: A specific user alert to be notified to Quickbooks user, maps to a ToDo record in QuickBooks.
+                Description: A specific user alert to
+                be notified to Quickbooks user, maps to a ToDo record in QuickBooks.
 
  */
 class IPPUserAlert extends IPPIntuitEntity
@@ -23,24 +24,25 @@ class IPPUserAlert extends IPPIntuitEntity
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPUserAlert', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPUserAlert', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPUserAlert', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPUserAlert', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL
-                                Description: The actual content of the user alert
+                                Description: The actual content of
+                                the user alert
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +66,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: True if the user alert has been completed
+                                Description: True if the user alert
+                                has been completed
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +79,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: The type of the user alert
+                                Description: The type of the user
+                                alert
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +92,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: ALL
-                                Description: The date to remind the user of this user alert
+                                Description: The date to remind the
+                                user of this user alert
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +105,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: The date the user alert will expire
+                                Description: The date the user
+                                alert will expire
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -112,7 +118,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: The date the user alert is due
+                                Description: The date the user
+                                alert is due
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -124,7 +131,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: The URL that can be included in the user alert
+                                Description: The URL that can be
+                                included in the user alert
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -136,7 +144,8 @@ class IPPUserAlert extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBO
-                                Description: The filter associated with the user alert
+                                Description: The filter associated
+                                with the user alert
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -146,7 +155,9 @@ class IPPUserAlert extends IPPIntuitEntity
      */
     public $Filter;
     /**
-     * @Definition Any other properties not covered in base is covered as name value pair, for detailed explanation look at the document
+     * @Definition Any other properties not covered in base is
+                                covered as name value pair, for detailed explanation look at the
+                                document
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -156,7 +167,8 @@ class IPPUserAlert extends IPPIntuitEntity
      */
     public $NameValue;
     /**
-     * @Definition Internal use only: extension place holder for user alert
+     * @Definition Internal use only: extension place holder for
+                                user alert
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0

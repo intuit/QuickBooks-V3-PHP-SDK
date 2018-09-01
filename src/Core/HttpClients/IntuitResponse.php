@@ -1,19 +1,5 @@
 <?php
-/*******************************************************************************
- * Copyright (c) 2017 Intuit
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Exception\SdkException;
@@ -77,6 +63,11 @@ class IntuitResponse{
     */
    public function __construct($passedHeaders, $passedBody, $passedHttpResponseCode, $parse = false, $clientName = CoreConstants::CLIENT_CURL){
           if($parse == false){
+              foreach ($passedHeaders as &$passedHeader ){
+                  if( is_array( $passedHeader ) ){
+                      $passedHeader = implode( "; ", $passedHeader );
+                  }
+              }
               $this->setResponseAsItIs($passedHeaders, $passedBody, $passedHttpResponseCode);
           }else{
               $this->parseResponseToIntuitResponse($passedHeaders, $passedBody, $passedHttpResponseCode, $clientName);
@@ -152,7 +143,7 @@ class IntuitResponse{
         //A standard message for now.
         //TO DO: Wait V3 Team to provide different message for different response.
         $this->faultHandler->setHelpMsg("Invalid auth/bad request (got a " . $httpResponseCode . ", expected HTTP/1.1 20X or a redirect)");
-        if(isset($this->getResponseContentType) && strcasecmp($this->getResponseContentType, CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0){
+        if($this->getResponseContentType() != null && strcasecmp($this->getResponseContentType(), CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0){
             $this->faultHandler->parseResponse($body);
         }
      }else{

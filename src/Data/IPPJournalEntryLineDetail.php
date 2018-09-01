@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPJournalEntryLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: JournalEntry detail for a transaction line.
+                Description: JournalEntry detail for a
+                transaction line.
 
  */
 class IPPJournalEntryLineDetail
@@ -23,24 +24,25 @@ class IPPJournalEntryLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPJournalEntryLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPJournalEntryLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPJournalEntryLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPJournalEntryLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Indicates whether the JournalEntry line is a Debit or Credit.[br /]
+                        Description: Indicates whether the
+                        JournalEntry line is a Debit or Credit.[br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,9 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference information for the Entity (Customer/Vendor/Employee) associated with the JournalEntry line.
+                        Description: Reference information
+                        for the Entity (Customer/Vendor/Employee) associated with the
+                        JournalEntry line.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +68,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Account associated with the JournalEntry line.
+                        Description: Reference to the Account
+                        associated with the JournalEntry line.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +81,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Class associated with the JournalEntry line.
+                        Description: Reference to the Class
+                        associated with the JournalEntry line.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +94,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Represents Department Reference associated with the JournalEntry line.
+                        Description: Represents Department
+                        Reference associated with the JournalEntry line.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +107,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Sales/Purchase tax code associated with the JournalEntry Line. For Non US/CA Companies
+                        Description: Sales/Purchase tax code
+                        associated with the JournalEntry Line. For Non US/CA Companies
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -112,7 +120,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Indicates whether the tax applicable on the line is sales or purchase
+                        Description: Indicates whether the
+                        tax applicable on the line is sales or purchase
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -124,7 +133,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Tax applicable for this line transaction line
+                        Description: Tax applicable for this
+                        line transaction line
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -136,7 +146,10 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: The billable status of the journal entry line. The line is to be billed to a customer if the account is an expense account and the Entity Reference specifies a Customer or a Job.[br /]
+                        Description: The billable status of
+                        the journal entry line. The line is to be billed to a customer if
+                        the account is an expense account and the Entity Reference
+                        specifies a Customer or a Job.[br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -148,7 +161,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: The Journal Code that should be associated for every journal entry line. This is applicable only for FR.
+                        Description: The Journal Code that should be associated for every journal
+                        entry line. This is applicable only for FR.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -160,7 +174,8 @@ class IPPJournalEntryLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for JournalEntryDetail
+                        Description: Internal use only:
+                        extension place holder for JournalEntryDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

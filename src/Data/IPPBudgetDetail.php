@@ -7,6 +7,7 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPBudgetDetail
  * @var IPPBudgetDetail
  * @xmlDefinition Describes budget details for each budget
+
  */
 class IPPBudgetDetail
 {
@@ -20,24 +21,24 @@ class IPPBudgetDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPBudgetDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPBudgetDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPBudgetDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBudgetDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Budget date of the budget
+                        Product: QBO
+                        Description: Budget date of the budget
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -49,8 +50,9 @@ class IPPBudgetDetail
     public $BudgetDate;
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Amount corresponding to the budget date and Account or Class Or Department or Customer
+                        Product: QBO
+                        Description: Amount corresponding to the budget date and Account or Class Or
+                        Department or Customer
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -62,8 +64,8 @@ class IPPBudgetDetail
     public $Amount;
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Account Reference
+                        Product: QBO
+                        Description: Account Reference
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -75,8 +77,8 @@ class IPPBudgetDetail
     public $AccountRef;
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Customer Reference
+                        Product: QBO
+                        Description: Customer Reference
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,8 +90,8 @@ class IPPBudgetDetail
     public $CustomerRef;
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Class Reference
+                        Product: QBO
+                        Description: Class Reference
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -101,8 +103,8 @@ class IPPBudgetDetail
     public $ClassRef;
     /**
      * @Definition
-                                                Product: QBO
-                                                Description: Department Reference
+                        Product: QBO
+                        Description: Department Reference
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

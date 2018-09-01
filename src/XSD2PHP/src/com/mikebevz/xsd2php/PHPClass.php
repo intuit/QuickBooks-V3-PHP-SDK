@@ -135,7 +135,7 @@ class PHPClass extends Common
             if ($this->extendsNamespace != '') {
                 $nsLastName = array_reverse(explode('\\', $this->extendsNamespace));
                 $code .= "\t".'extends '.$this->classPrefix.$nsLastName[0];
-                $code = "require_once('".$this->classPrefix.implode('/', $nsLastName).".php');\n" . $code;
+                //$code = "require_once('".$this->classPrefix.implode('/', $nsLastName).".php');\n" . $code;
             } else {
                 $code .= "\t".'extends '.$this->classPrefix.$this->extends."\n";
             }
@@ -162,7 +162,7 @@ class PHPClass extends Common
         $code .= "\t\t".'{'."\n";
         $code .= "\t\t\t".'foreach($keyValInitializers as $initPropName => $initPropVal)'."\n";
         $code .= "\t\t\t".'{'."\n";
-        $code .= "\t\t\t\t".'if (property_exists(\''. $this->name . '\',$initPropName))'."\n";
+        $code .= "\t\t\t\t".'if (property_exists(\''. $this->name . '\',$initPropName) || property_exists(\'QuickBooksOnline\\API\\Data\\'. $this->name . '\',$initPropName))'."\n";
         $code .= "\t\t\t\t".'{'."\n";
         $code .= "\t\t\t\t\t".'$this->{$initPropName} = $initPropVal;'."\n";
         $code .= "\t\t\t\t".'}'."\n";
@@ -222,7 +222,7 @@ class PHPClass extends Common
         $code = array();
 
         foreach ($const as $value) {
-            $code[] = $indent.'const ' . $this->constNameFromValue($value) . " = \"$value\";"  ;
+            //$code[] = $indent.'const ' . $this->constNameFromValue($value) . " = \"$value\";"  ;
         }
         return implode("\n", $code);
     }

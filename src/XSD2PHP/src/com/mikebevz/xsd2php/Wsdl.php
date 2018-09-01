@@ -1,6 +1,8 @@
 <?php
 namespace com\mikebevz\xsd2php;
 
+use QuickBooksOnline\API\Core\CoreConstants;
+
 use com\mikebevz\xsd2php\wsdl;
 
 set_include_path(get_include_path().PATH_SEPARATOR.
@@ -13,7 +15,7 @@ require_once 'com/mikebevz/xsd2php/wsdl/WsdlFactory.php';
 
 class Wsdl extends Common
 {
-    
+
     /**
      * Service class to be exposed
      * @var object
@@ -26,25 +28,25 @@ class Wsdl extends Common
      * @var com\mikebevz\xsd2php\wsdl\AbstractWsdl
      */
     private $wsdl;
-        
+
     /**
      * Reflection of the $class
      * @var \ReflectionClass
      */
     private $refl;
-    
+
     /**
      * Soap binding style: rpc|document
      * @var string
      */
     private $soapBindingStyle = "document";
-    
+
     /**
      * Soap binding transport: which transport of SOAP this binding corresponds to
      * @var string
      */
     private $soapBindingTransport = "http://schemas.xmlsoap.org/soap/http";
-    
+
     /**
      * Port type
      * @var DomNode
@@ -56,20 +58,20 @@ class Wsdl extends Common
      * @var DomNode
      */
     private $binding;
-    
+
     /**
      * Service location
      *
      * @var string
      */
     private $location;
-    
+
     /**
      * Prefix of target namespace
      * @var string
      */
     private $targetNsPrefix = "tns";
-    
+
     /**
      * Prefix for XML Schema namespace
      * @var string
@@ -80,7 +82,7 @@ class Wsdl extends Common
      * @var string
      */
     private $serviceNameSuffix = "_Service";
-    
+
     /**
      * Suffix for generated port tag name
      * @var string
@@ -91,42 +93,42 @@ class Wsdl extends Common
      * @var unknown_type
      */
     private $bindingNameSuffix = "_Binding";
-    
+
     /**
      * Response items suffix
      * @var string
      */
     private $responseSuffix = "Response";
-    
+
     /**
      * Request
      * @var unknown_type
      */
     private $requestSuffix = "Request";
-    
+
     /**
      * Path to schema to be imported/included in XSD
      * @var string
      */
     private $schemasPath = null;
-    
+
     /**
      * Path to publicly accessable folder to store imported/included schemas
      *
      * @var string
      */
     private $publicPath = null;
-    
+
     private $publicUrl = null; // Relative to / without domain name
-    
+
     /**
      * Namespaces already imported to XML Schema
      * @var array
      */
     private $importedNamespaces = array();
-    
 
-    
+
+
     /**
      * Creates new wsdl for the $class given
      * @param string|object $class
@@ -139,7 +141,7 @@ class Wsdl extends Common
             $this->class = $class;
         }
     }
-    
+
     /**
      * Ger WSDL file contents
      *
@@ -172,14 +174,14 @@ class Wsdl extends Common
         }
 
         */
-        
+
         //$this->refl = new \ReflectionClass($this->class);
-        
+
         //$this->wsdl = new \Zend_Soap_Wsdl($this->refl->getShortName(),
         //                                 $this->namespaceToUrn($this->refl->getNamespaceName()));
-        
-        
-                                          
+
+
+
         $factory = new wsdl\WsdlFactory($class, wsdl\WsdlFactory::WSDL_1_1);
         $this->wsdl = $factory->getImplementation();
         $this->wsdl->debug = true;
@@ -195,10 +197,10 @@ class Wsdl extends Common
         if ($this->debug) {
             $dom->formatOutput = true;
         }*/
-        
+
         return $this->wsdl->toXml();//$dom->saveXml();
     }
-     
+
     /**
      * Add bindings to WSDL
      *
@@ -211,11 +213,11 @@ class Wsdl extends Common
         $this->wsdl->addSoapBinding($this->binding,
                                     $this->getSoapBindingStyle(),
                                     $this->getSoapBindingTransport());
-        
+
         $this->addBindingOperations();
         return $this->binding;
     }
-    
+
     /**
      * Get binding type name
      *
@@ -225,7 +227,7 @@ class Wsdl extends Common
     {
         return $this->refl->getShortName().$this->portNameSuffix;
     }
-    
+
     /**
      * Add port type
      *
@@ -235,10 +237,10 @@ class Wsdl extends Common
     {
         $this->portType = $this->wsdl->addPortType($this->getPortName());
         $this->addPortOperations();
-        
+
         return $this->portType;
     }
-    
+
     /**
      * Add XML Schema types
      *
@@ -251,7 +253,7 @@ class Wsdl extends Common
             $data = $this->getMethodIO($method->name);
             $element = array('name' => $method->name,
                              'sequence' => array() );
-            
+
             if (array_key_exists("params", $data)) {
                 foreach ($data['params'] as $param) {
                     if ($this->isLocalType($this->getTypeName($param['type']))) {
@@ -262,7 +264,7 @@ class Wsdl extends Common
                 }
                 $this->wsdl->addElement($element);
             }
-            
+
             if (array_key_exists("return", $data)) {
                 $return = "";
                 if ($this->isLocalType($this->getTypeName($data['return']['type']))) {
@@ -272,12 +274,12 @@ class Wsdl extends Common
                     $return = array('name' => $method->name.$this->responseSuffix,
                                  'sequence' => array(array('ref' => $this->getTypeName($data['return']['type']))));
                 }
-                
+
                 $this->wsdl->addElement($return);
             }
         }
     }
-    
+
     /**
      * Add operations to binding
      *
@@ -288,7 +290,7 @@ class Wsdl extends Common
         $methods = $this->getClassMethods();
 
         //@todo Check if binding is instantiated
-        
+
         foreach ($methods as $method) {
             $data = $this->getMethodIO($method->name);
             $bindingInput = false;
@@ -296,17 +298,17 @@ class Wsdl extends Common
             if (array_key_exists("params", $data)) {
                 $bindingInput  = array('use' => 'literal');
             }
-            
+
             if (array_key_exists("return", $data)) {
                 $bindingOutput = array('use' => 'literal');
             }
-            
+
             $operation     = $this->wsdl->addBindingOperation($this->binding, $method->name, $bindingInput, $bindingOutput);
             $soapOperation = $this->wsdl->addSoapOperation($operation, $this->namespaceToUrn($this->refl->getNamespaceName())."/".$method->name);
         }
     }
-    
-    
+
+
     /**
      * Add Port operations
      *
@@ -315,30 +317,30 @@ class Wsdl extends Common
     private function addPortOperations()
     {
         $methods = $this->getClassMethods();
-        
+
         foreach ($methods as $method) {
             $data = $this->getMethodIO($method->name);
-            
+
             $input         = false;
             $output        = false;
             $bindingInput  = false;
             $bindingOutput = false;
-            
+
             if (array_key_exists("params", $data)) {
                 $input = $this->targetNsPrefix.":".$method->name.$this->requestSuffix;
             }
-            
+
             if (array_key_exists("return", $data)) {
                 $output = $this->targetNsPrefix.":".$method->name.$this->responseSuffix;
             }
-            
+
             $this->wsdl->addPortOperation($this->portType,
                                           $method->name,
                                           $input,
                                           $output);
         }
     }
-    
+
     /**
      * Return true if given type is local, false in case the type is not from xsd or tns namespaces
      *
@@ -360,7 +362,7 @@ class Wsdl extends Common
             return true;
         }
     }
-    
+
     /**
      * Add SOAP messages
      *
@@ -376,7 +378,7 @@ class Wsdl extends Common
         $messages = array();
         foreach ($methods as $method) {
             $data = $this->getMethodIO($method->name);
-            
+
             $input = false;
             $output = false;
             // Add inputs if any
@@ -384,24 +386,24 @@ class Wsdl extends Common
                 array_push($messages, array('name' => $method->name.$this->requestSuffix, 'refType' => 'element',
                  'content' => array($method->name.$this->requestSuffix => $this->targetNsPrefix.":".$method->name)));
             }
-            
+
             // Add outputs if any
             if (array_key_exists("return", $data)) {
                 array_push($messages, array('name' => $method->name.$this->responseSuffix, 'refType' => 'element',
                  'content' => array($method->name.$this->responseSuffix => $this->targetNsPrefix.":".$method->name.$this->responseSuffix)));
             }
         }
-        
+
         if (empty($messages)) {
             throw new \RuntimeException($method->name." does not have any input or output");
         }
-        
-        
-        
+
+
+
         if (!is_array($messages)) {
             throw new \RuntimeException("Argument is not array");
         }
-        
+
         foreach ($messages as $msg) {
             if ($msg['refType'] == 'type') {
                 $this->wsdl->addMessage($msg['name'], $msg['content']);
@@ -412,22 +414,22 @@ class Wsdl extends Common
                 $msgNameTxtNode = $dom->createTextNode($msg['name']);
                 $msgNameAt->appendChild($msgNameTxtNode);
                 $msgEl->appendChild($msgNameAt);
-                
+
                 $partEl = $dom->createElement("part");
                 $partNameAt = $dom->createAttribute("name");
                 $partElAt = $dom->createAttribute('element');
                 foreach ($msg['content'] as $name => $element) {
                     $partNameTxtNode = $dom->createTextNode($name);
                     $partNameAt->appendChild($partNameTxtNode);
-                    
+
                     $partElTxtNode = $dom->createTextNode($element);
                     $partElAt->appendChild($partElTxtNode);
                 }
                 $partEl->appendChild($partNameAt);
                 $partEl->appendChild($partElAt);
-                
+
                 $msgEl->appendChild($partEl);
-                
+
                 $xpath = new \DOMXPath($dom);
                 $query = "//*[local-name()='definitions']";
                 $childs = $xpath->query($query);
@@ -437,7 +439,7 @@ class Wsdl extends Common
             }
         }
     }
-    
+
     /**
      * Get service class public methods
      *
@@ -447,7 +449,7 @@ class Wsdl extends Common
     {
         return $this->refl->getMethods(\ReflectionMethod::IS_PUBLIC);
     }
-    
+
     /**
      * Return method input/output
      *
@@ -460,9 +462,9 @@ class Wsdl extends Common
         $methodDocs = $this->refl->getMethod($method)->getDocComment();
         return $this->parseDocComments($methodDocs);
     }
-    
-    
-    
+
+
+
     /**
      * Get port name
      *
@@ -472,18 +474,18 @@ class Wsdl extends Common
     {
         return $this->refl->getShortName().$this->portNameSuffix;
     }
-    
+
     private function getNamespaceName($class)
     {
         $this->refl->getNamespaceName();
     }
-    
+
     private function namespaceToUrn($namespace)
     {
         $namespace = "urn:".preg_replace('/\\\/', ':', $namespace);
         return $namespace;
     }
-    
+
     /**
      * Add SOAP Service
      *
@@ -493,7 +495,7 @@ class Wsdl extends Common
     {
         $this->wsdl->addService($this->getServiceName(), $this->getPortName(), $this->getBindingName(), $this->getLocation());
     }
- 
+
     /**
      * Get QName style for given type
      * @param string $type Type name
@@ -503,13 +505,13 @@ class Wsdl extends Common
      */
     private function getTypeName($type)
     {
-        
+
         //@todo Check must be performed against PHP data types not XMLSchema
         if (!in_array($type, $this->basicTypes)) {
-            if (!class_exists($type)) {
+            if (!class_exists($type, CoreConstants::USE_AUTOLOADER)) {
                 throw new \RuntimeException("Cannot find class ".$type);
             }
-            
+
             $typeNamespace = $this->getClassNamespace($type);
             $typeName      = $this->getShortName($type);
             $nsCode        = $this->getNsCode($typeNamespace, true);
@@ -519,7 +521,7 @@ class Wsdl extends Common
             return $this->xmlSchemaPreffix.":".$type;
         }
     }
-    
+
     /**
      * Add xsd:import tag to XML schema before any childs added
      *
@@ -534,30 +536,30 @@ class Wsdl extends Common
             if (in_array($namespace, $this->importedNamespaces)) {
                 return;
             }
-            
+
             $dom = $this->wsdl->toDomDocument();
             $dom->createAttributeNs($namespace, $code.":definitions");
             $importEl = $dom->createElement($this->xmlSchemaPreffix.":import");
             $nsAttr   = $dom->createAttribute("namespace");
             $txtNode  = $dom->createTextNode($namespace);
             $nsAttr->appendChild($txtNode);
-            
+
             $nsAttr2   = $dom->createAttribute("schemaLocation");
             $schemaLocation = $this->getSchemaLocation($namespace);
             $publicSchema = $this->copyToPublic($schemaLocation, true);
             $publicSchema = $this->copyToPublic($schemaLocation, true);
             $schemaUrl = $this->importsToAbsUrl($publicSchema, $this->getSchemasPath());
-             
+
             $txtNode2  = $dom->createTextNode($schemaUrl);
             $nsAttr2->appendChild($txtNode2);
-            
+
             $importEl->appendChild($nsAttr);
             $importEl->appendChild($nsAttr2);
             $this->wsdl->getSchema();
             $xpath = new \DOMXPath($dom);
             $query = "//*[local-name()='types']/child::*/*";
             $firstElement = $xpath->query($query);
-            
+
             if (!is_object($firstElement->item(0))) {
                 $query = "//*[local-name()='types']/child::*";
                 $schema = $xpath->query($query);
@@ -565,11 +567,11 @@ class Wsdl extends Common
             } else {
                 $this->wsdl->getSchema()->insertBefore($importEl, $firstElement->item(0));
             }
-            
+
             array_push($this->importedNamespaces, $namespace);
         }
     }
-    
+
     /**
      * Convert relative paths in XMLSchema's imports and includes to URLs using $location
      *
@@ -581,7 +583,7 @@ class Wsdl extends Common
     {
         $dom = new \DOMDocument();
         $dom->load($schemaPath);
-        
+
         $xpath = new \DOMXPath($dom);
         $query = "//*[local-name()='schema']/*[local-name()='import']";
         $imports = $xpath->query($query);
@@ -591,23 +593,23 @@ class Wsdl extends Common
         if (!is_object($imports->item(0))) {
             return $url;
         }
-        
+
         $urlParts = parse_url($this->getLocation());
         $rootUrl = $this->composeUrl($urlParts);
-        
+
         foreach ($imports as $import) {
             $scPath = realpath($relPath.DIRECTORY_SEPARATOR.$import->getAttribute('schemaLocation'));
             $copiedSchema = $this->copyToPublic($scPath, true);
-            
+
             $schemaUrl = $rootUrl.$this->getPublicUrl()."/".basename($copiedSchema);
             $import->setAttribute('schemaLocation', $schemaUrl);
-            
+
             $this->importsToAbsUrl($copiedSchema, dirname($scPath));
         }
         $dom->save($schemaPath);
         return $url;
     }
-    
+
     /**
      * Compose URL of kind schema://host:port
      *
@@ -621,22 +623,22 @@ class Wsdl extends Common
         if (array_key_exists('scheme', $parts)) {
             $url .= $parts['scheme']."://";
         }
-        
+
         if (array_key_exists('host', $parts)) {
             $url .= $parts['host'];
         }
-        
+
         if (array_key_exists('port', $parts)) {
             $url .= ":".$parts['port'];
         }
-        
+
         if (array_key_exists('path', $parts)) {
         }
-        
+
         return $url;
     }
-    
-    
+
+
     /**
      * Copy given file to publicSchemaPath
      *
@@ -650,16 +652,16 @@ class Wsdl extends Common
     {
         $publicPath = realpath($this->getPublicPath());
         $targetFilePath   = $publicPath.DIRECTORY_SEPARATOR.basename($path);
-        
+
         if (($overwrite === true && file_exists($targetFilePath)) || !file_exists($targetFilePath)) {
             if (!copy($path, $targetFilePath)) {
                 throw new \RuntimeException("Cannot copy ".basename($path)." to ".$publicPath);
             }
         }
-        
+
         return $targetFilePath;
     }
-    
+
     /**
      * Get path to schema in schemasPath with targetNamespace = $ns
      *
@@ -677,20 +679,20 @@ class Wsdl extends Common
         if ($this->getSchemasPath() == null || !file_exists($this->getSchemasPath())) {
             throw new \RuntimeException("Schemas path is not specified or is not exist - cannot start search for imports");
         }
-        
+
         if ($this->getPublicPath() == null || !file_exists($this->getPublicPath())) {
             throw new \RuntimeException("Public folder for imported schemas is not specified or is not exist - cannot save imports");
         }
-        
+
         if (!is_readable($this->getSchemasPath())) {
             throw new \RuntimeException($this->getSchemasPath()." is not readable");
         }
-        
+
         if (!is_writeable($this->getPublicPath())) {
             throw new \RuntimeException($this->getPublicPath()." is not writable");
         }
         // Scan directory for xsd files
-        
+
         $dir   = new \RecursiveDirectoryIterator(realpath($this->getSchemasPath()));
         $iter  = new \RecursiveIteratorIterator($dir);
         $regex = new \RegexIterator($iter, '/\.xsd$/', \RecursiveRegexIterator::MATCH);
@@ -704,14 +706,14 @@ class Wsdl extends Common
                 $schema = $file;
             }
         }
-        
+
         if ($schema == "") {
             throw new \RuntimeException("Cannot find schema for namespace ".$ns." in ".realpath($this->getSchemasPath()));
         }
-        
+
         return $schema;
     }
-    
+
     /**
      * Check if $schema XML Schema file belongs to $ns
      *
@@ -728,7 +730,7 @@ class Wsdl extends Common
         $xpath = new \DOMXPath($dom);
         $query = "//*[local-name()='schema']/@targetNamespace";
         $tNs = $xpath->query($query);
-        
+
         if (!is_object($tNs->item(0))) {
             return false;
         }
@@ -738,7 +740,7 @@ class Wsdl extends Common
             return false;
         }
     }
-    
+
     /**
      * Get base name from URI
      *
@@ -751,7 +753,7 @@ class Wsdl extends Common
         $ns = array_reverse(explode(":", $ns));
         return $ns[0];
     }
-    
+
     /**
      * Return class XML namespace taken from @xmlNamespace doc
      *
@@ -763,14 +765,14 @@ class Wsdl extends Common
     public function getClassNamespace($class)
     {
         $refl = new \ReflectionClass($class);
-        
+
         $docs = $this->parseDocComments($refl->getDocComment());
         if (!array_key_exists("xmlNamespace", $docs)) {
             throw new RuntimeException('Cannot find namespace in class description in '.$class);
         }
         return $docs['xmlNamespace'];
     }
-    
+
     /**
      * Get class name without namespace
      *
@@ -784,7 +786,7 @@ class Wsdl extends Common
         $shortName = $arr[0];
         return $shortName;
     }
-    
+
     /**
      * @todo Check this method
      *
@@ -802,7 +804,7 @@ class Wsdl extends Common
             return $type;
         }
     }
-    
+
     /**
      * Get service element name
      *
@@ -812,9 +814,9 @@ class Wsdl extends Common
     {
         return $this->refl->getShortName().$this->serviceNameSuffix;
     }
-    
-    
-    
+
+
+
     /**
      * Get binding element name
      *
@@ -824,7 +826,7 @@ class Wsdl extends Common
     {
         return $this->targetNsPrefix.":".$this->refl->getShortName().$this->bindingNameSuffix;
     }
-    
+
 
     /**
      * Get SOAP service location (service->port->address->location)

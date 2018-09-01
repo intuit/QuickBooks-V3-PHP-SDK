@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPDescriptionLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: Information about Description.
+                Description: Information about
+                Description.
 
  */
 class IPPDescriptionLineDetail
@@ -23,24 +24,25 @@ class IPPDescriptionLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPDescriptionLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPDescriptionLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPDescriptionLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPDescriptionLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Date when the service is performed.
+                        Description: Date when the service is
+                        performed.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,10 +54,15 @@ class IPPDescriptionLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Reference to the TaxCode for description only line.
-                        Though it appears that TaxCode is not applicable to DescriptionOnlyLine as there is no amount associated with it, UK and Canada model
-                        seems to associate the notion of TaxCode even for just a description line
-                        Marking this as QBO only at this time but it looks like applicable for QB in general
+                        Description: Reference to the TaxCode
+                        for description only line.
+                        Though it appears that TaxCode is not
+                        applicable to DescriptionOnlyLine as there is no amount associated
+                        with it, UK and Canada model
+                        seems to associate the notion of
+                        TaxCode even for just a description line
+                        Marking this as QBO only
+                        at this time but it looks like applicable for QB in general
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -67,7 +74,8 @@ class IPPDescriptionLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for DescriptionLineDetail
+                        Description: Internal use only:
+                        extension place holder for DescriptionLineDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

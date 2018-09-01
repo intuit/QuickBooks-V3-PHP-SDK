@@ -20,20 +20,20 @@ class IPPCompany extends IPPIntuitEntity
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPCompany', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPCompany', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPCompany', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCompany', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL
@@ -48,6 +48,7 @@ class IPPCompany extends IPPIntuitEntity
     public $CompanyName;
     /**
      * @Definition LegalName if different from the CompanyName
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -57,6 +58,7 @@ class IPPCompany extends IPPIntuitEntity
     public $LegalName;
     /**
      * @Definition Company Address as described in preference
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -65,7 +67,9 @@ class IPPCompany extends IPPIntuitEntity
      */
     public $CompanyAddr;
     /**
-     * @Definition Address of the company as given to th customer, sometimes the address given to the customer mail address is different from Company address
+     * @Definition Address of the company as given to th customer,
+                                sometimes the address given to the customer mail address is
+                                different from Company address
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -74,7 +78,8 @@ class IPPCompany extends IPPIntuitEntity
      */
     public $CustomerCommunicationAddr;
     /**
-     * @Definition Legal Address given to the government for any government communication
+     * @Definition Legal Address given to the government for any
+                                government communication
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -92,7 +97,9 @@ class IPPCompany extends IPPIntuitEntity
      */
     public $CompanyEmailAddr;
     /**
-     * @Definition Email Address published to customer for communication if different from CompanyEmailAddress
+     * @Definition Email Address published to customer for
+                                communication if different from CompanyEmailAddress
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -121,7 +128,9 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: List of ContactInfo entities of any contact info type. The ContactInfo Type values are defined in the ContactTypeEnum.
+                                Description: List of ContactInfo
+                                entities of any contact info type. The ContactInfo Type values
+                                are defined in the ContactTypeEnum.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -134,7 +143,8 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: QuickBooks company file name.[br /]Data Services max. length: 512 characters.
+                                Description: QuickBooks company
+                                file name.[br /]Data Services max. length: 512 characters.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -146,7 +156,9 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: QB software flavor being used on the file on the PC.[br /]Data Services max. length: 512 characters.
+                                Description: QB software flavor
+                                being used on the file on the PC.[br /]Data Services max.
+                                length: 512 characters.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -170,7 +182,10 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: IAM or QBN admin users id sequence number to group many external realms for this user under his id number.[br /]Data Services max. length: 512 characters.
+                                Description: IAM or QBN admin users
+                                id sequence number to group many external realms for this user
+                                under his id number.[br /]Data Services max. length: 512
+                                characters.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -182,7 +197,8 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: IAM or QBN admin users email.[br /]Data Services max. length: 100 characters.
+                                Description: IAM or QBN admin users
+                                email.[br /]Data Services max. length: 100 characters.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -242,7 +258,11 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: ALL
-                                Description: QuickBooks company file latest version. The format reports the major release in the first number, the minor release in the second number (always a zero), the release update (slipstream or "R") in the third number, and the build number in the final number.[br /]Max. length: 512 characters.
+                                Description: QuickBooks company file latest version. The format reports the
+                                major release in the first number, the minor release in the
+                                second number (always a zero), the release update (slipstream or
+                                "R") in the third number, and the build number in the final
+                                number.[br /]Max. length: 512 characters.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -254,7 +274,8 @@ class IPPCompany extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: ALL
-                                Description: Country name to which the company belongs for fiancial calculations.
+                                Description: Country name to which the company belongs for fiancial
+                                calculations.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -351,6 +372,7 @@ class IPPCompany extends IPPIntuitEntity
     public $LastImportedTime;
     /**
      * @Definition Comma separated list of languages
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -360,6 +382,7 @@ class IPPCompany extends IPPIntuitEntity
     public $SupportedLanguages;
     /**
      * @Definition Default time zone for the company
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -368,7 +391,8 @@ class IPPCompany extends IPPIntuitEntity
      */
     public $DefaultTimeZone;
     /**
-     * @Definition Specifies if the company support multibyte or not
+     * @Definition Specifies if the company support multibyte or
+                                not
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -377,7 +401,9 @@ class IPPCompany extends IPPIntuitEntity
      */
     public $MultiByteCharsSupported;
     /**
-     * @Definition Any other preference not covered in base is covered as name value pair, for detailed explanation look at the document
+     * @Definition Any other preference not covered in base is
+                                covered as name value pair, for detailed explanation look at the
+                                document
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0

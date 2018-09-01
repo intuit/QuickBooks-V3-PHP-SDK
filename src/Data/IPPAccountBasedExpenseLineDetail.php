@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPAccountBasedExpenseLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: Account based expense detail for a transaction line.
+                Description: Account based expense
+                detail for a transaction line.
 
  */
 class IPPAccountBasedExpenseLineDetail
@@ -23,24 +24,25 @@ class IPPAccountBasedExpenseLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPAccountBasedExpenseLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPAccountBasedExpenseLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPAccountBasedExpenseLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAccountBasedExpenseLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Customer associated with the expense.
+                        Description: Reference to the
+                        Customer associated with the expense.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Class associated with the expense.
+                        Description: Reference to the Class
+                        associated with the expense.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +67,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Expense account associated with the service/non-sellable-item billing.
+                        Description: Reference to the Expense
+                        account associated with the service/non-sellable-item billing.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +80,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: The billable status of the expense.[br /]
+                        Description: The billable status of
+                        the expense.[br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +93,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Markup information for the expense.
+                        Description: Markup information for
+                        the expense.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +106,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Sales tax associated with the expense.
+                        Description: Sales tax associated
+                        with the expense.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -112,7 +119,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Sales tax code associated with the sales tax for the expense.
+                        Description: Sales tax code
+                        associated with the sales tax for the expense.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -124,7 +132,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Indicates the total amount of line item including tax.
+                        Description: Indicates the total
+                        amount of line item including tax.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -136,7 +145,8 @@ class IPPAccountBasedExpenseLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for ExpenseDetail
+                        Description: Internal use only:
+                        extension place holder for ExpenseDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

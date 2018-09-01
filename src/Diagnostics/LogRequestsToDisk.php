@@ -35,6 +35,22 @@ class LogRequestsToDisk
     }
 
     /**
+     * Enabled or disable the log
+     * @param Boolean $status
+     */
+    public function setLogStatus($status){
+        $this->EnableServiceRequestsLogging = $status;
+    }
+
+    /**
+     * Set Log directory
+     * @param String $logDirectory
+     */
+    public function setLogDirectory($logDirectory){
+        $this->ServiceRequestLoggingLocation = $logDirectory;
+    }
+
+    /**
      * Gets the log destination folder
      * @return string log destination folder
      */

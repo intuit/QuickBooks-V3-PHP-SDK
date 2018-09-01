@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPTask
  * @xmlDefinition
                 Product: QBW
-                Description: A specific task to be completed, maps to a ToDo record in QuickBooks.
+                Description: A specific task to be
+                completed, maps to a ToDo record in QuickBooks.
 
  */
 class IPPTask extends IPPIntuitEntity
@@ -23,24 +24,25 @@ class IPPTask extends IPPIntuitEntity
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPTask', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPTask', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPTask', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTask', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: QBW
-                                Description: The actual content of the task reminder
+                                Description: The actual content of
+                                the task reminder
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +78,8 @@ class IPPTask extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: True if the task has been completed
+                                Description: True if the task has
+                                been completed
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +91,8 @@ class IPPTask extends IPPIntuitEntity
     /**
      * @Definition
                                 Product: QBW
-                                Description: The date to remind the user of this task
+                                Description: The date to remind the
+                                user of this task
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -98,7 +102,8 @@ class IPPTask extends IPPIntuitEntity
      */
     public $ReminderDate;
     /**
-     * @Definition Internal use only: extension place holder for Task
+     * @Definition Internal use only: extension place holder for
+                                Task
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0

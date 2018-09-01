@@ -2,6 +2,8 @@
 //namespace com\mikebevz\xsd2php;
 namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
 
+use QuickBooksOnline\API\Core\CoreConstants;
+
 /**
  * Copyright 2010 Mike Bevz <myb@mikebevz.com>
  *
@@ -205,7 +207,7 @@ class Php2Xml extends Common
 
     private function addProperty($docs, $dom)
     {
-        if ($docs['value'] != '') {
+        if (isset($docs['value'])) {
             $el = "";
 
             if (array_key_exists('xmlNamespace', $docs)) {

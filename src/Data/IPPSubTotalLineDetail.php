@@ -7,8 +7,8 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSubTotalLineDetail
  * @var IPPSubTotalLineDetail
  * @xmlDefinition
-Product: ALL
-Description: SubTotalLine detail for a transaction line.
+                Product: ALL
+                Description: SubTotalLine detail for a transaction line.
 
  */
 class IPPSubTotalLineDetail
@@ -23,24 +23,27 @@ class IPPSubTotalLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPSubTotalLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSubTotalLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSubTotalLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSubTotalLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Item. When a line lacks an ItemRef it will be treated as "documentation" and the Amount will be ignored.
+                        Description: Reference to the Item.
+                        When a line lacks an ItemRef it will be treated as "documentation"
+                        and the Amount will be ignored.
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -51,7 +54,8 @@ class IPPSubTotalLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Date when the service is performed.
+                        Description: Date when the service is
+                        performed.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

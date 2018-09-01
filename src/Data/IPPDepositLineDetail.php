@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPDepositLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: Deposit detail for a transaction line.
+                Description: Deposit detail for a
+                transaction line.
 
  */
 class IPPDepositLineDetail
@@ -23,24 +24,25 @@ class IPPDepositLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPDepositLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPDepositLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPDepositLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPDepositLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                         Product: ALL
-                        Description: Information about the Customer or Job associated with the deposit.
+                        Description: Information about the
+                        Customer or Job associated with the deposit.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the Class for the deposit.
+                        Description: Reference to the Class
+                        for the deposit.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -64,7 +67,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to an Expense account associated with the service/non-sellable item billing.
+                        Description: Reference to an Expense
+                        account associated with the service/non-sellable item billing.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -76,7 +80,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Reference to the PaymentMethod for the deposit.
+                        Description: Reference to the
+                        PaymentMethod for the deposit.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +93,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Check number for the desposit.
+                        Description: Check number for the
+                        desposit.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -100,7 +106,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Type of the payment transaction. For information purposes only.[br /]
+                        Description: Type of the payment
+                        transaction. For information purposes only.[br /]
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -112,7 +119,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Sales/Purchase tax code. For Non US/CA Companies
+                        Description: Sales/Purchase tax code.
+                        For Non US/CA Companies
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -124,7 +132,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: QBO
-                        Description: Indicates whether the tax applicable on the line is sales or purchase
+                        Description: Indicates whether the
+                        tax applicable on the line is sales or purchase
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -136,7 +145,8 @@ class IPPDepositLineDetail
     /**
      * @Definition
                         Product: ALL
-                        Description: Internal use only: extension place holder for DepositDetail
+                        Description: Internal use only:
+                        extension place holder for DepositDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

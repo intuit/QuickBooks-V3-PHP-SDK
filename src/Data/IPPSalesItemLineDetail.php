@@ -8,7 +8,8 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPSalesItemLineDetail
  * @xmlDefinition
                 Product: ALL
-                Description: SalesItem detail for a transaction line.
+                Description: SalesItem detail for a
+                transaction line.
 
  */
 class IPPSalesItemLineDetail extends IPPItemLineDetail
@@ -23,24 +24,25 @@ class IPPSalesItemLineDetail extends IPPItemLineDetail
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPSalesItemLineDetail', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSalesItemLineDetail', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSalesItemLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesItemLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL
-                                Description: Date when the service is performed.
+                                Description: Date when the service
+                                is performed.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -52,7 +54,8 @@ class IPPSalesItemLineDetail extends IPPItemLineDetail
     /**
      * @Definition
                                 Product: QBO
-                                Description: Indicates the total amount of line item including tax.
+                                Description: Indicates the total
+                                amount of line item including tax.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -88,7 +91,8 @@ class IPPSalesItemLineDetail extends IPPItemLineDetail
     /**
      * @Definition
                                 Product: ALL
-                                Description: Internal use only: extension place holder for SalesItemDetail
+                                Description: Internal use only:
+                                extension place holder for SalesItemDetail
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3

@@ -260,9 +260,9 @@ class DataService
      */
     public function setLogLocation($new_log_location)
     {
-        $serviceContext = $this->getServiceContext();
-        $serviceContext->setLogLocation($new_log_location);
-        $this->updateServiceContextSettingsForOthers($serviceContext);
+        $restHandler = $this->restHandler;
+        $loggerUsedByRestHandler = $restHandler->getRequestLogger();
+        $loggerUsedByRestHandler->setLogDirectory($new_log_location);
         return $this;
     }
 
@@ -288,9 +288,22 @@ class DataService
      */
     public function disableLog()
     {
-        $serviceContext = $this->getServiceContext();
-        $serviceContext->disableLog();
-        $this->updateServiceContextSettingsForOthers($serviceContext);
+        $restHandler = $this->restHandler;
+        $loggerUsedByRestHandler = $restHandler->getRequestLogger();
+        $loggerUsedByRestHandler->setLogStatus(false);
+        return $this;
+    }
+
+    /**
+     * Enable the logging function
+     *
+     * @return $this
+     */
+    public function enableLog()
+    {
+        $restHandler = $this->restHandler;
+        $loggerUsedByRestHandler = $restHandler->getRequestLogger();
+        $loggerUsedByRestHandler->setLogStatus(true);
         return $this;
     }
 
@@ -301,6 +314,7 @@ class DataService
     public function throwExceptionOnError($bool)
     {
         $this->throwExceptionOnError = $bool;
+        return $this;
     }
 
     /**

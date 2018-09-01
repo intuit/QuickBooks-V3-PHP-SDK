@@ -6,8 +6,10 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType Transaction
  * @xmlName IPPChargeCredit
  * @var IPPChargeCredit
- * @xmlDefinition Financial transaction representing a request for credit on payment for
+ * @xmlDefinition Financial transaction representing a request for
+                credit on payment for
                 goods or services that have been sold.
+
  */
 class IPPChargeCredit extends IPPTransaction
 {
@@ -21,20 +23,20 @@ class IPPChargeCredit extends IPPTransaction
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPChargeCredit', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPChargeCredit', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPChargeCredit', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPChargeCredit', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition If Credit is Null or False, it is considered as
                                 Charge. If true, the ChargeCredit represents a Refund
@@ -57,9 +59,12 @@ class IPPChargeCredit extends IPPTransaction
      */
     public $CustomerRef;
     /**
-     * @Definition Identifies the party or location that the payment is
-                                to be remitted to or sent to. [b]QuickBooks Notes[/b][br /] Non
+     * @Definition Identifies the party or location that the
+                                payment is
+                                to be remitted to or sent to. [b]QuickBooks
+                                Notes[/b][br /] Non
                                 QB-writable.
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -68,9 +73,12 @@ class IPPChargeCredit extends IPPTransaction
      */
     public $RemitToRef;
     /**
-     * @Definition ARAccountReferenceGroup Identifies the AR Account to
-                                be used for this Credit Memo. [b]QuickBooks Notes[/b][br /] The AR
-                                Account should always be specified or a default will be used.
+     * @Definition ARAccountReferenceGroup Identifies the AR
+                                Account to
+                                be used for this Credit Memo. [b]QuickBooks
+                                Notes[/b][br /] The AR
+                                Account should always be specified or a
+                                default will be used.
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -108,9 +116,13 @@ class IPPChargeCredit extends IPPTransaction
      */
     public $BilledDate;
     /**
-     * @Definition Indicates the total amount of the entity associated.
-                                This includes the total of all the charges, allowances and taxes.
-                                [b]QuickBooks Notes[/b][br /] Non QB-writable.
+     * @Definition Indicates the total amount of the entity
+                                associated.
+                                This includes the total of all the charges,
+                                allowances and taxes.
+                                [b]QuickBooks Notes[/b][br /] Non
+                                QB-writable.
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -121,6 +133,7 @@ class IPPChargeCredit extends IPPTransaction
     /**
      * @Definition Internal use only: extension place holder for
                                 ChargeCredit
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0

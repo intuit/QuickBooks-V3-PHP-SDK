@@ -6,7 +6,11 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType Account
  * @xmlName IPPMasterAccount
  * @var IPPMasterAccount
- * @xmlDefinition Master Account is the list of accounts in the master list. The master list is the complete list of accounts prescribed by the French Government. These accounts can be created in the company on a need basis. The account create API needs to be used to create an account.
+ * @xmlDefinition Master Account is the list of accounts in the
+                master list. The master list is the complete list of accounts
+                prescribed by the French Government. These accounts can be created
+                in the company on a need basis. The account create API needs to be
+                used to create an account.
  */
 class IPPMasterAccount extends IPPAccount
 {
@@ -20,20 +24,20 @@ class IPPMasterAccount extends IPPAccount
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPMasterAccount', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPMasterAccount', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPMasterAccount', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPMasterAccount', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: ALL

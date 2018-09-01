@@ -6,7 +6,9 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType PurchaseByVendor
  * @xmlName IPPBill
  * @var IPPBill
- * @xmlDefinition Bill is an AP transaction representing a request-for-payment from a third party for goods/services rendered and/or received
+ * @xmlDefinition Bill is an AP transaction representing a
+                request-for-payment from a third party for goods/services rendered
+                and/or received
  */
 class IPPBill extends IPPPurchaseByVendor
 {
@@ -20,20 +22,20 @@ class IPPBill extends IPPPurchaseByVendor
         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
         * @param boolean $verbose specifies whether object should echo warnings
         */
-        public function __construct($keyValInitializers=array(), $verbose=false)
-        {
-            foreach ($keyValInitializers as $initPropName => $initPropVal) {
-                if (property_exists('IPPBill', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPBill', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-                } else {
-                    if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                    }
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPBill', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBill', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
                 }
             }
         }
+    }
 
-
+    
     /**
      * @Definition
                                 Product: QBW
@@ -48,6 +50,7 @@ class IPPBill extends IPPPurchaseByVendor
     public $PayerRef;
     /**
      * @Definition SalesTerm Reference for the bill
+
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -56,7 +59,9 @@ class IPPBill extends IPPPurchaseByVendor
      */
     public $SalesTermRef;
     /**
-     * @Definition The nominal date by which the bill must be paid, not including any early-payment discount incentives, or late payment penalties.
+     * @Definition The nominal date by which the bill must be
+                                paid, not including any early-payment discount incentives, or
+                                late payment penalties.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -77,7 +82,8 @@ class IPPBill extends IPPPurchaseByVendor
      */
     public $RemitToAddr;
     /**
-     * @Definition Address to which the vendor shipped or will ship any goods associated with the purchase.
+     * @Definition Address to which the vendor shipped or will
+                                ship any goods associated with the purchase.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -87,12 +93,13 @@ class IPPBill extends IPPPurchaseByVendor
     public $ShipAddr;
     /**
      * @Definition
-                            Product: ALL
-                            Description: The unpaid amount of the bill.  When paid-in-full, balance will be zero.
+                                Product: ALL
+                                Description: The unpaid amount of the bill. When paid-in-full, balance will
+                                be zero.
                                 [b]QuickBooks Notes[/b][br /]
                                 Non QB-writable.
-                            Filterable: QBW
-                            Sortable: QBW
+                                Filterable: QBW
+                                Sortable: QBW
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -103,12 +110,15 @@ class IPPBill extends IPPPurchaseByVendor
     public $Balance;
     /**
      * @Definition
-                            Product: ALL
-                            Description: The unpaid amount of the bill in home currency. Available only for companies where multicurrency is enabled.  When paid-in-full, home balance will be zero.
+                                Product: ALL
+                                Description: The unpaid amount of the bill in home currency. Available only
+                                for companies where multicurrency is enabled. When paid-in-full,
+                                home balance will be zero.
                                 [b]QuickBooks Notes[/b][br /]
-                                Non QB-writable.
-                            Filterable: QBW
-                            Sortable: QBW
+                                Non
+                                QB-writable.
+                                Filterable: QBW
+                                Sortable: QBW
 
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -118,7 +128,8 @@ class IPPBill extends IPPPurchaseByVendor
      */
     public $HomeBalance;
     /**
-     * @Definition Internal use only: extension place holder for Bill.
+     * @Definition Internal use only: extension place holder for
+                                Bill.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
