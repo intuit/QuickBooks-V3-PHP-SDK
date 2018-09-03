@@ -1048,7 +1048,7 @@
 <li>Transfer</li>
 <li>VendorCredit</li>
 <li>Vendor</li>
-<li>TaxSerivce and TaxRate (for Creation Only)</li>
+<li>TaxService and TaxRate (for Creation Only)</li>
 </ul>
 </div>
 <div class="section" id="other-supported-operations">
@@ -1058,7 +1058,7 @@
 <h3>Sending E-mail<a class="headerlink" href="#sending-e-mail" title="Permalink to this headline">¶</a></h3>
 <p>For those entities that supports <code class="docutils literal"><span class="pre">send</span></code> operation, you can use <code class="docutils literal"><span class="pre">dataService-&gt;SendEmail()</span></code> method to send an E-mail to user/users:</p>
 <div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$invoice</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">FindById</span><span class="p">(</span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$dataSerivce</span><span class="o">-&gt;</span><span class="na">SendEmail</span><span class="p">(</span><span class="nv">$invoice</span><span class="p">,</span> <span class="s2">&quot;abc@xyz.com&quot;</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">SendEmail</span><span class="p">(</span><span class="nv">$invoice</span><span class="p">,</span> <span class="s2">&quot;abc@xyz.com&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
