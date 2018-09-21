@@ -40,6 +40,8 @@ use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\Core\HttpClients\ClientFactory;
+use QuickBooksOnline\API\Data\IPPCompanyInfo;
+use QuickBooksOnline\API\Data\IPPPreferences;
 
 /**
  * Class DataServicd
@@ -1588,7 +1590,7 @@ class DataService
 
     /**
      * Get the Company Information
-     * @return \QuickBooksOnline\API\Data\IPPCompanyInfo   CompanyInformation
+     * @return IPPCompanyInfo   CompanyInformation
      */
     public function getCompanyInfo()
     {
@@ -1615,7 +1617,7 @@ class DataService
 
     /**
      * Get the Company Preferences Information
-     * @return string      CompanyInformation
+     * @return IPPPreferences      CompanyInformation
      */
     public function getCompanyPreferences()
     {
