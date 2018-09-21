@@ -8,8 +8,7 @@
         "php": ">=5.6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "phpstan/phpstan": "^0.10.3"
+        "phpunit/phpunit": "^5.7"
     },
     "suggest": {
         "ext-curl": "Uses Curl to make HTTP Requests",
