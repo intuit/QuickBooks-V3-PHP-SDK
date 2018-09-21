@@ -49,7 +49,7 @@ class IPPOtherPrefs
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName NameValue
-	 * @var IPPNameValue
+	 * @var IPPNameValue|array
 	 */
 	public $NameValue;
 
