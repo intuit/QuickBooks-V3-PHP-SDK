@@ -22,7 +22,7 @@ class IntuitErrorHandler
         }
 
         $responseXml = simplexml_load_string($response);
-        IntuitErrorHandler::HandleErrorsXml($responseXml);
+        $this->HandleErrorsXml($responseXml);
     }
 
     /**
@@ -38,14 +38,8 @@ class IntuitErrorHandler
             return;
         }
 
-        $errorCode;
         if ((int)$errCodeNode) {
             throw new IdsException('HandleErrors error code (UtilityConstants::ERRCODEXPATH): '.(int)$errCodeNode);
-        }
-
-        if ($errorCode == 0) {
-            // 0 indicates success
-            return;
         }
 
         $errTextNode = $responseXml->{UtilityConstants::ERRTEXTXPATH};

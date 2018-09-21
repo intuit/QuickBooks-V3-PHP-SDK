@@ -1,8 +1,8 @@
 <?php
-
 namespace QuickBooksOnline\API\Core\HttpClients;
 
-use QuickBooksOnline\API\Data\IPPFault;
+use QuickBooksOnline\API\Core\ServiceContext;
+
 /**
  * Class FaultHandler
  *

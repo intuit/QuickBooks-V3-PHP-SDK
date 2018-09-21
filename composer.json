@@ -11,6 +11,10 @@
         "phpunit/phpunit": "^5.7",
         "phpstan/phpstan": "^0.10.3"
     },
+    "suggest": {
+        "ext-curl": "Uses Curl to make HTTP Requests",
+        "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
+    },
     "autoload": {
         "psr-4": {
             "QuickBooksOnline\\API\\": "src/"

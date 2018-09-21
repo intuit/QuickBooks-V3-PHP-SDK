@@ -442,7 +442,7 @@ class DataService
     /**
      * Get the error from last request
      *
-     * @return lastError
+     * @return FaultHandler
      */
     public function getLastError()
     {
@@ -506,10 +506,9 @@ class DataService
      * Marshall a POPO object to XML, presumably for inclusion on an IPP v3 API call
      *
      *
-     *
-     * @param POPOObject $phpObj inbound POPO object
+     * @deprecated
+     * @param object $phpObj inbound POPO object
      * @return string XML output derived from POPO object
-     * @depricated
      */
     private function getXmlFromObj($phpObj)
     {
@@ -525,7 +524,7 @@ class DataService
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "getXmlFromObj EXCEPTION: " . $e->getMessage() . "\n";
             var_dump($phpObj);
             var_dump(debug_backtrace());
@@ -538,7 +537,7 @@ class DataService
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return POPO class name
+     * @return string
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -594,7 +593,7 @@ class DataService
      * @param string $CALLINGMETHOD
      * @param string|null $boundaryString
      * @param string|null $email
-     * @return null|Excepiton
+     * @return null|string
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
@@ -614,7 +613,7 @@ class DataService
                 break;
             case DataService::UPLOAD:
                 if (!isset($boundaryString)) {
-                    throw new Exception("Upload Image has unset value: boundaryString.");
+                    throw new \Exception("Upload Image has unset value: boundaryString.");
                 }
                 // Creates request parameters
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
@@ -636,8 +635,8 @@ class DataService
             }
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
-            } catch (Exception $e) {
-                return new Excepiton("Exception in deserialize ResponseBody.");
+            } catch (\Exception $e) {
+                return new \Exception("Exception in deserialize ResponseBody.");
             }
 
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Finished Executing Method " . $CALLINGMETHOD);
@@ -775,7 +774,7 @@ class DataService
      * Deletes an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Delete.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Delete($entity)
@@ -801,7 +800,7 @@ class DataService
      * Voids an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Void.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Void($entity)
@@ -1135,7 +1134,7 @@ class DataService
                     }
                     $returnValue->entities[$entityName] = $entities;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 IdsExceptionManager::HandleException($e);
             }
 
@@ -1161,7 +1160,7 @@ class DataService
      * Serializes oblect into specified format
      * @param IPPIntuitEntity $entity
      * @param String $urlResource
-     * @return type
+     * @return object
      */
     protected function executeObjectSerializer($entity, &$urlResource)
     {
@@ -1287,14 +1286,13 @@ class DataService
      * update the TaxService with namespace added
      * If this class is not available on include_path or wab't loaded the method will return false
      *
-     * @param IPPTaxService $entity
+     * @deprecated 
+     * @param object $entity
      * @return bool
      */
     private function isTaxServiceSafe($entity)
     {
-        $IPPTaxServiceClassWIthNameSpace = "QuickBooksOnline\\API\\Data\\IPPTaxService";
-
-        return class_exists($IPPTaxServiceClassWIthNameSpace) && ($entity instanceof $IPPTaxServiceClassWIthNameSpace);
+        return false;
     }
 
     /**
@@ -1335,7 +1333,7 @@ class DataService
     /**
      * Verifies string as email agains RFC 822
      * @param string $email
-     * @return type
+     * @return string
      */
     public function verifyEmailAddress($email)
     {
@@ -1395,7 +1393,7 @@ class DataService
             }
             $writer->resetContent();
             $this->logInfo("File was downloaded (http response = $responseCode), bytes written: {$writer->getBytes()}");
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $this->logError("Exception appears during response processing. Http response was $responseCode: " . $ex->getMessage() . "\n" . $ex->getTraceAsString());
 
             return null;
@@ -1532,6 +1530,13 @@ class DataService
         if (empty($result) || !is_array($result)) {
             return false;
         }
+        $hour = 0;
+        $minute = 0;
+        $second = 0;
+        $month = 1;
+        $day = 1;
+        $year = 1970;
+        
         extract($result);
         if (!empty($errors)) {
             throw new SdkException("SDK failed to parse date value \"$str\":"
@@ -1583,7 +1588,7 @@ class DataService
 
     /**
      * Get the Company Information
-     * @return IPPCompanyInfo   CompanyInformation
+     * @return \QuickBooksOnline\API\Data\IPPCompanyInfo   CompanyInformation
      */
     public function getCompanyInfo()
     {

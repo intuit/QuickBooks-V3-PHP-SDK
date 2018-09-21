@@ -4,16 +4,11 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPMemoRef
- * @var IPPMemoRef
- * @xmlDefinition 
-				Product: ALL
-				Description: Captures a memo on a
-				transaction that may (QBW) reference a company pre-defined message
-				(See CustomerMsg)
-			
+ * @xmlName IPPAgencyPaymentMethodEnum
+ * @var IPPAgencyPaymentMethodEnum
+ * @xmlDefinition Enumeration of payment methods that can be used to pay tax agency
  */
-class IPPMemoRef
+class IPPAgencyPaymentMethodEnum
 	{
 
 		/**                                                                       
@@ -29,7 +24,7 @@ class IPPMemoRef
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPMemoRef',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPMemoRef',$initPropName))
+				if (property_exists('IPPAgencyPaymentMethodEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAgencyPaymentMethodEnum',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,17 +40,6 @@ class IPPMemoRef
 		 * @xmlType value
 		 * @var string
 		 */
-		public $value;	
-	/**
-	 * @Definition 
-							Product: QBW: the ID of the CustomerMsg entity
-							used to provide the string content
-						
-	 * @xmlType attribute
-	 * @xmlName id
-	 * @var string
-	 */
-	public $id;
+		public $value;
 
-
-} // end class IPPMemoRef
+} // end class IPPAgencyPaymentMethodEnum

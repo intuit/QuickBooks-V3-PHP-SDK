@@ -25,6 +25,8 @@ class IPPSyncActivity extends IPPIntuitEntity
          */
     public function __construct($keyValInitializers = array(), $verbose = false)
     {
+        parent::__construct($keyValInitializers, $verbose);
+        
         foreach ($keyValInitializers as $initPropName => $initPropVal) {
             if (property_exists('IPPSyncActivity', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSyncActivity', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;

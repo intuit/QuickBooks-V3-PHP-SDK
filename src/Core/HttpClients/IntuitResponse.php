@@ -17,13 +17,13 @@ class IntuitResponse{
 
    /**
     * The header of Intuit Response.
-    * @var Assoicated Array
+    * @var array
     */
    private $headers;
 
    /**
     * The body of Intuit Response.
-    * @var Sring
+    * @var string
     */
    private $body;
 
@@ -201,7 +201,7 @@ class IntuitResponse{
    /**
     * Return the header of the Response
     *
-    * @return Associated Array     Response Header
+    * @return array     Response Header
     */
    public function getHeaders(){
        return $this->headers;

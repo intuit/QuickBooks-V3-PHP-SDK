@@ -86,7 +86,7 @@ class IPPRow
      * @Definition Row type section, summary, data row etc..
      * @xmlType attribute
      * @xmlName type
-     * @var RowTypeEnum[]
+     * @var IPPRowTypeEnum[]
      */
     public $type;
     /**

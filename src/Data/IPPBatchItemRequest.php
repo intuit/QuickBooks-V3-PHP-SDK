@@ -37,7 +37,7 @@ class IPPBatchItemRequest
     /**
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IntuitObject
+     * @var IPPIntuitObject
      */
     public $IntuitObject;
 
@@ -83,7 +83,7 @@ class IPPBatchItemRequest
      * @Definition Specifies the batch id for which the response corresponds to
      * @xmlType attribute
      * @xmlName operation
-     * @var OperationEnum
+     * @var IPPOperationEnum
      */
     public $operation;
 

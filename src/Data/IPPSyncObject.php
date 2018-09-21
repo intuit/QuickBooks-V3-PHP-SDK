@@ -42,7 +42,7 @@ class IPPSyncObject
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName IntuitObject
-     * @var IntuitObject
+     * @var IPPIntuitObject
      */
     public $IntuitObject;
 

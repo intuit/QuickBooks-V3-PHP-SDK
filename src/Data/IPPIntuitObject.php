@@ -21,6 +21,7 @@ class IPPIntuitObject extends IPPIntuitEntity
          */
     public function __construct($keyValInitializers = array(), $verbose = false)
     {
+        parent::__construct($keyValInitializers, $verbose);
         foreach ($keyValInitializers as $initPropName => $initPropVal) {
             if (property_exists('IPPIntuitObject', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPIntuitObject', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;

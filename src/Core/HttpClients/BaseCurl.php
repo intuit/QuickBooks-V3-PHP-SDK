@@ -66,7 +66,7 @@ class BaseCurl{
 
   /**
    * Send the request
-   * @return the HTTP result
+   * @return mixed the HTTP result
    */
   public function execute(){
     if($this->isCurlSet()){

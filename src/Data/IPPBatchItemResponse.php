@@ -47,7 +47,7 @@ class IPPBatchItemResponse
      * @Definition Any IntuitEntity derived object like Customer, Invoice can be part of response
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IntuitObject
+     * @var IPPIntuitObject
      */
     public $IntuitObject;
     /**

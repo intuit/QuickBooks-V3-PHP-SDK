@@ -12,6 +12,8 @@ use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
+use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
+use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 
 
 
@@ -79,7 +81,7 @@ class SyncRestHandler extends RestHandler
 
    /**
     * Return an representation of an error returned by the last request, or false if the last request was not an error.
-    * @return False | FaultHander
+    * @return FaultHandler
     */
     public function getFaultHandler()
     {
@@ -90,7 +92,7 @@ class SyncRestHandler extends RestHandler
     /**
      * Sending an request to QuickBooks Online based on the Request parameters, body and URI.
      *
-     * @param  RequestParamters $requestParameters     The request parameter for this API Call
+     * @param  RequestParameters $requestParameters     The request parameter for this API Call
      * @param  String           $requestBody           The body of the API call
      * @param  String           $specifiedRequestUri   The user specified URI for the request
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
@@ -130,7 +132,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestBody           The request body for POST request.
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return Response and HTTP Status code
+     * @return null|array Response and HTTP Status code
      */
     private function OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
       $AuthorizationHeader = $this->getOAuth1AuthorizationHeader($baseURL, $queryParameters, $HttpMethod);
@@ -139,7 +141,7 @@ class SyncRestHandler extends RestHandler
       $this->LogAPIRequestToLog($requestBody, $requestUri, $httpHeaders);
       $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders, $requestBody, null, false);
       $faultHandler = $intuitResponse->getFaultHandler();
-      $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
+      $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
       //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
       //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
       if($faultHandler) {
@@ -186,7 +188,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestBody           The request body for POST request.
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return Response and HTTP Status code
+     * @return array|null Response and HTTP Status code
      */
     private function OAuth2APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
         $AuthorizationHeader = $this->getOAuth2AuthorizationHeader($this->context->requestValidator);
@@ -203,7 +205,7 @@ class SyncRestHandler extends RestHandler
 
         $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, true);
         $faultHandler = $intuitResponse->getFaultHandler();
-        $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders(), false);
+        $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
         //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
         //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
         if($faultHandler) {
@@ -223,7 +225,7 @@ class SyncRestHandler extends RestHandler
      * Get OAuth2 Authroization Header based on OAuth 2 Access Token
      *
      * @param OAuth2AccessToken   $OAuth2AccessToken     The OAuth 2 token contains AccessToken, RefreshToken, ClientID and Client Secret.
-     * @return OAuth2 Authorization Header
+     * @return string OAuth2 Authorization Header
      */
     private function getOAuth2AuthorizationHeader($OAuth2AccessToken){
       if(!$OAuth2AccessToken instanceof OAuth2AccessToken){
@@ -239,10 +241,10 @@ class SyncRestHandler extends RestHandler
      * Set the Common Headers for PHP SDK. It is used in all HTTP Request
      * @param  String $AuthorizationHeader    The authorizationHeader
      * @param  String $requestUri             The request URI
-     * @param  String $contentType            The content type
+     * @param  String $ContentType            The content type
      * @param  String $requestBody            The request Body
      *
-     * @return theStandard HTTP Header
+     * @return array theStandard HTTP Header
      */
     private function setCommonHeadersForPHPSDK($AuthorizationHeader, $requestUri, $ContentType, $requestBody){
       $httpHeaders = array(
@@ -294,7 +296,7 @@ class SyncRestHandler extends RestHandler
     /**
      * Parse a String xml to DOM structure for easy read
      * @param String $string   The String representation
-     * @return The DOM structured XML
+     * @return string|bool The DOM structured XML
      */
     private function parseStringToDom($string){
       $dom = new \DOMDocument();
@@ -317,7 +319,7 @@ class SyncRestHandler extends RestHandler
 
     /**
      * Based on the request determine the URL Endpoint
-     * @param  RequestParamters $requestParameters    The request parameter for this API Call
+     * @param  RequestParameters $requestParameters    The request parameter for this API Call
      * @param  String           $oMode                The OAuth mode for the request
      * @param  String           $specifiedRequestUri  Ignore the rule, use the user specified URI for the request
      * @return String           Destination URL for the request
@@ -403,7 +405,7 @@ class SyncRestHandler extends RestHandler
 
   /**
    * Accept anything if content type is not XML or Json
-   * @param type $value
+   * @param string $value
    * @return string
    */
    private function getAcceptContentType($value)
@@ -421,11 +423,11 @@ class SyncRestHandler extends RestHandler
        }
 
        if (CoreConstants::CONTENTTYPE_OCTETSTREAM === $value) {
-           if ($this->ResponseSerializer instanceof XmlObjectSerializer) {
+           if ($this->ResponseSerializer instanceof \QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer) {
                return CoreConstants::CONTENTTYPE_APPLICATIONXML;
            }
 
-           if ($this->ResponseSerializer instanceof JsonObjectSerializer) {
+           if ($this->ResponseSerializer instanceof \QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer) {
                return CoreConstants::CONTENTTYPE_APPLICATIONJSON;
            }
        }
@@ -472,17 +474,7 @@ class SyncRestHandler extends RestHandler
      */
     private function CallRestService($requestParameters, $requestBody, $oauthRequestUri)
     {
-        $this->context->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Getting the response from service.");
-
-        // Call the service and get response.
-        list($httpWebResponseCode, $httpWebResponseBody) = $request->sendRequest($requestParameters, $requestBody, $oauthRequestUri);
-
-        $this->context->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Got the response from service.");
-
-        // Parse the response from the call and return.
-        $httpParsedWebResponseBody = $this->ParseResponse($httpWebResponseBody);
-
-        return array($httpWebResponseCode,$httpParsedWebResponseBody);
+        return null;
     }
 
 
@@ -521,7 +513,7 @@ class SyncRestHandler extends RestHandler
             // System.Net.HttpWebRequest.Abort() was previously called.-or- The time-out
             // period for the request expired.-or- An error occurred while processing the request.
             $isIpp = false;
-            if ($this->context->ServiceType == IntuitServicesType::IPP) {
+            if ($this->context->ServiceType == CoreConstants::IntuitServicesTypeIPP) {
                 $isIpp = true;
             }
 
@@ -532,9 +524,10 @@ class SyncRestHandler extends RestHandler
             }
         }
 
-        if ($this->context->ServiceType == IntuitServicesType::IPP) {
+        if ($this->context->ServiceType == CoreConstants::IntuitServicesTypeIPP) {
             // Handle errors here
-            IntuitErrorHandler::HandleErrors($response);
+            $intuitHandler = new IntuitErrorHandler();
+            return $intuitHandler->HandleErrors($response);
         } else {
             // Check the response if there are any fault tags and throw appropriate exceptions.
             $oneException = $handler->ParseErrorResponseAndPrepareException($response);

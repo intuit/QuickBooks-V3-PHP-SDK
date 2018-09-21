@@ -48,7 +48,7 @@ class IPPIntuitResponse
      * @Definition Any IntuitEntity derived entity like Customer, Invoice can be part of response
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IntuitObject
+     * @var IPPIntuitObject
      */
     public $IntuitObject;
 

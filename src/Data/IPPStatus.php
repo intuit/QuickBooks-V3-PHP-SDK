@@ -25,6 +25,7 @@ class IPPStatus extends IPPIntuitEntity
          */
     public function __construct($keyValInitializers = [], $verbose = false)
     {
+        parent::__construct($keyValInitializers, $verbose);
         foreach ($keyValInitializers as $initPropName => $initPropVal) {
             if (property_exists('IPPStatus', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStatus', $initPropName)) {
                     $this->{$initPropName} = $initPropVal;
