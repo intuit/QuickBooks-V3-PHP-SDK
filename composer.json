@@ -28,6 +28,7 @@
         }
     ],
     "scripts": {
-        "phpstan": "vendor/bin/phpstan --memory-limit=1G --level=0 analyse src"
+        "phpstan": "vendor/bin/phpstan --memory-limit=1G --level=0 analyse src",
+        "test": "phpunit --configuration phpunit.xml"
     }
 }

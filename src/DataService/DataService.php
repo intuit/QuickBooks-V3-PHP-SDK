@@ -330,6 +330,7 @@ class DataService
 
     /**
      * Return the client Name used by this DataSerivce
+     * @deprecated since version 5.0.4
      * @return String the Client Name. It can be curl or GuzzleHttpClient
      */
     public function getClinetName()
