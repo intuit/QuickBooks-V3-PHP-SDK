@@ -13,6 +13,7 @@ class ReportName
     const AGEDRECEIVABLES = "AgedReceivables";
     const AGEDPAYABLES = "AgedPayables";
     const CUSTOMERBALANCE = "CustomerBalance";
+    const CUSTOMERBALANCEDETAIL = "CustomerBalanceDetail";
     const CUSTOMERSALES = "CustomerSales";
     const ITEMSALES = "ItemSales";
     const DEPARTMENTSALES = "DepartmentSales";
