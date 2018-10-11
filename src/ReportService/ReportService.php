@@ -3,15 +3,15 @@
 namespace QuickBooksOnline\API\ReportService;
 
 use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Diagnostics\ContentWriter;
-use QuickBooksOnline\API\Core\Configuration\OperationControlList;
-use QuickBooksOnline\API\DataService\Batch;
-use QuickBooksOnline\API\DataService\IntuitCDCResponse;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
+use QuickBooksOnline\API\Core\HttpClients\RestHandler;
+use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
+use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
+use QuickBooksOnline\API\Exception\SdkExceptions\InvalidParameterException;
 
 class ReportService
 {
@@ -23,12 +23,12 @@ class ReportService
 
     /**
      * Rest Request Handler.
-     * @var IRestHandler
+     * @var RestHandler
      */
     private $restHandler;
 
     /**
-     * Serializer needs to be used fore responce object
+     * Serializer needs to be used fore response object
      * @var IEntitySerializer
      */
     private $responseSerializer;
@@ -933,7 +933,7 @@ class ReportService
     }
 
     /**
-     * Returns serializer for responce objects
+     * Returns serializer for response objects
      * @return IEntitySerializer
      */
     public function getResponseSerializer()
@@ -974,7 +974,7 @@ class ReportService
     public function __construct($serviceContext)
     {
         if (null == $serviceContext) {
-            throw new InvalidArgumentException('Resources.ServiceContextCannotBeNull');
+            throw new \InvalidArgumentException('Resources.ServiceContextCannotBeNull');
         }
 
         if (!is_object($serviceContext)) {

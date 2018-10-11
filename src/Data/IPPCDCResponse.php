@@ -18,7 +18,7 @@ class IPPCDCResponse
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param array $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -41,7 +41,7 @@ class IPPCDCResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName QueryResponse
-     * @var com\intuit\schema\finance\v3\IPPQueryResponse
+     * @var IPPQueryResponse
      */
     public $QueryResponse;
 
@@ -52,7 +52,7 @@ class IPPCDCResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Fault
-     * @var com\intuit\schema\finance\v3\IPPFault
+     * @var IPPFault
      */
     public $Fault;
 

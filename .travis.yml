@@ -1,6 +1,5 @@
 language: php
 php:
-- 5.6
 - 7.1
 - 7.2
 before_install:
@@ -8,4 +7,5 @@ before_install:
 before_script:
 - composer install
 script:
+- composer require --dev "phpstan/phpstan:^0.10" && composer require --dev "guzzlehttp/guzzle" && vendor/bin/phpstan analyse -c phpstan.neon --level=0 --memory-limit=1G src
 - phpunit --configuration phpunit.xml

@@ -1,6 +1,8 @@
 <?php
 namespace QuickBooksOnline\API\Utility;
 
+use QuickBooksOnline\API\Exception\IdsException;
+
 /**
  * Intuit Error Handler class.
  * Add future function here for handling exceptions @Hao
@@ -15,12 +17,12 @@ class IntuitErrorHandler
     public function HandleErrors($response)
     {
         // To handle plain text response
-        if (!IsValidXml($response)) {
+        if (!$this->IsValidXml($response)) {
             return;
         }
 
         $responseXml = simplexml_load_string($response);
-        IntuitErrorHandler::HandleErrorsXml($responseXml);
+        $this->HandleErrorsXml($responseXml);
     }
 
     /**
@@ -36,14 +38,8 @@ class IntuitErrorHandler
             return;
         }
 
-        $errorCode;
         if ((int)$errCodeNode) {
             throw new IdsException('HandleErrors error code (UtilityConstants::ERRCODEXPATH): '.(int)$errCodeNode);
-        }
-
-        if ($errorCode == 0) {
-            // 0 indicates success
-            return;
         }
 
         $errTextNode = $responseXml->{UtilityConstants::ERRTEXTXPATH};
@@ -76,7 +72,7 @@ class IntuitErrorHandler
 
         try {
             $doc = simplexml_load_string($inputString);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 

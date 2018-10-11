@@ -18,7 +18,7 @@ class IPPColumn
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param array $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -59,7 +59,7 @@ class IPPColumn
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName MetaData
-     * @var com\intuit\schema\finance\v3\IPPNameValue
+     * @var IPPNameValue
      */
     public $MetaData;
 
@@ -69,7 +69,7 @@ class IPPColumn
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Columns
-     * @var com\intuit\schema\finance\v3\IPPColumns
+     * @var IPPColumns
      */
     public $Columns;
 }//end class

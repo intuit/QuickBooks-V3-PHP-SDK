@@ -2,6 +2,9 @@
 
 namespace QuickBooksOnline\API\Core\Http;
 
+use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
+use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
+
 /**
  * Contains properties common to Request and Response.
  */

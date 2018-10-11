@@ -1,0 +1,6 @@
+parameters:
+    excludes_analyse:
+        - %rootDir%/../../../src/XSD2PHP/*
+        - %rootDir%/../../../src/Utility.Test/*
+        - %rootDir%/../../../src/_Samples/*
+        - %rootDir%/../../../src/xsd2php.php

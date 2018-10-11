@@ -17,7 +17,7 @@ class IPPRow
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param array $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = array(), $verbose = false)
@@ -55,7 +55,7 @@ class IPPRow
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Header
-     * @var com\intuit\schema\finance\v3\IPPHeader
+     * @var IPPHeader
      */
     public $Header;
     /**
@@ -63,7 +63,7 @@ class IPPRow
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Rows
-     * @var com\intuit\schema\finance\v3\IPPRows
+     * @var IPPRows
      */
     public $Rows;
     /**
@@ -71,7 +71,7 @@ class IPPRow
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Summary
-     * @var com\intuit\schema\finance\v3\IPPSummary
+     * @var IPPSummary
      */
     public $Summary;
     /**
@@ -79,14 +79,14 @@ class IPPRow
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMaxOccurs unbounded
      * @xmlName ColData
-     * @var com\intuit\schema\finance\v3\IPPColData
+     * @var IPPColData
      */
     public $ColData;
     /**
      * @Definition Row type section, summary, data row etc..
      * @xmlType attribute
      * @xmlName type
-     * @var RowTypeEnum[]
+     * @var IPPRowTypeEnum[]
      */
     public $type;
     /**

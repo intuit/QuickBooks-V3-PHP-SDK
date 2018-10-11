@@ -21,7 +21,7 @@ class IPPSyncError
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+         * @param array $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = array(), $verbose = false)
@@ -45,7 +45,7 @@ class IPPSyncError
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Error
-     * @var com\intuit\schema\finance\v3\IPPError
+     * @var IPPError
      */
     public $Error;
     /**
@@ -58,7 +58,7 @@ class IPPSyncError
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CloudVersion
-     * @var com\intuit\schema\finance\v3\IPPSyncObject
+     * @var IPPSyncObject
      */
     public $CloudVersion;
     /**
@@ -70,7 +70,7 @@ class IPPSyncError
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName QBVersion
-     * @var com\intuit\schema\finance\v3\IPPSyncObject
+     * @var IPPSyncObject
      */
     public $QBVersion;
     /**
