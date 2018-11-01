@@ -530,7 +530,7 @@ class SyncRestHandler extends RestHandler
         } else {
             // Check the response if there are any fault tags and throw appropriate exceptions.
             $oneException = $handler->ParseErrorResponseAndPrepareException($response);
-            if (\Exception != null) {
+            if ($oneException != null) {
                 throw $oneException;
             }
         }

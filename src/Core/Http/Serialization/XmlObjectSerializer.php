@@ -6,6 +6,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
+use QuickBooksOnline\API\Diagnostics\Logger;
 
 /**
  * Xml Serialize(r) to serialize and de serialize.
@@ -79,7 +80,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Unmarshall XML into a POPO object, presumably the XML came from an IPP v3 API call
      *
      * @param string XML that conforms to IPP v3 XSDs
-     * @return mixed POPOObject $phpObj resulting POPO object
+     * @return object POPOObject $phpObj resulting POPO object
      */
     private static function PhpObjFromXml($className, $xmlStr)
     {

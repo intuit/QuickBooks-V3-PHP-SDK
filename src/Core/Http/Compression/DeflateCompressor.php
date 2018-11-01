@@ -40,7 +40,7 @@ class DeflateCompressor extends CompressorBase
      * Decompresses the output response stream.
      * @param $responseBody Response body.
      * @param $response_headers Response headers
-     * @return Decompressed response body.
+     * @return string|null Decompressed response body.
      */
     public function Decompress($responseBody, $response_headers)
     {

@@ -3,7 +3,6 @@ namespace QuickBooksOnline\API\Core\Http\Serialization;
 
 use QuickBooksOnline\API\Utility\DomainEntityBuilder;
 use QuickBooksOnline\API\Utility\MetadataExtractor;
-use QuickBooksOnline\API\Utility\MetadataExtractor;
 use QuickBooksOnline\API\Diagnostics\TraceLogger;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -61,7 +60,7 @@ class JsonObjectSerializer extends IEntitySerializer
         /**
          * Support json_last_error_msg in PHP 5.2
          * @param string $error
-         * @return type
+         * @return string
          */
         private function getMessageFromErrorCode($error)
         {
@@ -101,7 +100,7 @@ class JsonObjectSerializer extends IEntitySerializer
          * Creates domain model-like name. In other words it follows naming convetion for SDK
          * TODO make generic and remove duplicates
          * @param string $intuitEntityName
-         * @return mixed
+         * @return string
          */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {

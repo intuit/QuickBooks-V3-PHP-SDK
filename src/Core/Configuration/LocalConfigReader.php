@@ -139,7 +139,7 @@ class LocalConfigReader
     * Initializes API Entity Rules
     *
     * @param IppConfiguration $ippConfig
-    * @param XMLObject $xmlObj
+    * @param \SimpleXMLElement $xmlObj
   */
     public static function initializeAPIEntityRules($xmlObj, $ippConfig)
     {
@@ -165,7 +165,7 @@ class LocalConfigReader
    /**
     * Initializes operation contrtol list
     * @param IppConfiguration $ippConfig
-    * @param XMLObject $xmlObj
+    * @param SimpleXMLElement $xmlObj
    */
    public static function setupMinorVersion($ippConfig, $xmlObj)
    {
@@ -179,7 +179,7 @@ class LocalConfigReader
 
    /**
     * Returns array in a OperationControlList rules format from XML
-    * @param type $xmlObj
+    * @param SimpleXMLElement $xmlObj
     * @return boolean
    */
    public static function populateJsonOnlyEntities($xmlObj)
@@ -431,8 +431,8 @@ class LocalConfigReader
 
    /**
    * Creates PHP class entity from intuit name
-   * @param type $name
-   * @return type
+   * @param string $name
+   * @return string
    */
    private static function decorateEntity($name)
    {
