@@ -107,7 +107,7 @@ class OperationControlList
 
     /**
      * Appends rules to existing list
-     * @param type $array
+     * @param array $array
      */
     public function appendRules($array = array())
     {

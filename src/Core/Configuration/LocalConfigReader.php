@@ -165,7 +165,7 @@ class LocalConfigReader
    /**
     * Initializes operation contrtol list
     * @param IppConfiguration $ippConfig
-    * @param SimpleXMLElement $xmlObj
+    * @param \SimpleXMLElement $xmlObj
    */
    public static function setupMinorVersion($ippConfig, $xmlObj)
    {
@@ -179,7 +179,7 @@ class LocalConfigReader
 
    /**
     * Returns array in a OperationControlList rules format from XML
-    * @param SimpleXMLElement $xmlObj
+    * @param \SimpleXMLElement $xmlObj
     * @return boolean
    */
    public static function populateJsonOnlyEntities($xmlObj)
