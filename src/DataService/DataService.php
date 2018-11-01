@@ -458,7 +458,8 @@ class DataService
           $this->serviceContext->realmId = $realmID;
           $this->setupRestHandler($this->serviceContext);
         } catch (SdkException $e){
-          echo $e->getTraceAsString();
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error while updating OAuth2Token." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
         }
         return $this;
     }
@@ -538,9 +539,8 @@ class DataService
     private function getXmlFromObj($phpObj)
     {
         if (!$phpObj) {
-            echo "getXmlFromObj NULL arg\n";
-            var_dump(debug_backtrace());
-
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "getXmlFromObj NULL arg.");
+            
             return false;
         }
 
@@ -550,9 +550,8 @@ class DataService
         try {
             return $php2xml->getXml($phpObj);
         } catch (\Exception $e) {
-            echo "getXmlFromObj EXCEPTION: " . $e->getMessage() . "\n";
-            var_dump($phpObj);
-            var_dump(debug_backtrace());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing Object to XML." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
 
             return false;
         }
@@ -1000,9 +999,8 @@ class DataService
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
                 }
                 $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                //echo "Parsed Body is: \n";
-                //var_dump($parsedResponseBody);
-                //echo "\n Parsed Body over.\n";
+                $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
+                
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
             }
