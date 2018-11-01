@@ -33,7 +33,7 @@ class IntuitBatchResponse
 
     /**
      * enum representing ResponseType after batch execution.
-     * @var intresponseType
+     * @var int responseType
      */
     public $responseType;
 
