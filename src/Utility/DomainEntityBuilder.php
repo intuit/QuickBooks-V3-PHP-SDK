@@ -7,8 +7,6 @@ use ReflectionProperty;
 use InvalidArgumentException;
 use UnexpectedValueException;
 use RuntimeException;
-use QuickBooksOnline\API\Core\Http\Serialization\AbstractEntity;
-use QuickBooksOnline\API\Core\Http\Serialization\ObjectEntity;
 
 //THis is a incomplete Class. Complete this Class late for Converting Response to JSON Deserialization
 //-Hao Feb.7th.2017
@@ -40,20 +38,20 @@ class DomainEntityBuilder
 
     /**
      * Array of ReflectionProperties instances for the specified class
-     * @var array
+     * @var type
      */
     private $properties = null;
 
     /**
      * Array of AbstractEntity instances, which contains complete meta data
-     * @var array
+     * @var type
      */
     private $model = null;
 
 
     /**
      * Requires type or class of target instance
-     * @param string $name
+     * @param strign $name
      */
     public function __construct($name)
     {
@@ -116,7 +114,7 @@ class DomainEntityBuilder
 
     /**
      * Returns target class name or type of new instance
-     * @return string
+     * @return type
      */
     public function getOriginalClassName()
     {
@@ -216,12 +214,12 @@ class DomainEntityBuilder
     /**
      * Returns true if value can be converted into domain model instance
      * @param AbstractEntity $entity
-     * @param \stdClass $value
+     * @param stdClass $value
      * @return boolean
      */
     private function isMorhing($entity, $value)
     {
-        if (!$entity instanceof ObjectEntity) {
+        if (!$entity instanceof Serialization\ObjectEntity) {
             return false;
         }
        //String, numeric are fine
@@ -244,7 +242,7 @@ class DomainEntityBuilder
      * @param mixed $instance - contains empty of almost ready domain model entity
      * @param ReflectionProperty $property
      * @param AbstractEntity $model
-     * @param \stdClass $value
+     * @param stdClass $value
      */
     private function processPropertyValue($instance, $property, $model, $value)
     {
@@ -259,8 +257,8 @@ class DomainEntityBuilder
     /**
      * Returns metadata description of property from model
      *
-     * @param string $index
-     * @param string $propertyName
+     * @param type $index
+     * @param type $propertyName
      * @return AbstractEntity
      * @throws RuntimeException
      */

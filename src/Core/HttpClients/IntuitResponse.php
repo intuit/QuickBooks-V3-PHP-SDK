@@ -10,20 +10,20 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * Class IntuitResponse
  *
  * An Object to store all response related information
- * @package QuickBooksOnline
+ * @package QuickbooksOnline
  *
  */
 class IntuitResponse{
 
    /**
     * The header of Intuit Response.
-    * @var array
+    * @var Assoicated Array
     */
    private $headers;
 
    /**
     * The body of Intuit Response.
-    * @var string
+    * @var Sring
     */
    private $body;
 
@@ -201,7 +201,7 @@ class IntuitResponse{
    /**
     * Return the header of the Response
     *
-    * @return array     Response Header
+    * @return Associated Array     Response Header
     */
    public function getHeaders(){
        return $this->headers;

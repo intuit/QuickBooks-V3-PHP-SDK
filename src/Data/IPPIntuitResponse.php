@@ -18,7 +18,7 @@ class IPPIntuitResponse
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param array $keyValInitializers key/value pairs to be populated into object's properties
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -40,7 +40,7 @@ class IPPIntuitResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Warnings
-     * @var IPPWarnings
+     * @var com\intuit\schema\finance\v3\IPPWarnings
      */
     public $Warnings;
 
@@ -48,7 +48,7 @@ class IPPIntuitResponse
      * @Definition Any IntuitEntity derived entity like Customer, Invoice can be part of response
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IPPIntuitObject
+     * @var IntuitObject
      */
     public $IntuitObject;
 
@@ -59,7 +59,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Fault
-     * @var IPPFault
+     * @var com\intuit\schema\finance\v3\IPPFault
      */
     public $Fault;
 
@@ -70,7 +70,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Report
-     * @var IPPReport
+     * @var com\intuit\schema\finance\v3\IPPReport
      */
     public $Report;
 
@@ -81,7 +81,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName QueryResponse
-     * @var IPPQueryResponse
+     * @var com\intuit\schema\finance\v3\IPPQueryResponse
      */
     public $QueryResponse;
 
@@ -92,7 +92,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName BatchItemResponse
-     * @var IPPBatchItemResponse
+     * @var com\intuit\schema\finance\v3\IPPBatchItemResponse
      */
     public $BatchItemResponse;
 
@@ -103,7 +103,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName CDCResponse
-     * @var IPPCDCResponse
+     * @var com\intuit\schema\finance\v3\IPPCDCResponse
      */
     public $CDCResponse;
 
@@ -114,7 +114,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName AttachableResponse
-     * @var IPPAttachableResponse
+     * @var com\intuit\schema\finance\v3\IPPAttachableResponse
      */
     public $AttachableResponse;
 
@@ -125,7 +125,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName SyncErrorResponse
-     * @var IPPSyncErrorResponse
+     * @var com\intuit\schema\finance\v3\IPPSyncErrorResponse
      */
     public $SyncErrorResponse;
 
@@ -136,7 +136,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName OLBTransaction
-     * @var IPPOLBTransaction
+     * @var com\intuit\schema\finance\v3\IPPOLBTransaction
      */
     public $OLBTransaction;
 
@@ -147,7 +147,7 @@ class IPPIntuitResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName OLBStatus
-     * @var IPPOLBStatus
+     * @var com\intuit\schema\finance\v3\IPPOLBStatus
      */
     public $OLBStatus;
 

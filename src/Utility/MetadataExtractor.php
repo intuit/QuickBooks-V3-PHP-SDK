@@ -51,7 +51,7 @@ class MetadataExtractor
      *
      * The only reason this function is here is for initial implementation.
      *
-     * @param string $text
+     * @param type $text
      */
     private function extractVarValueFromComment($text)
     {
@@ -81,7 +81,7 @@ class MetadataExtractor
 
     /**
      *  Verifies type and creates entity object
-     * @param string $value
+     * @param type $value
      * @return AbstractEntity
      */
     private function verifyVariableType($value)
@@ -114,8 +114,8 @@ class MetadataExtractor
 
     /**
      * Returns order list of possible valid names of object type
-     * @param string $value
-     * @return array
+     * @param type $value
+     * @return type
      */
     private function generateObjectNames($value)
     {
@@ -159,8 +159,8 @@ class MetadataExtractor
     /**
      * Returns class name with prefix
      * TODO Move it out from this object and make this class generic
-     * @param string $string
-     * @return string
+     * @param type $string
+     * @return type
      */
     private function getIntuitName($string)
     {

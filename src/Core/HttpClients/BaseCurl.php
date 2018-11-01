@@ -7,7 +7,7 @@ use QuickBooksOnline\API\Exception\SdkException;
  * Class BaseCurl
  *
  * A Http Client using PHP cURL extension to send HTTP/HTTPS request to QuickBooks Online
- * @package QuickBooksOnline
+ * @package QuickbooksOnline
  *
  */
 class BaseCurl{
@@ -66,7 +66,7 @@ class BaseCurl{
 
   /**
    * Send the request
-   * @return mixed the HTTP result
+   * @return the HTTP result
    */
   public function execute(){
     if($this->isCurlSet()){

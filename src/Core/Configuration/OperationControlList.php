@@ -28,7 +28,7 @@ class OperationControlList
      * Next line of code will enable all for all:
      *  new OperationControlList( OperationControlList::getDefaultList(true) )
      *
-     * @param array $array
+     * @param type $array
      */
     public function __construct($array = array())
     {
@@ -46,7 +46,7 @@ class OperationControlList
 
     /**
      * Returns current operations control list
-     * @return array
+     * @return type
      */
     public function getOperationList()
     {
@@ -107,7 +107,7 @@ class OperationControlList
 
     /**
      * Appends rules to existing list
-     * @param array $array
+     * @param type $array
      */
     public function appendRules($array = array())
     {

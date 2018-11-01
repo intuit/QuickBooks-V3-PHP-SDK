@@ -29,7 +29,7 @@ class FacadeHelper{
      if(!isset($classNameOrKeyName)){ throw new \Exception("The Class Name or Key Name cannot be NULL when generating Objects.");}
      if(!isset($data) || empty($data)){ throw new \Exception("The passed data cannot be NULL.");}
      if(is_object($data)){
-       if(!FacadeHelper::checkIfTheObjectIsAnInstanceOfTheClass($classNameOrKeyName,$data)){
+       if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($classNameOrKeyName,$data)){
          throw new \Exception("The assigned object is not an instance of required object:{" . $classNameOrKeyName . "}.");
        }else{
          return $data;
@@ -78,7 +78,7 @@ class FacadeHelper{
                     } else if(FacadeHelper::isArrayOfObj($val)){
                          // Array of LineItem object, for example
                          foreach($val as $valobj){
-                            if(!FacadeHelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$valobj)){
+                            if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$valobj)){
                               throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
                             }
                          }
@@ -93,7 +93,7 @@ class FacadeHelper{
                         $list = array();
                         foreach ($val as $index => $element) {
                             if(is_object($element)){
-                              if(!FacadeHelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$element)){
+                              if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$element)){
                                 throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
                               }
                               array_push($list, $element);
@@ -123,7 +123,7 @@ class FacadeHelper{
                     {
                       //If it is an object
                       if(is_object($val)){
-                        if(!FacadeHelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$val)){
+                        if(!Facadehelper::checkIfTheObjectIsAnInstanceOfTheClass($key,$val)){
                           throw new \Exception("The assigned object is not an instance of required object:{" . $key . "}.");
                         }
                       }
@@ -229,9 +229,9 @@ class FacadeHelper{
    }
 
    /**
-   * Find the Method by given parameter on FacadeHelper.php Class
+   * Find the Method by given parameter on Facadehelper.php Class
    * @param The class name
-   * @return \ReflectionMethod The method if found. If not found, return null.
+   * @return The method if found. If not found, return null.
    */
    public static function getClassMethod($className, $methodName){
           try

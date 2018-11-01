@@ -159,7 +159,7 @@ class Xsd2Php extends Common
         LIBXML_XINCLUDE);
 
         $this->xpath = new \DOMXPath($this->dom);
-        $this->targetNamespace = '';//$this->getTargetNS($this->xpath);
+        $this->targetNamespace = $this->getTargetNS($this->xpath);
         $this->shortNamespaces = $this->getNamespaces($this->xpath);
 
         $this->dom = $xsd = $this->loadIncludes($this->dom, dirname($this->xsdFile), $this->targetNamespace);

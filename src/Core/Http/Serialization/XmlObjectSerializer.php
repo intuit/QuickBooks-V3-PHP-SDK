@@ -2,11 +2,9 @@
 
 namespace QuickBooksOnline\API\Core\Http\Serialization;
 
-use QuickBooksOnline\API\Core\CoreConstants;
-use QuickBooksOnline\API\Data\IPPIntuitEntity;
+use QuickbooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
-use QuickBooksOnline\API\Diagnostics\Logger;
 
 /**
  * Xml Serialize(r) to serialize and de serialize.
@@ -16,7 +14,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * IDS Logger
-     * @var Logger
+     * @var ILogger
      */
     public $IDSLogger;
 
@@ -30,7 +28,7 @@ class XmlObjectSerializer extends IEntitySerializer
     /**
      * Marshall a POPO object to XML, presumably for inclusion on an IPP v3 API call
      *
-     * @param mixed POPOObject $phpObj inbound POPO object
+     * @param POPOObject $phpObj inbound POPO object
      * @return string XML output derived from POPO object
      */
     private static function getXmlFromObj($phpObj)
@@ -46,7 +44,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "\n"."Object Dump:\n";
             var_dump($phpObj);
             echo "\n"."Exception Call Stack (".$e->getMessage()."):\n";
@@ -80,7 +78,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Unmarshall XML into a POPO object, presumably the XML came from an IPP v3 API call
      *
      * @param string XML that conforms to IPP v3 XSDs
-     * @return object POPOObject $phpObj resulting POPO object
+     * @return POPOObject $phpObj resulting POPO object
      */
     private static function PhpObjFromXml($className, $xmlStr)
     {
@@ -147,7 +145,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return string POPO class name
+     * @return POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -178,7 +176,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * Initializes a new instance of the XmlObjectSerializer class.
-     * @param Logger idsLogger The ids logger.
+     * @param ILogger idsLogger The ids logger.
      */
     public function __construct($idsLogger = null)
     {

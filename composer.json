@@ -10,10 +10,6 @@
     "require-dev": {
         "phpunit/phpunit": "^5.7"
     },
-    "suggest": {
-        "ext-curl": "Uses Curl to make HTTP Requests",
-        "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
-    },
     "autoload": {
         "psr-4": {
             "QuickBooksOnline\\API\\": "src/"
@@ -25,9 +21,5 @@
             "name": "hlu2",
             "email": "Hao_Lu@intuit.com"
         }
-    ],
-    "scripts": {
-        "phpstan": "vendor/bin/phpstan --memory-limit=1G --level=0 analyse src",
-        "test": "phpunit --configuration phpunit.xml"
-    }
+    ]
 }

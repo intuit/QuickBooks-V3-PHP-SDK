@@ -24,9 +24,6 @@ use QuickBooksOnline\API\Exception\ValidationException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Exception\SecurityException;
 use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Core\ServiceContext;
-use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
-use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Data\IPPBatchItemRequest;
 use QuickBooksOnline\API\Data\IPPIntuitBatchRequest;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -68,19 +65,19 @@ class Batch
 
     /**
      * rest handler object.
-     * @var RestHandler restHandler
+     * @var IRestHandler restHandler
      */
     private $restHandler;
 
     /**
      * serializer to be used.
-     * @var \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer responseSerializer
+     * @var IEntitySerializer responseSerializer
      */
     private $responseSerializer;
 
     /**
     * If not false, the request from last dataService did not return 2xx
-    * @var FaultHandler
+    * @var FalutHandler
     */
     private $lastError = false;
 
@@ -92,7 +89,7 @@ class Batch
 
     /**
     * Get the error from last request
-    * @return FaultHandler
+    * @return lastError
     */
     public function getLastError()
     {
@@ -270,7 +267,7 @@ class Batch
             $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
             $doc = new \DOMDocument();
             $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
-            $xpath = new \DOMXPath($doc);
+            $xpath = new \DOMXpath($doc);
 
             // Replace generically-named IntuitObject nodes with tags that describe contained objects
             $objectIndex = 0;
@@ -333,7 +330,7 @@ class Batch
                 $intuitBatchItemResponse = $this->ProcessBatchItemResponse($oneXmlObj);
                 $this->intuitBatchItemResponses[$intuitBatchItemResponse->batchItemId] = $intuitBatchItemResponse;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             var_dump($e->getMessage(), $e->getLine());
             return null;
         }

@@ -113,6 +113,7 @@ class FacadeClassMapper
         'DetailType'  =>  'LineDetailTypeEnum',
         'BillableStatus'  =>  'BillableStatusEnum',
         'TaxApplicableOn' =>  'TaxApplicableOnEnum',
+        'PostingType' =>  'PostingTypeEnum',
         'EInvoiceStatus' =>  'ETransactionStatusEnum',
           //IPPMemoRef has two fields, however, the id is not used on QBO
         'CustomerMemo' =>  'MemoRef',

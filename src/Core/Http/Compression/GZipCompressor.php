@@ -36,7 +36,7 @@ class GZipCompressor extends CompressorBase
      * Decompresses the output response stream.
      * @param $responseBody Response body.
      * @param $response_headers Response headers
-     * @return string|bool Decompressed response body.
+     * @return Decompressed response body.
      */
     public function Decompress($responseBody, $response_headers)
     {

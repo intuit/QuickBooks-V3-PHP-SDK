@@ -1,11 +1,6 @@
 <?php
 namespace QuickBooksOnline\API\Core\Configuration;
 
-use QuickBooksOnline\API\Retry\IntuitRetryPolicy;
-use QuickBooksOnline\API\Core\Http\Message;
-use QuickBooksOnline\API\Security\RequestValidator;
-use QuickBooksOnline\API\Diagnostics\Logger;
-
 /**
  * This file contains Ipp Configuration
  */

@@ -1,15 +1,15 @@
 <?php
+
 namespace QuickBooksOnline\API\Core\HttpClients;
 
-use QuickBooksOnline\API\Core\ServiceContext;
-
+use QuickBooksOnline\API\Data\IPPFault;
 /**
  * Class FaultHandler
  *
  * Record the 3xx, 4xx and 5xx response status code in the response and provide helper
  * message for developers to handle them.
  *
- * @package QuickBooksOnline
+ * @package QuickbooksOnline
  */
 class FaultHandler
 {

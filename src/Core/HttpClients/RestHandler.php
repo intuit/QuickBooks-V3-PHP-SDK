@@ -3,10 +3,8 @@
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Core\Http\Compression\CompressorBase;
 use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 
 /**
  * Rest Handler class.
@@ -27,13 +25,13 @@ class RestHandler
 
     /**
      * Gets or sets Request compressor.
-     * @var CompressorBase
+     * @var ICompressor
      */
     protected $RequestCompressor;
 
     /**
      * Gets or sets Response compressor.
-     * @var CompressorBase
+     * @var ICompressor
      */
     protected $ResponseCompressor;
 
@@ -45,7 +43,7 @@ class RestHandler
 
     /**
      * Get the Logging component for the REST service
-     * @var LogRequestsToDisk
+     * @var RequestLogging
      */
     protected $RequestLogging;
 

@@ -5,7 +5,7 @@ namespace QuickBooksOnline\API\Core\HttpClients;
 /**
  * A Parent Interface for all the Http Clients
  *
- * @package QuickBooksOnline
+ * @package QuickbooksOnline
  */
  interface HttpClientInterface
  {

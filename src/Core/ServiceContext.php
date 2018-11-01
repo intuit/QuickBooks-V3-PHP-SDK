@@ -81,7 +81,7 @@ class ServiceContext
      *   Initializes a new instance of the ServiceContext class.
      *
      * @param string $realmId The realm id.
-     * @param string $serviceType Service Type - QBO/QB.
+     * @param IntuitServicesType $serviceType Service Type - QBO/QB.
      * @param RequestValidator $requestValidator The request validate.
      * @throws IdsException If arguments are null or empty.
      * @throws InvalidRealmException If realm id is invalid.
