@@ -330,7 +330,7 @@ class Batch
                 $intuitBatchItemResponse = $this->ProcessBatchItemResponse($oneXmlObj);
                 $this->intuitBatchItemResponses[$intuitBatchItemResponse->batchItemId] = $intuitBatchItemResponse;
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             var_dump($e->getMessage(), $e->getLine());
             return null;
         }

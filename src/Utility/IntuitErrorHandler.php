@@ -76,7 +76,7 @@ class IntuitErrorHandler
 
         try {
             $doc = simplexml_load_string($inputString);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
 

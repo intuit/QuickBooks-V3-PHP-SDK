@@ -327,10 +327,21 @@ class DataService
     /**
      * Return the client Name used by this DataSerivce
      * @return String the Client Name. It can be curl or GuzzleHttpClient
+     * @deprecated since version 5.0.4
+     * @see $this->getClientName()
      */
     public function getClinetName(){
+       return $this->getClientName();
+    }
+    
+    /**
+     * Return the client Name used by this DataSerivce
+     * @return String the Client Name. It can be curl or GuzzleHttpClient
+     */
+    public function getClientName(){
        return $this->clientName;
     }
+    
 
     /**
      * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
@@ -536,7 +547,7 @@ class DataService
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "getXmlFromObj EXCEPTION: " . $e->getMessage() . "\n";
             var_dump($phpObj);
             var_dump(debug_backtrace());
@@ -626,7 +637,7 @@ class DataService
                 break;
             case DataService::UPLOAD:
                 if (!isset($boundaryString)) {
-                    throw new Exception("Upload Image has unset value: boundaryString.");
+                    throw new \Exception("Upload Image has unset value: boundaryString.");
                 }
                 // Creates request parameters
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
@@ -648,7 +659,7 @@ class DataService
             }
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return new Excepiton("Exception in deserialize ResponseBody.");
             }
 
@@ -1147,7 +1158,7 @@ class DataService
                     }
                     $returnValue->entities[$entityName] = $entities;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 IdsExceptionManager::HandleException($e);
             }
 
@@ -1413,7 +1424,7 @@ class DataService
             }
             $writer->resetContent();
             $this->logInfo("File was downloaded (http response = $responseCode), bytes written: {$writer->getBytes()}");
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $this->logError("Exception appears during response processing. Http response was $responseCode: " . $ex->getMessage() . "\n" . $ex->getTraceAsString());
 
             return null;

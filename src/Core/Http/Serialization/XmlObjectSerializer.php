@@ -44,7 +44,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "\n"."Object Dump:\n";
             var_dump($phpObj);
             echo "\n"."Exception Call Stack (".$e->getMessage()."):\n";

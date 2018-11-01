@@ -828,7 +828,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
         } else {
             try {
                 $soap->handle($request);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $fault = $this->fault($e);
                 $soap->fault($fault->faultcode, $fault->faultstring);
             }

@@ -230,7 +230,7 @@ class ContentWriter
         }
         try {
             $result = file_put_contents($this->tempPath, $this->getContent());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             if (!is_writable($this->tempPath)) {
                 throw new SdkException("File ({$this->tempPath}) is not writable");
             }

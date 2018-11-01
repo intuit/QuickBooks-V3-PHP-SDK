@@ -92,7 +92,7 @@ class LocalConfigReader
             LocalConfigReader::setupMinorVersion($ippConfig, $xmlObj);
 
             return $ippConfig;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new SdkException("Error Reading the ");
         }
     }
