@@ -14,7 +14,7 @@
   *
   * Use GuzzleHttp Client to make HTTP/HTTPS request.
   *
-  * @package QuickbooksOnline
+  * @package QuickBooksOnline
   */
  class GuzzleHttpClient implements HttpClientInterface
  {
@@ -29,7 +29,7 @@
      private $intuitResponse = false;
 
      /**
-      * @var asscoiated Array  Store the Options for GuzzleClient
+      * @var array Store the Options for GuzzleClient
       */
      private $guzzleOpts = [];
 

@@ -24,6 +24,9 @@ use QuickBooksOnline\API\Exception\ValidationException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Exception\SecurityException;
 use QuickBooksOnline\API\Core\CoreHelper;
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
+use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Data\IPPBatchItemRequest;
 use QuickBooksOnline\API\Data\IPPIntuitBatchRequest;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -31,6 +34,7 @@ use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler as RestServiceSyncRest
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Utility\UtilityConstants;
+use \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 
 /**
  * This class contains code for Batch Processing.
@@ -65,7 +69,7 @@ class Batch
 
     /**
      * rest handler object.
-     * @var IRestHandler restHandler
+     * @var RestHandler restHandler
      */
     private $restHandler;
 
@@ -77,7 +81,7 @@ class Batch
 
     /**
     * If not false, the request from last dataService did not return 2xx
-    * @var FalutHandler
+    * @var FaultHandler
     */
     private $lastError = false;
 
@@ -89,7 +93,7 @@ class Batch
 
     /**
     * Get the error from last request
-    * @return lastError
+    * @return FaultHandler
     */
     public function getLastError()
     {
@@ -267,7 +271,7 @@ class Batch
             $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
             $doc = new \DOMDocument();
             $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
-            $xpath = new \DOMXpath($doc);
+            $xpath = new \DOMXPath($doc);
 
             // Replace generically-named IntuitObject nodes with tags that describe contained objects
             $objectIndex = 0;

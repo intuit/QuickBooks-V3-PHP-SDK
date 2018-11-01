@@ -2,7 +2,8 @@
 
 namespace QuickBooksOnline\API\Core\Http\Serialization;
 
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
 
@@ -14,7 +15,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * IDS Logger
-     * @var ILogger
+     * @var Logger
      */
     public $IDSLogger;
 
@@ -28,7 +29,7 @@ class XmlObjectSerializer extends IEntitySerializer
     /**
      * Marshall a POPO object to XML, presumably for inclusion on an IPP v3 API call
      *
-     * @param POPOObject $phpObj inbound POPO object
+     * @param mixed POPOObject $phpObj inbound POPO object
      * @return string XML output derived from POPO object
      */
     private static function getXmlFromObj($phpObj)
@@ -78,7 +79,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Unmarshall XML into a POPO object, presumably the XML came from an IPP v3 API call
      *
      * @param string XML that conforms to IPP v3 XSDs
-     * @return POPOObject $phpObj resulting POPO object
+     * @return mixed POPOObject $phpObj resulting POPO object
      */
     private static function PhpObjFromXml($className, $xmlStr)
     {
@@ -145,7 +146,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return POPO class name
+     * @return string POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -176,7 +177,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * Initializes a new instance of the XmlObjectSerializer class.
-     * @param ILogger idsLogger The ids logger.
+     * @param Logger idsLogger The ids logger.
      */
     public function __construct($idsLogger = null)
     {

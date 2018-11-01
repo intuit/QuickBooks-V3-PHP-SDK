@@ -21,7 +21,7 @@ use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
@@ -40,6 +40,8 @@ use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\Core\HttpClients\ClientFactory;
+use QuickBooksOnline\API\Data\IPPCompanyInfo;
+use QuickBooksOnline\API\Data\IPPPreferences;
 
 /**
  * Class DataServicd
@@ -464,7 +466,7 @@ class DataService
     /**
      * Get the error from last request
      *
-     * @return lastError
+     * @return FaultHandler lastError
      */
     public function getLastError()
     {
@@ -529,9 +531,9 @@ class DataService
      *
      *
      *
-     * @param POPOObject $phpObj inbound POPO object
+     * @param object $phpObj inbound POPO object
      * @return string XML output derived from POPO object
-     * @depricated
+     * @deprecated since version ?
      */
     private function getXmlFromObj($phpObj)
     {
@@ -560,7 +562,7 @@ class DataService
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return POPO class name
+     * @return string POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -581,7 +583,7 @@ class DataService
      * Clean a POPO class name (like 'IPPClass') to be an IPP v3 Entity name (like 'Class')
      *
      * @param string $phpClassName POPO class name
-     * @return string Intuit Entity name
+     * @return string|null Intuit Entity name
      */
     private static function cleanPhpClassNameToIntuitEntityName($phpClassName)
     {
@@ -617,7 +619,7 @@ class DataService
      * @param string $CALLINGMETHOD
      * @param string|null $boundaryString
      * @param string|null $email
-     * @return null|Excepiton
+     * @return null|string
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
@@ -798,7 +800,7 @@ class DataService
      * Deletes an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Delete.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Delete($entity)
@@ -824,7 +826,7 @@ class DataService
      * Voids an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Void.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Void($entity)
@@ -1185,7 +1187,7 @@ class DataService
      * Serializes oblect into specified format
      * @param IPPIntuitEntity $entity
      * @param String $urlResource
-     * @return type
+     * @return object
      */
     protected function executeObjectSerializer($entity, &$urlResource)
     {
@@ -1353,7 +1355,7 @@ class DataService
      * Returns an downloaded entity under the specified realm. The realm must be set in the context.
      *
      * @param object $entity Entity to Find
-     * @return IPPIntuitEntity Returns an entity of specified Id.
+     * @return string IPPIntuitEntity Returns an entity of specified Id.
      * @deprecated The download for QuickBooksOnline is only supporting download PDF for Invoice and SalesReceipt. Other download function are not defined now.
      */
     public function Download($entity)
@@ -1645,7 +1647,7 @@ class DataService
 
     /**
      * Get the Company Preferences Information
-     * @return JSON/XML String      CompanyInformation
+     * @return IPPPreferences  CompanyInformation
      */
     public function getCompanyPreferences()
     {

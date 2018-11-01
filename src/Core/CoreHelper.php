@@ -4,6 +4,7 @@ namespace QuickBooksOnline\API\Core;
 
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
+use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
 use QuickBooksOnline\API\Core\Http\Compression\GZipCompressor;
@@ -73,7 +74,7 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
      */
     public static function ParseResponseIntoXml()
     {
-        throw new BadFunctionCallException(__METHOD__ . " has been removed.");
+        throw new \BadFunctionCallException(__METHOD__ . " has been removed.");
     }
 
     /**

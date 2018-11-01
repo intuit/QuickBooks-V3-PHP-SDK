@@ -11,6 +11,8 @@ use QuickBooksOnline\API\Core\Http\Response;
 use QuickBooksOnline\API\Diagnostics\Logger;
 use QuickBooksOnline\API\Core\Configuration\OperationControlList;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
+use SimpleXMLElement;
+use QuickBooksOnline\API\Exception\SdkException;
 
 /**
  * Specifies the Default Configuration Reader implmentation used by the SDK. The ConfigReader can either read a file or from passed arrays

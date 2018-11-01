@@ -21,6 +21,7 @@ use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Core\HttpClients\CurlHttpClient;
+use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
 
@@ -28,7 +29,7 @@ use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
  * Class OAuth2LoginHelper
  *
  * A helper class to handle OAuth 2 related requests
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class OAuth2LoginHelper
@@ -343,7 +344,7 @@ class OAuth2LoginHelper
     /**
      * Get the error from last request
      *
-     * @return lastError
+     * @return FaultHandler
      * @deprecated  Right now, if any OAuth token failed, an exception will be thrown
      */
     public function getLastError()

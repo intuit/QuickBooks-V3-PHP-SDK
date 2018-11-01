@@ -22,7 +22,7 @@ use QuickBooksOnline\API\Exception\SdkException;
  * Class OAuth1
  *
  * A helper class to sign the Signature based on the request
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 

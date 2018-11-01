@@ -4,12 +4,12 @@ namespace QuickBooksOnline\API\PlatformService;
 
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickBooksOnline\API\Exception\SdkExceptions\InvalidTokenException;
 use QuickBooksOnline\API\Exception\SdkExceptions\InvalidParameterException;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
+use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 
 /**
  * This file contains Intuit Platform services.
@@ -25,13 +25,13 @@ class PlatformService
 
     /**
      * The Rest request handler object.
-     * @var RequestHandler
+     * @var RestHandler
      */
     public $restRequestHandler;
 
     /**
      * Request Xml Document
-     * @var unknown
+     * @var string
      */
     private $requestXmlDocument;
 
@@ -46,7 +46,7 @@ class PlatformService
     public function __construct($serviceContext)
     {
         if (null == $serviceContext) {
-            throw new ArgumentNullException('Resources.ServiceContextCannotBeNull');
+            throw new \InvalidArgumentException('Resources.ServiceContextCannotBeNull');
         }
 
         if (!is_object($serviceContext)) {

@@ -9,7 +9,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * Class CurlHttpClient
  *
  * A Http Client using PHP cURL extension to send HTTP/HTTPS request to QuickBooks Online
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class CurlHttpClient implements HttpClientInterface{
@@ -91,7 +91,7 @@ class CurlHttpClient implements HttpClientInterface{
 
     /**
      * Send a request and return the response
-     * @return curlResponse
+     * @return mixed <b>TRUE</b> on success or <b>FALSE</b> on failure. However, if the <b>CURLOPT_RETURNTRANSFER</b>
      */
     private function executeRequest(){
         return $this->basecURL->execute();
@@ -161,7 +161,7 @@ class CurlHttpClient implements HttpClientInterface{
     /**
      * Convert an Array to Curl Headers
      * @param array $headerArray The request headers
-     * @return Curl Array Headers
+     * @return array Curl Headers
      */
     public function convertHeaderArrayToHeaders(array $headerArray){
          $headers = array();
