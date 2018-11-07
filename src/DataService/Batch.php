@@ -88,12 +88,27 @@ class Batch
     private $isThrowExceptionOnError = false;
 
     /**
+     * Enable debug mode to get more information inside the exception like intuit-tid
+     * @var boolean
+     */
+    private $debugMode = false;
+
+    /**
     * Get the error from last request
     * @return lastError
     */
     public function getLastError()
     {
         return $this->lastError;
+    }
+
+    /**
+     * Set the debug mode
+     * @param $mode
+     */
+    public function setDebug($mode)
+    {
+        $this->debugMode = $mode;
     }
 
     /**
@@ -521,6 +536,17 @@ class Batch
               case "Fault":
                   $result->responseType = UtilityConstants::Exception;
                   $idsException = $this->IterateFaultAndPrepareException($firstChild);
+
+                  if($this->debugMode) {
+                      $interface = $this->restHandler->getHttpClientInterface();
+                      $responseInterface = $interface->getLastResponse();
+                      $debugInfo = [
+                          'intuit_tid' => $responseInterface->getIntuitTid(),
+                          'body' => $responseInterface->getBody(),
+                          'headers' => $responseInterface->getHeaders(),
+                      ];
+                      $idsException->setDebug($debugInfo);
+                  }
                   $result->exception = $idsException;
                   break;
               //For batch Entity Result

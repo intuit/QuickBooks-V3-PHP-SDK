@@ -69,6 +69,16 @@ class SyncRestHandler extends RestHandler
         $this->httpClientInterface = isset($client) ? $client : new CurlHttpClient();
     }
 
+    /**
+     * Gets the http client interface
+     * @return CurlHttpClient|HttpClientInterface
+     */
+    public function getHttpClientInterface()
+    {
+        return $this->httpClientInterface;
+    }
+
+
    /**
     * Update the Service Context of the request.
     *
