@@ -37,7 +37,7 @@ class IdsException extends \Exception
      * Returns the specific Intuit debug information for this call
      * @param $info
      */
-    public function getDebug($info)
+    public function getDebug()
     {
         return $this->debug;
     }
