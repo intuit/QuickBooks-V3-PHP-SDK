@@ -2,27 +2,20 @@
 
 namespace QuickBooksOnline\API\Core\HttpClients;
 
-use QuickBooksOnline\API\Core\CoreHelper;
-use QuickBooksOnline\API\Core\ServiceContext;
-use QuickBooksOnline\API\Utility\IntuitErrorHandler;
-use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\CoreConstants;
-use QuickBooksOnline\API\Exception\IdsException;
+use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
+use QuickBooksOnline\API\Diagnostics\TraceLevel;
+use QuickBooksOnline\API\Exception\IdsException;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
-use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
-use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
-
-
+use QuickBooksOnline\API\Utility\IntuitErrorHandler;
 
 /**
- * Class SyncRestHandler
- *
  * SyncRestHandler contains the logic for preparing the REST request, calls REST services and returns the response.
- * @package QuickBooksOnline
- *
  */
 class SyncRestHandler extends RestHandler
 {
@@ -31,6 +24,12 @@ class SyncRestHandler extends RestHandler
     * @var FaultHandler
     */
     private $faultHandler = false;
+
+    /**
+     * Store the IntuitResponse from QBO
+     * @var IntuitResponse|null
+     */
+    private $intuitResponse;
 
    /**
     * The serviceContext of this request
@@ -88,15 +87,24 @@ class SyncRestHandler extends RestHandler
        return $this->faultHandler;
     }
 
+    /**
+     * Returns the IntuitResponse from the previous request
+     * @return IntuitResponse|null
+     */
+    public function getIntuitResponse()
+    {
+        return $this->intuitResponse;
+    }
+
 
     /**
      * Sending an request to QuickBooks Online based on the Request parameters, body and URI.
      *
      * @param  RequestParameters $requestParameters     The request parameter for this API Call
-     * @param  String           $requestBody           The body of the API call
-     * @param  String           $specifiedRequestUri   The user specified URI for the request
-     * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
-     * @return Array            APIResult              The result of this Http Request.
+     * @param  String            $requestBody           The body of the API call
+     * @param  String            $specifiedRequestUri   The user specified URI for the request
+     * @param  Boolean           $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
+     * @return array             APIResult              The result of this Http Request.
      */
     public function sendRequest($requestParameters, $requestBody, $specifiedRequestUri, $throwExceptionOnError = false)
     {
@@ -113,26 +121,61 @@ class SyncRestHandler extends RestHandler
         $queryParameters = $this->parseURL($requestUri);
         $baseURL = $this->getBaseURL($requestUri);
         if($oMode == CoreConstants::OAUTH1){
-          return $this->OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError);
-        } else if ($oMode == CoreConstants::OAUTH2){
-          return $this->OAuth2APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError);
-        } else{
-           throw new SdkException("OAuth Mode not supported.");
+            $intuitResponse = $this->OAuth1APICall(
+                $baseURL,
+                $queryParameters,
+                $HttpMethod,
+                $requestUri,
+                $requestParameters,
+                $requestBody,
+                $throwExceptionOnError
+            );
+
+            if ($intuitResponse === null) {
+                throw new SdkException('Failed getting intuit response from OAuth1.');
+            }
+
+            $this->intuitResponse = $intuitResponse;
+
+            return [$intuitResponse->getStatusCode(), $intuitResponse->getBody()];
         }
+
+        if ($oMode == CoreConstants::OAUTH2){
+            $intuitResponse = $this->OAuth2APICall(
+                $baseURL,
+                $queryParameters,
+                $HttpMethod,
+                $requestUri,
+                $requestParameters,
+                $requestBody,
+                $throwExceptionOnError
+            );
+
+            if ($intuitResponse === null) {
+                throw new SdkException('Failed getting intuit response from OAuth2.');
+            }
+
+            $this->intuitResponse = $intuitResponse;
+
+            return [$intuitResponse->getStatusCode(), $intuitResponse->getBody()];
+
+        }
+
+        throw new SdkException('OAuth Mode not supported.');
     }
 
     /**
      * The API call to generate OAuth 1 signatures and make API call
      *
-     * @param  String           $baseURL               The request url without queryParameters
-     * @param  Array            $queryParameters       A list of query parameters
-     * @param  String           $HttpMethod            POST or GET
-     * @param  String           $requestUri            The Complete HTTP request URI
-     * @param  Array            $requestParameters     The Complete HTTP request URI
-     * @param  String           $requestBody           The request body for POST request.
-     * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
+     * @param  String            $baseURL               The request url without queryParameters
+     * @param  array             $queryParameters       A list of query parameters
+     * @param  String            $HttpMethod            POST or GET
+     * @param  String            $requestUri            The Complete HTTP request URI
+     * @param  RequestParameters $requestParameters     The Complete HTTP request URI
+     * @param  String            $requestBody           The request body for POST request.
+     * @param  Boolean           $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return null|array Response and HTTP Status code
+     * @return IntuitResponse|null Response and HTTP Status code
      */
     private function OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
       $AuthorizationHeader = $this->getOAuth1AuthorizationHeader($baseURL, $queryParameters, $HttpMethod);
@@ -154,7 +197,7 @@ class SyncRestHandler extends RestHandler
       }else{
          $this->faultHandler = false;
       }
-      return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
+      return $intuitResponse;
     }
 
 
@@ -180,15 +223,15 @@ class SyncRestHandler extends RestHandler
     /**
      * The OAuth 2 API call
      *
-     * @param  String           $baseURL               The request url without queryParameters
-     * @param  Array            $queryParameters       A list of query parameters
-     * @param  String           $HttpMethod            POST or GET
-     * @param  String           $requestUri            The Complete HTTP request URI
-     * @param  Array            $requestParameters     The Complete HTTP request URI
-     * @param  String           $requestBody           The request body for POST request.
-     * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
+     * @param  String            $baseURL               The request url without queryParameters
+     * @param  array             $queryParameters       A list of query parameters
+     * @param  String            $HttpMethod            POST or GET
+     * @param  String            $requestUri            The Complete HTTP request URI
+     * @param  RequestParameters $requestParameters     The Complete HTTP request URI
+     * @param  String            $requestBody           The request body for POST request.
+     * @param  Boolean           $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return array|null Response and HTTP Status code
+     * @return IntuitResponse|null Response and HTTP Status code
      */
     private function OAuth2APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
         $AuthorizationHeader = $this->getOAuth2AuthorizationHeader($this->context->requestValidator);
@@ -218,7 +261,7 @@ class SyncRestHandler extends RestHandler
         }else{
             $this->faultHandler = false;
         }
-        return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
+        return $intuitResponse;
     }
 
     /**
@@ -395,7 +438,7 @@ class SyncRestHandler extends RestHandler
      * Get the query parameters from the complete URL, used for sign signature for OAuth 1.
      *
      * @param String  $url  The $url for the request
-     * @return Array  a list of query paramters.
+     * @return array  a list of query paramters.
      */
     private function parseURL($url){
        $query_str = parse_url($url, PHP_URL_QUERY);
