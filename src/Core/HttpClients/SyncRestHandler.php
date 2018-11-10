@@ -158,7 +158,6 @@ class SyncRestHandler extends RestHandler
             $this->intuitResponse = $intuitResponse;
 
             return [$intuitResponse->getStatusCode(), $intuitResponse->getBody()];
-
         }
 
         throw new SdkException('OAuth Mode not supported.');
