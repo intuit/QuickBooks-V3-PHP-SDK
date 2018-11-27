@@ -56,8 +56,8 @@ class QueryMessage
      */
     public function __construct()
     {
-        $projection = array();
-        $whereClause = array();
+        $this->projection = array();
+        $this->whereClause = array();
     }
 
     /**
