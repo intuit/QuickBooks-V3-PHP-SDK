@@ -139,7 +139,7 @@ class LocalConfigReader
     * Initializes API Entity Rules
     *
     * @param IppConfiguration $ippConfig
-    * @param object $xmlObj
+    * @param \SimpleXMLElement $xmlObj
   */
     public static function initializeAPIEntityRules($xmlObj, $ippConfig)
     {
@@ -165,7 +165,7 @@ class LocalConfigReader
    /**
     * Initializes operation contrtol list
     * @param IppConfiguration $ippConfig
-    * @param object $xmlObj
+    * @param \SimpleXMLElement $xmlObj
    */
    public static function setupMinorVersion($ippConfig, $xmlObj)
    {
@@ -179,7 +179,7 @@ class LocalConfigReader
 
    /**
     * Returns array in a OperationControlList rules format from XML
-    * @param  $xmlObj
+    * @param \SimpleXMLElement $xmlObj
     * @return boolean
    */
    public static function populateJsonOnlyEntities($xmlObj)

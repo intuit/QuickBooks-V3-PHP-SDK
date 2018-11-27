@@ -75,8 +75,7 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
     {
         $instance = new JsonObjectSerializer();
          //this line proves, that with additional layer json serializer produces valid object
-         $item = $instance->Deserialize('{"TaxService":'.$this->getTaxServiceResponse().'}', true);
-        var_dump($item);
+        $item = $instance->Deserialize('{"TaxService":'.$this->getTaxServiceResponse().'}', true);
         $this->assertTrue($item instanceof IPPTaxService);
         $details = $item->TaxRateDetails[0];
         $this->assertTrue($details instanceof IPPTaxRateDetails);

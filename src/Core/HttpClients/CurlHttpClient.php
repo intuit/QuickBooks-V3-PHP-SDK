@@ -64,6 +64,7 @@ class CurlHttpClient implements HttpClientInterface{
             //10 seconds is allowed to make the connection to the server
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 100,
+            CURLOPT_RETURNTRANSFER => true,
             //When CURLOPT_HEADER is set to 0 the only effect is that header info from the response is excluded from the output.
             //So if you don't need it that's a few less KBs that curl will return to you.
             //In our case, header is required
@@ -90,7 +91,7 @@ class CurlHttpClient implements HttpClientInterface{
 
     /**
      * Send a request and return the response
-     * @return mixed curlResponse
+     * @return mixed <b>TRUE</b> on success or <b>FALSE</b> on failure. However, if the <b>CURLOPT_RETURNTRANSFER</b>
      */
     private function executeRequest(){
         return $this->basecURL->execute();

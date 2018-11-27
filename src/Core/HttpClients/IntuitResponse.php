@@ -201,7 +201,7 @@ class IntuitResponse{
    /**
     * Return the header of the Response
     *
-    * @return array     Response Header
+    * @return array Response Headers
     */
    public function getHeaders(){
        return $this->headers;

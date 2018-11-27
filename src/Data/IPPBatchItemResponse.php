@@ -17,7 +17,7 @@ class IPPBatchItemResponse
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param array $keyValInitializers key/value pairs to be populated into object's properties
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = array(), $verbose = false)
@@ -40,14 +40,14 @@ class IPPBatchItemResponse
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Warnings
-     * @var IPPWarnings
+     * @var com\intuit\schema\finance\v3\IPPWarnings
      */
     public $Warnings;
     /**
      * @Definition Any IntuitEntity derived object like Customer, Invoice can be part of response
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IPPIntuitObject
+     * @var IntuitObject
      */
     public $IntuitObject;
     /**
@@ -57,7 +57,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Fault
-     * @var IPPFault
+     * @var com\intuit\schema\finance\v3\IPPFault
      */
     public $Fault;
     /**
@@ -67,7 +67,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName Report
-     * @var IPPReport
+     * @var com\intuit\schema\finance\v3\IPPReport
      */
     public $Report;
     /**
@@ -77,7 +77,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName QueryResponse
-     * @var IPPQueryResponse
+     * @var com\intuit\schema\finance\v3\IPPQueryResponse
      */
     public $QueryResponse;
     /**
@@ -87,7 +87,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CDCResponse
-     * @var IPPCDCResponse
+     * @var com\intuit\schema\finance\v3\IPPCDCResponse
      */
     public $CDCResponse;
     /**
@@ -97,7 +97,7 @@ class IPPBatchItemResponse
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CascadeResponse
-     * @var IPPCascadeResponse
+     * @var com\intuit\schema\finance\v3\IPPCascadeResponse
      */
     public $CascadeResponse;
     /**

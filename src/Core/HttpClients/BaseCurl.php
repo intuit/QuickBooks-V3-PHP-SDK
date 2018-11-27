@@ -66,7 +66,7 @@ class BaseCurl{
 
   /**
    * Send the request
-   * @return mixed the HTTP result
+   * @return mixed <b>TRUE</b> on success or <b>FALSE</b> on failure. However, if the <b>CURLOPT_RETURNTRANSFER</b>
    */
   public function execute(){
     if($this->isCurlSet()){

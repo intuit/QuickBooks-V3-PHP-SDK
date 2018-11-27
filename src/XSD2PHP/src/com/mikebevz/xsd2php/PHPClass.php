@@ -155,15 +155,11 @@ class PHPClass extends Common
         $code .= "\t\t".'* Initializes this object and it\'s property members, using the dictionary'."\n";
         $code .= "\t\t".'* of key/value pairs passed as an optional argument.                      '."\n";
         $code .= "\t\t".'*                                                                         '."\n";
-        $code .= "\t\t".'* @param array $keyValInitializers key/value pairs to be populated into object\'s properties '."\n";
+        $code .= "\t\t".'* @param dictionary $keyValInitializers key/value pairs to be populated into object\'s properties '."\n";
         $code .= "\t\t".'* @param boolean $verbose specifies whether object should echo warnings   '."\n";
         $code .= "\t\t".'*/                                                                        '."\n";
         $code .= "\t\t".'public function __construct($keyValInitializers=array(), $verbose=FALSE)'."\n";
         $code .= "\t\t".'{'."\n";
-        if ($this->extends != '') {
-            $code .= "\t\t\t".'parent::__construct($keyValInitializers, $verbose);'."\n";
-            $code .= "\t\t\t\n";
-        }
         $code .= "\t\t\t".'foreach($keyValInitializers as $initPropName => $initPropVal)'."\n";
         $code .= "\t\t\t".'{'."\n";
         $code .= "\t\t\t\t".'if (property_exists(\''. $this->name . '\',$initPropName) || property_exists(\'QuickBooksOnline\\API\\Data\\'. $this->name . '\',$initPropName))'."\n";

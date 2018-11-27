@@ -231,7 +231,7 @@ class FacadeHelper{
    /**
    * Find the Method by given parameter on FacadeHelper.php Class
    * @param The class name
-   * @return \ReflectionMethod The method if found. If not found, return null.
+   * @return \ReflectionMethod|null The method if found. If not found, return null.
    */
    public static function getClassMethod($className, $methodName){
           try

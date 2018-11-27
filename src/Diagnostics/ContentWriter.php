@@ -208,7 +208,7 @@ class ContentWriter
     /**
      * Moves file from temp location to specified folder and name
      * @param string $dir
-     * @param string|null $name (option) if not specifed it will be moved with temp name
+     * @param string|null $name (option) if not specified it will be moved with temp name
      * @throws SdkException
      */
     public function saveFile($dir, $name=null)

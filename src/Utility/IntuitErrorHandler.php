@@ -14,15 +14,15 @@ class IntuitErrorHandler
      * Will throw an exception if it has a problem determining success or error.
      * @param string response The API response to examine
      */
-    public function HandleErrors($response)
+    public static function HandleErrors($response)
     {
         // To handle plain text response
-        if (!$this->IsValidXml($response)) {
+        if (!self::IsValidXml($response)) {
             return;
         }
 
         $responseXml = simplexml_load_string($response);
-        $this->HandleErrorsXml($responseXml);
+        self::HandleErrorsXml($responseXml);
     }
 
     /**
@@ -30,7 +30,7 @@ class IntuitErrorHandler
      * Will throw an exception if it has a problem determining success or error.
      * @param SimpleXMLElement responseXml
      */
-    public function HandleErrorsXml($responseXml)
+    public static function HandleErrorsXml($responseXml)
     {
         $errCodeNode = $responseXml->{UtilityConstants::ERRCODEXPATH};
 

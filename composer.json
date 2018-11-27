@@ -5,14 +5,12 @@
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
     "homepage": "http://developer.intuit.com",
     "require": {
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "ext-mbstring": "*",
+        "ext-dom": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
-    },
-    "suggest": {
-        "ext-curl": "Uses Curl to make HTTP Requests",
-        "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
     },
     "autoload": {
         "psr-4": {
@@ -26,8 +24,8 @@
             "email": "Hao_Lu@intuit.com"
         }
     ],
-    "scripts": {
-        "phpstan": "vendor/bin/phpstan --memory-limit=1G --level=0 analyse src",
-        "test": "phpunit --configuration phpunit.xml"
+    "suggest": {
+        "ext-curl": "Uses Curl to make HTTP Requests",
+        "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
     }
 }

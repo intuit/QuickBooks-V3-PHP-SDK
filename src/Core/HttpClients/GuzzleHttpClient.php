@@ -29,7 +29,7 @@
      private $intuitResponse = false;
 
      /**
-      * @var array  Store the Options for GuzzleClient
+      * @var array Store the Options for GuzzleClient
       */
      private $guzzleOpts = [];
 

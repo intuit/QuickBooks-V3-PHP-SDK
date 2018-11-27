@@ -18,7 +18,7 @@ class IPPCascade
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param array $keyValInitializers key/value pairs to be populated into object's properties
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -50,7 +50,7 @@ class IPPCascade
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 1
      * @xmlName Id
-     * @var IPPid
+     * @var com\intuit\schema\finance\v3\IPPid
      */
     public $Id;
 
@@ -61,7 +61,7 @@ class IPPCascade
      * @xmlMinOccurs 0
      * @xmlMaxOccurs unbounded
      * @xmlName KeyValue
-     * @var IPPNameValue
+     * @var com\intuit\schema\finance\v3\IPPNameValue
      */
     public $KeyValue;
 }//end class

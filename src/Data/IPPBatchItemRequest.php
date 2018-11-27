@@ -18,7 +18,7 @@ class IPPBatchItemRequest
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param array $keyValInitializers key/value pairs to be populated into object's properties
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -37,7 +37,7 @@ class IPPBatchItemRequest
     /**
      * @xmlType element
      * @xmlName IntuitObject
-     * @var IPPIntuitObject
+     * @var IntuitObject
      */
     public $IntuitObject;
 
@@ -67,7 +67,7 @@ class IPPBatchItemRequest
      * @xmlMinOccurs 0
      * @xmlMaxOccurs 1
      * @xmlName CDCQuery
-     * @var IPPCDCQuery
+     * @var com\intuit\schema\finance\v3\IPPCDCQuery
      */
     public $CDCQuery;
 
@@ -83,7 +83,7 @@ class IPPBatchItemRequest
      * @Definition Specifies the batch id for which the response corresponds to
      * @xmlType attribute
      * @xmlName operation
-     * @var IPPOperationEnum
+     * @var OperationEnum
      */
     public $operation;
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace QuickBooksOnline\API\Core\Http;
 
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;

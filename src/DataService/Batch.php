@@ -34,6 +34,7 @@ use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler as RestServiceSyncRest
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Utility\UtilityConstants;
+use \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 
 /**
  * This class contains code for Batch Processing.
@@ -74,7 +75,7 @@ class Batch
 
     /**
      * serializer to be used.
-     * @var \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer responseSerializer
+     * @var IEntitySerializer responseSerializer
      */
     private $responseSerializer;
 
@@ -334,7 +335,8 @@ class Batch
                 $this->intuitBatchItemResponses[$intuitBatchItemResponse->batchItemId] = $intuitBatchItemResponse;
             }
         } catch (\Exception $e) {
-            var_dump($e->getMessage(), $e->getLine());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the batch response." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
             return null;
         }
 

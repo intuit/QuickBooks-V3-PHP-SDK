@@ -18,7 +18,7 @@ class IPPReport
          * Initializes this object and it's property members, using the dictionary
          * of key/value pairs passed as an optional argument.
          *
-         * @param array $keyValInitializers key/value pairs to be populated into object's properties
+         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
          * @param boolean    $verbose            specifies whether object should echo warnings
          */
     public function __construct($keyValInitializers = [], $verbose = false)
@@ -40,7 +40,7 @@ class IPPReport
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Header
-     * @var IPPReportHeader
+     * @var com\intuit\schema\finance\v3\IPPReportHeader
      */
     public $Header;
 
@@ -50,7 +50,7 @@ class IPPReport
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Columns
-     * @var IPPColumns
+     * @var com\intuit\schema\finance\v3\IPPColumns
      */
     public $Columns;
 
@@ -60,7 +60,7 @@ class IPPReport
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
      * @xmlName Rows
-     * @var IPPRows
+     * @var com\intuit\schema\finance\v3\IPPRows
      */
     public $Rows;
 }//end class

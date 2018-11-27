@@ -4,6 +4,8 @@ namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\ServiceContext;
+use \QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
+use \QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Utility\IntuitErrorHandler;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -14,8 +16,6 @@ use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
-
-
 
 /**
  * Class SyncRestHandler
@@ -81,7 +81,7 @@ class SyncRestHandler extends RestHandler
 
    /**
     * Return an representation of an error returned by the last request, or false if the last request was not an error.
-    * @return FaultHandler
+    * @return bool|FaultHandler
     */
     public function getFaultHandler()
     {
@@ -96,7 +96,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestBody           The body of the API call
      * @param  String           $specifiedRequestUri   The user specified URI for the request
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
-     * @return Array            APIResult              The result of this Http Request.
+     * @return null|array       APIResult              The result of this Http Request.
      */
     public function sendRequest($requestParameters, $requestBody, $specifiedRequestUri, $throwExceptionOnError = false)
     {
@@ -132,7 +132,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestBody           The request body for POST request.
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return null|array Response and HTTP Status code
+     * @return Response and HTTP Status code
      */
     private function OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
       $AuthorizationHeader = $this->getOAuth1AuthorizationHeader($baseURL, $queryParameters, $HttpMethod);
@@ -423,11 +423,11 @@ class SyncRestHandler extends RestHandler
        }
 
        if (CoreConstants::CONTENTTYPE_OCTETSTREAM === $value) {
-           if ($this->ResponseSerializer instanceof \QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer) {
+           if ($this->ResponseSerializer instanceof XmlObjectSerializer) {
                return CoreConstants::CONTENTTYPE_APPLICATIONXML;
            }
 
-           if ($this->ResponseSerializer instanceof \QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer) {
+           if ($this->ResponseSerializer instanceof JsonObjectSerializer) {
                return CoreConstants::CONTENTTYPE_APPLICATIONJSON;
            }
        }
@@ -474,7 +474,7 @@ class SyncRestHandler extends RestHandler
      */
     private function CallRestService($requestParameters, $requestBody, $oauthRequestUri)
     {
-        return null;
+        throw new \BadMethodCallException('Function has been removed');
     }
 
 
@@ -526,12 +526,11 @@ class SyncRestHandler extends RestHandler
 
         if ($this->context->ServiceType == CoreConstants::IntuitServicesTypeIPP) {
             // Handle errors here
-            $intuitHandler = new IntuitErrorHandler();
-            return $intuitHandler->HandleErrors($response);
+            IntuitErrorHandler::HandleErrors($response);
         } else {
             // Check the response if there are any fault tags and throw appropriate exceptions.
             $oneException = $handler->ParseErrorResponseAndPrepareException($response);
-            if (exception != null) {
+            if ($oneException != null) {
                 throw $oneException;
             }
         }

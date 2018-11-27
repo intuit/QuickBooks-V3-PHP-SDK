@@ -1,5 +1,5 @@
 <?php
-/* * *****************************************************************************
+/*******************************************************************************
  * Copyright (c) 2017 Intuit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * ***************************************************************************** */
+ *******************************************************************************/
 namespace QuickBooksOnline\API\DataService;
 
 use QuickBooksOnline\API\Core\CoreHelper;
@@ -147,6 +147,7 @@ class DataService
      */
     private $clientName = CoreConstants::CLIENT_CURL;
 
+
     /**
      * Initializes a new instance of the DataService class. The old way to construct the dataService. Used by PHP SDK < 3.0.0
      *
@@ -209,24 +210,22 @@ class DataService
      */
     protected function setupRestHandler($serviceContext)
     {
-        if (isset($serviceContext)) {
-            $client = ClientFactory::createClient($this->getClientName());
-            $this->restHandler = new SyncRestHandler($serviceContext, $client);
-        } else {
-            throw new SdkException("Can not set the Rest Client based on null ServiceContext.");
-        }
-        return $this;
+       if(isset($serviceContext)){
+          $client = ClientFactory::createClient($this->getClientName());
+          $this->restHandler = new SyncRestHandler($serviceContext, $client);
+       }else{
+          throw new SdkException("Can not set the Rest Client based on null ServiceContext.");
+       }
+       return $this;
     }
 
     /**
      * Return the current Client Name used by DataService
      * @return String clientName
      */
-    public function getClientName()
-    {
+    public function getClientName(){
         return $this->clientName;
     }
-
     /**
      * PHP SDK currently only support XML for Object Serialization and Deserialization, except for Report Service
      *
@@ -309,12 +308,12 @@ class DataService
         return $this;
     }
 
+
     /**
      * Choose if want to throw exception when there is an non-200 http status code returned.
      * @param Boolean $bool                 Turn on exception throwing error or not
      */
-    public function throwExceptionOnError($bool)
-    {
+    public function throwExceptionOnError($bool){
         $this->throwExceptionOnError = $bool;
         return $this;
     }
@@ -323,20 +322,28 @@ class DataService
      * Return the settings for thrown exception on non-200 error code
      * @return Boolean   Thrown Exception on Error or not
      */
-    public function isThrownExceptionOnError()
-    {
+    public function isThrownExceptionOnError(){
         return $this->throwExceptionOnError;
     }
 
     /**
      * Return the client Name used by this DataSerivce
+     * @return String the Client Name. It can be curl or GuzzleHttpClient
      * @deprecated since version 5.0.4
+     * @see $this->getClientName()
+     */
+    public function getClinetName(){
+       return $this->getClientName();
+    }
+    
+    /**
+     * Return the client Name used by this DataSerivce
      * @return String the Client Name. It can be curl or GuzzleHttpClient
      */
-    public function getClinetName()
-    {
-        return $this->clientName;
+    public function getClientName(){
+       return $this->clientName;
     }
+    
 
     /**
      * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
@@ -345,12 +352,11 @@ class DataService
      *
      * @return $this
      */
-    public function setClientName($clientName)
-    {
-        $this->clientName = $clientName;
-        $serviceContext = $this->getServiceContext();
-        $this->setupRestHandler($serviceContext);
-        return $this;
+    public function setClientName($clientName){
+       $this->clientName = $clientName;
+       $serviceContext = $this->getServiceContext();
+       $this->setupRestHandler($serviceContext);
+       return $this;
     }
 
     /**
@@ -371,24 +377,28 @@ class DataService
                     throw new SdkException('Construct ServiceContext from OAuthSettigs failed.');
                 }
                 $DataServiceInstance = new DataService($ServiceContext);
+
             } elseif (is_string($settings)) {
                 $ServiceContext = ServiceContext::ConfigureFromLocalFile($settings);
                 if (!isset($ServiceContext)) {
                     throw new SdkException('Construct ServiceContext from File failed.');
                 }
                 $DataServiceInstance = new DataService($ServiceContext);
+
             }
 
-            if ($ServiceContext->IppConfiguration->OAuthMode == CoreConstants::OAUTH2) {
+            if($ServiceContext->IppConfiguration->OAuthMode == CoreConstants::OAUTH2)
+            {
                 $oauth2Config = $ServiceContext->IppConfiguration->Security;
-                if ($oauth2Config instanceof OAuth2AccessToken) {
+                if($oauth2Config instanceof OAuth2AccessToken){
                     $DataServiceInstance->configureOAuth2LoginHelper($oauth2Config, $settings);
-                } else {
+                }else{
                     throw new SdkException("SDK Error. OAuth mode is not OAuth 2.");
                 }
             }
 
             return $DataServiceInstance;
+
         } else {
             throw new SdkException("Passed Null to Configure method. It expects either a file path for the config file or an array containing OAuth settings and BaseURL.");
         }
@@ -401,17 +411,28 @@ class DataService
      */
     private function configureOAuth2LoginHelper($oauth2Conifg, $settings)
     {
-        $refreshToken = CoreConstants::getRefreshTokenFromArray($settings);
-        if (isset($refreshToken)) {
-            //Login helper for refresh token API call
-            $this->OAuth2LoginHelper = new OAuth2LoginHelper(null, null, null, null, null, $this->getServiceContext());
-        } else {
-            $redirectURL = CoreConstants::getRedirectURL($settings);
-            $scope = array_key_exists('scope', $settings) ? $settings['scope'] : null;
-            $state = array_key_exists('state', $settings) ? $settings['state'] : null;
-            $this->OAuth2LoginHelper = new OAuth2LoginHelper($oauth2Conifg->getClientID(), $oauth2Conifg->getClientSecret(), $redirectURL, $scope, $state);
-        }
+          $refreshToken = CoreConstants::getRefreshTokenFromArray($settings);
+          if(isset($refreshToken)){
+               //Login helper for refresh token API call
+               $this->OAuth2LoginHelper = new OAuth2LoginHelper(null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                $this->getServiceContext());
+          }else{
+                $redirectURL = CoreConstants::getRedirectURL($settings);
+                $scope = array_key_exists('scope', $settings) ? $settings['scope'] : null;
+                $state = array_key_exists('state', $settings) ? $settings['state'] : null;
+                $this->OAuth2LoginHelper = new OAuth2LoginHelper($oauth2Conifg->getClientID(),
+                                                                 $oauth2Conifg->getClientSecret(),
+                                                                 $redirectURL,
+                                                                 $scope,
+                                                                 $state);
+          }
     }
+
+
 
     /**
      * Return the OAuth 2 Login Helper. The OAuth 2 Login helper can be used to generate OAuth code, get refresh Token, etc.
@@ -431,13 +452,14 @@ class DataService
      */
     public function updateOAuth2Token($newOAuth2AccessToken)
     {
-        try {
-            $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
-            $realmID = $newOAuth2AccessToken->getRealmID();
-            $this->serviceContext->realmId = $realmID;
-            $this->setupRestHandler($this->serviceContext);
-        } catch (SdkException $e) {
-            echo $e->getTraceAsString();
+        try{
+          $this->serviceContext->updateOAuth2Token($newOAuth2AccessToken);
+          $realmID = $newOAuth2AccessToken->getRealmID();
+          $this->serviceContext->realmId = $realmID;
+          $this->setupRestHandler($this->serviceContext);
+        } catch (SdkException $e){
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error while updating OAuth2Token." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
         }
         return $this;
     }
@@ -445,7 +467,7 @@ class DataService
     /**
      * Get the error from last request
      *
-     * @return FaultHandler
+     * @return FaultHandler lastError
      */
     public function getLastError()
     {
@@ -509,16 +531,16 @@ class DataService
      * Marshall a POPO object to XML, presumably for inclusion on an IPP v3 API call
      *
      *
-     * @deprecated
+     *
      * @param object $phpObj inbound POPO object
      * @return string XML output derived from POPO object
+     * @deprecated since version ?
      */
     private function getXmlFromObj($phpObj)
     {
         if (!$phpObj) {
-            echo "getXmlFromObj NULL arg\n";
-            var_dump(debug_backtrace());
-
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "getXmlFromObj NULL arg.");
+            
             return false;
         }
 
@@ -528,9 +550,8 @@ class DataService
         try {
             return $php2xml->getXml($phpObj);
         } catch (\Exception $e) {
-            echo "getXmlFromObj EXCEPTION: " . $e->getMessage() . "\n";
-            var_dump($phpObj);
-            var_dump(debug_backtrace());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing Object to XML." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
 
             return false;
         }
@@ -540,7 +561,7 @@ class DataService
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return string
+     * @return string POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -549,6 +570,7 @@ class DataService
 
         return $className;
     }
+
 
     //Since we add the namespace, this one needs to be changed as well.
     private static function getEntityResourceName($entity)
@@ -560,7 +582,7 @@ class DataService
      * Clean a POPO class name (like 'IPPClass') to be an IPP v3 Entity name (like 'Class')
      *
      * @param string $phpClassName POPO class name
-     * @return string Intuit Entity name
+     * @return string|null Intuit Entity name
      */
     private static function cleanPhpClassNameToIntuitEntityName($phpClassName)
     {
@@ -639,7 +661,7 @@ class DataService
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             } catch (\Exception $e) {
-                return new \Exception("Exception in deserialize ResponseBody.");
+                return new Excepiton("Exception in deserialize ResponseBody.");
             }
 
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Finished Executing Method " . $CALLINGMETHOD);
@@ -677,12 +699,12 @@ class DataService
             $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
         }
         //We no longer support QBD on PHP SDK The code is removed.
-        /* else if ((strtolower('company') == strtolower($urlResource)) &&
-          (CoreConstants::IntuitServicesTypeQBO == $this->serviceContext->serviceType)) {
-          // URL format for *QBD* companyinfo request is different than URL format for *QBO* companyinfo request
-          $urlResource = 'companyInfo';
-          $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=update'));
-          } */ else {
+        /*else if ((strtolower('company') == strtolower($urlResource)) &&
+                (CoreConstants::IntuitServicesTypeQBO == $this->serviceContext->serviceType)) {
+            // URL format for *QBD* companyinfo request is different than URL format for *QBO* companyinfo request
+            $urlResource = 'companyInfo';
+            $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=update'));
+        }*/ else {
             // Normal case
             $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=update'));
         }
@@ -710,35 +732,35 @@ class DataService
     public function FindById($entity, $Id = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindById.");
-        if (is_object($entity)) {
-            $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
-            // Validate parameter
-            if (!$entity || !$entity->Id) {
-                $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
-                throw new IdsException('Argument Null Exception when calling FindById for Endpoint:' . get_class($entity));
-            }
-            $this->verifyOperationAccess($entity, __FUNCTION__);
-            $entityId = $this->getIDString($entity->Id);
-            // Normal case
-            $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
-            // Send request
-            return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
-        } else if (is_string($entity) && isset($Id)) {
-            $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
-            $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
-            $restRequestHandler = $this->getRestHandler();
-            list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
-            $faultHandler = $restRequestHandler->getFaultHandler();
-            //$faultHandler now is true or false
-            if ($faultHandler) {
-                $this->lastError = $faultHandler;
-                return null;
-            } else {
-                //clean the error
-                $this->lastError = false;
-                $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
-                return $parsedResponseBody;
-            }
+        if(is_object($entity)){
+           $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
+           // Validate parameter
+           if (!$entity || !$entity->Id) {
+              $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
+              throw new IdsException('Argument Null Exception when calling FindById for Endpoint:' . get_class($entity));
+          }
+          $this->verifyOperationAccess($entity, __FUNCTION__);
+          $entityId = $this->getIDString($entity->Id);
+          // Normal case
+          $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
+          // Send request
+          return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
+        }else if(is_string($entity) && isset($Id)){
+          $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
+          $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+          $restRequestHandler = $this->getRestHandler();
+          list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
+          $faultHandler = $restRequestHandler->getFaultHandler();
+          //$faultHandler now is true or false
+          if ($faultHandler) {
+              $this->lastError = $faultHandler;
+              return null;
+          } else {
+              //clean the error
+              $this->lastError = false;
+              $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+              return $parsedResponseBody;
+          }
         }
     }
 
@@ -878,18 +900,18 @@ class DataService
      * @throws IdsException, SdkException
      *
      */
-    public function DownloadPDF($entity, $dir = null)
+    public function DownloadPDF($entity, $dir=null)
     {
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
 
         //Find the ID
-        $entityID = $this->getIDString($entity->Id);
+        $entityID =  $this->getIDString($entity->Id);
         $uri = implode(CoreConstants::SLASH_CHAR, array('company',
-            $this->serviceContext->realmId,
-            self::getEntityResourceName($entity),
-            $entityID,
-            CoreConstants::getType(CoreConstants::CONTENTTYPE_APPLICATIONPDF)));
+                $this->serviceContext->realmId,
+                self::getEntityResourceName($entity),
+                $entityID,
+                CoreConstants::getType(CoreConstants::CONTENTTYPE_APPLICATIONPDF)));
         $requestParameters = $this->getGetRequestParameters($uri, CoreConstants::CONTENTTYPE_APPLICATIONPDF);
         $restRequestHandler = $this->getRestHandler();
 
@@ -920,12 +942,12 @@ class DataService
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
 
-        $entityId = $this->getIDString($entity->Id);
+        $entityId=$this->getIDString($entity->Id);
         $uri = implode(CoreConstants::SLASH_CHAR, array('company',
-            $this->serviceContext->realmId,
-            self::getEntityResourceName($entity),
-            $entityId,
-            'send'));
+                $this->serviceContext->realmId,
+                self::getEntityResourceName($entity),
+                $entityId,
+                'send'));
 
         if (is_null($email)) {
             $this->logInfo("Entity " . get_class($entity) . " with id=" . $entityId . " is using default email");
@@ -977,9 +999,8 @@ class DataService
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
                 }
                 $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                //echo "Parsed Body is: \n";
-                //var_dump($parsedResponseBody);
-                //echo "\n Parsed Body over.\n";
+                $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
+                
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
             }
@@ -994,30 +1015,30 @@ class DataService
      * @param Integer MaxResults
      * @return String The query string
      */
-    private function appendPaginationInfo($query, $startPosition, $maxResults)
-    {
-        $query = trim($query);
-        if (isset($startPosition) && !empty($startPosition)) {
-            if (stripos($query, "STARTPOSITION") === false) {
-                if (stripos($query, "MAXRESULTS") !== false) {
-                    //In MaxResult is defined,we don't set startPosition
-                } else {
-                    $query = $query . " " . "STARTPOSITION " . $startPosition;
-                }
-            } else {
-                //Ignore the startPosition if it is already used on the query
-            }
-        }
+    private function appendPaginationInfo($query, $startPosition, $maxResults){
+       $query = trim($query);
+       if(isset($startPosition) && !empty($startPosition)){
+           if(stripos($query, "STARTPOSITION") === false){
+              if(stripos($query, "MAXRESULTS") !== false){
+                //In MaxResult is defined,we don't set startPosition
+              }else{
+                $query = $query . " " . "STARTPOSITION " . $startPosition;
+              }
+           }else{
+             //Ignore the startPosition if it is already used on the query
+           }
+       }
 
-        if (isset($maxResults) && !empty($maxResults)) {
-            if (stripos($query, "MAXRESULTS") === false) {
+       if(isset($maxResults) && !empty($maxResults)){
+           if(stripos($query, "MAXRESULTS") === false){
                 $query = $query . " " . "MAXRESULTS " . $maxResults;
-            } else {
-                //Ignore the maxResults if it is already used on the query
-            }
-        }
+           }else{
+             //Ignore the maxResults if it is already used on the query
+           }
+       }
 
-        return $query;
+       return $query;
+
     }
 
     /**
@@ -1094,9 +1115,9 @@ class DataService
         $query = null;
         $uri = null;
 
-        if (is_string($changedSince)) {
-            $formattedChangedSince = trim($changedSince);
-        } else {
+        if(is_string($changedSince)){
+           $formattedChangedSince = trim($changedSince);
+        }else{
             $formattedChangedSince = date("Y-m-d\TH:i:s", $this->verifyChangedSince($changedSince));
         }
 
@@ -1121,18 +1142,18 @@ class DataService
             try {
                 $xmlObj = simplexml_load_string($responseBody);
                 $responseArray = $xmlObj->CDCResponse->QueryResponse;
-                if (sizeof($responseArray) != sizeof($entityList)) {
+                if(sizeof($responseArray) != sizeof($entityList)){
                     throw new ServiceException("The number of Entities requested on CDC does not match the number of Response.");
                 }
 
-                for ($i = 0; $i < sizeof($responseArray); $i++) {
+                for($i = 0; $i < sizeof($responseArray); $i++){
                     $currentResponse = $responseArray[$i];
                     $currentEntityName = $entityList[$i];
                     $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
                     $entityName = $currentEntityName;
                     //If we find the actual name, update it.
                     foreach ($currentResponse->children() as $currentResponseChild) {
-                        $entityName = (string) $currentResponseChild->getName();
+                        $entityName = (string)$currentResponseChild->getName();
                         break;
                     }
                     $returnValue->entities[$entityName] = $entities;
@@ -1145,6 +1166,7 @@ class DataService
             return $returnValue;
         }
     }
+
 
     /**
      * Returns an entity under the specified realm. The realm must be set in the context.
@@ -1182,7 +1204,9 @@ class DataService
      */
     protected function initPostRequest($entity, $uri)
     {
-        return $this->isJsonOnly($entity) ? $this->getPostJsonRequest($uri) : $this->getPostRequest($uri);
+        return $this->isJsonOnly($entity)
+            ? $this->getPostJsonRequest($uri)
+            : $this->getPostRequest($uri);
     }
 
     /**
@@ -1191,7 +1215,9 @@ class DataService
      */
     private function getContentType()
     {
-        return ($this->getSerializationFormat() == SerializationFormat::Json) ? CoreConstants::CONTENTTYPE_APPLICATIONJSON : CoreConstants::CONTENTTYPE_APPLICATIONXML;
+        return ($this->getSerializationFormat() == SerializationFormat::Json)
+            ? CoreConstants::CONTENTTYPE_APPLICATIONJSON
+            : CoreConstants::CONTENTTYPE_APPLICATIONXML;
     }
 
     /**
@@ -1289,13 +1315,14 @@ class DataService
      * update the TaxService with namespace added
      * If this class is not available on include_path or wab't loaded the method will return false
      *
-     * @deprecated 
-     * @param object $entity
+     * @param IPPTaxService $entity
      * @return bool
      */
     private function isTaxServiceSafe($entity)
     {
-        return false;
+        $IPPTaxServiceClassWIthNameSpace = "QuickBooksOnline\\API\\Data\\IPPTaxService";
+
+        return class_exists($IPPTaxServiceClassWIthNameSpace) && ($entity instanceof $IPPTaxServiceClassWIthNameSpace);
     }
 
     /**
@@ -1321,11 +1348,12 @@ class DataService
         return $content;
     }
 
+
     /**
      * Returns an downloaded entity under the specified realm. The realm must be set in the context.
      *
      * @param object $entity Entity to Find
-     * @return IPPIntuitEntity Returns an entity of specified Id.
+     * @return string IPPIntuitEntity Returns an entity of specified Id.
      * @deprecated The download for QuickBooksOnline is only supporting download PDF for Invoice and SalesReceipt. Other download function are not defined now.
      */
     public function Download($entity)
@@ -1336,7 +1364,7 @@ class DataService
     /**
      * Verifies string as email agains RFC 822
      * @param string $email
-     * @return string
+     * @return type
      */
     public function verifyEmailAddress($email)
     {
@@ -1363,10 +1391,10 @@ class DataService
      */
     protected function getRestHandler()
     {
-        if (isset($this->restHandler)) {
-            return $this->restHandler;
-        } else {
-            throw new SdkException("The SyncRest handler associated with the DataService is not set.");
+        if(isset($this->restHandler)){
+             return $this->restHandler;
+        }else{
+             throw new SdkException("The SyncRest handler associated with the DataService is not set.");
         }
     }
 
@@ -1381,9 +1409,9 @@ class DataService
     {
         $writer->setPrefix($this->getPrefixFromSettings());
         try {
-            if (isset($dir) && !empty($dir)) {
+            if(isset($dir) && !empty($dir)){
                 $writer->saveFile($dir, $fileName);
-            } else if ($this->isTempFile()) {
+            }else if ($this->isTempFile()) {
                 $writer->saveTemp();
             } elseif ($this->isFileExport()) {
                 $writer->saveFile($this->getFileExportDir(), $fileName);
@@ -1450,6 +1478,7 @@ class DataService
         return $this->serviceContext->IppConfiguration->ContentWriter->exportDir;
     }
 
+
     /**
      * Simple verification for entities which can be returned as PDF
      */
@@ -1467,6 +1496,7 @@ class DataService
         return $this->serviceContext->IppConfiguration->OpControlList->isAllowed($trimedClassName, $method);
     }
 
+
     private function verifyOperationAccess($entity, $func)
     {
         if (!$this->isAllowed($entity, $func)) {
@@ -1476,6 +1506,7 @@ class DataService
 
         return true;
     }
+
 
     private function validateEntityId($entity)
     {
@@ -1506,6 +1537,7 @@ class DataService
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, $message);
     }
 
+
     /**
      * Creates new batch
      *
@@ -1517,6 +1549,7 @@ class DataService
 
         return $batch;
     }
+
 
     /**
      * Parse input date-time string into unix timestamp
@@ -1533,20 +1566,14 @@ class DataService
         if (empty($result) || !is_array($result)) {
             return false;
         }
-        $hour = 0;
-        $minute = 0;
-        $second = 0;
-        $month = 1;
-        $day = 1;
-        $year = 1970;
-        
         extract($result);
         if (!empty($errors)) {
             throw new SdkException("SDK failed to parse date value \"$str\":"
-            . (is_array($errors) ? implode("\n", $errors) : $errors)
+                . (is_array($errors) ? implode("\n", $errors) : $errors)
             );
         }
 
+        //@TODO: mktime is deprecated since 5.3.0, this package needs 5.6
         return mktime($hour, $minute, $second, $month, $day, $year);
     }
 
@@ -1557,7 +1584,7 @@ class DataService
      */
     public function isValidTimeStamp($timestamp)
     {
-        return ((string) (int) $timestamp === $timestamp) && ($timestamp <= PHP_INT_MAX) && ($timestamp >= ~PHP_INT_MAX);
+        return ((string)(int)$timestamp === $timestamp) && ($timestamp <= PHP_INT_MAX) && ($timestamp >= ~PHP_INT_MAX);
     }
 
     /**
@@ -1618,13 +1645,13 @@ class DataService
 
     /**
      * Get the Company Preferences Information
-     * @return IPPPreferences      CompanyInformation
+     * @return IPPPreferences  CompanyInformation
      */
     public function getCompanyPreferences()
     {
         $currentServiceContext = $this->getServiceContext();
         if (!isset($currentServiceContext) || empty($currentServiceContext->realmId)) {
-            throw new SdkException("Please Setup Service Context before making get Company Preferences call.");
+           throw new SdkException("Please Setup Service Context before making get Company Preferences call.");
         }
         //The Preferences URL
         $uri = implode(CoreConstants::SLASH_CHAR, array('company', $currentServiceContext->realmId, 'preferences'));
@@ -1648,12 +1675,11 @@ class DataService
      * @param Object $id
      * @return String Id
      */
-    private function getIDString($id)
-    {
-        if ($id instanceof \QuickBooksOnline\API\Data\IPPid) {
-            return (String) $id->value;
-        } else {
-            return (String) $id;
+    private function getIDString($id){
+        if($id instanceof IPPid || $id instanceof QuickBooksOnline\API\Data\IPPid){
+            return (String)$id->value;
+        }else{
+            return (String)$id;
         }
     }
 }

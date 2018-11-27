@@ -4,6 +4,7 @@ namespace QuickBooksOnline\API\Core;
 
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
+use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
 use QuickBooksOnline\API\Core\Http\Compression\GZipCompressor;
@@ -21,8 +22,8 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
      /**
      * Gets the serializer mechanism using the service context and the depending on the request and response.
      * @param ServiceContext serviceContext The service context object.
-     * @param bool isRequest Specifies whether to return serializer mechanism for reqeust or response.
-     * @return \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer The Serializer mechanism.
+     * @param bool isRequest Specifies whether to return serializer mechanism for request or response.
+     * @return IEntitySerializer The Serializer mechanism.
      */
     public static function GetSerializer($serviceContext, $isRequest)
     {
@@ -70,7 +71,7 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
      * This function is deprecated use simplexml_load_string() instead.
      * @param string response The response string
      * @throws BadFunctionCallException
-     * @return void
+     * @return SimpleXMLElement The SimpleXMLElement object.
      * @deprecated since version v2.1
      */
     public static function ParseResponseIntoXml()
@@ -79,7 +80,7 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
     }
 
     /**
-   * TO DO: Rewrite Late - Hao
+     * TO DO: Rewrite Late - Hao
      * Checks whether the reponse is null or empty and throws communication exception.
      * @param string response The response from the query service.
      */

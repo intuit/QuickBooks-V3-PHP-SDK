@@ -104,8 +104,8 @@ class OAuth2AccessToken{
      * @param String $cS                       The Client Secret
      * @param String $atk                      The OAuth 2 Access Token generated from Client ID, Client Secret.
      * @param String $refreshtk                The OAuth 2 Refresh Token generated from Client ID, Client Secret.
-     * @param int   $atei                     The number of seconds that access token expired. Always 3600 seconds.
-     * @param int   $refreshtei               The number of seconds that refresh token expired. Always 8726400 seconds.
+     * @param int    $atei                     The number of seconds that access token expired. Always 3600 seconds.
+     * @param int    $refreshtei               The number of seconds that refresh token expired. Always 8726400 seconds.
      * @param String $tk                       The token type. Always bearer, unless specified.
      */
     public function __construct($cID, $cS, $atk = null, $refreshtk = null, $atei = null, $refreshtei = null, $tk = "bearer"){
@@ -136,7 +136,7 @@ class OAuth2AccessToken{
 
     /**
      * Set the realmID associated with this Acess Token
-     * @param int $realmID            The realmID for the access token
+     * @param string $realmID            The realmID for the access token
      */
     public function setRealmID($realmID){
       $this->realmID = $realmID;
@@ -144,7 +144,7 @@ class OAuth2AccessToken{
 
     /**
      * Set the baseURL associated with this Acess Token
-     * @param Long $realmID            The realmID for the access token
+     * @param string $baseUrl            The base URL
      */
     public function setBaseURL($baseURL){
       if(strcasecmp($baseURL, CoreConstants::DEVELOPMENT_SANDBOX) == 0){
@@ -247,8 +247,7 @@ class OAuth2AccessToken{
 
     /**
      * Return the expiration date of Access Token
-     * @throws SdkException
-     * @return int
+     * @return Date
      */
     public function getAccessTokenExpiresAt(){
         if(!empty($this->accessTokenExpiresAt))
@@ -340,9 +339,9 @@ class OAuth2AccessToken{
 
     /**
      * Update an access token after creating a new access token or making a refresh tokan API call
-     * @param int     $tokenExpiresTime          The number of seconds that access token expired. Always 3600 seconds.
+     * @param int      $tokenExpiresTime          The number of seconds that access token expired. Always 3600 seconds.
      * @param String   $refreshToken              The OAuth 2 Refresh Token returned from refresh token API call or generated from a new request.
-     * @param int     $refreshTokenExpiresTime   The number of seconds that refresh token expired. Always 8726400 seconds.
+     * @param int      $refreshTokenExpiresTime   The number of seconds that refresh token expired. Always 8726400 seconds.
      * @param String   $accessToken               The OAuth 2 Access Token returned from refresh token API call or generated from a new request.
      */
     public function updateAccessToken($tokenExpiresTime, $refreshToken, $refreshTokenExpiresTime, $accessToken){
@@ -356,8 +355,8 @@ class OAuth2AccessToken{
 
     /**
      * A helper function to convert Seconds to date
-     * @param  integer  $second
-     * @return int
+     * @param  int  $second
+     * @return string
      */
     private function getDateFromSeconds($seconds){
       return date('Y/m/d H:i:s', $seconds);
