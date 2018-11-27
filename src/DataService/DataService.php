@@ -335,15 +335,7 @@ class DataService
     public function getClinetName(){
        return $this->getClientName();
     }
-    
-    /**
-     * Return the client Name used by this DataSerivce
-     * @return String the Client Name. It can be curl or GuzzleHttpClient
-     */
-    public function getClientName(){
-       return $this->clientName;
-    }
-    
+
 
     /**
      * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
@@ -540,7 +532,7 @@ class DataService
     {
         if (!$phpObj) {
             $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "getXmlFromObj NULL arg.");
-            
+
             return false;
         }
 
@@ -1000,7 +992,7 @@ class DataService
                 }
                 $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
                 $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
-                
+
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
             }
