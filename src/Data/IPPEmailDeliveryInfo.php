@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,43 +8,19 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPEmailDeliveryInfo
  * @var IPPEmailDeliveryInfo
  * @xmlDefinition
-                Product: QBO
-                Description: Specifies various fields
-                required for emailing different transaction
-
+ * Product: QBO
+ * Description: Specifies various fields
+ * required for emailing different transaction
  */
-class IPPEmailDeliveryInfo extends IPPIntuitEntity
+class IPPEmailDeliveryInfo
+    extends IPPIntuitEntity
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPEmailDeliveryInfo', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEmailDeliveryInfo', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition
-                                Product: QBO
-                                Description: Email address of
-                                recipients. Multiple email address seperated with comma.
-
+     * Product: QBO
+     * Description: Email address of
+     * recipients. Multiple email address seperated with comma.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -53,10 +30,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $DeliveryAddress;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Cc email address of
-                                recipients. Multiple email address seperated with comma.
-
+     * Product: QBO
+     * Description: Cc email address of
+     * recipients. Multiple email address seperated with comma.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -66,10 +42,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $DeliveryAddressCc;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Bcc email address of
-                                recipients. Multiple email address seperated with comma.
-
+     * Product: QBO
+     * Description: Bcc email address of
+     * recipients. Multiple email address seperated with comma.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -79,10 +54,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $DeliveryAddressBcc;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Custom Email subject
-                                and message to be used for this email.
-
+     * Product: QBO
+     * Description: Custom Email subject
+     * and message to be used for this email.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -92,10 +66,9 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $EmailMessage;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Specifies whether
-                                online payment should be enabled for this transaction
-
+     * Product: QBO
+     * Description: Specifies whether
+     * online payment should be enabled for this transaction
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -105,11 +78,10 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $AllowOnlinePayment;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Specifies whether
-                                customer is allowed to use eInvoicing(online payment -credit
-                                card) to pay the Invoice
-
+     * Product: QBO
+     * Description: Specifies whether
+     * customer is allowed to use eInvoicing(online payment -credit
+     * card) to pay the Invoice
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -119,11 +91,10 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $AllowOnlineCreditCardPayment;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Specifies whether
-                                customer is allowed to use eInvoicing(online payment -bank or
-                                ach) to pay the Invoice
-
+     * Product: QBO
+     * Description: Specifies whether
+     * customer is allowed to use eInvoicing(online payment -bank or
+     * ach) to pay the Invoice
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -133,11 +104,10 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $AllowOnlineACHPayment;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Delivery information
-                                like DeliveryTime, DeliveryType and DeliveryErrorType (if
-                                applicable)
-
+     * Product: QBO
+     * Description: Delivery information
+     * like DeliveryTime, DeliveryType and DeliveryErrorType (if
+     * applicable)
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -147,11 +117,10 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
     public $DeliveryInfo;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Specifies ETransaction
-                                status of this transaction. Applicable if ETransaction is
-                                enabled and this transaction is a ETransaction.
-
+     * Product: QBO
+     * Description: Specifies ETransaction
+     * status of this transaction. Applicable if ETransaction is
+     * enabled and this transaction is a ETransaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -159,4 +128,27 @@ class IPPEmailDeliveryInfo extends IPPIntuitEntity
      * @var com\intuit\schema\finance\v3\IPPETransactionStatusEnum
      */
     public $ETransactionStatus;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPEmailDeliveryInfo', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEmailDeliveryInfo', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPEmailDeliveryInfo

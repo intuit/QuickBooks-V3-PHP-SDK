@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,39 +8,15 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPStatementCharge
  * @var IPPStatementCharge
  * @xmlDefinition Financial transaction representing a request for
-                payment for goods or services that have been sold.
-
+ * payment for goods or services that have been sold.
  */
-class IPPStatementCharge extends IPPTransaction
+class IPPStatementCharge
+    extends IPPTransaction
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPStatementCharge', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStatementCharge', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition If Credit is Null or False, it is considered as
-                                Charge. If true, the StatementCharge represents a Refund
-
+     * Charge. If true, the StatementCharge represents a Refund
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -49,7 +26,6 @@ class IPPStatementCharge extends IPPTransaction
     public $Credit;
     /**
      * @Definition Represents Customer (or Job)Reference
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -59,11 +35,10 @@ class IPPStatementCharge extends IPPTransaction
     public $CustomerRef;
     /**
      * @Definition Identifies the party or location that the
-                                payment is to be remitted to or sent to.
-                                [b]QuickBooks
-                                Notes[/b][br /]
-                                Non QB-writable.
-
+     * payment is to be remitted to or sent to.
+     * [b]QuickBooks
+     * Notes[/b][br /]
+     * Non QB-writable.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -73,12 +48,11 @@ class IPPStatementCharge extends IPPTransaction
     public $RemitToRef;
     /**
      * @Definition ARAccountReferenceGroup Identifies the AR
-                                Account to be used for this Credit Memo.
-                                [b]QuickBooks
-                                Notes[/b][br /]
-                                The AR Account should always be specified or a
-                                default will be used.
-
+     * Account to be used for this Credit Memo.
+     * [b]QuickBooks
+     * Notes[/b][br /]
+     * The AR Account should always be specified or a
+     * default will be used.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -96,7 +70,6 @@ class IPPStatementCharge extends IPPTransaction
     public $ClassRef;
     /**
      * @Definition Date when the Charge is to be paid.
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -106,7 +79,6 @@ class IPPStatementCharge extends IPPTransaction
     public $DueDate;
     /**
      * @Definition Date when the customer Statement was created
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -116,12 +88,11 @@ class IPPStatementCharge extends IPPTransaction
     public $BilledDate;
     /**
      * @Definition Indicates the total amount of the entity
-                                associated. This includes the total of all the charges,
-                                allowances and taxes.
-                                [b]QuickBooks Notes[/b][br /]
-                                Non
-                                QB-writable.
-
+     * associated. This includes the total of all the charges,
+     * allowances and taxes.
+     * [b]QuickBooks Notes[/b][br /]
+     * Non
+     * QB-writable.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -131,7 +102,7 @@ class IPPStatementCharge extends IPPTransaction
     public $TotalAmt;
     /**
      * @Definition Internal use only: extension place holder for
-                                StatementCharge
+     * StatementCharge
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -139,4 +110,27 @@ class IPPStatementCharge extends IPPTransaction
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $StatementChargeEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPStatementCharge', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStatementCharge', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPStatementCharge

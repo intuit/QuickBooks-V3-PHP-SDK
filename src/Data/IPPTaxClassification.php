@@ -4,14 +4,18 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType IntuitEntity
- * @xmlName IPPCustomFieldDefinition
- * @var IPPCustomFieldDefinition
+ * @xmlName IPPTaxClassification
+ * @var IPPTaxClassification
  * @xmlDefinition 
 				Product: ALL
-				Description: The definition of a custom field for an Intuit type to add additional columns dynamically on a existing Intuit entities. This entity is not extended from IntuitEntity so that it can be manipulated by specifying the DefinitionId.
+				Description: Tax classification segregates different items into different classifications and the tax
+				classification is one of the key parameters to determine appropriate tax on transactions involving items.
+				Tax classifications are sourced by either tax governing authorities as in India/Malaysia or externally like Exactor.
+				"Fuel", "Garments" and "Soft drinks" are a few examples of tax classification in layman terms.
+				User can choose a specific tax classification for an item while creating it.
 			
  */
-class IPPCustomFieldDefinition
+class IPPTaxClassification
 	extends IPPIntuitEntity	{
 
 		/**                                                                       
@@ -27,7 +31,7 @@ class IPPCustomFieldDefinition
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPCustomFieldDefinition',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCustomFieldDefinition',$initPropName))
+				if (property_exists('IPPTaxClassification',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxClassification',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -41,24 +45,14 @@ class IPPCustomFieldDefinition
 
 	
 	/**
-	 * @Definition 
-								Product: ALL
-								Description: Intuit entity type to which the CustomFieldDefinition is associated. Valid values are defined in the objectNameEnumType.[br /]Required for the create operation.
-								Required: ALL
-							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName EntityType
+	 * @xmlName Code
 	 * @var string
 	 */
-	public $EntityType;
+	public $Code;
 	/**
-	 * @Definition 
-								Product: ALL
-								Description: Name of the CustomField entity.[br /]Required for the create operation.
-								Required: ALL
-							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -67,41 +61,38 @@ class IPPCustomFieldDefinition
 	 */
 	public $Name;
 	/**
-	 * @Definition 
-								Product: ALL
-								Description: True if the custom field is Private; false if Public and can be shared among different applications.
-							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName Hidden
-	 * @var boolean
-	 */
-	public $Hidden;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: True if the custom field must be specified for every instance of the Parent entity for which the CustomFieldDefinition is defined. Data Services dpes not verify the value of that field.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Required
-	 * @var boolean
-	 */
-	public $Required;
-	/**
-	 * @Definition 
-							Product: ALL
-							Description: Identifier of Partner AppId that corresponds to this CustomField.
-						
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName AppId
+	 * @xmlName Description
 	 * @var string
 	 */
-	public $AppId;
+	public $Description;
+	/**
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Level
+	 * @var string
+	 */
+	public $Level;
+	/**
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ParentRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ParentRef;
+	/**
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName ApplicableTo
+	 * @var com\intuit\schema\finance\v3\IPPItemTypeEnum
+	 */
+	public $ApplicableTo;
 
 
-} // end class IPPCustomFieldDefinition
+} // end class IPPTaxClassification

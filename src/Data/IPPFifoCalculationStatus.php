@@ -4,14 +4,14 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPPhysicalAddressTypeEnum
- * @var IPPPhysicalAddressTypeEnum
+ * @xmlName IPPFifoCalculationStatus
+ * @var IPPFifoCalculationStatus
  * @xmlDefinition 
-				Product: ALL
-				Description: Enumeration of type of addresses that the data sync process understands.
+				Product: QBO
+				Description: Enumeration of Inventory Lots and Accounts calculation
 			
  */
-class IPPPhysicalAddressTypeEnum
+class IPPFifoCalculationStatus
 	{
 
 		/**                                                                       
@@ -27,7 +27,7 @@ class IPPPhysicalAddressTypeEnum
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPPhysicalAddressTypeEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPhysicalAddressTypeEnum',$initPropName))
+				if (property_exists('IPPFifoCalculationStatus',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPFifoCalculationStatus',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,4 +45,4 @@ class IPPPhysicalAddressTypeEnum
 		 */
 		public $value;
 
-} // end class IPPPhysicalAddressTypeEnum
+} // end class IPPFifoCalculationStatus

@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,36 +8,13 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSyncError
  * @var IPPSyncError
  * @xmlDefinition
-                Product: QBW
-                Description: Wrapper object for specifying both version of the objects
-                If there is any warnings on a object basis that is also send back
-                This object is output object only
+ * Product: QBW
+ * Description: Wrapper object for specifying both version of the objects
+ * If there is any warnings on a object basis that is also send back
+ * This object is output object only
  */
 class IPPSyncError
 {
-
-        /**
-         * Initializes this object, optionally with pre-defined property values
-         *
-         * Initializes this object and it's property members, using the dictionary
-         * of key/value pairs passed as an optional argument.
-         *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-         * @param boolean    $verbose            specifies whether object should echo warnings
-         */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPSyncError', $initPropName)|| property_exists('QuickBooksOnline\API\Data\IPPSyncError', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
 
     /**
      * @Definition Indicates the type of error that happened in the sync to desktop
@@ -50,9 +28,8 @@ class IPPSyncError
     public $Error;
     /**
      * @Definition
-                        Product: QBW
-                        Description: Indicates the cloud version of the synced object
-
+     * Product: QBW
+     * Description: Indicates the cloud version of the synced object
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -63,9 +40,8 @@ class IPPSyncError
     public $CloudVersion;
     /**
      * @Definition
-                        Product: QBW
-                        Description: Indicates the QB version of the synced object
-
+     * Product: QBW
+     * Description: Indicates the QB version of the synced object
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -75,9 +51,8 @@ class IPPSyncError
     public $QBVersion;
     /**
      * @Definition
-                    Product: QBW
-                    Description: Indicates error type of entity. The value must correspond to SyncErrorType.
-
+     * Product: QBW
+     * Description: Indicates error type of entity. The value must correspond to SyncErrorType.
      * @xmlType attribute
      * @xmlName Type
      * @var string
@@ -85,12 +60,33 @@ class IPPSyncError
     public $Type;
     /**
      * @Definition
-                    Product: ALL
-                    Description: Indicates the apptoken of the entity.
-
+     * Product: ALL
+     * Description: Indicates the apptoken of the entity.
      * @xmlType attribute
      * @xmlName AppToken
      * @var string
      */
     public $AppToken;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSyncError', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSyncError', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+                }
+            }
+        }
+    }
 } // end class IPPSyncError

@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,39 +8,16 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPPurchaseOrder
  * @var IPPPurchaseOrder
  * @xmlDefinition PurchaseOrder is a non-posting transaction
-                representing a request to purchase goods or services from a third
-                party.
+ * representing a request to purchase goods or services from a third
+ * party.
  */
-class IPPPurchaseOrder extends IPPPurchaseByVendor
+class IPPPurchaseOrder
+    extends IPPPurchaseByVendor
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPPurchaseOrder', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchaseOrder', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition Represents the TaxCode Reference with respect
-                                to the purchase[br /]
-
+     * to the purchase[br /]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -57,8 +35,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $ClassRef;
     /**
      * @Definition Information about the Customer and actual Job
-                                or Project the expense must be reimbursed for.
-
+     * or Project the expense must be reimbursed for.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -76,8 +53,8 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $SalesTermRef;
     /**
      * @Definition The nominal date by which the bill must be
-                                paid, not including any early-payment discount incentives, or
-                                late payment penalties.
+     * paid, not including any early-payment discount incentives, or
+     * late payment penalties.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -87,7 +64,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $DueDate;
     /**
      * @Definition The date when the delivery of the product is
-                                expected.
+     * expected.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -97,9 +74,8 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $ExpectedDate;
     /**
      * @Definition Address to which the payment should be sent.
-                                [b]QuickBooks Notes[/b][br /]
-                                Non QB-writable.
-
+     * [b]QuickBooks Notes[/b][br /]
+     * Non QB-writable.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -109,7 +85,6 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $VendorAddr;
     /**
      * @Definition DropShip to Entity Reference
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -127,7 +102,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $InventorySiteRef;
     /**
      * @Definition Address to which the vendor shipped or will
-                                ship any goods associated with the purchase.
+     * ship any goods associated with the purchase.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -145,12 +120,11 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $ShipMethodRef;
     /**
      * @Definition "Free On Board", specifies the terms between
-                                buyer and seller regarding transportation costs; does not have
-                                any bookkeeping implications.
-                                Length Restriction:
-                                QBO: 15
-                                QBW: 1024
-
+     * buyer and seller regarding transportation costs; does not have
+     * any bookkeeping implications.
+     * Length Restriction:
+     * QBO: 15
+     * QBW: 1024
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -160,11 +134,10 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $FOB;
     /**
      * @Definition The email address to which this purchase order
-                                is/was sent.
-                                Length Restriction:
-                                QBO: 15
-                                QBW: 1024
-
+     * is/was sent.
+     * Length Restriction:
+     * QBO: 15
+     * QBW: 1024
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -198,8 +171,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $EmailStatus;
     /**
      * @Definition The entire transaction, or individual items are
-                                manually closed, i.e. they may not be received.
-
+     * manually closed, i.e. they may not be received.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -217,7 +189,7 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
     public $POStatus;
     /**
      * @Definition Internal use only: extension place holder for
-                                PurchaseOrder
+     * PurchaseOrder
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -225,4 +197,27 @@ class IPPPurchaseOrder extends IPPPurchaseByVendor
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $PurchaseOrderEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPPurchaseOrder', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchaseOrder', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPPurchaseOrder

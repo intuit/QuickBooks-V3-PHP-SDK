@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,44 +8,19 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPItemLineDetail
  * @var IPPItemLineDetail
  * @xmlDefinition
-                Product: ALL
-                Description: Information about the
-                goods sold: what is sold, how much/many and for what price.
-
+ * Product: ALL
+ * Description: Information about the
+ * goods sold: what is sold, how much/many and for what price.
  */
 class IPPItemLineDetail
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPItemLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPItemLineDetail', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the Item.
-                        When a line lacks an ItemRef it will be treated as "documentation"
-                        and the Amount will be ignored.
-
+     * Product: ALL
+     * Description: Reference to the Item.
+     * When a line lacks an ItemRef it will be treated as "documentation"
+     * and the Amount will be ignored.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -54,10 +30,9 @@ class IPPItemLineDetail
     public $ItemRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the Class
-                        for the line item.
-
+     * Product: ALL
+     * Description: Reference to the Class
+     * for the line item.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -67,10 +42,9 @@ class IPPItemLineDetail
     public $ClassRef;
     /**
      * @Definition
-                            Product: ALL
-                            Description: Unit price of the
-                            service or item for the line.
-
+     * Product: ALL
+     * Description: Unit price of the
+     * service or item for the line.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -80,11 +54,10 @@ class IPPItemLineDetail
     public $UnitPrice;
     /**
      * @Definition
-                            Product: ALL
-                            Description: The amount is expressed
-                            as a percent of charges already entered in the current
-                            transaction. To enter a rate of 10% use 10.0, not 0.01.
-
+     * Product: ALL
+     * Description: The amount is expressed
+     * as a percent of charges already entered in the current
+     * transaction. To enter a rate of 10% use 10.0, not 0.01.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -94,10 +67,9 @@ class IPPItemLineDetail
     public $RatePercent;
     /**
      * @Definition
-                            Product: ALL
-                            Description: Reference to the
-                            PriceLevel of the service or item for the line.
-
+     * Product: ALL
+     * Description: Reference to the
+     * PriceLevel of the service or item for the line.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -107,10 +79,9 @@ class IPPItemLineDetail
     public $PriceLevelRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Markup information for
-                        the Item wherever applicable.
-
+     * Product: ALL
+     * Description: Markup information for
+     * the Item wherever applicable.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -120,10 +91,9 @@ class IPPItemLineDetail
     public $MarkupInfo;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Number of items for the
-                        line.
-
+     * Product: ALL
+     * Description: Number of items for the
+     * line.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -133,10 +103,9 @@ class IPPItemLineDetail
     public $Qty;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the
-                        UOMSetREf (unit of mesasure set) that applies to this item.
-
+     * Product: ALL
+     * Description: Reference to the
+     * UOMSetREf (unit of mesasure set) that applies to this item.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -146,11 +115,10 @@ class IPPItemLineDetail
     public $UOMRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: An account different
-                        than the account associated with the Item in the current
-                        transaction line. Cannot be updated or modified.
-
+     * Product: ALL
+     * Description: An account different
+     * than the account associated with the Item in the current
+     * transaction line. Cannot be updated or modified.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -160,10 +128,9 @@ class IPPItemLineDetail
     public $ItemAccountRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the
-                        InventorySite where this item is located.
-
+     * Product: ALL
+     * Description: Reference to the
+     * InventorySite where this item is located.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -173,10 +140,9 @@ class IPPItemLineDetail
     public $InventorySiteRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the
-                        SalesTaxCode for this item.
-
+     * Product: ALL
+     * Description: Reference to the
+     * SalesTaxCode for this item.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -186,10 +152,9 @@ class IPPItemLineDetail
     public $TaxCodeRef;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Reference to the
-                        SalesTaxCode for this item.
-
+     * Product: ALL
+     * Description: Reference to the
+     * SalesTaxCode for this item.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -197,4 +162,27 @@ class IPPItemLineDetail
      * @var com\intuit\schema\finance\v3\IPPReferenceType
      */
     public $TaxClassificationRef;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPItemLineDetail', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPItemLineDetail', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPItemLineDetail

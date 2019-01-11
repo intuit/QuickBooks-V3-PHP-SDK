@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,41 +8,17 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPAttachable
  * @var IPPAttachable
  * @xmlDefinition
-                Product: ALL
-                Description: Describes the details of
-                the attachment.
-
+ * Product: ALL
+ * Description: Describes the details of
+ * the attachment.
  */
-class IPPAttachable extends IPPIntuitEntity
+class IPPAttachable
+    extends IPPIntuitEntity
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPAttachable', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAttachable', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition FileName of the attachment
-                                Max Length: 1000
-
+     * Max Length: 1000
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -51,8 +28,7 @@ class IPPAttachable extends IPPIntuitEntity
     public $FileName;
     /**
      * @Definition FullPath FileAccess URI of the attachment,
-                                output only
-
+     * output only
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -62,8 +38,7 @@ class IPPAttachable extends IPPIntuitEntity
     public $FileAccessUri;
     /**
      * @Definition Output only. TempDownload URI which can be
-                                directly downloaded by clients
-
+     * directly downloaded by clients
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -73,7 +48,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $TempDownloadUri;
     /**
      * @Definition  Size of the attachment
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -83,7 +57,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $Size;
     /**
      * @Definition  ContentType of the attachment
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -93,7 +66,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $ContentType;
     /**
      * @Definition  Category of the attachment
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -103,8 +75,7 @@ class IPPAttachable extends IPPIntuitEntity
     public $Category;
     /**
      * @Definition  Latitude from where the attachment was
-                                requested
-
+     * requested
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -114,8 +85,7 @@ class IPPAttachable extends IPPIntuitEntity
     public $Lat;
     /**
      * @Definition  Longitude from where the attachment was
-                                requested
-
+     * requested
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -125,8 +95,7 @@ class IPPAttachable extends IPPIntuitEntity
     public $Long;
     /**
      * @Definition  PlaceName from where the attachment was
-                                requested
-
+     * requested
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -136,7 +105,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $PlaceName;
     /**
      * @Definition  Note for the attachment or standalone note
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -146,7 +114,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $Note;
     /**
      * @Definition  Tag name for the requested attachment
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -156,9 +123,8 @@ class IPPAttachable extends IPPIntuitEntity
     public $Tag;
     /**
      * @Definition FullPath FileAccess URI of the attachment
-                                thumbnail if the attachment file is of a content type with
-                                thumbnail support, output only
-
+     * thumbnail if the attachment file is of a content type with
+     * thumbnail support, output only
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -168,9 +134,8 @@ class IPPAttachable extends IPPIntuitEntity
     public $ThumbnailFileAccessUri;
     /**
      * @Definition Output only. Thumbnail TempDownload URI which
-                                can be directly downloaded by clients. This is only available if
-                                the attachment file is of a content type with thumbnail support
-
+     * can be directly downloaded by clients. This is only available if
+     * the attachment file is of a content type with thumbnail support
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -180,7 +145,6 @@ class IPPAttachable extends IPPIntuitEntity
     public $ThumbnailTempDownloadUri;
     /**
      * @Definition  Specifies extension entity to allow extension
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -189,4 +153,27 @@ class IPPAttachable extends IPPIntuitEntity
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $AttachableEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPAttachable', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAttachable', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPAttachable

@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,41 +8,17 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPPurchase
  * @var IPPPurchase
  * @xmlDefinition The reference to the purchase transaction which
-                                is being paid by this check.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported field.[/i]
-
+ * is being paid by this check.
+ * [b]QuickBooks Notes[/b][br /]
+ * [i]Unsupported field.[/i]
  */
-class IPPPurchase extends IPPTransaction
+class IPPPurchase
+    extends IPPTransaction
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPPurchase', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchase', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition Specifies the account reference. Check should
-                                have bank account, CreditCard should specify credit card account
-
+     * have bank account, CreditCard should specify credit card account
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -51,10 +28,9 @@ class IPPPurchase extends IPPTransaction
     public $AccountRef;
     /**
      * @Definition
-                                Product: ALL
-                                Description: Reference to the
-                                PaymentMethod.
-
+     * Product: ALL
+     * Description: Reference to the
+     * PaymentMethod.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -64,12 +40,11 @@ class IPPPurchase extends IPPTransaction
     public $PaymentMethodRef;
     /**
      * @Definition
-                                Product: ALL
-                                Description: The reference number
-                                for the payment received (I.e. Check # for a check, envelope #
-                                for a cash donation, CreditCardTransactionID for a credit card
-                                payment)
-
+     * Product: ALL
+     * Description: The reference number
+     * for the payment received (I.e. Check # for a check, envelope #
+     * for a cash donation, CreditCardTransactionID for a credit card
+     * payment)
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -79,11 +54,10 @@ class IPPPurchase extends IPPTransaction
     public $PaymentRefNum;
     /**
      * @Definition  Required element. No defaults. Expense Type
-                                can be Cash, Check or CreditCard
-                                Cash based expense is not
-                                supported by QBW.
-                                Filterable: QBW
-
+     * can be Cash, Check or CreditCard
+     * Cash based expense is not
+     * supported by QBW.
+     * Filterable: QBW
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -109,9 +83,8 @@ class IPPPurchase extends IPPTransaction
     public $CreditCardPayment;
     /**
      * @Definition Specifies the party to whom a expense is
-                                associated with. Can be Customer, Vendor, Employee (or OtherName
-                                in case of QBW)
-
+     * associated with. Can be Customer, Vendor, Employee (or OtherName
+     * in case of QBW)
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -121,10 +94,9 @@ class IPPPurchase extends IPPTransaction
     public $EntityRef;
     /**
      * @Definition If Credit is Null or False, it is considered as
-                                Charge. If true, the CreditCard represents a Refund. Valid only
-                                for CreditCard transaction
-                                Filterable: QBW
-
+     * Charge. If true, the CreditCard represents a Refund. Valid only
+     * for CreditCard transaction
+     * Filterable: QBW
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -134,8 +106,7 @@ class IPPPurchase extends IPPTransaction
     public $Credit;
     /**
      * @Definition Address to which the payment should be
-                                sent.Output only.
-
+     * sent.Output only.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -145,16 +116,15 @@ class IPPPurchase extends IPPTransaction
     public $RemitToAddr;
     /**
      * @Definition The total amount due, determined by taking the
-                                sum of all lines associated. This includes all charges,
-                                allowances, taxes, discounts, etc...
-                                [b]QuickBooks Notes[/b][br
-                                /]
-                                Non QB-writable.
-                                Output only field in case of QBO
-                                Filterable:
-                                QBW
-                                Sortable: QBW
-
+     * sum of all lines associated. This includes all charges,
+     * allowances, taxes, discounts, etc...
+     * [b]QuickBooks Notes[/b][br
+     * /]
+     * Non QB-writable.
+     * Output only field in case of QBO
+     * Filterable:
+     * QBW
+     * Sortable: QBW
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -164,9 +134,8 @@ class IPPPurchase extends IPPTransaction
     public $TotalAmt;
     /**
      * @Definition Memo that will be printed in check in case of
-                                Check purchase, Memo appears on the expense report for
-                                CreditCard, Memo for CashPurchase
-
+     * Check purchase, Memo appears on the expense report for
+     * CreditCard, Memo for CashPurchase
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -176,8 +145,7 @@ class IPPPurchase extends IPPTransaction
     public $Memo;
     /**
      * @Definition PrintStatus if to be printed or already printed
-                                information
-
+     * information
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -187,11 +155,10 @@ class IPPPurchase extends IPPTransaction
     public $PrintStatus;
     /**
      * @Definition
-                                Product: QBO
-                                Description: Indicates the
-                                GlobalTax model if the model inclusive of tax, exclusive of
-                                taxes or not applicable
-
+     * Product: QBO
+     * Description: Indicates the
+     * GlobalTax model if the model inclusive of tax, exclusive of
+     * taxes or not applicable
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -201,7 +168,7 @@ class IPPPurchase extends IPPTransaction
     public $GlobalTaxCalculation;
     /**
      * @Definition Internal use only: extension place holder for
-                                Purchase.
+     * Purchase.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -209,4 +176,27 @@ class IPPPurchase extends IPPTransaction
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $PurchaseEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPPurchase', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPurchase', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPPurchase

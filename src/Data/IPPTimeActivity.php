@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,42 +8,19 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPTimeActivity
  * @var IPPTimeActivity
  * @xmlDefinition The name of the person who performed the work.
-                                [b]QuickBooks Notes[/b][br /]
-                                Valid Vendor or Employee Name or Id
-                                is required for the create operation.[br /]
-                                Required for the
-                                create operation.
-
+ * [b]QuickBooks Notes[/b][br /]
+ * Valid Vendor or Employee Name or Id
+ * is required for the create operation.[br /]
+ * Required for the
+ * create operation.
  */
-class IPPTimeActivity extends IPPIntuitEntity
+class IPPTimeActivity
+    extends IPPIntuitEntity
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPTimeActivity', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTimeActivity', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition The timezone from where the time activity is
-                                entered, unused in QBO and QBW
+     * entered, unused in QBO and QBW
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -52,7 +30,6 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $TimeZone;
     /**
      * @Definition The date of the time activity.
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -70,7 +47,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $NameOf;
     /**
      * @Definition Specifies the employee whose time is being
-                                    recorded.
+     * recorded.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -80,7 +57,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $EmployeeRef;
     /**
      * @Definition Specifies the vendor whose time is being
-                                    recorded.
+     * recorded.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -90,7 +67,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $VendorRef;
     /**
      * @Definition Specifies the Payee whose time is being
-                                    recorded.
+     * recorded.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -100,7 +77,6 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $OtherNameRef;
     /**
      * @Definition Represents Customer (or Job)Reference
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -110,7 +86,6 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $CustomerRef;
     /**
      * @Definition  Represents Department Reference.
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -120,9 +95,8 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $DepartmentRef;
     /**
      * @Definition
-                                [br /]
-                                Required for the create operation.
-
+     * [br /]
+     * Required for the create operation.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -140,12 +114,11 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $ClassRef;
     /**
      * @Definition The payroll item determines how much the
-                                employee should be paid for doing the work specified by the Item
-                                Service Id.
-                                In order for the Time Activity data to be transferred
-                                to the employee payroll data, the Employee must have the
-                                property UseTimeEntry set.
-
+     * employee should be paid for doing the work specified by the Item
+     * Service Id.
+     * In order for the Time Activity data to be transferred
+     * to the employee payroll data, the Employee must have the
+     * property UseTimeEntry set.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -155,7 +128,6 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $PayrollItemRef;
     /**
      * @Definition Billable status of the time recorded
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -165,7 +137,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $BillableStatus;
     /**
      * @Definition True if the time recorded is both billable and
-                                taxable.
+     * taxable.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -175,11 +147,10 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $Taxable;
     /**
      * @Definition Hourly bill rate of the employee or vendor for
-                                this time activity.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported
-                                field.[/i]
-
+     * this time activity.
+     * [b]QuickBooks Notes[/b][br /]
+     * [i]Unsupported
+     * field.[/i]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -198,7 +169,6 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $Hours;
     /**
      * @Definition Minutes worked; valid values are 0 - 59.
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -208,10 +178,9 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $Minutes;
     /**
      * @Definition Hours of break taken between start time and end
-                                time.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported field.[/i]
-
+     * time.
+     * [b]QuickBooks Notes[/b][br /]
+     * [i]Unsupported field.[/i]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -221,10 +190,9 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $BreakHours;
     /**
      * @Definition Minutes of break taken between start time and
-                                end time. Valid values are 0 - 59.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported field.[/i]
-
+     * end time. Valid values are 0 - 59.
+     * [b]QuickBooks Notes[/b][br /]
+     * [i]Unsupported field.[/i]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -234,9 +202,8 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $BreakMinutes;
     /**
      * @Definition Time work started.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported field.[/i]
-
+     * [b]QuickBooks Notes[/b][br /]
+     * [i]Unsupported field.[/i]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -246,9 +213,8 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $StartTime;
     /**
      * @Definition Time work ended.
-                                [b]QuickBooks Notes[/b][br /]
-                                [i]Unsupported field.[/i]
-
+     * [b]QuickBooks Notes[/b][br /]
+     * [i]Unsupported field.[/i]
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -258,7 +224,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $EndTime;
     /**
      * @Definition Description of work completed during time
-                                activity.
+     * activity.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -268,7 +234,7 @@ class IPPTimeActivity extends IPPIntuitEntity
     public $Description;
     /**
      * @Definition Internal use only: extension place holder for
-                                TimeActivity.
+     * TimeActivity.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -276,4 +242,27 @@ class IPPTimeActivity extends IPPIntuitEntity
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $TimeActivityEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPTimeActivity', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTimeActivity', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPTimeActivity

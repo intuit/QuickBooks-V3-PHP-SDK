@@ -1867,6 +1867,7 @@
 			<xs:enumeration value="ShipMethod"/>
 			<xs:enumeration value="StatementCharge"/>
 			<xs:enumeration value="TaxCode"/>
+			<xs:enumeration value="TaxClassification"/>
 			<xs:enumeration value="TaxRate"/>
 			<xs:enumeration value="TaxReturn"/>
 			<xs:enumeration value="Term"/>

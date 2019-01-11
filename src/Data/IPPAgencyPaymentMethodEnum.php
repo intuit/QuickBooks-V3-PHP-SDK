@@ -4,14 +4,11 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPPhysicalAddressTypeEnum
- * @var IPPPhysicalAddressTypeEnum
- * @xmlDefinition 
-				Product: ALL
-				Description: Enumeration of type of addresses that the data sync process understands.
-			
+ * @xmlName IPPAgencyPaymentMethodEnum
+ * @var IPPAgencyPaymentMethodEnum
+ * @xmlDefinition Enumeration of payment methods that can be used to pay tax agency
  */
-class IPPPhysicalAddressTypeEnum
+class IPPAgencyPaymentMethodEnum
 	{
 
 		/**                                                                       
@@ -27,7 +24,7 @@ class IPPPhysicalAddressTypeEnum
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPPhysicalAddressTypeEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPhysicalAddressTypeEnum',$initPropName))
+				if (property_exists('IPPAgencyPaymentMethodEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAgencyPaymentMethodEnum',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,4 +42,4 @@ class IPPPhysicalAddressTypeEnum
 		 */
 		public $value;
 
-} // end class IPPPhysicalAddressTypeEnum
+} // end class IPPAgencyPaymentMethodEnum

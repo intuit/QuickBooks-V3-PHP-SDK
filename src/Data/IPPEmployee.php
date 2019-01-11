@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -8,32 +9,10 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPEmployee
  * @xmlDefinition  Describes the Party as a Employee Role view
  */
-class IPPEmployee extends IPPNameBase
+class IPPEmployee
+    extends IPPNameBase
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPEmployee', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEmployee', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition Specifies the Employee type. For QuickBooks Desktop the valid values are defined in the EmployeeTypeEnum.
      * @xmlType element
@@ -45,10 +24,9 @@ class IPPEmployee extends IPPNameBase
     public $EmployeeType;
     /**
      * @Definition Specifies the number of the employee (or account) in the employer's directory.
-                                Length Restriction:
-                                QBO: 15
-                                QBD: 99
-
+     * Length Restriction:
+     * QBO: 15
+     * QBD: 99
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -58,10 +36,9 @@ class IPPEmployee extends IPPNameBase
     public $EmployeeNumber;
     /**
      * @Definition Specifies the SSN of the employee.
-                                Length Restriction:
-                                QBO: 15
-                                QBD: 1024
-
+     * Length Restriction:
+     * QBO: 15
+     * QBD: 1024
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -71,7 +48,6 @@ class IPPEmployee extends IPPNameBase
     public $SSN;
     /**
      * @Definition  Represents primary PhysicalAddress list
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -82,7 +58,6 @@ class IPPEmployee extends IPPNameBase
     public $PrimaryAddr;
     /**
      * @Definition  Represents other PhysicalAddress list
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -93,8 +68,7 @@ class IPPEmployee extends IPPNameBase
     public $OtherAddr;
     /**
      * @Definition BillableTime should be true if this employee’s hours are typically billed to customers. QBO only.
-                                    QBD Unsupported field.
-
+     * QBD Unsupported field.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -104,8 +78,7 @@ class IPPEmployee extends IPPNameBase
     public $BillableTime;
     /**
      * @Definition If BillableTime is true, BillRate can be set to specify this employee’s hourly billing rate. QBO only.
-                                QBD Unsupported field.
-
+     * QBD Unsupported field.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -167,4 +140,36 @@ class IPPEmployee extends IPPNameBase
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $EmployeeEx;
+    /**
+     * @Definition Auto generated Public ID when new employee added to QBO. (ReadOnly)
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName V4IDPseudonym
+     * @var string
+     */
+    public $V4IDPseudonym;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPEmployee', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEmployee', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPEmployee

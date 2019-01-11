@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -11,33 +12,9 @@ namespace QuickBooksOnline\API\Data;
 class IPPSalesFormsPrefs
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPSalesFormsPrefs', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesFormsPrefs', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition
-                        Product:All
-
+     * Product:All
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -47,9 +24,8 @@ class IPPSalesFormsPrefs
     public $UsingProgressInvoicing;
     /**
      * @Definition
-                        Product:QBO
-                        Defines the CustomField definitions
-
+     * Product:QBO
+     * Defines the CustomField definitions
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -60,9 +36,8 @@ class IPPSalesFormsPrefs
     public $CustomField;
     /**
      * @Definition
-                        Product:QBo
-                        Custom Transaction Numbers enabled
-
+     * Product:QBo
+     * Custom Transaction Numbers enabled
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -72,9 +47,8 @@ class IPPSalesFormsPrefs
     public $CustomTxnNumbers;
     /**
      * @Definition
-                        Product:QBO
-                        Enable delayed charges
-
+     * Product:QBO
+     * Enable delayed charges
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -84,9 +58,8 @@ class IPPSalesFormsPrefs
     public $DelayedCharges;
     /**
      * @Definition
-                        Product:QBO
-                        Cc Email Address for Sales forms
-
+     * Product:QBO
+     * Cc Email Address for Sales forms
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -96,9 +69,8 @@ class IPPSalesFormsPrefs
     public $SalesEmailCc;
     /**
      * @Definition
-                        Product:QBO
-                        Bcc Email Address for Sales forms
-
+     * Product:QBO
+     * Bcc Email Address for Sales forms
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -108,8 +80,8 @@ class IPPSalesFormsPrefs
     public $SalesEmailBcc;
     /**
      * @Definition
-                        Product:QBO
-                        Email a Copy to the company for sales form
+     * Product:QBO
+     * Email a Copy to the company for sales form
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -119,9 +91,8 @@ class IPPSalesFormsPrefs
     public $EmailCopyToCompany;
     /**
      * @Definition
-                        Product:QBO
-                        Enable Deposit on Invoice
-
+     * Product:QBO
+     * Enable Deposit on Invoice
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -149,9 +120,8 @@ class IPPSalesFormsPrefs
     public $DefaultDiscountAccount;
     /**
      * @Definition
-                        Product:All
-                        Enable specifying Estimates
-
+     * Product:All
+     * Enable specifying Estimates
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -161,9 +131,8 @@ class IPPSalesFormsPrefs
     public $AllowEstimates;
     /**
      * @Definition
-                        Product:QBO
-                        Message to customers on estimates only
-
+     * Product:QBO
+     * Message to customers on estimates only
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -173,9 +142,8 @@ class IPPSalesFormsPrefs
     public $EstimateMessage;
     /**
      * @Definition
-                        Product:QBO
-                        Specifies ETransaction preference status
-
+     * Product:QBO
+     * Specifies ETransaction preference status
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -185,10 +153,9 @@ class IPPSalesFormsPrefs
     public $ETransactionEnabledStatus;
     /**
      * @Definition
-                        Product:QBO
-                        Specifies whether salesForm PDF should be attached with
-                        ETransaction emails
-
+     * Product:QBO
+     * Specifies whether salesForm PDF should be attached with
+     * ETransaction emails
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -198,9 +165,8 @@ class IPPSalesFormsPrefs
     public $ETransactionAttachPDF;
     /**
      * @Definition
-                        Product:QBO
-                        Specifies whether online payments is activated
-
+     * Product:QBO
+     * Specifies whether online payments is activated
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -210,10 +176,9 @@ class IPPSalesFormsPrefs
     public $ETransactionPaymentEnabled;
     /**
      * @Definition
-                        Product:QBO
-                        IPN integration support enable status, this allows emails to
-                        include IPN link
-
+     * Product:QBO
+     * IPN integration support enable status, this allows emails to
+     * include IPN link
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -223,9 +188,8 @@ class IPPSalesFormsPrefs
     public $IPNSupportEnabled;
     /**
      * @Definition
-                        Product:QBO
-                        Specify Invoice Message
-
+     * Product:QBO
+     * Specify Invoice Message
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -235,9 +199,8 @@ class IPPSalesFormsPrefs
     public $InvoiceMessage;
     /**
      * @Definition
-                        Product:QBO
-                        Enable specifying Service Dates
-
+     * Product:QBO
+     * Enable specifying Service Dates
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -247,9 +210,8 @@ class IPPSalesFormsPrefs
     public $AllowServiceDate;
     /**
      * @Definition
-                        Product:QBO
-                        Enable specifying Shipping Info
-
+     * Product:QBO
+     * Enable specifying Shipping Info
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -259,9 +221,8 @@ class IPPSalesFormsPrefs
     public $AllowShipping;
     /**
      * @Definition
-                        Product:QBO
-                        Default shipping account
-
+     * Product:QBO
+     * Default shipping account
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -271,10 +232,9 @@ class IPPSalesFormsPrefs
     public $DefaultShippingAccount;
     /**
      * @Definition
-                        Product:QBO
-                        Default ItemId Reference type that is selected as part of company
-                        setup
-
+     * Product:QBO
+     * Default ItemId Reference type that is selected as part of company
+     * setup
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -284,9 +244,8 @@ class IPPSalesFormsPrefs
     public $DefaultItem;
     /**
      * @Definition
-                        Product:QBO
-                        Default Terms
-
+     * Product:QBO
+     * Default Terms
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -296,8 +255,7 @@ class IPPSalesFormsPrefs
     public $DefaultTerms;
     /**
      * @Definition Product:QBO Default Delivery Method of Invoice
-                        and other sales forms - Print, Email are normal options
-
+     * and other sales forms - Print, Email are normal options
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -307,9 +265,8 @@ class IPPSalesFormsPrefs
     public $DefaultDeliveryMethod;
     /**
      * @Definition
-                        Product:ALL
-                        Apply Credit Automatically
-
+     * Product:ALL
+     * Apply Credit Automatically
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -319,9 +276,8 @@ class IPPSalesFormsPrefs
     public $AutoApplyCredit;
     /**
      * @Definition
-                        Product:All
-                        Apply Payments Automatically
-
+     * Product:All
+     * Apply Payments Automatically
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -331,9 +287,8 @@ class IPPSalesFormsPrefs
     public $AutoApplyPayments;
     /**
      * @Definition
-                        Product:QBW
-                        Print Item with Zero amount or not
-
+     * Product:QBW
+     * Print Item with Zero amount or not
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -343,12 +298,11 @@ class IPPSalesFormsPrefs
     public $PrintItemWithZeroAmount;
     /**
      * @Definition
-                        Product:QBW
-                        Cloud Max Length: 256
-                        [b]QuickBooks
-                        Notes[/b][br /]
-                        Max Length: 31
-
+     * Product:QBW
+     * Cloud Max Length: 256
+     * [b]QuickBooks
+     * Notes[/b][br /]
+     * Max Length: 31
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -358,10 +312,10 @@ class IPPSalesFormsPrefs
     public $DefaultShipMethodRef;
     /**
      * @Definition
-                        Product:QBW
-                        Default markup rate used to calculate
-                        the markup amount on the transactions. To enter a markup rate of
-                        8.5%, enter 8.5, not 0.085.
+     * Product:QBW
+     * Default markup rate used to calculate
+     * the markup amount on the transactions. To enter a markup rate of
+     * 8.5%, enter 8.5, not 0.085.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -371,8 +325,7 @@ class IPPSalesFormsPrefs
     public $DefaultMarkup;
     /**
      * @Definition
-                        Product:All
-
+     * Product:All
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -382,7 +335,6 @@ class IPPSalesFormsPrefs
     public $TrackReimbursableExpensesAsIncome;
     /**
      * @Definition QBW: used by QB desktop, not used by QBO
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -392,7 +344,6 @@ class IPPSalesFormsPrefs
     public $UsingSalesOrders;
     /**
      * @Definition QBW: used by QB desktop, not used by QBO
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -402,7 +353,6 @@ class IPPSalesFormsPrefs
     public $UsingPriceLevels;
     /**
      * @Definition QBW: used by QB desktop, not used by QBO
-
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -412,9 +362,8 @@ class IPPSalesFormsPrefs
     public $DefaultFOB;
     /**
      * @Definition
-                        Product:QBO
-                        Default Customer message
-
+     * Product:QBO
+     * Default Customer message
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -422,4 +371,27 @@ class IPPSalesFormsPrefs
      * @var string
      */
     public $DefaultCustomerMessage;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPSalesFormsPrefs', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesFormsPrefs', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPSalesFormsPrefs

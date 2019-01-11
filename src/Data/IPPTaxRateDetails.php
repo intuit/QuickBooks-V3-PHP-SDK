@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,40 +8,17 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPTaxRateDetails
  * @var IPPTaxRateDetails
  * @xmlDefinition
-                Product: QBO
-                Description: TaxRate details
+ * Product: QBO
+ * Description: TaxRate details
  */
 class IPPTaxRateDetails
 {
 
 
         /**
-         * Initializes this object, optionally with pre-defined property values
-         *
-         * Initializes this object and it's property members, using the dictionary
-         * of key/value pairs passed as an optional argument.
-         *
-         * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-         * @param boolean    $verbose            specifies whether object should echo warnings
-         */
-    public function __construct($keyValInitializers = [], $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPTaxRateDetails', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxRateDetails', $initPropName)) {
-                    $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                        echo "Property does not exist ($initPropName) in class (".get_class($this).')';
-                }
-            }
-        }
-    }//end __construct()
-
-    /**
      * @Definition
-                        Product: QBO
-                        Description: TaxRate details
-
+     * Product: QBO
+     * Description: TaxRate details
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -48,13 +26,11 @@ class IPPTaxRateDetails
      * @xmlName TaxRateName
      * @var string
      */
-    public $TaxRateName;
-
+    public $TaxRateName;//end __construct()
     /**
      * @Definition
-                        Product: QBO
-                        Description: TaxRate details
-
+     * Product: QBO
+     * Description: TaxRate details
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -63,12 +39,10 @@ class IPPTaxRateDetails
      * @var string
      */
     public $TaxRateId;
-
     /**
      * @Definition
-                        Product: QBO
-                        Description: TaxRate value
-
+     * Product: QBO
+     * Description: TaxRate value
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -77,12 +51,10 @@ class IPPTaxRateDetails
      * @var float
      */
     public $RateValue;
-
     /**
      * @Definition
-                        Product: QBO
-                        Description: TaxAgency details
-
+     * Product: QBO
+     * Description: TaxAgency details
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -91,12 +63,10 @@ class IPPTaxRateDetails
      * @var string
      */
     public $TaxAgencyId;
-
     /**
      * @Definition
-                        Product: QBO
-                        Description: Default is SalesTax
-
+     * Product: QBO
+     * Description: Default is SalesTax
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -105,6 +75,28 @@ class IPPTaxRateDetails
      * @var com\intuit\schema\finance\v3\IPPTaxRateApplicableOnEnum
      */
     public $TaxApplicableOn;
+
+/**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = [], $verbose = false)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPTaxRateDetails', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxRateDetails', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose) {
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ')';
+                }
+            }
+        }
+    }
 }//end class
 
- // end class IPPTaxRateDetails
+// end class IPPTaxRateDetails

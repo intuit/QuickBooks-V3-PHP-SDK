@@ -1,4 +1,5 @@
 <?php
+
 namespace QuickBooksOnline\API\Data;
 
 /**
@@ -7,53 +8,28 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPLine
  * @var IPPLine
  * @xmlDefinition
-                Product: ALL
-                Description: A line item of a
-                transaction.
-
+ * Product: ALL
+ * Description: A line item of a
+ * transaction.
  */
 class IPPLine
 {
 
-        /**
-        * Initializes this object, optionally with pre-defined property values
-        *
-        * Initializes this object and it's property members, using the dictionary
-        * of key/value pairs passed as an optional argument.
-        *
-        * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
-        * @param boolean $verbose specifies whether object should echo warnings
-        */
-    public function __construct($keyValInitializers = array(), $verbose = false)
-    {
-        foreach ($keyValInitializers as $initPropName => $initPropVal) {
-            if (property_exists('IPPLine', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPLine', $initPropName)) {
-                $this->{$initPropName} = $initPropVal;
-            } else {
-                if ($verbose) {
-                    echo "Property does not exist ($initPropName) in class (".get_class($this).")";
-                }
-            }
-        }
-    }
-
-    
     /**
      * @Definition
-                        Product: QBW
-                        Description: ID of the Line Item.
-                        Product: QBO
-                        Description: ID of the Line Item.[br /]QBO considers a
-                        request as an update operation for a line item, if you provide an
-                        ID that is greater than zero and the ID exists in QBO.[br /]QBO
-                        considers a request as an create operation for a line item in any
-                        of the following conditions: No ID provided, ID provided is less
-                        than or equal to zero, ID provided is greater than zero and does
-                        not exist in QuickBooks.[br /]Required for updating existing
-                        lines.[br /]Not supported for BillPayment, Estimate, Invoice, or
-                        Payment.
-                        Required: QBO
-
+     * Product: QBW
+     * Description: ID of the Line Item.
+     * Product: QBO
+     * Description: ID of the Line Item.[br /]QBO considers a
+     * request as an update operation for a line item, if you provide an
+     * ID that is greater than zero and the ID exists in QBO.[br /]QBO
+     * considers a request as an create operation for a line item in any
+     * of the following conditions: No ID provided, ID provided is less
+     * than or equal to zero, ID provided is greater than zero and does
+     * not exist in QuickBooks.[br /]Required for updating existing
+     * lines.[br /]Not supported for BillPayment, Estimate, Invoice, or
+     * Payment.
+     * Required: QBO
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -63,11 +39,10 @@ class IPPLine
     public $Id;
     /**
      * @Definition
-                        Product: QBW
-                        Description: Specifies the position
-                        of the line in the collection of transaction lines. Supported only
-                        for QuickBooks Windows desktop.
-
+     * Product: QBW
+     * Description: Specifies the position
+     * of the line in the collection of transaction lines. Supported only
+     * for QuickBooks Windows desktop.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -77,16 +52,15 @@ class IPPLine
     public $LineNum;
     /**
      * @Definition
-                        Product: QBO
-                        Description: Free form text
-                        description of the line item that appears in the printed
-                        record.[br /]Max. length: 4000 characters.[br /]Not supported for
-                        BillPayment or Payment.
-                        Product: QBW
-                        Description: Free form text
-                        description of the line item that appears in the printed record.
-                        Max. length: 4000 characters.
-
+     * Product: QBO
+     * Description: Free form text
+     * description of the line item that appears in the printed
+     * record.[br /]Max. length: 4000 characters.[br /]Not supported for
+     * BillPayment or Payment.
+     * Product: QBW
+     * Description: Free form text
+     * description of the line item that appears in the printed record.
+     * Max. length: 4000 characters.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -96,19 +70,18 @@ class IPPLine
     public $Description;
     /**
      * @Definition
-                        Product: QBW
-                        Description: The amount of the line,
-                        which depends on the type of the line. It can represent the
-                        discount amount, charge amount, tax amount, or subtotal amount
-                        based on the line type detail.
-                        Product: QBO
-                        Description: The amount
-                        of the line depending on the type of the line. It can represent
-                        the discount amount, charge amount, tax amount, or subtotal amount
-                        based on the line type detail.[br /]Required for BillPayment,
-                        Check, Estimate, Invoice, JournalEntry, Payment, SalesReceipt.
-                        Required: QBO
-
+     * Product: QBW
+     * Description: The amount of the line,
+     * which depends on the type of the line. It can represent the
+     * discount amount, charge amount, tax amount, or subtotal amount
+     * based on the line type detail.
+     * Product: QBO
+     * Description: The amount
+     * of the line depending on the type of the line. It can represent
+     * the discount amount, charge amount, tax amount, or subtotal amount
+     * based on the line type detail.[br /]Required for BillPayment,
+     * Check, Estimate, Invoice, JournalEntry, Payment, SalesReceipt.
+     * Required: QBO
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -118,11 +91,10 @@ class IPPLine
     public $Amount;
     /**
      * @Definition
-                        Product: ALL
-                        Description: A link between this line
-                        and a specific transaction. For example, an invoice line may link
-                        to an estimate.
-
+     * Product: ALL
+     * Description: A link between this line
+     * and a specific transaction. For example, an invoice line may link
+     * to an estimate.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -133,11 +105,10 @@ class IPPLine
     public $LinkedTxn;
     /**
      * @Definition
-                        Product: ALL
-                        Description: The type of line in the
-                        transaction.[br /]
-                        Required: ALL
-
+     * Product: ALL
+     * Description: The type of line in the
+     * transaction.[br /]
+     * Required: ALL
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -148,10 +119,9 @@ class IPPLine
     public $DetailType;
     /**
      * @Definition
-                            Product: ALL
-                            Description: PaymentDetail type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: PaymentDetail type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName PaymentLineDetail
@@ -160,10 +130,9 @@ class IPPLine
     public $PaymentLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: DiscountDetail type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: DiscountDetail type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName DiscountLineDetail
@@ -172,10 +141,9 @@ class IPPLine
     public $DiscountLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: SalesTaxDetail type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: SalesTaxDetail type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName TaxLineDetail
@@ -184,10 +152,9 @@ class IPPLine
     public $TaxLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: SalesItem type for the
-                            transaction.
-
+     * Product: ALL
+     * Description: SalesItem type for the
+     * transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName SalesItemLineDetail
@@ -196,10 +163,9 @@ class IPPLine
     public $SalesItemLineDetail;
     /**
      * @Definition
-                            Product: QBW
-                            Description: Custom field (or data
-                            extension). Supported only for QuickBooks Windows desktop.
-
+     * Product: QBW
+     * Description: Custom field (or data
+     * extension). Supported only for QuickBooks Windows desktop.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName DescriptionLineDetail
@@ -208,10 +174,9 @@ class IPPLine
     public $DescriptionLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: ExpenseItem type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: ExpenseItem type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName ItemBasedExpenseLineDetail
@@ -220,10 +185,9 @@ class IPPLine
     public $ItemBasedExpenseLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: AccountExpense type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: AccountExpense type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName AccountBasedExpenseLineDetail
@@ -232,10 +196,9 @@ class IPPLine
     public $AccountBasedExpenseLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: Deposit type for the
-                            transaction.
-
+     * Product: ALL
+     * Description: Deposit type for the
+     * transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName DepositLineDetail
@@ -244,10 +207,9 @@ class IPPLine
     public $DepositLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: PurchaseOrderItem type
-                            for the transaction.
-
+     * Product: ALL
+     * Description: PurchaseOrderItem type
+     * for the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName PurchaseOrderItemLineDetail
@@ -256,10 +218,9 @@ class IPPLine
     public $PurchaseOrderItemLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: SalesOrderItem type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: SalesOrderItem type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName SalesOrderItemLineDetail
@@ -268,10 +229,9 @@ class IPPLine
     public $SalesOrderItemLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: ItemReceipt type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: ItemReceipt type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName ItemReceiptLineDetail
@@ -280,10 +240,9 @@ class IPPLine
     public $ItemReceiptLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: JournalEntry type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: JournalEntry type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName JournalEntryLineDetail
@@ -292,10 +251,9 @@ class IPPLine
     public $JournalEntryLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: GroupLine type for the
-                            transaction.
-
+     * Product: ALL
+     * Description: GroupLine type for the
+     * transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName GroupLineDetail
@@ -304,10 +262,9 @@ class IPPLine
     public $GroupLineDetail;
     /**
      * @Definition
-                            Product: ALL
-                            Description: SubTotalLine type for
-                            the transaction.
-
+     * Product: ALL
+     * Description: SubTotalLine type for
+     * the transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName SubTotalLineDetail
@@ -316,10 +273,9 @@ class IPPLine
     public $SubTotalLineDetail;
     /**
      * @Definition
-                            Product: QBO
-                            Description: TDS line type for the
-                            transaction.
-
+     * Product: QBO
+     * Description: TDS line type for the
+     * transaction.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlName TDSLineDetail
@@ -328,10 +284,9 @@ class IPPLine
     public $TDSLineDetail;
     /**
      * @Definition
-                        Product: QBW
-                        Description: Custom field (or data
-                        extension). Supported only for QuickBooks Windows desktop.
-
+     * Product: QBW
+     * Description: Custom field (or data
+     * extension). Supported only for QuickBooks Windows desktop.
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -342,10 +297,9 @@ class IPPLine
     public $CustomField;
     /**
      * @Definition
-                        Product: ALL
-                        Description: Internal use only:
-                        extension place holder for LineBase
-
+     * Product: ALL
+     * Description: Internal use only:
+     * extension place holder for LineBase
      * @xmlType element
      * @xmlNamespace http://schema.intuit.com/finance/v3
      * @xmlMinOccurs 0
@@ -353,4 +307,27 @@ class IPPLine
      * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
      */
     public $LineEx;
+
+    /**
+     * Initializes this object, optionally with pre-defined property values
+     *
+     * Initializes this object and it's property members, using the dictionary
+     * of key/value pairs passed as an optional argument.
+     *
+     * @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+     * @param boolean $verbose specifies whether object should echo warnings
+     */
+    public function __construct($keyValInitializers = array(), $verbose = FALSE)
+    {
+        foreach ($keyValInitializers as $initPropName => $initPropVal) {
+            if (property_exists('IPPLine', $initPropName) || property_exists('QuickBooksOnline\API\Data\IPPLine', $initPropName)) {
+                $this->{$initPropName} = $initPropVal;
+            } else {
+                if ($verbose)
+                    echo "Property does not exist ($initPropName) in class (" . get_class($this) . ")";
+            }
+        }
+    }
+
+
 } // end class IPPLine
