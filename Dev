@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.0.27
+
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit
