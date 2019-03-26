@@ -31,6 +31,7 @@
     <xs:element name="Class" type="Class" substitutionGroup="IntuitObject"/>
     <xs:element name="TimeActivity" type="TimeActivity" substitutionGroup="IntuitObject"/>
     <xs:element name="Item" type="Item" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxClassification" type="TaxClassification" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxCode" type="TaxCode" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxReturn" type="TaxReturn" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxRate" type="TaxRate" substitutionGroup="IntuitObject"/>
