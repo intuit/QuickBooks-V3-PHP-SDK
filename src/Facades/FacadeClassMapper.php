@@ -155,11 +155,13 @@ class FacadeClassMapper
          'PayeeAddr' => 'PhysicalAddress',
          'VendorAddr' => 'PhysicalAddress',
          'PrimaryAddr' => 'PhysicalAddress',
+         'ShipFromAddr' => 'PhysicalAddress',
          'BillEmail' => 'EmailAddress',
          'BillEmailCc' => 'EmailAddress',
          'BillEmailBcc' => 'EmailAddress',
          'ReplyEmail' => 'EmailAddress',
          'POEmail' => 'EmailAddress',
+         'SalesEmailCc' => 'EmailAddress',
          //CCDetail was mapped to different entity on BillPaymentCreditCard
          'CCDetail' => 'CreditChargeInfo',
          'PrimaryPhone' => 'TelephoneNumber',
