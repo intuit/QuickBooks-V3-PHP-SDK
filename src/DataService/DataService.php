@@ -653,7 +653,7 @@ class DataService
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             } catch (\Exception $e) {
-                return new Excepiton("Exception in deserialize ResponseBody.");
+                return new \Exception("Exception in deserialize ResponseBody.");
             }
 
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Finished Executing Method " . $CALLINGMETHOD);
