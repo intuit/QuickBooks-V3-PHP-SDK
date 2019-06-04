@@ -5,7 +5,9 @@
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
     "homepage": "http://developer.intuit.com",
     "require": {
-        "php": ">=5.6.0"
+        "php": ">=5.6.0",
+        "ext-mbstring": "*",
+        "ext-dom": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
@@ -21,5 +23,9 @@
             "name": "hlu2",
             "email": "Hao_Lu@intuit.com"
         }
-    ]
+    ],
+    "suggest": {
+        "ext-curl": "Uses Curl to make HTTP Requests",
+        "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
+    }
 }

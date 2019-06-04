@@ -99,6 +99,7 @@
 			<xs:enumeration value="Discount" />
 			<xs:enumeration value="Tax" />
 			<xs:enumeration value="Tax Group" />
+			<xs:enumeration value="Bundle"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="CustomerTypeEnum">
@@ -615,6 +616,15 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="EstimatedTaxes">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description:  Use Estimated taxes to track estimated tax payments
+						you make to the IRS.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="ExchangeGainOrLoss">
 				<xs:annotation>
 					<xs:documentation>
@@ -641,6 +651,69 @@
 					<xs:documentation>
 						Product: QBO
 						Description: Finance Costs.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetComputers">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - computers for the cost of computers
+						and peripherals you buy for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetCopiers">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - copiers for the cost of copy
+						equipment you use for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetFurniture">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - furniture for the cost of furniture
+						you buy for your workspace.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetPhone">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - phone for phone equipment you use for
+						 work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetPhotoVideo">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - photo/video for cameras, photography,
+						 and video equipment you buy for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetSoftware">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - software for apps, software, and web
+						services.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FixedAssetOtherToolsEquipment">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Fixed asset - other tools/equipment for the cost of
+						 tools and equipment needed for work.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -679,6 +752,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="GasAndFuel">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Gas and fuel for gas and fuel costs when driving for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="Goodwill">
 				<xs:annotation>
 					<xs:documentation>
@@ -689,6 +770,41 @@
 						favorable government relations, business name, outstanding credit
 						ratings, location, superior management, customer lists, product
 						quality, or good labor relations.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Gratuity">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Undistributed Tips to track voluntary gratuity
+						(not mandatory tips/service fees).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Healthcare">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Healthcare to track expenses you pay for health
+						insurance or contributions to a health savings account.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Home office to track expenses for your home office.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HomeownerRentalInsurance">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description:  Use Homeowner/rental insurance to track the cost of
+						homeowner's or rental insurance when you have a home office.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -926,6 +1042,16 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="MortgageInterestHomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Mortgage interest (home office) for interest
+						charged on your mortgage when you own your home and have a home
+						office.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="NonProfitIncome">
 				<xs:annotation>
 					<xs:documentation>
@@ -979,6 +1105,15 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="OtherBusinessExpenses">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Other business expenses for the costs for goods
+						and services that don't fit in other categories.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="OtherCostsOfServiceCos">
 				<xs:annotation>
 					<xs:documentation>
@@ -1018,6 +1153,15 @@
 						assets are physical property you use in your business and do not
 						expect to convert to cash or be used up during one year of normal
 						operations.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OtherHomeOfficeExpenses">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Other home office expenses for expenses for your
+						home office that don't fit into other home office categories.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -1091,6 +1235,15 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="OtherVehicleExpenses">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Other vehicle expenses for vehicle expenses that
+						don't fit into any of the other vehicle categories.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="OwnersEquity">
 				<xs:annotation>
 					<xs:documentation>
@@ -1109,6 +1262,15 @@
 						Capital to track amounts received from shareholders in exchange
 						for stock that are over and above the stock's stated (or par)
 						value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ParkingAndTolls">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description:  Use Parking and tolls for parking and toll fees
+						when driving for work.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -1186,6 +1348,22 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="PersonalExpense">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Personal to track personal expense.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PersonalIncome">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Personal to track personal income.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="PreferredStock">
 				<xs:annotation>
 					<xs:documentation>
@@ -1231,6 +1409,15 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="RentAndLeaseHomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Rent and lease (home office) for the cost of rent
+						or lease of your home when you have a home office.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="RentOrLeaseOfBuildings">
 				<xs:annotation>
 					<xs:documentation>
@@ -1260,6 +1447,16 @@
 						They do not belong to your business, so should not appear to be
 						yours on your balance sheet. This "contra" account takes care of
 						that, as long as the two balances match.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RepairsAndMaintainceHomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Repairs and maintenance (home office) for the cost
+						of repair and upkeep of your home office, as long as it doesn't
+						add value.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -1538,6 +1735,79 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="UtilitiesHomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Utilities (home office) for the cost of utilities
+						for your home office. Don't use for home landline phone service or
+						personal mobile phone use.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Vehicle">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle to track costs associated with vehicles
+						you drive for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleInsurance">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle insurance to track the cost of insurance
+						for the vehicle you use for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleLease">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle lease to track leasing costs for the
+						vehicle you use for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleLoan">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle loan for the principal portion of a
+						payment on your work vehicle loan.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleLoanInterest">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle loan interest for interest on your work
+						vehicle loan.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleRegistration">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle registration for registration fees for
+						the vehicle you drive for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VehicleRepairs">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Vehicle repairs for the cost to repair the vehicle
+						you drive for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="Vehicles">
 				<xs:annotation>
 					<xs:documentation>
@@ -1551,10 +1821,19 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="WashAndRoadServices">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Wash and road services for car wash and road
+						service costs when driving for work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="WithholdingTaxSales">
 				<xs:annotation>
 					<xs:documentation>
-						Product: QBO 
+						Product: QBO
 						Description: Use Withholding Tax Sales to track the income you have received with a withholding product/service.
 					</xs:documentation>
 				</xs:annotation>
@@ -1562,7 +1841,7 @@
 			<xs:enumeration value="WithholdingTaxPurchases">
 				<xs:annotation>
 					<xs:documentation>
-						Product: QBO 
+						Product: QBO
 						Description: Use Withholding Tax Purchases to track the expenses you have incurred with a withholding account/item.
 					</xs:documentation>
 				</xs:annotation>
@@ -1570,7 +1849,7 @@
 			<xs:enumeration value="WithholdingAssetAmount">
 				<xs:annotation>
 					<xs:documentation>
-						Product: QBO 
+						Product: QBO
 						Description: Use Withholding Asset account to track the withholding balance as an asset for the company.
 					</xs:documentation>
 				</xs:annotation>
@@ -1578,7 +1857,7 @@
 			<xs:enumeration value="WithholdingLiabilityAmount">
 				<xs:annotation>
 					<xs:documentation>
-						Product: QBO 
+						Product: QBO
 						Description: Use Withholding Liability account track the withholding balance as a liability for the company.
 					</xs:documentation>
 				</xs:annotation>
@@ -1586,7 +1865,7 @@
 			<xs:enumeration value="WithholdingTaxSuspense">
 				<xs:annotation>
 					<xs:documentation>
-						Product: QBO 
+						Product: QBO
 						Description: Use Withholding Tax Suspense to track the withheld amount owed to HMRC by the company.
 					</xs:documentation>
 				</xs:annotation>
@@ -3473,6 +3752,18 @@
  			<xs:enumeration value="AGENCY_PAYMENT_COMPLETED" />
  		</xs:restriction>
  	</xs:simpleType>
+ 	<xs:simpleType name="AgencyPaymentMethodEnum">
+ 		<xs:annotation>
+ 			<xs:documentation>Enumeration of payment methods that can be used to pay tax agency</xs:documentation>
+ 		</xs:annotation>
+ 		<xs:restriction base="xs:string">
+ 			<xs:enumeration value="ACH_CREDIT" />
+ 			<xs:enumeration value="ACH_DEBIT" />
+ 			<xs:enumeration value="CHECK" />
+ 			<xs:enumeration value="WIRE" />
+ 			<xs:enumeration value="OTHER" />
+ 		</xs:restriction>
+ 	</xs:simpleType>
 
 	<!-- ============================================================================== -->
 	<!--Group definitions in the Finance Domain -->
@@ -4212,6 +4503,15 @@
 								document</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="FifoCalculationStatus" type="FifoCalculationStatus"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Status of the Inventory Lots and Accounts Calculation for STQ imported company.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element minOccurs="0" maxOccurs="1" name="CompanyInfoEx"
 						type="IntuitAnyType">
 						<xs:annotation>
@@ -4615,7 +4915,20 @@
                                                         </xs:documentation>
                                                 </xs:annotation>
                                         </xs:element>
-					<xs:element name="RemitToRef" type="ReferenceType"
+			                <xs:element name="ShipFromAddr" type="PhysicalAddress"
+                                                minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation>
+                                                                Product: ALL
+                                                                Description: QBO: Shipping from address
+                                                                of the Invoice.[br]See [a
+                                                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+                                                                Description: QBW: Identifies the address where the goods are shipped
+                                                                from. For transactions without shipping, it represents the address where the sale took place.
+                                                        </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                         		<xs:element name="RemitToRef" type="ReferenceType"
 						minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
@@ -5202,8 +5515,8 @@
 							<xs:documentation>
 								Product: QBO
 								Description: provides invoice statuses :
-								MULTIPLE_ERRORS, DEPOSIT_ON_HOLD, DISPUTED, DEPOSIT_FAILED, PAYMENT_FAILED, 
-								OVERDUE_VIEWED, OVERDUE_NOT_SENT, OVERDUE_SENT, 
+								MULTIPLE_ERRORS, DEPOSIT_ON_HOLD, DISPUTED, DEPOSIT_FAILED, PAYMENT_FAILED,
+								OVERDUE_VIEWED, OVERDUE_NOT_SENT, OVERDUE_SENT,
 								DUE_VIEWED, DUE_NOT_SENT, DUE_SENT,
 								PAID_NOT_DEPOSITED, PARTIALLY_PAID, DEPOSITED, VOIDED, REVERSED
 							</xs:documentation>
@@ -5235,6 +5548,23 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="LessCIS" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO: Indicates the
+								less cis amount of the transaction, specific to UK region companies
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InvoiceLink" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO:  Sharable link of the invoice for external users
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -5250,6 +5580,15 @@
 						minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Extension entity for SalesReceipt
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LessCIS" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO: Indicates the
+								less cis amount of the transaction, specific to UK region companies
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -7493,7 +7832,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: ALL
-						Description: An account associated with markup info. 
+						Description: An account associated with markup info.
 						Cannot be updated or modified.
 					</xs:documentation>
 				</xs:annotation>
@@ -8121,6 +8460,15 @@
 								Purchase.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="LessCIS" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO: Indicates the
+								less cis amount of the transaction, specific to UK region companies
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -8298,6 +8646,15 @@
 								Bill.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="LessCIS" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO: Indicates the
+								less cis amount of the transaction, specific to UK region companies
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -8335,8 +8692,8 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- ========================================================================================================= 
-		Please don't expose this object externally, this object should ONLY be used 
+	<!-- =========================================================================================================
+		Please don't expose this object externally, this object should ONLY be used
 		for publishing JMS events ========================================================================================================= -->
 	<xs:complexType name="StatementCharge">
 		<xs:annotation>
@@ -8842,6 +9199,11 @@
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for
 								DepartmentEx extensible element </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Address" type="PhysicalAddress" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Address of the Department</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -9456,6 +9818,34 @@
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for
 								Item</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxClassificationRef" type="ReferenceType"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Reference to the
+								SalesTaxCode for this item.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UQCDisplayText" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Unit of measure (UQC) text to be displayed for this line item in Invoice/Sales forms.
+								Applicable for IN Region.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UQCId" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Unit of measure for this line item as per the standard unit (UQC) defined under the GST rule. Example: KGS- kilograms, MTR- metres, SQF-  square feet. It will be shown in GSTR1 report.
+								Applicable for IN Region.
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -11225,7 +11615,7 @@
 				minOccurs="0" />
 			<xs:element name="PartnerTaxEnabled" type="xs:boolean"
 				minOccurs="0" />
-			<xs:element name="HideTaxManagement" type="xs:boolean" 
+			<xs:element name="HideTaxManagement" type="xs:boolean"
 				minOccurs="0" />
 			<xs:choice>
 				<xs:element name="TaxGroupCodeRef" type="ReferenceType"
@@ -12961,8 +13351,8 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<!-- ========================================================================================================= 
-		Please don't expose this object externally, this object should ONLY be used 
+	<!-- =========================================================================================================
+		Please don't expose this object externally, this object should ONLY be used
 		for publishing JMS events ========================================================================================================= -->
 	<xs:complexType name="ReimburseCharge">
 		<xs:annotation>
@@ -12990,8 +13380,8 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- ========================================================================================================= 
-		Please don't expose this object externally, this object should ONLY be used 
+	<!-- =========================================================================================================
+		Please don't expose this object externally, this object should ONLY be used
 		for publishing JMS events ========================================================================================================= -->
 	<xs:complexType name="ChargeCredit">
 		<xs:annotation>
@@ -13125,6 +13515,21 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="AgencyPaymentDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Date when actual payment to agency occurs
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgencyPaymentAmount" type="xs:decimal"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the payment amount paid to tax agency
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="NetTaxAmountDue" type="xs:decimal"
 						minOccurs="0">
 						<xs:annotation>
@@ -13165,6 +13570,30 @@
  							</xs:documentation>
  						</xs:annotation>
  					</xs:element>
+ 					<xs:element name="TaxReturnEFilingFailureReason" type="xs:string" minOccurs="0">
+ 						<xs:annotation>
+ 							<xs:documentation>
+ 								Product: QBO
+ 								Description: Represents the failure reason of tax return e-filing with agency
+ 							</xs:documentation>
+ 						</xs:annotation>
+ 					</xs:element>
+ 					<xs:element name="EFileErrorFixByDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Last Date to rectify e-filing errors so that it can be filed in same period.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+ 					<xs:element name="AgencyPaymentMethod" type="AgencyPaymentMethodEnum" minOccurs="0">
+ 						<xs:annotation>
+ 							<xs:documentation>
+ 								Product: QBO
+ 								Description: Represents the payment method used while e-filing tax return with agency
+ 							</xs:documentation>
+ 						</xs:annotation>
+ 					</xs:element>
  					<xs:element name="TaxReturnCode" type="xs:string" minOccurs="0">
  						<xs:annotation>
  							<xs:documentation>
@@ -13181,7 +13610,7 @@
 		<xs:annotation>
 			<xs:documentation>
 				Product: QBO
-				Description: Log of Statuses for Transactions. Currently is used for Invoice. Can be extended to others.								
+				Description: Log of Statuses for Transactions. Currently is used for Invoice. Can be extended to others.
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
@@ -13210,5 +13639,29 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TaxClassification">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Tax classification segregates different items into different classifications and the tax
+				classification is one of the key parameters to determine appropriate tax on transactions involving items.
+				Tax classifications are sourced by either tax governing authorities as in India/Malaysia or externally like Exactor.
+				"Fuel", "Garments" and "Soft drinks" are a few examples of tax classification in layman terms.
+				User can choose a specific tax classification for an item while creating it.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+			<xs:sequence>
+				<xs:element name="Code" type="xs:string" minOccurs="0"/>
+				<xs:element name="Name" type="xs:string" minOccurs="0"/>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+				<xs:element name="Level" type="xs:string" minOccurs="0"/>
+				<xs:element name="ParentRef" type="ReferenceType" minOccurs="0"/>
+				<xs:element name="ApplicableTo" type="ItemTypeEnum" minOccurs="0"  maxOccurs="unbounded"/>
+			</xs:sequence>
+		 </xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 </xs:schema>

@@ -1,19 +1,4 @@
 <?php
-/*******************************************************************************
- * Copyright (c) 2017 Intuit
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Exception\SdkException;
@@ -22,7 +7,7 @@ use QuickBooksOnline\API\Exception\SdkException;
  * Class BaseCurl
  *
  * A Http Client using PHP cURL extension to send HTTP/HTTPS request to QuickBooks Online
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class BaseCurl{
@@ -81,7 +66,7 @@ class BaseCurl{
 
   /**
    * Send the request
-   * @return the HTTP result
+   * @return mixed <b>TRUE</b> on success or <b>FALSE</b> on failure. However, if the <b>CURLOPT_RETURNTRANSFER</b>
    */
   public function execute(){
     if($this->isCurlSet()){
@@ -116,11 +101,23 @@ class BaseCurl{
   }
 
   /**
-   * retrun the curl Version
-   * @return curl version
+   * Set the curl TLS Version and check if TLS 1.2 is supported
+   * @return int TLSversion
    */
-  public function version(){
-      return curl_version();
+  public function versionOfTLS(){
+      $tlsVersion = "";
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, "https://www.howsmyssl.com/a/check");
+      curl_setopt($curl, CURLOPT_SSLVERSION, 6);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      $curlVersionResponse = curl_exec($curl);
+      if($curlVersionResponse === false){
+         throw new SdkException("Error in checking cURL version for TLS 1.2. Error Num:[" . curl_errno($curl) . "] Error message:[" . curl_error($curl) . "]");
+      }else{
+         $tlsVersion = json_decode($curlVersionResponse)->tls_version;
+      }
+      curl_close($curl);
+      return $tlsVersion;
   }
 
   /**

@@ -17,14 +17,14 @@
 namespace QuickBooksOnline\API\Core\OAuth\OAuth2;
 
 use QuickBooksOnline\API\Exception\SdkException;
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 
 /**
  * Class OAuth2AccessToken
  *
  * A helper class to store the OAuth 2 Token related information
  *
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class OAuth2AccessToken{
@@ -104,8 +104,8 @@ class OAuth2AccessToken{
      * @param String $cS                       The Client Secret
      * @param String $atk                      The OAuth 2 Access Token generated from Client ID, Client Secret.
      * @param String $refreshtk                The OAuth 2 Refresh Token generated from Client ID, Client Secret.
-     * @param Long   $atei                     The number of seconds that access token expired. Always 3600 seconds.
-     * @param Long   $refreshtei               The number of seconds that refresh token expired. Always 8726400 seconds.
+     * @param int    $atei                     The number of seconds that access token expired. Always 3600 seconds.
+     * @param int    $refreshtei               The number of seconds that refresh token expired. Always 8726400 seconds.
      * @param String $tk                       The token type. Always bearer, unless specified.
      */
     public function __construct($cID, $cS, $atk = null, $refreshtk = null, $atei = null, $refreshtei = null, $tk = "bearer"){
@@ -136,7 +136,7 @@ class OAuth2AccessToken{
 
     /**
      * Set the realmID associated with this Acess Token
-     * @param Long $realmID            The realmID for the access token
+     * @param string $realmID            The realmID for the access token
      */
     public function setRealmID($realmID){
       $this->realmID = $realmID;
@@ -144,7 +144,7 @@ class OAuth2AccessToken{
 
     /**
      * Set the baseURL associated with this Acess Token
-     * @param Long $realmID            The realmID for the access token
+     * @param string $baseUrl            The base URL
      */
     public function setBaseURL($baseURL){
       if(strcasecmp($baseURL, CoreConstants::DEVELOPMENT_SANDBOX) == 0){
@@ -178,7 +178,7 @@ class OAuth2AccessToken{
     /**
      * Set the expiration date of access token.
      * The implementation of Quickbooks Online OAuth 2 is short access token, short refresh token. So this method is not useful.
-     * @param Date $date            The acutal expiration date of Access Token.
+     * @param string $date            The acutal expiration date of Access Token.
      */
     public function setAccessTokenExpiresAt($date){
       $this->accessTokenExpiresAt = $date;
@@ -187,7 +187,7 @@ class OAuth2AccessToken{
     /**
      * Set the expiration date of refresh token.
      * The implementation of Quickbooks Online OAuth 2 is short access token, short refresh token. So this method is not useful.
-     * @param Date $date            The acutal expiration date of refresh Token.
+     * @param string $date            The acutal expiration date of refresh Token.
      */
     public function setRefreshTokenExpiresAt($date){
       $this->refreshTokenExpiresAt = $date;
@@ -195,7 +195,7 @@ class OAuth2AccessToken{
 
     /**
      * Check if the access token is set.
-     * @return Booelan
+     * @return bool
      */
     public function isAccessTokenSet(){
        if(isset($this->accessTokenKey) && !empty($this->accessTokenKey)){
@@ -207,7 +207,7 @@ class OAuth2AccessToken{
 
     /**
      * Check if the refresh token is set.
-     * @return Booelan
+     * @return bool
      */
     public function isFreshTokenSet(){
       if(isset($this->refresh_token) && !empty($this->refresh_token)){
@@ -260,7 +260,7 @@ class OAuth2AccessToken{
 
     /**
      * Return the expiration date of refresh Token
-     * @return Date
+     * @return int
      */
     public function getRefreshTokenExpiresAt(){
       if(!empty($this->refreshTokenExpiresAt))
@@ -339,9 +339,9 @@ class OAuth2AccessToken{
 
     /**
      * Update an access token after creating a new access token or making a refresh tokan API call
-     * @param Long     $tokenExpiresTime          The number of seconds that access token expired. Always 3600 seconds.
+     * @param int      $tokenExpiresTime          The number of seconds that access token expired. Always 3600 seconds.
      * @param String   $refreshToken              The OAuth 2 Refresh Token returned from refresh token API call or generated from a new request.
-     * @param Long     $refreshTokenExpiresTime   The number of seconds that refresh token expired. Always 8726400 seconds.
+     * @param int      $refreshTokenExpiresTime   The number of seconds that refresh token expired. Always 8726400 seconds.
      * @param String   $accessToken               The OAuth 2 Access Token returned from refresh token API call or generated from a new request.
      */
     public function updateAccessToken($tokenExpiresTime, $refreshToken, $refreshTokenExpiresTime, $accessToken){
@@ -355,8 +355,8 @@ class OAuth2AccessToken{
 
     /**
      * A helper function to convert Seconds to date
-     * @param  Integer  $second
-     * @return Date
+     * @param  int  $second
+     * @return string
      */
     private function getDateFromSeconds($seconds){
       return date('Y/m/d H:i:s', $seconds);

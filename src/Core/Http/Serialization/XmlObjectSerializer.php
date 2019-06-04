@@ -2,9 +2,11 @@
 
 namespace QuickBooksOnline\API\Core\Http\Serialization;
 
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
+use QuickBooksOnline\API\Diagnostics\Logger;
 
 /**
  * Xml Serialize(r) to serialize and de serialize.
@@ -14,7 +16,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * IDS Logger
-     * @var ILogger
+     * @var Logger
      */
     public $IDSLogger;
 
@@ -28,14 +30,14 @@ class XmlObjectSerializer extends IEntitySerializer
     /**
      * Marshall a POPO object to XML, presumably for inclusion on an IPP v3 API call
      *
-     * @param POPOObject $phpObj inbound POPO object
+     * @param mixed POPOObject $phpObj inbound POPO object
      * @return string XML output derived from POPO object
      */
     private static function getXmlFromObj($phpObj)
     {
         if (!$phpObj) {
-            echo "getXmlFromObj NULL arg\n";
-            var_dump(debug_backtrace());
+            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the xmlFromObj.");
+            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . implode("\n", debug_backtrace()));
             return false;
         }
 
@@ -44,12 +46,10 @@ class XmlObjectSerializer extends IEntitySerializer
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (Exception $e) {
-            echo "\n"."Object Dump:\n";
-            var_dump($phpObj);
-            echo "\n"."Exception Call Stack (".$e->getMessage()."):\n";
-            echo "\n"."In  (".$e->getFile().") on " . $e->getLine();
-            array_walk(debug_backtrace(), create_function('$a,$b', 'print "\t{$a[\'function\']}()\n\t".basename($a[\'file\']).":{$a[\'line\']}\n";'));
+        } catch (\Exception $e) {
+            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the batch response." . $e->getMessage());
+            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Object: " . var_export($phpObj, true));
+            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
             return false;
         }
     }
@@ -78,7 +78,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Unmarshall XML into a POPO object, presumably the XML came from an IPP v3 API call
      *
      * @param string XML that conforms to IPP v3 XSDs
-     * @return POPOObject $phpObj resulting POPO object
+     * @return object POPOObject $phpObj resulting POPO object
      */
     private static function PhpObjFromXml($className, $xmlStr)
     {
@@ -145,7 +145,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return POPO class name
+     * @return string POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -176,7 +176,7 @@ class XmlObjectSerializer extends IEntitySerializer
 
     /**
      * Initializes a new instance of the XmlObjectSerializer class.
-     * @param ILogger idsLogger The ids logger.
+     * @param Logger idsLogger The ids logger.
      */
     public function __construct($idsLogger = null)
     {

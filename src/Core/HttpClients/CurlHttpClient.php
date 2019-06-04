@@ -1,19 +1,5 @@
 <?php
-/*******************************************************************************
- * Copyright (c) 2017 Intuit
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 namespace QuickBooksOnline\API\Core\HttpClients;
 
 use QuickBooksOnline\API\Exception\SdkException;
@@ -23,7 +9,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * Class CurlHttpClient
  *
  * A Http Client using PHP cURL extension to send HTTP/HTTPS request to QuickBooks Online
- * @package QuickbooksOnline
+ * @package QuickBooksOnline
  *
  */
 class CurlHttpClient implements HttpClientInterface{
@@ -105,7 +91,7 @@ class CurlHttpClient implements HttpClientInterface{
 
     /**
      * Send a request and return the response
-     * @return curlResponse
+     * @return mixed <b>TRUE</b> on success or <b>FALSE</b> on failure. However, if the <b>CURLOPT_RETURNTRANSFER</b>
      */
     private function executeRequest(){
         return $this->basecURL->execute();
@@ -159,9 +145,16 @@ class CurlHttpClient implements HttpClientInterface{
      * Set the SSL certifcate path and corresponding varaibles for cURL
      */
     private function setSSL(&$curl_opt, $verifySSL){
+      $tlsVersion = $this->basecURL->versionOfTLS();
+      $versions = ['TLS 1.2', 'TLS 1.3'];
+      if(! in_array($tlsVersion, $versions)){
+          throw new SdkException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TSL 1.2/1.3");
+      }
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
+          //based on spec, if TSL 1.2 is supported, it will use the TLS 1.2 or latest version by default
+          //$curl_opt[CURLOPT_SSLVERSION] = 6;
           $curl_opt[CURLOPT_CAINFO] = CoreConstants::getCertPath(); //Pem certification Key Path
       }
     }
@@ -169,7 +162,7 @@ class CurlHttpClient implements HttpClientInterface{
     /**
      * Convert an Array to Curl Headers
      * @param array $headerArray The request headers
-     * @return Curl Array Headers
+     * @return array Curl Headers
      */
     public function convertHeaderArrayToHeaders(array $headerArray){
          $headers = array();

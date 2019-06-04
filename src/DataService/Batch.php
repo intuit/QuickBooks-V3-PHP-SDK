@@ -24,6 +24,9 @@ use QuickBooksOnline\API\Exception\ValidationException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Exception\SecurityException;
 use QuickBooksOnline\API\Core\CoreHelper;
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
+use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Data\IPPBatchItemRequest;
 use QuickBooksOnline\API\Data\IPPIntuitBatchRequest;
 use QuickBooksOnline\API\Core\CoreConstants;
@@ -31,6 +34,7 @@ use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler as RestServiceSyncRest
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Utility\UtilityConstants;
+use \QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 
 /**
  * This class contains code for Batch Processing.
@@ -65,7 +69,7 @@ class Batch
 
     /**
      * rest handler object.
-     * @var IRestHandler restHandler
+     * @var RestHandler restHandler
      */
     private $restHandler;
 
@@ -77,7 +81,7 @@ class Batch
 
     /**
     * If not false, the request from last dataService did not return 2xx
-    * @var FalutHandler
+    * @var FaultHandler
     */
     private $lastError = false;
 
@@ -95,7 +99,7 @@ class Batch
 
     /**
     * Get the error from last request
-    * @return lastError
+    * @return FaultHandler
     */
     public function getLastError()
     {
@@ -264,93 +268,112 @@ class Batch
      */
     public function Execute()
     {
-        $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Started Executing Method Execute for Batch");
+       $requestID = rand() . rand();
+       $this->sendRequest($requestID);
+    }
 
-        // Create Intuit Batch Request
-        $intuitBatchRequest = new IPPIntuitBatchRequest();
-        $intuitBatchRequest->BatchItemRequest = $this->batchRequests;
+    /**
+     * Use this function to do Batch Request instead of Execute()
+     */
+    public function ExecuteWithRequestID($requestID)
+    {
+      if(isset($requestID) && !empty($requestID)){
+          $this->sendRequest($requestID);
+      }else{
+        throw new \Exception("ExecuteWithRequestID called with Empty or Null request ID");
+      }
 
-        $uri = "company/{1}/batch?requestid=" . rand() . rand();
-        $uri = str_replace('{1}', $this->serviceContext->realmId, $uri);
+    }
 
-        // Creates request parameters
-        $requestParameters = new RequestParameters($uri, 'POST', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+    private function sendRequest($requestID)
+    {
+      $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Started Executing Method Execute for Batch");
 
-        $restRequestHandler = $this->getRestHandler();
-        try {
-            // Get literal XML representation of IntuitBatchRequest into a DOMDocument
-            $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
-            $doc = new \DOMDocument();
-            $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
-            $xpath = new \DOMXpath($doc);
+      // Create Intuit Batch Request
+      $intuitBatchRequest = new IPPIntuitBatchRequest();
+      $intuitBatchRequest->BatchItemRequest = $this->batchRequests;
+      $uri = "company/{1}/batch?requestid=" . $requestID;
+      $uri = str_replace('{1}', $this->serviceContext->realmId, $uri);
 
-            // Replace generically-named IntuitObject nodes with tags that describe contained objects
-            $objectIndex = 0;
-            while (1) {
-                $matchingElementArray = $xpath->query("//IntuitObject");
-                if (is_null($matchingElementArray)) {
-                    break;
-                }
+      // Creates request parameters
+      $requestParameters = new RequestParameters($uri, 'POST', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
 
-                if ($objectIndex>=count($intuitBatchRequest->BatchItemRequest)) {
-                    break;
-                }
+      $restRequestHandler = $this->getRestHandler();
+      try {
+          // Get literal XML representation of IntuitBatchRequest into a DOMDocument
+          $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
+          $doc = new \DOMDocument();
+          $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
+          $xpath = new \DOMXPath($doc);
 
-                foreach ($matchingElementArray as $oneNode) {
+          // Replace generically-named IntuitObject nodes with tags that describe contained objects
+          $objectIndex = 0;
+          while (1) {
+              $matchingElementArray = $xpath->query("//IntuitObject");
+              if (is_null($matchingElementArray)) {
+                  break;
+              }
 
-                    // Found a DOMNode currently named "IntuitObject".  Need to rename to
-                    // entity that describes it's contents, like "ns0:Customer" (determine correct
-                    // name by inspecting IntuitObject's class).
-                    if ($intuitBatchRequest->BatchItemRequest[$objectIndex]->IntuitObject) {
-                        // Determine entity name to use
-                        $entityClassName = get_class($intuitBatchRequest->BatchItemRequest[$objectIndex]->IntuitObject);
-                        $entityTransferName = XmlObjectSerializer::cleanPhpClassNameToIntuitEntityName($entityClassName);
-                        $entityTransferName = 'ns0:'.$entityTransferName;
+              if ($objectIndex>=count($intuitBatchRequest->BatchItemRequest)) {
+                  break;
+              }
 
-                        // Replace old-named DOMNode with new-named DOMNode
-                        $newNode = $oneNode->ownerDocument->createElement($entityTransferName);
-                        if ($oneNode->attributes->length) {
-                            foreach ($oneNode->attributes as $attribute) {
-                                $newNode->setAttribute($attribute->nodeName, $attribute->nodeValue);
-                            }
-                        }
-                        while ($oneNode->firstChild) {
-                            $newNode->appendChild($oneNode->firstChild);
-                        }
-                        $oneNode->parentNode->replaceChild($newNode, $oneNode);
-                    }
-                    break;
-                }
-                $objectIndex++;
-            }
-            $httpsPostBody = $doc->saveXML();
-            list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrowExceptionOnError);
-            $faultHandler = $restRequestHandler->getFaultHandler();
-            if ($faultHandler) {
-                $this->lastError = $faultHandler;
-                return null;
-            }else{
-                $this->lastError = false;
-            }
-        } catch (\Exception $e) {
-            IdsExceptionManager::HandleException($e);
-        }
+              foreach ($matchingElementArray as $oneNode) {
 
-        try {
-            // No JSON support here yet
-            // de serialize object
-            $responseXmlObj = simplexml_load_string($responseBody);
-            foreach ($responseXmlObj as $oneXmlObj) {
-                // process batch item
-                $intuitBatchItemResponse = $this->ProcessBatchItemResponse($oneXmlObj);
-                $this->intuitBatchItemResponses[$intuitBatchItemResponse->batchItemId] = $intuitBatchItemResponse;
-            }
-        } catch (Exception $e) {
-            var_dump($e->getMessage(), $e->getLine());
-            return null;
-        }
+                  // Found a DOMNode currently named "IntuitObject".  Need to rename to
+                  // entity that describes it's contents, like "ns0:Customer" (determine correct
+                  // name by inspecting IntuitObject's class).
+                  if ($intuitBatchRequest->BatchItemRequest[$objectIndex]->IntuitObject) {
+                      // Determine entity name to use
+                      $entityClassName = get_class($intuitBatchRequest->BatchItemRequest[$objectIndex]->IntuitObject);
+                      $entityTransferName = XmlObjectSerializer::cleanPhpClassNameToIntuitEntityName($entityClassName);
+                      $entityTransferName = 'ns0:'.$entityTransferName;
 
-        $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Execute method for batch.");
+                      // Replace old-named DOMNode with new-named DOMNode
+                      $newNode = $oneNode->ownerDocument->createElement($entityTransferName);
+                      if ($oneNode->attributes->length) {
+                          foreach ($oneNode->attributes as $attribute) {
+                              $newNode->setAttribute($attribute->nodeName, $attribute->nodeValue);
+                          }
+                      }
+                      while ($oneNode->firstChild) {
+                          $newNode->appendChild($oneNode->firstChild);
+                      }
+                      $oneNode->parentNode->replaceChild($newNode, $oneNode);
+                  }
+                  break;
+              }
+              $objectIndex++;
+          }
+          $httpsPostBody = $doc->saveXML();
+          list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrowExceptionOnError);
+          $faultHandler = $restRequestHandler->getFaultHandler();
+          if ($faultHandler) {
+              $this->lastError = $faultHandler;
+              return null;
+          }else{
+              $this->lastError = false;
+          }
+      } catch (\Exception $e) {
+          IdsExceptionManager::HandleException($e);
+      }
+
+      try {
+          // No JSON support here yet
+          // de serialize object
+          $responseXmlObj = simplexml_load_string($responseBody);
+          foreach ($responseXmlObj as $oneXmlObj) {
+              // process batch item
+              $intuitBatchItemResponse = $this->ProcessBatchItemResponse($oneXmlObj);
+              $this->intuitBatchItemResponses[$intuitBatchItemResponse->batchItemId] = $intuitBatchItemResponse;
+          }
+      } catch (\Exception $e) {
+          $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the batch response." . $e->getMessage());
+          $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
+          return null;
+      }
+
+      $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Execute method for batch.");
     }
 
 
@@ -400,9 +423,9 @@ class Batch
                 $error = new \stdClass();
                 $detail = (string)$item->Detail;
                 if($detail) {
-                    $error->message = (string)$item->Message . ' - ' . $detail;                    
+                    $error->message = (string)$item->Message . ' - ' . $detail;
                 } else {
-                    $error->message = (string)$item->Message;                    
+                    $error->message = (string)$item->Message;
                 }
                 $error->code = null;
                 if ($item->attributes() instanceof \SimpleXMLElement

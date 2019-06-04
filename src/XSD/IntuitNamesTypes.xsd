@@ -19,6 +19,33 @@
 			<xs:enumeration value="Statutory"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="SubcontractorTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Valid only for UK region, Subcontractor type enumeration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Individual"/>
+			<xs:enumeration value="Company"/>
+			<xs:enumeration value="Partnership"/>
+			<xs:enumeration value="Trust"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CISRateEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Valid only for UK region, CIS Rate for Vendor enumeration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CIS gross rate (0%)"/>
+			<xs:enumeration value="CIS standard rate (20%)"/>
+			<xs:enumeration value="CIS higher rate (30%)"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="JobStatusEnum">
 		<xs:annotation>
 			<xs:documentation>
@@ -61,6 +88,20 @@
             <xs:enumeration value="Accrual"/>
         </xs:restriction>
     </xs:simpleType>
+	<xs:simpleType name="FifoCalculationStatus">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Enumeration of Inventory Lots and Accounts calculation
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="InProgress"/>
+			<xs:enumeration value="Completed"/>
+			<xs:enumeration value="Error"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!--Start complex type definitions -->
 	<xs:complexType name="NameBase">
@@ -607,6 +648,38 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="BusinessNumber" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Business Number of the Customer.
+								Applicable to CA/UK/IN versions of QuickBooks. Referred to as PAN in India.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GSTIN" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								GST Identification Number of the Customer.
+								Applicable for IN region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GSTRegistrationType" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								GST registration type of the Customer.
+								Applicable for IN region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsCISContractor" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBO only
+								Description: True if the customer is CIS contractor
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -870,7 +943,41 @@
 							<xs:documentation>Internal use only: extension place holder for Vendor.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    </xs:sequence>
+					<xs:element name="GSTIN" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								GST Identification Number of the Vendor.
+								Applicable for IN region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GSTRegistrationType" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								GST registration type of the Vendor.
+								Applicable for IN region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsSubContractor" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: QBO only
+								Description: True if the vendor is subcontractor
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SubcontractorType" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the Subcontractor type. Applicable only for UK region, values are defined in the SubcontractorTypeEnum.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CISRate" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Specifies the CIS Rate. Applicable only for UK region, values are defined in the CISRateEnum.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1010,6 +1117,12 @@
 					<xs:element name="EmployeeEx" type="IntuitAnyType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for Employee.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="V4IDPseudonym" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Auto generated Public ID when new employee added to QBO. (ReadOnly)
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>

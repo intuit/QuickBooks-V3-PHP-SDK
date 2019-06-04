@@ -7,6 +7,7 @@ use QuickBooksOnline\API\Diagnostics\TraceLogger;
 use QuickBooksOnline\API\Exception\IdsExceptionManager;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Facades\FacadeHelper;
+use QuickBooksOnline\API\Diagnostics\Logger;
 
 /**
  * Json Serializer to serialize and de serialize.
@@ -24,7 +25,7 @@ class JsonObjectSerializer extends IEntitySerializer
 
     /**
      * The ids logger.
-     * @var ILogger IDSLogger
+     * @var Logger IDSLogger
      */
      private $IDSLogger;
 
@@ -58,8 +59,8 @@ class JsonObjectSerializer extends IEntitySerializer
 
         /**
          * Support json_last_error_msg in PHP 5.2
-         * @param type $error
-         * @return type
+         * @param string $error
+         * @return string
          */
         private function getMessageFromErrorCode($error)
         {
@@ -98,25 +99,25 @@ class JsonObjectSerializer extends IEntitySerializer
         /**
          * Creates domain model-like name. In other words it follows naming convetion for SDK
          * TODO make generic and remove duplicates
-         * @param type $intuitEntityName
-         * @return type
+         * @param string $intuitEntityName
+         * @return string
          */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
-        return CoreConstatnts::PHP_CLASS_PREFIX . $intuitEntityName;
+        return CoreConstants::PHP_CLASS_PREFIX . $intuitEntityName;
     }
 
         /**
          * Converts stdClass objects into object with specified type
          * It tries to learn type from JSON responce
          *
-         * @param stdClass $object
+         * @param object $object
          * @param boolean $limitToOne
          * @return mixed (stdClass or domain model entity)
          */
         private function convertObject($object, $limitToOne)
         {
-            if ($object instanceof stdClass) {
+            if ($object instanceof \stdClass) {
                 $result = array();
                 $vars = get_object_vars($object);
                 if (empty($vars)) {
@@ -207,7 +208,7 @@ class JsonObjectSerializer extends IEntitySerializer
     /**
      * DeSerializes the specified action entity type.
      * @param string message The message.
-     * @return Returns the de serialized object.
+     * @return mixed Returns the de serialized object.
      */
     public function Deserialize($message, $limitToOne = false)
     {

@@ -11,12 +11,12 @@ use QuickBooksOnline\API\Facades\Invoice;
 // Prep Data Services
 $dataService = DataService::Configure([
   'auth_mode' => 'oauth2',
-  'ClientID' => "Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D",
-  'ClientSecret' => "stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P",
+  'ClientID' => "L0vmMZIfwUBfv9PPM96dzMTYATnLs6TSAe5SyVkt1Z4MAsvlCU",
+  'ClientSecret' => "2ZZnCnnDyoZxUlVCP1D9X7khxA3zuXMyJE4cHXdq",
   'accessTokenKey' =>
-  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..3jjOsnri0wWe_0nyKLB2SA.OaSJHdewrPVGRMbQNI8lKIhH3bOiCVhmyDLxn8W6zoiJrRnEhHuJ-GFWiO9sRS_4BaPLnlbEDsp3PUfPpGUmveD8CloaLXjgp0nPIApvqbKDA0La0zX5OhWGmvShZVwtZ-T_qAR3hU3f2TzqfaoeRTtO23S9idKSCDiSJVLdVMIbHM8DZFJvKDdKFDus5EjtEX_LNx-6vCnpWNCUU0_vu4Pjyyp1iAz2c3GgpYMbnx56985r2LA7td8mZgiXKxkpVKy2yWrXZSgmG62SDDKeqD9KRCsF7QBgYU5sqa4mts8CAR_jQr4pRMlbresPw16fVmh2n-6uoKJYXkCkLmSMZ4PtjIZ85cbpx3ECo8Te5uW4bz03EtXGdM75yJYbiuhOTP7Z8wGaPQcnZbGcMbux_Kqb5ReQWHmDNP05W6h-c61AouY0SLTbup6gXqTaYtUH8o9m6_WNUh77gMUj9rPRfMjAOrEpBfPIa_FqsQENzMFe2me-5jMNaMlVPpL0u7itmXyFU6zvHs-sUcOIFoTVEzef9felpjdNUnrv9g1uxDIY7NHS4fPuUHCo3tbqZeUavGEMKXrIN7ytILMfRdhxU1ANf__iOTby-ZRjQAQH-tXC6itPk5l6zji62LSt89Cuqp-Adm4_LHCj-3F4slEhqogKamb27v8P6gry9tLkKEjSUqtaec9i09mcnJNel93w.cBA70qRF375xICHD0GFEYQ',
+  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..bMBZb6bIX3TuiyBOx6Um3Q.34vwrQrbm71KvF9x0jcPflLTY7KkUflgyXHO7MwUSox98LpopyImu4VhWFwSrM-o44Yixf6zUMoYMRJbUz5M3-GV6WFUuTxzVn9lvWdNIMRfY75hVx87aARgJePAkKg0b3Jcq90hXJMCxIuEoCnfptG_nNkGihLjatcbdw_agMnJGcEm8GXV55tUDr_iok4xubZbGz1vxZo0Dsq0JxPoWcCdZ1nf4Fzt1xgL3SlzbbdbMyebPFT4z5RTIsf8E0nXPUaUuLWTarkOsDHx5gchNdXAHXECZlxCd-UKKN0M4EswwrsTLhxfb5pRtCa0EkRGkxTcWn0wYwRYa0iWj9B0H1J89vwp5-6aECanAp_LBs-KpBIp6MA-weFAZH5YLaQfGT3zk8JtGLrKuP82S60m3ydCUhSprHVtztOU8kXdWOWD-OtvRIk0exyKrHq-wcff8MWnP8GMvTT_nY9qnvxh6erOdtC5uQhGyNicRugU4T0NmEgoPBPaWVQi4dJh8aRZRczgHevwTHwSy6ihWM48MBj7_TiI7bdtAs61bZDqEXxDKrGcFA0Qi0VV0d1Pb_8ALyc2hPmGpPB-HgpTUnj5JpkxrQhrWhIKZbUn_2SgNRa3RWnxi0a0yr7zk0L61ZRPaBG9izUIxzj3oH8LP_OcsTkby2XhJdqqAntkVMlvkHMMDNlt0_VX9DWAYgydrl8RX-bx0r4jWxfsZ_eGuEXoCw.zifbqbeI8KAGr-dFKcB-oA',
   'refreshTokenKey' => "Q01152727758997PwQ3G6gLh4tlZYKrH499SSytAMt12r7uKwy",
-  'QBORealmID' => "193514611894164",
+  'QBORealmID' => "123146096284189",
   'baseUrl' => "development"
 ]);
 
@@ -45,7 +45,7 @@ $batch = $dataService->CreateNewBatch();
 $batch->AddQuery("select * from Customer startPosition 0 maxResults 5", "queryCustomer");
 $batch->AddQuery("select * from Vendor startPosition 0 maxResults 5", "queryVendor");
 $batch->AddEntity($theResourceObj, "CreateInvoice", "Create");
-$batch->Execute();
+$batch->ExecuteWithRequestID("ThisIsMyFirstBatchRequest");
 $error = $batch->getLastError();
 if ($error) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";

@@ -27,7 +27,7 @@ class ContentWriter
 
     /**
      * Number of bytes in content
-     * @var type
+     * @var int
      */
     private $bytes = null;
 
@@ -39,7 +39,7 @@ class ContentWriter
 
     /**
      * Contains reference to resource (if applicable)
-     * @var type
+     * @var resource
      */
     private $handler = null;
 
@@ -121,7 +121,7 @@ class ContentWriter
 
     /**
      * Returns number of bytes, which were written
-     * @return type
+     * @return int
      */
     public function getBytes()
     {
@@ -170,7 +170,7 @@ class ContentWriter
             return true;
         }
 
-        throw new SdkException('Unable to write temp file: ' . $path);
+        throw new SdkException('Unable to write temp file: ' . $this->tempPath);
     }
 
     /**
@@ -207,8 +207,8 @@ class ContentWriter
 
     /**
      * Moves file from temp location to specified folder and name
-     * @param type $dir
-     * @param type $name (option) if not speicifed it will be moved with temp name
+     * @param string $dir
+     * @param string|null $name (option) if not specified it will be moved with temp name
      * @throws SdkException
      */
     public function saveFile($dir, $name=null)
@@ -230,7 +230,7 @@ class ContentWriter
         }
         try {
             $result = file_put_contents($this->tempPath, $this->getContent());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             if (!is_writable($this->tempPath)) {
                 throw new SdkException("File ({$this->tempPath}) is not writable");
             }
@@ -245,8 +245,8 @@ class ContentWriter
     /**
      * Creates filename based on name and prefix.
      * It generates uniqid-like string if name is ommited
-     * @param type $name
-     * @return type
+     * @param string $name
+     * @return string
      */
     private function generateFileName($name)
     {
@@ -257,7 +257,7 @@ class ContentWriter
 
     /**
      * Returns actual path from actual file handler
-     * @return type
+     * @return string
      */
     private function getPathFromHandler()
     {

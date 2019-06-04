@@ -27,7 +27,7 @@ abstract class CompressorBase
      * Decompresses the output response stream.
      * @param $responseBody Response body.
      * @param $response_headers Response headers
-     * @return Decompressed response body.
+     * @return string|bool Decompressed response body.
      */
     abstract public function Decompress($responseBody, $response_headers);
 }

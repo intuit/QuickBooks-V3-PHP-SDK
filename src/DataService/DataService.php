@@ -21,7 +21,7 @@ use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickbooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
 use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
@@ -40,6 +40,8 @@ use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
 use QuickBooksOnline\API\Core\HttpClients\ClientFactory;
+use QuickBooksOnline\API\Data\IPPCompanyInfo;
+use QuickBooksOnline\API\Data\IPPPreferences;
 
 /**
  * Class DataServicd
@@ -327,10 +329,13 @@ class DataService
     /**
      * Return the client Name used by this DataSerivce
      * @return String the Client Name. It can be curl or GuzzleHttpClient
+     * @deprecated since version 5.0.4
+     * @see $this->getClientName()
      */
     public function getClinetName(){
-       return $this->clientName;
+       return $this->getClientName();
     }
+
 
     /**
      * The client Name can be either 'curl', 'guzzle', or 'guzzlehttp'.
@@ -445,7 +450,8 @@ class DataService
           $this->serviceContext->realmId = $realmID;
           $this->setupRestHandler($this->serviceContext);
         } catch (SdkException $e){
-          echo $e->getTraceAsString();
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error while updating OAuth2Token." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
         }
         return $this;
     }
@@ -453,7 +459,7 @@ class DataService
     /**
      * Get the error from last request
      *
-     * @return lastError
+     * @return FaultHandler lastError
      */
     public function getLastError()
     {
@@ -518,15 +524,14 @@ class DataService
      *
      *
      *
-     * @param POPOObject $phpObj inbound POPO object
+     * @param object $phpObj inbound POPO object
      * @return string XML output derived from POPO object
-     * @depricated
+     * @deprecated since version ?
      */
     private function getXmlFromObj($phpObj)
     {
         if (!$phpObj) {
-            echo "getXmlFromObj NULL arg\n";
-            var_dump(debug_backtrace());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "getXmlFromObj NULL arg.");
 
             return false;
         }
@@ -536,10 +541,9 @@ class DataService
 
         try {
             return $php2xml->getXml($phpObj);
-        } catch (Exception $e) {
-            echo "getXmlFromObj EXCEPTION: " . $e->getMessage() . "\n";
-            var_dump($phpObj);
-            var_dump(debug_backtrace());
+        } catch (\Exception $e) {
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing Object to XML." . $e->getMessage());
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
 
             return false;
         }
@@ -549,7 +553,7 @@ class DataService
      * Decorate an IPP v3 Entity name (like 'Class') to be a POPO class name (like 'IPPClass')
      *
      * @param string Intuit Entity name
-     * @return POPO class name
+     * @return string POPO class name
      */
     private static function decorateIntuitEntityToPhpClassName($intuitEntityName)
     {
@@ -570,7 +574,7 @@ class DataService
      * Clean a POPO class name (like 'IPPClass') to be an IPP v3 Entity name (like 'Class')
      *
      * @param string $phpClassName POPO class name
-     * @return string Intuit Entity name
+     * @return string|null Intuit Entity name
      */
     private static function cleanPhpClassNameToIntuitEntityName($phpClassName)
     {
@@ -606,7 +610,7 @@ class DataService
      * @param string $CALLINGMETHOD
      * @param string|null $boundaryString
      * @param string|null $email
-     * @return null|Excepiton
+     * @return null|string
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
@@ -626,7 +630,7 @@ class DataService
                 break;
             case DataService::UPLOAD:
                 if (!isset($boundaryString)) {
-                    throw new Exception("Upload Image has unset value: boundaryString.");
+                    throw new \Exception("Upload Image has unset value: boundaryString.");
                 }
                 // Creates request parameters
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
@@ -648,7 +652,7 @@ class DataService
             }
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return new Excepiton("Exception in deserialize ResponseBody.");
             }
 
@@ -787,7 +791,7 @@ class DataService
      * Deletes an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Delete.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Delete($entity)
@@ -813,7 +817,7 @@ class DataService
      * Voids an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Void.
-     * @return null|Excepiton
+     * @return null|string
      * @throws IdsException
      */
     public function Void($entity)
@@ -987,9 +991,8 @@ class DataService
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
                 }
                 $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                //echo "Parsed Body is: \n";
-                //var_dump($parsedResponseBody);
-                //echo "\n Parsed Body over.\n";
+                $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
+
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
             }
@@ -1147,7 +1150,7 @@ class DataService
                     }
                     $returnValue->entities[$entityName] = $entities;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 IdsExceptionManager::HandleException($e);
             }
 
@@ -1174,7 +1177,7 @@ class DataService
      * Serializes oblect into specified format
      * @param IPPIntuitEntity $entity
      * @param String $urlResource
-     * @return type
+     * @return object
      */
     protected function executeObjectSerializer($entity, &$urlResource)
     {
@@ -1342,7 +1345,7 @@ class DataService
      * Returns an downloaded entity under the specified realm. The realm must be set in the context.
      *
      * @param object $entity Entity to Find
-     * @return IPPIntuitEntity Returns an entity of specified Id.
+     * @return string IPPIntuitEntity Returns an entity of specified Id.
      * @deprecated The download for QuickBooksOnline is only supporting download PDF for Invoice and SalesReceipt. Other download function are not defined now.
      */
     public function Download($entity)
@@ -1413,7 +1416,7 @@ class DataService
             }
             $writer->resetContent();
             $this->logInfo("File was downloaded (http response = $responseCode), bytes written: {$writer->getBytes()}");
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             $this->logError("Exception appears during response processing. Http response was $responseCode: " . $ex->getMessage() . "\n" . $ex->getTraceAsString());
 
             return null;
@@ -1634,7 +1637,7 @@ class DataService
 
     /**
      * Get the Company Preferences Information
-     * @return JSON/XML String      CompanyInformation
+     * @return IPPPreferences  CompanyInformation
      */
     public function getCompanyPreferences()
     {

@@ -11,6 +11,8 @@ use QuickBooksOnline\API\Core\Http\Response;
 use QuickBooksOnline\API\Diagnostics\Logger;
 use QuickBooksOnline\API\Core\Configuration\OperationControlList;
 use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2AccessToken;
+use SimpleXMLElement;
+use QuickBooksOnline\API\Exception\SdkException;
 
 /**
  * Specifies the Default Configuration Reader implmentation used by the SDK. The ConfigReader can either read a file or from passed arrays
@@ -92,7 +94,7 @@ class LocalConfigReader
             LocalConfigReader::setupMinorVersion($ippConfig, $xmlObj);
 
             return $ippConfig;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new SdkException("Error Reading the ");
         }
     }
@@ -137,7 +139,7 @@ class LocalConfigReader
     * Initializes API Entity Rules
     *
     * @param IppConfiguration $ippConfig
-    * @param XMLObject $xmlObj
+    * @param \SimpleXMLElement $xmlObj
   */
     public static function initializeAPIEntityRules($xmlObj, $ippConfig)
     {
@@ -163,7 +165,7 @@ class LocalConfigReader
    /**
     * Initializes operation contrtol list
     * @param IppConfiguration $ippConfig
-    * @param XMLObject $xmlObj
+    * @param \SimpleXMLElement $xmlObj
    */
    public static function setupMinorVersion($ippConfig, $xmlObj)
    {
@@ -177,7 +179,7 @@ class LocalConfigReader
 
    /**
     * Returns array in a OperationControlList rules format from XML
-    * @param type $xmlObj
+    * @param \SimpleXMLElement $xmlObj
     * @return boolean
    */
    public static function populateJsonOnlyEntities($xmlObj)
@@ -429,8 +431,8 @@ class LocalConfigReader
 
    /**
    * Creates PHP class entity from intuit name
-   * @param type $name
-   * @return type
+   * @param string $name
+   * @return string
    */
    private static function decorateEntity($name)
    {
