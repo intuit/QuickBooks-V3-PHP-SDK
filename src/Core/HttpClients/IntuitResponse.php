@@ -86,8 +86,9 @@ class IntuitResponse{
           $this->headers = $passedHeaders;
           $this->body = $passedBody;
           $this->httpResponseCode = $passedHttpResponseCode;
-          $this->setContentType(CoreConstants::CONTENT_TYPE, $passedHeaders[CoreConstants::CONTENT_TYPE]);
-          $this->setIntuitTid(CoreConstants::INTUIT_TID, $passedHeaders[CoreConstants::INTUIT_TID]);
+          $passedHeaders = array_change_key_case($passedHeaders, CASE_LOWER);
+          $this->setContentType(CoreConstants::CONTENT_TYPE, $passedHeaders[strtolower(CoreConstants::CONTENT_TYPE)]);
+          $this->setIntuitTid(CoreConstants::INTUIT_TID, $passedHeaders[strtolower(CoreConstants::INTUIT_TID)]);
           $this->setFaultHandler($passedBody, $passedHttpResponseCode, $this->getIntuitTid());
       }else{
           throw new SdkException("Passed Headers, body, or status code is Null.");

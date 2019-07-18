@@ -206,6 +206,7 @@ class SyncRestHandler extends RestHandler
         $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, true);
         $faultHandler = $intuitResponse->getFaultHandler();
         $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+
         //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
         //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
         if($faultHandler) {
@@ -267,8 +268,9 @@ class SyncRestHandler extends RestHandler
      * @param Array $httpHeaders  The headers for the request
      */
     public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
-      if(strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
-          strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
+      $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
+      if(strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
+          strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
              $body = $this->parseStringToDom($body);
       }
 
