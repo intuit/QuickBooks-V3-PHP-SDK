@@ -40,6 +40,7 @@ $updateCustomer = Customer::update($theCustomer, [
     'DisplayName' => 'Something different'
 ]);
 $resultingCustomerUpdatedObj = $dataService->Update($updateCustomer);
+$error = $dataService->getLastError();
 if ($error) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
