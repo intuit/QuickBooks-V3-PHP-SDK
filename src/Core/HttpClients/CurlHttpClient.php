@@ -148,12 +148,12 @@ class CurlHttpClient implements HttpClientInterface{
       $tlsVersion = $this->basecURL->versionOfTLS();
       $versions = ['TLS 1.2', 'TLS 1.3'];
       if(! in_array($tlsVersion, $versions)){
-          throw new SdkException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TSL 1.2/1.3");
+          throw new SdkException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TLS 1.2/1.3");
       }
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
-          //based on spec, if TSL 1.2 is supported, it will use the TLS 1.2 or latest version by default
+          //based on spec, if TLS 1.2 is supported, it will use the TLS 1.2 or latest version by default
           //$curl_opt[CURLOPT_SSLVERSION] = 6;
           $curl_opt[CURLOPT_CAINFO] = CoreConstants::getCertPath(); //Pem certification Key Path
       }
