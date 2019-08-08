@@ -10445,6 +10445,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="InvoiceRef" type="ReferenceType" minOccurs="0">
+    					<xs:annotation>
+        					<xs:documentation>
+            					Product: ALL
+            					Description: A credit memo needs to have an invoice number to save successfully
+            					Applicable for IN Region.
+        					</xs:documentation>
+    					</xs:annotation>
+					</xs:element>
 					<xs:element name="CreditMemoEx" type="IntuitAnyType"
 						minOccurs="0">
 						<xs:annotation>
