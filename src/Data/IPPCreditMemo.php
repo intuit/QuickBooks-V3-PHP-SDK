@@ -63,6 +63,17 @@ class IPPCreditMemo
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $CreditMemoEx;
+	/**
+	 * @Definition  A credit memo needs to have an invoice number to save successfully
+            					Applicable for IN Region.
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName InvoiceRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $InvoiceRef;
+	
 
 
 } // end class IPPCreditMemo
