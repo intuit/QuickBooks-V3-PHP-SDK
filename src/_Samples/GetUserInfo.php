@@ -19,18 +19,10 @@ $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
 
 $accessToken = "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..RbnW7qym6u9_UG8stuA39Q.8x06muf0IlvmvPvaT0bVQTBEK-M7GsuzzmLWbNdb88DtjOBPU3SXPukSqvwmZgrnoNYAuOfDIv4MV7EBCAgaXHYP_QZeSOF8PZogoc2ODlAypzo77-_CJhVAVfaSs8jaFix5huatX6VPBIXvCVWUwvY_Y9SObcGjFkv4s_7kUyL5_V3tmTHV0255cKfx71v13mTmgPbZp9Z3MLpmZix5RvR4FjNuE33fm5MbVOQdQNQwPCqxYPnyq02qVTAiK2d3jq7l5HsEJa5izCttsa9NeCVlAp9f_7CGPy_RFLlqbiVq74vX-ML1EXpbHOENu3EJiFShVbqzpVn-vudfpGc4_R_x-Uw_qze5_u9JiLi5fQi0Tfy8ylw0THVkTKHVsYs_1_RWnrKZxPML0dCPS2dzJxUWg_K_KrzMGNnnYW8ucWMpoqC1VeeLVl5XbXFdsQpMy9iU77P7-8MC8K7fkxC30m1WXlgkokblFRkMcR6LVmggP5Zlnc0Uh56IvAxTo1GX2NmHx-c5PwXWE3vITYRgM0O1yEcn3CiC_6qkVsYWvl88_eX1FJAd5sjvKrkRSsovh3799NkdJOg_H6nfJlOmEyyURSz508dq_g06k0ewMUP6MREvrwQ3q51DEHM3GInthhj2kSPuV3VIwALmJGw_6aN25A3Cd4VaauCIBNL6Whv1cBsu8OYTeg2st7fr00ekck50tTjSocY7UIs0wNDgiWLYmPF27nPKZnhY6wGk3FIf5ZmaYm22E0OAFt6LxzC4-hzjpAj4g5jdOPTtLf90efQmygpfdih1wXhP3dD_xP4.LkEAdr9jgH6ccu_8E83mwA";
 
-$id_token = "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjY2ViYTk2Zi0xMTBmLTQ4NmItOGY5Zi0wNTk4ZmIyMmZhMzQiLCJhdWQiOlsiTDBJOXVxcE9WQVhOME1LcksxNWRDSExXcXFmdld6dkZTNVMwVm5LZXpYMGNEYnNMbEkiXSwiYXV0aF90aW1lIjoxNTY1NTkyMTg0LCJpc3MiOiJodHRwczpcL1wvb2F1dGgucGxhdGZvcm0uaW50dWl0LmNvbVwvb3BcL3YxIiwiZXhwIjoxNTY1NTk1ODUxLCJpYXQiOjE1NjU1OTIyNTF9.oMxx6-3xXn1bkreYxYvSIUJrh7c5Hz1XMFnU9Ze3eu6x3ppSHqbqHDKePRUCG_tVOyP4ZY409oyWxNkeo6RzseEnzLSjtTZmc6e-31iwLtfgrf3aZJPa7DHpuVms74Wx4dBF0UIa5SWhRPkqI4Brh_62Zpe98oAN6V8f6V-b8mA";
 
-$result = $OAuth2LoginHelper->validateIDToken($id_token);
-if($result){
-  echo "true";
-}else{
-  echo "false";
-}
-
-// $myarray = $OAuth2LoginHelper->getUserInfo($accessToken);
-// echo "the given name is:" . $myarray['givenName'] . "\n";
-// echo "the family name is:" . $myarray['familyName'] . "\n";
-// echo "the Email is:" . $myarray['email'] . "\n";
+$myarray = $OAuth2LoginHelper->getUserInfo($accessToken);
+echo "the given name is:" . $myarray['givenName'] . "\n";
+echo "the family name is:" . $myarray['familyName'] . "\n";
+echo "the Email is:" . $myarray['email'] . "\n";
 
 ?>
