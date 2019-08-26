@@ -431,6 +431,30 @@ class IPPVendor
 	 * @var string
 	 */
 	public $CISRate;
+	/**
+	 * @Definition 
+								Product: QBO Only
+								Description: True if the Vendor has TPAR. Applicable for AU region only.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName HasTPAR
+	 * @var boolean
+	 */
+	public $HasTPAR;
+	/**
+	 * @Definition 
+								Product: QBO Only
+								Description: Contains Bank Account details to enable Vendor Batch Payment. Applicable for AU region only.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorPaymentBankDetail
+	 * @var com\intuit\schema\finance\v3\IPPVendorBankAccountDetail
+	 */
+	public $VendorPaymentBankDetail;
 
 
 } // end class IPPVendor

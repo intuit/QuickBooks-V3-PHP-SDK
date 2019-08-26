@@ -154,6 +154,18 @@ class IPPBill
 	 * @var float
 	 */
 	public $LessCIS;
+	/**
+	 * @Definition 
+								Product: QBO Only
+								Description: True if the Bill should be included in annual TPAR, specific to AU region.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName IncludeInAnnualTPAR
+	 * @var boolean
+	 */
+	public $IncludeInAnnualTPAR;
 
 
 } // end class IPPBill

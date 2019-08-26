@@ -100,6 +100,18 @@ class IPPTxnTaxDetail
 	/**
 	 * @Definition 
 						Product: ALL
+						Description: Enumerated reasons to review Taxes on the Transaction.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxReviewStatus
+	 * @var com\intuit\schema\finance\v3\IPPTaxReviewStatusEnum
+	 */
+	public $TaxReviewStatus;
+	/**
+	 * @Definition 
+						Product: ALL
 						Description: This must be a Line whose LineDetailType is TaxLineDetail.
 					
 	 * @xmlType element

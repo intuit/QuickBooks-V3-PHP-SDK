@@ -142,6 +142,11 @@
                     <xs:documentation>Detailed error localized or unlocalized error that is thrown by the business logic backend that caused the error</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="DetailLink" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Link to get more details about error like common cause, remedy etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         <xs:attribute name="code" type="xs:string" use="required">
             <xs:annotation>

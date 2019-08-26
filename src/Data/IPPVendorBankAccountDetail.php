@@ -3,15 +3,16 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType PurchaseByVendor
- * @xmlName IPPVendorCredit
- * @var IPPVendorCredit
- * @xmlDefinition Bill is an AP transaction representing a
-				request-for-payment from a third party for goods/services rendered
-				and/or received
+ * @xmlType 
+ * @xmlName IPPVendorBankAccountDetail
+ * @var IPPVendorBankAccountDetail
+ * @xmlDefinition 
+				Product: ALL
+				Description: Contains Bank Account details to process the batch payment for Vendors. Applicable for AU region only..
+			
  */
-class IPPVendorCredit
-	extends IPPPurchaseByVendor	{
+class IPPVendorBankAccountDetail
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +27,7 @@ class IPPVendorCredit
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPVendorCredit',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorCredit',$initPropName))
+				if (property_exists('IPPVendorBankAccountDetail',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorBankAccountDetail',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,44 +41,53 @@ class IPPVendorCredit
 
 	
 	/**
-	 * @Definition Internal use only: extension place holder for
-								Bill extensible element to qualify account.
+	 * @Definition 
+							Product: QBO only
+							Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName VendorCreditEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @xmlName BankBranchIdentifier
+	 * @var string
 	 */
-	public $VendorCreditEx;
+	public $BankBranchIdentifier;
 	/**
 	 * @Definition 
-								Product: ALL
-								Description: The unpaid amount of the bill. When paid-in-full, balance will
-								be zero.
-								[b]QuickBooks Notes[/b][br /]
-								Non QB-writable.
-								Filterable: QBW
-								Sortable: QBW
-							
+							Product: QBO only
+							Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName Balance
-	 * @var float
+	 * @xmlName BankAccountNumber
+	 * @var string
 	 */
-	public $Balance;
+	public $BankAccountNumber;
 	/**
 	 * @Definition 
-								Product: QBO Only
-								Description: True if the VendorCredit should be included in annual TPAR, specific to AU region.
-							
+							Product: QBO only
+							Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName IncludeInAnnualTPAR
-	 * @var boolean
+	 * @xmlName BankAccountName
+	 * @var string
 	 */
-	public $IncludeInAnnualTPAR;
+	public $BankAccountName;
+	/**
+	 * @Definition 
+							Product: QBO only
+							Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
+						
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName StatementText
+	 * @var string
+	 */
+	public $StatementText;
 
 
-} // end class IPPVendorCredit
+} // end class IPPVendorBankAccountDetail

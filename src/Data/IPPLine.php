@@ -121,6 +121,22 @@ class IPPLine
 	public $Amount;
 	/**
 	 * @Definition 
+						Product: All
+						Description: The amount/quantity received of the line,
+						which depends on the type of the line. It can represent the
+						received amount or received quantity
+						based on the line type detail. ReadOnly field for Purchase Order.
+                        Applies to existing and new entities.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Received
+	 * @var float
+	 */
+	public $Received;
+	/**
+	 * @Definition 
 						Product: ALL
 						Description: A link between this line
 						and a specific transaction. For example, an invoice line may link

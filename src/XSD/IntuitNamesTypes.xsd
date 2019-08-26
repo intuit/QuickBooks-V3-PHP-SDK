@@ -977,6 +977,22 @@
 							<xs:documentation>Specifies the CIS Rate. Applicable only for UK region, values are defined in the CISRateEnum.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="HasTPAR" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO Only
+								Description: True if the Vendor has TPAR. Applicable for AU region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VendorPaymentBankDetail" type="VendorBankAccountDetail" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO Only
+								Description: Contains Bank Account details to enable Vendor Batch Payment. Applicable for AU region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1353,5 +1369,47 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VendorBankAccountDetail">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Contains Bank Account details to process the batch payment for Vendors. Applicable for AU region only..
+			</xs:documentation>
+		</xs:annotation>
+			<xs:sequence>
+				<xs:element name="BankBranchIdentifier" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Product: QBO only
+							Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="BankAccountNumber" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Product: QBO only
+							Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="BankAccountName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Product: QBO only
+							Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="StatementText" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Product: QBO only
+							Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
 	</xs:complexType>
 </xs:schema>

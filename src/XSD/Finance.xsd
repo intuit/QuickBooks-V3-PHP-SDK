@@ -266,6 +266,22 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
+			<xs:enumeration value="IncomeTaxPayable">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description:A Balance Sheet account in the “Liabilities” section.  The balance of this account will reflect the current accumulated liability of Income Tax which has been incurred, but not yet paid.  For example at the end of some financial period, there may be taxable income earned, allowing a tax due to be calculated.  However, the tax may not be required to be paid until some later date.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IntangibleAssetsOther">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: A Balance Sheet account in the “Other Current Assets” section.  The balance of this account will reflect the value of some non-physical asset that has some value to the business.  It is rare for a small business to need to journal against this account.  Typically you would journal directly against this account when exchanging tangible assets (such as money) for something intangible (such as a patent, or the right to use a name, or the non-tangible assets of a business that you acquired.)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="AccountsPayable">
 				<xs:annotation>
 					<xs:documentation>
@@ -3764,6 +3780,15 @@
  			<xs:enumeration value="OTHER" />
  		</xs:restriction>
  	</xs:simpleType>
+	<xs:simpleType name="TaxReviewStatusEnum">
+		<xs:annotation>
+			<xs:documentation>Enumeration of Reasons to review AST Taxes</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NON_AST_TAX" />
+			<xs:enumeration value="AST_TAX_OVERRIDE" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!-- ============================================================================== -->
 	<!--Group definitions in the Finance Domain -->
@@ -4804,6 +4829,14 @@
 						Product: ALL
 						Description: Total tax calculated for the transaction, excluding any embedded
 						tax lines.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TaxReviewStatus" type="TaxReviewStatusEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: ALL
+						Description: Enumerated reasons to review Taxes on the Transaction.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -5887,6 +5920,18 @@
 						based on the line type detail.[br /]Required for BillPayment,
 						Check, Estimate, Invoice, JournalEntry, Payment, SalesReceipt.
 						Required: QBO
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Received" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: All
+						Description: The amount/quantity received of the line,
+						which depends on the type of the line. It can represent the
+						received amount or received quantity
+						based on the line type detail. ReadOnly field for Purchase Order.
+                        Applies to existing and new entities.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -8469,6 +8514,14 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="IncludeInAnnualTPAR" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO Only
+								Description: True if the Purchase should be included in annual TPAR, specific to AU region.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -8655,6 +8708,14 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="IncludeInAnnualTPAR" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO Only
+								Description: True if the Bill should be included in annual TPAR, specific to AU region.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -8685,6 +8746,14 @@
 								Non QB-writable.
 								Filterable: QBW
 								Sortable: QBW
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IncludeInAnnualTPAR" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO Only
+								Description: True if the VendorCredit should be included in annual TPAR, specific to AU region.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -10444,6 +10513,15 @@
 								Non QB-writable.
 							</xs:documentation>
 						</xs:annotation>
+					</xs:element>
+					<xs:element name="InvoiceRef" type="ReferenceType" minOccurs="0">
+    					<xs:annotation>
+        					<xs:documentation>
+            					Product: ALL
+            					Description: A credit memo needs to have an invoice number to save successfully
+            					Applicable for IN Region.
+        					</xs:documentation>
+    					</xs:annotation>
 					</xs:element>
 					<xs:element name="CreditMemoEx" type="IntuitAnyType"
 						minOccurs="0">
@@ -12376,6 +12454,15 @@
 					<xs:documentation>
 						Product:All
 						Apply automatic bill payment
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TPAREnabled" type="xs:boolean"
+						minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product:All
+						Enables TPAR by vendors
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
