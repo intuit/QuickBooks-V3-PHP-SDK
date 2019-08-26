@@ -95,7 +95,26 @@ class ReportService
     private $both_amount = null;
     private $memo = null;
     private $doc_num = null;
+    private $subcol_pct_inc = null;
+    private $subcol_pct_exp = null;
 
+    public function getPercentIncome(){
+       return $this->subcol_pct_inc;
+    }
+
+    public function getPercentExpense(){
+       return $this->subcol_pct_exp;
+    }
+
+    public function setPercentIncome($percentIncome){
+       $this->subcol_pct_inc = $percentIncome;
+       return $this;
+    }
+
+    public function setPercentExpense($percentExpense){
+       $this->subcol_pct_exp = $percentExpense;
+       return $this;
+    }
     /**
      * @return null
      */
@@ -1152,6 +1171,13 @@ class ReportService
         }
         if (!is_null($this->doc_num)) {
             array_push($uriParameterList, array("doc_num", $this->getDocNum()));
+        }
+        if (!is_null($this->subcol_pct_inc)) {
+            array_push($uriParameterList, array("subcol_pct_inc", $this->getPercentIncome()));
+        }
+
+        if (!is_null($this->subcol_pct_exp)) {
+            array_push($uriParameterList, array("subcol_pct_exp", $this->getPercentExpense()));
         }
 
 
