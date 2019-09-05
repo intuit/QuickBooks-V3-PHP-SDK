@@ -375,15 +375,23 @@ class OAuth2LoginHelper
      * @param String $scope                 The scope of the key
      * @return OAuth2AccessToken
      */
-    public function OAuth1ToOAuth2Migration($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret, $scope){
+    public function OAuth1ToOAuth2Migration($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret, $scope, $redirectUri = null, $environment = "Sandbox"){
         $oauth1Encrypter = new OAuth1($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+        if(!isset($redirectUri)){
+           $redirectUri = "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl";
+        }
+
+        if(strcasecmp($environment, "Sandbox") == 0){
+           $baseURL = "https://developer-sandbox.api.intuit.com/v2/oauth2/tokens/migrate";
+        }else{
+           $baseURL = "https://developer.api.intuit.com/v2/oauth2/tokens/migrate";
+        }
         $parameters = array(
           'scope' => $scope,
-          'redirect_uri' => "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl",
+          'redirect_uri' => $redirectUri,
           'client_id' => $this->getClientID(),
           'client_secret' => $this->getClientSecret()
         );
-        $baseURL = "https://developer.api.intuit.com/v2/oauth2/tokens/migrate";
         $authorizationHeaderInfo = $oauth1Encrypter->getOAuthHeader($baseURL, array(), "POST");
         $http_header = array(
           'Accept' => 'application/json',
@@ -425,7 +433,7 @@ class OAuth2LoginHelper
               $refreshToken = $json_body[CoreConstants::OAUTH2_REFRESH_GRANTYPE];
               $refreshTokenExpiresTime = $json_body[CoreConstants::X_REFRESH_TOKEN_EXPIRES_IN];
               $accessToken = $json_body[CoreConstants::ACCESS_TOKEN];
-              if(array_key_exists("id_token", $json_body)){
+              if(array_key_exists("id_token", $json_body) && isset($json_body["id_token"]) && !empty($json_body["id_token"])){
                 $idToken = $json_body["id_token"];
                 $result = $this->validateIDToken($idToken);
                 if(!$result){
