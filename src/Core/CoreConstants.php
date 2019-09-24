@@ -316,13 +316,13 @@ class CoreConstants
                                     "IPPTaxService"   => array( '*' => false,
                                                                 'Add' => true,
                                                                 'jsonOnly' => true),
-                                    "IPPSalesReceipt" => array( "DownloadPDF" => true, "SendEmail" => true ),
-                                    "IPPInvoice"      => array( "DownloadPDF" => true, "SendEmail" => true  ),
-                                    "IPPEstimate"     => array( "DownloadPDF" => true, "SendEmail" => true  ),
-                                    "IPPCreditMemo"    => array( "DownloadPDF" => true ),
-                                    "IPPRefundReceipt" => array( "DownloadPDF" => true ),
-                                    "IPPPurchaseOrder" => array( "DownloadPDF" => true ),
-                                    "IPPPayment"       => array( "DownloadPDF" => true ),
+                                    "IPPSalesReceipt"  => array( "DownloadPDF" => true, "SendEmail" => true ),
+                                    "IPPInvoice"       => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPEstimate"      => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPCreditMemo"    => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPRefundReceipt" => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPPurchaseOrder" => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPPayment"       => array( "DownloadPDF" => true, "SendEmail" => true  ),
                             );
     }
 
