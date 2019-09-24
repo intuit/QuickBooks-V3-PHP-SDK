@@ -319,6 +319,10 @@ class CoreConstants
                                     "IPPSalesReceipt" => array( "DownloadPDF" => true, "SendEmail" => true ),
                                     "IPPInvoice"      => array( "DownloadPDF" => true, "SendEmail" => true  ),
                                     "IPPEstimate"     => array( "DownloadPDF" => true, "SendEmail" => true  ),
+                                    "IPPCreditMemo"    => array( "DownloadPDF" => true ),
+                                    "IPPRefundReceipt" => array( "DownloadPDF" => true ),
+                                    "IPPPurchaseOrder" => array( "DownloadPDF" => true ),
+                                    "IPPPayment"       => array( "DownloadPDF" => true ),
                             );
     }
 
