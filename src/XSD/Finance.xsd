@@ -3789,6 +3789,16 @@
 			<xs:enumeration value="AST_TAX_OVERRIDE" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="ConvenienceFeeTypeEnum">
+		<xs:annotation>
+			<xs:documentation>Enumeration of Convenience fee types applicable to Invoice</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MANUAL" />
+			<xs:enumeration value="AUTO" />
+			<xs:enumeration value="PAID" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!-- ============================================================================== -->
 	<!--Group definitions in the Finance Domain -->
@@ -5595,6 +5605,44 @@
 							<xs:documentation>
 								Product: All
 								Description: QBO:  Sharable link of the invoice for external users
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConvenienceFeeDetail" type="ConvenienceFeeDetail" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Convenience Fee detail for the invoice
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConvenienceFeeDetail">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Internal use only: Convenience Fee detail for the invoice
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntuitEntity">
+				<xs:sequence>
+					<xs:element name="ConvenienceFeeType" type="ConvenienceFeeTypeEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Convenience fee type
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConvenienceFeePercent" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Convenience fee rate percentage
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -9917,6 +9965,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="ClassRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Reference to the Class
+								for this item.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -10374,6 +10431,15 @@
 							<xs:documentation>Address to which the payment should be sent.
 								[b]QuickBooks Notes[/b][br /]
 								Non QB-writable.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ShipTo" type="ReferenceType"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Ship to Entity Reference.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

@@ -111,6 +111,18 @@ class IPPPurchaseOrder
 	 */
 	public $VendorAddr;
 	/**
+	 * @Definition 
+								Product: QBO
+								Description: Ship to Entity Reference.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ShipTo
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ShipTo;
+	/**
 	 * @Definition DropShip to Entity Reference
 								
 	 * @xmlType element

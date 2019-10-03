@@ -571,6 +571,28 @@ class IPPCustomer
 	 * @var boolean
 	 */
 	public $IsCISContractor;
+	/**
+	 * @Definition 
+								Internal use only: Applicable only for Accountant companies, Not null represents associated QBO company id. (Readonly)
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ClientCompanyId
+	 * @var string
+	 */
+	public $ClientCompanyId;
+	/**
+	 * @Definition 
+								Internal use only: Applicable only for Accountant companies, External reference for Customer. (ReadOnly)
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ClientEntityId
+	 * @var string
+	 */
+	public $ClientEntityId;
 
 
 } // end class IPPCustomer

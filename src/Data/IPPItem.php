@@ -806,6 +806,19 @@ class IPPItem
 	 * @var string
 	 */
 	public $UQCId;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Reference to the Class
+								for this item.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ClassRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ClassRef;
 
 
 } // end class IPPItem

@@ -247,6 +247,18 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $InvoiceLink;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Convenience Fee detail for the invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ConvenienceFeeDetail
+	 * @var com\intuit\schema\finance\v3\IPPConvenienceFeeDetail
+	 */
+	public $ConvenienceFeeDetail;
 
 
 } // end class IPPInvoice
