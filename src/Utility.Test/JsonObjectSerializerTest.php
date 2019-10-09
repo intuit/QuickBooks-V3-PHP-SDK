@@ -193,6 +193,7 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
             "GivenName" => "John",
             "CreditLimit" => 0.0,
             "FavoriteNumber" => 0,
+            "HasADog" => false,
             "Suffix" => "",         // <== This should get filtered out
             "Notes" => null,        // <== This should get filtered out
         ];
@@ -209,6 +210,7 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($customer['GivenName'], $customerWithNullPropertiesRemoved['GivenName']);
         $this->assertEquals($customer['CreditLimit'], $customerWithNullPropertiesRemoved['CreditLimit']);
         $this->assertEquals($customer['FavoriteNumber'], $customerWithNullPropertiesRemoved['FavoriteNumber']);
+        $this->assertEquals($customer['HasADog'], $customerWithNullPropertiesRemoved['HasADog']);
         $this->assertFalse(isset($customerWithNullPropertiesRemoved['Suffix']));
         $this->assertFalse(isset($customerWithNullPropertiesRemoved['Notes']));
     }
