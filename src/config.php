@@ -10,18 +10,17 @@
  */
 // PSR-4 Autoloader,QuickBooksOnline\Data;
 spl_autoload_register(function ($class) {
-	  $prefix = 'QuickBooksOnline\\API\\';
-		$base_dir = __DIR__ . DIRECTORY_SEPARATOR;
-		$len = strlen($prefix);
-		if (strncmp($prefix, $class, $len) !== 0) {
+    $prefix = 'QuickBooksOnline\\API\\';
+    $base_dir = __DIR__ . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
         return;
     }
-		$relative_class = substr($class, $len);
-		$filewithoutExtension = $base_dir . str_replace('\\', '/', $relative_class);
-		$file =  $filewithoutExtension. '.php';
-
-		//Below str_replace is for local testing. Remove it before putting on Composer.
-	  if (file_exists($file) ) {
-	        require ($file);
-	   }
-	});
+    $relative_class = substr($class, $len);
+    $filewithoutExtension = $base_dir . str_replace('\\', '/', $relative_class);
+    $file = $filewithoutExtension . '.php';
+    //Below str_replace is for local testing. Remove it before putting on Composer.
+    if (file_exists($file)) {
+        require ($file);
+    }
+});

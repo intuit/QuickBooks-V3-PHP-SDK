@@ -994,7 +994,7 @@ class DataService
                 $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
 
             } catch (\Exception $e) {
-                throw new \Exception("Exception appears in converting Response to XML.");
+                throw new \Exception("Exception appears in converting Response to XML. " . $e->getMessage());
             }
 
             return $parsedResponseBody;
@@ -1630,6 +1630,7 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
+            $this->useXml();
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
         }
@@ -1657,6 +1658,7 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
+            $this->useXml();
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
         }

@@ -235,8 +235,21 @@ class XmlObjectSerializer extends IEntitySerializer
         $responseXmlObj = simplexml_load_string($message);
 
         //handle count(*) case, for example Select count(*) from Invoice, and also handle the CDC case
-        if(isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition']) && !isset($responseXmlObj->attributes()['maxResults'])){
+        $reponseAttributes = $responseXmlObj->attributes();
+        if(isset($reponseAttributes['totalCount']) && !isset($reponseAttributes['startPosition']) && !isset($reponseAttributes['maxResults'])){
             return (int) $responseXmlObj->attributes()['totalCount'];
+        }
+        // custom code to return the totalCount, startPosition, and maxResults from the QBO response
+        // back in the XML response out of the SDK
+        $systemInfo = [];
+        if (isset($reponseAttributes['totalCount'])) {
+            $systemInfo['totalCount'] = $reponseAttributes['totalCount'];
+        }
+        if (isset($reponseAttributes['startPosition'])) {
+            $systemInfo['startPosition'] = $reponseAttributes['startPosition'];
+        }
+        if (isset($reponseAttributes['maxResults'])) {
+            $systemInfo['maxResults'] = $reponseAttributes['maxResults'];
         }
 
         foreach ($responseXmlObj as $oneXmlObj) {
@@ -256,7 +269,11 @@ class XmlObjectSerializer extends IEntitySerializer
                 break;
             }
         }
-
+        if (!empty($resultObject) && $bLimitToOne) {
+            $resultObject->systemInfo = $systemInfo;
+        } else if (!empty($resultObjects)) {
+            $resultObjects['systemInfo'] = $systemInfo;
+        }
         if ($bLimitToOne) {
             return $resultObject;
         } else {
