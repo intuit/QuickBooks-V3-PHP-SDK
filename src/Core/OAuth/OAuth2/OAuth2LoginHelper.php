@@ -367,7 +367,7 @@ class OAuth2LoginHelper
     }
 
     /**
-     * Provide OAuth 1 token generation for OAuth 2 token. This function currently is not available on QUickBooks Online yet.
+     * Provide OAuth 1 token generation for OAuth 2 token. 
      * @param String $consumerKey           The consumer key of OAuth 1
      * @param String $consumerSecre         The consumer Secre of OAuth 1
      * @param String $accessToken           The access token key of OAuth 1
