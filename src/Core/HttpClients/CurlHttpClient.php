@@ -145,11 +145,6 @@ class CurlHttpClient implements HttpClientInterface{
      * Set the SSL certifcate path and corresponding varaibles for cURL
      */
     private function setSSL(&$curl_opt, $verifySSL){
-      $tlsVersion = $this->basecURL->versionOfTLS();
-      $versions = ['TLS 1.2', 'TLS 1.3'];
-      if(! in_array($tlsVersion, $versions)){
-          throw new SdkException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TLS 1.2/1.3");
-      }
       $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
       if($verifySSL){
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
