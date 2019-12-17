@@ -989,9 +989,9 @@ class DataService
                 $responseXmlObj = simplexml_load_string($responseBody);
                 if ($responseXmlObj && $responseXmlObj->QueryResponse) {
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
+                    $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
+                    $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
                 }
-                $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
 
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
