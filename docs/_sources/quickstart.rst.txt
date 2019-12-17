@@ -429,7 +429,6 @@ Note that not all properties support filters. Refer back to the API reference pa
 
     .. code-block:: php
 
-        //You will get a 400 from QBO for error parsing string
         $theInvoice = $dataServices->Query("SELECT * FROM Invoice WHERE CustomerRef='58'");
 
 Sorting

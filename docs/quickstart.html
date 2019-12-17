@@ -552,7 +552,7 @@
 <ol class="arabic simple" start="2">
 <li>For Query ReferenceType (ending with keyword Ref), DO NOT USE TypeRef.value. Just use TypeRef. For example, to query an invoice from customer ID 59, you will use:</li>
 </ol>
-<div class="last highlight-php"><div class="highlight"><pre><span></span><span class="c1">//You will get a 400 from QBO for error parsing string</span>
+<div class="last highlight-php"><div class="highlight"><pre>
 <span class="nv">$theInvoice</span> <span class="o">=</span> <span class="nv">$dataServices</span><span class="o">-&gt;</span><span class="na">Query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Invoice WHERE CustomerRef=&#39;58&#39;&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
