@@ -1668,7 +1668,7 @@ class DataService
      * @return String Id
      */
     private function getIDString($id){
-        if($id instanceof IPPid || $id instanceof QuickBooksOnline\API\Data\IPPid){
+        if($id instanceof IPPid){
             return (String)$id->value;
         }else{
             return (String)$id;
