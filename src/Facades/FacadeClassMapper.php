@@ -44,7 +44,9 @@ class FacadeClassMapper
                //IPPTransfer
                'FromAccountRef','ToAccountRef',
                //IPPItem
-               'UOMSetRef','IncomeAccountRef','ExpenseAccountRef','COGSAccountRef','AssetAccountRef','PrefVendorRef','SalesTaxCodeRef','PurchaseTaxCodeRef'
+               'UOMSetRef','IncomeAccountRef','ExpenseAccountRef','COGSAccountRef','AssetAccountRef','PrefVendorRef','SalesTaxCodeRef','PurchaseTaxCodeRef',
+               //IPPCreditMemeo
+               'InvoiceRef'
 
         ];
     }
