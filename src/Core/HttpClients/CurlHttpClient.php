@@ -78,7 +78,7 @@ class CurlHttpClient implements HttpClientInterface{
         //Set SSL. Only Enabled for OAuth 2 Request
         $this->setSSL($curl_opt, $verifySSL);
 
-        $this->intializeCurl();
+        $this->initializeCurl();
         $this->basecURL->setupCurlOptArray($curl_opt);
     }
 
@@ -124,7 +124,7 @@ class CurlHttpClient implements HttpClientInterface{
     /**
      * Check if the cURL instance exists. If not or closed, create a new BaseCurl instance for this Http client
      */
-    private function intializeCurl(){
+    private function initializeCurl(){
         if($this->basecURL->isCurlSet()){ return; }
         else {$this->basecURL->init();}
     }
