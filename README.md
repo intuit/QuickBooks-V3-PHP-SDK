@@ -16,8 +16,9 @@ Create, Update, Read, and Delete Examples: https://github.com/IntuitDeveloper/Sa
 
 **Help:** [Support](https://developer.intuit.com/help)<br/>
 **Documentation:** [Documentation](https://intuit.github.io/QuickBooks-V3-PHP-SDK/)<br/>
-**Continuous Integration:**![Build status](https://travis-ci.org/intuit/QuickBooks-V3-PHP-SDK.svg?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk)<br/>
+**Continuous Integration:** ![Build status](https://travis-ci.org/intuit/QuickBooks-V3-PHP-SDK.svg?branch=master)<br />
+**Latest Stable Version:** [![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk)<br/>
 **License:** [![License](https://poser.pugx.org/quickbooks/v3-php-sdk/license)](https://packagist.org/packages/quickbooks/v3-php-sdk)
+
 
 [ss1]: https://help.developer.intuit.com/s/SDKFeedback?cid=1105
