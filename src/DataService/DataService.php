@@ -823,7 +823,6 @@ class DataService
     public function Void($entity)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Void.");
-
         // Validate parameter
         if (!$entity) {
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
@@ -833,8 +832,13 @@ class DataService
 
         // Builds resource Uri
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
-        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=void'));
-
+        $className = get_class($entity);
+        if(strpos($className, CoreConstants::PAYMENTCLASSNAME) !== false){
+          $appendString = CoreConstants::VOID_QUERYPARAMETER_PAYMENT;
+        }else{
+          $appendString = CoreConstants::VOID_QUERYPARAMETER_GENERAL;
+        }
+        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . $appendString));
         // Creates request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::VOID);
     }

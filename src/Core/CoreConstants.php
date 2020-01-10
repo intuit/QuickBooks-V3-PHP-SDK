@@ -211,6 +211,11 @@ class CoreConstants
      */
     const Id = "Id";
 
+    const PAYMENTCLASSNAME = "IPPPayment";
+
+    const VOID_QUERYPARAMETER_GENERAL = '?operation=void';
+    const VOID_QUERYPARAMETER_PAYMENT = '?operation=update&include=void';
+
     /**
      * Intuit tid
      * @var string
