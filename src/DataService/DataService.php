@@ -964,9 +964,10 @@ class DataService
      * @param string $query Query to issue
      * @param int $startPosition Starting page number
      * @param int $maxResults Page size
+     * @param string $includes A list of additional fields requested in the entities response
      * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
-    public function Query($query, $startPosition = null, $maxResults = null)
+    public function Query($query, $startPosition = null, $maxResults = null, $includes = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
 
@@ -978,6 +979,10 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
+        
+        if(!is_null($includes)) {
+            $httpsUri .= "?include=$includes";
+        }
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
