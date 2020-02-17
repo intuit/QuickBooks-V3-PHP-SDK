@@ -4,7 +4,7 @@ php:
 - 7.1
 - 7.2
 before_install:
-- composer self-update
+- if [[ $TRAVIS_PHP_VERSION == 7.1* ]]; then composer require phpunit/phpunit:~7.5.9; else composer self-update;fi
 before_script:
 - composer install
 script:
