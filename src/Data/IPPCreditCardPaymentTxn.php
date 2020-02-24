@@ -3,15 +3,14 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
- * @xmlName IPPCreditMemo
- * @var IPPCreditMemo
- * @xmlDefinition Financial transaction representing a refund (or
-				credit) of payment or part of a payment for goods or services that
-				have been sold.
+ * @xmlType Transaction
+ * @xmlName IPPCreditCardPaymentTxn
+ * @var IPPCreditCardPaymentTxn
+ * @xmlDefinition Financial transaction representing recording of a Credit Card balance payment.
+			
  */
-class IPPCreditMemo
-	extends IPPSalesTransaction	{
+class IPPCreditCardPaymentTxn
+	extends IPPTransaction	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +25,7 @@ class IPPCreditMemo
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPCreditMemo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCreditMemo',$initPropName))
+				if (property_exists('IPPCreditCardPaymentTxn',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCreditCardPaymentTxn',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,42 +39,46 @@ class IPPCreditMemo
 
 	
 	/**
-	 * @Definition Indicates the total credit amount still
-								available to apply towards the payment.
-								[b]QuickBooks
-								Notes[/b][br /]
-								Non QB-writable.
+	 * @Definition Credit Card account for which a payment is being entered.
+								Must be a Credit Card account.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName RemainingCredit
-	 * @var float
-	 */
-	public $RemainingCredit;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: A credit memo needs to have an invoice number to save successfully
-								Applicable for IN Region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName InvoiceRef
+	 * @xmlName CreditCardAccountRef
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
-	public $InvoiceRef;
+	public $CreditCardAccountRef;
 	/**
-	 * @Definition Internal use only: extension place holder for
-								CreditMemo  
+	 * @Definition Bank account used to pay the Credit Card balance.
+								Must be a Bank account.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName CreditMemoEx
+	 * @xmlName BankAccountRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $BankAccountRef;
+	/**
+	 * @Definition Total amount of the payment. Denominated in the currency of the credit card account.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Amount
+	 * @var float
+	 */
+	public $Amount;
+	/**
+	 * @Definition Internal use only: extension place holder for
+								CreditCardPayment
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlName CreditCardPaymentEx
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
-	public $CreditMemoEx;
+	public $CreditCardPaymentEx;
 
 
-} // end class IPPCreditMemo
+} // end class IPPCreditCardPaymentTxn

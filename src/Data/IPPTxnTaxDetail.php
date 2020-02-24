@@ -122,6 +122,25 @@ class IPPTxnTaxDetail
 	 * @var com\intuit\schema\finance\v3\IPPLine
 	 */
 	public $TaxLine;
+	/**
+	 * @Definition 
+						Product: All
+						Description: This is a boolean which defines if developer intends to use
+						Automated Sales Tax or tax code that they have provided in the payload.
+						If the v3 developer sets this to true, then txn going in QBO will always
+						have AST rates. In case this flag is set to false, then it will depend on the
+						QBO user pref - AllowPartnerTaxOverride, which tells if QBO user wants to allow
+						v3 app to override AST rates or not. If user allows v3 apps to override AST,
+						then the txn will get saved with v3 app specified rates.
+						[span style="display: none"] I18n: US [/span]
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName UseAutomatedSalesTax
+	 * @var boolean
+	 */
+	public $UseAutomatedSalesTax;
 
 
 } // end class IPPTxnTaxDetail

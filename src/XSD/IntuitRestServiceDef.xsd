@@ -22,6 +22,7 @@
     <xs:element name="CreditMemo" type="CreditMemo" substitutionGroup="IntuitObject"/>
     <xs:element name="StatementCharge" type="StatementCharge" substitutionGroup="IntuitObject"/>
     <xs:element name="ChargeCredit" type="ChargeCredit" substitutionGroup="IntuitObject"/>
+    <xs:element name="CreditCardPaymentTxn" type="CreditCardPaymentTxn" substitutionGroup="IntuitObject"/>
     <xs:element name="ReimburseCharge" type="ReimburseCharge" substitutionGroup="IntuitObject"/>
     <xs:element name="PaymentMethod" type="PaymentMethod" substitutionGroup="IntuitObject"/>
     <xs:element name="Term" type="Term" substitutionGroup="IntuitObject"/>
@@ -33,6 +34,7 @@
     <xs:element name="Item" type="Item" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxClassification" type="TaxClassification" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxCode" type="TaxCode" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxPayment" type="TaxPayment" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxReturn" type="TaxReturn" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxRate" type="TaxRate" substitutionGroup="IntuitObject"/>
     <xs:element name="VendorCredit" type="VendorCredit" substitutionGroup="IntuitObject"/>
@@ -76,6 +78,7 @@
 	<xs:element name="JournalCode" type="JournalCode" substitutionGroup="IntuitObject"/>  
 	<xs:element name="QbdtEntityIdMapping" type="QbdtEntityIdMapping" substitutionGroup="IntuitObject"/>
     <xs:element name="MasterAccount" type="MasterAccount" substitutionGroup="IntuitObject"/>
+    <xs:element name="Tag" type="Tag" substitutionGroup="IntuitObject"/>
 	  	
     <xs:simpleType name="FaultTypeEnum">
         <xs:annotation>

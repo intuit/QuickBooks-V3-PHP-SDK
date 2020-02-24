@@ -100,10 +100,10 @@ class IPPTaxCode
 	public $Active;
 	/**
 	 * @Definition 
- 								Product: QBW
- 								Description: True if Taxcode needs to be hidden. Active tax codes can be hidden from the display using this.
- 								Filterable: ALL
- 							
+								Product: QBW
+								Description: True if Taxcode needs to be hidden. Active tax codes can be hidden from the display using this.
+								Filterable: ALL
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

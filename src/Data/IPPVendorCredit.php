@@ -40,6 +40,18 @@ class IPPVendorCredit
 
 	
 	/**
+	 * @Definition 
+								Product: QBO
+								Description: Vendor Mailing Address
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorAddr
+	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 */
+	public $VendorAddr;
+	/**
 	 * @Definition Internal use only: extension place holder for
 								Bill extensible element to qualify account.
 	 * @xmlType element

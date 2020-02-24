@@ -143,6 +143,18 @@ class IPPTaxAgency
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $TaxAgencyExt;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Tax agency config. Identify if the agency is System generated or User created.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxAgencyConfig
+	 * @var string
+	 */
+	public $TaxAgencyConfig;
 
 
 } // end class IPPTaxAgency

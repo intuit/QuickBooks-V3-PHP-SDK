@@ -250,6 +250,18 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: QBO:  Message displayed to customer about payment Instructions. eg: bank account info.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName PaymentDetailsMessage
+	 * @var string
+	 */
+	public $PaymentDetailsMessage;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: Internal use only: Convenience Fee detail for the invoice
 							
 	 * @xmlType element
