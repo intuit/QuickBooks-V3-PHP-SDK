@@ -179,7 +179,7 @@ class FacadeClassMapper
          'OtherContact' => 'GenericContactType',
          'CheckPayment' => 'BillPaymentCheck',
          'CheckDetail' => 'CheckPayment',
-         'CreditCardPayment' => 'BillPaymentCreditCard',
+         'CreditCardPayment' => 'CreditCardPayment',
          'CashBack' => 'CashBackInfo',
          'ItemGroupLine' => 'ItemComponentLine',
          'ItemAssemblyLine' => 'ItemComponentLine',
