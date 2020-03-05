@@ -1335,9 +1335,9 @@ class DataService
 
     private function isCreditCardPaymentTxn($entity)
     {
-        $IPPCreditCardPaymentTxnClassWIthNameSpace = "QuickBooksOnline\\API\\Data\\IPPCreditCardPaymentTxn";
+        $IPPCreditCardPaymentTxnClass = "QuickBooksOnline\\API\\Data\\IPPCreditCardPaymentTxn";
 
-        if (class_exists($IPPCreditCardPaymentTxnClassWIthNameSpace) && ($entity instanceof $IPPCreditCardPaymentTxnClassWIthNameSpace))
+        if (class_exists($IPPCreditCardPaymentTxnClass) && ($entity instanceof $IPPCreditCardPaymentTxnClass))
             return true;
         else if (is_string($entity) && $entity == "CreditCardPaymentTxn")
             return true;
