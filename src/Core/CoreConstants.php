@@ -7,7 +7,7 @@ namespace QuickBooksOnline\API\Core;
 class CoreConstants
 {
     //Set the default minor version
-    const DEFAULT_SDK_MINOR_VERSION = "45";
+    const DEFAULT_SDK_MINOR_VERSION = "47";
     const DEFAULT_LOGGINGLOCATION = "/tmp/IdsLogs";
 
     const PHP_CLASS_PREFIX = 'IPP';
@@ -298,7 +298,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK5.3.4";
+    const USERAGENT = "V3PHPSDK5.3.5";
 
     public static function getType($string, $return=1)
     {

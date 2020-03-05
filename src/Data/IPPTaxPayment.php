@@ -3,15 +3,16 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
- * @xmlName IPPCreditMemo
- * @var IPPCreditMemo
- * @xmlDefinition Financial transaction representing a refund (or
-				credit) of payment or part of a payment for goods or services that
-				have been sold.
+ * @xmlType IntuitEntity
+ * @xmlName IPPTaxPayment
+ * @var IPPTaxPayment
+ * @xmlDefinition 
+				Product: QBO
+				Description: Tax Payment/Refund made against filed taxReturn.
+			
  */
-class IPPCreditMemo
-	extends IPPSalesTransaction	{
+class IPPTaxPayment
+	extends IPPIntuitEntity	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +27,7 @@ class IPPCreditMemo
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPCreditMemo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCreditMemo',$initPropName))
+				if (property_exists('IPPTaxPayment',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxPayment',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,42 +41,65 @@ class IPPCreditMemo
 
 	
 	/**
-	 * @Definition Indicates the total credit amount still
-								available to apply towards the payment.
-								[b]QuickBooks
-								Notes[/b][br /]
-								Non QB-writable.
+	 * @Definition 
+								Product: QBO
+								Description: The tax payment date
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName RemainingCredit
-	 * @var float
+	 * @xmlName PaymentDate
+	 * @var string
 	 */
-	public $RemainingCredit;
+	public $PaymentDate;
 	/**
 	 * @Definition 
-								Product: ALL
-								Description: A credit memo needs to have an invoice number to save successfully
-								Applicable for IN Region.
+								Product: QBO
+								Description: Account ID from which the payment was made (or refund was moved to)
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName InvoiceRef
+	 * @xmlName PaymentAccountRef
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
-	public $InvoiceRef;
+	public $PaymentAccountRef;
 	/**
-	 * @Definition Internal use only: extension place holder for
-								CreditMemo  
+	 * @Definition 
+								Product: QBO
+								Description: Specifies the tax payment amount paid towards a filed tax return.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName CreditMemoEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @xmlName PaymentAmount
+	 * @var float
 	 */
-	public $CreditMemoEx;
+	public $PaymentAmount;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Memo/Description added for this payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Description
+	 * @var string
+	 */
+	public $Description;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Indicate if this transaction is a refund. Returns false for the tax payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Refund
+	 * @var boolean
+	 */
+	public $Refund;
 
 
-} // end class IPPCreditMemo
+} // end class IPPTaxPayment

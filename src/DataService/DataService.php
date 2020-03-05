@@ -614,6 +614,10 @@ class DataService
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
+        if ($this->isCreditCardPaymentTxn($entity)) {
+            $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
+        }
+
         switch ($CALLINGMETHOD) {
             case DataService::DELETE:
             case DataService::ADD:
@@ -739,6 +743,9 @@ class DataService
           return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
         }else if(is_string($entity) && isset($Id)){
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
+          if ($this->isCreditCardPaymentTxn($entity)) {
+            $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
+          }
           $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
           $restRequestHandler = $this->getRestHandler();
           list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
@@ -775,14 +782,14 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        }
+        } 
+
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
 
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);
-
+        $uri = $this->handleTaxService($entity, $resourceURI);        
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -1324,6 +1331,18 @@ class DataService
         $IPPTaxServiceClassWIthNameSpace = "QuickBooksOnline\\API\\Data\\IPPTaxService";
 
         return class_exists($IPPTaxServiceClassWIthNameSpace) && ($entity instanceof $IPPTaxServiceClassWIthNameSpace);
+    }
+
+    private function isCreditCardPaymentTxn($entity)
+    {
+        $IPPCreditCardPaymentTxnClass = "QuickBooksOnline\\API\\Data\\IPPCreditCardPaymentTxn";
+
+        if (class_exists($IPPCreditCardPaymentTxnClass) && ($entity instanceof $IPPCreditCardPaymentTxnClass))
+            return true;
+        else if (is_string($entity) && $entity == "CreditCardPaymentTxn")
+            return true;
+
+        return false;
     }
 
     /**

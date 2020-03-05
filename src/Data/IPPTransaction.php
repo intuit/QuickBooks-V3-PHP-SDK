@@ -299,6 +299,19 @@ class IPPTransaction
 	 * @var string
 	 */
 	public $TransactionLocationType;
+	/**
+	 * @Definition 
+								Product: QBO
+								Descripton: List of tags used to identify the transaction.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName Tag
+	 * @var com\intuit\schema\finance\v3\IPPTag
+	 */
+	public $Tag;
 
 
 } // end class IPPTransaction

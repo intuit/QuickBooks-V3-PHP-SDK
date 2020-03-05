@@ -1380,6 +1380,14 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="TaxAgencyExt" type="IntuitAnyType" minOccurs="0"/>
+					<xs:element name="TaxAgencyConfig" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Tax agency config. Identify if the agency is System generated or User created.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
