@@ -46,7 +46,11 @@ class FacadeClassMapper
                //IPPItem
                'UOMSetRef','IncomeAccountRef','ExpenseAccountRef','COGSAccountRef','AssetAccountRef','PrefVendorRef','SalesTaxCodeRef','PurchaseTaxCodeRef',
                //IPPCreditMemeo
-               'InvoiceRef', 'CreditCardAccountRef'
+               'InvoiceRef',
+               //IPPCreditCardPaymentTxn
+               'CreditCardAccountRef', 
+               //IPPTaxPayment
+               'PaymentAccountRef'
 
         ];
     }
