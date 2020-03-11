@@ -268,19 +268,19 @@ class CoreConstants
      * Request File Name Format.
      * @var string REQUESTFILENAME_FORMAT
      */
-    const REQUESTFILENAME_FORMAT = "{0}{1}Request-{2}.txt";
+    const REQUESTFILENAME_FORMAT = "{0}{1}Request-{2}.log";
 
     /**
      * Response File Name Format.
      * @var string RESPONSEFILENAME_FORMAT
      */
-    const RESPONSEFILENAME_FORMAT = "{0}{1}Response-{2}.txt";
+    const RESPONSEFILENAME_FORMAT = "{0}{1}Response-{2}.log";
 
     /**
      * Error Response File Name Format.
      * @var string ERRORRESPONSEFILENAME_FORMAT
      */
-    const ERRORRESPONSEFILENAME_FORMAT = "{0}{1}Error-Response-{2}.txt";
+    const ERRORRESPONSEFILENAME_FORMAT = "{0}{1}Error-Response-{2}.log";
 
     /**
      * The Compression format of the request data.

@@ -264,6 +264,7 @@ class DataService
         $restHandler = $this->restHandler;
         $loggerUsedByRestHandler = $restHandler->getRequestLogger();
         $loggerUsedByRestHandler->setLogDirectory($new_log_location);
+        $this->getOAuth2LoginHelper()->setLogDirectory($new_log_location);
         return $this;
     }
 
@@ -305,6 +306,7 @@ class DataService
         $restHandler = $this->restHandler;
         $loggerUsedByRestHandler = $restHandler->getRequestLogger();
         $loggerUsedByRestHandler->setLogStatus(true);
+        $this->getOAuth2LoginHelper()->enableLog();
         return $this;
     }
 
@@ -782,14 +784,14 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
 
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -986,7 +988,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }

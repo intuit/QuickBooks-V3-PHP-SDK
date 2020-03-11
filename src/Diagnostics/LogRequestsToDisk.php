@@ -104,15 +104,12 @@ class LogRequestsToDisk
                     $collapsedHeaders[] = "{$key}: {$val}";
                 }
 
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." URI FOR SEQUENCE ID {$sequenceNumber}\n==================================\n{$url}\n\n",
-                                  FILE_APPEND);
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." HEADERS\n================\n".implode("\n", $collapsedHeaders)."\n\n",
-                                  FILE_APPEND);
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." BODY\n=============\n".$xml."\n\n",
-                                  FILE_APPEND);
+                $what = $isRequest?"REQUEST":"RESPONSE";
+                $content = "$what URI FOR SEQUENCE ID $sequenceNumber\n==================================\n$url\n\n
+                            $what HEADERS\n================\n".implode("\n", $collapsedHeaders)."\n\n".
+                           "$what BODY\n=============\n".$xml."\n\n";
+                file_put_contents($filePath, $content);
+
             } catch (\Exception $e) {
                 throw new IdsException("Exception during LogPlatformRequests.");
             }
