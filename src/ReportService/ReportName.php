@@ -6,24 +6,28 @@ namespace QuickBooksOnline\API\ReportService;
  */
 class ReportName
 {
+    const AGEDPAYABLEDETAIL = "AgedPayableDetail";
+    const AGEDPAYABLES = "AgedPayables";
+    const AGEDRECEIVABLES = "AgedReceivables";
+    const BALANCESHEET = "BalanceSheet";
+    const BAS = "BAS";
+    const CASHFLOW = "CashFlow";
+    const CLASSSALES = "ClassSales";
+    const CUSTOMERBALANCE = "CustomerBalance";
+    const CUSTOMERINCOME = "CustomerIncome";
+    const CUSTOMERSALES = "CustomerSales";
+    const DEPARTMENTSALES = "DepartmentSales";
+    const GENERALLEDGER = "GeneralLedger";
+    const GENERALLEDGERFR = "GeneralLedgerFR";
+    const INVENTORYVALUATIONSUMMARY = "InventoryValuationSummary";
+    const ITEMSALES = "ItemSales";
     const PROFITANDLOSS = "ProfitAndLoss";
     const PROFITANDLOSSDETAIL = "ProfitAndLossDetail";
-    const BALANCESHEET = "BalanceSheet";
-    const CASHFLOW = "CashFlow";
-    const CUSTOMERINCOME = "CustomerIncome";
-    const AGEDRECEIVABLES = "AgedReceivables";
-    const AGEDPAYABLES = "AgedPayables";
-    const CUSTOMERBALANCE = "CustomerBalance";
-    const CUSTOMERSALES = "CustomerSales";
-    const ITEMSALES = "ItemSales";
-    const DEPARTMENTSALES = "DepartmentSales";
-    const CLASSSALES = "ClassSales";
     const TRIALBALANCE = "TrialBalance";
     const VENDORBALANCE = "VendorBalance";
-    const VENDOREXPENSES = "VendorExpenses";
-    const INVENTORYVALUATIONSUMMARY = "InventoryValuationSummary";
-    const BAS = "BAS";
     const VENDORBALANCEDETAIL = "VendorBalanceDetail";
-    const GENERALLEDGER = "GeneralLedger";
-    const AGEDPAYABLEDETAIL = "AgedPayableDetail";
+    const VENDOREXPENSES = "VendorExpenses";
+    const JOURNALREPORT = "JournalReport";
+    const JOURNALREPORTFR = "JournalReportFR";
+    const TRIALBALANCEFR = "TrialBalanceFR";
 }
