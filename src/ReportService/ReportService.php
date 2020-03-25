@@ -97,6 +97,15 @@ class ReportService
     private $doc_num = null;
     private $subcol_pct_inc = null;
     private $subcol_pct_exp = null;
+    private $adjusted_gain_loss = null;
+
+    public function getAdjustedGainLoss(){
+       return $this->adjusted_gain_loss;
+    }
+
+    public function setAdjustedGainLoss($adjustedGainLoss){
+       return $this->adjusted_gain_loss = $adjustedGainLoss;
+    }
 
     public function getPercentIncome(){
        return $this->subcol_pct_inc;
@@ -1178,6 +1187,10 @@ class ReportService
 
         if (!is_null($this->subcol_pct_exp)) {
             array_push($uriParameterList, array("subcol_pct_exp", $this->getPercentExpense()));
+        }
+
+        if (!is_null($this->adjusted_gain_loss)) {
+            array_push($uriParameterList, ["adjusted_gain_loss", $this->getAdjustedGainLoss()]);
         }
 
 

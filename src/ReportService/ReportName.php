@@ -7,6 +7,7 @@ namespace QuickBooksOnline\API\ReportService;
 class ReportName
 {
     const PROFITANDLOSS = "ProfitAndLoss";
+    const PROFITANDLOSSDETAIL = "ProfitAndLossDetail";
     const BALANCESHEET = "BalanceSheet";
     const CASHFLOW = "CashFlow";
     const CUSTOMERINCOME = "CustomerIncome";
