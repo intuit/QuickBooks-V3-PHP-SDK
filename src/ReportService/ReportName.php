@@ -22,6 +22,7 @@ class ReportName
     const INVENTORYVALUATIONSUMMARY = "InventoryValuationSummary";
     const ITEMSALES = "ItemSales";
     const PROFITANDLOSS = "ProfitAndLoss";
+    const PROFITANDLOSSDETAIL = "ProfitAndLossDetail";
     const TRIALBALANCE = "TrialBalance";
     const VENDORBALANCE = "VendorBalance";
     const VENDORBALANCEDETAIL = "VendorBalanceDetail";
