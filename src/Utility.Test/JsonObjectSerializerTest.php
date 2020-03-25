@@ -1,10 +1,13 @@
 <?php
 
-require_once('../sdk/config.php');
-
-require_once(PATH_SDK_ROOT . 'Utility/Serialization/JsonObjectSerializer.php');
+$srcDir = dirname(__DIR__);
+require_once("{$srcDir}/config.php");
+require_once("{$srcDir}/Core/Http/Serialization/JsonObjectSerializer.php");
 
 date_default_timezone_set('America/Chicago');
+
+use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
+
 /**
  * Covers JSON serializer
  *
@@ -70,7 +73,7 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
 
     }*/
 
-
+    /*
     public function testDeserializerTaxService()
     {
         $instance = new JsonObjectSerializer();
@@ -82,6 +85,7 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("MyTaxCodeName_624792433", $item->TaxCode);
         $this->assertEquals("59", $details->TaxRateId);
     }
+    */
     
     /*public function testDeserializerUtilitLinkedTxnInBill()
     {
@@ -179,4 +183,35 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("2", $line2->Amount);
         $this->assertEquals("Bunch of services", $line2->Description);
     }*/
+
+    /**
+     * This test ensures that the JsonObjectSerializer->removeNullProperties() method removes null values and empty string values
+     * but doesn't remove properties that have values
+     */
+    public function testThatRemoveNullPropertiesLeavesNonNullValuesInPlace() {
+        $customer = [
+            "GivenName" => "John",
+            "CreditLimit" => 0.0,
+            "FavoriteNumber" => 0,
+            "HasADog" => false,
+            "Suffix" => "",         // <== This should get filtered out
+            "Notes" => null,        // <== This should get filtered out
+        ];
+
+        // Make the private method ->removeNullProperties() accessible in this scope
+        $jsonSerializer = new JsonObjectSerializer();
+        $removeNullPropertiesMethod = new ReflectionMethod($jsonSerializer, 'removeNullProperties');
+        $removeNullPropertiesMethod->setAccessible(true);
+
+        // Pass the $customer stub into the ->removeNullProperties() method
+        $customerWithNullPropertiesRemoved = $removeNullPropertiesMethod->invoke($jsonSerializer, $customer);
+
+        // Make sure that the null and empty-string properties were removed, but all others remain
+        $this->assertEquals($customer['GivenName'], $customerWithNullPropertiesRemoved['GivenName']);
+        $this->assertEquals($customer['CreditLimit'], $customerWithNullPropertiesRemoved['CreditLimit']);
+        $this->assertEquals($customer['FavoriteNumber'], $customerWithNullPropertiesRemoved['FavoriteNumber']);
+        $this->assertEquals($customer['HasADog'], $customerWithNullPropertiesRemoved['HasADog']);
+        $this->assertFalse(isset($customerWithNullPropertiesRemoved['Suffix']));
+        $this->assertFalse(isset($customerWithNullPropertiesRemoved['Notes']));
+    }
 }
