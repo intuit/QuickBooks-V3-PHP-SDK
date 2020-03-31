@@ -232,7 +232,7 @@ class XmlObjectSerializer extends IEntitySerializer
         $resultObject = null;
         $resultObjects = null;
 
-        $responseXmlObj = simplexml_load_string($message);
+        $responseXmlObj = simplexml_load_string($this->sanitizeXML($message));
 
         //handle count(*) case, for example Select count(*) from Invoice, and also handle the CDC case
         if(isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition']) && !isset($responseXmlObj->attributes()['maxResults'])){
@@ -263,4 +263,51 @@ class XmlObjectSerializer extends IEntitySerializer
             return $resultObjects;
         }
     }
+
+	/**
+	 * Sanitizes API response string
+	 * @param $string
+	 * @return string|string[]|null
+	 */
+	private function sanitizeXML($string)
+	{
+		if (!empty($string)) {
+			// remove EOT+NOREP+EOX|EOT+<char> sequence (FatturaPA)
+			$string = preg_replace('/(\x{0004}(?:\x{201A}|\x{FFFD})(?:\x{0003}|\x{0004}).)/u', '', $string);
+
+			$regex = '/(
+            [\xC0-\xC1] # Invalid UTF-8 Bytes
+            | [\xF5-\xFF] # Invalid UTF-8 Bytes
+            | \xE0[\x80-\x9F] # Overlong encoding of prior code point
+            | \xF0[\x80-\x8F] # Overlong encoding of prior code point
+            | [\xC2-\xDF](?![\x80-\xBF]) # Invalid UTF-8 Sequence Start
+            | [\xE0-\xEF](?![\x80-\xBF]{2}) # Invalid UTF-8 Sequence Start
+            | [\xF0-\xF4](?![\x80-\xBF]{3}) # Invalid UTF-8 Sequence Start
+            | (?<=[\x0-\x7F\xF5-\xFF])[\x80-\xBF] # Invalid UTF-8 Sequence Middle
+            | (?<![\xC2-\xDF]|[\xE0-\xEF]|[\xE0-\xEF][\x80-\xBF]|[\xF0-\xF4]|[\xF0-\xF4][\x80-\xBF]|[\xF0-\xF4][\x80-\xBF]{2})[\x80-\xBF] # Overlong Sequence
+            | (?<=[\xE0-\xEF])[\x80-\xBF](?![\x80-\xBF]) # Short 3 byte sequence
+            | (?<=[\xF0-\xF4])[\x80-\xBF](?![\x80-\xBF]{2}) # Short 4 byte sequence
+            | (?<=[\xF0-\xF4][\x80-\xBF])[\x80-\xBF](?![\x80-\xBF]) # Short 4 byte sequence (2)
+        )/x';
+			$string = preg_replace($regex, '', $string);
+
+			$result = "";
+			$current = null;
+			$length = strlen($string);
+			for ($i = 0; $i < $length; $i++) {
+				$current = ord($string{$i});
+				if (($current == 0x9) ||
+					($current == 0xA) ||
+					($current == 0xD) ||
+					(($current >= 0x20) && ($current <= 0xD7FF)) ||
+					(($current >= 0xE000) && ($current <= 0xFFFD)) ||
+					(($current >= 0x10000) && ($current <= 0x10FFFF))) {
+					$result .= chr($current);
+				}
+			}
+			$string = $result;
+		}
+
+		return $string;
+	}
 }
