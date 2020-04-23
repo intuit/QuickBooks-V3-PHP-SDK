@@ -17,10 +17,7 @@
 namespace QuickBooksOnline\API\Core\OAuth\OAuth2;
 
 
-use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\ServiceContext;
-use QuickBooksOnline\API\DataService\DataService;
-use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\Core\HttpClients\CurlHttpClient;
@@ -86,12 +83,6 @@ class OAuth2LoginHelper
     private $faultHandler = false;
 
     /**
-     * Get the Logging component for the REST service
-     * @var LogRequestsToDisk
-     */
-    protected $RequestLogging;
-
-    /**
      * Constructor for OAuth2Login Helper. Client ID and Client Secret are used to get OAuth 2 Tokens. Service Context is used for refreshToken API call
      * @param String $clientID                   The client ID of the App
      * @param String $clientSecret               The client Secret of the App
@@ -101,7 +92,6 @@ class OAuth2LoginHelper
      * @param ServiceContext $serviceContext     The serviceContext for the request, only passed for making refresh token API call
      */
     public function __construct($clientID, $clientSecret, $redirectUri = null, $scope = null, $state = null, ServiceContext $serviceContext = null){
-        $this->RequestLogging = CoreHelper::GetRequestLogging($serviceContext);
         //used for refresh token
         if(isset($serviceContext)){
             $accessTokenObj =  $serviceContext->requestValidator;
@@ -126,6 +116,9 @@ class OAuth2LoginHelper
             }
         }
         $this->curlHttpClient = new CurlHttpClient();
+        if(isset($serviceContext)) {
+            $this->curlHttpClient->createRequestLoggingHelper($serviceContext);
+        }
     }
 
     /**
@@ -270,49 +263,13 @@ class OAuth2LoginHelper
     }
 
     /**
-     * Log API Reponse to the Log directory that user specified.
-     * @param String $body The requestBody
-     * @param String $requestUri  The URI for this request
-     * @param Array $httpHeaders  The headers for the request
-     */
-    public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
-        $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
-        if(strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
-            strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
-            $body = $this->parseStringToDom($body);
-        }
-
-        $this->RequestLogging->LogPlatformRequests($body, $requestUri, $httpHeaders, false);
-    }
-
-    /**
-     * Enable the logging function
-     *
-     * @return $this
-     */
-    public function enableLog() {
-        $this->RequestLogging->EnableServiceRequestsLogging = true;
-    }
-
-    /**
-     * Set Log directory
-     * @param String $logDirectory
-     */
-    public function setLogDirectory($logDirectory){
-        $this->RequestLogging->ServiceRequestLoggingLocation = $logDirectory;
-    }
-
-    /**
      * Get a new access token based on the refresh token. Static function to make easy refreshToken API call.
      * @return OAuth2AccessToken     A new OAuth2AccessToken that contains all the information(accessTokenkey, RefreshTokenKey, ClientID, and ClientSecret, Expiration Time, etc)
      */
     public function refreshAccessTokenWithRefreshToken($refreshToken){
-       $requestUri = CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL;
        $http_header = $this->constructRefreshTokenHeader();
        $requestBody = $this->constructRefreshTokenBody($refreshToken);
-       $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $http_header, true);
-       $intuitResponse = $this->curlHttpClient->makeAPICall($requestUri, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
-       $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+       $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -563,5 +520,26 @@ class OAuth2LoginHelper
           'refresh_token' => (String)$refresh_token
         );
         return http_build_query($parameters);
+    }
+
+
+    /**
+     * Enable the logging function
+     *
+     */
+    public function enableLog() {
+        if ($this->curlHttpClient) {
+            $this->curlHttpClient->enableLog();
+        }
+    }
+
+    /**
+     * Set Log directory
+     * @param String $logDirectory
+     */
+    public function setLogDirectory($logDirectory){
+        if ($this->curlHttpClient) {
+            $this->curlHttpClient->setLogDirectory($logDirectory);
+        }
     }
 }

@@ -79,7 +79,7 @@ class LogRequestsToDisk
             }
 
             // Use filecount to have some sort of sequence number for debugging purposes - 5 digits
-                  $sequenceNumber = iterator_count(new \DirectoryIterator($this->ServiceRequestLoggingLocation));
+            $sequenceNumber = iterator_count(new \DirectoryIterator($this->ServiceRequestLoggingLocation));
             $sequenceNumber = str_pad((int)$sequenceNumber, 5, "0", STR_PAD_LEFT);
 
             $iter = 0;

@@ -2,6 +2,10 @@
 
 namespace QuickBooksOnline\API\Core\HttpClients;
 
+use QuickBooksOnline\API\Core\CoreHelper;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
+use QuickBooksOnline\API\Core\ServiceContext;
+use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Core\CoreConstants;
 
@@ -25,6 +29,12 @@ class CurlHttpClient implements HttpClientInterface{
     private $intuitResponse = false;
 
     /**
+     * Get the Logging component for the REST service
+     * @var LogRequestsToDisk
+     */
+    protected $requestLogging;
+
+    /**
      * The constructor for constructing the cURL http client for making API calls
      * @param BaseCurl $curl    A predefined BaseCurl instance to be used in this client
      */
@@ -38,15 +48,27 @@ class CurlHttpClient implements HttpClientInterface{
     }
 
     /**
+     * Creates Request Response Logging mechanism.
+     * @param ServiceContext serviceContext The serivce context object.
+     */
+    public function createRequestLoggingHelper($serviceContext){
+        $this->requestLogging = CoreHelper::GetRequestLogging($serviceContext);
+    }
+
+    /**
      * @inheritdoc
      */
     public function makeAPICall($url, $method, array $headers, $body, $timeOut, $verifySSL){
+
+        $this->LogPlatformRequests($body, $headers, true);
         $this->clearResponse();
         $this->prepareRequest($url, $method, $headers, $body, $timeOut, $verifySSL);
         $rawResponse = $this->executeRequest();
         $this->handleErrors();
         $this->setIntuitResponse($rawResponse);
         $this->closeConnection();
+        $this->LogAPIResponseToLog($this->intuitResponse->getBody(), $this->intuitResponse->getHeaders());
+
         return $this->getLastResponse();
     }
 
@@ -181,6 +203,68 @@ class CurlHttpClient implements HttpClientInterface{
      */
     public function getLastResponse(){
         return $this->intuitResponse;
+    }
+
+    /**
+     * Logs the Platform Request to Disk.
+     * @param string request body to log.
+     * @param array headers HTTP headers of the request/response
+     * @param bool isRequest Specifies whether the xml is request or response.
+     */
+    public function LogPlatformRequests($body, $headers, $isRequest){
+        if ($this->requestLogging) {
+            $this->requestLogging->LogPlatformRequests($body, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $headers, $isRequest);
+        }
+    }
+
+    /**
+     * Log API Reponse to the Log directory that user specified.
+     * @param string $body The requestBody
+     * @param array $httpHeaders  The headers for the request
+     */
+    public function LogAPIResponseToLog($body, $httpHeaders){
+        if ($this->requestLogging) {
+            $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
+            if (strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
+                strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0) {
+                $body = $this->parseStringToDom($body);
+            }
+
+            $this->LogPlatformRequests($body, $httpHeaders, false);
+        }
+    }
+
+    /**
+     * Parse a String xml to DOM structure for easy read
+     * @param String $string   The String representation
+     * @return string|bool The DOM structured XML
+     */
+    private function parseStringToDom($string){
+        $dom = new \DOMDocument();
+        $dom->preserveWhiteSpace = FALSE;
+        $dom->loadXML($string);
+        $dom->formatOutput = TRUE;
+        return $dom->saveXml();
+    }
+
+    /**
+     * Enable the logging function
+     *
+     */
+    public function enableLog() {
+        if ($this->requestLogging) {
+            $this->requestLogging->EnableServiceRequestsLogging = true;
+        }
+    }
+
+    /**
+     * Set Log directory
+     * @param String $logDirectory
+     */
+    public function setLogDirectory($logDirectory){
+        if ($this->requestLogging) {
+            $this->requestLogging->ServiceRequestLoggingLocation = $logDirectory;
+        }
     }
 
 }
