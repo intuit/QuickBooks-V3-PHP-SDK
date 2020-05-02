@@ -92,12 +92,27 @@ class Batch
     private $isThrowExceptionOnError = false;
 
     /**
+     * Enable debug mode to get more information inside the exception like intuit-tid
+     * @var boolean
+     */
+    private $debugMode = false;
+
+    /**
     * Get the error from last request
     * @return FaultHandler
     */
     public function getLastError()
     {
         return $this->lastError;
+    }
+
+    /**
+     * Set the debug mode
+     * @param $mode
+     */
+    public function setDebug($mode)
+    {
+        $this->debugMode = $mode;
     }
 
     /**
@@ -527,6 +542,9 @@ class Batch
         }
 
         $firstChildName = (string)$firstChild->getName();
+
+        var_dump($this->debugMode);
+        die();
 
         switch ($firstChildName) {
               //For batch query result
