@@ -543,9 +543,6 @@ class Batch
 
         $firstChildName = (string)$firstChild->getName();
 
-        var_dump($this->debugMode);
-        die();
-
         switch ($firstChildName) {
               //For batch query result
               case "QueryResponse":
@@ -562,6 +559,16 @@ class Batch
               case "Fault":
                   $result->responseType = UtilityConstants::Exception;
                   $idsException = $this->IterateFaultAndPrepareException($firstChild);
+                  if($this->debugMode) {
+                      $interface = $this->restHandler->getHttpClientInterface();
+                      $responseInterface = $interface->getLastResponse();
+                      $debugInfo = [
+                          'intuit_tid' => $responseInterface->getIntuitTid(),
+                          'body' => $responseInterface->getBody(),
+                          'headers' => $responseInterface->getHeaders(),
+                      ];
+                      $idsException->setDebug($debugInfo);
+                  }
                   $result->exception = $idsException;
                   break;
               //For batch Entity Result

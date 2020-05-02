@@ -57,12 +57,21 @@ class SyncRestHandler extends RestHandler
         $this->httpClientInterface = isset($client) ? $client : new CurlHttpClient();
     }
 
+    /**
+     * Gets the http client interface
+     * @return CurlHttpClient|HttpClientInterface
+     */
+    public function getHttpClientInterface()
+    {
+        return $this->httpClientInterface;
+    }
+
    /**
     * Update the Service Context of the request.
-    *
-    * @param ServiceContext  $newServiceContext      The new service context that will be used for the request
+    * @param ServiceContext $newServiceContext The new service context that will be used for the request
     */
-    public function updateContext($newServiceContext){
+    public function updateContext($newServiceContext)
+    {
         if(isset($newServiceContext) && $newServiceContext instanceof ServiceContext){
             $this->context = $newServiceContext;
         }else{
