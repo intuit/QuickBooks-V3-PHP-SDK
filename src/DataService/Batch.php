@@ -307,8 +307,6 @@ class Batch
           // Get literal XML representation of IntuitBatchRequest into a DOMDocument
           $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
 
-          echo $httpsPostBodyPreProcessed;
-
           $doc = new \DOMDocument();
           $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
           $xpath = new \DOMXPath($doc);
