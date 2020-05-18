@@ -693,6 +693,7 @@ class DataService
         ) {
             // URL format for *QBO* prefs request is different than URL format for *QBD* prefs request
             $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
+            $uri = !is_null($requestId) ? $uri . '?requestid=' . $requestId : $uri;
         }
         //We no longer support QBD on PHP SDK The code is removed.
         /*else if ((strtolower('company') == strtolower($urlResource)) &&
@@ -703,6 +704,7 @@ class DataService
         }*/ else {
             // Normal case
             $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=update'));
+            $uri = !is_null($requestId) ? $uri . '&requestid=' . $requestId : $uri;
         }
 
         // Send Request and return response
@@ -770,7 +772,7 @@ class DataService
      * @return IPPIntuitEntity Returns the created version of the entity.
      * @throws IdsException
      */
-    public function Add($entity)
+    public function Add($entity, $requestId = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Add.");
 
@@ -782,14 +784,15 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
 
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
+        $uri = !is_null($requestId) ? $uri . '?requestid=' . $requestId : $uri;
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -827,7 +830,7 @@ class DataService
      * @return null|string
      * @throws IdsException
      */
-    public function Void($entity)
+    public function Void($entity, $requestId = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Void.");
         // Validate parameter
@@ -846,6 +849,7 @@ class DataService
           $appendString = CoreConstants::VOID_QUERYPARAMETER_GENERAL;
         }
         $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . $appendString));
+        $uri = !is_null($requestId) ? $uri . '&requestid=' . $requestId : $uri;
         // Creates request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::VOID);
     }

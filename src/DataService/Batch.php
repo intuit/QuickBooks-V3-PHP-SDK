@@ -182,8 +182,9 @@ class Batch
      * @param IEntity entity entitiy for the batch operation.
      * @param string id Unique batchitem id
      * @param OperationEnum operation operation to be performed for the entity.
+     * @param string|null optionsData optional data to be added to the batch operation.
      */
-     public function AddEntity($entity, $id, $operation)
+     public function AddEntity($entity, $id, $operation, $optionsData = null)
      {
          if (!$entity) {
              $exception = new IdsException('StringParameterNullOrEmpty: entity');
@@ -212,6 +213,7 @@ class Batch
          $batchItem->bId = $id;
          $batchItem->operation = $operation;
          $batchItem->operationSpecified = true;
+         $batchItem->optionsData = $optionsData;
 
          $this->batchRequests[] = $batchItem;
      }
