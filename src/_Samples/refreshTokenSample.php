@@ -7,22 +7,19 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
-
 $dataService = DataService::Configure(array(
   'auth_mode' => 'oauth2',
-  'ClientID' => "Q0lCkcEshsGMHOEula2r5RKc2yhxvMsYEpKN1lw1WZwyfd1Si6",
-  'ClientSecret' => "gE0F9hLgwx9OBzRpNxyOvWJH6L2fIhzAwBugPJHq",
-  'accessTokenKey' =>  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TXebi6e9BC-aOzSI7M4WUw.Z62GmowY3D_OmnkbWm-iFYssdFAxGHpAvmrj77rpe2d03ja713TOMidKHjooCTkSEplTyqwT9q4LEYgvZRgMGFogGQ2uG3HaiLOphPb32HWC4nEOdRdXwxIaevOw-dcXn1nVFxI7S0aTPrb39H3cmL0UOvNin6DFi_nNG-E58bUEMe-5AwLjFp36FZTBoKg6egCWyyUBXAQFnwLqlUbtqxq_0q2hSTS1TOmD65Fd48iisJHp7VecYcpUEUqaiW4Wo9VtcSvQu4HD9iuE1pZ5Rp4tliyerV7k2jqUrvLDCKxng2AMCcvDUknFu5aDz8o_0OAjBEAfO46VcJwLScHgHqPSSmwv5tbmppZCah_GEoiFTw6yLquDLX5wc-eK9vf8lxYJTOoiy6PvCIMUj_644R8r9rTzbZb8sCqI5_atk9RfKfA9h7cZyYCMUph_JLvVMnGj-V8NvgLdrDe5SDu9kheRZ_tmul4Rae7tTJ7-r5j1s5YcvWtmCM5yw7iXSeX8s7O7ch9LMkm0IV499g_FbHqfr11Ux9iZ2ML36mzc-c6epzuMBrrZJMnU4w_N4nnbOznN-10X6JP4mv072aTBVgupTnagpzCv8TR5rGAilDWOw88uTIAJw6vQIahuJF4KimNlM2tEhTYzRWeDwGdP0PZel2FBJoMhywsj4XT5MExplHoDu-34_iOuc3eUwDfB.YIF5Hdre3QgkIh7S1JsClA',
-  'refreshTokenKey' => "L011511574974fGhEsYBWdVTxHcvSpp5fk2ucEeVVACWUU3JkT",
-  'QBORealmID' => "123145857569084",
+  'ClientID' => "ABQaXZTbHvQDB5aq0Gx9yDo8tjgyHxn393oN3uHyTNR6D7qxG5",
+  'ClientSecret' => "oyl9ysQw9E8ni5wWg9dBaSDM7mTqRoO5jioAe1B1",
+  'accessTokenKey' =>  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0.._4JWEOTm0hAHgyzY4kt6Mg.umlX9YBX1mVm9QM-35kCr4tu0VLlUAm1OM4AKr-VKhHQk1TNyddhlP17X2nFR229ymJcsG3DdLlF6I6kTHImYbUbIlWrx-zfjfVZgvHfetShuy2SQTrQ5C_u3-BZh6I0Btw8f9IjSt4RHoPWCdR2XSzQABZ-EYljWBuO_kUxIRJrShgIK0KspYdO_dDabuXKhjZt7ssnhx98Y0xT5sfwF3k898Nrc_3apRp_RM41XXJbGuCn5QSVlHAI2qUzfjP5dH3EVL_lKBAbmxL2vGr3sFAVlmTkTxTADnys--GQMdqCwCvVYnHUzAXXH6GSDXoezkYonZ4go0ihUlcw7IACM4ngF7y6BOoydLq4kBk1Hbh3MGQX6CqaOaK8vxyn9pDx5uW3NtZHK6XdcjXjhDPwfTA-WfeuDxHJi1QB4ldl6kw7mQfFX2gab6aK6KM6OyiMsFe1NrzpzzTwZ6zbqxr-Ja9Q6qnv4-Pit0LJm_RqryZYZUxuWY6divZ8HvDel_-6Po-NHhVP-wBY57mtcc72Kaxq1W4AJ6BZADqFz9D6VPGDaUy3W_4jx6hdYvU0sQV0JpU0f-HUo3Z4unIyOjylTRJ_V6ZsF2Gd6DHv43pUf3u1mFi7MHxiBRYUbDy3OWxZa8y9SwWzR9hQ8BSysTNZ6BTxML-jKOfdXYzuyGcQlZSmv59LIxWf5pLxxsxLVHgW3pWpKkyBNaisXu1uZcZiiHUNQLtkfwaPFqzRkAloEEU.4aS-ZoQ_DqnwGXTLmAdWfg',
+  'refreshTokenKey' => "AB115993527862WxAxxVmKCWTtraTLIRUDvgAij1TuwLgHZKqp",
+  'QBORealmID' => "4620816365006687740",
   'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
 ));
-
-
-$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
-
+$dataService->setLogLocation("/Users/bsivalingam/Desktop/newFolderForLog");
 
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+$OAuth2LoginHelper->setLogForOAuthCalls(true, false, "/Users/bsivalingam/Desktop/newFolderForLog");
 
 $accessToken = $OAuth2LoginHelper->refreshToken();
 $error = $OAuth2LoginHelper->getLastError();

@@ -268,6 +268,23 @@ class DataService
     }
 
     /**
+     * Set logging for OAuth calls
+     *
+     * @param Boolean $enableLogs          Turns on logging for OAuthCalls
+     *
+     * @param Boolean $debugMode           Turns on debug mode to log tokens
+     *
+     * @param String $new_log_location     The directory path for storing request and response log
+     *
+     * @return $this
+     */
+    public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location)
+    {
+        $this->OAuth2LoginHelper->setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location);
+        return $this;
+    }
+
+    /**
      * Set a new Minor Version
      *
      * @param String $newMinorVersion     The new minor version that passed
