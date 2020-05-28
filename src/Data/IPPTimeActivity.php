@@ -279,6 +279,18 @@ class IPPTimeActivity
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $TimeActivityEx;
+	/**
+	 * @Definition True if the start, end hours are already with company/employee time zone offset.
+
+							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName HoursInEmployeeTimeZone
+	 * @var boolean
+	 */
+	public $HoursInEmployeeTimeZone;
 
 
 } // end class IPPTimeActivity

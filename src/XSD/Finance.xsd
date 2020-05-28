@@ -3876,6 +3876,64 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="TxnApprovalInfo">
+		<xs:annotation>
+			<xs:documentation>Details of approval status for the specific transaction.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ApprovalStatus" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Product: QBO
+                        Description: Overall Approval Status, collective of all user approvals.
+						InputType: QBO: ReadOnly
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ApprovalStatusDetail" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description:ApprovalStatusDetail represents the detailed approval statuses of a transaction. For a given ApprovalStatus, ApprovalStatusDetail can have one of the many values described below.
+						Following are the approval status and their possible detailed approval statuses:
+						Approval Status - APPROVED
+						Approval Status Detail - APPROVED,AUTO_APPROVED,FORCE_APPROVED,WORKFLOW_AUTO_APPROVED
+
+						Approval Status - REJECTED
+						Approval Status Detail - REJECTED,WORKFLOW_AUTO_REJECTED
+
+						Approval Status - REQUIRES_APPROVAL
+						Approval Status Detail - REQUIRES_APPROVAL,CANNOT_DETERMINE
+
+						Approval Status - PENDING_APPROVAL
+						Approval Status Detail - PENDING_APPROVAL
+
+						Approval Status - IN_PROGRESS
+						Approval Status Detail - IN_PROGRESS
+						InputType: QBO: ReadOnly
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastChangedByUser" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Product: QBO
+                        Description: User-id of the user last updating the approval status.
+						InputType: QBO: ReadOnly
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastChangedDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Product: QBO
+                        Description: Date when the approval status was last updated.
+						InputType: QBO: ReadOnly
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:group name="TxnLineReferenceGroup">
 		<xs:annotation>
 			<xs:documentation>A reference to the transaction and one of its
@@ -4791,6 +4849,14 @@
 							<xs:documentation>
 								Product: QBO
 								Descripton: List of tags used to identify the transaction.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TxnApprovalInfo" type="TxnApprovalInfo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+                                    Product: QBO
+                                    Description: Details of the Approval Status for current transaction in QBO workflows.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -7738,6 +7804,16 @@
 						Product: QBO
 						Description: Sales/Purchase tax code
 						associated with the JournalEntry Line. For Non US/CA Companies
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TaxRateRef" type="ReferenceType"
+						minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Sales/Purchase tax rate Id
+						associated with the JournalEntry Line. For CA Companies.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -11526,6 +11602,14 @@
 								TimeActivity.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="HoursInEmployeeTimeZone" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>True if the start, end hours are already with company/employee time zone offset.
+
+							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>					
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
