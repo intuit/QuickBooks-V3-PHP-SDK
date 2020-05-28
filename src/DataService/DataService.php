@@ -889,7 +889,7 @@ class DataService
         $dataMultipart .= "Content-Disposition: form-data; name=\"file_content_{$desiredIdentifier}\"; filename=\"{$fileName}\"" . $newline;
         $dataMultipart .= "Content-Type: {$mimeType}" . $newline;
         $dataMultipart .= 'Content-Transfer-Encoding: base64' . $newline . $newline;
-        $dataMultipart .= chunk_split(base64_encode($imgBits)) . $newline;
+        $dataMultipart .= chunk_split($imgBits) . $newline;
         $dataMultipart .= "--" . $boundaryString . "--" . $newline . $newline; // finish with two eol's!!
 
         return $this->sendRequestParseResponseBodyAndHandleHttpError(null, $uri, $dataMultipart, DataService::UPLOAD, $boundaryString);
