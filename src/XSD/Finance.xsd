@@ -7159,6 +7159,16 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="TaxCodeConfigType" type="GTMConfigTypeEnum"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Tax code configuration type tracks
+								whether the user created the TaxCode or it was System Generated.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -7239,6 +7249,21 @@
 			<xs:enumeration value="FOREIGN_TAX" />
 			<xs:enumeration value="REVERSE_CHARGE" />
 			<xs:enumeration value="ADJUSTMENT_RATE" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GTMConfigTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Enumeration of
+				ConfigType taxCode taxRate taxAgency
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SYSTEM_GENERATED" />
+			<xs:enumeration value="USER_DEFINED" />
+			<xs:enumeration value="SCRA_DEFINED" />
+			<xs:enumeration value="HIDDEN_AGENCY" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="TaxRate">

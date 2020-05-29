@@ -192,6 +192,19 @@ class IPPTaxCode
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $TaxCodeEx;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Tax code configuration type tracks
+								whether the user created the TaxCode or it was System Generated.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxCodeConfigType
+	 * @var com\intuit\schema\finance\v3\IPPGTMConfigTypeEnum
+	 */
+	public $TaxCodeConfigType;
 
 
 } // end class IPPTaxCode
