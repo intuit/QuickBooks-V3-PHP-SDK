@@ -260,9 +260,9 @@ class OAuth2LoginHelper
          'Authorization' => $authorizationHeaderInfo,
          'Content-Type' => 'application/x-www-form-urlencoded'
        );
-       $this->LogAPIRequestToLog(http_build_query($parameters), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
+       // $this->LogAPIRequestToLog(http_build_query($parameters), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, http_build_query($parameters), null, true);
-       $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+       // $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Exchange Authorization Code for Access Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -281,9 +281,9 @@ class OAuth2LoginHelper
        $refreshToken = $this->getAccessToken()->getRefreshToken();
        $http_header = $this->constructRefreshTokenHeader();
        $requestBody = $this->constructRefreshTokenBody($refreshToken);
-       $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
+       // $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
-       $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+       // $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -301,9 +301,9 @@ class OAuth2LoginHelper
     public function refreshAccessTokenWithRefreshToken($refreshToken){
        $http_header = $this->constructRefreshTokenHeader();
        $requestBody = $this->constructRefreshTokenBody($refreshToken);
-       $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
+       // $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
-       $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+       // $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -333,9 +333,9 @@ class OAuth2LoginHelper
         'Authorization' => $authorizationHeaderInfo,
         'Content-Type' => 'application/json'
       );
-      $this->LogAPIRequestToLog($parameters, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
+      // $this->LogAPIRequestToLog($parameters, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
       $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::REVOCATION_ENDPONT, CoreConstants::HTTP_POST, $http_header, json_encode($parameters), null, true);
-      $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+      // $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
       $this->faultHandler = $intuitResponse->getFaultHandler();
       if($this->faultHandler) {
          throw new ServiceException("Revoke Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -366,9 +366,9 @@ class OAuth2LoginHelper
         'Authorization' => 'Bearer ' . $accessToken
       );
 
-      $this->LogAPIRequestToLog(null, $url, $http_header);
+      // $this->LogAPIRequestToLog(null, $url, $http_header);
       $intuitResponse = $this->curlHttpClient->makeAPICall($url, CoreConstants::HTTP_GET, $http_header, null, null, true);
-      $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
+      // $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
       $this->faultHandler = $intuitResponse->getFaultHandler();
       if($this->faultHandler) {
          throw new ServiceException("Get UrerInfo failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
