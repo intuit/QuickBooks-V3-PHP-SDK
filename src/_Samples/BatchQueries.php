@@ -10,14 +10,14 @@ use QuickBooksOnline\API\Facades\Invoice;
 
 // Prep Data Services
 $dataService = DataService::Configure([
-  'auth_mode' => 'oauth2',
-  'ClientID' => "L0vmMZIfwUBfv9PPM96dzMTYATnLs6TSAe5SyVkt1Z4MAsvlCU",
-  'ClientSecret' => "2ZZnCnnDyoZxUlVCP1D9X7khxA3zuXMyJE4cHXdq",
-  'accessTokenKey' =>
-  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..bMBZb6bIX3TuiyBOx6Um3Q.34vwrQrbm71KvF9x0jcPflLTY7KkUflgyXHO7MwUSox98LpopyImu4VhWFwSrM-o44Yixf6zUMoYMRJbUz5M3-GV6WFUuTxzVn9lvWdNIMRfY75hVx87aARgJePAkKg0b3Jcq90hXJMCxIuEoCnfptG_nNkGihLjatcbdw_agMnJGcEm8GXV55tUDr_iok4xubZbGz1vxZo0Dsq0JxPoWcCdZ1nf4Fzt1xgL3SlzbbdbMyebPFT4z5RTIsf8E0nXPUaUuLWTarkOsDHx5gchNdXAHXECZlxCd-UKKN0M4EswwrsTLhxfb5pRtCa0EkRGkxTcWn0wYwRYa0iWj9B0H1J89vwp5-6aECanAp_LBs-KpBIp6MA-weFAZH5YLaQfGT3zk8JtGLrKuP82S60m3ydCUhSprHVtztOU8kXdWOWD-OtvRIk0exyKrHq-wcff8MWnP8GMvTT_nY9qnvxh6erOdtC5uQhGyNicRugU4T0NmEgoPBPaWVQi4dJh8aRZRczgHevwTHwSy6ihWM48MBj7_TiI7bdtAs61bZDqEXxDKrGcFA0Qi0VV0d1Pb_8ALyc2hPmGpPB-HgpTUnj5JpkxrQhrWhIKZbUn_2SgNRa3RWnxi0a0yr7zk0L61ZRPaBG9izUIxzj3oH8LP_OcsTkby2XhJdqqAntkVMlvkHMMDNlt0_VX9DWAYgydrl8RX-bx0r4jWxfsZ_eGuEXoCw.zifbqbeI8KAGr-dFKcB-oA',
-  'refreshTokenKey' => "Q01152727758997PwQ3G6gLh4tlZYKrH499SSytAMt12r7uKwy",
-  'QBORealmID' => "123146096284189",
-  'baseUrl' => "development"
+  'auth_mode'       => 'oauth2',
+  'ClientID'        => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret'    => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
+  'QBORealmID'      => "123146096284189",
+  'baseUrl'         => "development"
 ]);
 
 

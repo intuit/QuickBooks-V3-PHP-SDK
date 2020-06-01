@@ -12,15 +12,15 @@ use QuickBooksOnline\API\Facades\Invoice;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
-  'auth_mode' => 'oauth2',
-  'ClientID' => "L0I9uqpOVAXN0MKrK15dCHLWqqfvWzvFS5S0VnKezX0cDbsLlI",
-  'ClientSecret' => "qJEjqG3wyzOFvl9WhwSnskJYHWoFlvID7k1iF1as",
-  'accessTokenKey' =>
-  'eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PInt3iMxbSZpMcxeeIuNGg.6SJGZRcAQFAyyg80yZxryAwtnnso-cj4WjDrEJNekNWwm736YNI9Yse5ogU2g9C6ZarwINv0pLHASNP1H7R7yIIKDRfZrvRpn_wOlFfAZTuc7rA10TptQ-Dcx8O0u5URGtQ80BPJjQDA-k0t3Sq97amuilXgX9Axe6JFvS0dCVpnvo4jA_IS8CPdqEGWV7V1igROgR-Y_AUZT-k-2MozIt9VnMfazN9DHXtuPyFvn0cBdZ-mO-a5_akPwNIWsYBwf6BnhHQ0p4KYplEeuK-iNpM14QRlLG49ShRIpckZtGpu7d4f5GsCva0BXk1FV_mnge5L-jNxKSvYky_R4wt84taCxtMxTiQ63rZfGzr_uQtWqMfxlUN5ehI6uuCIPuR_wWugweMwTe_zTt601jGLW3Osidy5DLaMq3ED_ijuIwRCRlsiKVZ3AeBQS9MLycMZDysjXxBfUyDMl2mp210LbSuirOLGOZFydusng_UZkDseprddbnC2R3EDWfLISPY88H9irrEmmS-vXj0DP25qcqic6W1frND3WlQQffuWv-9v-Zi706i0IS9rWO0pBoBYKFqjqVe_zXwn_BLkn6RqxAY0vOwrrHP_E2wxd3m0lYHzmuyMOcWSAYIoxfLq3mp_zn_j_IvldVWQojfSiALrldBiI0XrfFbtduurxFaiTTA6tx0m9K0SWAfQUlVrMVvluKyUZDwtA1E2z9Ok6LZQKw.oR0umZDSfaqkVS_yTXpwpg',
-  'refreshTokenKey' => "AB11587344132yUt2XC8QSUEftZRtBFj7UUVfcjOJLHFET76gb",
-  'QBORealmID' => "123145796620484",
-  'baseUrl' => "production"
+  'auth_mode'       => 'oauth2',
+  'ClientID'        => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret'    => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
+  'baseUrl'         => "development"
 ));
+
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 $dataService->throwExceptionOnError(true);
