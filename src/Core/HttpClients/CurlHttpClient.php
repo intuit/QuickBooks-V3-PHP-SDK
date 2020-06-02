@@ -54,6 +54,10 @@ class CurlHttpClient implements HttpClientInterface{
      * @inheritdoc
      */
     public function prepareRequest($url, $method, array $headers, $body, $timeOut, $verifySSL){
+        if (defined('QUICKBOOKS_API_TIMEOUT')) {
+            // if the timeout constant is set, use it for the timeout
+            $timeOut = (int)QUICKBOOKS_API_TIMEOUT;
+        }
         //Set basic Curl Info
         $curl_opt = [
             CURLOPT_URL => $url,
@@ -62,8 +66,8 @@ class CurlHttpClient implements HttpClientInterface{
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER => $this->getHeaders($headers),
             //10 seconds is allowed to make the connection to the server
-            CURLOPT_CONNECTTIMEOUT => 10,
-            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 100,
+            CURLOPT_CONNECTTIMEOUT => isset($timeOut) ? $timeOut : 15,
+            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 15,
             CURLOPT_RETURNTRANSFER => true,
             //When CURLOPT_HEADER is set to 0 the only effect is that header info from the response is excluded from the output.
             //So if you don't need it that's a few less KBs that curl will return to you.

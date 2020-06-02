@@ -673,6 +673,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="County" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO
+						Description: County name.[br /]Max. length: 25 characters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="CountrySubDivisionCode" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">
