@@ -268,6 +268,23 @@ class DataService
     }
 
     /**
+     * Set logging for OAuth calls
+     *
+     * @param Boolean $enableLogs          Turns on logging for OAuthCalls
+     *
+     * @param Boolean $debugMode           Turns on debug mode to log tokens
+     *
+     * @param String $new_log_location     The directory path for storing request and response log
+     *
+     * @return $this
+     */
+    public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location)
+    {
+        $this->OAuth2LoginHelper->setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location);
+        return $this;
+    }
+
+    /**
      * Set a new Minor Version
      *
      * @param String $newMinorVersion     The new minor version that passed
@@ -893,7 +910,7 @@ class DataService
         $dataMultipart .= "Content-Disposition: form-data; name=\"file_content_{$desiredIdentifier}\"; filename=\"{$fileName}\"" . $newline;
         $dataMultipart .= "Content-Type: {$mimeType}" . $newline;
         $dataMultipart .= 'Content-Transfer-Encoding: base64' . $newline . $newline;
-        $dataMultipart .= chunk_split(base64_encode($imgBits)) . $newline;
+        $dataMultipart .= chunk_split($imgBits) . $newline;
         $dataMultipart .= "--" . $boundaryString . "--" . $newline . $newline; // finish with two eol's!!
 
         return $this->sendRequestParseResponseBodyAndHandleHttpError(null, $uri, $dataMultipart, DataService::UPLOAD, $boundaryString);
@@ -1700,7 +1717,7 @@ class DataService
      * @return String Id
      */
     private function getIDString($id){
-        if($id instanceof IPPid || $id instanceof QuickBooksOnline\API\Data\IPPid){
+        if($id instanceof IPPid){
             return (String)$id->value;
         }else{
             return (String)$id;
