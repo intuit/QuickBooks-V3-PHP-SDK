@@ -673,7 +673,7 @@ class DataService
      * @return IPPIntuitEntity Returns an updated version of the entity with updated identifier and sync token.
      * @throws IdsException
      */
-    public function Update($entity)
+    public function Update($entity, $requestId = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method: Update.");
 
@@ -990,7 +990,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }
