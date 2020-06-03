@@ -10,8 +10,8 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
 $dataService = DataService::Configure(array(
   'auth_mode' => 'oauth2',
-  'ClientID' => "ABQaXZTbHvQDB5aq0Gx9yDo8tjgyHxn393oN3uHyTNR6D7qxG5",
-  'ClientSecret' => "oyl9ysQw9E8ni5wWg9dBaSDM7mTqRoO5jioAe1B1",
+  'ClientID' => "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret' => "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   'RedirectURI' => "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl",
   'scope' => "com.intuit.quickbooks.accounting",
   'baseUrl' => "development"
