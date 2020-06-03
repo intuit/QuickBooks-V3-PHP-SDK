@@ -27,6 +27,7 @@ use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Data\IPPAttachable;
+use QuickBooksOnline\API\Data\IPPEntitlementsResponse;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
 use QuickBooksOnline\API\Data\IPPTaxService;
 use QuickBooksOnline\API\Data\IPPid;
@@ -1704,6 +1705,33 @@ class DataService
             $this->lastError = false;
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
+        }
+    }
+
+    /**
+     * Get the Entitlement Response
+     * @return \SimpleXMLElement Xml
+     */
+    public function getEntitlementsResponse()
+    {
+        $currentServiceContext = $this->getServiceContext();
+        if (!isset($currentServiceContext) || empty($currentServiceContext->realmId)) {
+           throw new SdkException("Please Setup Service Context before making get entitlements response call.");
+        }
+        //The Preferences URL
+        $uri = $this->getServiceContext()->IppConfiguration->BaseUrl->Qbo;
+        $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        $entitlementsUri = $this->getServiceContext()->IppConfiguration->BaseUrl->Qbo . "manage/entitlements/v3/" . $this->serviceContext->realmId;
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, $entitlementsUri, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            return simplexml_load_string($responseBody);
         }
     }
 
