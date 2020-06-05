@@ -76,7 +76,7 @@ An example will look like this:
 
 .. code-block:: php
 
-   $accessTokenObj = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("Q011510688430mhfd9mAwpsiB8eWAMPqjDO4j2WKmMWyeN96Ru", "1231434565226279");
+   $accessTokenObj = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "1234567891234567");
 
 The $accessTokenObj is an object contains both access token and refresh token.
 
@@ -185,9 +185,9 @@ After v4.0.5 release, developers are able to construct ``OAuth2LoginHelper`` dir
       use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 
       //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
-      $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+      $oauth2LoginHelper = new OAuth2LoginHelper("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       $accessTokenObj = $oauth2LoginHelper->
-                          refreshAccessTokenWithRefreshToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+                          refreshAccessTokenWithRefreshToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       $accessTokenValue = $accessTokenObj->getAccessToken();
       $refreshTokenValue = $accessTokenObj->getRefreshToken();
       echo "Access Token is:";
@@ -210,8 +210,8 @@ Similar to refresh token, the V3 PHP SDK also allows you to revoke an existed OA
 
   use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
   //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
-  $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
-  $revokeResult = $oauth2LoginHelper->revokeToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+  $oauth2LoginHelper = new OAuth2LoginHelper("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+  $revokeResult = $oauth2LoginHelper->revokeToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
   if($revokeResult){
       echo "RefreshToken Token revoked.";
   }
