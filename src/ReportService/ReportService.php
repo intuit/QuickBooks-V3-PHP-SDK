@@ -79,6 +79,7 @@ class ReportService
     private $columns = null;
     private $sort_by = null;
     private $sort_order = null;
+    private $order_by = null;
     private $group_by = null;
     private $createdate_macro = null;
     private $end_createdate = null;
@@ -659,6 +660,25 @@ class ReportService
     /**
      * @return null
      */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * @param null $order_by
+     *
+     * @return $this
+     */
+    public function setOrderBy($order_by)
+    {
+        $this->order_by = $order_by;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
     public function getGroupBy()
     {
         return $this->group_by;
@@ -1130,6 +1150,9 @@ class ReportService
         }
         if (!is_null($this->sort_order)) {
             array_push($uriParameterList, array("sort_order", $this->getSortOrder()));
+        }
+        if (!is_null($this->order_by)) {
+            array_push($uriParameterList, array("order_by", $this->getOrderBy()));
         }
         if (!is_null($this->group_by)) {
             array_push($uriParameterList, array("group_by", $this->getGroupBy()));
