@@ -27,5 +27,14 @@
     "suggest": {
         "ext-curl": "Uses Curl to make HTTP Requests",
         "guzzlehttp/guzzle": "Uses Guzzle to make HTTP Requests"
+    },
+    "archive": {
+        "exclude": [
+            "/docs",
+            "/src/Utility.Test",
+            "/src/XSD2PHP/docs",
+            "/src/XSD2PHP/test",
+            "/test"
+        ]
     }
 }
