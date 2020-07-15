@@ -324,6 +324,32 @@ class IPPTransaction
 	 * @var com\intuit\schema\finance\v3\IPPTxnApprovalInfo
 	 */
 	public $TxnApprovalInfo;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Reference to the
+								RecurTemplate which was used to create the Transaction
+								InputType: Read
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RecurDataRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $RecurDataRef;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: The Recurring Schedule information for the Transaction
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RecurringInfo
+	 * @var com\intuit\schema\finance\v3\IPPRecurringInfo
+	 */
+	public $RecurringInfo;
 
 
 } // end class IPPTransaction
