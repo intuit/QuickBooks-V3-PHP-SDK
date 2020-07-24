@@ -8,7 +8,7 @@ class FacadeClassMapper
     public static function IPPReferenceTypeNameEntity(){
         return [
                //IPPItemLineDetail,IPPPaymentLineDetail,IPPDepositLineDetail
-               'ItemRef', 'ClassRef', 'ItemAccountRef', 'InventorySiteRef', 'TaxCodeRef', 'Entity', 'PaymentMethodRef',
+               'ItemRef', 'ClassRef', 'ItemAccountRef', 'InventorySiteRef', 'TaxCodeRef', 'Entity', 'PaymentMethodRef', 'IntuitObject',
                //IPPTaxLineDetail
                'TaxRateRef',
                //IPPDiscountOverride
@@ -26,7 +26,7 @@ class FacadeClassMapper
                //IPPSalesTransaction
                'RemitToRef','SalesTermRef','SalesRepRef','ShipMethodRef','TemplateRef','ARAccountRef','DepositToAccountRef',
                //IPPTransaction
-               'CurrencyRef',
+               'CurrencyRef', 'RecurDataRef',
                //IPPTxnTaxDetail
                'DefaultTaxCodeRef','TxnTaxCodeRef',
                //IPPTransaction
@@ -48,7 +48,7 @@ class FacadeClassMapper
                //IPPCreditMemeo
                'InvoiceRef',
                //IPPCreditCardPaymentTxn
-               'CreditCardAccountRef', 
+               'CreditCardAccountRef',
                //IPPTaxPayment
                'PaymentAccountRef'
 
@@ -100,7 +100,6 @@ class FacadeClassMapper
                'DeliveryInfo',
                //IPPPurchase
                'PurchaseEx'
-
         ];
     }
     /**
