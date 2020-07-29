@@ -3,13 +3,15 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
- * @xmlName IPPTaxService
- * @var IPPTaxService
- * @xmlDefinition Describes SalesTax details
+ * @xmlType 
+ * @xmlName IPPRecurringInfo
+ * @var IPPRecurringInfo
+ * @xmlDefinition 
+				Description: Describes the Recurring Schedules for Transactions
+			
  */
-class IPPTaxService
-	extends IPPIntuitEntity	{
+class IPPRecurringInfo
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -24,7 +26,7 @@ class IPPTaxService
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTaxService',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxService',$initPropName))
+				if (property_exists('IPPRecurringInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRecurringInfo',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,53 +41,52 @@ class IPPTaxService
 	
 	/**
 	 * @Definition 
-                            Product: QBO
-                            Description: Describes the taxcode
-                        
+						Product: QBO
+						Description: The name of the Recurring Schedule Template.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName TaxCode
+	 * @xmlName Name
 	 * @var string
 	 */
-	public $TaxCode;
+	public $Name;
 	/**
-	 * @Definition 
-                            Product: QBO
-                            Description: Describes the taxcode Id, this is output only
-                        
+	 * @Definition  
+						Product: QBO
+						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName TaxCodeId
+	 * @xmlName RecurType
 	 * @var string
 	 */
-	public $TaxCodeId;
+	public $RecurType;
+	/**
+	 * @Definition  
+						Product: QBO
+						Description: Indicates whether the Recurring Schedule is enabled.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Active
+	 * @var boolean
+	 */
+	public $Active;
 	/**
 	 * @Definition 
-                            Product: QBO
-                            Description: TaxRate details
-                        
+						Product: QBO
+						Description: The Scheduling Information.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs unbounded
-	 * @xmlName TaxRateDetails
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateDetails
+	 * @xmlName ScheduleInfo
+	 * @var com\intuit\schema\finance\v3\IPPRecurringScheduleInfo
 	 */
-	public $TaxRateDetails;
-	/**
-	 * @Definition  Fault or Object should be returned
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName Fault
-	 * @var com\intuit\schema\finance\v3\IPPFault
-	 */
-	public $Fault;
+	public $ScheduleInfo;
 
 
-} // end class IPPTaxService
+} // end class IPPRecurringInfo

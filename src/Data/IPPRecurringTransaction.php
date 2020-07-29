@@ -4,12 +4,12 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType IntuitEntity
- * @xmlName IPPIntuitObject
- * @var IPPIntuitObject
+ * @xmlName IPPRecurringTransaction
+ * @var IPPRecurringTransaction
+ * @xmlDefinition The Recurrence Transaction Object
  */
-class IPPIntuitObject
-	extends IPPIntuitEntity
-	{
+class IPPRecurringTransaction
+	extends IPPIntuitEntity	{
 
 		/**
 		* Initializes this object, optionally with pre-defined property values
@@ -24,7 +24,7 @@ class IPPIntuitObject
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPIntuitObject',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPIntuitObject',$initPropName))
+				if (property_exists('IPPRecurringTransaction',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRecurringTransaction',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -35,4 +35,14 @@ class IPPIntuitObject
 				}
 			}
 		}
-} // end class IPPIntuitObject
+
+
+	/**
+	 * @xmlType element
+	 * @xmlName IntuitObject
+	 * @var com\intuit\schema\finance\v3\IntuitObject
+	 */
+	public $IntuitObject;
+
+
+} // end class IPPRecurringTransaction

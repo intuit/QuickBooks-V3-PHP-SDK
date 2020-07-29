@@ -4860,6 +4860,25 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="RecurDataRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Reference to the
+								RecurTemplate which was used to create the Transaction
+								InputType: Read
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RecurringInfo" type="RecurringInfo"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The Recurring Schedule information for the Transaction
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -13378,6 +13397,160 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="RecurringScheduleInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Scheduling Information for the Transaction
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IntervalType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: The Interval Type which can be Yearly, Monthly, Daily or Weekly
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumInterval" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Interval based on the Interval Type
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="DayOfMonth" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Day of the Month
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>						
+			<xs:element name="DayOfWeek" type="WeekEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Day of the Week
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="WeekOfMonth" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+ 						Product: QBO
+						Description: The Week of the Month
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="MonthOfYear" type="MonthEnum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Month of the Year
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>		
+			<xs:element name="RemindDays" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The days before StartDate for a Reminded RecurType
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="DaysBefore" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Days before the Scheduled Date
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxOccurrences" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Max number of Recurring Occurrences
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="StartDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Start Date for the Recurring Schedule
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="EndDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The End Date for the Recurring Schedule
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="NextDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Date when the next Transaction will created. (Read Only)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="PreviousDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Date when the last Transaction was created.(Read Only)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>						
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RecurringInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Description: Describes the Recurring Schedules for Transactions
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: The name of the Recurring Schedule Template.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecurType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Active" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> 
+						Product: QBO
+						Description: Indicates whether the Recurring Schedule is enabled.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScheduleInfo" type="RecurringScheduleInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: The Scheduling Information.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>       
 	<xs:simpleType name="OLBTxnStatusEnum">
 		<xs:annotation>
 			<xs:documentation> Product: All

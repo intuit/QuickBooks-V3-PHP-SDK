@@ -19,7 +19,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * IDS Logger
      * @var Logger
      */
-    public $IDSLogger;
+    public static $IDSLogger;
 
   /**
    * Keeps last used object name
@@ -37,8 +37,8 @@ class XmlObjectSerializer extends IEntitySerializer
     private static function getXmlFromObj($phpObj)
     {
         if (!$phpObj) {
-            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the xmlFromObj.");
-            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . implode("\n", debug_backtrace()));
+            self::$IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the xmlFromObj.");
+            self::$IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . implode("\n", debug_backtrace()));
             return false;
         }
 
@@ -48,9 +48,9 @@ class XmlObjectSerializer extends IEntitySerializer
         try {
             return $php2xml->getXml($phpObj);
         } catch (\Exception $e) {
-            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the batch response." . $e->getMessage());
-            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Object: " . var_export($phpObj, true));
-            $this->IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
+            self::$IDSLogger->CustomLogger->Log(TraceLevel::Error, "Encountered an error parsing the batch response." . $e->getMessage());
+            self::$IDSLogger->CustomLogger->Log(TraceLevel::Error, "Object: " . var_export($phpObj, true));
+            self::$IDSLogger->CustomLogger->Log(TraceLevel::Error, "Stack Trace: " . $e->getTraceAsString());
             return false;
         }
     }

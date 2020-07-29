@@ -1193,6 +1193,57 @@ class DataService
         }
     }
 
+    public function recurringTransaction($query)
+    {
+        $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
+
+        if ('QBO' == $this->serviceContext->serviceType) {
+            $httpsContentType = CoreConstants::CONTENTTYPE_APPLICATIONTEXT;
+        } else {
+            $httpsContentType = CoreConstants::CONTENTTYPE_TEXTPLAIN;
+        }
+
+        $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
+        $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
+
+        $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            $returnValue = new IntuitRecurringTransactionResponse();
+            try {
+                $xmlObj = simplexml_load_string($responseBody);
+                $responseArray = $xmlObj->QueryResponse->RecurringTransaction;
+                if(sizeof($responseArray) <= 0){
+                    throw new ServiceException("No recurring transactions found.");
+                }
+
+                for($i = 0; $i < sizeof($responseArray); $i++){
+                    $currentResponse = $responseArray[$i];
+                    $currentEntityName = $entityList[$i];
+                    $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
+                    $entityName = $currentEntityName;
+                    //If we find the actual name, update it.
+                    foreach ($currentResponse->children() as $currentResponseChild) {
+                        $entityName = (string)$currentResponseChild->getName();
+                        break;
+                    }
+                    $returnValue->entities[$entityName][] = $entities;
+                }
+            } catch (\Exception $e) {
+                IdsExceptionManager::HandleException($e);
+            }
+
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
+            return $returnValue;
+        }
+    }
+
 
     /**
      * Returns an entity under the specified realm. The realm must be set in the context.
@@ -1469,6 +1520,17 @@ class DataService
         }
 
         return $writer->isHandler() ? $writer->getHandler() : $writer->getTempPath();
+    }
+
+    protected function processRecurringTransactionResponse($recurringTransaction) {
+        //Return an array of objects
+        $entities = [];
+        foreach ($recurringTransaction as $oneResponse) {
+            $oneEntity =  $this->responseSerializer->Deserialize('<RestResponse>'.$oneResponse->children()->asXML().'</RestResponse>');
+            $entities = array_merge($entities, $oneEntity);
+        }
+
+        return $entities;
     }
 
     /**

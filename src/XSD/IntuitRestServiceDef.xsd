@@ -7,6 +7,7 @@
     <xs:element name="IntuitObject" type="IntuitEntity" abstract="true"/>
     <xs:element name="IntuitResponse" type="IntuitResponse"/>
     <xs:element name="IntuitBatchRequest" type="IntuitBatchRequest"/>
+    <xs:element name="RecurringTransaction" type="RecurringTransaction" substitutionGroup="IntuitObject"/>
     <xs:element name="Customer" type="Customer" substitutionGroup="IntuitObject"/>
     <xs:element name="CustomerType" type="CustomerType" substitutionGroup="IntuitObject"/>
     <xs:element name="Employee" type="Employee" substitutionGroup="IntuitObject"/>
@@ -458,8 +459,21 @@
             <xs:enumeration value="delete"/>
             <xs:enumeration value="void"/>
 			<xs:enumeration value="send"/>
+            <xs:enumeration value="merge"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="RecurringTransaction">
+        <xs:annotation>
+            <xs:documentation>The Recurrence Transaction Object</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="IntuitEntity">
+                <xs:sequence>
+                    <xs:element ref="IntuitObject"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>     
     <xs:complexType name="Status">
         <xs:annotation>
             <xs:documentation>
