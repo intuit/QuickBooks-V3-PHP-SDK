@@ -1239,7 +1239,7 @@ class DataService
                 IdsExceptionManager::HandleException($e);
             }
 
-            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Method CDC.");
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
             return $returnValue;
         }
     }
