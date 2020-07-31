@@ -182,9 +182,9 @@ class XmlObjectSerializer extends IEntitySerializer
     public function __construct($idsLogger = null)
     {
         if ($idsLogger) {
-            self::IDSLogger = $idsLogger;
+            self::$IDSLogger = $idsLogger;
         } else {
-            self::IDSLogger = null;
+            self::$IDSLogger = null;
         } // new TraceLogger();
     }
 
