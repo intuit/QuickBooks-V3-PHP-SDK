@@ -1867,6 +1867,7 @@
 			<xs:enumeration value="PriceLevel"/>
 			<xs:enumeration value="Purchase"/>
 			<xs:enumeration value="PurchaseOrder"/>
+			<xs:enumeration value="RecurringTransaction"/>
 			<xs:enumeration value="RefundReceipt"/>
 			<xs:enumeration value="ReimburseCharge"/>
 			<xs:enumeration value="Report"/>

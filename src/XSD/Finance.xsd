@@ -7880,6 +7880,16 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="TaxInclusiveAmt" type="xs:decimal"
+						minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Indicates the total
+						amount of line item including tax.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="BillableStatus" type="BillableStatusEnum"
 						minOccurs="0">
 				<xs:annotation>
@@ -11424,6 +11434,17 @@
 								Amounts are
 								always entered in home currency for a HomeCurrencyAdjustment
 								JournalEntry.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GlobalTaxCalculation" type="GlobalTaxCalculationEnum"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Indicates the
+								GlobalTax model if the model inclusive of tax, exclusive of
+								taxes or not applicable
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
