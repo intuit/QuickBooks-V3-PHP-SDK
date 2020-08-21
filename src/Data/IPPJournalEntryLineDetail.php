@@ -161,6 +161,19 @@ class IPPJournalEntryLineDetail
 	public $TaxAmount;
 	/**
 	 * @Definition 
+						Product: QBO
+						Description: Indicates the total
+						amount of line item including tax.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxInclusiveAmt
+	 * @var float
+	 */
+	public $TaxInclusiveAmt;
+	/**
+	 * @Definition 
 						Product: ALL
 						Description: The billable status of
 						the journal entry line. The line is to be billed to a customer if
