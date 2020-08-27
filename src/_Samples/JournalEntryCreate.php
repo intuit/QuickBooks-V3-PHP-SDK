@@ -16,7 +16,7 @@ $dataService = DataService::Configure(array(
   'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
   'baseUrl'         => "development"
 ));
-$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
+$dataService->setLogLocation("/Users/abisalehalliprasan/Desktop/logs");
 $dataService->throwExceptionOnError(true);
 $theResourceObj = JournalEntry::create([
     "Line" => [
@@ -27,16 +27,9 @@ $theResourceObj = JournalEntry::create([
       "DetailType" => "JournalEntryLineDetail",
       "JournalEntryLineDetail" => [
         "PostingType" => "Debit",
-        "Entity" => [
-           "Type" => "Vendor",
-           "EntityRef" => [
-               "value" => "something",
-               "name" => "somethingelse"
-           ]
-        ],
         "AccountRef" => [
-            "value" => "39",
-            "name" => "Opening Bal Equity"
+            "value" => "30",
+            "name" => "Billable Expense Income"
         ]
      ]
     ],
@@ -46,16 +39,9 @@ $theResourceObj = JournalEntry::create([
       "DetailType" => "JournalEntryLineDetail",
       "JournalEntryLineDetail" => [
         "PostingType" => "Credit",
-        "Entity" => [
-           "Type" => "Vendor",
-           "EntityRef" => [
-               "value" => "something",
-               "name" => "somethingelse"
-           ]
-        ],
           "AccountRef" => [
-            "value" => "44",
-            "name" => "Notes Payable"
+            "value" => "3",
+            "name" => "Uncategorized Asset"
           ]
       ]
     ]
