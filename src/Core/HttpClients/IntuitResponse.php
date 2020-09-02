@@ -144,7 +144,8 @@ class IntuitResponse{
         //A standard message for now.
         //TO DO: Wait V3 Team to provide different message for different response.
         $this->faultHandler->setHelpMsg("Invalid auth/bad request (got a " . $httpResponseCode . ", expected HTTP/1.1 20X or a redirect)");
-        if($this->getResponseContentType() != null && strcasecmp($this->getResponseContentType(), CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0){
+        if($this->getResponseContentType() != null && (strcasecmp($this->getResponseContentType(), CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
+                strcasecmp($this->getResponseContentType(), CoreConstants::CONTENTTYPE_TEXTXML) == 0)){
             $this->faultHandler->parseResponse($body);
         }
      }else{
