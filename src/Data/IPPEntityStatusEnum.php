@@ -6,7 +6,10 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType string
  * @xmlName IPPEntityStatusEnum
  * @var IPPEntityStatusEnum
- * @xmlDefinition Object failed to sync to QuickBooks
+ * @xmlDefinition 
+				Product: ALL
+				Description: Possible Status of an Entity.
+			
  */
 class IPPEntityStatusEnum
 	{

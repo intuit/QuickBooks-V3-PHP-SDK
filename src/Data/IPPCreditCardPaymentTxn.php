@@ -71,8 +71,52 @@ class IPPCreditCardPaymentTxn
 	 */
 	public $Amount;
 	/**
-	 * @Definition Internal use only: extension place holder for
-								CreditCardPayment
+	 * @Definition 
+								Product: ALL
+								Description: Specifies the vendor reference for this transaction.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $VendorRef;
+	/**
+	 * @Definition 
+							  Product: ALL
+							  Description: The check number printed on the check.
+						  
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CheckNum
+	 * @var string
+	 */
+	public $CheckNum;
+	/**
+	 * @Definition PrintStatus if to be printed or already printed.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName PrintStatus
+	 * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+	 */
+	public $PrintStatus;
+	/**
+	 * @Definition Memo associated with the Credit Card Payment transaction.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Memo
+	 * @var string
+	 */
+	public $Memo;
+	/**
+	 * @Definition Internal use only: extension place holder for CreditCardPayment
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName CreditCardPaymentEx
