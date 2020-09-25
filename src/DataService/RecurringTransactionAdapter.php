@@ -8,7 +8,6 @@ use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Data\IPPRecurringTransaction;
-use QuickBooksOnline\API\Diagnostics\TraceLevel;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -44,19 +43,13 @@ class RecurringTransactionAdapter
     private $responseSerializer;
 
     /**
-     * If not false, the request from last dataService did not return 2xx
-     * @var FaultHandler
-     */
-    private $lastError = false;
-
-    /**
      * Throw Exception on Error or not. Default is false.
      * @var boolean
      */
     private $isThrowExceptionOnError = false;
 
     /**
-     * Initializes a new instance of the Batch class.
+     * Initializes a new instance of the RecurringTransactionAdapter class.
      * @param $serviceContext The service context.
      * @param $restHandler The rest handler.
      */
