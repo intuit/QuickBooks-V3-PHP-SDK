@@ -433,7 +433,7 @@ class SyncRestHandler extends RestHandler
            return $value;
        }
 
-       if (CoreConstants::CONTENTTYPE_OCTETSTREAM === $value) {
+       if (CoreConstants::CONTENTTYPE_OCTETSTREAM === $value || CoreConstants::CONTENTTYPE_APPLICATIONTEXT === $value) {
            if ($this->ResponseSerializer instanceof XmlObjectSerializer) {
                return CoreConstants::CONTENTTYPE_APPLICATIONXML;
            }
