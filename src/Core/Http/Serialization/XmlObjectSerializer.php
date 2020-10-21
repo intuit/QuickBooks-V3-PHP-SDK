@@ -4,8 +4,8 @@ namespace QuickBooksOnline\API\Core\Http\Serialization;
 
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
-use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Php2Xml;
-use QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php\Bind;
+use com\mikebevz\xsd2php\Php2Xml;
+use com\mikebevz\xsd2php\Bind;
 use QuickBooksOnline\API\Diagnostics\Logger;
 use QuickBooksOnline\API\Diagnostics\TraceLevel;
 
