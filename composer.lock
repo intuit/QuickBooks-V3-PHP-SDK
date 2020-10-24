@@ -4,38 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "beb1d5f700147d7bd190ec1ea8c9fee5",
+    "content-hash": "103f85c4cf52e4cc7a3df76d205399f7",
     "packages": [
-        {
-            "name": "elliotchance/intuit-quickbooks",
-            "version": "v2.0.5-alpha.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/elliotchance/intuit-quickbooks.git",
-                "reference": "58ff6f7090d4aa84f62214b349b5d5e591460390"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/elliotchance/intuit-quickbooks/zipball/58ff6f7090d4aa84f62214b349b5d5e591460390",
-                "reference": "58ff6f7090d4aa84f62214b349b5d5e591460390",
-                "shasum": ""
-            },
-            "require": {
-                "elliotchance/xsd2php": "0.0.5"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "IntuitQuickbooks.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "The PHP SDK for QuickBooks v3 is set of PHP classes that make it easier to call QuickBooks APIs.",
-            "time": "2015-02-13T04:33:14+00:00"
-        },
         {
             "name": "elliotchance/xsd2php",
             "version": "v0.0.5",
@@ -1408,16 +1378,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/aed596913b70fae57be53d86faa2e9ef85a2297b",
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b",
                 "shasum": ""
             },
             "require": {
@@ -1429,7 +1399,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1480,7 +1450,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -1580,9 +1550,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "elliotchance/intuit-quickbooks": 15
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
