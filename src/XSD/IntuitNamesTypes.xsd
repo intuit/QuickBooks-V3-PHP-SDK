@@ -241,6 +241,12 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="V4IDPseudonym" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Auto generated Public ID when a new customer/vendor/employee is added to QBO. (ReadOnly)
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="PrimaryPhone" type="TelephoneNumber" minOccurs="0"
 						maxOccurs="1">
 						<xs:annotation>
@@ -1147,12 +1153,6 @@
 					<xs:element name="EmployeeEx" type="IntuitAnyType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for Employee.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="V4IDPseudonym" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Auto generated Public ID when new employee added to QBO. (ReadOnly)
-							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>

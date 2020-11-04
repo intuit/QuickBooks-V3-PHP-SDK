@@ -203,7 +203,7 @@
 			<xs:enumeration value="TaxLineDetail" />
 			<xs:enumeration value="SalesItemLineDetail" />
 			<xs:enumeration value="ItemBasedExpenseLineDetail" />
-			<xs:enumeration value="AccountBasedExpenseLineDetail" />
+			<xs:enumeration value="AccountBasedExpenseLineDetail" />	
 			<xs:enumeration value="DepositLineDetail" />
 			<xs:enumeration value="PurchaseOrderItemLineDetail" />
 			<xs:enumeration value="ItemReceiptLineDetail" />
@@ -213,6 +213,7 @@
 			<xs:enumeration value="SubTotalLineDetail" />
 			<xs:enumeration value="SalesOrderItemLineDetail" />
 			<xs:enumeration value="TDSLineDetail" />
+			<xs:enumeration value="ReimburseLineDetail" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="AccountTypeEnum">
@@ -1422,6 +1423,14 @@
 						track how much you spend dining with a customer to promote your
 						business. Be sure to include who you ate with and the purpose of
 						the meal when you enter the transaction.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PropertyTaxHomeOffice">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Money your business spends on property tax for a home that has a home office.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -3206,6 +3215,7 @@
 			<xs:enumeration value="PriorPayment" />
 			<xs:enumeration value="ReceivePayment" />
 			<xs:enumeration value="RefundCheck" />
+			<xs:enumeration value="ReimburseCharge" />
 			<xs:enumeration value="SalesOrder" />
 			<xs:enumeration value="SalesReceipt" />
 			<xs:enumeration value="SalesTaxPaymentCheck" />
@@ -3884,8 +3894,8 @@
 			<xs:element name="ApprovalStatus" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: Overall Approval Status, collective of all user approvals.
+                        Product: QBO
+                        Description: Overall Approval Status, collective of all user approvals.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -3917,8 +3927,8 @@
 			<xs:element name="LastChangedByUser" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: User-id of the user last updating the approval status.
+                        Product: QBO
+                        Description: User-id of the user last updating the approval status.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -3926,8 +3936,8 @@
 			<xs:element name="LastChangedDate" type="xs:dateTime" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: Date when the approval status was last updated.
+                        Product: QBO
+                        Description: Date when the approval status was last updated.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -4855,8 +4865,8 @@
 					<xs:element name="TxnApprovalInfo" type="TxnApprovalInfo" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
-                                    Product: QBO
-                                    Description: Details of the Approval Status for current transaction in QBO workflows.
+                                    Product: QBO
+                                    Description: Details of the Approval Status for current transaction in QBO workflows.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -5736,6 +5746,22 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="InvoiceLinkSecurityCode" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO:  Security code associated with Sharable link of the invoice for external users
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InvoiceLinkExpiryDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: All
+								Description: QBO:  Expiry date for Sharable link of the invoice for external users
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -6185,6 +6211,15 @@
 						<xs:documentation>
 							Product: ALL
 							Description: AccountExpense type for
+							the transaction.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ReimburseLineDetail" type="ReimburseLineDetail">
+					<xs:annotation>
+						<xs:documentation>
+							Product: ALL
+							Description: ReimburseType for
 							the transaction.
 						</xs:documentation>
 					</xs:annotation>
@@ -7584,6 +7619,21 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReimburseLineDetail">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Reimburse Charge Line Detail
+				for a transaction line.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ItemLineDetail">
+				<xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="AccountBasedExpenseLineDetail">
 		<xs:annotation>
@@ -13964,10 +14014,6 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-
-	<!-- =========================================================================================================
-		Please don't expose this object externally, this object should ONLY be used
-		for publishing JMS events ========================================================================================================= -->
 	<xs:complexType name="ReimburseCharge">
 		<xs:annotation>
 			<xs:documentation> Product: QBO Description: Reimburse charge object
@@ -13984,9 +14030,32 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="HasBeenInvoiced" type="xs:boolean"
+								minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation> Product: QBO Description: Indicates whether the Charge
+							has been invoiced
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>					
 					<xs:element name="Amount" type="xs:decimal" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Total amount of the reimburse charge.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HomeTotalAmt" type="xs:decimal"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: QBW: Total amount of
+								the transaction in the home currency for multi-currency enabled
+								companies. Single currency companies will not have this field.
+								Includes the total of all the charges, allowances and taxes.
+								Calculated by QuickBooks business logic. Cannot be written to
+								QuickBooks.
+								InputType: QBW: ReadOnly
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

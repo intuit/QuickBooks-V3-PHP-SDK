@@ -39,8 +39,8 @@ class IPPTxnApprovalInfo
 	
 	/**
 	 * @Definition 
-                        Product: QBO
-                        Description: Overall Approval Status, collective of all user approvals.
+                        Product: QBO
+                        Description: Overall Approval Status, collective of all user approvals.
 						InputType: QBO: ReadOnly
 					
 	 * @xmlType element
@@ -80,8 +80,8 @@ class IPPTxnApprovalInfo
 	public $ApprovalStatusDetail;
 	/**
 	 * @Definition 
-                        Product: QBO
-                        Description: User-id of the user last updating the approval status.
+                        Product: QBO
+                        Description: User-id of the user last updating the approval status.
 						InputType: QBO: ReadOnly
 					
 	 * @xmlType element
@@ -93,8 +93,8 @@ class IPPTxnApprovalInfo
 	public $LastChangedByUser;
 	/**
 	 * @Definition 
-                        Product: QBO
-                        Description: Date when the approval status was last updated.
+                        Product: QBO
+                        Description: Date when the approval status was last updated.
 						InputType: QBO: ReadOnly
 					
 	 * @xmlType element

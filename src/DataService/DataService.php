@@ -858,11 +858,11 @@ class DataService
 
         // Builds resource Uri
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
-        $className = get_class($entity);
-        if(strpos($className, CoreConstants::PAYMENTCLASSNAME) !== false){
-          $appendString = CoreConstants::VOID_QUERYPARAMETER_PAYMENT;
-        }else{
-          $appendString = CoreConstants::VOID_QUERYPARAMETER_GENERAL;
+        $className = $this->getEntityResourceName($entity);
+        if(in_array($className, CoreConstants::PAYMENTCLASSNAME)) {
+            $appendString = CoreConstants::VOID_QUERYPARAMETER_PAYMENT;
+        } else{
+            $appendString = CoreConstants::VOID_QUERYPARAMETER_GENERAL;
         }
         $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . $appendString));
         // Creates request
