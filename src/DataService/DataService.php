@@ -948,6 +948,10 @@ class DataService
             return $responseBody;
         } else {
             $this->lastError = false;
+
+            if($raw)
+                return $responseBody;
+
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"), $dir);
         }
     }
