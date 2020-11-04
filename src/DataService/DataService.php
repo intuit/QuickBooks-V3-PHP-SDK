@@ -922,7 +922,7 @@ class DataService
      * @throws IdsException, SdkException
      *
      */
-    public function DownloadPDF($entity, $dir=null)
+    public function DownloadPDF($entity, $dir=null, $returnPdfString = false)
     {
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
@@ -944,6 +944,8 @@ class DataService
             $this->lastError = $faultHandler;
             //Add allow for through exception if users set it up
             return null;
+        } elseif ($returnPdfString) {
+            return $responseBody;
         } else {
             $this->lastError = false;
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"), $dir);
