@@ -10861,16 +10861,14 @@
 		<xs:complexContent>
 			<xs:extension base="Transaction">
 				<xs:sequence>
-					<xs:element name="CreditCardAccountRef" type="ReferenceType"
-								minOccurs="0">
+					<xs:element name="CreditCardAccountRef" type="ReferenceType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Credit Card account for which a payment is being entered.
 								Must be a Credit Card account.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="BankAccountRef" type="ReferenceType"
-								minOccurs="0">
+					<xs:element name="BankAccountRef" type="ReferenceType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Bank account used to pay the Credit Card balance.
 								Must be a Bank account.
@@ -10883,10 +10881,38 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="VendorRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Specifies the vendor reference for this transaction.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CheckNum" type="xs:string" minOccurs="0">
+					   <xs:annotation>
+						  <xs:documentation>
+							  Product: ALL
+							  Description: The check number printed on the check.
+						  </xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element name="PrintStatus" type="PrintStatusEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>PrintStatus if to be printed or already printed.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Memo" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Memo associated with the Credit Card Payment transaction.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="CreditCardPaymentEx" type="IntuitAnyType">
 						<xs:annotation>
-							<xs:documentation>Internal use only: extension place holder for
-								CreditCardPayment</xs:documentation>
+							<xs:documentation>Internal use only: extension place holder for CreditCardPayment
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>

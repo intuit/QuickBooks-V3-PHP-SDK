@@ -190,7 +190,8 @@ class FacadeClassMapper
          'PurchaseTaxRateList' => 'TaxRateList',
          'AdjustmentTaxRateList' => 'TaxRateList',
          //Use JournalEntryEntity to replace Entity
-         'JournalEntryEntity' => 'EntityTypeRef'
+         'JournalEntryEntity' => 'EntityTypeRef',
+         'ScheduleInfo' => 'RecurringScheduleInfo'
        ];
     }
 
