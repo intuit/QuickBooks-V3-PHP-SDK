@@ -228,12 +228,11 @@ class OAuth2LoginHelper
      *
      * @param String $new_log_location     The directory path for storing request and response log
      *
-     * @return $this
      */
     public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location = null)
     {
         if ($enableLogs) {
-          $this->RequestLogging = new LogRequestsToDisk(true, $new_log_location);
+          $this->RequestLogging = new LogRequestsToDisk($enableLogs, $new_log_location);
           $this->debugMode = $debugMode;
         }
     }

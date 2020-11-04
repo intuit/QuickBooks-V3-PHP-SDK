@@ -131,7 +131,10 @@ class ServiceContext
 
     /**
      * Configure the OAuth 1 or OAuth 2 values from a passed array
-     * @param Array $settings    The array that contains OAuth 1 or OAuth 2 settings
+     *
+     * @param array $settings The array that contains OAuth 1 or OAuth 2 settings
+     *
+     * @return ServiceContext
      */
     public static function ConfigureFromPassedArray(array $settings)
     {
@@ -166,7 +169,9 @@ class ServiceContext
            $OAuthConfig->setBaseURL($checkedBaseURL);
         }
         $serviceType = CoreConstants::IntuitServicesTypeQBO;
-        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION);
+        $enableRequestLogging = isset($settings['enableRequestLogging']) ? filter_var($settings['enableRequestLogging'], FILTER_VALIDATE_BOOLEAN) : false;
+        $loggingTraceLevel = isset($settings['loggingTraceLevel']) ? $settings['loggingTraceLevel'] : TraceLevel::Error;
+        $IppConfiguration = LocalConfigReader::ReadConfigurationFromParameters($OAuthConfig, $checkedBaseURL, CoreConstants::DEFAULT_LOGGINGLOCATION, CoreConstants::DEFAULT_SDK_MINOR_VERSION, $enableRequestLogging, $loggingTraceLevel);
         $serviceContextInstance = new ServiceContext($QBORealmID, $serviceType, $OAuthConfig, $IppConfiguration);
         return $serviceContextInstance;
     }
@@ -294,7 +299,7 @@ class ServiceContext
     {
         try {
             $_ippConfigInstance = $this->getIppConfig();
-            LocalConfigReader::setupLogger($_ippConfigInstance, CoreConstants::DEFAULT_LOGGINGLOCATION, "FALSE");
+            LocalConfigReader::setupLogger($_ippConfigInstance, CoreConstants::DEFAULT_LOGGINGLOCATION, false);
         } catch (\Exception $e) {
             throw new \Exception("Error in disable Log.");
         }
@@ -309,7 +314,7 @@ class ServiceContext
     {
         try {
             $_ippConfigInstance = $this->getIppConfig();
-            LocalConfigReader::setupLogger($_ippConfigInstance, $new_log_location, "TRUE");
+            LocalConfigReader::setupLogger($_ippConfigInstance, $new_log_location, true);
         } catch (\Exception $e) {
             throw new \Exception("Error in setting up new Log Configuration: " . $new_log_location);
         }
