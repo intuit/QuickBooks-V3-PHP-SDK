@@ -231,6 +231,12 @@
 <p><code class="docutils literal"><span class="pre">scope</span></code></p>
 <blockquote>
 <div>(String) Used when the ‘auth_mode’ is equal to ‘oauth2’. It is either “com.intuit.quickbooks.accounting” or “com.intuit.quickbooks.payment” , required for OAuth 2 when RedirectURI is used.</div></blockquote>
+<p><code class="docutils literal"><span class="pre">enableRequestLogging</span></code></p>
+<blockquote>
+<div>(Boolean) Enable logging.  Defaults to false</div></blockquote>
+<p><code class="docutils literal"><span class="pre">loggingTraceLevel</span></code></p>
+<blockquote>
+<div>(Integer) Trace level to log.  See TraceLevel for log levels.  Defaults to level Error</div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For directly using OAuth 1&amp;2 values, you can also put your values from file, and configure the dataService directly from file:</p>
