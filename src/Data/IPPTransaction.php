@@ -314,8 +314,8 @@ class IPPTransaction
 	public $Tag;
 	/**
 	 * @Definition 
-                                    Product: QBO
-                                    Description: Details of the Approval Status for current transaction in QBO workflows.
+                                    Product: QBO
+                                    Description: Details of the Approval Status for current transaction in QBO workflows.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

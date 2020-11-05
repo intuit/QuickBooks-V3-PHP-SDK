@@ -25,7 +25,7 @@ $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 $dataService->throwExceptionOnError(true);
 
-$theResourceObj = $dataService->FindbyId('payment', 11);
+$theResourceObj = $dataService->FindbyId('salesreceipt', 11);
 
 $resultingObj = $dataService->void($theResourceObj);
 

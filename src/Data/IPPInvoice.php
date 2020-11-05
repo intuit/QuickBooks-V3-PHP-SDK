@@ -271,6 +271,30 @@ class IPPInvoice
 	 * @var com\intuit\schema\finance\v3\IPPConvenienceFeeDetail
 	 */
 	public $ConvenienceFeeDetail;
+	/**
+	 * @Definition 
+								Product: All
+								Description: QBO:  Security code associated with Sharable link of the invoice for external users
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName InvoiceLinkSecurityCode
+	 * @var string
+	 */
+	public $InvoiceLinkSecurityCode;
+	/**
+	 * @Definition 
+								Product: All
+								Description: QBO:  Expiry date for Sharable link of the invoice for external users
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName InvoiceLinkExpiryDate
+	 * @var string
+	 */
+	public $InvoiceLinkExpiryDate;
 
 
 } // end class IPPInvoice

@@ -6,12 +6,7 @@ use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
-use QuickBooksOnline\API\Data\IPPReferenceType;
-use QuickBooksOnline\API\Data\IPPAttachableRef;
-use QuickBooksOnline\API\Data\IPPAttachable;
-use QuickBooksOnline\API\Facades\Bill;
-
-
+use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
@@ -24,11 +19,19 @@ $dataService = DataService::Configure(array(
   'baseUrl'         => "development"
 ));
 
-$invoice = $dataService->FindById("Invoice", "198");
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
-$pdfContent = $dataService->DownloadPDF($invoice, null, true);
-echo $pdfContent;
-/*
-Example output:
+$reimburseCharge = $dataService->Query("Select * from ReimburseCharge");
 
-*/
+$error = $dataService->getLastError();
+
+if ($error) {
+    echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
+    echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";
+    echo "The Response message is: " . $error->getResponseBody() . "\n";
+}
+else {
+    $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($reimburseCharge[0] , $urlResource);
+    echo $xmlBody . "\n";
+}
+

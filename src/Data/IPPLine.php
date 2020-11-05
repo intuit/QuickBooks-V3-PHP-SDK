@@ -252,6 +252,18 @@ class IPPLine
 	/**
 	 * @Definition 
 							Product: ALL
+							Description: ReimburseType for
+							the transaction.
+						
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlName ReimburseLineDetail
+	 * @var com\intuit\schema\finance\v3\IPPReimburseLineDetail
+	 */
+	public $ReimburseLineDetail;
+	/**
+	 * @Definition 
+							Product: ALL
 							Description: Deposit type for the
 							transaction.
 						
