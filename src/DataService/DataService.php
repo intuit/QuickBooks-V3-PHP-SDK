@@ -1667,7 +1667,7 @@ class DataService
      * @param string $fileName
      * @return mixed full path with filename or open handler
      */
-    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $fileName = null, $dir)
+    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $fileName, $dir)
     {
         $writer->setPrefix($this->getPrefixFromSettings());
         try {
