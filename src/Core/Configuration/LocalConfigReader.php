@@ -1,7 +1,6 @@
 <?php
 namespace QuickBooksOnline\API\Core\Configuration;
 
-use QuickBooksOnline\API\Diagnostics\TraceLevel;
 use QuickBooksOnline\API\Security\OAuthRequestValidator;
 use QuickBooksOnline\API\Core\Http\Compression\CompressionFormat;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
@@ -100,7 +99,7 @@ class LocalConfigReader
         }
     }
 
-    public static function ReadConfigurationFromParameters($OAuthConfig, $baseUrl, $defaultLoggingLocation = CoreConstants::DEFAULT_LOGGINGLOCATION, $minorVersion = CoreConstants::DEFAULT_SDK_MINOR_VERSION, $enableRequestLogging = false, $loggingTraceLevel = TraceLevel::Error)
+    public static function ReadConfigurationFromParameters($OAuthConfig, $baseUrl, $defaultLoggingLocation = CoreConstants::DEFAULT_LOGGINGLOCATION, $minorVersion = CoreConstants::DEFAULT_SDK_MINOR_VERSION)
     {
         $ippConfig = new IppConfiguration();
         try {
@@ -122,7 +121,7 @@ class LocalConfigReader
                 $ippConfig->BaseUrl = new BaseUrl();
                 $ippConfig->BaseUrl->Qbo = $baseUrl;
                 //Set content writer and logger
-                LocalConfigReader::setupLogger($ippConfig, $defaultLoggingLocation, $enableRequestLogging, $loggingTraceLevel);
+                LocalConfigReader::setupLogger($ippConfig, $defaultLoggingLocation, "TRUE");
                 LocalConfigReader::setupContentWriter($ippConfig, CoreConstants::FILE_STRATEGY, CoreConstants::PHP_CLASS_PREFIX, null, false);
                 //Set API Entity Rules
                 $rules=CoreConstants::getQuickBooksOnlineAPIEntityRules();
@@ -412,12 +411,11 @@ class LocalConfigReader
      }
      }
 
-    public static function setupLogger($ippConfig, $ServiceRequestLoggingLocation, $EnableRequestResponseLogging, $LoggingTraceLevel = TraceLevel::Error)
+    public static function setupLogger($ippConfig, $ServiceRequestLoggingLocation, $EnableRequestResponseLogging)
     {
         $ippConfig->Logger = new Logger();
-        $ippConfig->Logger->RequestLog->LoggingLocation = $ServiceRequestLoggingLocation;
-        $ippConfig->Logger->RequestLog->EnableLogging = $EnableRequestResponseLogging;
-        $ippConfig->Logger->RequestLog->LoggingTraceLevel = $LoggingTraceLevel;
+        $ippConfig->Logger->RequestLog->ServiceRequestLoggingLocation = $ServiceRequestLoggingLocation;
+        $ippConfig->Logger->RequestLog->EnableRequestResponseLogging = $EnableRequestResponseLogging;
     }
 
     public static function setupContentWriter($ippConfig, $strategy, $prefix, $exportDir, $returnOject)

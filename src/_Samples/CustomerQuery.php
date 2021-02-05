@@ -2,9 +2,11 @@
 //Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
 include('../config.php');
 
-use QuickBooksOnline\API\Core\CoreConstants;
+use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
-use QuickBooksOnline\API\Diagnostics\TraceLevel;
+use QuickBooksOnline\API\PlatformService\PlatformService;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
+use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
@@ -14,12 +16,10 @@ $dataService = DataService::Configure(array(
   'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
   'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
-  'baseUrl'         => "development",
-  'enableRequestLogging' => true,
-  'loggingTraceLevel' => TraceLevel::Verbose,
+  'baseUrl'         => "development"
 ));
 
-$dataService->setLogLocation(CoreConstants::DEFAULT_LOGGINGLOCATION);
+$dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
 // Run a query
 $entities = $dataService->Query("Select count(*) from Invoice");
