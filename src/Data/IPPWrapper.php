@@ -4,21 +4,21 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPP
- * @var IPP
+ * @xmlName IPPWrapper
+ * @var IPPWrapper
  */
 class IPPWrapper
 	{
 
-		/**                                                                       
-		* Initializes this object, optionally with pre-defined property values    
-		*                                                                         
+		/**
+		* Initializes this object, optionally with pre-defined property values
+		*
 		* Initializes this object and it's property members, using the dictionary
-		* of key/value pairs passed as an optional argument.                      
-		*                                                                         
-		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties 
-		* @param boolean $verbose specifies whether object should echo warnings   
-		*/                                                                        
+		* of key/value pairs passed as an optional argument.
+		*
+		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+		* @param boolean $verbose specifies whether object should echo warnings
+		*/
 		public function __construct($keyValInitializers=array(), $verbose=FALSE)
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
