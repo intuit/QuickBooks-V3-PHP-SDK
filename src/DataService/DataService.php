@@ -20,7 +20,6 @@ use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
-use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\HttpClients\SyncRestHandler;
@@ -28,9 +27,7 @@ use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Data\IPPAttachable;
-use QuickBooksOnline\API\Data\IPPEntitlementsResponse;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
-use QuickBooksOnline\API\Data\IPPRecurringTransaction;
 use QuickBooksOnline\API\Data\IPPTaxService;
 use QuickBooksOnline\API\Data\IPPid;
 use QuickBooksOnline\API\Exception\IdsException;
@@ -128,7 +125,7 @@ class DataService
 
     /**
      * If not false, the request from last dataService did not return 2xx
-     * @var FaultHandler
+     * @var FaultHandler|bool
      */
     private $lastError = false;
 
@@ -419,7 +416,7 @@ class DataService
     /**
      * After the ServiceContext is complete, also set the LoginHelper based on the ServiceContext.
      * @param OAuth2AccessToken $oauth2Conifg      OAuth 2 Token related information
-     * @param Array $settings                      The array that include the redirectURL, scope, state information
+     * @param array $settings                      The array that include the redirectURL, scope, state information
      */
     private function configureOAuth2LoginHelper($oauth2Conifg, $settings)
     {
@@ -479,7 +476,7 @@ class DataService
     /**
      * Get the error from last request
      *
-     * @return FaultHandler lastError
+     * @return FaultHandler|bool lastError
      */
     public function getLastError()
     {
@@ -487,7 +484,7 @@ class DataService
     }
 
     /**
-     * Setups serializers objects for responces and requests based on service context
+     * Setups serializers objects for responses and requests based on service context
      */
     public function setupSerializers()
     {
@@ -522,7 +519,7 @@ class DataService
     }
 
     /**
-     * Returns serializer for responce objects
+     * Returns serializer for response objects
      * @return IEntitySerializer
      */
     protected function getResponseSerializer()
@@ -690,7 +687,7 @@ class DataService
      * Updates an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Update.
-     * @return IPPIntuitEntity Returns an updated version of the entity with updated identifier and sync token.
+     * @return IPPIntuitEntity|null|string Returns an updated version of the entity with updated identifier and sync token.
      * @throws IdsException
      */
     public function Update($entity)
@@ -742,13 +739,13 @@ class DataService
      * 2) FindById("invoice", 1);
      *
      * @param object|String $entity Entity to Find, or the String Name of the Entity
-     * @return IPPIntuitEntity Returns an entity of specified Id.
+     * @return IPPIntuitEntity|null|string|bool Returns an entity of specified Id.
      * @throws IdsException
      */
     public function FindById($entity, $Id = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindById.");
-        if(is_object($entity)){
+        if($entity instanceof IPPIntuitEntity){
            $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
            // Validate parameter
            if (!$entity || !$entity->Id) {
@@ -761,7 +758,7 @@ class DataService
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
           // Send request
           return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
-        }else if(is_string($entity) && isset($Id)){
+        } else if (is_string($entity) && isset($Id)) {
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
           if ($this->isCreditCardPaymentTxn($entity)) {
             $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
@@ -781,13 +778,14 @@ class DataService
               return $parsedResponseBody;
           }
         }
+        return false;
     }
 
     /**
      * Creates an entity under the specified realm. The realm must be set in the context.
      *
      * @param IPPIntuitEntity $entity Entity to Create.
-     * @return IPPIntuitEntity Returns the created version of the entity.
+     * @return IPPIntuitEntity|null|string Returns the created version of the entity.
      * @throws IdsException
      */
     public function Add($entity)
@@ -876,7 +874,7 @@ class DataService
      * @param string $fileName                    Filename to use for this file
      * @param string $mimeType                    MIME type to send in the HTTP Headers
      * @param IPPAttachable $objAttachable        Entity including the attachment, it can be invoice, bill, etc
-     * @return array                              Returns an array of entities fulfilling the query.
+     * @return array|null|string                  Returns an array of entities fulfilling the query.
      * @throws IdsException
      */
     public function Upload($imgBits, $fileName, $mimeType, $objAttachable)
@@ -917,7 +915,7 @@ class DataService
     /**
      * Returns PDF for entities which can be downloaded as PDF
      * @param IPPIntuitEntity $entity
-     * @param Directory a writable directory for the PDF to be saved.
+     * @param \Directory a writable directory for the PDF to be saved.
      * @return boolean
      * @throws IdsException, SdkException
      *
@@ -994,7 +992,7 @@ class DataService
      * @param int $startPosition Starting page number
      * @param int $maxResults Page size
      * @param string $includes A list of additional fields requested in the entities response
-     * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
+     * @return array|string|null Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
     public function Query($query, $startPosition = null, $maxResults = null, $includes = null)
     {
@@ -1049,21 +1047,15 @@ class DataService
        $query = trim($query);
        if(isset($startPosition) && !empty($startPosition)){
            if(stripos($query, "STARTPOSITION") === false){
-              if(stripos($query, "MAXRESULTS") !== false){
-                //In MaxResult is defined,we don't set startPosition
-              }else{
+              if(stripos($query, "MAXRESULTS") === false){
                 $query = $query . " " . "STARTPOSITION " . $startPosition;
               }
-           }else{
-             //Ignore the startPosition if it is already used on the query
            }
        }
 
        if(isset($maxResults) && !empty($maxResults)){
            if(stripos($query, "MAXRESULTS") === false){
                 $query = $query . " " . "MAXRESULTS " . $maxResults;
-           }else{
-             //Ignore the maxResults if it is already used on the query
            }
        }
 
@@ -1077,7 +1069,7 @@ class DataService
      * @param string $entityName
      * @param int $pageNumber
      * @param int $pageSize
-     * @return array Returns an array of entities of specified type.
+     * @return array|string|null Returns an array of entities of specified type.
      */
     public function FindAll($entityName, $pageNumber = 0, $pageSize = 500)
     {
@@ -1126,7 +1118,7 @@ class DataService
      * Returns List of entities changed after certain time.
      *
      * @param array entityList List of entity.
-     * @param long changedSince DateTime of timespan after which entities were changed.
+     * @param mixed changedSince DateTime of timespan after which entities were changed.
      * @return IntuitCDCResponse Returns an IntuitCDCResponse.
      */
     public function CDC($entityList, $changedSince)
@@ -1254,7 +1246,7 @@ class DataService
     /**
      * Query RecurringTransaction Entity under the specified realm. The realm must be set in the context.
      *
-     * @param query ex : SELECT * FROM RecurringTransaction
+     * @param string $query ex : SELECT * FROM RecurringTransaction
      * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
      * @throws IdsException
      */
@@ -1269,6 +1261,7 @@ class DataService
         }
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
+        //TODO: $startPosition and $maxResults don't exist...
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
@@ -1290,7 +1283,7 @@ class DataService
 
                 for($i = 0; $i < sizeof($responseArray); $i++){
                     $currentResponse = $responseArray[$i];
-                    $currentEntityName = $entityList[$i];
+                    $currentEntityName = $entityList[$i];   //undefined, not used
                     $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
                     $entityName = $currentEntityName;
                     //If we find the actual name, update it.
@@ -1312,7 +1305,7 @@ class DataService
     /**
      * Find a RecurringTransaction Entity By ID under the specified realm. The realm must be set in the context.
      *
-     * @param $Id Id of the IPPIntuitEntity Object
+     * @param string $Id Id of the IPPIntuitEntity Object
      * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
      * @throws IdsException
      */
@@ -1544,7 +1537,7 @@ class DataService
 
     /**
      * Handles unusual URL mapping for TaxService
-     * @param IPPIntuitEntity $entity
+     * @param IPPTaxService $entity
      * @param string $uri
      * @return string
      */
@@ -1623,7 +1616,7 @@ class DataService
     /**
      * Verifies string as email agains RFC 822
      * @param string $email
-     * @return type
+     * @return mixed
      */
     public function verifyEmailAddress($email)
     {
@@ -1888,7 +1881,7 @@ class DataService
 
     /**
      * Get the Company Information
-     * @return IPPCompanyInfo   CompanyInformation
+     * @return IPPCompanyInfo|string   CompanyInformation
      */
     public function getCompanyInfo()
     {
@@ -1915,7 +1908,7 @@ class DataService
 
     /**
      * Get the Company Preferences Information
-     * @return IPPPreferences  CompanyInformation
+     * @return IPPPreferences|string  CompanyInformation
      */
     public function getCompanyPreferences()
     {
