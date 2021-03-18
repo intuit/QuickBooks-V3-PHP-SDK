@@ -1067,11 +1067,11 @@ class DataService
      * Retrieves all entities by name
      *
      * @param string $entityName
-     * @param int $pageNumber
+     * @param int $startOffset
      * @param int $pageSize
      * @return array|string|null Returns an array of entities of specified type.
      */
-    public function FindAll($entityName, $pageNumber = 0, $pageSize = 500)
+    public function FindAll($entityName, $startOffset = 0, $pageSize = 500)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindAll.");
 
@@ -1089,7 +1089,7 @@ class DataService
         }
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
-        $httpsPostBody = "select * from $entityName startPosition $pageNumber maxResults $pageSize";
+        $httpsPostBody = "select * from $entityName startPosition $startOffset maxResults $pageSize";
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
