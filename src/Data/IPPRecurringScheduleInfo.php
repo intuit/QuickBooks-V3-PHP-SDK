@@ -52,7 +52,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $IntervalType;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Interval based on the Interval Type
 					
@@ -64,7 +64,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $NumInterval;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Day of the Month
 					
@@ -76,7 +76,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $DayOfMonth;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Day of the Week
 					
@@ -100,7 +100,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $WeekOfMonth;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Month of the Year
 					
@@ -112,7 +112,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $MonthOfYear;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The days before StartDate for a Reminded RecurType
 					
@@ -124,7 +124,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $RemindDays;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Days before the Scheduled Date
 					
@@ -136,7 +136,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $DaysBefore;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Max number of Recurring Occurrences
 					
@@ -148,7 +148,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $MaxOccurrences;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Start Date for the Recurring Schedule
 					
@@ -160,7 +160,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $StartDate;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The End Date for the Recurring Schedule
 					
@@ -172,7 +172,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $EndDate;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Date when the next Transaction will created. (Read Only)
 					
@@ -184,7 +184,7 @@ class IPPRecurringScheduleInfo
 	 */
 	public $NextDate;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Date when the last Transaction was created.(Read Only)
 					

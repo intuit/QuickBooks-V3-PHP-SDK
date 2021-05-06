@@ -203,7 +203,7 @@
 			<xs:enumeration value="TaxLineDetail" />
 			<xs:enumeration value="SalesItemLineDetail" />
 			<xs:enumeration value="ItemBasedExpenseLineDetail" />
-			<xs:enumeration value="AccountBasedExpenseLineDetail" />	
+			<xs:enumeration value="AccountBasedExpenseLineDetail" />
 			<xs:enumeration value="DepositLineDetail" />
 			<xs:enumeration value="PurchaseOrderItemLineDetail" />
 			<xs:enumeration value="ItemReceiptLineDetail" />
@@ -803,8 +803,15 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: QBO
-						Description: Use Healthcare to track expenses you pay for health
-						insurance or contributions to a health savings account.
+						Description: Use Healthcare to track premiums you pay for health insurance.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HealthSavingsAccountContributions">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Health Savings Account Contributions to track contributions to a health savings account.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -1342,6 +1349,22 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="PayrollTaxExpenses">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use payroll tax expenses to track payroll taxes you paid.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PayrollWageExpenses">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use payroll wage expenses to track salaries and wages.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="PayrollTaxPayable">
 				<xs:annotation>
 					<xs:documentation>
@@ -1757,6 +1780,14 @@
 						utility payments. You may want different accounts of this type to
 						track different types of utility payments (gas and electric,
 						telephone, water, and so on).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Communications">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Communications to track communication expenses.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -3365,6 +3396,7 @@
 			<xs:enumeration value="GoPayment" />
 			<xs:enumeration value="EInvoice" />
 			<xs:enumeration value="Square" />
+			<xs:enumeration value="QBCommerce" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="BudgetTypeEnum">
@@ -5759,6 +5791,22 @@
 							<xs:documentation>
 								Product: All
 								Description: QBO:  Expiry date for Sharable link of the invoice for external users
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AutoPayEligible" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Indicates whether the Recurring Invoice eligible for auto payment.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SchedulePayEligible" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Indicates whether the Non-Recurring Invoice eligible for scheduled payment.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -10238,6 +10286,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Source" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Originating source of
+								the Item. Valid values are defined in SourceTypeEnum
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -11750,7 +11807,7 @@
 							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
 							</xs:documentation>
 						</xs:annotation>
-					</xs:element>					
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -13511,28 +13568,28 @@
 			</xs:element>
 			<xs:element name="NumInterval" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Interval based on the Interval Type
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="DayOfMonth" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Day of the Month
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>						
+			</xs:element>
 			<xs:element name="DayOfWeek" type="WeekEnum" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Day of the Week
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="WeekOfMonth" type="xs:int" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
@@ -13540,26 +13597,26 @@
 						Description: The Week of the Month
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="MonthOfYear" type="MonthEnum" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Month of the Year
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>		
+			</xs:element>
 			<xs:element name="RemindDays" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The days before StartDate for a Reminded RecurType
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="DaysBefore" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Days before the Scheduled Date
 					</xs:documentation>
@@ -13567,44 +13624,44 @@
 			</xs:element>
 			<xs:element name="MaxOccurrences" type="xs:int" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Max number of Recurring Occurrences
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="StartDate" type="xs:date" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Start Date for the Recurring Schedule
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="EndDate" type="xs:date" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The End Date for the Recurring Schedule
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="NextDate" type="xs:date" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Date when the next Transaction will created. (Read Only)
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>			
+			</xs:element>
 			<xs:element name="PreviousDate" type="xs:date" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Date when the last Transaction was created.(Read Only)
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>						
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RecurringInfo">
@@ -13624,7 +13681,7 @@
 			</xs:element>
 			<xs:element name="RecurType" type="xs:string" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
 					</xs:documentation>
@@ -13632,7 +13689,7 @@
 			</xs:element>
 			<xs:element name="Active" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation> 
+					<xs:documentation>
 						Product: QBO
 						Description: Indicates whether the Recurring Schedule is enabled.
 					</xs:documentation>
@@ -13647,7 +13704,7 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
-	</xs:complexType>       
+	</xs:complexType>
 	<xs:simpleType name="OLBTxnStatusEnum">
 		<xs:annotation>
 			<xs:documentation> Product: All
@@ -14037,7 +14094,7 @@
 							has been invoiced
 							</xs:documentation>
 						</xs:annotation>
-					</xs:element>					
+					</xs:element>
 					<xs:element name="Amount" type="xs:decimal" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Total amount of the reimburse charge.

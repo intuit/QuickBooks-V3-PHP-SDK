@@ -98,31 +98,32 @@ class ReportService
     private $subcol_pct_inc = null;
     private $subcol_pct_exp = null;
     private $adjusted_gain_loss = null;
+    private $showrows = null;
 
     public function getAdjustedGainLoss(){
-       return $this->adjusted_gain_loss;
+        return $this->adjusted_gain_loss;
     }
 
     public function setAdjustedGainLoss($adjustedGainLoss){
-       return $this->adjusted_gain_loss = $adjustedGainLoss;
+        return $this->adjusted_gain_loss = $adjustedGainLoss;
     }
 
     public function getPercentIncome(){
-       return $this->subcol_pct_inc;
+        return $this->subcol_pct_inc;
     }
 
     public function getPercentExpense(){
-       return $this->subcol_pct_exp;
+        return $this->subcol_pct_exp;
     }
 
     public function setPercentIncome($percentIncome){
-       $this->subcol_pct_inc = $percentIncome;
-       return $this;
+        $this->subcol_pct_inc = $percentIncome;
+        return $this;
     }
 
     public function setPercentExpense($percentExpense){
-       $this->subcol_pct_exp = $percentExpense;
-       return $this;
+        $this->subcol_pct_exp = $percentExpense;
+        return $this;
     }
     /**
      * @return null
@@ -961,6 +962,25 @@ class ReportService
     }
 
     /**
+     * @return null
+     */
+    public function getShowRows()
+    {
+        return $this->showrows;
+    }
+
+    /**
+     * @param null $showrows
+     *
+     * @return $this
+     */
+    public function setShowRows($showrows)
+    {
+        $this->showrows = $showrows;
+        return $this;
+    }
+
+    /**
      * Returns serializer for response objects
      * @return IEntitySerializer
      */
@@ -1191,6 +1211,10 @@ class ReportService
 
         if (!is_null($this->adjusted_gain_loss)) {
             array_push($uriParameterList, ["adjusted_gain_loss", $this->getAdjustedGainLoss()]);
+        }
+
+        if (!is_null($this->showrows)) {
+            array_push($uriParameterList, ["showrows", $this->getShowRows()]);
         }
 
 
