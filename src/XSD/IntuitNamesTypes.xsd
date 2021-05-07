@@ -102,6 +102,17 @@
 			<xs:enumeration value="Error"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="SourceTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Enumeration of external sources that create the entites in QBO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="QBCommerce" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!--Start complex type definitions -->
 	<xs:complexType name="NameBase">
@@ -700,6 +711,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Source" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Originating source of
+								the Customer. Valid values are defined in SourceTypeEnum
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1010,6 +1030,15 @@
 							<xs:documentation>
 								Product: QBO Only
 								Description: Contains Bank Account details to enable Vendor Batch Payment. Applicable for AU region only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Source" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Originating source of
+								the Vendor. Valid values are defined in SourceTypeEnum
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

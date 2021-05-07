@@ -52,7 +52,7 @@ class IPPRecurringInfo
 	 */
 	public $Name;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
 					
@@ -64,7 +64,7 @@ class IPPRecurringInfo
 	 */
 	public $RecurType;
 	/**
-	 * @Definition  
+	 * @Definition 
 						Product: QBO
 						Description: Indicates whether the Recurring Schedule is enabled.
 					

@@ -295,6 +295,30 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $InvoiceLinkExpiryDate;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Indicates whether the Recurring Invoice eligible for auto payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AutoPayEligible
+	 * @var boolean
+	 */
+	public $AutoPayEligible;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Indicates whether the Non-Recurring Invoice eligible for scheduled payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SchedulePayEligible
+	 * @var boolean
+	 */
+	public $SchedulePayEligible;
 
 
 } // end class IPPInvoice

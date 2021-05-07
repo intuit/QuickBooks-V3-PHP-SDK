@@ -593,6 +593,19 @@ class IPPCustomer
 	 * @var string
 	 */
 	public $ClientEntityId;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Originating source of
+								the Customer. Valid values are defined in SourceTypeEnum
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Source
+	 * @var string
+	 */
+	public $Source;
 
 
 } // end class IPPCustomer
