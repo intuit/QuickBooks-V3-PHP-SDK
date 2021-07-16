@@ -286,7 +286,7 @@ class ReportService
     }
 
     /**
-     * @param null $accounting_method
+     * @param **string** $accounting_method
      *
      * @return $this
      */
