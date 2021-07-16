@@ -414,7 +414,7 @@ class FacadeHelper{
    }
 
    public static function simpleAppendClassNameSpace($key){
-      return CoreConstants::NAMEPSACE_DATA_PREFIX . CoreConstants::PHP_CLASS_PREFIX . $key;
+      return CoreConstants::NAMESPACE_DATA_PREFIX . CoreConstants::PHP_CLASS_PREFIX . $key;
    }
 
    /**
