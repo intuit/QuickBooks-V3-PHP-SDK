@@ -60,6 +60,7 @@ class ReportService
     private $start_duedate = null;
     private $duedate_macro = null;
     private $accounting_method = null;
+    private $agency_id = null;
     private $account = null;
     private $source_account = null;
     private $account_type = null;
@@ -292,6 +293,25 @@ class ReportService
     public function setAccountingMethod($accounting_method)
     {
         $this->accounting_method = $accounting_method;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAgencyId()
+    {
+        return $this->agency_id;
+    }
+
+    /**
+     * @param null $agency_id
+     *
+     * @return $this
+     */
+    public function setAgencyId($agency_id)
+    {
+        $this->agency_id = $agency_id;
         return $this;
     }
 
@@ -1071,6 +1091,9 @@ class ReportService
         }
         if (!is_null($this->accounting_method)) {
             array_push($uriParameterList, array("accounting_method", $this->getAccountingMethod()));
+        }
+        if (!is_null($this->agency_id)) {
+            array_push($uriParameterList, array("agency_id", $this->getAgencyId()));
         }
         if (!is_null($this->account)) {
             array_push($uriParameterList, array("account", $this->getAccount()));
