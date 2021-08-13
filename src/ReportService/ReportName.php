@@ -30,4 +30,5 @@ class ReportName
     const JOURNALREPORT = "JournalReport";
     const JOURNALREPORTFR = "JournalReportFR";
     const TRIALBALANCEFR = "TrialBalanceFR";
+    const FECREPORT = "FECReport";
 }

@@ -379,6 +379,21 @@ class IPPSalesTransaction
 	public $ApplyTaxAfterDiscount;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: During total tax override (when user specifies TxnTaxDetail.TotalTax),
+								if this is set to true, system overrides all taxes including the shipping tax,
+								otherwise (if false or null) only non shipping taxes are overridden and original shipping
+								tax is added to the total tax.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ShippingTaxIncludedInTotalTax
+	 * @var boolean
+	 */
+	public $ShippingTaxIncludedInTotalTax;
+	/**
+	 * @Definition 
 								Product: QBW
 								Description: Reference to the
 								Template for the invoice form.
