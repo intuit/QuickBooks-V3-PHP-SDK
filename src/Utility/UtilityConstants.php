@@ -9,12 +9,12 @@ class UtilityConstants
     /**
      * batch response has single entity
      */
-    const ENTITY = 1;
+    const Entity = 1;
 
     /**
      * batch response has more than one enitity.
      */
-    const QUERY = 2;
+    const Query = 2;
 
     /**
      * batch response has exception.
