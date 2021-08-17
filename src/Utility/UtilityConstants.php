@@ -9,17 +9,17 @@ class UtilityConstants
     /**
      * batch response has single entity
      */
-    const Entity = 1;
+    const ENTITY = 1;
 
     /**
      * batch response has more than one enitity.
      */
-    const Query = 2;
+    const QUERY = 2;
 
     /**
      * batch response has exception.
      */
-    const Exception = 3;
+    const EXCEPTION = 3;
     /**
      * XPath for errcode tag.
      * @var string ERRCODEXPATH
