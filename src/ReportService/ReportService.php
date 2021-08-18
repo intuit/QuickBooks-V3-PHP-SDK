@@ -99,6 +99,8 @@ class ReportService
     private $subcol_pct_exp = null;
     private $adjusted_gain_loss = null;
     private $showrows = null;
+    private $add_due_date = null;
+    private $attachmentType = null;
 
     public function getAdjustedGainLoss(){
         return $this->adjusted_gain_loss;
@@ -981,6 +983,44 @@ class ReportService
     }
 
     /**
+     * @param null $add_due_date
+     *
+     * @return $this
+     */
+    public function setDueDate($add_due_date)
+    {
+        $this->add_due_date = $add_due_date;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDueDate()
+    {
+        return $this->add_due_date;
+    }
+
+    /**
+     * @param null $attachmentType
+     *
+     * @return $this
+     */
+    public function setAttachmentType($attachmentType)
+    {
+        $this->attachmentType = $attachmentType;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAttachmentType()
+    {
+        return $this->attachmentType;
+    }
+
+    /**
      * Returns serializer for response objects
      * @return IEntitySerializer
      */
@@ -1217,6 +1257,13 @@ class ReportService
             array_push($uriParameterList, ["showrows", $this->getShowRows()]);
         }
 
+        if (!is_null($this->add_due_date)) {
+            array_push($uriParameterList, ["add_due_date", $this->getDueDate()]);
+        }
+
+        if (!is_null($this->attachmentType)) {
+            array_push($uriParameterList, ["attachmentType", $this->getAttachmentType()]);
+        }
 
         foreach ($uriParameterList as $uriParameter) {
             if (strlen($uriParameterString) > 0) {

@@ -319,6 +319,54 @@ class IPPInvoice
 	 * @var boolean
 	 */
 	public $SchedulePayEligible;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Unique identifier for scheduled payment for invoice. Used to indicate if invoice has scheduled payment or not.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ScheduledPaymentId
+	 * @var string
+	 */
+	public $ScheduledPaymentId;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GratuityEnabled
+	 * @var boolean
+	 */
+	public $GratuityEnabled;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Indicates invoice financing type.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName FinancingProductType
+	 * @var com\intuit\schema\finance\v3\IPPFinancingProductTypeEnum
+	 */
+	public $FinancingProductType;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Subscription payment setting for a Recurring Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SubscriptionPaymentsSetting
+	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
+	 */
+	public $SubscriptionPaymentsSetting;
 
 
 } // end class IPPInvoice

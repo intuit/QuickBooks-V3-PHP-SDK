@@ -3843,6 +3843,22 @@
 			<xs:enumeration value="DISABLED" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="FinancingProductTypeEnum">
+		<xs:annotation>
+			<xs:documentation>Enumeration of financing Product Type applicable to Invoice</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GET_PAID_UPFRONT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubscriptionPaymentsSettingEnum">
+		<xs:annotation>
+			<xs:documentation>Enumeration of subscription payment setting applicable to Invoice</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SALE_TERM" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!-- ============================================================================== -->
 	<!--Group definitions in the Finance Domain -->
@@ -5306,6 +5322,18 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="ShippingTaxIncludedInTotalTax" type="xs:boolean"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: During total tax override (when user specifies TxnTaxDetail.TotalTax),
+								if this is set to true, system overrides all taxes including the shipping tax,
+								otherwise (if false or null) only non shipping taxes are overridden and original shipping
+								tax is added to the total tax.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="TemplateRef" type="ReferenceType"
 								minOccurs="0">
 						<xs:annotation>
@@ -5807,6 +5835,38 @@
 							<xs:documentation>
 								Product: QBO
 								Description: Indicates whether the Non-Recurring Invoice eligible for scheduled payment.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ScheduledPaymentId" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Unique identifier for scheduled payment for invoice. Used to indicate if invoice has scheduled payment or not.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GratuityEnabled" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FinancingProductType" type="FinancingProductTypeEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Indicates invoice financing type.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SubscriptionPaymentsSetting" type="SubscriptionPaymentsSettingEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Internal use only: Subscription payment setting for a Recurring Invoice
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -7489,6 +7549,15 @@
 								Product: ALL
 								Description: Internal use only:
 								extension place holder for TaxRate
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginalTaxRate" type="ReferenceType"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: OriginalTaxRate represents the tax rate from which the current tax rate originated
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -11751,6 +11820,12 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Seconds" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Seconds worked; valid values are 0 - 59.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="BreakHours" type="xs:int" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Hours of break taken between start time and end
@@ -11769,6 +11844,13 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+                    <xs:element name="BreakSeconds" type="xs:int" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Seconds of break taken between start time and
+                                end time. Valid values are 0 - 59.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
 					<xs:element name="StartTime" type="xs:dateTime"
 								minOccurs="0">
 						<xs:annotation>
