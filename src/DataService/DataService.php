@@ -653,7 +653,7 @@ class DataService
             try {
                 $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             } catch (\Exception $e) {
-                return new Excepiton("Exception in deserialize ResponseBody.");
+                return new \Excepiton("Exception in deserialize ResponseBody.");
             }
 
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Finished Executing Method " . $CALLINGMETHOD);
@@ -990,11 +990,13 @@ class DataService
                 if ($responseXmlObj && $responseXmlObj->QueryResponse) {
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
                 }
+                \Console::Log('$tmpXML', $tmpXML);
                 $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
+                \Console::Log('$parsedResponseBody', $parsedResponseBody);
                 $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
 
             } catch (\Exception $e) {
-                throw new \Exception("Exception appears in converting Response to XML.");
+                throw new \Exception("Exception appears in converting Response to XML. " . $e->getMessage());
             }
 
             return $parsedResponseBody;
@@ -1630,6 +1632,7 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
+            $this->useXml();
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
         }
@@ -1657,6 +1660,7 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
+            $this->useXml();
             $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
             return $parsedResponseBody;
         }

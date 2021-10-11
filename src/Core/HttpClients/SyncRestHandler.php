@@ -267,8 +267,9 @@ class SyncRestHandler extends RestHandler
      * @param Array $httpHeaders  The headers for the request
      */
     public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
-      if(strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
-          strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
+        $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
+        if(strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
+            strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
              $body = $this->parseStringToDom($body);
       }
 
