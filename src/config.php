@@ -11,7 +11,7 @@
 // PSR-4 Autoloader,QuickBooksOnline\Data;
 spl_autoload_register(function ($class) {
 	  $prefix = 'QuickBooksOnline\\API\\';
-		$base_dir = __DIR__ . DIRECTORY_SEPARATOR;
+		$base_dir = __DIR__ . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR;
 		$len = strlen($prefix);
 		if (strncmp($prefix, $class, $len) !== 0) {
         return;

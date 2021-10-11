@@ -235,10 +235,20 @@ class XmlObjectSerializer extends IEntitySerializer
         $responseXmlObj = simplexml_load_string($message);
 
         //handle count(*) case, for example Select count(*) from Invoice, and also handle the CDC case
-        if(isset($responseXmlObj->attributes()['totalCount']) && !isset($responseXmlObj->attributes()['startPosition']) && !isset($responseXmlObj->attributes()['maxResults'])){
+        $reponseAttributes = $responseXmlObj->attributes();
+        if(isset($reponseAttributes['totalCount']) && !isset($reponseAttributes['startPosition']) && !isset($reponseAttributes['maxResults'])){
             return (int) $responseXmlObj->attributes()['totalCount'];
         }
-
+        $systemInfo = [];
+        if (isset($reponseAttributes['totalCount'])) {
+            $systemInfo['totalCount'] = $reponseAttributes['totalCount'];
+        }
+        if (isset($reponseAttributes['startPosition'])) {
+            $systemInfo['startPosition'] = $reponseAttributes['startPosition'];
+        }
+        if (isset($reponseAttributes['maxResults'])) {
+            $systemInfo['maxResults'] = $reponseAttributes['maxResults'];
+        }
         foreach ($responseXmlObj as $oneXmlObj) {
             $oneXmlElementName = (string)$oneXmlObj->getName();
 
@@ -255,6 +265,11 @@ class XmlObjectSerializer extends IEntitySerializer
             if ($bLimitToOne) {
                 break;
             }
+        }
+        if (!empty($resultObject) && $bLimitToOne) {
+            $resultObject->systemInfo = $systemInfo;
+        } else if (!empty($resultObjects)) {
+            $resultObjects['systemInfo'] = $systemInfo;
         }
 
         if ($bLimitToOne) {
