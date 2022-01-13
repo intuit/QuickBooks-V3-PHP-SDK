@@ -6,13 +6,13 @@ Configuration
 
 This page provides a introduction on how to configure necessary settings for QuickBooks V3 SDK before making actual API call.
 
-On QuickBooks V3 SDK, all API requests are made through DataService Object. It is equivalent to "Client" in other library.
+On QuickBooks V3 SDK, all API requests are made through the DataService Object. It is equivalent to "Client" in other libraries.
 
 
 Creating DataService
 ====================
 
-Depends on your authorization protocol, OAuth 1.0 or OAuth 2.0, you will need to pass corresponding OAuth values to your DataService Object. For OAuth 2, if you already know your access token and refresh token, you can use:
+Depending on your authorization protocol, OAuth 1.0 or OAuth 2.0, you will need to pass corresponding OAuth values to your DataService Object. For OAuth 2, if you already know your access token and refresh token, you can use:
 
 .. code-block:: php
 
@@ -29,7 +29,7 @@ Depends on your authorization protocol, OAuth 1.0 or OAuth 2.0, you will need to
           'baseUrl' => "Development/Production"
     ));
 
-to initialize your DataService object. For passing OAuth 1 value, or how to generate OAuth 2 tokens from beginning, refer to the :ref:`OAuth 1.0a` page, or :ref:`Generate OAuth 2.0 Tokens` page.
+to initialize your DataService object. For passing OAuth 1 value, or how to generate OAuth 2 tokens from the beginning, refer to the :ref:`OAuth 1.0a` page, or :ref:`Generate OAuth 2.0 Tokens` page.
 
 The DataService configure method accepts an associative array of options:
 
@@ -39,11 +39,11 @@ The DataService configure method accepts an associative array of options:
 
 ``ClientID``
 
-    (String, required for OAuth 2) Used when the 'auth_mode' is equal to 'oauth2'. The client ID found from your app's keys tab.
+    (String, required for OAuth 2) Used when the 'auth_mode' is equal to 'oauth2'. The client ID is found in your app's keys tab.
 
 ``ClientSecret``
 
-    (String, required for OAuth 2) Used when the 'auth_mode' is equal to 'oauth2'. The client Secret found from your app's keys tab.
+    (String, required for OAuth 2) Used when the 'auth_mode' is equal to 'oauth2'. The client Secret is found in your app's keys tab.
 
 ``accessTokenKey``
 
@@ -55,11 +55,11 @@ The DataService configure method accepts an associative array of options:
 
 ``consumerKey``
 
-    (String, required for OAuth 1) Used when the 'auth_mode' is equal to 'oauth1'. The consumer key found from your app's keys tab.
+    (String, required for OAuth 1) Used when the 'auth_mode' is equal to 'oauth1'. The consumer key is found in your app's keys tab.
 
 ``consumerSecret``
 
-    (String, required for OAuth 1) Used when the 'auth_mode' is equal to 'oauth1'. The consumer secret found from your app's keys tab.
+    (String, required for OAuth 1) Used when the 'auth_mode' is equal to 'oauth1'. The consumer secret is found in your app's keys tab.
 
 ``accessTokenKey``
 
@@ -79,7 +79,7 @@ The DataService configure method accepts an associative array of options:
 
 ``RedirectURI``
 
-    (String) Used when the 'auth_mode' is equal to 'oauth2'. The redirect URI provided on the Redirect URIs part under keys tab. Required for OAuth 2 when generating OAuth 2 token
+    (String) Used when the 'auth_mode' is equal to 'oauth2'. The redirect URI provided on the Redirect URIs section under keys tab in your app settings. Required for OAuth 2 when generating OAuth 2 token
 
 ``scope``
 
@@ -88,24 +88,24 @@ The DataService configure method accepts an associative array of options:
 
 .. note::
 
-    For directly using OAuth 1&2 values, you can also put your values from file, and configure the dataService directly from file:
+    For directly using OAuth 1&2 values, you can also put your values from a file, and configure the dataService directly from a file:
 
         $dataService = DataService::Configure("/Your/Path/To/sdk.config");
 
-    However, this is only suggested for OAuth 1.0 tokens, since it is relatively long-lived tokens. For OAuth 2.0, this is not recommended. See the sdk.config file located in /src folder as a template for configuring DataService.
+    However, this is only suggested for OAuth 1.0 tokens, since they are relatively long-lived tokens. For OAuth 2.0, this is not recommended. See the sdk.config file located in /src folder as a template for configuring the DataService.
 
 
 
-Setting DataService
-===================
+DataService Settings
+====================
 
-DataService provides a list of methods to help you use QuickBooks Online API.
+The DataService provides a list of methods to help you use QuickBooks Online API.
 
 
 Minor version
 -------------
 
-You can use ``setMinorVersion()`` to specify which minor version you want to use against QuickBooks Online API. If developer didn't specify a minor version, the default minor version, **8** , would be used.
+You can use ``setMinorVersion()`` to specify which minor version you want to use against QuickBooks Online API. If developer doesn't specify a minor version, the default minor version, **8** , would be used.
 
 .. code-block:: php
 
@@ -114,7 +114,7 @@ You can use ``setMinorVersion()`` to specify which minor version you want to use
 Logging
 -------
 
-Logging is default to be turned **ON** QuickBooks V3 PHP SDK. You can use ``disableLog()`` to disable logging.
+Logging is turned **ON** by default in the QuickBooks V3 PHP SDK. You can use ``disableLog()`` to disable logging.
 
 .. code-block:: php
 
@@ -134,7 +134,7 @@ Errors and Timeouts
 
 For whatever reason, the HTTP(s) requests to QuickBooks Online API may not always succeed. For QuickBooks V3 PHP SDK, any response with status code that is **not 200 level** will be considered as a failed request.
 
-If a request failed, the DataService will record the error on its ``lastError`` object, and developer should always use ``$dataService->getLastError()`` to check what the error is before acting on the results of the method call.
+If a request fails, the DataService will record the error on its ``lastError`` object, and the developer should always use ``$dataService->getLastError()`` to check what the error is before acting on the results of the method call.
 
 .. code-block:: php
 
@@ -150,20 +150,20 @@ If no error occurred, the ``$dataService->getLastError()`` will return ``false``
     On version <4.0.1, the ``$dataService->getLastError()`` will return ``NULL`` on success instead of ``false``.
 
 
-Developers also can configure the API client to throw exceptions when request failed. However, if you do this, you will need to catch and handle the exception in code yourself.
+Developers also can configure the API client to throw exceptions when a request fails. However, if you do this, you will need to catch and handle the exception in the code yourself.
 
-To throw exceptions when a request failed, you will use ``throwExceptionOnError(true)``
+To throw exceptions when a request fails, use ``throwExceptionOnError(true)``
 
 .. code-block:: php
 
     $dataService->throwExceptionOnError(true);
 
-The default behavior for QuickBooks V3 PHP SDK is **NOT** thrown exception on error. If developers want this behavior, they need to turn it on.
+The default behavior for QuickBooks V3 PHP SDK is to **NOT** throw exception on errors. If developers want this behavior, they need to turn it on.
 
 ServiceContext
 --------------
 
-``ServiceContext`` contains all the information associated with the ``DataService``, like OAuth values, Log location, etc. It is often necessary to return the ``ServiceContext`` for various purpose. To get the ``ServiceContext`` associated with ``DataService`` object, you will use:
+``ServiceContext`` contains all the information associated with the ``DataService``, like OAuth values, Log location, etc. It is often necessary to return the ``ServiceContext`` for various purpose. To get the ``ServiceContext`` associated with ``DataService`` object, use:
 
 .. code-block:: php
 
