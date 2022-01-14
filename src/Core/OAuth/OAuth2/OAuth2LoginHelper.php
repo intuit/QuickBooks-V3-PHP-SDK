@@ -24,6 +24,7 @@ use QuickBooksOnline\API\Core\HttpClients\CurlHttpClient;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\CoreConstants;
 use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
+use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 
 /**
  * Class OAuth2LoginHelper
@@ -34,6 +35,17 @@ use QuickBooksOnline\API\Core\OAuth\OAuth1\OAuth1;
  */
 class OAuth2LoginHelper
 {
+    /**
+     * Get the Logging component for the REST service.
+     * @var LogRequestsToDisk $RequestLogging
+     */
+    public $RequestLogging;
+
+    /**
+     * Used to log the token for developement or when there are OAuth 2 issues.
+     * @var Bool $debudMode
+     */
+    private $debugMode;
     /**
      * OAuth 2 Client ID, can be found on your apps "keys" tab.
      * @var String $clientID         the Client ID asscoiated with the app
@@ -208,6 +220,25 @@ class OAuth2LoginHelper
     }
 
     /**
+     * Set logging for OAuth calls
+     *
+     * @param Boolean $enableLogs          Turns on logging for OAuthCalls
+     *
+     * @param Boolean $debugMode           Turns on debug mode to log tokens
+     *
+     * @param String $new_log_location     The directory path for storing request and response log
+     *
+     * @return $this
+     */
+    public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location = null)
+    {
+        if ($enableLogs) {
+          $this->RequestLogging = new LogRequestsToDisk(true, $new_log_location);
+          $this->debugMode = $debugMode;
+        }
+    }
+
+    /**
      * Step 2 of OAuth 2 protocol. After you get authorization code, use this method to exchange an access token with it.
      * @param String $code            The Authorization Code returned to your redirect Uri
      * @param String RealmID          The Company ID that will be associated with the Acess Token. It does not use for exchange authorization Code to
@@ -229,7 +260,9 @@ class OAuth2LoginHelper
          'Authorization' => $authorizationHeaderInfo,
          'Content-Type' => 'application/x-www-form-urlencoded'
        );
+       $this->LogAPIRequestToLog(http_build_query($parameters), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, http_build_query($parameters), null, true);
+       $this->LogAPIResponseToLog($intuitResponse->getBody(), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Exchange Authorization Code for Access Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -248,7 +281,9 @@ class OAuth2LoginHelper
        $refreshToken = $this->getAccessToken()->getRefreshToken();
        $http_header = $this->constructRefreshTokenHeader();
        $requestBody = $this->constructRefreshTokenBody($refreshToken);
+       $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
+       $this->LogAPIResponseToLog($intuitResponse->getBody(), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -266,7 +301,9 @@ class OAuth2LoginHelper
     public function refreshAccessTokenWithRefreshToken($refreshToken){
        $http_header = $this->constructRefreshTokenHeader();
        $requestBody = $this->constructRefreshTokenBody($refreshToken);
+       $this->LogAPIRequestToLog($requestBody, CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, $requestBody, null, true);
+       $this->LogAPIResponseToLog($intuitResponse->getBody(), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $intuitResponse->getHeaders());
        $this->faultHandler = $intuitResponse->getFaultHandler();
        if($this->faultHandler) {
           throw new ServiceException("Refresh OAuth 2 Access token with Refresh Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -296,7 +333,9 @@ class OAuth2LoginHelper
         'Authorization' => $authorizationHeaderInfo,
         'Content-Type' => 'application/json'
       );
+      $this->LogAPIRequestToLog($parameters, CoreConstants::REVOCATION_ENDPONT, $http_header);
       $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::REVOCATION_ENDPONT, CoreConstants::HTTP_POST, $http_header, json_encode($parameters), null, true);
+      $this->LogAPIResponseToLog($intuitResponse->getBody(), CoreConstants::REVOCATION_ENDPONT, $intuitResponse->getHeaders());
       $this->faultHandler = $intuitResponse->getFaultHandler();
       if($this->faultHandler) {
          throw new ServiceException("Revoke Token failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
@@ -307,7 +346,69 @@ class OAuth2LoginHelper
     }
 
     /**
-     * Provide OAuth 1 token generation for OAuth 2 token. This function currently is not available on QUickBooks Online yet.
+     * Get the user info using the default access token if set, or the access token provided by developer
+     * @param accessToken The access token used to get User Info
+     * @param evn a String that is set to "production" or "development"
+     * @return Array an array representation of the Userinfo
+     */
+    public function getUserInfo($accessToken = null, $env = "production"){
+      if(!isset($accessToken)){
+        $accessToken = $this->getAccessToken()->getAccessToken();
+      }
+
+      $url = "https://accounts.platform.intuit.com/v1/openid_connect/userinfo";
+      if (strpos($env, 'prod') === false) {
+        $url = "https://sandbox-accounts.platform.intuit.com/v1/openid_connect/userinfo";
+      }
+
+      $http_header = array(
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer ' . $accessToken
+      );
+
+      $this->LogAPIRequestToLog(null, $url, $http_header);
+      $intuitResponse = $this->curlHttpClient->makeAPICall($url, CoreConstants::HTTP_GET, $http_header, null, null, true);
+      $this->LogAPIResponseToLog($intuitResponse->getBody(), $url, $intuitResponse->getHeaders());
+      $this->faultHandler = $intuitResponse->getFaultHandler();
+      if($this->faultHandler) {
+         throw new ServiceException("Get UrerInfo failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
+      }else{
+         $this->faultHandler = false;
+      }
+
+      $resultString = $intuitResponse->getBody();
+      return json_decode($resultString, true);
+    }
+
+    /**
+     * Validate the ID token
+     */
+    public function validateIDToken($idToken){
+        try{
+          $info = explode(".", $idToken);
+          $id_token_header_raw = $info[0];
+          $id_token_payload_raw = $info[1];
+          $id_token_signature_raw = $info[2];
+
+          $id_token_header_json = json_decode(base64_decode($id_token_header_raw), true);
+          $id_token_payload_json = json_decode(base64_decode($id_token_payload_raw), true);
+
+          if(strcmp($this->getClientID(), $id_token_payload_json['aud'][0]) != 0){
+            return false;
+          }
+
+          if(strcmp("https://oauth.platform.intuit.com/op/v1", $id_token_payload_json['iss']) != 0){
+            return false;
+          }
+        }catch(\Exception $e){
+          echo $e->getMessage();
+          return false;
+        }
+        return true;
+    }
+
+    /**
+     * Provide OAuth 1 token generation for OAuth 2 token. 
      * @param String $consumerKey           The consumer key of OAuth 1
      * @param String $consumerSecre         The consumer Secre of OAuth 1
      * @param String $accessToken           The access token key of OAuth 1
@@ -315,15 +416,23 @@ class OAuth2LoginHelper
      * @param String $scope                 The scope of the key
      * @return OAuth2AccessToken
      */
-    public function OAuth1ToOAuth2Migration($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret, $scope){
+    public function OAuth1ToOAuth2Migration($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret, $scope, $redirectUri = null, $environment = "Sandbox"){
         $oauth1Encrypter = new OAuth1($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+        if(!isset($redirectUri)){
+           $redirectUri = "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl";
+        }
+
+        if(strcasecmp($environment, "Sandbox") == 0){
+           $baseURL = "https://developer-sandbox.api.intuit.com/v2/oauth2/tokens/migrate";
+        }else{
+           $baseURL = "https://developer.api.intuit.com/v2/oauth2/tokens/migrate";
+        }
         $parameters = array(
           'scope' => $scope,
-          'redirect_uri' => "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl",
+          'redirect_uri' => $redirectUri,
           'client_id' => $this->getClientID(),
           'client_secret' => $this->getClientSecret()
         );
-        $baseURL = "https://developer.api.intuit.com/v2/oauth2/tokens/migrate";
         $authorizationHeaderInfo = $oauth1Encrypter->getOAuthHeader($baseURL, array(), "POST");
         $http_header = array(
           'Accept' => 'application/json',
@@ -353,6 +462,57 @@ class OAuth2LoginHelper
     }
 
     /**
+     * Log API Reponse to the Log directory that user specified.
+     * @param String $body The requestBody
+     * @param String $requestUri  The URI for this request
+     * @param Array $httpHeaders  The headers for the request
+     */
+    public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
+      if (! $this->RequestLogging) {
+        return;
+      }
+
+      $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
+
+      if (! $this->debugMode)
+        $body = '';
+
+      if($this->debugMode && (strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
+                strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0)){
+             $body = $this->parseStringToDom($body);
+      }
+
+      $this->RequestLogging->LogPlatformRequests($body, $requestUri, $httpHeaders, false);
+    }
+
+    /**
+     * Log API Request to the Log directory that user specified.
+     * @param String $requestBody The requestBody
+     * @param String $requestUri  The URI for this request
+     * @param Array $httpHeaders  The headers for the request
+     */
+    public function LogAPIRequestToLog($requestBody, $requestUri, $httpHeaders){
+      if (! $this->RequestLogging) {
+        return;
+      }
+
+      $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
+    }
+
+    /**
+     * Parse a String xml to DOM structure for easy read
+     * @param String $string   The String representation
+     * @return string|bool The DOM structured XML
+     */
+    private function parseStringToDom($string){
+      $dom = new \DOMDocument();
+      $dom->preserveWhiteSpace = FALSE;
+      $dom->loadXML($string);
+      $dom->formatOutput = TRUE;
+      return $dom->saveXml();
+    }
+
+    /**
      * Parse the JSON Body to store the information to an OAuth 2 Access Token
      * @param String  $body       The JSON String contains all the OAuth 2 Access token information
      * @param String  $realmID    The realmID returned from authorization Code steps.It does not require for refresh token
@@ -365,6 +525,13 @@ class OAuth2LoginHelper
               $refreshToken = $json_body[CoreConstants::OAUTH2_REFRESH_GRANTYPE];
               $refreshTokenExpiresTime = $json_body[CoreConstants::X_REFRESH_TOKEN_EXPIRES_IN];
               $accessToken = $json_body[CoreConstants::ACCESS_TOKEN];
+              if(array_key_exists("id_token", $json_body) && isset($json_body["id_token"]) && !empty($json_body["id_token"])){
+                $idToken = $json_body["id_token"];
+                $result = $this->validateIDToken($idToken);
+                if(!$result){
+                  throw new SdkException("Failed Validate ID Token");
+                }
+              }
               $this->checkIfEmptyValueReturned($tokenExpiresTime, $refreshToken, $refreshTokenExpiresTime, $accessToken);
               //If we have a response of OAuth 2 Access Token and the access token is not set, it must come from initial request. Create a dummy access token and update it.
               if(!isset($this->oauth2AccessToken)){

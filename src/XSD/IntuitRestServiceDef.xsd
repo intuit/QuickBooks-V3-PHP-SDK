@@ -7,6 +7,7 @@
     <xs:element name="IntuitObject" type="IntuitEntity" abstract="true"/>
     <xs:element name="IntuitResponse" type="IntuitResponse"/>
     <xs:element name="IntuitBatchRequest" type="IntuitBatchRequest"/>
+    <xs:element name="RecurringTransaction" type="RecurringTransaction" substitutionGroup="IntuitObject"/>
     <xs:element name="Customer" type="Customer" substitutionGroup="IntuitObject"/>
     <xs:element name="CustomerType" type="CustomerType" substitutionGroup="IntuitObject"/>
     <xs:element name="Employee" type="Employee" substitutionGroup="IntuitObject"/>
@@ -22,6 +23,7 @@
     <xs:element name="CreditMemo" type="CreditMemo" substitutionGroup="IntuitObject"/>
     <xs:element name="StatementCharge" type="StatementCharge" substitutionGroup="IntuitObject"/>
     <xs:element name="ChargeCredit" type="ChargeCredit" substitutionGroup="IntuitObject"/>
+    <xs:element name="CreditCardPaymentTxn" type="CreditCardPaymentTxn" substitutionGroup="IntuitObject"/>
     <xs:element name="ReimburseCharge" type="ReimburseCharge" substitutionGroup="IntuitObject"/>
     <xs:element name="PaymentMethod" type="PaymentMethod" substitutionGroup="IntuitObject"/>
     <xs:element name="Term" type="Term" substitutionGroup="IntuitObject"/>
@@ -33,6 +35,7 @@
     <xs:element name="Item" type="Item" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxClassification" type="TaxClassification" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxCode" type="TaxCode" substitutionGroup="IntuitObject"/>
+    <xs:element name="TaxPayment" type="TaxPayment" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxReturn" type="TaxReturn" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxRate" type="TaxRate" substitutionGroup="IntuitObject"/>
     <xs:element name="VendorCredit" type="VendorCredit" substitutionGroup="IntuitObject"/>
@@ -76,6 +79,7 @@
 	<xs:element name="JournalCode" type="JournalCode" substitutionGroup="IntuitObject"/>  
 	<xs:element name="QbdtEntityIdMapping" type="QbdtEntityIdMapping" substitutionGroup="IntuitObject"/>
     <xs:element name="MasterAccount" type="MasterAccount" substitutionGroup="IntuitObject"/>
+    <xs:element name="Tag" type="Tag" substitutionGroup="IntuitObject"/>
 	  	
     <xs:simpleType name="FaultTypeEnum">
         <xs:annotation>
@@ -140,6 +144,11 @@
             <xs:element name="Detail" type="xs:string" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Detailed error localized or unlocalized error that is thrown by the business logic backend that caused the error</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DetailLink" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Link to get more details about error like common cause, remedy etc</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -450,8 +459,21 @@
             <xs:enumeration value="delete"/>
             <xs:enumeration value="void"/>
 			<xs:enumeration value="send"/>
+            <xs:enumeration value="merge"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="RecurringTransaction">
+        <xs:annotation>
+            <xs:documentation>The Recurrence Transaction Object</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="IntuitEntity">
+                <xs:sequence>
+                    <xs:element ref="IntuitObject"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>     
     <xs:complexType name="Status">
         <xs:annotation>
             <xs:documentation>

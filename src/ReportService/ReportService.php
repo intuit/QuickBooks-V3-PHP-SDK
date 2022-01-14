@@ -95,7 +95,38 @@ class ReportService
     private $both_amount = null;
     private $memo = null;
     private $doc_num = null;
+    private $subcol_pct_inc = null;
+    private $subcol_pct_exp = null;
+    private $adjusted_gain_loss = null;
+    private $showrows = null;
+    private $add_due_date = null;
+    private $attachmentType = null;
 
+    public function getAdjustedGainLoss(){
+        return $this->adjusted_gain_loss;
+    }
+
+    public function setAdjustedGainLoss($adjustedGainLoss){
+        return $this->adjusted_gain_loss = $adjustedGainLoss;
+    }
+
+    public function getPercentIncome(){
+        return $this->subcol_pct_inc;
+    }
+
+    public function getPercentExpense(){
+        return $this->subcol_pct_exp;
+    }
+
+    public function setPercentIncome($percentIncome){
+        $this->subcol_pct_inc = $percentIncome;
+        return $this;
+    }
+
+    public function setPercentExpense($percentExpense){
+        $this->subcol_pct_exp = $percentExpense;
+        return $this;
+    }
     /**
      * @return null
      */
@@ -933,6 +964,63 @@ class ReportService
     }
 
     /**
+     * @return null
+     */
+    public function getShowRows()
+    {
+        return $this->showrows;
+    }
+
+    /**
+     * @param null $showrows
+     *
+     * @return $this
+     */
+    public function setShowRows($showrows)
+    {
+        $this->showrows = $showrows;
+        return $this;
+    }
+
+    /**
+     * @param null $add_due_date
+     *
+     * @return $this
+     */
+    public function setDueDate($add_due_date)
+    {
+        $this->add_due_date = $add_due_date;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDueDate()
+    {
+        return $this->add_due_date;
+    }
+
+    /**
+     * @param null $attachmentType
+     *
+     * @return $this
+     */
+    public function setAttachmentType($attachmentType)
+    {
+        $this->attachmentType = $attachmentType;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAttachmentType()
+    {
+        return $this->attachmentType;
+    }
+
+    /**
      * Returns serializer for response objects
      * @return IEntitySerializer
      */
@@ -1153,7 +1241,29 @@ class ReportService
         if (!is_null($this->doc_num)) {
             array_push($uriParameterList, array("doc_num", $this->getDocNum()));
         }
+        if (!is_null($this->subcol_pct_inc)) {
+            array_push($uriParameterList, array("subcol_pct_inc", $this->getPercentIncome()));
+        }
 
+        if (!is_null($this->subcol_pct_exp)) {
+            array_push($uriParameterList, array("subcol_pct_exp", $this->getPercentExpense()));
+        }
+
+        if (!is_null($this->adjusted_gain_loss)) {
+            array_push($uriParameterList, ["adjusted_gain_loss", $this->getAdjustedGainLoss()]);
+        }
+
+        if (!is_null($this->showrows)) {
+            array_push($uriParameterList, ["showrows", $this->getShowRows()]);
+        }
+
+        if (!is_null($this->add_due_date)) {
+            array_push($uriParameterList, ["add_due_date", $this->getDueDate()]);
+        }
+
+        if (!is_null($this->attachmentType)) {
+            array_push($uriParameterList, ["attachmentType", $this->getAttachmentType()]);
+        }
 
         foreach ($uriParameterList as $uriParameter) {
             if (strlen($uriParameterString) > 0) {

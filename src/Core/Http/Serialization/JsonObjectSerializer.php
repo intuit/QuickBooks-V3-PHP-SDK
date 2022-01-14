@@ -181,20 +181,30 @@ class JsonObjectSerializer extends IEntitySerializer
       else $new = $obj;
       return $new;
     }
+    /**
+     * This method is meant to be used as an array_filter callback to remove array elements that
+     * "have no content".
+     * 
+     * @return bool Returns true if the input value is NOT NULL and is NOT an empty string
+     *              Returns false if the input IS NULL or IS AN EMPTY STRING
+     */
+    private static function valueIsNotNullOrEmptyString($value) {
+        return !(is_null($value) || ("" === $value));
+    }
 
     /**
-     * The input will always be an asscoiate array
-     * So we will judge based on this two situration
+     * The input will always be an associative array
+     * So we will judge based on these two situations
      */
     private function removeNullProperties($val){
-        $filterArray = array_filter($val);
+        $filterArray = array_filter($val, [self::class, 'valueIsNotNullOrEmptyString']);
         $returned = array();
         foreach($filterArray as $k => $v){
           if(is_array($v)){
             if(FacadeHelper::isRecurrsiveArray($v)){
               $list = array();
               foreach($v as $kk => $vv){
-                  $list[] = array_filter($vv);
+                  $list[] = array_filter($vv, [self::class, 'valueIsNotNullOrEmptyString']);
               }
               $returned[$k] = $list;
             }

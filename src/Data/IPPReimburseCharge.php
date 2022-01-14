@@ -51,6 +51,18 @@ class IPPReimburseCharge
 	 */
 	public $CustomerRef;
 	/**
+	 * @Definition  Product: QBO Description: Indicates whether the Charge
+							has been invoiced
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs 1
+	 * @xmlName HasBeenInvoiced
+	 * @var boolean
+	 */
+	public $HasBeenInvoiced;
+	/**
 	 * @Definition Total amount of the reimburse charge.
 							
 	 * @xmlType element
@@ -60,6 +72,24 @@ class IPPReimburseCharge
 	 * @var float
 	 */
 	public $Amount;
+	/**
+	 * @Definition 
+								Product: ALL
+								Description: QBW: Total amount of
+								the transaction in the home currency for multi-currency enabled
+								companies. Single currency companies will not have this field.
+								Includes the total of all the charges, allowances and taxes.
+								Calculated by QuickBooks business logic. Cannot be written to
+								QuickBooks.
+								InputType: QBW: ReadOnly
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName HomeTotalAmt
+	 * @var float
+	 */
+	public $HomeTotalAmt;
 
 
 } // end class IPPReimburseCharge

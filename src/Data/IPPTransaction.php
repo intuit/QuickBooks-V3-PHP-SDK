@@ -299,6 +299,57 @@ class IPPTransaction
 	 * @var string
 	 */
 	public $TransactionLocationType;
+	/**
+	 * @Definition 
+								Product: QBO
+								Descripton: List of tags used to identify the transaction.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName Tag
+	 * @var com\intuit\schema\finance\v3\IPPTag
+	 */
+	public $Tag;
+	/**
+	 * @Definition 
+                                    Product: QBO
+                                    Description: Details of the Approval Status for current transaction in QBO workflows.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TxnApprovalInfo
+	 * @var com\intuit\schema\finance\v3\IPPTxnApprovalInfo
+	 */
+	public $TxnApprovalInfo;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Reference to the
+								RecurTemplate which was used to create the Transaction
+								InputType: Read
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RecurDataRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $RecurDataRef;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: The Recurring Schedule information for the Transaction
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RecurringInfo
+	 * @var com\intuit\schema\finance\v3\IPPRecurringInfo
+	 */
+	public $RecurringInfo;
 
 
 } // end class IPPTransaction

@@ -4,126 +4,9 @@
 Authorization
 =============
 
-This page provides a quick introduction to QuickBooks Online Authorization Protocol: OAuth 1.0a and OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the :ref:`installation`
+This page provides a quick introduction to QuickBooks Online Authorization Protocol OAuth 2.0, and how to use it in the SDK. If you have not already installed QuickBooks V3 SDK, head over to the :ref:`installation`
 page.
 
-
-
-OAuth 1.0a
-==========
-
-For all developer accounts registered at https://developer.intuit.com before **July.17th, 2017**, they will have OAuth 1.0a protocol default for their apps.
-
-The developer will see "App Token", "OAuth Consumer Key", and "OAuth Consumer Secret" on the "Keys" tab in the app.
-
-Directly Use OAuth 1.0a Tokens
-------------------------------
-
-QuickBooks V3 SDK didn't provide a way to generate OAuth 1.0a tokens from OAuth Consumer Key and OAuth Consumer Secret. Developers must generate their own OAuth 1.0a tokens *BEFORE* they use the SDK.
-
-.. note::
-
-    QuickBooks Online provides an online tool called OAuth 1.0 Playground to help developers generate OAuth 1.0a tokens:
-    https://appcenter.intuit.com/Playground/OAuth/IA/ without writing any code.
-    For server side web application implementing OAuth 1.0a, please refer here:
-    https://intuitdeveloper.github.io/ for sample code. For implementation details, please refer to here:
-    https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a
-
-
-After developer managed to get OAuth 1.0a tokens, provides it to the DataService object:
-
-.. code-block:: php
-
-    use QuickBooksOnline\API\DataService\DataService;
-
-    // Prep Data Services
-    $dataService = DataService::Configure(array(
-         'auth_mode' => 'oauth1',
-         'consumerKey' => "The OAuth Consumer key Value from Keys tab",
-         'consumerSecret' => "The OAuth Consumer secret Value from Keys tab",
-         'accessTokenKey' => "The OAuth 1.0a access token returned from QuickBooks Online",
-         'accessTokenSecret' => "The OAuth 1.0a access token secret retruned from QuickBooks Online",
-         'QBORealmID' => "The Company ID which the app wants to access",
-         //If you are using Development Keys, use Development here. If you are using Production Keys, use Production.
-         'baseUrl' => "Development/Production"
-    ));
-
-Here is an actual example for configuring OAuth 1.0a value for a sandbox Company:
-
-.. code-block:: php
-
-    use QuickBooksOnline\API\DataService\DataService;
-
-    // Prep Data Services
-    $dataService = DataService::Configure(array(
-         'auth_mode' => 'oauth1',
-         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
-         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-         'accessTokenKey' => "qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g",
-         'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
-         'QBORealmID' => "193514464689044",
-         'baseUrl' => "Development"
-    ));
-
-Disconnect or Reconnect OAuth 1.0a Tokens
------------------------------------------
-
-Although the SDK cannot help users to generate OAuth 1.0a tokens, QuickBooks V3 SDK does provide a way for developers to disconnect or reconnect OAuth 1.0a tokens for the Company.
-
-To disconnect your OAuth 1.0a access token, use $platformService->Disconnect() method. You will need to get the $serviceContext object from $dataService Object first. Here is an example:
-
-.. code-block:: php
-
-    use QuickBooksOnline\API\DataService\DataService;
-    use QuickBooksOnline\API\PlatformService\PlatformService;
-
-    // Prep Data Services
-    $dataService = DataService::Configure(array(
-         'auth_mode' => 'oauth1',
-         'consumerKey' => "My OAuth 1 consumer key",
-         'consumerSecret' => "My OAuth 1 consumer secret",
-         'accessTokenKey' => "My OAuth 1 access token",
-         'accessTokenSecret' => "My OAuth 1 access token secret",
-         'QBORealmID' => "123456789012345",
-         'baseUrl' => "Development"
-    ));
-
-    $serviceContext = $dataService->getServiceContext();
-    $platformService = new PlatformService($serviceContext);
-    //$result will be a xml-based string.
-    $result = $platformService->Disconnect();
-    ...
-
-after you have disconnected the OAuth 1.0a tokens, you can no longer use it to access QuickBooks Online API for the specific company.
-
-To reconnect for a QuickBooks Online Company, use $platformService->Reconnect() method:
-
-.. code-block:: php
-
-    use QuickBooksOnline\API\DataService\DataService;
-    use QuickBooksOnline\API\PlatformService\PlatformService;
-
-    // Prep Data Services
-    $dataService = DataService::Configure(array(
-         'auth_mode' => 'oauth1',
-         'consumerKey' => "My OAuth 1 consumer key",
-         'consumerSecret' => "My OAuth 1 consumer secret",
-         'accessTokenKey' => "My OAuth 1 access token",
-         'accessTokenSecret' => "My OAuth 1 access token secret",
-         'QBORealmID' => "123456789012345",
-         'baseUrl' => "Development"
-    ));
-
-    $serviceContext = $dataService->getServiceContext();
-    $platformService = new PlatformService($serviceContext);
-    //$result will be a xml-based string.
-    $result = $platformService->Reconnect();
-    ...
-
-Reconnect will only work during the last 30 days of OAuth 1 access token's expiration date. For example, for an OAuth 1 access token that is valid for 180 days, you can only call Reconnect() method between 150 days to 180 days.
-
-More information for OAuth 1.0a can be found here:
-https://developer.intuit.com/docs/00_quickbooks_online/2_build/10_authentication_and_authorization/40_oauth_1.0a
 
 OAuth 2.0
 =========
@@ -193,7 +76,7 @@ An example will look like this:
 
 .. code-block:: php
 
-   $accessTokenObj = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("Q011510688430mhfd9mAwpsiB8eWAMPqjDO4j2WKmMWyeN96Ru", "1231434565226279");
+   $accessTokenObj = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "1234567891234567");
 
 The $accessTokenObj is an object contains both access token and refresh token.
 
@@ -302,9 +185,9 @@ After v4.0.5 release, developers are able to construct ``OAuth2LoginHelper`` dir
       use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 
       //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
-      $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
+      $oauth2LoginHelper = new OAuth2LoginHelper("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       $accessTokenObj = $oauth2LoginHelper->
-                          refreshAccessTokenWithRefreshToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+                          refreshAccessTokenWithRefreshToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       $accessTokenValue = $accessTokenObj->getAccessToken();
       $refreshTokenValue = $accessTokenObj->getRefreshToken();
       echo "Access Token is:";
@@ -327,8 +210,8 @@ Similar to refresh token, the V3 PHP SDK also allows you to revoke an existed OA
 
   use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
   //The first parameter of OAuth2LoginHelper is the ClientID, second parameter is the client Secret
-  $oauth2LoginHelper = new OAuth2LoginHelper("Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D","stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P");
-  $revokeResult = $oauth2LoginHelper->revokeToken("L011529701359ECWqJtK0Co0wFhpsDBevQNbYmhYsiORcr9goo");
+  $oauth2LoginHelper = new OAuth2LoginHelper("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+  $revokeResult = $oauth2LoginHelper->revokeToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
   if($revokeResult){
       echo "RefreshToken Token revoked.";
   }

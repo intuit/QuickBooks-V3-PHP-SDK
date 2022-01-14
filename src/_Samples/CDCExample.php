@@ -9,13 +9,13 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
-       'auth_mode' => 'oauth1',
-         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
-         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-         'accessTokenKey' => "qyprdxUakMagH93t01x1Z5wmIfIy3OiZcTqzI2EALXqhOaGE",
-         'accessTokenSecret' => "QqQhCSvDgMvnJmoMbXI5d9TIVj9wKU1w4yIEaFNC",
-         'QBORealmID' => "193514340994122",
-         'baseUrl' => "https://sandbox-quickbooks.api.intuit.com"
+  'auth_mode'       => 'oauth2',
+  'ClientID'        => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret'    => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
+  'baseUrl'         => "development"
 ));
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");

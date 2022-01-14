@@ -36,6 +36,13 @@ class Entity
     private $lastUpdated;
 
     /**
+     * The internal ID for the deleted entity in QuickBooks Online
+     *
+     * @var
+     */
+    private $deletedId;
+
+    /**
      * Setter for name
      *
      * @param $name
@@ -121,5 +128,27 @@ class Entity
     public function getLastUpdated()
     {
         return $this->lastUpdated;
+    }
+    /**
+     * Set deleted id
+     *
+     * @param $deletedId
+     * @return $this
+     */
+    public function setDeletedId($deletedId)
+    {
+        $this->deletedId = $deletedId;
+        return $this;
+    }
+
+    /**
+     * Return the deleted id
+     *
+     * @return mixed
+     *
+     */
+    public function getDeletedId()
+    {
+        return $this->deletedId;
     }
 }

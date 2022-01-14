@@ -210,6 +210,16 @@ class IPPTimeActivity
 	 */
 	public $Minutes;
 	/**
+	 * @Definition Seconds worked; valid values are 0 - 59.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Seconds
+	 * @var integer
+	 */
+	public $Seconds;
+	/**
 	 * @Definition Hours of break taken between start time and end
 								time.
 								[b]QuickBooks Notes[/b][br /]
@@ -235,6 +245,17 @@ class IPPTimeActivity
 	 * @var integer
 	 */
 	public $BreakMinutes;
+	/**
+	 * @Definition Seconds of break taken between start time and
+                                end time. Valid values are 0 - 59.
+                            
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName BreakSeconds
+	 * @var integer
+	 */
+	public $BreakSeconds;
 	/**
 	 * @Definition Time work started.
 								[b]QuickBooks Notes[/b][br /]
@@ -279,6 +300,18 @@ class IPPTimeActivity
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $TimeActivityEx;
+	/**
+	 * @Definition True if the start, end hours are already with company/employee time zone offset.
+
+							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName HoursInEmployeeTimeZone
+	 * @var boolean
+	 */
+	public $HoursInEmployeeTimeZone;
 
 
 } // end class IPPTimeActivity

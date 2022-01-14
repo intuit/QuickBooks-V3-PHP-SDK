@@ -54,6 +54,10 @@ class CurlHttpClient implements HttpClientInterface{
      * @inheritdoc
      */
     public function prepareRequest($url, $method, array $headers, $body, $timeOut, $verifySSL){
+        if (defined('QUICKBOOKS_API_TIMEOUT')) {
+            // if the timeout constant is set, use it for the timeout
+            $timeOut = (int)QUICKBOOKS_API_TIMEOUT;
+        }
         //Set basic Curl Info
         $curl_opt = [
             CURLOPT_URL => $url,
@@ -62,8 +66,8 @@ class CurlHttpClient implements HttpClientInterface{
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER => $this->getHeaders($headers),
             //10 seconds is allowed to make the connection to the server
-            CURLOPT_CONNECTTIMEOUT => 10,
-            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 100,
+            CURLOPT_CONNECTTIMEOUT => isset($timeOut) ? $timeOut : 15,
+            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 15,
             CURLOPT_RETURNTRANSFER => true,
             //When CURLOPT_HEADER is set to 0 the only effect is that header info from the response is excluded from the output.
             //So if you don't need it that's a few less KBs that curl will return to you.
@@ -78,7 +82,7 @@ class CurlHttpClient implements HttpClientInterface{
         //Set SSL. Only Enabled for OAuth 2 Request
         $this->setSSL($curl_opt, $verifySSL);
 
-        $this->intializeCurl();
+        $this->initializeCurl();
         $this->basecURL->setupCurlOptArray($curl_opt);
     }
 
@@ -124,7 +128,7 @@ class CurlHttpClient implements HttpClientInterface{
     /**
      * Check if the cURL instance exists. If not or closed, create a new BaseCurl instance for this Http client
      */
-    private function intializeCurl(){
+    private function initializeCurl(){
         if($this->basecURL->isCurlSet()){ return; }
         else {$this->basecURL->init();}
     }
@@ -145,17 +149,14 @@ class CurlHttpClient implements HttpClientInterface{
      * Set the SSL certifcate path and corresponding varaibles for cURL
      */
     private function setSSL(&$curl_opt, $verifySSL){
-      $tlsVersion = $this->basecURL->versionOfTLS();
-      $versions = ['TLS 1.2', 'TLS 1.3'];
-      if(! in_array($tlsVersion, $versions)){
-          throw new SdkException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TSL 1.2/1.3");
-      }
+      $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
       if($verifySSL){
-          $curl_opt[CURLOPT_SSL_VERIFYPEER] = true;
           $curl_opt[CURLOPT_SSL_VERIFYHOST] = 2;
-          //based on spec, if TSL 1.2 is supported, it will use the TLS 1.2 or latest version by default
+          //based on spec, if TLS 1.2 is supported, it will use the TLS 1.2 or latest version by default
           //$curl_opt[CURLOPT_SSLVERSION] = 6;
           $curl_opt[CURLOPT_CAINFO] = CoreConstants::getCertPath(); //Pem certification Key Path
+      } else {
+          $curl_opt[CURLOPT_SSL_VERIFYHOST] = 0;
       }
     }
 

@@ -18,6 +18,7 @@ namespace QuickBooksOnline\API\DataService;
 
 use QuickBooksOnline\API\Core\CoreHelper;
 use QuickBooksOnline\API\Core\Http\Serialization\IEntitySerializer;
+use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 use QuickBooksOnline\API\Core\HttpClients\FaultHandler;
 use QuickBooksOnline\API\Core\HttpClients\RestHandler;
 use QuickBooksOnline\API\Core\ServiceContext;
@@ -27,7 +28,9 @@ use QuickBooksOnline\API\Core\HttpClients\RequestParameters;
 use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
 use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
 use QuickBooksOnline\API\Data\IPPAttachable;
+use QuickBooksOnline\API\Data\IPPEntitlementsResponse;
 use QuickBooksOnline\API\Data\IPPIntuitEntity;
+use QuickBooksOnline\API\Data\IPPRecurringTransaction;
 use QuickBooksOnline\API\Data\IPPTaxService;
 use QuickBooksOnline\API\Data\IPPid;
 use QuickBooksOnline\API\Exception\IdsException;
@@ -264,6 +267,23 @@ class DataService
         $restHandler = $this->restHandler;
         $loggerUsedByRestHandler = $restHandler->getRequestLogger();
         $loggerUsedByRestHandler->setLogDirectory($new_log_location);
+        return $this;
+    }
+
+    /**
+     * Set logging for OAuth calls
+     *
+     * @param Boolean $enableLogs          Turns on logging for OAuthCalls
+     *
+     * @param Boolean $debugMode           Turns on debug mode to log tokens
+     *
+     * @param String $new_log_location     The directory path for storing request and response log
+     *
+     * @return $this
+     */
+    public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location)
+    {
+        $this->OAuth2LoginHelper->setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location);
         return $this;
     }
 
@@ -614,6 +634,10 @@ class DataService
      */
     private function sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, $CALLINGMETHOD, $boundaryString = null, $email = null)
     {
+        if ($this->isCreditCardPaymentTxn($entity)) {
+            $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
+        }
+
         switch ($CALLINGMETHOD) {
             case DataService::DELETE:
             case DataService::ADD:
@@ -739,6 +763,9 @@ class DataService
           return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
         }else if(is_string($entity) && isset($Id)){
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, strtolower($entity), $Id));
+          if ($this->isCreditCardPaymentTxn($entity)) {
+            $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
+          }
           $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
           $restRequestHandler = $this->getRestHandler();
           list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
@@ -775,14 +802,13 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        }
-        $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
+        } 
 
+        $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);
-
+        $uri = $this->handleTaxService($entity, $resourceURI);        
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -823,7 +849,6 @@ class DataService
     public function Void($entity)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Void.");
-
         // Validate parameter
         if (!$entity) {
             $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
@@ -833,8 +858,13 @@ class DataService
 
         // Builds resource Uri
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
-        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=void'));
-
+        $className = $this->getEntityResourceName($entity);
+        if(in_array($className, CoreConstants::PAYMENTCLASSNAME)) {
+            $appendString = CoreConstants::VOID_QUERYPARAMETER_PAYMENT;
+        } else{
+            $appendString = CoreConstants::VOID_QUERYPARAMETER_GENERAL;
+        }
+        $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . $appendString));
         // Creates request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::VOID);
     }
@@ -878,7 +908,7 @@ class DataService
         $dataMultipart .= "Content-Disposition: form-data; name=\"file_content_{$desiredIdentifier}\"; filename=\"{$fileName}\"" . $newline;
         $dataMultipart .= "Content-Type: {$mimeType}" . $newline;
         $dataMultipart .= 'Content-Transfer-Encoding: base64' . $newline . $newline;
-        $dataMultipart .= chunk_split(base64_encode($imgBits)) . $newline;
+        $dataMultipart .= chunk_split($imgBits) . $newline;
         $dataMultipart .= "--" . $boundaryString . "--" . $newline . $newline; // finish with two eol's!!
 
         return $this->sendRequestParseResponseBodyAndHandleHttpError(null, $uri, $dataMultipart, DataService::UPLOAD, $boundaryString);
@@ -892,7 +922,7 @@ class DataService
      * @throws IdsException, SdkException
      *
      */
-    public function DownloadPDF($entity, $dir=null)
+    public function DownloadPDF($entity, $dir=null, $returnPdfString = false)
     {
         $this->validateEntityId($entity);
         $this->verifyOperationAccess($entity, __FUNCTION__);
@@ -914,9 +944,12 @@ class DataService
             $this->lastError = $faultHandler;
             //Add allow for through exception if users set it up
             return null;
+        } elseif ($returnPdfString) {
+            return $responseBody;
         } else {
             $this->lastError = false;
-            return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $this->getExportFileNameForPDF($entity, "pdf"), $dir);
+            
+            return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $dir, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
 
@@ -960,9 +993,10 @@ class DataService
      * @param string $query Query to issue
      * @param int $startPosition Starting page number
      * @param int $maxResults Page size
+     * @param string $includes A list of additional fields requested in the entities response
      * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
-    public function Query($query, $startPosition = null, $maxResults = null)
+    public function Query($query, $startPosition = null, $maxResults = null, $includes = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
 
@@ -974,6 +1008,10 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
+        
+        if(!is_null($includes)) {
+            $httpsUri .= "?include=$includes";
+        }
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
@@ -989,9 +1027,9 @@ class DataService
                 $responseXmlObj = simplexml_load_string($responseBody);
                 if ($responseXmlObj && $responseXmlObj->QueryResponse) {
                     $tmpXML = $responseXmlObj->QueryResponse->asXML();
+                    $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
+                    $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
                 }
-                $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
 
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
@@ -1159,6 +1197,224 @@ class DataService
         }
     }
 
+    /**
+     * Creates a RecurringTransaction Entity under the specified realm. The realm must be set in the context.
+     *
+     * @param IPPIntuitEntity $entity Entity to Create.
+     * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
+     * @throws IdsException
+     */
+    public function addRecurringTxn($entity)
+    {
+        $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Add.");
+
+        // Validate parameter
+        if (!$entity) {
+            $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
+            throw new IdsException('Argument Null Exception');
+        }
+        // Verify operation access
+        $this->verifyOperationAccess($entity, __FUNCTION__);
+        if ($this->isJsonOnly($entity)) {
+            $this->forceJsonSerializers();
+        }
+        // Create recurring transaction object
+        $recurringtxn = RecurringTransactionAdapter::createRecurringTransactionObject($entity);
+
+        // Create recurring transaction Post Body
+        $httpsPostBody = RecurringTransactionAdapter::getRecurringTxnBody($recurringtxn);
+
+        // Builds resource Uri
+        $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'recurringtransaction'));
+
+        $requestParameters = new RequestParameters($resourceURI, 'POST', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            $returnValue = new IntuitRecurringTransactionResponse();
+            try {
+                $xmlObj = simplexml_load_string($responseBody);
+                // deserialize the response body
+                $deserializedResponse = $this->responseSerializer->Deserialize($xmlObj->RecurringTransaction->asXML(), false);
+                $entityName = XmlObjectSerializer::cleanPhpClassNameToIntuitEntityName(get_class($entity));
+                $returnValue->entities[$entityName] = $deserializedResponse;
+            } catch (\Exception $e) {
+                IdsExceptionManager::HandleException($e);
+            }
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
+            return $returnValue;
+        }
+    }
+
+    /**
+     * Query RecurringTransaction Entity under the specified realm. The realm must be set in the context.
+     *
+     * @param query ex : SELECT * FROM RecurringTransaction
+     * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
+     * @throws IdsException
+     */
+    public function recurringTransaction($query)
+    {
+        $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
+
+        if ('QBO' == $this->serviceContext->serviceType) {
+            $httpsContentType = CoreConstants::CONTENTTYPE_APPLICATIONTEXT;
+        } else {
+            $httpsContentType = CoreConstants::CONTENTTYPE_TEXTPLAIN;
+        }
+
+        $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
+        $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
+
+        $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            $returnValue = new IntuitRecurringTransactionResponse();
+            try {
+                $xmlObj = simplexml_load_string($responseBody);
+                $responseArray = $xmlObj->QueryResponse->RecurringTransaction;
+                if(sizeof($responseArray) <= 0){
+                    throw new ServiceException("No recurring transactions found.");
+                }
+
+                for($i = 0; $i < sizeof($responseArray); $i++){
+                    $currentResponse = $responseArray[$i];
+                    $currentEntityName = $entityList[$i];
+                    $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
+                    $entityName = $currentEntityName;
+                    //If we find the actual name, update it.
+                    foreach ($currentResponse->children() as $currentResponseChild) {
+                        $entityName = (string)$currentResponseChild->getName();
+                        break;
+                    }
+                    $returnValue->entities[$entityName][] = $entities;
+                }
+            } catch (\Exception $e) {
+                IdsExceptionManager::HandleException($e);
+            }
+
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
+            return $returnValue;
+        }
+    }
+
+    /**
+     * Find a RecurringTransaction Entity By ID under the specified realm. The realm must be set in the context.
+     *
+     * @param $Id Id of the IPPIntuitEntity Object
+     * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
+     * @throws IdsException
+     */
+    public function findRecurringTransactionById($Id = null)
+    {
+        $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method findRecurringTransactionById.");
+
+        if (!$Id) {
+            $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
+            throw new IdsException('Argument [Id] Null Exception');
+        }
+
+        // Builds resource Uri
+        $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'recurringtransaction/'. $Id));
+
+        // Make the GET request to fetch the recurring transaction
+        $requestParameters = new RequestParameters($resourceURI, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            //clean the error
+            $this->lastError = false;
+            $returnValue = new IntuitRecurringTransactionResponse();
+            try {
+                $xmlObj = simplexml_load_string($responseBody);
+
+                // deserialize the response body
+                $deserializedResponse = $this->responseSerializer->Deserialize($xmlObj->RecurringTransaction->asXML(), false);
+                $entityName = XmlObjectSerializer::cleanPhpClassNameToIntuitEntityName(get_class($deserializedResponse[0]));
+                $returnValue->entities[$entityName] = $deserializedResponse;
+            } catch (\Exception $e) {
+                IdsExceptionManager::HandleException($e);
+            }
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
+            return $returnValue;
+        }
+    }
+
+    /**
+     * Find a RecurringTransaction Entity By ID under the specified realm. The realm must be set in the context.
+     *
+     * @param IntuitRecurringTransactionResponse RecurringTransaction Response from findRecurringTransactionById method.
+     * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
+     * @throws IdsException
+     */
+    public function deleteRecurringTransaction($recurringTransaction)
+    {
+        $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Delete.");
+
+        // Validate parameter
+        if (!$recurringTransaction) {
+            $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Error, "Argument Null Exception");
+            throw new IdsException('Argument Null Exception');
+        }
+        $this->verifyOperationAccess($recurringTransaction, __FUNCTION__);
+
+        // Get the Entity Name from $recurringTransaction
+        $entityName = array_keys($recurringTransaction->entities)[0];
+
+        // Get the IPPEntity Object from $recurringTransaction
+        $entity = $recurringTransaction->entities[$entityName][0];
+
+        // Create recurring transaction object
+        $recurringtxn = RecurringTransactionAdapter::createRecurringTransactionObject($entity);
+        // Create recurring transaction Post Body
+        $httpsPostBody = RecurringTransactionAdapter::getRecurringTxnBody($recurringtxn);
+
+        // Builds resource Uri
+        $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'recurringtransaction' . '?operation=delete'));
+
+        // Make the GET request to fetch the recurring transaction
+        $requestParameters = new RequestParameters($resourceURI, 'POST', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            //clean the error
+            $this->lastError = false;
+            $returnValue = new IntuitRecurringTransactionResponse();
+            try {
+                $xmlObj = simplexml_load_string($responseBody);
+
+                // deserialize the response body
+                $deserializedResponse = $this->responseSerializer->Deserialize($xmlObj->RecurringTransaction->asXML(), false);
+                $entityName = XmlObjectSerializer::cleanPhpClassNameToIntuitEntityName(get_class($entity));
+                $returnValue->entities[$entityName] = $deserializedResponse;
+            } catch (\Exception $e) {
+                IdsExceptionManager::HandleException($e);
+            }
+            $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, "Finished Executing Recurring Transaction.");
+            return $returnValue;
+        }
+    }
 
     /**
      * Returns an entity under the specified realm. The realm must be set in the context.
@@ -1181,7 +1437,6 @@ class DataService
      */
     protected function executeObjectSerializer($entity, &$urlResource)
     {
-        //
         $result = $this->getRequestSerializer()->Serialize($entity);
         $urlResource = $this->getRequestSerializer()->getResourceURL();
 
@@ -1317,6 +1572,18 @@ class DataService
         return class_exists($IPPTaxServiceClassWIthNameSpace) && ($entity instanceof $IPPTaxServiceClassWIthNameSpace);
     }
 
+    private function isCreditCardPaymentTxn($entity)
+    {
+        $IPPCreditCardPaymentTxnClass = "QuickBooksOnline\\API\\Data\\IPPCreditCardPaymentTxn";
+
+        if (class_exists($IPPCreditCardPaymentTxnClass) && ($entity instanceof $IPPCreditCardPaymentTxnClass))
+            return true;
+        else if (is_string($entity) && $entity == "CreditCardPaymentTxn")
+            return true;
+
+        return false;
+    }
+
     /**
      * Methods provides workaround to successfully process TaxService response
      * @param $entity
@@ -1397,7 +1664,7 @@ class DataService
      * @param string $fileName
      * @return mixed full path with filename or open handler
      */
-    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $fileName = null, $dir)
+    protected function processDownloadedContent(ContentWriter $writer, $responseCode, $dir, $fileName = null)
     {
         $writer->setPrefix($this->getPrefixFromSettings());
         try {
@@ -1423,6 +1690,17 @@ class DataService
         }
 
         return $writer->isHandler() ? $writer->getHandler() : $writer->getTempPath();
+    }
+
+    protected function processRecurringTransactionResponse($recurringTransaction) {
+        //Return an array of objects
+        $entities = [];
+        foreach ($recurringTransaction as $oneResponse) {
+            $oneEntity =  $this->responseSerializer->Deserialize('<RestResponse>'.$oneResponse->children()->asXML().'</RestResponse>');
+            $entities = array_merge($entities, $oneEntity);
+        }
+
+        return $entities;
     }
 
     /**
@@ -1663,12 +1941,39 @@ class DataService
     }
 
     /**
+     * Get the Entitlement Response
+     * @return \SimpleXMLElement Xml
+     */
+    public function getEntitlementsResponse()
+    {
+        $currentServiceContext = $this->getServiceContext();
+        if (!isset($currentServiceContext) || empty($currentServiceContext->realmId)) {
+           throw new SdkException("Please Setup Service Context before making get entitlements response call.");
+        }
+        //The Preferences URL
+        $uri = $this->getServiceContext()->IppConfiguration->BaseUrl->Qbo;
+        $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
+        $restRequestHandler = $this->getRestHandler();
+        $entitlementsUri = $this->getServiceContext()->IppConfiguration->BaseUrl->Qbo . "manage/entitlements/v3/" . $this->serviceContext->realmId;
+        list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, $entitlementsUri, $this->isThrownExceptionOnError());
+        $faultHandler = $restRequestHandler->getFaultHandler();
+        //$faultHandler now is true or false
+        if ($faultHandler) {
+            $this->lastError = $faultHandler;
+            return null;
+        } else {
+            $this->lastError = false;
+            return simplexml_load_string($responseBody);
+        }
+    }
+
+    /**
      * Get the actual ID string value of either an IPPid object, or an Id string
      * @param Object $id
      * @return String Id
      */
     private function getIDString($id){
-        if($id instanceof IPPid || $id instanceof QuickBooksOnline\API\Data\IPPid){
+        if($id instanceof IPPid){
             return (String)$id->value;
         }else{
             return (String)$id;

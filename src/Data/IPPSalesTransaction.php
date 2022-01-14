@@ -134,10 +134,10 @@ class IPPSalesTransaction
 	public $ShipAddr;
 	/**
 	 * @Definition 
-                                                                Product: QBO
-                                                                Description: Specifies whether
-                                                                shipping address is in free-form or structured-form (city/state etc.)
-                                                        
+								Product: QBO
+								Description: Specifies whether
+								shipping address is in free-form or structured-form (city/state etc.)
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -147,13 +147,13 @@ class IPPSalesTransaction
 	public $FreeFormAddress;
 	/**
 	 * @Definition 
-                                                                Product: ALL
-                                                                Description: QBO: Shipping from address
-                                                                of the Invoice.[br]See [a
-                                                                href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
-                                                                Description: QBW: Identifies the address where the goods are shipped
-                                                                from. For transactions without shipping, it represents the address where the sale took place.
-                                                        
+								Product: ALL
+								Description: QBO: Shipping from address
+								of the Invoice.[br]See [a
+								href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01000_Using_Data_Service_Entities#Addresses"]Addresses[/a]
+								Description: QBW: Identifies the address where the goods are shipped
+								from. For transactions without shipping, it represents the address where the sale took place.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -377,6 +377,21 @@ class IPPSalesTransaction
 	 * @var boolean
 	 */
 	public $ApplyTaxAfterDiscount;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: During total tax override (when user specifies TxnTaxDetail.TotalTax),
+								if this is set to true, system overrides all taxes including the shipping tax,
+								otherwise (if false or null) only non shipping taxes are overridden and original shipping
+								tax is added to the total tax.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ShippingTaxIncludedInTotalTax
+	 * @var boolean
+	 */
+	public $ShippingTaxIncludedInTotalTax;
 	/**
 	 * @Definition 
 								Product: QBW

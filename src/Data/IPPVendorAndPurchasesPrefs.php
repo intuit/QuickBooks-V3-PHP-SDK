@@ -126,6 +126,18 @@ class IPPVendorAndPurchasesPrefs
 	public $AutomaticBillPayment;
 	/**
 	 * @Definition 
+						Product:All
+						Enables TPAR by vendors
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TPAREnabled
+	 * @var boolean
+	 */
+	public $TPAREnabled;
+	/**
+	 * @Definition 
 						Product:QBW
 						Defines the CustomField definitions
 					

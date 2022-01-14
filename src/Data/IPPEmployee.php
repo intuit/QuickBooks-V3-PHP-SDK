@@ -170,16 +170,6 @@ class IPPEmployee
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $EmployeeEx;
-	/**
-	 * @Definition Auto generated Public ID when new employee added to QBO. (ReadOnly)
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName V4IDPseudonym
-	 * @var string
-	 */
-	public $V4IDPseudonym;
 
 
 } // end class IPPEmployee

@@ -673,6 +673,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="County" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO
+						Description: County name.[br /]Max. length: 25 characters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="CountrySubDivisionCode" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">
@@ -1834,6 +1842,7 @@
 			<xs:enumeration value="Class"/>
 			<xs:enumeration value="Company"/>
 			<xs:enumeration value="CompanyInfo"/>
+			<xs:enumeration value="CreditCardPaymentTxn"/>
 			<xs:enumeration value="CreditMemo"/>
 			<xs:enumeration value="Customer"/>
 			<xs:enumeration value="CustomerType"/>
@@ -1858,6 +1867,7 @@
 			<xs:enumeration value="PriceLevel"/>
 			<xs:enumeration value="Purchase"/>
 			<xs:enumeration value="PurchaseOrder"/>
+			<xs:enumeration value="RecurringTransaction"/>
 			<xs:enumeration value="RefundReceipt"/>
 			<xs:enumeration value="ReimburseCharge"/>
 			<xs:enumeration value="Report"/>
@@ -1866,8 +1876,10 @@
 			<xs:enumeration value="SalesRep"/>
 			<xs:enumeration value="ShipMethod"/>
 			<xs:enumeration value="StatementCharge"/>
+			<xs:enumeration value="Tag"/>
 			<xs:enumeration value="TaxCode"/>
 			<xs:enumeration value="TaxClassification"/>
+			<xs:enumeration value="TaxPayment"/>
 			<xs:enumeration value="TaxRate"/>
 			<xs:enumeration value="TaxReturn"/>
 			<xs:enumeration value="Term"/>

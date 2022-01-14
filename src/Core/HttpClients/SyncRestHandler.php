@@ -57,12 +57,21 @@ class SyncRestHandler extends RestHandler
         $this->httpClientInterface = isset($client) ? $client : new CurlHttpClient();
     }
 
+    /**
+     * Gets the http client interface
+     * @return CurlHttpClient|HttpClientInterface
+     */
+    public function getHttpClientInterface()
+    {
+        return $this->httpClientInterface;
+    }
+
    /**
     * Update the Service Context of the request.
-    *
-    * @param ServiceContext  $newServiceContext      The new service context that will be used for the request
+    * @param ServiceContext $newServiceContext The new service context that will be used for the request
     */
-    public function updateContext($newServiceContext){
+    public function updateContext($newServiceContext)
+    {
         if(isset($newServiceContext) && $newServiceContext instanceof ServiceContext){
             $this->context = $newServiceContext;
         }else{
@@ -203,7 +212,7 @@ class SyncRestHandler extends RestHandler
              throw new SdkException("IPP or other Call is not supported in OAuth2 Mode.");
         }
 
-        $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, true);
+        $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
         $faultHandler = $intuitResponse->getFaultHandler();
         $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
 
