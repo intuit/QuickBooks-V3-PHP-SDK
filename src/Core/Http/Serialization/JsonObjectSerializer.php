@@ -184,7 +184,7 @@ class JsonObjectSerializer extends IEntitySerializer
     /**
      * This method is meant to be used as an array_filter callback to remove array elements that
      * "have no content".
-     * 
+     *
      * @return bool Returns true if the input value is NOT NULL and is NOT an empty string
      *              Returns false if the input IS NULL or IS AN EMPTY STRING
      */
@@ -204,7 +204,7 @@ class JsonObjectSerializer extends IEntitySerializer
             if(FacadeHelper::isRecurrsiveArray($v)){
               $list = array();
               foreach($v as $kk => $vv){
-                  $list[] = array_filter($vv, [self::class, 'valueIsNotNullOrEmptyString']);
+                  $list[] = array_filter($vv, 'strlen'); // APPARELMAGIC CHANGED: added strlen
               }
               $returned[$k] = $list;
             }

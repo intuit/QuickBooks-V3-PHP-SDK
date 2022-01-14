@@ -66,8 +66,8 @@ class CurlHttpClient implements HttpClientInterface{
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER => $this->getHeaders($headers),
             //10 seconds is allowed to make the connection to the server
-            CURLOPT_CONNECTTIMEOUT => isset($timeOut) ? $timeOut : 15,
-            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 15,
+            CURLOPT_CONNECTTIMEOUT => 2, // APPARELMAGIC CHANGED - WAS 10
+            CURLOPT_TIMEOUT => isset($timeOut) ? $timeOut : 200, // APPARELMAGIC INCREASED TO 200 FROM THE DEFAULT OF 100
             CURLOPT_RETURNTRANSFER => true,
             //When CURLOPT_HEADER is set to 0 the only effect is that header info from the response is excluded from the output.
             //So if you don't need it that's a few less KBs that curl will return to you.

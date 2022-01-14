@@ -18,6 +18,9 @@ class LoggerBase
      */
     public function Log($idsTraceLevel, $messageToWrite)
     {
+        // APPARELMAGIC CHANGED - We don't need this log
+        return;
+
         $fileToWrite = CoreConstants::DEFAULT_LOGGINGLOCATION . '/executionlog.txt';
         if(file_exists($fileToWrite) && is_writable($fileToWrite))
         {
