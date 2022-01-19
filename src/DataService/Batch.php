@@ -81,7 +81,7 @@ class Batch
 
     /**
     * If not false, the request from last dataService did not return 2xx
-    * @var FaultHandler
+    * @var \QuickBooksOnline\API\Core\HttpClients\FaultHandler
     */
     private $lastError = false;
 
@@ -99,7 +99,7 @@ class Batch
 
     /**
     * Get the error from last request
-    * @return FaultHandler
+    * @return \QuickBooksOnline\API\Core\HttpClients\FaultHandler
     */
     public function getLastError()
     {

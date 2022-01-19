@@ -41,7 +41,7 @@ class ReportService
 
     /**
      * If not false, the request from last dataService did not return 2xx
-     * @var FaultHandler
+     * @var \QuickBooksOnline\API\Core\HttpClients\FaultHandler
      */
     private $lastError = false;
 

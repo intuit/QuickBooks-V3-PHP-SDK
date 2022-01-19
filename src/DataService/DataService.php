@@ -128,7 +128,7 @@ class DataService
 
     /**
      * If not false, the request from last dataService did not return 2xx
-     * @var FaultHandler
+     * @var \QuickBooksOnline\API\Core\HttpClients\FaultHandler
      */
     private $lastError = false;
 
@@ -802,13 +802,13 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -948,7 +948,7 @@ class DataService
             return $responseBody;
         } else {
             $this->lastError = false;
-            
+
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $dir, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
@@ -1008,7 +1008,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }

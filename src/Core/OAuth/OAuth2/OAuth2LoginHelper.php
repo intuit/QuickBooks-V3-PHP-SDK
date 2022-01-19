@@ -90,7 +90,7 @@ class OAuth2LoginHelper
 
     /**
      * Error during retrieve/update access token.
-     * @var FaultHandler $faultHandler        the fault handler that handles error case
+     * @var \QuickBooksOnline\API\Core\HttpClients\FaultHandler $faultHandler        the fault handler that handles error case
      */
     private $faultHandler = false;
 
@@ -408,7 +408,7 @@ class OAuth2LoginHelper
     }
 
     /**
-     * Provide OAuth 1 token generation for OAuth 2 token. 
+     * Provide OAuth 1 token generation for OAuth 2 token.
      * @param String $consumerKey           The consumer key of OAuth 1
      * @param String $consumerSecre         The consumer Secre of OAuth 1
      * @param String $accessToken           The access token key of OAuth 1
@@ -453,7 +453,7 @@ class OAuth2LoginHelper
     /**
      * Get the error from last request
      *
-     * @return FaultHandler
+     * @return \QuickBooksOnline\API\Core\HttpClients\FaultHandler
      * @deprecated  Right now, if any OAuth token failed, an exception will be thrown
      */
     public function getLastError()
