@@ -53,7 +53,7 @@ class IPPCompanyAccountingPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultARAccount
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultARAccount;
 	/**
@@ -62,7 +62,7 @@ class IPPCompanyAccountingPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultAPAccount
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultAPAccount;
 	/**
@@ -146,7 +146,7 @@ class IPPCompanyAccountingPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FirstMonthOfFiscalYear
-	 * @var com\intuit\schema\finance\v3\IPPMonthEnum
+	 * @var IPPMonthEnum
 	 */
 	public $FirstMonthOfFiscalYear;
 	/**
@@ -158,7 +158,7 @@ class IPPCompanyAccountingPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxYearMonth
-	 * @var com\intuit\schema\finance\v3\IPPMonthEnum
+	 * @var IPPMonthEnum
 	 */
 	public $TaxYearMonth;
 	/**
@@ -193,7 +193,7 @@ class IPPCompanyAccountingPrefs
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherContactInfo
-	 * @var com\intuit\schema\finance\v3\IPPContactInfo
+	 * @var IPPContactInfo
 	 */
 	public $OtherContactInfo;
 	/**

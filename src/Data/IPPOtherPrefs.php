@@ -49,7 +49,7 @@ class IPPOtherPrefs
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName NameValue
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
+	 * @var IPPNameValue
 	 */
 	public $NameValue;
 

@@ -111,7 +111,7 @@ class IPPTask
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaskEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $TaskEx;
 

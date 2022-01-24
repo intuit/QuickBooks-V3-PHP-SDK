@@ -189,7 +189,7 @@ class IPPAttachable
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName AttachableEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $AttachableEx;
 

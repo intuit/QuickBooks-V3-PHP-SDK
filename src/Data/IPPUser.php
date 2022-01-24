@@ -95,7 +95,7 @@ class IPPUser
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName EmailAddr
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $EmailAddr;
 	/**
@@ -104,7 +104,7 @@ class IPPUser
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName Addr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $Addr;
 	/**
@@ -112,7 +112,7 @@ class IPPUser
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName PhoneNumber
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $PhoneNumber;
 	/**
@@ -154,7 +154,7 @@ class IPPUser
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName NameValueAttr
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
+	 * @var IPPNameValue
 	 */
 	public $NameValueAttr;
 

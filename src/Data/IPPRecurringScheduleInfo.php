@@ -84,7 +84,7 @@ class IPPRecurringScheduleInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DayOfWeek
-	 * @var com\intuit\schema\finance\v3\IPPWeekEnum
+	 * @var IPPWeekEnum
 	 */
 	public $DayOfWeek;
 	/**
@@ -108,7 +108,7 @@ class IPPRecurringScheduleInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName MonthOfYear
-	 * @var com\intuit\schema\finance\v3\IPPMonthEnum
+	 * @var IPPMonthEnum
 	 */
 	public $MonthOfYear;
 	/**

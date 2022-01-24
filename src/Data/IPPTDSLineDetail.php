@@ -51,7 +51,7 @@ class IPPTDSLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TDSAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TDSAccountRef;
 	/**
@@ -77,7 +77,7 @@ class IPPTDSLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TDSLineDetailEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $TDSLineDetailEx;
 

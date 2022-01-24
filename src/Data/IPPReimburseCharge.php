@@ -47,7 +47,7 @@ class IPPReimburseCharge
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CustomerRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CustomerRef;
 	/**

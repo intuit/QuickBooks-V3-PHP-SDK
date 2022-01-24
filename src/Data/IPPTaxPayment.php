@@ -61,7 +61,7 @@ class IPPTaxPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PaymentAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $PaymentAccountRef;
 	/**

@@ -41,7 +41,7 @@ class IPPBillPaymentCheck
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BankAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $BankAccountRef;
 	/**
@@ -49,7 +49,7 @@ class IPPBillPaymentCheck
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PrintStatus
-	 * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+	 * @var IPPPrintStatusEnum
 	 */
 	public $PrintStatus;
 	/**
@@ -62,7 +62,7 @@ class IPPBillPaymentCheck
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CheckDetail
-	 * @var com\intuit\schema\finance\v3\IPPCheckPayment
+	 * @var IPPCheckPayment
 	 */
 	public $CheckDetail;
 	/**
@@ -72,7 +72,7 @@ class IPPBillPaymentCheck
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PayeeAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $PayeeAddr;
 	/**
@@ -82,7 +82,7 @@ class IPPBillPaymentCheck
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BillPaymentCheckEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $BillPaymentCheckEx;
 

@@ -83,7 +83,7 @@ class IPPVendorAndPurchasesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultTerms
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultTerms;
 	/**
@@ -109,7 +109,7 @@ class IPPVendorAndPurchasesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultMarkupAccount
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultMarkupAccount;
 	/**
@@ -146,7 +146,7 @@ class IPPVendorAndPurchasesPrefs
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName POCustomField
-	 * @var com\intuit\schema\finance\v3\IPPCustomFieldDefinition
+	 * @var IPPCustomFieldDefinition
 	 */
 	public $POCustomField;
 	/**
@@ -205,7 +205,7 @@ class IPPVendorAndPurchasesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DiscountAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DiscountAccountRef;
 

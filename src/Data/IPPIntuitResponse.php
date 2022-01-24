@@ -43,7 +43,7 @@ class IPPIntuitResponse
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Warnings
-	 * @var com\intuit\schema\finance\v3\IPPWarnings
+	 * @var IPPWarnings
 	 */
 	public $Warnings;
 	/**
@@ -60,7 +60,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Fault
-	 * @var com\intuit\schema\finance\v3\IPPFault
+	 * @var IPPFault
 	 */
 	public $Fault;
 	/**
@@ -70,7 +70,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Report
-	 * @var com\intuit\schema\finance\v3\IPPReport
+	 * @var IPPReport
 	 */
 	public $Report;
 	/**
@@ -80,7 +80,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName QueryResponse
-	 * @var com\intuit\schema\finance\v3\IPPQueryResponse
+	 * @var IPPQueryResponse
 	 */
 	public $QueryResponse;
 	/**
@@ -90,7 +90,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName BatchItemResponse
-	 * @var com\intuit\schema\finance\v3\IPPBatchItemResponse
+	 * @var IPPBatchItemResponse
 	 */
 	public $BatchItemResponse;
 	/**
@@ -100,7 +100,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName CDCResponse
-	 * @var com\intuit\schema\finance\v3\IPPCDCResponse
+	 * @var IPPCDCResponse
 	 */
 	public $CDCResponse;
 	/**
@@ -110,7 +110,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName AttachableResponse
-	 * @var com\intuit\schema\finance\v3\IPPAttachableResponse
+	 * @var IPPAttachableResponse
 	 */
 	public $AttachableResponse;
 	/**
@@ -120,7 +120,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName SyncErrorResponse
-	 * @var com\intuit\schema\finance\v3\IPPSyncErrorResponse
+	 * @var IPPSyncErrorResponse
 	 */
 	public $SyncErrorResponse;
 	/**
@@ -130,7 +130,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName OLBTransaction
-	 * @var com\intuit\schema\finance\v3\IPPOLBTransaction
+	 * @var IPPOLBTransaction
 	 */
 	public $OLBTransaction;
 	/**
@@ -140,7 +140,7 @@ class IPPIntuitResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName OLBStatus
-	 * @var com\intuit\schema\finance\v3\IPPOLBStatus
+	 * @var IPPOLBStatus
 	 */
 	public $OLBStatus;
 	/**

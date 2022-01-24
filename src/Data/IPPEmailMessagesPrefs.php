@@ -46,7 +46,7 @@ class IPPEmailMessagesPrefs
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName NameValue
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
+	 * @var IPPNameValue
 	 */
 	public $NameValue;
 	/**
@@ -59,7 +59,7 @@ class IPPEmailMessagesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName InvoiceMessage
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessage
+	 * @var IPPEmailMessage
 	 */
 	public $InvoiceMessage;
 	/**
@@ -72,7 +72,7 @@ class IPPEmailMessagesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EstimateMessage
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessage
+	 * @var IPPEmailMessage
 	 */
 	public $EstimateMessage;
 	/**
@@ -85,7 +85,7 @@ class IPPEmailMessagesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesReceiptMessage
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessage
+	 * @var IPPEmailMessage
 	 */
 	public $SalesReceiptMessage;
 	/**
@@ -98,7 +98,7 @@ class IPPEmailMessagesPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName StatementMessage
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessage
+	 * @var IPPEmailMessage
 	 */
 	public $StatementMessage;
 

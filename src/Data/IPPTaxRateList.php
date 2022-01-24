@@ -47,7 +47,7 @@ class IPPTaxRateList
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName TaxRateDetail
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateDetail
+	 * @var IPPTaxRateDetail
 	 */
 	public $TaxRateDetail;
 	/**

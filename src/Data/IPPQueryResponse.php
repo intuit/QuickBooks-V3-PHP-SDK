@@ -43,7 +43,7 @@ class IPPQueryResponse
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Warnings
-	 * @var com\intuit\schema\finance\v3\IPPWarnings
+	 * @var IPPWarnings
 	 */
 	public $Warnings;
 	/**
@@ -62,7 +62,7 @@ class IPPQueryResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Fault
-	 * @var com\intuit\schema\finance\v3\IPPFault
+	 * @var IPPFault
 	 */
 	public $Fault;
 	/**

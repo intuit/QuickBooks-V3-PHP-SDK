@@ -66,7 +66,7 @@ class IPPTxnTaxDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultTaxCodeRef;
 	/**
@@ -81,7 +81,7 @@ class IPPTxnTaxDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TxnTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TxnTaxCodeRef;
 	/**
@@ -106,7 +106,7 @@ class IPPTxnTaxDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxReviewStatus
-	 * @var com\intuit\schema\finance\v3\IPPTaxReviewStatusEnum
+	 * @var IPPTaxReviewStatusEnum
 	 */
 	public $TaxReviewStatus;
 	/**
@@ -119,7 +119,7 @@ class IPPTxnTaxDetail
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName TaxLine
-	 * @var com\intuit\schema\finance\v3\IPPLine
+	 * @var IPPLine
 	 */
 	public $TaxLine;
 	/**

@@ -46,7 +46,7 @@ class IPPCreditCardPaymentTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CreditCardAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CreditCardAccountRef;
 	/**
@@ -57,7 +57,7 @@ class IPPCreditCardPaymentTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BankAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $BankAccountRef;
 	/**
@@ -79,7 +79,7 @@ class IPPCreditCardPaymentTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $VendorRef;
 	/**
@@ -101,7 +101,7 @@ class IPPCreditCardPaymentTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PrintStatus
-	 * @var com\intuit\schema\finance\v3\IPPPrintStatusEnum
+	 * @var IPPPrintStatusEnum
 	 */
 	public $PrintStatus;
 	/**
@@ -120,7 +120,7 @@ class IPPCreditCardPaymentTxn
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName CreditCardPaymentEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $CreditCardPaymentEx;
 

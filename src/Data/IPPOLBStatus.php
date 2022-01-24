@@ -48,7 +48,7 @@ class IPPOLBStatus
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OLBAccount
-	 * @var com\intuit\schema\finance\v3\IPPOLBAccount
+	 * @var IPPOLBAccount
 	 */
 	public $OLBAccount;
 

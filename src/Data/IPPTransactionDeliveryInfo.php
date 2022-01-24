@@ -49,7 +49,7 @@ class IPPTransactionDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryType
-	 * @var com\intuit\schema\finance\v3\IPPDeliveryTypeEnum
+	 * @var IPPDeliveryTypeEnum
 	 */
 	public $DeliveryType;
 	/**
@@ -73,7 +73,7 @@ class IPPTransactionDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryErrorType
-	 * @var com\intuit\schema\finance\v3\IPPDeliveryErrorTypeEnum
+	 * @var IPPDeliveryErrorTypeEnum
 	 */
 	public $DeliveryErrorType;
 

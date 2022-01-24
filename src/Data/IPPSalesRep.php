@@ -54,7 +54,7 @@ class IPPSalesRep
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName NameOf
-	 * @var com\intuit\schema\finance\v3\IPPSalesRepTypeEnum
+	 * @var IPPSalesRepTypeEnum
 	 */
 	public $NameOf;
 	/**
@@ -85,7 +85,7 @@ class IPPSalesRep
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EmployeeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $EmployeeRef;
 	/**
@@ -101,7 +101,7 @@ class IPPSalesRep
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $VendorRef;
 	/**
@@ -117,7 +117,7 @@ class IPPSalesRep
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName OtherNameRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $OtherNameRef;
 	/**
@@ -144,7 +144,7 @@ class IPPSalesRep
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesRepEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $SalesRepEx;
 

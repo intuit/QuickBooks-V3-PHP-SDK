@@ -50,7 +50,7 @@ class IPPModificationMetaData
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CreatedByRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CreatedByRef;
 	/**
@@ -77,7 +77,7 @@ class IPPModificationMetaData
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName LastModifiedByRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $LastModifiedByRef;
 	/**

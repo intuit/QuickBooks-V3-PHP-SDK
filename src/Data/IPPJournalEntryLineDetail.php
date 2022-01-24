@@ -51,7 +51,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PostingType
-	 * @var com\intuit\schema\finance\v3\IPPPostingTypeEnum
+	 * @var IPPPostingTypeEnum
 	 */
 	public $PostingType;
 	/**
@@ -65,7 +65,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Entity
-	 * @var com\intuit\schema\finance\v3\IPPEntityTypeRef
+	 * @var IPPEntityTypeRef
 	 */
 	public $Entity;
 	/**
@@ -78,7 +78,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $AccountRef;
 	/**
@@ -91,7 +91,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ClassRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ClassRef;
 	/**
@@ -104,7 +104,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DepartmentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DepartmentRef;
 	/**
@@ -117,7 +117,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxCodeRef;
 	/**
@@ -130,7 +130,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxRateRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxRateRef;
 	/**
@@ -143,7 +143,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxApplicableOn
-	 * @var com\intuit\schema\finance\v3\IPPTaxApplicableOnEnum
+	 * @var IPPTaxApplicableOnEnum
 	 */
 	public $TaxApplicableOn;
 	/**
@@ -184,7 +184,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BillableStatus
-	 * @var com\intuit\schema\finance\v3\IPPBillableStatusEnum
+	 * @var IPPBillableStatusEnum
 	 */
 	public $BillableStatus;
 	/**
@@ -197,7 +197,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName JournalCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $JournalCodeRef;
 	/**
@@ -210,7 +210,7 @@ class IPPJournalEntryLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName JournalEntryLineDetailEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $JournalEntryLineDetailEx;
 

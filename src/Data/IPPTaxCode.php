@@ -149,7 +149,7 @@ class IPPTaxCode
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesTaxRateList
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateList
+	 * @var IPPTaxRateList
 	 */
 	public $SalesTaxRateList;
 	/**
@@ -163,7 +163,7 @@ class IPPTaxCode
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PurchaseTaxRateList
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateList
+	 * @var IPPTaxRateList
 	 */
 	public $PurchaseTaxRateList;
 	/**
@@ -176,7 +176,7 @@ class IPPTaxCode
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AdjustmentTaxRateList
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateList
+	 * @var IPPTaxRateList
 	 */
 	public $AdjustmentTaxRateList;
 	/**
@@ -189,7 +189,7 @@ class IPPTaxCode
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxCodeEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $TaxCodeEx;
 	/**
@@ -202,7 +202,7 @@ class IPPTaxCode
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxCodeConfigType
-	 * @var com\intuit\schema\finance\v3\IPPGTMConfigTypeEnum
+	 * @var IPPGTMConfigTypeEnum
 	 */
 	public $TaxCodeConfigType;
 

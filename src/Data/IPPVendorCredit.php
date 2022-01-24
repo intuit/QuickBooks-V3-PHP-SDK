@@ -48,7 +48,7 @@ class IPPVendorCredit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $VendorAddr;
 	/**
@@ -58,7 +58,7 @@ class IPPVendorCredit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorCreditEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $VendorCreditEx;
 	/**

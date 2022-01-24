@@ -57,7 +57,7 @@ class IPPLinkedTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TxnId
-	 * @var com\intuit\schema\finance\v3\IPPid
+	 * @var IPPid
 	 */
 	public $TxnId;
 	/**
@@ -83,7 +83,7 @@ class IPPLinkedTxn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TxnLineId
-	 * @var com\intuit\schema\finance\v3\IPPid
+	 * @var IPPid
 	 */
 	public $TxnLineId;
 

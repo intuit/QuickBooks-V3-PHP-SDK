@@ -110,7 +110,7 @@ class IPPFinanceChargePrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FinChrgAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $FinChrgAccountRef;
 

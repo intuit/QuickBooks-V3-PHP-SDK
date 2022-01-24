@@ -58,7 +58,7 @@ class IPPOtherName
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName PrimaryAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $PrimaryAddr;
 	/**
@@ -69,7 +69,7 @@ class IPPOtherName
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $OtherAddr;
 	/**
@@ -78,7 +78,7 @@ class IPPOtherName
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName OtherNameEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $OtherNameEx;
 

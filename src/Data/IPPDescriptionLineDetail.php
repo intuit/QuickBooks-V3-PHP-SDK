@@ -71,7 +71,7 @@ class IPPDescriptionLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxCodeRef;
 	/**
@@ -84,7 +84,7 @@ class IPPDescriptionLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DescriptionLineDetailEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $DescriptionLineDetailEx;
 

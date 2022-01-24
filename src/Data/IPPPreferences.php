@@ -44,7 +44,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AccountingInfoPrefs
-	 * @var com\intuit\schema\finance\v3\IPPCompanyAccountingPrefs
+	 * @var IPPCompanyAccountingPrefs
 	 */
 	public $AccountingInfoPrefs;
 	/**
@@ -53,7 +53,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AdvancedInventoryPrefs
-	 * @var com\intuit\schema\finance\v3\IPPAdvancedInventoryPrefs
+	 * @var IPPAdvancedInventoryPrefs
 	 */
 	public $AdvancedInventoryPrefs;
 	/**
@@ -63,7 +63,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ProductAndServicesPrefs
-	 * @var com\intuit\schema\finance\v3\IPPProductAndServicesPrefs
+	 * @var IPPProductAndServicesPrefs
 	 */
 	public $ProductAndServicesPrefs;
 	/**
@@ -72,7 +72,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesFormsPrefs
-	 * @var com\intuit\schema\finance\v3\IPPSalesFormsPrefs
+	 * @var IPPSalesFormsPrefs
 	 */
 	public $SalesFormsPrefs;
 	/**
@@ -81,7 +81,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EmailMessagesPrefs
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessagesPrefs
+	 * @var IPPEmailMessagesPrefs
 	 */
 	public $EmailMessagesPrefs;
 	/**
@@ -91,7 +91,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PrintDocumentPrefs
-	 * @var com\intuit\schema\finance\v3\IPPPrintDocumentPrefs
+	 * @var IPPPrintDocumentPrefs
 	 */
 	public $PrintDocumentPrefs;
 	/**
@@ -101,7 +101,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorAndPurchasesPrefs
-	 * @var com\intuit\schema\finance\v3\IPPVendorAndPurchasesPrefs
+	 * @var IPPVendorAndPurchasesPrefs
 	 */
 	public $VendorAndPurchasesPrefs;
 	/**
@@ -111,7 +111,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TimeTrackingPrefs
-	 * @var com\intuit\schema\finance\v3\IPPTimeTrackingPrefs
+	 * @var IPPTimeTrackingPrefs
 	 */
 	public $TimeTrackingPrefs;
 	/**
@@ -120,7 +120,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxPrefs
-	 * @var com\intuit\schema\finance\v3\IPPTaxPrefs
+	 * @var IPPTaxPrefs
 	 */
 	public $TaxPrefs;
 	/**
@@ -129,7 +129,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FinanceChargesPrefs
-	 * @var com\intuit\schema\finance\v3\IPPFinanceChargePrefs
+	 * @var IPPFinanceChargePrefs
 	 */
 	public $FinanceChargesPrefs;
 	/**
@@ -138,7 +138,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CurrencyPrefs
-	 * @var com\intuit\schema\finance\v3\IPPCurrencyPrefs
+	 * @var IPPCurrencyPrefs
 	 */
 	public $CurrencyPrefs;
 	/**
@@ -147,7 +147,7 @@ class IPPPreferences
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ReportPrefs
-	 * @var com\intuit\schema\finance\v3\IPPReportPrefs
+	 * @var IPPReportPrefs
 	 */
 	public $ReportPrefs;
 	/**
@@ -160,7 +160,7 @@ class IPPPreferences
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName OtherPrefs
-	 * @var com\intuit\schema\finance\v3\IPPOtherPrefs
+	 * @var IPPOtherPrefs
 	 */
 	public $OtherPrefs;
 

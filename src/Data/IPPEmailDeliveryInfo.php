@@ -51,7 +51,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryAddress
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $DeliveryAddress;
 	/**
@@ -64,7 +64,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryAddressCc
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $DeliveryAddressCc;
 	/**
@@ -77,7 +77,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryAddressBcc
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $DeliveryAddressBcc;
 	/**
@@ -90,7 +90,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EmailMessage
-	 * @var com\intuit\schema\finance\v3\IPPEmailMessage
+	 * @var IPPEmailMessage
 	 */
 	public $EmailMessage;
 	/**
@@ -145,7 +145,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DeliveryInfo
-	 * @var com\intuit\schema\finance\v3\IPPTransactionDeliveryInfo
+	 * @var IPPTransactionDeliveryInfo
 	 */
 	public $DeliveryInfo;
 	/**
@@ -159,7 +159,7 @@ class IPPEmailDeliveryInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ETransactionStatus
-	 * @var com\intuit\schema\finance\v3\IPPETransactionStatusEnum
+	 * @var IPPETransactionStatusEnum
 	 */
 	public $ETransactionStatus;
 

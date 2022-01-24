@@ -44,7 +44,7 @@ class IPPCDCResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName QueryResponse
-	 * @var com\intuit\schema\finance\v3\IPPQueryResponse
+	 * @var IPPQueryResponse
 	 */
 	public $QueryResponse;
 	/**
@@ -54,7 +54,7 @@ class IPPCDCResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Fault
-	 * @var com\intuit\schema\finance\v3\IPPFault
+	 * @var IPPFault
 	 */
 	public $Fault;
 	/**

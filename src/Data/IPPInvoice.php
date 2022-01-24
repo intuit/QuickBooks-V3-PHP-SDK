@@ -151,7 +151,7 @@ class IPPInvoice
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EInvoiceStatus
-	 * @var com\intuit\schema\finance\v3\IPPETransactionStatusEnum
+	 * @var IPPETransactionStatusEnum
 	 */
 	public $EInvoiceStatus;
 	/**
@@ -205,7 +205,7 @@ class IPPInvoice
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName invoiceStatusLog
-	 * @var com\intuit\schema\finance\v3\IPPStatusInfo
+	 * @var IPPStatusInfo
 	 */
 	public $invoiceStatusLog;
 	/**
@@ -219,7 +219,7 @@ class IPPInvoice
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName InvoiceEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $InvoiceEx;
 	/**
@@ -268,7 +268,7 @@ class IPPInvoice
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ConvenienceFeeDetail
-	 * @var com\intuit\schema\finance\v3\IPPConvenienceFeeDetail
+	 * @var IPPConvenienceFeeDetail
 	 */
 	public $ConvenienceFeeDetail;
 	/**
@@ -352,7 +352,7 @@ class IPPInvoice
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FinancingProductType
-	 * @var com\intuit\schema\finance\v3\IPPFinancingProductTypeEnum
+	 * @var IPPFinancingProductTypeEnum
 	 */
 	public $FinancingProductType;
 	/**
@@ -364,7 +364,7 @@ class IPPInvoice
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SubscriptionPaymentsSetting
-	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
+	 * @var IPPSubscriptionPaymentsSettingEnum
 	 */
 	public $SubscriptionPaymentsSetting;
 

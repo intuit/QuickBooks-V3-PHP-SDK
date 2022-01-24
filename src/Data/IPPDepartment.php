@@ -73,7 +73,7 @@ class IPPDepartment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ParentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ParentRef;
 	/**
@@ -110,7 +110,7 @@ class IPPDepartment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DepartmentEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $DepartmentEx;
 	/**
@@ -119,7 +119,7 @@ class IPPDepartment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Address
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $Address;
 

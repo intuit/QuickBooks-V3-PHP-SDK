@@ -80,7 +80,7 @@ class IPPEmployee
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName PrimaryAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $PrimaryAddr;
 	/**
@@ -91,7 +91,7 @@ class IPPEmployee
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $OtherAddr;
 	/**
@@ -131,7 +131,7 @@ class IPPEmployee
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Gender
-	 * @var com\intuit\schema\finance\v3\IPPgender
+	 * @var IPPgender
 	 */
 	public $Gender;
 	/**
@@ -158,7 +158,7 @@ class IPPEmployee
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName UseTimeEntry
-	 * @var com\intuit\schema\finance\v3\IPPTimeEntryUsedForPaychecksEnum
+	 * @var IPPTimeEntryUsedForPaychecksEnum
 	 */
 	public $UseTimeEntry;
 	/**
@@ -167,7 +167,7 @@ class IPPEmployee
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EmployeeEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $EmployeeEx;
 

@@ -49,7 +49,7 @@ class IPPAttachableRef
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName EntityRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $EntityRef;
 	/**
@@ -61,7 +61,7 @@ class IPPAttachableRef
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName LineInfo
-	 * @var com\intuit\schema\finance\v3\IPPid
+	 * @var IPPid
 	 */
 	public $LineInfo;
 	/**
@@ -87,7 +87,7 @@ class IPPAttachableRef
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName CustomField
-	 * @var com\intuit\schema\finance\v3\IPPCustomField
+	 * @var IPPCustomField
 	 */
 	public $CustomField;
 	/**
@@ -98,7 +98,7 @@ class IPPAttachableRef
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName AttachableRefEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $AttachableRefEx;
 

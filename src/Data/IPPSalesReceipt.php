@@ -45,7 +45,7 @@ class IPPSalesReceipt
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName SalesReceiptEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $SalesReceiptEx;
 	/**

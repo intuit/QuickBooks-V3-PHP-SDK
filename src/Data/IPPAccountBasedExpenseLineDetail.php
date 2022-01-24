@@ -51,7 +51,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CustomerRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CustomerRef;
 	/**
@@ -64,7 +64,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ClassRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ClassRef;
 	/**
@@ -77,7 +77,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $AccountRef;
 	/**
@@ -90,7 +90,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BillableStatus
-	 * @var com\intuit\schema\finance\v3\IPPBillableStatusEnum
+	 * @var IPPBillableStatusEnum
 	 */
 	public $BillableStatus;
 	/**
@@ -103,7 +103,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName MarkupInfo
-	 * @var com\intuit\schema\finance\v3\IPPMarkupInfo
+	 * @var IPPMarkupInfo
 	 */
 	public $MarkupInfo;
 	/**
@@ -129,7 +129,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxCodeRef;
 	/**
@@ -155,7 +155,7 @@ class IPPAccountBasedExpenseLineDetail
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ExpenseDetailLineDetailEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $ExpenseDetailLineDetailEx;
 

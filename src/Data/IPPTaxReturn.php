@@ -156,7 +156,7 @@ class IPPTaxReturn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AgencyRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $AgencyRef;
 	/**
@@ -168,7 +168,7 @@ class IPPTaxReturn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxReturnStatus
-	 * @var com\intuit\schema\finance\v3\IPPTaxReturnStatusEnum
+	 * @var IPPTaxReturnStatusEnum
 	 */
 	public $TaxReturnStatus;
 	/**
@@ -204,7 +204,7 @@ class IPPTaxReturn
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AgencyPaymentMethod
-	 * @var com\intuit\schema\finance\v3\IPPAgencyPaymentMethodEnum
+	 * @var IPPAgencyPaymentMethodEnum
 	 */
 	public $AgencyPaymentMethod;
 	/**

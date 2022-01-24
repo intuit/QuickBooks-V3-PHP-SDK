@@ -43,7 +43,7 @@ class IPPReport
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Header
-	 * @var com\intuit\schema\finance\v3\IPPReportHeader
+	 * @var IPPReportHeader
 	 */
 	public $Header;
 	/**
@@ -52,7 +52,7 @@ class IPPReport
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Columns
-	 * @var com\intuit\schema\finance\v3\IPPColumns
+	 * @var IPPColumns
 	 */
 	public $Columns;
 	/**
@@ -61,7 +61,7 @@ class IPPReport
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Rows
-	 * @var com\intuit\schema\finance\v3\IPPRows
+	 * @var IPPRows
 	 */
 	public $Rows;
 

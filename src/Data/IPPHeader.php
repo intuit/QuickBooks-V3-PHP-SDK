@@ -42,7 +42,7 @@ class IPPHeader
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName ColData
-	 * @var com\intuit\schema\finance\v3\IPPColData
+	 * @var IPPColData
 	 */
 	public $ColData;
 

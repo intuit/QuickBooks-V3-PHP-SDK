@@ -64,7 +64,7 @@ class IPPCustomer
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName BillAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $BillAddr;
 	/**
@@ -77,7 +77,7 @@ class IPPCustomer
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName ShipAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $ShipAddr;
 	/**
@@ -90,7 +90,7 @@ class IPPCustomer
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $OtherAddr;
 	/**
@@ -163,7 +163,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName RootCustomerRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $RootCustomerRef;
 	/**
@@ -175,7 +175,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ParentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ParentRef;
 	/**
@@ -199,7 +199,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CustomerTypeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CustomerTypeRef;
 	/**
@@ -211,7 +211,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesTermRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $SalesTermRef;
 	/**
@@ -223,7 +223,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesRepRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $SalesRepRef;
 	/**
@@ -235,7 +235,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxGroupCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxGroupCodeRef;
 	/**
@@ -247,7 +247,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxRateRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxRateRef;
 	/**
@@ -259,7 +259,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PaymentMethodRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $PaymentMethodRef;
 	/**
@@ -272,7 +272,7 @@ class IPPCustomer
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CCDetail
-	 * @var com\intuit\schema\finance\v3\IPPCreditChargeInfo
+	 * @var IPPCreditChargeInfo
 	 */
 	public $CCDetail;
 	/**
@@ -284,7 +284,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PriceLevelRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $PriceLevelRef;
 	/**
@@ -362,7 +362,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CurrencyRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CurrencyRef;
 	/**
@@ -434,7 +434,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName JobInfo
-	 * @var com\intuit\schema\finance\v3\IPPJobInfo
+	 * @var IPPJobInfo
 	 */
 	public $JobInfo;
 	/**
@@ -458,7 +458,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CustomerEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $CustomerEx;
 	/**
@@ -482,7 +482,7 @@ class IPPCustomer
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ARAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ARAccountRef;
 	/**

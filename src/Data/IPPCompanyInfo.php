@@ -66,7 +66,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CompanyAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $CompanyAddr;
 	/**
@@ -77,7 +77,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CustomerCommunicationAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $CustomerCommunicationAddr;
 	/**
@@ -87,7 +87,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName LegalAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $LegalAddr;
 	/**
@@ -96,7 +96,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CompanyEmailAddr
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $CompanyEmailAddr;
 	/**
@@ -107,7 +107,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CustomerCommunicationEmailAddr
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $CustomerCommunicationEmailAddr;
 	/**
@@ -116,7 +116,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CompanyURL
-	 * @var com\intuit\schema\finance\v3\IPPWebSiteAddress
+	 * @var IPPWebSiteAddress
 	 */
 	public $CompanyURL;
 	/**
@@ -125,7 +125,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PrimaryPhone
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $PrimaryPhone;
 	/**
@@ -140,7 +140,7 @@ class IPPCompanyInfo
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherContactInfo
-	 * @var com\intuit\schema\finance\v3\IPPContactInfo
+	 * @var IPPContactInfo
 	 */
 	public $OtherContactInfo;
 	/**
@@ -243,7 +243,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FiscalYearStartMonth
-	 * @var com\intuit\schema\finance\v3\IPPMonthEnum
+	 * @var IPPMonthEnum
 	 */
 	public $FiscalYearStartMonth;
 	/**
@@ -255,7 +255,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxYearStartMonth
-	 * @var com\intuit\schema\finance\v3\IPPMonthEnum
+	 * @var IPPMonthEnum
 	 */
 	public $TaxYearStartMonth;
 	/**
@@ -296,7 +296,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ShipAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $ShipAddr;
 	/**
@@ -309,7 +309,7 @@ class IPPCompanyInfo
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $OtherAddr;
 	/**
@@ -321,7 +321,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Mobile
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $Mobile;
 	/**
@@ -333,7 +333,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Fax
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $Fax;
 	/**
@@ -345,7 +345,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Email
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $Email;
 	/**
@@ -357,7 +357,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName WebAddr
-	 * @var com\intuit\schema\finance\v3\IPPWebSiteAddress
+	 * @var IPPWebSiteAddress
 	 */
 	public $WebAddr;
 	/**
@@ -425,7 +425,7 @@ class IPPCompanyInfo
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName NameValue
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
+	 * @var IPPNameValue
 	 */
 	public $NameValue;
 	/**
@@ -437,7 +437,7 @@ class IPPCompanyInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FifoCalculationStatus
-	 * @var com\intuit\schema\finance\v3\IPPFifoCalculationStatus
+	 * @var IPPFifoCalculationStatus
 	 */
 	public $FifoCalculationStatus;
 	/**
@@ -450,7 +450,7 @@ class IPPCompanyInfo
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CompanyInfoEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $CompanyInfoEx;
 

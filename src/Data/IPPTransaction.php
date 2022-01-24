@@ -110,7 +110,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DepartmentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DepartmentRef;
 	/**
@@ -125,7 +125,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CurrencyRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $CurrencyRef;
 	/**
@@ -196,7 +196,7 @@ class IPPTransaction
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName LinkedTxn
-	 * @var com\intuit\schema\finance\v3\IPPLinkedTxn
+	 * @var IPPLinkedTxn
 	 */
 	public $LinkedTxn;
 	/**
@@ -214,7 +214,7 @@ class IPPTransaction
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName Line
-	 * @var com\intuit\schema\finance\v3\IPPLine
+	 * @var IPPLine
 	 */
 	public $Line;
 	/**
@@ -240,7 +240,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TxnTaxDetail
-	 * @var com\intuit\schema\finance\v3\IPPTxnTaxDetail
+	 * @var IPPTxnTaxDetail
 	 */
 	public $TxnTaxDetail;
 	/**
@@ -309,7 +309,7 @@ class IPPTransaction
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName Tag
-	 * @var com\intuit\schema\finance\v3\IPPTag
+	 * @var IPPTag
 	 */
 	public $Tag;
 	/**
@@ -321,7 +321,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TxnApprovalInfo
-	 * @var com\intuit\schema\finance\v3\IPPTxnApprovalInfo
+	 * @var IPPTxnApprovalInfo
 	 */
 	public $TxnApprovalInfo;
 	/**
@@ -335,7 +335,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName RecurDataRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $RecurDataRef;
 	/**
@@ -347,7 +347,7 @@ class IPPTransaction
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName RecurringInfo
-	 * @var com\intuit\schema\finance\v3\IPPRecurringInfo
+	 * @var IPPRecurringInfo
 	 */
 	public $RecurringInfo;
 

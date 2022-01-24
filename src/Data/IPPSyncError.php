@@ -49,7 +49,7 @@ class IPPSyncError
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Error
-	 * @var com\intuit\schema\finance\v3\IPPError
+	 * @var IPPError
 	 */
 	public $Error;
 	/**
@@ -62,7 +62,7 @@ class IPPSyncError
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CloudVersion
-	 * @var com\intuit\schema\finance\v3\IPPSyncObject
+	 * @var IPPSyncObject
 	 */
 	public $CloudVersion;
 	/**
@@ -74,7 +74,7 @@ class IPPSyncError
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName QBVersion
-	 * @var com\intuit\schema\finance\v3\IPPSyncObject
+	 * @var IPPSyncObject
 	 */
 	public $QBVersion;
 	/**

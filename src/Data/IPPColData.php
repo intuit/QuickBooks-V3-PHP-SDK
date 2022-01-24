@@ -43,7 +43,7 @@ class IPPColData
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Attributes
-	 * @var com\intuit\schema\finance\v3\IPPAttributes
+	 * @var IPPAttributes
 	 */
 	public $Attributes;
 	/**

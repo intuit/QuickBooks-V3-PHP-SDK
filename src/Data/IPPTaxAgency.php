@@ -45,7 +45,7 @@ class IPPTaxAgency
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $SalesTaxCodeRef;
 	/**
@@ -62,7 +62,7 @@ class IPPTaxAgency
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SalesTaxReturnRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $SalesTaxReturnRef;
 	/**
@@ -95,7 +95,7 @@ class IPPTaxAgency
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxOnPurchasesAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxOnPurchasesAccountRef;
 	/**
@@ -111,7 +111,7 @@ class IPPTaxAgency
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxTrackedOnSalesAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxTrackedOnSalesAccountRef;
 	/**
@@ -140,7 +140,7 @@ class IPPTaxAgency
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxAgencyExt
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $TaxAgencyExt;
 	/**

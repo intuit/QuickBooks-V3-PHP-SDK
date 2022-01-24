@@ -96,7 +96,7 @@ class IPPJournalEntry
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName GlobalTaxCalculation
-	 * @var com\intuit\schema\finance\v3\IPPGlobalTaxCalculationEnum
+	 * @var IPPGlobalTaxCalculationEnum
 	 */
 	public $GlobalTaxCalculation;
 	/**
@@ -145,7 +145,7 @@ class IPPJournalEntry
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName JournalEntryEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $JournalEntryEx;
 

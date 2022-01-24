@@ -79,7 +79,7 @@ class IPPFixedAsset
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AcquiredAs
-	 * @var com\intuit\schema\finance\v3\IPPAcquiredAsEnum
+	 * @var IPPAcquiredAsEnum
 	 */
 	public $AcquiredAs;
 	/**
@@ -139,7 +139,7 @@ class IPPFixedAsset
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AssetAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $AssetAccountRef;
 	/**
@@ -296,7 +296,7 @@ class IPPFixedAsset
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName FixedAssetEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $FixedAssetEx;
 

@@ -72,7 +72,7 @@ class IPPTaxPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxGroupCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxGroupCodeRef;
 	/**
@@ -85,7 +85,7 @@ class IPPTaxPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxRateRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxRateRef;
 	/**
@@ -97,7 +97,7 @@ class IPPTaxPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PaySalesTax
-	 * @var com\intuit\schema\finance\v3\IPPPaySalesTaxEnum
+	 * @var IPPPaySalesTaxEnum
 	 */
 	public $PaySalesTax;
 	/**
@@ -111,7 +111,7 @@ class IPPTaxPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName NonTaxableSalesTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $NonTaxableSalesTaxCodeRef;
 	/**
@@ -125,7 +125,7 @@ class IPPTaxPrefs
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxableSalesTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxableSalesTaxCodeRef;
 

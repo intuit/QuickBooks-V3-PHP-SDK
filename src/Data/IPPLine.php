@@ -61,7 +61,7 @@ class IPPLine
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Id
-	 * @var com\intuit\schema\finance\v3\IPPid
+	 * @var IPPid
 	 */
 	public $Id;
 	/**
@@ -147,7 +147,7 @@ class IPPLine
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName LinkedTxn
-	 * @var com\intuit\schema\finance\v3\IPPLinkedTxn
+	 * @var IPPLinkedTxn
 	 */
 	public $LinkedTxn;
 	/**
@@ -162,7 +162,7 @@ class IPPLine
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName DetailType
-	 * @var com\intuit\schema\finance\v3\IPPLineDetailTypeEnum
+	 * @var IPPLineDetailTypeEnum
 	 */
 	public $DetailType;
 	/**
@@ -174,7 +174,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName PaymentLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPPaymentLineDetail
+	 * @var IPPPaymentLineDetail
 	 */
 	public $PaymentLineDetail;
 	/**
@@ -186,7 +186,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName DiscountLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPDiscountLineDetail
+	 * @var IPPDiscountLineDetail
 	 */
 	public $DiscountLineDetail;
 	/**
@@ -198,7 +198,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName TaxLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPTaxLineDetail
+	 * @var IPPTaxLineDetail
 	 */
 	public $TaxLineDetail;
 	/**
@@ -210,7 +210,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName SalesItemLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPSalesItemLineDetail
+	 * @var IPPSalesItemLineDetail
 	 */
 	public $SalesItemLineDetail;
 	/**
@@ -222,7 +222,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName DescriptionLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPDescriptionLineDetail
+	 * @var IPPDescriptionLineDetail
 	 */
 	public $DescriptionLineDetail;
 	/**
@@ -234,7 +234,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName ItemBasedExpenseLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPItemBasedExpenseLineDetail
+	 * @var IPPItemBasedExpenseLineDetail
 	 */
 	public $ItemBasedExpenseLineDetail;
 	/**
@@ -246,7 +246,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName AccountBasedExpenseLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPAccountBasedExpenseLineDetail
+	 * @var IPPAccountBasedExpenseLineDetail
 	 */
 	public $AccountBasedExpenseLineDetail;
 	/**
@@ -258,7 +258,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName ReimburseLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPReimburseLineDetail
+	 * @var IPPReimburseLineDetail
 	 */
 	public $ReimburseLineDetail;
 	/**
@@ -270,7 +270,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName DepositLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPDepositLineDetail
+	 * @var IPPDepositLineDetail
 	 */
 	public $DepositLineDetail;
 	/**
@@ -282,7 +282,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName PurchaseOrderItemLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPPurchaseOrderItemLineDetail
+	 * @var IPPPurchaseOrderItemLineDetail
 	 */
 	public $PurchaseOrderItemLineDetail;
 	/**
@@ -294,7 +294,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName SalesOrderItemLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPSalesOrderItemLineDetail
+	 * @var IPPSalesOrderItemLineDetail
 	 */
 	public $SalesOrderItemLineDetail;
 	/**
@@ -306,7 +306,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName ItemReceiptLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPItemReceiptLineDetail
+	 * @var IPPItemReceiptLineDetail
 	 */
 	public $ItemReceiptLineDetail;
 	/**
@@ -318,7 +318,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName JournalEntryLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPJournalEntryLineDetail
+	 * @var IPPJournalEntryLineDetail
 	 */
 	public $JournalEntryLineDetail;
 	/**
@@ -330,7 +330,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName GroupLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPGroupLineDetail
+	 * @var IPPGroupLineDetail
 	 */
 	public $GroupLineDetail;
 	/**
@@ -342,7 +342,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName SubTotalLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPSubTotalLineDetail
+	 * @var IPPSubTotalLineDetail
 	 */
 	public $SubTotalLineDetail;
 	/**
@@ -354,7 +354,7 @@ class IPPLine
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlName TDSLineDetail
-	 * @var com\intuit\schema\finance\v3\IPPTDSLineDetail
+	 * @var IPPTDSLineDetail
 	 */
 	public $TDSLineDetail;
 	/**
@@ -368,7 +368,7 @@ class IPPLine
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName CustomField
-	 * @var com\intuit\schema\finance\v3\IPPCustomField
+	 * @var IPPCustomField
 	 */
 	public $CustomField;
 	/**
@@ -381,7 +381,7 @@ class IPPLine
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName LineEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $LineEx;
 

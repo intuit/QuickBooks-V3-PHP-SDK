@@ -40,7 +40,7 @@ class IPPRecurringTransaction
 	/**
 	 * @xmlType element
 	 * @xmlName IntuitObject
-	 * @var com\intuit\schema\finance\v3\IntuitObject
+	 * @var IntuitObject
 	 */
 	public $IntuitObject;
 

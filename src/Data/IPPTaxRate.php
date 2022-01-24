@@ -113,7 +113,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName AgencyRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $AgencyRef;
 	/**
@@ -126,7 +126,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxReturnLineRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $TaxReturnLineRef;
 	/**
@@ -140,7 +140,7 @@ class IPPTaxRate
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName EffectiveTaxRate
-	 * @var com\intuit\schema\finance\v3\IPPEffectiveTaxRate
+	 * @var IPPEffectiveTaxRate
 	 */
 	public $EffectiveTaxRate;
 	/**
@@ -158,7 +158,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName SpecialTaxType
-	 * @var com\intuit\schema\finance\v3\IPPSpecialTaxTypeEnum
+	 * @var IPPSpecialTaxTypeEnum
 	 */
 	public $SpecialTaxType;
 	/**
@@ -171,7 +171,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DisplayType
-	 * @var com\intuit\schema\finance\v3\IPPTaxRateDisplayTypeEnum
+	 * @var IPPTaxRateDisplayTypeEnum
 	 */
 	public $DisplayType;
 	/**
@@ -184,7 +184,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName TaxRateEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $TaxRateEx;
 	/**
@@ -196,7 +196,7 @@ class IPPTaxRate
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName OriginalTaxRate
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $OriginalTaxRate;
 

@@ -43,7 +43,7 @@ class IPPAttributes
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName Attribute
-	 * @var com\intuit\schema\finance\v3\IPPAttribute
+	 * @var IPPAttribute
 	 */
 	public $Attribute;
 

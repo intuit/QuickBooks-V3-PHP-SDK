@@ -84,7 +84,7 @@ class IPPRecurringInfo
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ScheduleInfo
-	 * @var com\intuit\schema\finance\v3\IPPRecurringScheduleInfo
+	 * @var IPPRecurringScheduleInfo
 	 */
 	public $ScheduleInfo;
 

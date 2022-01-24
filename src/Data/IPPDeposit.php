@@ -50,7 +50,7 @@ class IPPDeposit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DepositToAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DepositToAccountRef;
 	/**
@@ -58,7 +58,7 @@ class IPPDeposit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CashBack
-	 * @var com\intuit\schema\finance\v3\IPPCashBackInfo
+	 * @var IPPCashBackInfo
 	 */
 	public $CashBack;
 	/**
@@ -72,7 +72,7 @@ class IPPDeposit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName GlobalTaxCalculation
-	 * @var com\intuit\schema\finance\v3\IPPGlobalTaxCalculationEnum
+	 * @var IPPGlobalTaxCalculationEnum
 	 */
 	public $GlobalTaxCalculation;
 	/**
@@ -112,7 +112,7 @@ class IPPDeposit
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DepositEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $DepositEx;
 

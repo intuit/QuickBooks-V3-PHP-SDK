@@ -239,7 +239,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName PrimaryPhone
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $PrimaryPhone;
 	/**
@@ -252,7 +252,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName AlternatePhone
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $AlternatePhone;
 	/**
@@ -265,7 +265,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Mobile
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $Mobile;
 	/**
@@ -278,7 +278,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName Fax
-	 * @var com\intuit\schema\finance\v3\IPPTelephoneNumber
+	 * @var IPPTelephoneNumber
 	 */
 	public $Fax;
 	/**
@@ -291,7 +291,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName PrimaryEmailAddr
-	 * @var com\intuit\schema\finance\v3\IPPEmailAddress
+	 * @var IPPEmailAddress
 	 */
 	public $PrimaryEmailAddr;
 	/**
@@ -304,7 +304,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName WebAddr
-	 * @var com\intuit\schema\finance\v3\IPPWebSiteAddress
+	 * @var IPPWebSiteAddress
 	 */
 	public $WebAddr;
 	/**
@@ -317,7 +317,7 @@ class IPPNameBase
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName OtherContactInfo
-	 * @var com\intuit\schema\finance\v3\IPPContactInfo
+	 * @var IPPContactInfo
 	 */
 	public $OtherContactInfo;
 	/**
@@ -329,7 +329,7 @@ class IPPNameBase
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefaultTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $DefaultTaxCodeRef;
 

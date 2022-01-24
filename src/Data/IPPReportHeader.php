@@ -70,7 +70,7 @@ class IPPReportHeader
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ReportBasis
-	 * @var com\intuit\schema\finance\v3\IPPReportBasisEnum
+	 * @var IPPReportBasisEnum
 	 */
 	public $ReportBasis;
 	/**
@@ -170,7 +170,7 @@ class IPPReportHeader
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName Option
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
+	 * @var IPPNameValue
 	 */
 	public $Option;
 

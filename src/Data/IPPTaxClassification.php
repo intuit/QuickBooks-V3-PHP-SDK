@@ -81,7 +81,7 @@ class IPPTaxClassification
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName ParentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $ParentRef;
 	/**
@@ -90,7 +90,7 @@ class IPPTaxClassification
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName ApplicableTo
-	 * @var com\intuit\schema\finance\v3\IPPItemTypeEnum
+	 * @var IPPItemTypeEnum
 	 */
 	public $ApplicableTo;
 

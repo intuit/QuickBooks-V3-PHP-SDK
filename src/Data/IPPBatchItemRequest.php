@@ -67,7 +67,7 @@ class IPPBatchItemRequest
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
 	 * @xmlName CDCQuery
-	 * @var com\intuit\schema\finance\v3\IPPCDCQuery
+	 * @var IPPCDCQuery
 	 */
 	public $CDCQuery;
 	/**

@@ -49,7 +49,7 @@ class IPPCustomField
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName DefinitionId
-	 * @var com\intuit\schema\finance\v3\IPPid
+	 * @var IPPid
 	 */
 	public $DefinitionId;
 	/**
@@ -74,7 +74,7 @@ class IPPCustomField
 	 * @xmlMinOccurs 1
 	 * @xmlMaxOccurs 1
 	 * @xmlName Type
-	 * @var com\intuit\schema\finance\v3\IPPCustomFieldTypeEnum
+	 * @var IPPCustomFieldTypeEnum
 	 */
 	public $Type;
 	/**

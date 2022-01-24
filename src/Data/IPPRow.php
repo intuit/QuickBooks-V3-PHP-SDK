@@ -58,7 +58,7 @@ class IPPRow
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Header
-	 * @var com\intuit\schema\finance\v3\IPPHeader
+	 * @var IPPHeader
 	 */
 	public $Header;
 	/**
@@ -66,7 +66,7 @@ class IPPRow
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Rows
-	 * @var com\intuit\schema\finance\v3\IPPRows
+	 * @var IPPRows
 	 */
 	public $Rows;
 	/**
@@ -74,7 +74,7 @@ class IPPRow
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName Summary
-	 * @var com\intuit\schema\finance\v3\IPPSummary
+	 * @var IPPSummary
 	 */
 	public $Summary;
 	/**
@@ -82,7 +82,7 @@ class IPPRow
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName ColData
-	 * @var com\intuit\schema\finance\v3\IPPColData
+	 * @var IPPColData
 	 */
 	public $ColData;
 	/**

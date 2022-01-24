@@ -43,7 +43,7 @@ class IPPIntuitBatchRequest
 	 * @xmlMinOccurs 1
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName BatchItemRequest
-	 * @var com\intuit\schema\finance\v3\IPPBatchItemRequest
+	 * @var IPPBatchItemRequest
 	 */
 	public $BatchItemRequest;
 

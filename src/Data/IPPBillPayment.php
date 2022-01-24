@@ -51,7 +51,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $VendorRef;
 	/**
@@ -63,7 +63,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName VendorAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 * @var IPPPhysicalAddress
 	 */
 	public $VendorAddr;
 	/**
@@ -80,7 +80,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName APAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @var IPPReferenceType
 	 */
 	public $APAccountRef;
 	/**
@@ -91,7 +91,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName PayType
-	 * @var com\intuit\schema\finance\v3\IPPBillPaymentTypeEnum
+	 * @var IPPBillPaymentTypeEnum
 	 */
 	public $PayType;
 	/**
@@ -99,7 +99,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CheckPayment
-	 * @var com\intuit\schema\finance\v3\IPPBillPaymentCheck
+	 * @var IPPBillPaymentCheck
 	 */
 	public $CheckPayment;
 	/**
@@ -107,7 +107,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName CreditCardPayment
-	 * @var com\intuit\schema\finance\v3\IPPBillPaymentCreditCard
+	 * @var IPPBillPaymentCreditCard
 	 */
 	public $CreditCardPayment;
 	/**
@@ -134,7 +134,7 @@ class IPPBillPayment
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlName BillPaymentEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
+	 * @var IPPIntuitAnyType
 	 */
 	public $BillPaymentEx;
 
