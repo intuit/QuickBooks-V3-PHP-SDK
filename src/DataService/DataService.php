@@ -994,7 +994,7 @@ class DataService
      * @param int $startPosition Starting page number
      * @param int $maxResults Page size
      * @param string $includes A list of additional fields requested in the entities response
-     * @return array Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
+     * @return array|null Returns an array of entities fulfilling the query. If the response is Empty, it will return NULL
      */
     public function Query($query, $startPosition = null, $maxResults = null, $includes = null)
     {
