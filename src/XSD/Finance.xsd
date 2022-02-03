@@ -214,6 +214,7 @@
 			<xs:enumeration value="SalesOrderItemLineDetail" />
 			<xs:enumeration value="TDSLineDetail" />
 			<xs:enumeration value="ReimburseLineDetail" />
+			<xs:enumeration value="ItemAdjustmentLineDetail" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="AccountTypeEnum">
@@ -6404,6 +6405,15 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+				<xs:element name="ItemAdjustmentLineDetail" type="ItemAdjustmentLineDetail">
+					<xs:annotation>
+						<xs:documentation>
+							Product: QBO
+							Description: Item adjustment line type for the
+							transaction.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 			<xs:element name="CustomField" type="CustomField"
 						minOccurs="0" maxOccurs="unbounded">
@@ -7017,6 +7027,21 @@
 							<xs:documentation>
 								Product: QBO
 								Description: Indicates the discount amount that is applied on this line.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DeferredRevenue" type="xs:boolean"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Use the DeferredRevenue property to indicate that the goods/services sold 
+								have not yet been delivered to the customer, and therefore not appropriate for the 
+								accounting engine to book as Revenue for accounting. The most typical example would be 
+								inventory items that have not yet been shipped. The accounting engine will credit a 
+								liability account instead of revenue account. Later a follow on transaction must be 
+								entered when the sale is fulfilled, and then the accounting engine will debit the 
+								liability account and credit the revenue account.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -9728,6 +9753,115 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="ItemAdjustmentLineDetail">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Contains the line details of an inventory adjustment transaction.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ItemRef" type="ReferenceType"
+			            minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Reference to an inventory item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SalesPrice" type="xs:decimal"
+						minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Specifies the Sales Price (per item) for which the items being disbursed were sold.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="1" maxOccurs="1">
+				<xs:element name="QtyDiff" type="xs:decimal"
+				            minOccurs="0">
+					<xs:annotation>
+					    <xs:documentation>
+							Product: QBO
+							Description: Difference in quantity
+							it will have negative value for reducing quantity
+							positive value for increasing quantity.
+					    </xs:documentation>
+				    </xs:annotation>
+			    </xs:element>
+				<xs:element name="NewQty" type="xs:decimal"
+				            minOccurs="0">
+					<xs:annotation>
+					    <xs:documentation>
+							Product: QBO
+							Description: New quantity as of provided
+							transaction date.
+					    </xs:documentation>
+				    </xs:annotation>
+			    </xs:element>
+			</xs:choice>
+			<xs:element name="ClassRef" type="ReferenceType"
+						minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Class Reference
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InventoryAdjustment">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: The Inventory Adjustment request element
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Transaction">
+				<xs:sequence>
+					<xs:element name="ShippingAdjustment" type="xs:boolean"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: When this property is set to true, the "Inventory Adjustment" is treated 
+								as a notice-of-shipment or packing slip. This will cause the accounting engine to book 
+								the revenue from the sale of the items. When this property is set, the SalesPrice property 
+								must be provided. In order for correct accounting to occur SalesPrice (per item) amount 
+								must match the sales amount on the sales transaction - but no validation of this occurs 
+								within the accounting engine.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AdjustAccountRef" type="ReferenceType"
+					            minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Reference to the
+								Inventory Adjustment account used to adjust inventory.
+								This is an expense or opening balance equity account.
+								The inventory asset account is used from item's definition.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomerRef" type="ReferenceType"
+						        minOccurs="0" maxOccurs="1">
+				       <xs:annotation>
+					       <xs:documentation>
+							   Product: QBO
+							   Description: Customer Reference
+					       </xs:documentation>
+				       </xs:annotation>
+			        </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="Item">
 		<xs:annotation>
 			<xs:documentation>
@@ -11806,6 +11940,13 @@
 								[b]QuickBooks Notes[/b][br /]
 								[i]Unsupported
 								field.[/i]
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CostRate" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Hourly cost rate of the employee or vendor for this
+								time activity.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
