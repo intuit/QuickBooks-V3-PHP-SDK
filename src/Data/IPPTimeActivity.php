@@ -191,6 +191,17 @@ class IPPTimeActivity
 	 */
 	public $HourlyRate;
 	/**
+	 * @Definition Hourly cost rate of the employee or vendor for this
+								time activity.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CostRate
+	 * @var float
+	 */
+	public $CostRate;
+	/**
 	 * @Definition Hours worked.
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

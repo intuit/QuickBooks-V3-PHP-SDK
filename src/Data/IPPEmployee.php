@@ -170,6 +170,16 @@ class IPPEmployee
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $EmployeeEx;
+	/**
+	 * @Definition Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CostRate
+	 * @var float
+	 */
+	public $CostRate;
 
 
 } // end class IPPEmployee

@@ -468,6 +468,16 @@ class IPPVendor
 	 * @var string
 	 */
 	public $Source;
+	/**
+	 * @Definition Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CostRate
+	 * @var float
+	 */
+	public $CostRate;
 
 
 } // end class IPPVendor
