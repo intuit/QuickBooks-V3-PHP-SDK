@@ -144,6 +144,20 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -paypal or
+								venmo) to pay the Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlinePayPalPayment
+	 * @var boolean
+	 */
+	public $AllowOnlinePayPalPayment;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
 							

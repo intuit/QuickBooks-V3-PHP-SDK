@@ -110,6 +110,31 @@ class IPPProductAndServicesPrefs
 	 * @var com\intuit\schema\finance\v3\IPPUOMFeatureTypeEnum
 	 */
 	public $UOM;
+	/**
+	 * @Definition 
+						Product:QBO
+						Description: Indicates if revenue recognition is enabled for the company. True if enabled, false otherwise.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RevenueRecognition
+	 * @var boolean
+	 */
+	public $RevenueRecognition;
+	/**
+	 * @Definition 
+						Product:QBO
+						Description: RevenueRecognitionFrequency describes how frequently revenue is recognised.
+						Possible values are Daily, Weekly, Monthly.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RevenueRecognitionFrequency
+	 * @var string
+	 */
+	public $RevenueRecognitionFrequency;
 
 
 } // end class IPPProductAndServicesPrefs
