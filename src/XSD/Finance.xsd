@@ -800,6 +800,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="DeferredRevenue">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Deferred Revenue for payments on services you haven’t provided yet.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="Healthcare">
 				<xs:annotation>
 					<xs:documentation>
@@ -5715,6 +5723,17 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="AllowOnlinePayPalPayment" type="xs:boolean"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -paypal or
+								venmo) to pay the Invoice
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="EInvoiceStatus" type="ETransactionStatusEnum"
 								minOccurs="0">
 						<xs:annotation>
@@ -10498,6 +10517,16 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="DeferredRevenue" type="xs:boolean" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Use the DeferredRevenue property to indicate that the goods/services sold
+								have not yet been delivered to the customer, and therefore not appropriate for the
+								accounting engine to book as Revenue for accounting.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -12792,6 +12821,24 @@
 				<xs:annotation>
 					<xs:documentation>Product:QBW. Possible values are
 						Disabled,SinglePerItem and MultiplePerItem</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevenueRecognition" type="xs:boolean"
+						minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product:QBO
+						Description: Indicates if revenue recognition is enabled for the company. True if enabled, false otherwise.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevenueRecognitionFrequency" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product:QBO
+						Description: RevenueRecognitionFrequency describes how frequently revenue is recognised.
+						Possible values are Daily, Weekly, Monthly.
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
