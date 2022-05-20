@@ -13,10 +13,10 @@ class IntuitResponseStatus
     /**
      * Entity has been made void.
      */
-    const Voided = 1;
+    const VOIDED = 1;
 
     /**
      * Entity has been deleted.
      */
-    const Deleted = 2;
+    const DELETED = 2;
 }

@@ -19,7 +19,7 @@ class UtilityConstants
     /**
      * batch response has exception.
      */
-    const Exception = 3;
+    const EXCEPTION = 3;
     /**
      * XPath for errcode tag.
      * @var string ERRCODEXPATH
