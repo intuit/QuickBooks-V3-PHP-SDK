@@ -247,6 +247,20 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $InvoiceLink;
+	
+	
+    /**
+     * @Definition
+    Product: QBO
+    Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+
+     * @xmlType element
+     * @xmlNamespace http://schema.intuit.com/finance/v3
+     * @xmlMinOccurs 0
+     * @xmlName GratuityEnabled
+     * @var boolean
+     */
+    public $GratuityEnabled;
 
 
 } // end class IPPInvoice
