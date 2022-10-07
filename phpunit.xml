@@ -7,12 +7,9 @@
         </testsuite>
     </testsuites>
     <logging>
-
+        <log/>
       </logging>
       <filter>
-        <blacklist>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
             <exclude>

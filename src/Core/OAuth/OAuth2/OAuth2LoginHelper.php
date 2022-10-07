@@ -215,7 +215,7 @@ class OAuth2LoginHelper
            'state' => $this->getState()
        );
        $authorizationRequestUrl = CoreConstants::OAUTH2_AUTHORIZATION_REQUEST_URL;
-       $authorizationRequestUrl .= '?' . http_build_query($parameters, null, '&', PHP_QUERY_RFC1738);
+       $authorizationRequestUrl .= '?' . http_build_query($parameters, "", '&', PHP_QUERY_RFC1738);
        return $authorizationRequestUrl;
     }
 
