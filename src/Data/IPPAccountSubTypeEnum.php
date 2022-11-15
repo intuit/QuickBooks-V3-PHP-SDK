@@ -8,7 +8,7 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPAccountSubTypeEnum
  * @xmlDefinition 
 						Product: QBO
-						Description: Use Tax Roundoff Gain or Loss to track gains or losses that occur as a result of Tax filing roundoff.
+						Description: Use Other Debtors to group Accounts Receivable other than those from customers.
 					
  * @xmlb Share Application Money Pending Allotment
  */
