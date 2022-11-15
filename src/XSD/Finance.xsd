@@ -2928,6 +2928,14 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="OtherDebtors">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Other Debtors to group Accounts Receivable other than those from customers.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="APCreditCardOperationEnum">
@@ -5754,6 +5762,35 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="CfdiUse" type="xs:int"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Exportation" type="xs:string"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GlobalInfo" type="MXGlobalInfo"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="invoiceStatus" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
@@ -5894,6 +5931,43 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+
+	<xs:complexType name="MXGlobalInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
+				Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation, Periodicity, and Year.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Periodicity" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Month" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Month of global invoice data which is required by CFDI4.0 in Mexico. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Year" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Year of global invoice data which is required by CFDI4.0 in Mexico. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType name="ConvenienceFeeDetail">
 		<xs:annotation>
 			<xs:documentation>
