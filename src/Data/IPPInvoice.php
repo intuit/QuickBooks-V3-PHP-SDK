@@ -184,6 +184,44 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CfdiUse
+	 * @var integer
+	 */
+	public $CfdiUse;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Exportation
+	 * @var string
+	 */
+	public $Exportation;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GlobalInfo
+	 * @var com\intuit\schema\finance\v3\IPPMXGlobalInfo
+	 */
+	public $GlobalInfo;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: provides invoice statuses :
 								MULTIPLE_ERRORS, DEPOSIT_ON_HOLD, DISPUTED, DEPOSIT_FAILED, PAYMENT_FAILED,
 								OVERDUE_VIEWED, OVERDUE_NOT_SENT, OVERDUE_SENT,
