@@ -211,7 +211,7 @@ class SyncRestHandler extends RestHandler
         } else {
              throw new SdkException("IPP or other Call is not supported in OAuth2 Mode.");
         }
-
+        $httpHeaders['accept'] = 'application/json';
         $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
         $faultHandler = $intuitResponse->getFaultHandler();
         $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
@@ -228,6 +228,7 @@ class SyncRestHandler extends RestHandler
         }else{
             $this->faultHandler = false;
         }
+
         return array($intuitResponse->getStatusCode(),$intuitResponse->getBody());
     }
 

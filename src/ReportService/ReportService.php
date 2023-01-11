@@ -1311,7 +1311,8 @@ class ReportService
             return null;
         } else {
             $this->lastError = false;
-            $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            // $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            $parsedResponseBody = json_decode($responseBody);
             return ($parsedResponseBody);
         }
     }

@@ -802,13 +802,13 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -948,7 +948,7 @@ class DataService
             return $responseBody;
         } else {
             $this->lastError = false;
-            
+
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $dir, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
@@ -1008,7 +1008,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }
@@ -1024,12 +1024,13 @@ class DataService
             $this->lastError = false;
             $parsedResponseBody = null;
             try {
-                $responseXmlObj = simplexml_load_string($responseBody);
-                if ($responseXmlObj && $responseXmlObj->QueryResponse) {
-                    $tmpXML = $responseXmlObj->QueryResponse->asXML();
-                    $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
-                    $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
-                }
+                $parsedResponseBody = json_decode($responseBody);
+                // $responseXmlObj = simplexml_load_string($responseBody);
+                // if ($responseXmlObj && $responseXmlObj->QueryResponse) {
+                //     $tmpXML = $responseXmlObj->QueryResponse->asXML();
+                //     $parsedResponseBody = $this->responseSerializer->Deserialize($tmpXML, false);
+                //     $this->serviceContext->IppConfiguration->Logger->CustomLogger->Log(TraceLevel::Info, $parsedResponseBody);
+                // }
 
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
@@ -1102,6 +1103,7 @@ class DataService
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
         list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, $httpsPostBody, null, $this->isThrownExceptionOnError());
+        // dd($responseCode , $responseBody);
         $faultHandler = $restRequestHandler->getFaultHandler();
         if ($faultHandler) {
             $this->lastError = $faultHandler;
@@ -1110,10 +1112,12 @@ class DataService
             $this->lastError = false;
             $parsedResponseBody = null;
             try {
-                $responseXmlObj = simplexml_load_string($responseBody);
-                if ($responseXmlObj && $responseXmlObj->QueryResponse) {
-                    $parsedResponseBody = $this->responseSerializer->Deserialize($responseXmlObj->QueryResponse->asXML(), false);
-                }
+                $parsedResponseBody = json_decode($responseBody);
+                // $responseXmlObj = simplexml_load_string($responseBody);
+                // dd($responseXmlObj);
+                // if ($responseXmlObj && $responseXmlObj->QueryResponse) {
+                //     $parsedResponseBody = $this->responseSerializer->Deserialize($responseXmlObj->QueryResponse->asXML(), false);
+                // }
             } catch (\Exception $e) {
                 throw new \Exception("Exception appears in converting Response to XML.");
             }
@@ -1908,7 +1912,8 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
-            $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            // $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            $parsedResponseBody = json_decode($responseBody);
             return $parsedResponseBody;
         }
     }
@@ -1935,7 +1940,8 @@ class DataService
             return null;
         } else {
             $this->lastError = false;
-            $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            // $parsedResponseBody = $this->getResponseSerializer()->Deserialize($responseBody, true);
+            $parsedResponseBody = json_decode($responseBody);
             return $parsedResponseBody;
         }
     }
