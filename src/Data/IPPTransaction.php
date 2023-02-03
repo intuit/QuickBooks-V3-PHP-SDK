@@ -350,6 +350,20 @@ class IPPTransaction
 	 * @var com\intuit\schema\finance\v3\IPPRecurringInfo
 	 */
 	public $RecurringInfo;
+	/**
+	 * @Definition 
+								Product: ALL
+								Description: Project identifier
+								References to the project this transaction
+								is associated with
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ProjectRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ProjectRef;
 
 
 } // end class IPPTransaction

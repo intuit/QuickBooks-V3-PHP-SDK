@@ -2936,6 +2936,70 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="RentARoomReliefRentsReceived">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Rent a room relief - Rents Received for rents receivable for UK landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UkTaxesWithheld">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use UK Taxes withheld for tax withheld from non-resident landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ForeignTaxesIncurred">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Foreign Tax paid for foreign taxes for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PremiumsReceived">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Premiums Received for premiums for the Grant of a lease for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PremiumsPaid">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Premiums Paid for reverse premiums and inducements for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FinanceCostsRestricted">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Finance Costs Restricted for residential property interest charged on finance for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CarriedForwardRelief">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Carried Forward Relief for carried forward residential property interest charged on finance for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RentARoomReliefReliefClaimed">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Use Rent a room relief - Relief Claimed for relief claimed for rented room for landlords
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="APCreditCardOperationEnum">
@@ -4954,6 +5018,17 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="ProjectRef" type="ReferenceType"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Project identifier
+								References to the project this transaction
+								is associated with
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -6524,6 +6599,16 @@
 						Product: ALL
 						Description: Internal use only:
 						extension place holder for LineBase
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProjectRef" type="ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: ALL
+						Description: Project identifier
+						References to the project this line
+						is associated with
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -12019,6 +12104,17 @@
 								In order for the Time Activity data to be transferred
 								to the employee payroll data, the Employee must have the
 								property UseTimeEntry set.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ProjectRef" type="ReferenceType"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+                                Product: ALL
+                                Description: Project identifier
+                                References to the project this line
+                                is associated with
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

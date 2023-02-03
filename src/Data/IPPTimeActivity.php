@@ -157,6 +157,20 @@ class IPPTimeActivity
 	 */
 	public $PayrollItemRef;
 	/**
+	 * @Definition 
+                                Product: ALL
+                                Description: Project identifier
+                                References to the project this line
+                                is associated with
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ProjectRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ProjectRef;
+	/**
 	 * @Definition Billable status of the time recorded
 							
 	 * @xmlType element
