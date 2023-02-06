@@ -8,7 +8,7 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPAccountSubTypeEnum
  * @xmlDefinition 
 						Product: QBO
-						Description: Use Other Debtors to group Accounts Receivable other than those from customers.
+						Description: Use Rent a room relief - Relief Claimed for relief claimed for rented room for landlords
 					
  * @xmlb Share Application Money Pending Allotment
  */
