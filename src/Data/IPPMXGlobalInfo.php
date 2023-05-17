@@ -4,13 +4,15 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType 
- * @xmlName IPPRecurringInfo
- * @var IPPRecurringInfo
+ * @xmlName IPPMXGlobalInfo
+ * @var IPPMXGlobalInfo
  * @xmlDefinition 
-				Description: Describes the Recurring Schedules for Transactions
+				Product: QBO
+				Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
+				Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation, Periodicity, and Year.
 			
  */
-class IPPRecurringInfo
+class IPPMXGlobalInfo
 	{
 
 		/**                                                                       
@@ -26,7 +28,7 @@ class IPPRecurringInfo
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPRecurringInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRecurringInfo',$initPropName))
+				if (property_exists('IPPMXGlobalInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPMXGlobalInfo',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -42,51 +44,39 @@ class IPPRecurringInfo
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: The name of the Recurring Schedule Template.
+						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico. 
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName Name
+	 * @xmlName Periodicity
 	 * @var string
 	 */
-	public $Name;
+	public $Periodicity;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
+						Description: Month of global invoice data which is required by CFDI4.0 in Mexico. 
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName RecurType
+	 * @xmlName Month
 	 * @var string
 	 */
-	public $RecurType;
+	public $Month;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Indicates whether the Recurring Schedule is enabled.
+						Description: Year of global invoice data which is required by CFDI4.0 in Mexico. 
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName Active
-	 * @var boolean
+	 * @xmlName Year
+	 * @var string
 	 */
-	public $Active;
-	/**
-	 * @Definition 
-						Product: QBO
-						Description: The Scheduling Information.
-					
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ScheduleInfo
-	 * @var com\intuit\schema\finance\v3\IPPRecurringScheduleInfo
-	 */
-	public $ScheduleInfo;
+	public $Year;
 
 
-} // end class IPPRecurringInfo
+} // end class IPPMXGlobalInfo

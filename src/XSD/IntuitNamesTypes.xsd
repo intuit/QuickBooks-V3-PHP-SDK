@@ -102,6 +102,17 @@
 			<xs:enumeration value="Error"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="SourceTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Enumeration of external sources that create the entites in QBO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="QBCommerce" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!--Start complex type definitions -->
 	<xs:complexType name="NameBase">
@@ -700,6 +711,24 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Source" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Originating source of
+								the Customer. Valid values are defined in SourceTypeEnum
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxRegime" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Tax regime of a customer which is required by CFDI4.0 in Mexico.
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of TaxRegime.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1013,6 +1042,21 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Source" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Originating source of
+								the Vendor. Valid values are defined in SourceTypeEnum
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CostRate" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1153,6 +1197,12 @@
 					<xs:element name="EmployeeEx" type="IntuitAnyType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for Employee.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CostRate" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>

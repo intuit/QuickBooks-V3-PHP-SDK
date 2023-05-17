@@ -359,6 +359,18 @@ class IPPLine
 	public $TDSLineDetail;
 	/**
 	 * @Definition 
+							Product: QBO
+							Description: Item adjustment line type for the
+							transaction.
+						
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlName ItemAdjustmentLineDetail
+	 * @var com\intuit\schema\finance\v3\IPPItemAdjustmentLineDetail
+	 */
+	public $ItemAdjustmentLineDetail;
+	/**
+	 * @Definition 
 						Product: QBW
 						Description: Custom field (or data
 						extension). Supported only for QuickBooks Windows desktop.
@@ -384,6 +396,20 @@ class IPPLine
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $LineEx;
+	/**
+	 * @Definition 
+						Product: ALL
+						Description: Project identifier
+						References to the project this line
+						is associated with
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ProjectRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $ProjectRef;
 
 
 } // end class IPPLine

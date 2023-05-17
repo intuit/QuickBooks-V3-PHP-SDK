@@ -4,13 +4,14 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType 
- * @xmlName IPPRecurringInfo
- * @var IPPRecurringInfo
+ * @xmlName IPPItemAdjustmentLineDetail
+ * @var IPPItemAdjustmentLineDetail
  * @xmlDefinition 
-				Description: Describes the Recurring Schedules for Transactions
+				Product: QBO
+				Description: Contains the line details of an inventory adjustment transaction.
 			
  */
-class IPPRecurringInfo
+class IPPItemAdjustmentLineDetail
 	{
 
 		/**                                                                       
@@ -26,7 +27,7 @@ class IPPRecurringInfo
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPRecurringInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRecurringInfo',$initPropName))
+				if (property_exists('IPPItemAdjustmentLineDetail',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPItemAdjustmentLineDetail',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -42,51 +43,68 @@ class IPPRecurringInfo
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: The name of the Recurring Schedule Template.
+						Description: Reference to an inventory item.
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Name
-	 * @var string
+	 * @xmlMinOccurs 1
+	 * @xmlMaxOccurs 1
+	 * @xmlName ItemRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
-	public $Name;
+	public $ItemRef;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: The Recur Type which can be Automated, Reminded, UnScheduled or Manual.
+						Description: Specifies the Sales Price (per item) for which the items being disbursed were sold.
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName RecurType
-	 * @var string
+	 * @xmlName SalesPrice
+	 * @var float
 	 */
-	public $RecurType;
+	public $SalesPrice;
+	/**
+	 * @Definition 
+							Product: QBO
+							Description: Difference in quantity
+							it will have negative value for reducing quantity
+							positive value for increasing quantity.
+					    
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName QtyDiff
+	 * @var float
+	 */
+	public $QtyDiff;
+	/**
+	 * @Definition 
+							Product: QBO
+							Description: New quantity as of provided
+							transaction date.
+					    
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName NewQty
+	 * @var float
+	 */
+	public $NewQty;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Indicates whether the Recurring Schedule is enabled.
+						Description: Class Reference
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName Active
-	 * @var boolean
+	 * @xmlMaxOccurs 1
+	 * @xmlName ClassRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
-	public $Active;
-	/**
-	 * @Definition 
-						Product: QBO
-						Description: The Scheduling Information.
-					
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ScheduleInfo
-	 * @var com\intuit\schema\finance\v3\IPPRecurringScheduleInfo
-	 */
-	public $ScheduleInfo;
+	public $ClassRef;
 
 
-} // end class IPPRecurringInfo
+} // end class IPPItemAdjustmentLineDetail

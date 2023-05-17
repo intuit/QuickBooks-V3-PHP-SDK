@@ -144,6 +144,20 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -paypal or
+								venmo) to pay the Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlinePayPalPayment
+	 * @var boolean
+	 */
+	public $AllowOnlinePayPalPayment;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
 							
@@ -167,6 +181,44 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $ECloudStatusTimeStamp;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CfdiUse
+	 * @var integer
+	 */
+	public $CfdiUse;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Exportation
+	 * @var string
+	 */
+	public $Exportation;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GlobalInfo
+	 * @var com\intuit\schema\finance\v3\IPPMXGlobalInfo
+	 */
+	public $GlobalInfo;
 	/**
 	 * @Definition 
 								Product: QBO
@@ -295,6 +347,78 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $InvoiceLinkExpiryDate;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Indicates whether the Recurring Invoice eligible for auto payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AutoPayEligible
+	 * @var boolean
+	 */
+	public $AutoPayEligible;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Indicates whether the Non-Recurring Invoice eligible for scheduled payment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SchedulePayEligible
+	 * @var boolean
+	 */
+	public $SchedulePayEligible;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Unique identifier for scheduled payment for invoice. Used to indicate if invoice has scheduled payment or not.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ScheduledPaymentId
+	 * @var string
+	 */
+	public $ScheduledPaymentId;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GratuityEnabled
+	 * @var boolean
+	 */
+	public $GratuityEnabled;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Indicates invoice financing type.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName FinancingProductType
+	 * @var com\intuit\schema\finance\v3\IPPFinancingProductTypeEnum
+	 */
+	public $FinancingProductType;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Subscription payment setting for a Recurring Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SubscriptionPaymentsSetting
+	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
+	 */
+	public $SubscriptionPaymentsSetting;
 
 
 } // end class IPPInvoice

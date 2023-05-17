@@ -1,6 +1,6 @@
 # Payments SDK is now available at: https://github.com/intuit/PHP-Payments-SDK #
 
-[![SDK Banner](views/SDK.png)][ss1]
+[![Rate your SDK](views/RateSDK.png)][ss1][![Yes](views/Thumbup.png)][ss2][![No](views/Thumbdown.png)][ss3]
 
 # QuickBooks API PHP SDK
 
@@ -20,5 +20,6 @@ Create, Update, Read, and Delete Examples: https://github.com/IntuitDeveloper/Sa
 **Latest Stable Version:** [![Latest Stable Version](https://poser.pugx.org/quickbooks/v3-php-sdk/v/stable)](https://packagist.org/packages/quickbooks/v3-php-sdk)<br/>
 **License:** [![License](https://poser.pugx.org/quickbooks/v3-php-sdk/license)](https://packagist.org/packages/quickbooks/v3-php-sdk)
 
-
-[ss1]: https://help.developer.intuit.com/s/SDKFeedback?cid=1105
+[ss1]: #
+[ss2]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=Yes&checkpoint=PhpSDK&pageUrl=github
+[ss3]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=No&checkpoint=PhpSDK&pageUrl=github

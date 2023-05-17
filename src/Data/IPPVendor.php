@@ -455,6 +455,29 @@ class IPPVendor
 	 * @var com\intuit\schema\finance\v3\IPPVendorBankAccountDetail
 	 */
 	public $VendorPaymentBankDetail;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Originating source of
+								the Vendor. Valid values are defined in SourceTypeEnum
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Source
+	 * @var string
+	 */
+	public $Source;
+	/**
+	 * @Definition Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CostRate
+	 * @var float
+	 */
+	public $CostRate;
 
 
 } // end class IPPVendor

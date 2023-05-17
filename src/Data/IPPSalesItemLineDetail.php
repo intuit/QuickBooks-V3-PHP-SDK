@@ -93,6 +93,24 @@ class IPPSalesItemLineDetail
 	public $DiscountAmt;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: Use the DeferredRevenue property to indicate that the goods/services sold 
+								have not yet been delivered to the customer, and therefore not appropriate for the 
+								accounting engine to book as Revenue for accounting. The most typical example would be 
+								inventory items that have not yet been shipped. The accounting engine will credit a 
+								liability account instead of revenue account. Later a follow on transaction must be 
+								entered when the sale is fulfilled, and then the accounting engine will debit the 
+								liability account and credit the revenue account.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName DeferredRevenue
+	 * @var boolean
+	 */
+	public $DeferredRevenue;
+	/**
+	 * @Definition 
 								Product: ALL
 								Description: Internal use only:
 								extension place holder for SalesItemDetail

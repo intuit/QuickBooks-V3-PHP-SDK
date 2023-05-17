@@ -215,7 +215,7 @@ class OAuth2LoginHelper
            'state' => $this->getState()
        );
        $authorizationRequestUrl = CoreConstants::OAUTH2_AUTHORIZATION_REQUEST_URL;
-       $authorizationRequestUrl .= '?' . http_build_query($parameters, null, '&', PHP_QUERY_RFC1738);
+       $authorizationRequestUrl .= '?' . http_build_query($parameters, "", '&', PHP_QUERY_RFC1738);
        return $authorizationRequestUrl;
     }
 
@@ -228,11 +228,12 @@ class OAuth2LoginHelper
      *
      * @param String $new_log_location     The directory path for storing request and response log
      *
+     * @return $this
      */
     public function setLogForOAuthCalls($enableLogs, $debugMode, $new_log_location = null)
     {
         if ($enableLogs) {
-          $this->RequestLogging = new LogRequestsToDisk($enableLogs, $new_log_location);
+          $this->RequestLogging = new LogRequestsToDisk(true, $new_log_location);
           $this->debugMode = $debugMode;
         }
     }

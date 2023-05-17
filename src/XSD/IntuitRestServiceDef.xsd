@@ -56,6 +56,7 @@
     <xs:element name="Department" type="Department" substitutionGroup="IntuitObject"/>
     <xs:element name="Bill" type="Bill" substitutionGroup="IntuitObject"/>
     <xs:element name="Attachable" type="Attachable" substitutionGroup="IntuitObject"/>
+    <xs:element name="InventoryAdjustment" type="InventoryAdjustment" substitutionGroup="IntuitObject"/>
     <xs:element name="BooleanTypeCustomFieldDefinition" type="BooleanTypeCustomFieldDefinition"
         substitutionGroup="IntuitObject"/>
     <xs:element name="CustomFieldDefinition" type="CustomFieldDefinition"

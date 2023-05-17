@@ -4,7 +4,8 @@
     * to contain all DataServiceTest Unit Tests
     */
 
-    use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
+use PHPUnit\Framework\TestCase;
+use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
     use QuickBooksOnline\API\Core\Http\Serialization\SerializationFormat;
     use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
     use QuickBooksOnline\API\Data\IPPPayment;
@@ -44,7 +45,7 @@
     * This is a test class for DataServiceTest and is intended
     * to contain all DataServiceTest Unit Tests
     */
-    class DataServiceQboTest extends \PHPUnit_Framework_TestCase
+    class DataServiceQboTest extends TestCase
     {
 
     /**
@@ -66,21 +67,21 @@
         {
             $i = new DataServiceMock($this->getFakeContext(SerializationFormat::Xml,SerializationFormat::Xml));
 
-            $this->assertTrue($i->getResponseSerializer() instanceof XmlObjectSerializer);
-            $this->assertTrue($i->getRequestSerializer() instanceof XmlObjectSerializer);
+            static::assertTrue($i->getResponseSerializer() instanceof XmlObjectSerializer);
+            static::assertTrue($i->getRequestSerializer() instanceof XmlObjectSerializer);
         }
 
         public function testSerializerSetup_JSON()
         {
             $i = new DataServiceMock($this->getFakeContext(SerializationFormat::Json,SerializationFormat::Json));
-            $this->assertTrue($i->getResponseSerializer() instanceof JsonObjectSerializer);
-            $this->assertTrue($i->getRequestSerializer() instanceof JsonObjectSerializer);
+            static::assertTrue($i->getResponseSerializer() instanceof JsonObjectSerializer);
+            static::assertTrue($i->getRequestSerializer() instanceof JsonObjectSerializer);
         }
 
         public function testMinorVersion()
         {
             $i = new DataServiceMock($this->getFakeContext(SerializationFormat::Xml,SerializationFormat::Xml));
-            $this->assertEquals("123", $i->getMinorVersion());
+            static::assertEquals("123", $i->getMinorVersion());
         }
 
 
@@ -138,13 +139,13 @@
         public function testVerifyChangedSince()
         {
             $i = new DataServiceMock($this->getFakeContext(SerializationFormat::Json,SerializationFormat::Json));
-            $this->assertEquals(123123, $i->verifyChangedSince(123123));
-            $this->assertEquals("123123", $i->verifyChangedSince("123123"));
-            $this->assertEquals("123123", $i->verifyChangedSince("    123123"));
-            $this->assertEquals("123123", $i->verifyChangedSince("    123123    "));
-            $this->assertEquals("123123", $i->verifyChangedSince("\t123123\r\n"));
-            $this->assertEquals("1076620761", $i->verifyChangedSince("2004-02-12T15:19:21+00:00"));
-            $this->assertEquals("977436067", $i->verifyChangedSince("Thu, 21 Dec 2000 16:01:07 +0200"));
+            static::assertEquals(123123, $i->verifyChangedSince(123123));
+            static::assertEquals("123123", $i->verifyChangedSince("123123"));
+            static::assertEquals("123123", $i->verifyChangedSince("    123123"));
+            static::assertEquals("123123", $i->verifyChangedSince("    123123    "));
+            static::assertEquals("123123", $i->verifyChangedSince("\t123123\r\n"));
+            static::assertEquals("1076620761", $i->verifyChangedSince("2004-02-12T15:19:21+00:00"));
+            static::assertEquals("977436067", $i->verifyChangedSince("Thu, 21 Dec 2000 16:01:07 +0200"));
         }
 
         //  /**
@@ -155,30 +156,30 @@
             $i = new DataServiceMock($this->getFakeContext(SerializationFormat::Json,SerializationFormat::Json));
             try {
                 $i->verifyChangedSince("1.1");
-                $this->fail("SDK expected to fail for value 0xFF");
+                static::fail("SDK expected to fail for value 0xFF");
             } catch (SdkException $ex) {
-                $this->assertTrue($ex instanceof SdkException);
+                static::assertTrue($ex instanceof SdkException);
             }
 
             try {
                 $i->verifyChangedSince("0xFF");
-                $this->fail("SDK expected to fail for value 0xFF");
+                static::fail("SDK expected to fail for value 0xFF");
             } catch (SdkException $ex) {
-                $this->assertTrue($ex instanceof SdkException);
+                static::assertTrue($ex instanceof SdkException);
             }
 
             try {
                 $i->verifyChangedSince("abc");
-                $this->fail("SDK expected to fail for value \"abc\"");
+                static::fail("SDK expected to fail for value \"abc\"");
             } catch (SdkException $ex) {
-                $this->assertTrue($ex instanceof SdkException);
+                static::assertTrue($ex instanceof SdkException);
             }
 
             try {
                 $i->verifyChangedSince("0123");
-                $this->fail("SDK expected to fail for value \"0123\"");
+                static::fail("SDK expected to fail for value \"0123\"");
             } catch(SdkException $ex) {
-                $this->assertTrue($ex instanceof SdkException);
+                static::assertTrue($ex instanceof SdkException);
             }
         }
 
@@ -187,27 +188,27 @@
         {
             $i           = new IPPTaxService();
             $dataService = $this->createDataServiceMockWithRestAndSerialization('JsonObjectSerializer', "{\"TaxCode\":{}}");
-            $this->assertEquals('{"TaxService":{"TaxCode":{}}}', $dataService->Add($i));
+            static::assertEquals('{"TaxService":{"TaxCode":{}}}', $dataService->Add($i));
         }
 
         public function testAdd_TaxService_Object()
         {
             $i           = new IPPTaxService();
             $dataService = $this->createDataServiceMockWithRestHandler(
-                $this->createRestHandlerMock($this->returnValue(array(200,"{\"TaxCode\":{\"TaxCode\":\"Fake\"}}"))));
+                $this->createRestHandlerMock(static::returnValue(array(200, "{\"TaxCode\":{\"TaxCode\":\"Fake\"}}"))));
             $result = $dataService->Add($i);
 
-            $this->assertNotNull($result->TaxService);
+            static::assertNotNull($result->TaxService);
         }
 
         public function testAdd_TaxService_ObjectNull()
         {
             $i           = new IPPTaxService();
             $dataService = $this->createDataServiceMockWithRestHandler(
-            $this->createRestHandlerMock($this->returnValue(array(200,"{\"TaxCode\":{}}"))));
+            $this->createRestHandlerMock(static::returnValue(array(200, "{\"TaxCode\":{}}"))));
             $result = $dataService->Add($i);
 
-            $this->assertNotNull($result->TaxService);
+            static::assertNotNull($result->TaxService);
         }
 
         public function testVoidPayment()
@@ -216,7 +217,7 @@
             $dataService = $this->createDataServiceMockWithRestAndSerialization('JsonObjectSerializer', "{\"Payment\":{\"SyncToken\":\"2\", \"Id\": \"33\"}}");
             $result = json_decode($dataService->Void($i));
 
-            $this->assertNotNull($result->Payment);
+            static::assertNotNull($result->Payment);
         }
 
         public function testInitPostRequest()
@@ -226,9 +227,9 @@
             $i           = new DataServiceMock($fakeContext);
             $request     = $i->initPostRequest($entity, "/x/y/z");
 
-            $this->assertEquals("application/xml", $request->ContentType);
-            $this->assertEquals("/x/y/z", $request->ResourceUri);
-            $this->assertEquals('POST', $request->HttpVerbType);
+            static::assertEquals("application/xml", $request->ContentType);
+            static::assertEquals("/x/y/z", $request->ResourceUri);
+            static::assertEquals('POST', $request->HttpVerbType);
         }
 
         public function testInitPostRequestJson()
@@ -238,9 +239,9 @@
             $i           = new DataServiceMock($fakeContext);
             $request     = $i->initPostRequest($entity, "/x/y/z");
 
-            $this->assertEquals("application/json", $request->ContentType);
-            $this->assertEquals("/x/y/z", $request->ResourceUri);
-            $this->assertEquals('POST', $request->HttpVerbType);
+            static::assertEquals("application/json", $request->ContentType);
+            static::assertEquals("/x/y/z", $request->ResourceUri);
+            static::assertEquals('POST', $request->HttpVerbType);
         }
 
         public function testInitPostRequestForcedJson()
@@ -250,28 +251,26 @@
             $i           = new DataServiceMock($fakeContext);
             $request     = $i->initPostRequest($entity, "/x/y/z");
 
-            $this->assertEquals("application/json", $request->ContentType);
-            $this->assertEquals("/x/y/z", $request->ResourceUri);
-            $this->assertEquals('POST', $request->HttpVerbType);
+            static::assertEquals("application/json", $request->ContentType);
+            static::assertEquals("/x/y/z", $request->ResourceUri);
+            static::assertEquals('POST', $request->HttpVerbType);
         }
 
-        /**
-        * @expectedException QuickBooksOnline\API\Exception\IdsException
-        * @expectedExceptionMessage Property ID is not set
-        */
         public function testGetExportFileNameForPDF_ExceptionNoID()
         {
+            $this->expectException(IdsException::class);
+            $this->expectExceptionMessage('Property ID is not set');
+
             $fakeContext = $this->getFakeContext(SerializationFormat::Xml,SerializationFormat::Xml);
             $i           = new DataServiceMock($fakeContext);
             $i->getExportFileNameForPDF(new IPPTaxService(), 'ext');
         }
 
-        /**
-        * @expectedException QuickBooksOnline\API\Exception\IdsException
-        * @expectedExceptionMessage Property ID is empty
-        */
         public function testGetExportFileNameForPDF_ExceptionEmptyId()
         {
+            $this->expectException(IdsException::class);
+            $this->expectExceptionMessage('Property ID is empty');
+
             $e           = new IPPTaxService();
             $e->Id       = "";
             $fakeContext = $this->getFakeContext(SerializationFormat::Xml,SerializationFormat::Xml);
@@ -280,24 +279,23 @@
             $i->getExportFileNameForPDF($e, 'ext');
         }
 
-        /**
-        * @expectedException QuickBooksOnline\API\Exception\IdsException
-        * @expectedExceptionMessage Argument Null Exception
-        */
         public function testGetExportFileNameForPDF_ExceptionNullEntity()
         {
+
+            $this->expectException(IdsException::class);
+            $this->expectExceptionMessage('Argument Null Exception');
+
             $fakeContext = $this->getFakeContext(SerializationFormat::Xml,SerializationFormat::Xml);
             $i           = new DataServiceMock($fakeContext);
 
             $i->getExportFileNameForPDF(null, 'ext');
         }
 
-        /**
-        * @expectedException QuickBooksOnline\API\Exception\IdsException
-        * @expectedExceptionMessage Property ID is not set
-        */
         public function testSendEmail_Exception()
         {
+            $this->expectException(IdsException::class);
+            $this->expectExceptionMessage('Property ID is not set');
+
             $entity = new IPPSalesReceipt();
             $this->invokeSendEmail($entity);
         }
@@ -307,11 +305,11 @@
         {
             $entity     = new IPPSalesReceipt();
             $entity->Id = "123";
-            $result     = $this->invokeSendEmail($entity,$this->returnValue(array(200,$this->getSendEmailXMLResponseString())),"fake@fake.com",SerializationFormat::Xml);
+            $result     = $this->invokeSendEmail($entity, static::returnValue(array(200, $this->getSendEmailXMLResponseString())),"fake@fake.com",SerializationFormat::Xml);
 
-            $this->assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
-            $this->assertEquals("EmailSent",$result->EmailStatus);
-            $this->assertEquals("fakeadr@test.com",$result->BillEmail->Address);
+            static::assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
+            static::assertEquals("EmailSent",$result->EmailStatus);
+            static::assertEquals("fakeadr@test.com",$result->BillEmail->Address);
         }
 
 
@@ -319,21 +317,21 @@
         {
             $entity     = new IPPSalesReceipt();
             $entity->Id = "123";
-            $result     = $this->invokeSendEmail($entity,$this->returnValue(array(200,$this->getSendEmailXMLResponseString())),"fake@fake.com",SerializationFormat::Xml);
+            $result     = $this->invokeSendEmail($entity, static::returnValue(array(200, $this->getSendEmailXMLResponseString())),"fake@fake.com",SerializationFormat::Xml);
 
-            $this->assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
-            $this->assertEquals("EmailSent", $result->EmailStatus);
-            $this->assertEquals("fakeadr@test.com", $result->BillEmail->Address);
+            static::assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
+            static::assertEquals("EmailSent", $result->EmailStatus);
+            static::assertEquals("fakeadr@test.com", $result->BillEmail->Address);
         }
 
         public function testSendEmail_JsonParameter()
         {
             $entity     = new IPPSalesReceipt();
             $entity->Id = "123";
-            $result     = $this->invokeSendEmail($entity,$this->returnValue(array(200,$this->getSendEmailJsonResponseString())),"fake@fake.com",SerializationFormat::Json);
+            $result     = $this->invokeSendEmail($entity, static::returnValue(array(200, $this->getSendEmailJsonResponseString())),"fake@fake.com",SerializationFormat::Json);
 
-            $this->assertEquals("EmailSent", $result->SalesReceipt->EmailStatus);
-            $this->assertEquals("fakeadr@test.com", $result->SalesReceipt->BillEmail->Address);
+            static::assertEquals("EmailSent", $result->SalesReceipt->EmailStatus);
+            static::assertEquals("fakeadr@test.com", $result->SalesReceipt->BillEmail->Address);
         }
 
         // /*
@@ -345,10 +343,10 @@
             $entity->Id                 = "123";
             $entity->BillEmail          = new QuickBooksOnline\API\Data\IPPEmailAddress();
             $entity->BillEmail->Address = "fake123";
-            $result                     = $this->invokeSendEmail($entity,$this->returnValue(array(200,$this->getSendEmailXMLResponseString())),NULL,SerializationFormat::Xml);
-            $this->assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
-            $this->assertEquals("EmailSent", $result->EmailStatus);
-            $this->assertEquals("fakeadr@test.com", $result->BillEmail->Address);
+            $result                     = $this->invokeSendEmail($entity, static::returnValue(array(200, $this->getSendEmailXMLResponseString())),NULL,SerializationFormat::Xml);
+            static::assertTrue($result->BillEmail instanceof QuickBooksOnline\API\Data\IPPEmailAddress);
+            static::assertEquals("EmailSent", $result->EmailStatus);
+            static::assertEquals("fakeadr@test.com", $result->BillEmail->Address);
         }
 
         public function testSendEmail_Entity()
@@ -358,14 +356,14 @@
             $entity->BillEmail          = new QuickBooksOnline\API\Data\IPPEmailAddress();
             $entity->BillEmail->Address = "fake123@fake.com";
 
-            $restMock = $this->createRestHandlerMock($this->returnValue(null));
+            $restMock = $this->createRestHandlerMock(static::returnValue(null));
             $mock     = $this->createDataServiceMockWithRestHandler($restMock,array('getRequestParameters'));
-            $mock->expects($this->once())
+            $mock->expects(static::once())
                 ->method('getRequestParameters')
                 ->with(
-                $this->equalTo("company/123145705986809/salesreceipt/123/send"),
-                $this->equalTo("POST"),
-                $this->equalTo("application/octet-stream")
+                static::equalTo("company/123145705986809/salesreceipt/123/send"),
+                static::equalTo("POST"),
+                static::equalTo("application/octet-stream")
             );
             $mock->SendEmail($entity);
         }
@@ -375,14 +373,14 @@
             $entity     = new IPPSalesReceipt();
             $entity->Id = "123";
 
-            $restMock = $this->createRestHandlerMock($this->returnValue(null));
+            $restMock = $this->createRestHandlerMock(static::returnValue(null));
             $mock     = $this->createDataServiceMockWithRestHandler($restMock,array('getRequestParameters'));
-            $mock->expects($this->once())
+            $mock->expects(static::once())
                 ->method('getRequestParameters')
                 ->with(
-                    $this->equalTo("company/123145705986809/salesreceipt/123/send?sendTo=fake123%40fake.com"),
-                    $this->equalTo("POST"),
-                    $this->equalTo("application/octet-stream")
+                    static::equalTo("company/123145705986809/salesreceipt/123/send?sendTo=fake123%40fake.com"),
+                    static::equalTo("POST"),
+                    static::equalTo("application/octet-stream")
             );
             $mock->SendEmail($entity, "fake123@fake.com");
         }
@@ -403,21 +401,21 @@
         {
             $i = new IPPTaxService();
             $dataService = $this->createDataServiceMockWithRestHandler(
-                $this->createRestHandlerMock($this->returnValue([200,$httpResponse])),
+                $this->createRestHandlerMock(static::returnValue([200, $httpResponse])),
                 ['getResponseSerializer', 'sendRequest']
             );
             $serializerMock = $this->getMockBuilder($serializerMockClassName)
                 ->setMethods(['Deserialize'])
                 ->getMock();
-            $serializerMock->method('Deserialize')->will($this->returnArgument(0));
-            $dataService->method('getResponseSerializer')->will($this->returnValue($serializerMock));
+            $serializerMock->method('Deserialize')->will(static::returnArgument(0));
+            $dataService->method('getResponseSerializer')->will(static::returnValue($serializerMock));
             return $dataService;
         }
 
         private function createDataServiceMockWithRestHandler($restMock,$methods=array())
         {
             $dataServiceMock = $this->createDataServiceMock(array_merge(array('getRestHandler'),$methods),SerializationFormat::Json);
-            $dataServiceMock->method('getRestHandler')->will($this->returnValue($restMock));
+            $dataServiceMock->method('getRestHandler')->will(static::returnValue($restMock));
             return $dataServiceMock;
         }
 
@@ -435,10 +433,10 @@
             $entity->Id = 123;
             $restMock   = $this->getMockBuilder('SyncRestHandler')->disableOriginalConstructor()->getMock();
 
-            $restMock->expects($this->once())->method('GetResponse')->with(
-                $this->attributeEqualTo($attribute,$expected),
-                $this->isNull(),
-                $this->isNull()
+            $restMock->expects(static::once())->method('GetResponse')->with(
+                static::attributeEqualTo($attribute,$expected),
+                static::isNull(),
+                static::isNull()
             );
             $this->createDataServiceMockWithRestHandler($restMock)->DownloadPDF($entity);
         }
@@ -456,11 +454,11 @@
         private function invokeSendEmail($entity,$restHandlerValue = NULL,$email=NULL,$format=NULL)
         {
             if(is_null($restHandlerValue)) {
-                $restHandlerValue = $this->returnValue(NULL);
+                $restHandlerValue = static::returnValue(NULL);
             }
 
             $dataServiceMock = $this->createDataServiceMock(array('getRestHandler'),$format);
-            $dataServiceMock->method('getRestHandler')->will($this->returnValue($this->createRestHandlerMock($restHandlerValue)));
+            $dataServiceMock->method('getRestHandler')->will(static::returnValue($this->createRestHandlerMock($restHandlerValue)));
             return $dataServiceMock->SendEmail($entity,$email);
         }
     }

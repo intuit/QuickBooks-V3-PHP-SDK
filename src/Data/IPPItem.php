@@ -819,6 +819,33 @@ class IPPItem
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
 	public $ClassRef;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Originating source of
+								the Item. Valid values are defined in SourceTypeEnum
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Source
+	 * @var string
+	 */
+	public $Source;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Use the DeferredRevenue property to indicate that the goods/services sold
+								have not yet been delivered to the customer, and therefore not appropriate for the
+								accounting engine to book as Revenue for accounting.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName DeferredRevenue
+	 * @var boolean
+	 */
+	public $DeferredRevenue;
 
 
 } // end class IPPItem

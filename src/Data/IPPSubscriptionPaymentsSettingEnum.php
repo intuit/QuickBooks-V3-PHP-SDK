@@ -4,10 +4,11 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPP
- * @var IPP
+ * @xmlName IPPSubscriptionPaymentsSettingEnum
+ * @var IPPSubscriptionPaymentsSettingEnum
+ * @xmlDefinition Enumeration of subscription payment setting applicable to Invoice
  */
-class IPPWrapper
+class IPPSubscriptionPaymentsSettingEnum
 	{
 
 		/**                                                                       
@@ -23,7 +24,7 @@ class IPPWrapper
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPWrapper',$initPropName))
+				if (property_exists('IPPSubscriptionPaymentsSettingEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSubscriptionPaymentsSettingEnum',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -41,4 +42,4 @@ class IPPWrapper
 		 */
 		public $value;
 
-} // end class IPPWrapper
+} // end class IPPSubscriptionPaymentsSettingEnum
