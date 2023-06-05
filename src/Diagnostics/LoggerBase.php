@@ -8,6 +8,15 @@ use QuickBooksOnline\API\Core\CoreConstants;
  */
 class LoggerBase
 {
+    /**
+     * @var string
+     */
+    public $ServiceRequestLoggingLocation;
+
+    /**
+     * @var string
+     */
+    public $EnableRequestResponseLogging;
 
     /**
      * Logs messages depending on the ids trace level.

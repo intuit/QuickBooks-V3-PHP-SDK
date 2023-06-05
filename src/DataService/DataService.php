@@ -1641,7 +1641,7 @@ class DataService
      * Returns the Sync Resthandler associated with the dataserivce
      * @return SyncRestHandler          The SyncRestHandler with the DataService
      */
-    protected function getRestHandler()
+    public function getRestHandler()
     {
         if(isset($this->restHandler)){
              return $this->restHandler;
