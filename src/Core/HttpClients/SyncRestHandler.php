@@ -310,6 +310,7 @@ class SyncRestHandler extends RestHandler
      * @return string|bool The DOM structured XML
      */
     private function parseStringToDom($string){
+      $string = CoreHelper::encodeUTF8($string);
       $dom = new \DOMDocument();
       $dom->preserveWhiteSpace = FALSE;
       $dom->loadXML($string);
