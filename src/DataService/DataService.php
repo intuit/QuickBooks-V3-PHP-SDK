@@ -448,7 +448,7 @@ class DataService
 
     /**
      * Return the OAuth 2 Login Helper. The OAuth 2 Login helper can be used to generate OAuth code, get refresh Token, etc.
-     * @return $OAuth2LoginHelper      A helper to get OAuth 2 related values.
+     * @return OAuth2LoginHelper      A helper to get OAuth 2 related values.
      */
     public function getOAuth2LoginHelper()
     {
