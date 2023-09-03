@@ -1067,7 +1067,7 @@
 <p>The SDK also support batch requests.</p>
 <p>Developers will need to create a <code class="docutils literal"><span class="pre">$batch</span></code> object first, then add the operation in the batch request:</p>
 <div class="highlight-php"><div class="highlight"><pre><span></span><span class="nv">$batch</span> <span class="o">=</span> <span class="nv">$dataService</span><span class="o">-&gt;</span><span class="na">CreateNewBatch</span><span class="p">();</span>
-<span class="nv">$batch</span><span class="o">-&gt;</span><span class="na">AddQuery</span><span class="p">(</span><span class="s2">&quot;select * from Customer startPosition 0 maxResults 20&quot;</span><span class="p">,</span> <span class="s2">&quot;queryCustomer&quot;</span><span class="p">,</span> <span class="s2">&quot;uniqueQuery&quot;</span><span class="p">);</span>
+<span class="nv">$batch</span><span class="o">-&gt;</span><span class="na">AddQuery</span><span class="p">(</span><span class="s2">&quot;select * from Customer startPosition 0 maxResults 20&quot;</span><span class="p">,</span> <span class="s2">&quot;uniqueQueryIdentifier&quot;</span><span class="p">);</span>
 <span class="nv">$batch</span><span class="o">-&gt;</span><span class="na">AddEntity</span><span class="p">(</span><span class="nv">$invoice</span><span class="p">,</span> <span class="s2">&quot;uniqueIdentifier&quot;</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">);</span>
 <span class="nv">$batch</span><span class="o">-&gt;</span><span class="na">Execute</span><span class="p">();</span>
 </pre></div>
