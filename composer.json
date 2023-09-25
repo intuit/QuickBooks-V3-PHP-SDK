@@ -1,6 +1,6 @@
 {
     "name": "dieruckus/v3-php-sdk",
-    "description": "The Official PHP SDK for QuickBooks Online Accounting API",
+    "description": "The Official PHP SDK for QuickBooks Online Accounting API / moded",
     "type": "library",
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
     "homepage": "http://developer.intuit.com",
