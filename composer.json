@@ -1,5 +1,5 @@
 {
-    "name": "quickbooks/v3-php-sdk",
+    "name": "dieruckus/v3-php-sdk",
     "description": "The Official PHP SDK for QuickBooks Online Accounting API",
     "type": "library",
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
@@ -22,8 +22,8 @@
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "abisalehalliprasan",
-            "email": "anil_kumar3@intuit.com"
+            "name": "die_ruckus",
+            "email": "dieruckusdie@gmail.com"
         }
     ],
     "suggest": {
