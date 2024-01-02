@@ -215,7 +215,7 @@ class OAuth2LoginHelper
            'state' => $this->getState()
        );
        $authorizationRequestUrl = CoreConstants::OAUTH2_AUTHORIZATION_REQUEST_URL;
-       $authorizationRequestUrl .= '?' . http_build_query($parameters, null, '&', PHP_QUERY_RFC1738);
+       $authorizationRequestUrl .= '?' . http_build_query($parameters, "", '&', PHP_QUERY_RFC1738);
        return $authorizationRequestUrl;
     }
 
@@ -371,7 +371,7 @@ class OAuth2LoginHelper
       $this->LogAPIResponseToLog($intuitResponse->getBody(), $url, $intuitResponse->getHeaders());
       $this->faultHandler = $intuitResponse->getFaultHandler();
       if($this->faultHandler) {
-         throw new ServiceException("Get UrerInfo failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
+         throw new ServiceException("Get UserInfo failed. Body: [" . $this->faultHandler->getResponseBody() . "].", $this->faultHandler->getHttpStatusCode());
       }else{
          $this->faultHandler = false;
       }

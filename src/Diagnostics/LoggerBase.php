@@ -2,10 +2,12 @@
 namespace QuickBooksOnline\API\Diagnostics;
 
 use QuickBooksOnline\API\Core\CoreConstants;
+use AllowDynamicProperties;
 
 /**
  * This file contains an interface for Logging.
  */
+#[AllowDynamicProperties]
 class LoggerBase
 {
 

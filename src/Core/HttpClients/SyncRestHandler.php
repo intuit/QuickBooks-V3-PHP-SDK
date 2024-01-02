@@ -134,14 +134,14 @@ class SyncRestHandler extends RestHandler
      * The API call to generate OAuth 1 signatures and make API call
      *
      * @param  String           $baseURL               The request url without queryParameters
-     * @param  Array            $queryParameters       A list of query parameters
+     * @param  array            $queryParameters       A list of query parameters
      * @param  String           $HttpMethod            POST or GET
      * @param  String           $requestUri            The Complete HTTP request URI
-     * @param  Array            $requestParameters     The Complete HTTP request URI
+     * @param  RequestParameters$requestParameters     The Complete HTTP request URI
      * @param  String           $requestBody           The request body for POST request.
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
-     * @return Response and HTTP Status code
+     * @return array|null Response and HTTP Status code
      */
     private function OAuth1APICall($baseURL, $queryParameters, $HttpMethod, $requestUri, $requestParameters, $requestBody, $throwExceptionOnError){
       $AuthorizationHeader = $this->getOAuth1AuthorizationHeader($baseURL, $queryParameters, $HttpMethod);
@@ -170,9 +170,9 @@ class SyncRestHandler extends RestHandler
     /**
      * Get OAuth1 Authroization Header based on Query Parameters, BaseURL
      * @param String   $baseURL            The baseURL without queryParameters
-     * @param Array    $queryParameters    The queryParameters list from the complete URI
-     * @param String   $httpMethod         POST or GET
-     * @return OAuth1 Authorization Header
+     * @param array    $queryParameters    The queryParameters list from the complete URI
+     * @param String   $HttpMethod         POST or GET
+     * @return string Authorization Header
      */
     private function getOAuth1AuthorizationHeader($baseURL, $queryParameters, $HttpMethod){
       $oauth1 = new OAuth1(
@@ -190,10 +190,10 @@ class SyncRestHandler extends RestHandler
      * The OAuth 2 API call
      *
      * @param  String           $baseURL               The request url without queryParameters
-     * @param  Array            $queryParameters       A list of query parameters
+     * @param  array            $queryParameters       A list of query parameters
      * @param  String           $HttpMethod            POST or GET
      * @param  String           $requestUri            The Complete HTTP request URI
-     * @param  Array            $requestParameters     The Complete HTTP request URI
+     * @param  RequestParameters$requestParameters     The Complete HTTP request URI
      * @param  String           $requestBody           The request body for POST request.
      * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
      *
@@ -264,7 +264,7 @@ class SyncRestHandler extends RestHandler
           'accept'        => $this->getAcceptContentType($ContentType),
           'connection'    => 'close',
           'content-type'  => $ContentType,
-          'content-length'=> strlen($requestBody)
+          'content-length'=> strlen(isset($requestBody) ? $requestBody : ''),
       );
 
       return $httpHeaders;
@@ -274,7 +274,7 @@ class SyncRestHandler extends RestHandler
      * Log API Reponse to the Log directory that user specified.
      * @param String $body The requestBody
      * @param String $requestUri  The URI for this request
-     * @param Array $httpHeaders  The headers for the request
+     * @param array $httpHeaders  The headers for the request
      */
     public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
       $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
@@ -290,7 +290,7 @@ class SyncRestHandler extends RestHandler
      * Log API Request to the Log directory that user specified.
      * @param String $requestBody The requestBody
      * @param String $requestUri  The URI for this request
-     * @param Array $httpHeaders  The headers for the request
+     * @param array $httpHeaders  The headers for the request
      */
     public function LogAPIRequestToLog($requestBody, $requestUri, $httpHeaders){
       $this->RequestLogging->LogPlatformRequests($requestBody, $requestUri, $httpHeaders, true);
@@ -406,7 +406,7 @@ class SyncRestHandler extends RestHandler
      * Get the query parameters from the complete URL, used for sign signature for OAuth 1.
      *
      * @param String  $url  The $url for the request
-     * @return Array  a list of query paramters.
+     * @return array  a list of query paramters.
      */
     private function parseURL($url){
        $query_str = parse_url($url, PHP_URL_QUERY);
@@ -449,7 +449,7 @@ class SyncRestHandler extends RestHandler
    /**
     * A helper function to convert Query to Array
     * @param String $qry   The query String
-    * @return  False | Array   The result
+    * @return  False | array   The result
     */
     private function queryToArray($qry)
     {

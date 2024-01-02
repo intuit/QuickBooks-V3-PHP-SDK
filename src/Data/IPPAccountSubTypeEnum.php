@@ -8,7 +8,7 @@ namespace QuickBooksOnline\API\Data;
  * @var IPPAccountSubTypeEnum
  * @xmlDefinition 
 						Product: QBO
-						Description: Use Tax Roundoff Gain or Loss to track gains or losses that occur as a result of Tax filing roundoff.
+						Description: Use Rent a room relief - Relief Claimed for relief claimed for rented room for landlords
 					
  * @xmlb Share Application Money Pending Allotment
  */

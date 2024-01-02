@@ -1233,13 +1233,13 @@ class ReportService
             array_push($uriParameterList, array("printed", $this->getPrinted()));
         }
         if (!is_null($this->both_amount)) {
-            array_push($uriParameterList, array("both_amount", $this->getBothAmount()));
+            array_push($uriParameterList, array("bothamount", $this->getBothAmount()));
         }
         if (!is_null($this->memo)) {
             array_push($uriParameterList, array("memo", $this->getMemo()));
         }
         if (!is_null($this->doc_num)) {
-            array_push($uriParameterList, array("doc_num", $this->getDocNum()));
+            array_push($uriParameterList, array("docnum", $this->getDocNum()));
         }
         if (!is_null($this->subcol_pct_inc)) {
             array_push($uriParameterList, array("subcol_pct_inc", $this->getPercentIncome()));
