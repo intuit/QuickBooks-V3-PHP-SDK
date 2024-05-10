@@ -125,4 +125,14 @@ class BaseCurl{
       curl_close($this->curl);
       $this->curl = null;
   }
+
+  public function __serialize(): array
+  {
+      return [];
+  }
+  public function __unserialize(array $data): void
+  {
+      $this->curl = curl_init();
+  }
+
 }

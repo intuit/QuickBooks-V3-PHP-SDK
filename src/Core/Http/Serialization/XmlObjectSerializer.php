@@ -222,7 +222,7 @@ class XmlObjectSerializer extends IEntitySerializer
      * DeSerializes the specified action entity type.
      * @param message The type to be  serialize to
      * @param bLimitToOne Limit to parsing just one response element
-     * @return object Returns the de serialized object.
+     * @return object|array Returns the de serialized object.
      */
     public function Deserialize($message, $bLimitToOne = false)
     {
