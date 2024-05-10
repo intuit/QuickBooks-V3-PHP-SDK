@@ -55,6 +55,18 @@ class IPPBillPayment
 	 */
 	public $VendorRef;
 	/**
+	 * @Definition 
+								Product: QBO
+								Description: Vendor Mailing Address
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorAddr
+	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 */
+	public $VendorAddr;
+	/**
 	 * @Definition Optional AP account specification for bill
 								payment transactions. Most small businesses have a single AP
 								account, so the account is implied. When specified, the account

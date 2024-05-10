@@ -89,7 +89,7 @@ class LocalConfigReader
 
             LocalConfigReader::initializeOAuthSettings($xmlObj, $ippConfig, $OAuthOption);
             LocalConfigReader::initializeRequestAndResponseSerializationAndCompressionFormat($xmlObj, $ippConfig);
-            LocalConfigReader::intializaeServiceBaseURLAndLogger($xmlObj, $ippConfig);
+            LocalConfigReader::initializeServiceBaseURLAndLogger($xmlObj, $ippConfig);
             LocalConfigReader::initializeAPIEntityRules($xmlObj, $ippConfig);
             LocalConfigReader::setupMinorVersion($ippConfig, $xmlObj);
 
@@ -115,7 +115,7 @@ class LocalConfigReader
                   $ippConfig->OAuthMode = CoreConstants::OAUTH2;
                 }
                 //Set Logger and Searlization format. The default one is XML
-                LocalConfigReader::intializeMessage($ippConfig);
+                LocalConfigReader::initializeMessage($ippConfig);
                 LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, CompressionFormat::None, CompressionFormat::None, SerializationFormat::Xml, SerializationFormat::Xml);
                 //Set base Urls
                 $ippConfig->BaseUrl = new BaseUrl();
@@ -267,7 +267,7 @@ class LocalConfigReader
      */
      public static function initializeRequestAndResponseSerializationAndCompressionFormat($xmlObj, $ippConfig)
      {
-         LocalConfigReader::intializeMessage($ippConfig);
+         LocalConfigReader::initializeMessage($ippConfig);
 
          $requestSerializationFormat = null;
          $requestCompressionFormat = null;
@@ -291,7 +291,7 @@ class LocalConfigReader
          LocalConfigReader::setRequestAndResponseSerializationFormat($ippConfig, $requestCompressionFormat, $responseCompressionFormat, $requestSerializationFormat, $responseSerializationFormat);
      }
 
-    public static function intializeMessage($ippConfig)
+    public static function initializeMessage($ippConfig)
     {
         // Initialize Request Configuration Object
          $ippConfig->Message = new Message();
@@ -372,7 +372,7 @@ class LocalConfigReader
        * Initialize BaseURL and log Settings from Simple XML Reading from SDK.config
      * @Hao
      */
-     public static function intializaeServiceBaseURLAndLogger($xmlObj, $ippConfig)
+     public static function initializeServiceBaseURLAndLogger($xmlObj, $ippConfig)
      {
          // Initialize BaseUrl Configuration Object
         $ippConfig->BaseUrl = new BaseUrl();

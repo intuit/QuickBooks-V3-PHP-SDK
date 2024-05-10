@@ -187,6 +187,18 @@ class IPPTaxRate
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $TaxRateEx;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: OriginalTaxRate represents the tax rate from which the current tax rate originated
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName OriginalTaxRate
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $OriginalTaxRate;
 
 
 } // end class IPPTaxRate

@@ -161,9 +161,9 @@ class IPPTaxReturn
 	public $AgencyRef;
 	/**
 	 * @Definition 
- 								Product: QBO
- 								Description: Represents the status of the filing of the tax return
- 							
+								Product: QBO
+								Description: Represents the status of the filing of the tax return
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -173,9 +173,9 @@ class IPPTaxReturn
 	public $TaxReturnStatus;
 	/**
 	 * @Definition 
- 								Product: QBO
- 								Description: Represents the failure reason of tax return e-filing with agency
- 							
+								Product: QBO
+								Description: Represents the failure reason of tax return e-filing with agency
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -197,9 +197,9 @@ class IPPTaxReturn
 	public $EFileErrorFixByDate;
 	/**
 	 * @Definition 
- 								Product: QBO
- 								Description: Represents the payment method used while e-filing tax return with agency
- 							
+								Product: QBO
+								Description: Represents the payment method used while e-filing tax return with agency
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -209,9 +209,9 @@ class IPPTaxReturn
 	public $AgencyPaymentMethod;
 	/**
 	 * @Definition 
- 								Product: QBO
- 								Description: Represents the tax return code with the partner
- 							
+								Product: QBO
+								Description: Represents the tax return code with the partner
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

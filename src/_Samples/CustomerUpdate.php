@@ -10,13 +10,13 @@ use QuickBooksOnline\API\Facades\Customer;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
-       'auth_mode' => 'oauth1',
-         'consumerKey' => "lve2eZN6ZNBrjN0Wp26JVYJbsOOFbF",
-         'consumerSecret' => "fUhPIeu6jrq1UmNGXSMsIsl0JaHuHzSkFf3tsmrW",
-         'accessTokenKey' => "qye2etcpyquO3B1t8ydZJI8OTelqJCMiLZlY5LdX7qZunwoo",
-         'accessTokenSecret' => "2lEUtSEIvXf64CEkMLaGDK5rCwaxE9UvfW1dYrrH",
-         'QBORealmID' => "193514489870599",
-         'baseUrl' => "https://qbonline-e2e.api.intuit.com/"
+  'auth_mode'       => 'oauth2',
+  'ClientID'        => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret'    => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
+  'baseUrl'         => "development"
 ));
 
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
@@ -40,6 +40,7 @@ $updateCustomer = Customer::update($theCustomer, [
     'DisplayName' => 'Something different'
 ]);
 $resultingCustomerUpdatedObj = $dataService->Update($updateCustomer);
+$error = $dataService->getLastError();
 if ($error) {
     echo "The Status code is: " . $error->getHttpStatusCode() . "\n";
     echo "The Helper message is: " . $error->getOAuthHelperError() . "\n";

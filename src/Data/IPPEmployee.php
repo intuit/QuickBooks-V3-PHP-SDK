@@ -171,15 +171,15 @@ class IPPEmployee
 	 */
 	public $EmployeeEx;
 	/**
-	 * @Definition Auto generated Public ID when new employee added to QBO. (ReadOnly)
+	 * @Definition Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName V4IDPseudonym
-	 * @var string
+	 * @xmlName CostRate
+	 * @var float
 	 */
-	public $V4IDPseudonym;
+	public $CostRate;
 
 
 } // end class IPPEmployee

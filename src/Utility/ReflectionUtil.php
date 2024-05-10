@@ -105,6 +105,7 @@ class ReflectionUtil
         if (!isset($clazz)) {
             return null;
         }
+        $clazz = 'QuickBooksOnline\\API\\WebhooksService\\' . $clazz;
         $wrapObject = new $clazz();
 
         if (isset($array) && !empty($array)) {

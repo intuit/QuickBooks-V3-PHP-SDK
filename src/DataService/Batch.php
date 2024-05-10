@@ -92,12 +92,27 @@ class Batch
     private $isThrowExceptionOnError = false;
 
     /**
+     * Enable debug mode to get more information inside the exception like intuit-tid
+     * @var boolean
+     */
+    private $debugMode = false;
+
+    /**
     * Get the error from last request
     * @return FaultHandler
     */
     public function getLastError()
     {
         return $this->lastError;
+    }
+
+    /**
+     * Set the debug mode
+     * @param $mode
+     */
+    public function setDebug($mode)
+    {
+        $this->debugMode = $mode;
     }
 
     /**
@@ -182,8 +197,9 @@ class Batch
      * @param IEntity entity entitiy for the batch operation.
      * @param string id Unique batchitem id
      * @param OperationEnum operation operation to be performed for the entity.
+     * @param string optionsdata to send with this specific batch item (example - allowduplicatedocnumber for invoices)
      */
-     public function AddEntity($entity, $id, $operation)
+     public function AddEntity($entity, $id, $operation, $optionsData = null)
      {
          if (!$entity) {
              $exception = new IdsException('StringParameterNullOrEmpty: entity');
@@ -212,6 +228,9 @@ class Batch
          $batchItem->bId = $id;
          $batchItem->operation = $operation;
          $batchItem->operationSpecified = true;
+         if ($optionsData !== null) {
+             $batchItem->optionsData = $optionsData;
+         }
 
          $this->batchRequests[] = $batchItem;
      }
@@ -287,6 +306,7 @@ class Batch
       try {
           // Get literal XML representation of IntuitBatchRequest into a DOMDocument
           $httpsPostBodyPreProcessed = XmlObjectSerializer::getPostXmlFromArbitraryEntity($intuitBatchRequest, $urlResource);
+
           $doc = new \DOMDocument();
           $domObj = $doc->loadXML($httpsPostBodyPreProcessed);
           $xpath = new \DOMXPath($doc);
@@ -544,6 +564,16 @@ class Batch
               case "Fault":
                   $result->responseType = UtilityConstants::Exception;
                   $idsException = $this->IterateFaultAndPrepareException($firstChild);
+                  if($this->debugMode) {
+                      $interface = $this->restHandler->getHttpClientInterface();
+                      $responseInterface = $interface->getLastResponse();
+                      $debugInfo = [
+                          'intuit_tid' => $responseInterface->getIntuitTid(),
+                          'body' => $responseInterface->getBody(),
+                          'headers' => $responseInterface->getHeaders(),
+                      ];
+                      $idsException->setDebug($debugInfo);
+                  }
                   $result->exception = $idsException;
                   break;
               //For batch Entity Result

@@ -122,7 +122,7 @@ class IPPIntuitEntity
 				
 	 * @xmlType attribute
 	 * @xmlName status
-	 * @var EntityStatusEnum[]
+	 * @var EntityStatusEnum[unbounded]
 	 */
 	public $status;
 	/**

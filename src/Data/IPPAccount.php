@@ -206,6 +206,21 @@ class IPPAccount
 	 */
 	public $AccountSubType;
 	/**
+	 * @Definition 
+								Product: QBO
+								Description: Internal use only: Account purpose indicates the mapping of the
+								chart-of-account to a purpose (eg: DEFAULT_QB_CASH_CHECKING_ACCOUNT). A chart-of-account
+								can have multiple account purpose mapping.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName AccountPurposes
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $AccountPurposes;
+	/**
 	 * @br 
 	 * @ul 
 									1000s: Assets

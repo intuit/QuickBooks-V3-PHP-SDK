@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright Statement:
+CONFIDENTIAL - Copyright 2010 Intuit Inc. This material contains
+certain trade secrets and confidential and proprietary information
+of Intuit Inc. Use, reproduction, disclosure and distribution by
+any means are prohibited, except pursuant to a written license from
+Intuit Inc. Use of copyright notice is precautionary and does not
+imply publication or disclosure.
+ -->
+
+<xs:schema
+  attributeFormDefault="unqualified" elementFormDefault="qualified"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+  <xs:annotation>
+    <xs:appinfo>
+      <jaxb:schemaBindings>
+        <jaxb:package name="com.intuit.qbo.service.entitlements">
+        </jaxb:package>
+      </jaxb:schemaBindings>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EntitlementsResponse" nillable="false">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QboCompany" type="xs:boolean"/>
+        <xs:element name="PlanName" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+        <xs:element name="MaxUsers" type="xs:integer" minOccurs="0" maxOccurs="1" nillable="false"/>
+        <xs:element name="CurrentUsers" type="xs:integer" minOccurs="0" maxOccurs="1" nillable="false"/>
+        <xs:element name="DaysRemainingTrial" type="xs:integer" minOccurs="0" maxOccurs="1" nillable="false"/>
+        <xs:element name="Entitlement" minOccurs="0" maxOccurs="unbounded" nillable="false">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" nillable="false"/>
+              <xs:element name="term" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="On"/>
+                    <xs:enumeration value="Off"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Thresholds" minOccurs="0" maxOccurs="unbounded" nillable="false"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Thresholds" nillable="false">
+    <xs:complexType>
+    <xs:sequence>
+        <xs:element name="Threshold" minOccurs="0" maxOccurs="unbounded" nillable="false">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+              <xs:element name="limit" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+              <xs:element name="enforced" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+              <xs:element name="currentCount" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false"/>
+              <xs:element name="aboveThreshold" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false">
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

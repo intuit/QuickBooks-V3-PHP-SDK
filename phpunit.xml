@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<phpunit bootstrap="./bootstrape.php"
+<phpunit bootstrap="./bootstrap.php"
           colors="true">
   <testsuites>
         <testsuite name="QuickBooks PHP Test Suite">
@@ -7,12 +7,9 @@
         </testsuite>
     </testsuites>
     <logging>
-
+        <log/>
       </logging>
       <filter>
-        <blacklist>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
             <exclude>

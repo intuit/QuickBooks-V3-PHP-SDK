@@ -164,6 +164,18 @@ class IPPPhysicalAddress
 	public $CountryCode;
 	/**
 	 * @Definition 
+						Product: QBO
+						Description: County name.[br /]Max. length: 25 characters.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName County
+	 * @var string
+	 */
+	public $County;
+	/**
+	 * @Definition 
 						Product: QBW
 						Description: Region within a country.  For example, state name for USA, province name for Canada.[br /]Max. length: 21 characters.
 						Product: QBO

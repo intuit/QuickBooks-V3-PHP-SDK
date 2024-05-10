@@ -6,7 +6,7 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType SalesTransaction
  * @xmlName IPPInvoice
  * @var IPPInvoice
- * @xmlDefinition 
+ * @xmlDefinition
 				Product: QBO
 				Description: The Invoice entity
 				represents an invoice to a customer. Invoice could be based on
@@ -41,20 +41,20 @@ namespace QuickBooksOnline\API\Data;
 				[/li][li] If an account is specified in the header, the account must
 				be of the Accounts Receivable (AR) type. [/li][li] An invoice must
 				have a reference to a customer in the header.[/li]
-			
+
  */
 class IPPInvoice
 	extends IPPSalesTransaction	{
 
-		/**                                                                       
-		* Initializes this object, optionally with pre-defined property values    
-		*                                                                         
+		/**
+		* Initializes this object, optionally with pre-defined property values
+		*
 		* Initializes this object and it's property members, using the dictionary
-		* of key/value pairs passed as an optional argument.                      
-		*                                                                         
-		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties 
-		* @param boolean $verbose specifies whether object should echo warnings   
-		*/                                                                        
+		* of key/value pairs passed as an optional argument.
+		*
+		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+		* @param boolean $verbose specifies whether object should echo warnings
+		*/
 		public function __construct($keyValInitializers=array(), $verbose=FALSE)
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
@@ -71,13 +71,13 @@ class IPPInvoice
 			}
 		}
 
-	
+
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Amount in deposit
 								against the Invoice. Supported for Invoice only.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -87,11 +87,11 @@ class IPPInvoice
 	 */
 	public $Deposit;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use IPN to pay the Invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -100,12 +100,12 @@ class IPPInvoice
 	 */
 	public $AllowIPNPayment;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use eInvoicing(online payment) to pay the
 								Invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -114,12 +114,12 @@ class IPPInvoice
 	 */
 	public $AllowOnlinePayment;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use eInvoicing(online payment -credit
 								card) to pay the Invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -128,12 +128,12 @@ class IPPInvoice
 	 */
 	public $AllowOnlineCreditCardPayment;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use eInvoicing(online payment -bank or
 								ach) to pay the Invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -142,11 +142,25 @@ class IPPInvoice
 	 */
 	public $AllowOnlineACHPayment;
 	/**
-	 * @Definition 
+	 * @Definition
+								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -paypal or
+								venmo) to pay the Invoice
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlinePayPalPayment
+	 * @var boolean
+	 */
+	public $AllowOnlinePayPalPayment;
+	/**
+	 * @Definition
 								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -155,11 +169,11 @@ class IPPInvoice
 	 */
 	public $EInvoiceStatus;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Specifies the
 								eCloudStatus timeStamp(last Viewed/Sent/paid) for the invoice
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -168,14 +182,52 @@ class IPPInvoice
 	 */
 	public $ECloudStatusTimeStamp;
 	/**
-	 * @Definition 
+	 * @Definition
+								Product: QBO
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico.
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CfdiUse
+	 * @var integer
+	 */
+	public $CfdiUse;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico.
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Exportation
+	 * @var string
+	 */
+	public $Exportation;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GlobalInfo
+	 * @var com\intuit\schema\finance\v3\IPPMXGlobalInfo
+	 */
+	public $GlobalInfo;
+	/**
+	 * @Definition
 								Product: QBO
 								Description: provides invoice statuses :
 								MULTIPLE_ERRORS, DEPOSIT_ON_HOLD, DISPUTED, DEPOSIT_FAILED, PAYMENT_FAILED,
 								OVERDUE_VIEWED, OVERDUE_NOT_SENT, OVERDUE_SENT,
 								DUE_VIEWED, DUE_NOT_SENT, DUE_SENT,
 								PAID_NOT_DEPOSITED, PARTIALLY_PAID, DEPOSITED, VOIDED, REVERSED
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -184,10 +236,10 @@ class IPPInvoice
 	 */
 	public $invoiceStatus;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: call to action for this status
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -196,10 +248,10 @@ class IPPInvoice
 	 */
 	public $callToAction;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: invoice status log
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -209,11 +261,11 @@ class IPPInvoice
 	 */
 	public $invoiceStatusLog;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: Extension entity for
 								Invoice.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -223,11 +275,11 @@ class IPPInvoice
 	 */
 	public $InvoiceEx;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: All
 								Description: QBO: Indicates the
 								less cis amount of the transaction, specific to UK region companies
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -236,10 +288,10 @@ class IPPInvoice
 	 */
 	public $LessCIS;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: All
 								Description: QBO:  Sharable link of the invoice for external users
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -247,20 +299,127 @@ class IPPInvoice
 	 * @var string
 	 */
 	public $InvoiceLink;
-	
-	
-    /**
-     * @Definition
-    Product: QBO
-    Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+	/**
+	 * @Definition
+								Product: QBO
+								Description: QBO:  Message displayed to customer about payment Instructions. eg: bank account info.
 
-     * @xmlType element
-     * @xmlNamespace http://schema.intuit.com/finance/v3
-     * @xmlMinOccurs 0
-     * @xmlName GratuityEnabled
-     * @var boolean
-     */
-    public $GratuityEnabled;
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName PaymentDetailsMessage
+	 * @var string
+	 */
+	public $PaymentDetailsMessage;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Internal use only: Convenience Fee detail for the invoice
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ConvenienceFeeDetail
+	 * @var com\intuit\schema\finance\v3\IPPConvenienceFeeDetail
+	 */
+	public $ConvenienceFeeDetail;
+	/**
+	 * @Definition
+								Product: All
+								Description: QBO:  Security code associated with Sharable link of the invoice for external users
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName InvoiceLinkSecurityCode
+	 * @var string
+	 */
+	public $InvoiceLinkSecurityCode;
+	/**
+	 * @Definition
+								Product: All
+								Description: QBO:  Expiry date for Sharable link of the invoice for external users
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName InvoiceLinkExpiryDate
+	 * @var string
+	 */
+	public $InvoiceLinkExpiryDate;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Indicates whether the Recurring Invoice eligible for auto payment.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AutoPayEligible
+	 * @var boolean
+	 */
+	public $AutoPayEligible;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Indicates whether the Non-Recurring Invoice eligible for scheduled payment.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SchedulePayEligible
+	 * @var boolean
+	 */
+	public $SchedulePayEligible;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Unique identifier for scheduled payment for invoice. Used to indicate if invoice has scheduled payment or not.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ScheduledPaymentId
+	 * @var string
+	 */
+	public $ScheduledPaymentId;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Internal use only: Indicates whether gratuity is enabled for this invoice.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GratuityEnabled
+	 * @var boolean
+	 */
+	public $GratuityEnabled;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Internal use only: Indicates invoice financing type.
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName FinancingProductType
+	 * @var com\intuit\schema\finance\v3\IPPFinancingProductTypeEnum
+	 */
+	public $FinancingProductType;
+	/**
+	 * @Definition
+								Product: QBO
+								Description: Internal use only: Subscription payment setting for a Recurring Invoice
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName SubscriptionPaymentsSetting
+	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
+	 */
+	public $SubscriptionPaymentsSetting;
+
 
 
 } // end class IPPInvoice

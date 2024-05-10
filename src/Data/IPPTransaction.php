@@ -6,24 +6,24 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType IntuitEntity
  * @xmlName IPPTransaction
  * @var IPPTransaction
- * @xmlDefinition 
+ * @xmlDefinition
 				Product: ALL
 				Description: Transaction is the base
 				class of all transactions.
-			
+
  */
 class IPPTransaction
 	extends IPPIntuitEntity	{
 
-		/**                                                                       
-		* Initializes this object, optionally with pre-defined property values    
-		*                                                                         
+		/**
+		* Initializes this object, optionally with pre-defined property values
+		*
 		* Initializes this object and it's property members, using the dictionary
-		* of key/value pairs passed as an optional argument.                      
-		*                                                                         
-		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties 
-		* @param boolean $verbose specifies whether object should echo warnings   
-		*/                                                                        
+		* of key/value pairs passed as an optional argument.
+		*
+		* @param dictionary $keyValInitializers key/value pairs to be populated into object's properties
+		* @param boolean $verbose specifies whether object should echo warnings
+		*/
 		public function __construct($keyValInitializers=array(), $verbose=FALSE)
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
@@ -40,9 +40,9 @@ class IPPTransaction
 			}
 		}
 
-	
+
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: QBO: Reference number
 								for the transaction. If DocNumber is not provided, and the
@@ -65,7 +65,7 @@ class IPPTransaction
 								InputType: ReadWrite
 								ValidRange: QBW: max=11
 								ValidRange: QBO: max=21
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -74,7 +74,7 @@ class IPPTransaction
 	 */
 	public $DocNumber;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: QBO: The date entered
 								by the user when this transaction occurred. [br /]Often, it is
@@ -91,7 +91,7 @@ class IPPTransaction
 								Sortable:
 								ALL
 								InputType: ReadWrite
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -100,12 +100,12 @@ class IPPTransaction
 	 */
 	public $TxnDate;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Location of the
 								transaction, as defined using location tracking in QuickBooks
 								Online.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -114,13 +114,13 @@ class IPPTransaction
 	 */
 	public $DepartmentRef;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: Reference to the
 								Currency in which all amounts on the associated transaction are
 								expressed.[br /]
 								InputType: ReadWrite
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -129,7 +129,7 @@ class IPPTransaction
 	 */
 	public $CurrencyRef;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: Currency exchange
 								rate. Valid only if the company file is set up to use
@@ -139,7 +139,7 @@ class IPPTransaction
 								amount of home units that equal that 1 foreign unit is what
 								QuickBooks uses as the exchange rate.
 								InputType: ReadWrite
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -148,13 +148,13 @@ class IPPTransaction
 	 */
 	public $ExchangeRate;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: User entered,
 								organization-private note about the transaction. This note will
 								not appear on the transaction records by default.
 								InputType: ReadWrite
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -163,7 +163,7 @@ class IPPTransaction
 	 */
 	public $PrivateNote;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: QBW: The status of the
 								transaction. Depending on the transaction type it may have
@@ -177,7 +177,7 @@ class IPPTransaction
 								Estimate, the values accepted are defined in
 								QboEstimateStatusEnum.
 								Filterable:QBW
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -186,11 +186,11 @@ class IPPTransaction
 	 */
 	public $TxnStatus;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: A linked (related)
 								transaction. More than one transaction can be linked.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -200,7 +200,7 @@ class IPPTransaction
 	 */
 	public $LinkedTxn;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBW
 								Description: A line item of a
 								transaction.
@@ -208,7 +208,7 @@ class IPPTransaction
 								Description: A line item of a
 								transaction. QuickBooks Online does not support tax lines in the
 								main transaction body, only in the TxnTaxDetail section.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -218,7 +218,7 @@ class IPPTransaction
 	 */
 	public $Line;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: Details of taxes
 								charged on the transaction as a whole. For US versions of
@@ -235,7 +235,7 @@ class IPPTransaction
 								whole.[br]See [a
 								href="http://ipp.developer.intuit.com/0010_Intuit_Partner_Platform/0060_Financial_Management_Services_(v3)/01100_Global_Tax_Model"]Global
 								Tax Model[/a].
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -244,12 +244,12 @@ class IPPTransaction
 	 */
 	public $TxnTaxDetail;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Originating source of
 								the Transaction. Valid values are defined in TxnSourceEnum:
 								QBMobile.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -258,12 +258,12 @@ class IPPTransaction
 	 */
 	public $TxnSource;
 	/**
-	 * @Definition 
+	 * @Definition
 								Description: refer TaxFormTypeEnum. Tax Form Type holds data related to Tax
 								Information, values based on
 								regional compliance laws. Applicable for IN Region and can be extended
 								for other Regions.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -272,11 +272,11 @@ class IPPTransaction
 	 */
 	public $TaxFormType;
 	/**
-	 * @Definition 
+	 * @Definition
 								Description: Tax Form Num holds data related to Tax Information based on
 								Regional compliance laws.This is applicable for IN region and
 								can be extended to other regions in future.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -285,13 +285,13 @@ class IPPTransaction
 	 */
 	public $TaxFormNum;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Location of the purchase or sale transaction. The applicable
 								values are those exposed through the
 								TransactionLocationTypeEnum. This is currently applicable only
 								for the FR region.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -300,10 +300,10 @@ class IPPTransaction
 	 */
 	public $TransactionLocationType;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Descripton: List of tags used to identify the transaction.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -313,10 +313,10 @@ class IPPTransaction
 	 */
 	public $Tag;
 	/**
-	 * @Definition 
+	 * @Definition
                                     Product: QBO
                                     Description: Details of the Approval Status for current transaction in QBO workflows.
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -325,12 +325,12 @@ class IPPTransaction
 	 */
 	public $TxnApprovalInfo;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: Reference to the
 								RecurTemplate which was used to create the Transaction
 								InputType: Read
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -339,10 +339,10 @@ class IPPTransaction
 	 */
 	public $RecurDataRef;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: QBO
 								Description: The Recurring Schedule information for the Transaction
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -351,12 +351,12 @@ class IPPTransaction
 	 */
 	public $RecurringInfo;
 	/**
-	 * @Definition 
+	 * @Definition
 								Product: ALL
 								Description: Project identifier
 								References to the project this transaction
 								is associated with
-							
+
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -364,5 +364,6 @@ class IPPTransaction
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
 	public $ProjectRef;
+
 
 } // end class IPPTransaction

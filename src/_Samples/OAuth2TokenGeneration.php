@@ -10,20 +10,21 @@ use QuickBooksOnline\API\Core\Http\Serialization\XmlObjectSerializer;
 
 $dataService = DataService::Configure(array(
   'auth_mode' => 'oauth2',
-  'ClientID' => "Q0fXL014zAv3wzmlhwXMEHTrKepfAshCRjztEu58ZokzCD5T7D",
-  'ClientSecret' => "stfnZfuSZUDay6cJSWtvQ9HkWiKFbcI9YuBTET5P",
-  'RedirectURI' => "https://b200efd8.ngrok.io/OAuth2_c/OAuth_2/OAuth2PHPExample.php",
+  'ClientID' => "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret' => "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'RedirectURI' => "https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl",
   'scope' => "com.intuit.quickbooks.accounting",
   'baseUrl' => "development"
 ));
-
+$dataService->setLogLocation("/Users/bsivalingam/Desktop/newFolderForLog");
 
 $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+$OAuth2LoginHelper->setLogForOAuthCalls(true, false, "/Users/bsivalingam/Desktop/newFolderForLog");
 
 $url = $OAuth2LoginHelper->getAuthorizationCodeURL();
 //It will return something like:https://b200efd8.ngrok.io/OAuth2_c/OAuth_2/OAuth2PHPExample.php?state=RandomState&code=Q0115106996168Bqap6xVrWS65f2iXDpsePOvB99moLCdcUwHq&realmId=193514538214074
 //get the Code and realmID, use for the exchangeAuthorizationCodeForToken
-$accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("Q011510688430mhfd9mAwpsiB8eWAMPqjDO4j2WKmMWyeN96Ru", "193514538214074");
+$accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken("AB11590626553iLinvYq9jciX3MKcx7vCONItnkZBmgfGHWfGP", "4620816365006687740");
 $dataService->updateOAuth2Token($accessToken);
 $dataService->throwExceptionOnError(true);
 $CompanyInfo = $dataService->getCompanyInfo();

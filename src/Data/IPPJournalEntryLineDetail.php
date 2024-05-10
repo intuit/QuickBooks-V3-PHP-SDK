@@ -123,6 +123,19 @@ class IPPJournalEntryLineDetail
 	/**
 	 * @Definition 
 						Product: QBO
+						Description: Sales/Purchase tax rate Id
+						associated with the JournalEntry Line. For CA Companies.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxRateRef
+	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 */
+	public $TaxRateRef;
+	/**
+	 * @Definition 
+						Product: QBO
 						Description: Indicates whether the
 						tax applicable on the line is sales or purchase
 					
@@ -146,6 +159,19 @@ class IPPJournalEntryLineDetail
 	 * @var float
 	 */
 	public $TaxAmount;
+	/**
+	 * @Definition 
+						Product: QBO
+						Description: Indicates the total
+						amount of line item including tax.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxInclusiveAmt
+	 * @var float
+	 */
+	public $TaxInclusiveAmt;
 	/**
 	 * @Definition 
 						Product: ALL

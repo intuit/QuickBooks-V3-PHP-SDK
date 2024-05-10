@@ -571,6 +571,54 @@ class IPPCustomer
 	 * @var boolean
 	 */
 	public $IsCISContractor;
+	/**
+	 * @Definition 
+								Internal use only: Applicable only for Accountant companies, Not null represents associated QBO company id. (Readonly)
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ClientCompanyId
+	 * @var string
+	 */
+	public $ClientCompanyId;
+	/**
+	 * @Definition 
+								Internal use only: Applicable only for Accountant companies, External reference for Customer. (ReadOnly)
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName ClientEntityId
+	 * @var string
+	 */
+	public $ClientEntityId;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Originating source of
+								the Customer. Valid values are defined in SourceTypeEnum
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Source
+	 * @var string
+	 */
+	public $Source;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Tax regime of a customer which is required by CFDI4.0 in Mexico.
+								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of TaxRegime.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TaxRegime
+	 * @var string
+	 */
+	public $TaxRegime;
 
 
 } // end class IPPCustomer

@@ -96,6 +96,18 @@ class IPPBill
 	public $ShipAddr;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: Vendor Mailing Address
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorAddr
+	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 */
+	public $VendorAddr;
+	/**
+	 * @Definition 
 								Product: ALL
 								Description: The unpaid amount of the bill. When paid-in-full, balance will
 								be zero.
@@ -154,6 +166,18 @@ class IPPBill
 	 * @var float
 	 */
 	public $LessCIS;
+	/**
+	 * @Definition 
+								Product: QBO Only
+								Description: True if the Bill should be included in annual TPAR, specific to AU region.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName IncludeInAnnualTPAR
+	 * @var boolean
+	 */
+	public $IncludeInAnnualTPAR;
 
 
 } // end class IPPBill

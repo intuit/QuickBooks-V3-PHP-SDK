@@ -40,6 +40,18 @@ class IPPVendorCredit
 
 	
 	/**
+	 * @Definition 
+								Product: QBO
+								Description: Vendor Mailing Address
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName VendorAddr
+	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
+	 */
+	public $VendorAddr;
+	/**
 	 * @Definition Internal use only: extension place holder for
 								Bill extensible element to qualify account.
 	 * @xmlType element
@@ -66,6 +78,18 @@ class IPPVendorCredit
 	 * @var float
 	 */
 	public $Balance;
+	/**
+	 * @Definition 
+								Product: QBO Only
+								Description: True if the VendorCredit should be included in annual TPAR, specific to AU region.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName IncludeInAnnualTPAR
+	 * @var boolean
+	 */
+	public $IncludeInAnnualTPAR;
 
 
 } // end class IPPVendorCredit

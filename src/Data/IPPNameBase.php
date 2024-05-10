@@ -220,6 +220,16 @@ class IPPNameBase
 	 */
 	public $Active;
 	/**
+	 * @Definition Auto generated Public ID when a new customer/vendor/employee is added to QBO. (ReadOnly)
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName V4IDPseudonym
+	 * @var string
+	 */
+	public $V4IDPseudonym;
+	/**
 	 * @Definition 
 								Product: ALL
 								Description: Primary phone number.

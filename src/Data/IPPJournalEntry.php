@@ -87,6 +87,20 @@ class IPPJournalEntry
 	public $EnteredInHomeCurrency;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: Indicates the
+								GlobalTax model if the model inclusive of tax, exclusive of
+								taxes or not applicable
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName GlobalTaxCalculation
+	 * @var com\intuit\schema\finance\v3\IPPGlobalTaxCalculationEnum
+	 */
+	public $GlobalTaxCalculation;
+	/**
+	 * @Definition 
 								Product: All
 								Description: Indicates the total
 								amount of the transaction. This includes the total of all the

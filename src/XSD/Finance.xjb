@@ -1,0 +1,23 @@
+<!-- Finance (CDM) binding customization file for use by the JAXB schema binding compiler (xjc)
+   Set global bindings
+ -->
+<jxb:bindings version="2.0"
+   xmlns:xjc ="http://java.sun.com/xml/ns/jaxb/xjc"
+   xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<jxb:bindings  schemaLocation="Finance.xsd" node="/xs:schema">
+    <jxb:globalBindings typesafeEnumMaxMembers="512">
+		     <jxb:serializable uid="1" />
+			 <xjc:javaType name="java.util.Date"
+                               xmlType="xs:dateTime"
+                               adapter="com.intuit.sb.cdm.util.v3.DateTimeAdapter"/>
+			 <xjc:javaType name="java.util.Date"
+                               xmlType="xs:date"
+                               adapter="com.intuit.sb.cdm.util.v3.DateAdapter"/>
+             <xjc:javaType name="java.util.Date"
+                               xmlType="xs:time"
+                               adapter="com.intuit.sb.cdm.util.v3.TimestampAdapter"/>
+		</jxb:globalBindings >
+	</jxb:bindings>
+</jxb:bindings>

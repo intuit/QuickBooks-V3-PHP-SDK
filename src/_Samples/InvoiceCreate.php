@@ -10,13 +10,13 @@ use QuickBooksOnline\API\Facades\Invoice;
 
 // Prep Data Services
 $dataService = DataService::Configure(array(
-       'auth_mode' => 'oauth1',
-         'consumerKey' => "qyprdUSoVpIHrtBp0eDMTHGz8UXuSz",
-         'consumerSecret' => "TKKBfdlU1I1GEqB9P3AZlybdC8YxW5qFSbuShkG7",
-         'accessTokenKey' => "qyprdxccscoNl7KRbUJoaJQIhUvyXRzD9tNOlXn4DhRDoj4g",
-         'accessTokenSecret' => "JqkHSBKzNHbqjMq0Njbcq8fjgJSpfjMvqHVWnDOW",
-         'QBORealmID' => "193514464689044",
-         'baseUrl' => "Development"
+  'auth_mode'       => 'oauth2',
+  'ClientID'        => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'ClientSecret'    => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'accessTokenKey'  => "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  'refreshTokenKey' => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  'QBORealmID'      => "xxxxxxxxxxxxxxxxxxx",
+  'baseUrl'         => "development"
 ));
 $dataService->setLogLocation("/Users/hlu2/Desktop/newFolderForLog");
 
