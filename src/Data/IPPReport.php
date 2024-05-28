@@ -3,12 +3,12 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType 
+ * @xmlType Report
  * @xmlName IPPReport
  * @var IPPReport
- * @xmlDefinition Report Response Type
  */
-class IPPReport
+class IPPReportWrapper
+	extends IPPReport
 	{
 
 		/**                                                                       
@@ -24,7 +24,7 @@ class IPPReport
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPReport',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPReport',$initPropName))
+				if (property_exists('IPPReportWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPReportWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -36,34 +36,6 @@ class IPPReport
 			}
 		}
 
-	
-	/**
-	 * @Definition Report Header, contains the report options that were used to generate the report
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Header
-	 * @var com\intuit\schema\finance\v3\IPPReportHeader
-	 */
-	public $Header;
-	/**
-	 * @Definition 
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Columns
-	 * @var com\intuit\schema\finance\v3\IPPColumns
-	 */
-	public $Columns;
-	/**
-	 * @Definition 
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Rows
-	 * @var com\intuit\schema\finance\v3\IPPRows
-	 */
-	public $Rows;
 
 
-} // end class IPPReport
+} // end class IPPReportWrapper

@@ -3,13 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
+ * @xmlType SalesReceipt
  * @xmlName IPPSalesReceipt
  * @var IPPSalesReceipt
- * @xmlDefinition SalesReceipt Transaction entity 
  */
-class IPPSalesReceipt
-	extends IPPSalesTransaction	{
+class IPPSalesReceiptWrapper
+	extends IPPSalesReceipt
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -24,7 +24,7 @@ class IPPSalesReceipt
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPSalesReceipt',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesReceipt',$initPropName))
+				if (property_exists('IPPSalesReceiptWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesReceiptWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -36,31 +36,6 @@ class IPPSalesReceipt
 			}
 		}
 
-	
-	/**
-	 * @Definition Extension entity for SalesReceipt
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName SalesReceiptEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $SalesReceiptEx;
-	/**
-	 * @Definition 
-								Product: All
-								Description: QBO: Indicates the
-								less cis amount of the transaction, specific to UK region companies
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName LessCIS
-	 * @var float
-	 */
-	public $LessCIS;
 
 
-} // end class IPPSalesReceipt
+} // end class IPPSalesReceiptWrapper

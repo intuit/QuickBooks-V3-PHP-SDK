@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType Transaction
+ * @xmlType ReimburseCharge
  * @xmlName IPPReimburseCharge
  * @var IPPReimburseCharge
- * @xmlDefinition  Product: QBO Description: Reimburse charge object
-				for QBO
-			
  */
-class IPPReimburseCharge
-	extends IPPTransaction	{
+class IPPReimburseChargeWrapper
+	extends IPPReimburseCharge
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPReimburseCharge
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPReimburseCharge',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPReimburseCharge',$initPropName))
+				if (property_exists('IPPReimburseChargeWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPReimburseChargeWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,58 +36,6 @@ class IPPReimburseCharge
 			}
 		}
 
-	
-	/**
-	 * @Definition  Product: QBO Description: Customer Reference
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName CustomerRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $CustomerRef;
-	/**
-	 * @Definition  Product: QBO Description: Indicates whether the Charge
-							has been invoiced
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName HasBeenInvoiced
-	 * @var boolean
-	 */
-	public $HasBeenInvoiced;
-	/**
-	 * @Definition Total amount of the reimburse charge.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Amount
-	 * @var float
-	 */
-	public $Amount;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: QBW: Total amount of
-								the transaction in the home currency for multi-currency enabled
-								companies. Single currency companies will not have this field.
-								Includes the total of all the charges, allowances and taxes.
-								Calculated by QuickBooks business logic. Cannot be written to
-								QuickBooks.
-								InputType: QBW: ReadOnly
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName HomeTotalAmt
-	 * @var float
-	 */
-	public $HomeTotalAmt;
 
 
-} // end class IPPReimburseCharge
+} // end class IPPReimburseChargeWrapper

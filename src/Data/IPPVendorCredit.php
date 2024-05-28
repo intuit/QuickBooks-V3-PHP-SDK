@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType PurchaseByVendor
+ * @xmlType VendorCredit
  * @xmlName IPPVendorCredit
  * @var IPPVendorCredit
- * @xmlDefinition Bill is an AP transaction representing a
-				request-for-payment from a third party for goods/services rendered
-				and/or received
  */
-class IPPVendorCredit
-	extends IPPPurchaseByVendor	{
+class IPPVendorCreditWrapper
+	extends IPPVendorCredit
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPVendorCredit
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPVendorCredit',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorCredit',$initPropName))
+				if (property_exists('IPPVendorCreditWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorCreditWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,58 +36,6 @@ class IPPVendorCredit
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Vendor Mailing Address
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName VendorAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
-	 */
-	public $VendorAddr;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								Bill extensible element to qualify account.
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName VendorCreditEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $VendorCreditEx;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: The unpaid amount of the bill. When paid-in-full, balance will
-								be zero.
-								[b]QuickBooks Notes[/b][br /]
-								Non QB-writable.
-								Filterable: QBW
-								Sortable: QBW
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Balance
-	 * @var float
-	 */
-	public $Balance;
-	/**
-	 * @Definition 
-								Product: QBO Only
-								Description: True if the VendorCredit should be included in annual TPAR, specific to AU region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName IncludeInAnnualTPAR
-	 * @var boolean
-	 */
-	public $IncludeInAnnualTPAR;
 
 
-} // end class IPPVendorCredit
+} // end class IPPVendorCreditWrapper

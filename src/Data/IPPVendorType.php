@@ -3,13 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType VendorType
  * @xmlName IPPVendorType
  * @var IPPVendorType
- * @xmlDefinition Vendor types allow categorizing vendors in ways that are meaningful to the business. For example, one could set up vendor types so that they indicate a vendor's industry or geographic location. The categorization then can be used for reporting.
  */
-class IPPVendorType
-	extends IPPIntuitEntity	{
+class IPPVendorTypeWrapper
+	extends IPPVendorType
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -24,7 +24,7 @@ class IPPVendorType
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPVendorType',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorType',$initPropName))
+				if (property_exists('IPPVendorTypeWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPVendorTypeWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -36,49 +36,6 @@ class IPPVendorType
 			}
 		}
 
-	
-	/**
-	 * @Definition User recognizable name for the Vendor Type.
-								Length Restriction:
-								QBD: 1024
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Name
-	 * @var string
-	 */
-	public $Name;
-	/**
-	 * @Definition VendorType Parent referene
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ParentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $ParentRef;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Fully qualified name of the entity. The fully qualified name prepends the topmost parent, followed by each sub element separated by colons. Takes the form of Parent:Customer:Job:Sub-job. Limited to 5 levels.[br /]Max. length: 41 characters (single name) or 209 characters (fully qualified name).
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName FullyQualifiedName
-	 * @var string
-	 */
-	public $FullyQualifiedName;
-	/**
-	 * @Definition Whether or not active inactive customer types may be hidden from most display purposes and may not be used on financial transactions
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Active
-	 * @var boolean
-	 */
-	public $Active;
 
 
-} // end class IPPVendorType
+} // end class IPPVendorTypeWrapper

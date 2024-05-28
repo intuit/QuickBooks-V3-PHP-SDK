@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType CustomFieldDefinition
+ * @xmlType DateTypeCustomFieldDefinition
  * @xmlName IPPDateTypeCustomFieldDefinition
  * @var IPPDateTypeCustomFieldDefinition
- * @xmlDefinition 
-				Product: ALL
-				Description: Provides for strong-typing of the DateType CustomField.
-			
  */
-class IPPDateTypeCustomFieldDefinition
-	extends IPPCustomFieldDefinition	{
+class IPPDateTypeCustomFieldDefinitionWrapper
+	extends IPPDateTypeCustomFieldDefinition
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPDateTypeCustomFieldDefinition
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPDateTypeCustomFieldDefinition',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPDateTypeCustomFieldDefinition',$initPropName))
+				if (property_exists('IPPDateTypeCustomFieldDefinitionWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPDateTypeCustomFieldDefinitionWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,43 +36,6 @@ class IPPDateTypeCustomFieldDefinition
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Default date value for the DateType CustomField.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName DefaultDate
-	 * @var string
-	 */
-	public $DefaultDate;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Minimum date value allowed when the DateType CustomField is created/updated.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName MinDate
-	 * @var string
-	 */
-	public $MinDate;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Maximum date value allowed when the DateType CustomField is created/updated.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName MaxDate
-	 * @var string
-	 */
-	public $MaxDate;
 
 
-} // end class IPPDateTypeCustomFieldDefinition
+} // end class IPPDateTypeCustomFieldDefinitionWrapper

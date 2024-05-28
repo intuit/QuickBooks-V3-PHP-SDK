@@ -3,17 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType Task
  * @xmlName IPPTask
  * @var IPPTask
- * @xmlDefinition 
-				Product: QBW
-				Description: A specific task to be
-				completed, maps to a ToDo record in QuickBooks.
-			
  */
-class IPPTask
-	extends IPPIntuitEntity	{
+class IPPTaskWrapper
+	extends IPPTask
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -28,7 +24,7 @@ class IPPTask
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTask',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTask',$initPropName))
+				if (property_exists('IPPTaskWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaskWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,80 +36,6 @@ class IPPTask
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: The actual content of
-								the task reminder
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Notes
-	 * @var string
-	 */
-	public $Notes;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: In use by the business
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName From
-	 * @var string
-	 */
-	public $From;
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: In use by the business
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Active
-	 * @var boolean
-	 */
-	public $Active;
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: True if the task has
-								been completed
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Done
-	 * @var boolean
-	 */
-	public $Done;
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: The date to remind the
-								user of this task
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ReminderDate
-	 * @var string
-	 */
-	public $ReminderDate;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								Task  
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaskEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $TaskEx;
 
 
-} // end class IPPTask
+} // end class IPPTaskWrapper

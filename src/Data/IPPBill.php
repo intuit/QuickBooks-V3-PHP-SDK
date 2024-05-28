@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType PurchaseByVendor
+ * @xmlType Bill
  * @xmlName IPPBill
  * @var IPPBill
- * @xmlDefinition Bill is an AP transaction representing a
-				request-for-payment from a third party for goods/services rendered
-				and/or received
  */
-class IPPBill
-	extends IPPPurchaseByVendor	{
+class IPPBillWrapper
+	extends IPPBill
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPBill
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPBill',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBill',$initPropName))
+				if (property_exists('IPPBillWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBillWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,146 +36,6 @@ class IPPBill
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: Payer information
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName PayerRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $PayerRef;
-	/**
-	 * @Definition SalesTerm Reference for the bill
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName SalesTermRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $SalesTermRef;
-	/**
-	 * @Definition The nominal date by which the bill must be
-								paid, not including any early-payment discount incentives, or
-								late payment penalties.
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName DueDate
-	 * @var string
-	 */
-	public $DueDate;
-	/**
-	 * @Definition Address to which the payment should be sent.
-								[b]QuickBooks Notes[/b][br /]
-								Non QB-writable.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName RemitToAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
-	 */
-	public $RemitToAddr;
-	/**
-	 * @Definition Address to which the vendor shipped or will
-								ship any goods associated with the purchase.
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ShipAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
-	 */
-	public $ShipAddr;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Vendor Mailing Address
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName VendorAddr
-	 * @var com\intuit\schema\finance\v3\IPPPhysicalAddress
-	 */
-	public $VendorAddr;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: The unpaid amount of the bill. When paid-in-full, balance will
-								be zero.
-								[b]QuickBooks Notes[/b][br /]
-								Non QB-writable.
-								Filterable: QBW
-								Sortable: QBW
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Balance
-	 * @var float
-	 */
-	public $Balance;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: The unpaid amount of the bill in home currency. Available only
-								for companies where multicurrency is enabled. When paid-in-full,
-								home balance will be zero.
-								[b]QuickBooks Notes[/b][br /]
-								Non
-								QB-writable.
-								Filterable: QBW
-								Sortable: QBW
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName HomeBalance
-	 * @var float
-	 */
-	public $HomeBalance;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								Bill.
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName BillEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $BillEx;
-	/**
-	 * @Definition 
-								Product: All
-								Description: QBO: Indicates the
-								less cis amount of the transaction, specific to UK region companies
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName LessCIS
-	 * @var float
-	 */
-	public $LessCIS;
-	/**
-	 * @Definition 
-								Product: QBO Only
-								Description: True if the Bill should be included in annual TPAR, specific to AU region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName IncludeInAnnualTPAR
-	 * @var boolean
-	 */
-	public $IncludeInAnnualTPAR;
 
 
-} // end class IPPBill
+} // end class IPPBillWrapper

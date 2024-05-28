@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType Vendor
+ * @xmlType TaxAgency
  * @xmlName IPPTaxAgency
  * @var IPPTaxAgency
- * @xmlDefinition 
-				Product: ALL
-				Description: Represents a tax agency to whom sales/purchase/VAT taxes collected are paid
-			
  */
-class IPPTaxAgency
-	extends IPPVendor	{
+class IPPTaxAgencyWrapper
+	extends IPPTaxAgency
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPTaxAgency
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTaxAgency',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxAgency',$initPropName))
+				if (property_exists('IPPTaxAgencyWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxAgencyWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,122 +36,6 @@ class IPPTaxAgency
 			}
 		}
 
-	
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName SalesTaxCodeRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $SalesTaxCodeRef;
-	/**
-	 * @Definition We'll need an Enum for the usual countries
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName SalesTaxCountry
-	 * @var string
-	 */
-	public $SalesTaxCountry;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName SalesTaxReturnRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $SalesTaxReturnRef;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxRegistrationNumber
-	 * @var string
-	 */
-	public $TaxRegistrationNumber;
-	/**
-	 * @Definition We'll need an Enum for the reporting periods
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ReportingPeriod
-	 * @var string
-	 */
-	public $ReportingPeriod;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxTrackedOnPurchases
-	 * @var boolean
-	 */
-	public $TaxTrackedOnPurchases;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxOnPurchasesAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $TaxOnPurchasesAccountRef;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxTrackedOnSales
-	 * @var boolean
-	 */
-	public $TaxTrackedOnSales;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxTrackedOnSalesAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $TaxTrackedOnSalesAccountRef;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxOnTax
-	 * @var boolean
-	 */
-	public $TaxOnTax;
-	/**
-	 * @Definition 
-                                Product: QBO
-                                Description: This specifies the last filing date for this tax agency.
-                                InputType: QBO: ReadOnly
-                            
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName LastFileDate
-	 * @var string
-	 */
-	public $LastFileDate;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxAgencyExt
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $TaxAgencyExt;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Tax agency config. Identify if the agency is System generated or User created.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName TaxAgencyConfig
-	 * @var string
-	 */
-	public $TaxAgencyConfig;
 
 
-} // end class IPPTaxAgency
+} // end class IPPTaxAgencyWrapper

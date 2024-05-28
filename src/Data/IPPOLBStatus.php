@@ -3,13 +3,12 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType 
+ * @xmlType OLBStatus
  * @xmlName IPPOLBStatus
  * @var IPPOLBStatus
- * @xmlDefinition Describes list of OLBAccounts that needs to be
-				enabled or disabled
  */
-class IPPOLBStatus
+class IPPOLBStatusWrapper
+	extends IPPOLBStatus
 	{
 
 		/**                                                                       
@@ -25,7 +24,7 @@ class IPPOLBStatus
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPOLBStatus',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPOLBStatus',$initPropName))
+				if (property_exists('IPPOLBStatusWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPOLBStatusWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -37,20 +36,6 @@ class IPPOLBStatus
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-						Product: ALL
-						Description: Account details
-					
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs unbounded
-	 * @xmlName OLBAccount
-	 * @var com\intuit\schema\finance\v3\IPPOLBAccount
-	 */
-	public $OLBAccount;
 
 
-} // end class IPPOLBStatus
+} // end class IPPOLBStatusWrapper

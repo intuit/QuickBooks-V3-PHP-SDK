@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
+ * @xmlType CreditMemo
  * @xmlName IPPCreditMemo
  * @var IPPCreditMemo
- * @xmlDefinition Financial transaction representing a refund (or
-				credit) of payment or part of a payment for goods or services that
-				have been sold.
  */
-class IPPCreditMemo
-	extends IPPSalesTransaction	{
+class IPPCreditMemoWrapper
+	extends IPPCreditMemo
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPCreditMemo
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPCreditMemo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCreditMemo',$initPropName))
+				if (property_exists('IPPCreditMemoWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCreditMemoWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,44 +36,6 @@ class IPPCreditMemo
 			}
 		}
 
-	
-	/**
-	 * @Definition Indicates the total credit amount still
-								available to apply towards the payment.
-								[b]QuickBooks
-								Notes[/b][br /]
-								Non QB-writable.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName RemainingCredit
-	 * @var float
-	 */
-	public $RemainingCredit;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: A credit memo needs to have an invoice number to save successfully
-								Applicable for IN Region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName InvoiceRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $InvoiceRef;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								CreditMemo  
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName CreditMemoEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $CreditMemoEx;
 
 
-} // end class IPPCreditMemo
+} // end class IPPCreditMemoWrapper

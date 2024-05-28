@@ -3,20 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType TaxClassification
  * @xmlName IPPTaxClassification
  * @var IPPTaxClassification
- * @xmlDefinition 
-				Product: ALL
-				Description: Tax classification segregates different items into different classifications and the tax
-				classification is one of the key parameters to determine appropriate tax on transactions involving items.
-				Tax classifications are sourced by either tax governing authorities as in India/Malaysia or externally like Exactor.
-				"Fuel", "Garments" and "Soft drinks" are a few examples of tax classification in layman terms.
-				User can choose a specific tax classification for an item while creating it.
-			
  */
-class IPPTaxClassification
-	extends IPPIntuitEntity	{
+class IPPTaxClassificationWrapper
+	extends IPPTaxClassification
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -31,7 +24,7 @@ class IPPTaxClassification
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTaxClassification',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxClassification',$initPropName))
+				if (property_exists('IPPTaxClassificationWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxClassificationWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -43,56 +36,6 @@ class IPPTaxClassification
 			}
 		}
 
-	
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Code
-	 * @var string
-	 */
-	public $Code;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Name
-	 * @var string
-	 */
-	public $Name;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Description
-	 * @var string
-	 */
-	public $Description;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Level
-	 * @var string
-	 */
-	public $Level;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ParentRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $ParentRef;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs unbounded
-	 * @xmlName ApplicableTo
-	 * @var com\intuit\schema\finance\v3\IPPItemTypeEnum
-	 */
-	public $ApplicableTo;
 
 
-} // end class IPPTaxClassification
+} // end class IPPTaxClassificationWrapper

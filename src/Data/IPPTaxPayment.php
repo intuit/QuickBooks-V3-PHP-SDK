@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType TaxPayment
  * @xmlName IPPTaxPayment
  * @var IPPTaxPayment
- * @xmlDefinition 
-				Product: QBO
-				Description: Tax Payment/Refund made against filed taxReturn.
-			
  */
-class IPPTaxPayment
-	extends IPPIntuitEntity	{
+class IPPTaxPaymentWrapper
+	extends IPPTaxPayment
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPTaxPayment
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTaxPayment',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxPayment',$initPropName))
+				if (property_exists('IPPTaxPaymentWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTaxPaymentWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,67 +36,6 @@ class IPPTaxPayment
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: The tax payment date
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName PaymentDate
-	 * @var string
-	 */
-	public $PaymentDate;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Account ID from which the payment was made (or refund was moved to)
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName PaymentAccountRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $PaymentAccountRef;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Specifies the tax payment amount paid towards a filed tax return.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName PaymentAmount
-	 * @var float
-	 */
-	public $PaymentAmount;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Memo/Description added for this payment.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Description
-	 * @var string
-	 */
-	public $Description;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Indicate if this transaction is a refund. Returns false for the tax payment.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Refund
-	 * @var boolean
-	 */
-	public $Refund;
 
 
-} // end class IPPTaxPayment
+} // end class IPPTaxPaymentWrapper

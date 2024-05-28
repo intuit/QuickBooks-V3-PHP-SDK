@@ -3,14 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
+ * @xmlType Estimate
  * @xmlName IPPEstimate
  * @var IPPEstimate
- * @xmlDefinition Transaction entity is the base class of all
-				transactions
  */
-class IPPEstimate
-	extends IPPSalesTransaction	{
+class IPPEstimateWrapper
+	extends IPPEstimate
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -25,7 +24,7 @@ class IPPEstimate
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPEstimate',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEstimate',$initPropName))
+				if (property_exists('IPPEstimateWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEstimateWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -37,53 +36,6 @@ class IPPEstimate
 			}
 		}
 
-	
-	/**
-	 * @Definition Date by which estimate must be accepted before
-								invalidation.
-								QBO only field.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ExpirationDate
-	 * @var string
-	 */
-	public $ExpirationDate;
-	/**
-	 * @Definition Name of customer who accepted the estimate.
-								QBO
-								only field.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName AcceptedBy
-	 * @var string
-	 */
-	public $AcceptedBy;
-	/**
-	 * @Definition Date estimate was accepted.
-								QBO only field.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName AcceptedDate
-	 * @var string
-	 */
-	public $AcceptedDate;
-	/**
-	 * @Definition Extension entity for Estimate
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName EstimateEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $EstimateEx;
 
 
-} // end class IPPEstimate
+} // end class IPPEstimateWrapper

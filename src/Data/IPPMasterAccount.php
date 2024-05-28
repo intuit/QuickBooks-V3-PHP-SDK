@@ -3,17 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType Account
+ * @xmlType MasterAccount
  * @xmlName IPPMasterAccount
  * @var IPPMasterAccount
- * @xmlDefinition Master Account is the list of accounts in the
-				master list. The master list is the complete list of accounts
-				prescribed by the French Government. These accounts can be created
-				in the company on a need basis. The account create API needs to be
-				used to create an account. 
  */
-class IPPMasterAccount
-	extends IPPAccount	{
+class IPPMasterAccountWrapper
+	extends IPPMasterAccount
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -28,7 +24,7 @@ class IPPMasterAccount
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPMasterAccount',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPMasterAccount',$initPropName))
+				if (property_exists('IPPMasterAccountWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPMasterAccountWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,19 +36,6 @@ class IPPMasterAccount
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Specifies whether the account has been created in the company.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName AccountExistsInCompany
-	 * @var boolean
-	 */
-	public $AccountExistsInCompany;
 
 
-} // end class IPPMasterAccount
+} // end class IPPMasterAccountWrapper

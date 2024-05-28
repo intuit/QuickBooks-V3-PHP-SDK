@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType Tag
  * @xmlName IPPTag
  * @var IPPTag
- * @xmlDefinition 
-				Product: ALL
-				Description: A Tag applied to a transaction
-			
  */
-class IPPTag
-	extends IPPIntuitEntity	{
+class IPPTagWrapper
+	extends IPPTag
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPTag
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTag',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTag',$initPropName))
+				if (property_exists('IPPTagWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTagWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,20 +36,6 @@ class IPPTag
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: The name of the tag.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName Name
-	 * @var string
-	 */
-	public $Name;
 
 
-} // end class IPPTag
+} // end class IPPTagWrapper

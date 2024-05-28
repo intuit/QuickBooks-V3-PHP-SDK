@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType CustomFieldDefinition
+ * @xmlType BooleanTypeCustomFieldDefinition
  * @xmlName IPPBooleanTypeCustomFieldDefinition
  * @var IPPBooleanTypeCustomFieldDefinition
- * @xmlDefinition 
-				Product: ALL
-				Description: Provides for strong-typing of the BooleanType CustomField.
-			
  */
-class IPPBooleanTypeCustomFieldDefinition
-	extends IPPCustomFieldDefinition	{
+class IPPBooleanTypeCustomFieldDefinitionWrapper
+	extends IPPBooleanTypeCustomFieldDefinition
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPBooleanTypeCustomFieldDefinition
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPBooleanTypeCustomFieldDefinition',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBooleanTypeCustomFieldDefinition',$initPropName))
+				if (property_exists('IPPBooleanTypeCustomFieldDefinitionWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPBooleanTypeCustomFieldDefinitionWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,19 +36,6 @@ class IPPBooleanTypeCustomFieldDefinition
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Default value of the BooleanType CustomField.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName DefaultValue
-	 * @var boolean
-	 */
-	public $DefaultValue;
 
 
-} // end class IPPBooleanTypeCustomFieldDefinition
+} // end class IPPBooleanTypeCustomFieldDefinitionWrapper

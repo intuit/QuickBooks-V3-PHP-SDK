@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType CustomFieldDefinition
+ * @xmlType StringTypeCustomFieldDefinition
  * @xmlName IPPStringTypeCustomFieldDefinition
  * @var IPPStringTypeCustomFieldDefinition
- * @xmlDefinition 
-				Product: ALL
-				Description: Provides for strong-typing of the StringType CustomField.
-			
  */
-class IPPStringTypeCustomFieldDefinition
-	extends IPPCustomFieldDefinition	{
+class IPPStringTypeCustomFieldDefinitionWrapper
+	extends IPPStringTypeCustomFieldDefinition
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPStringTypeCustomFieldDefinition
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPStringTypeCustomFieldDefinition',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStringTypeCustomFieldDefinition',$initPropName))
+				if (property_exists('IPPStringTypeCustomFieldDefinitionWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPStringTypeCustomFieldDefinitionWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,43 +36,6 @@ class IPPStringTypeCustomFieldDefinition
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Default string value of the StringType CustomField.[br /]Max. length: 31 characters.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName DefaultString
-	 * @var string
-	 */
-	public $DefaultString;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: The regular expression string used to validate the StringType CustomField value.[br /]Max. length: 31 characters.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName RegularExpression
-	 * @var string
-	 */
-	public $RegularExpression;
-	/**
-	 * @Definition 
-								Product: ALL
-								Description: Maximum length allowed for the value of the string when creating/updating a StringType CustomField.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName MaxLength
-	 * @var integer
-	 */
-	public $MaxLength;
 
 
-} // end class IPPStringTypeCustomFieldDefinition
+} // end class IPPStringTypeCustomFieldDefinitionWrapper

@@ -3,16 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType QbdtEntityIdMapping
  * @xmlName IPPQbdtEntityIdMapping
  * @var IPPQbdtEntityIdMapping
- * @xmlDefinition Provides the mapping between ListId and TxnId in
-				Desktop to the same Entity Id in QBO. These mappings are available
-				for only companies that have migrated from Desktop to QBO
-			
  */
-class IPPQbdtEntityIdMapping
-	extends IPPIntuitEntity	{
+class IPPQbdtEntityIdMappingWrapper
+	extends IPPQbdtEntityIdMapping
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +24,7 @@ class IPPQbdtEntityIdMapping
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPQbdtEntityIdMapping',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPQbdtEntityIdMapping',$initPropName))
+				if (property_exists('IPPQbdtEntityIdMappingWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPQbdtEntityIdMappingWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,63 +36,6 @@ class IPPQbdtEntityIdMapping
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: The Id of the QBO Entity. This id is accepted by V3 APIs. They
-								uniquely identify the entity in QBO for that company.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName QboEntityId
-	 * @var string
-	 */
-	public $QboEntityId;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: The ListId or TxnId of the QB Desktop Entity. They uniquely
-								identify the entity in QB Desktop for that company.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName QbdtExportableId
-	 * @var string
-	 */
-	public $QbdtExportableId;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: The entity type name of the entity in QBO. Refer
-								QboEntityTypeEnum for all the values.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName QboEntityType
-	 * @var string
-	 */
-	public $QboEntityType;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: The entity type name of the entity in QBO. Refer
-								QbdtEntityTypeEnum for all the values.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName QbdtEntityType
-	 * @var string
-	 */
-	public $QbdtEntityType;
 
 
-} // end class IPPQbdtEntityIdMapping
+} // end class IPPQbdtEntityIdMappingWrapper

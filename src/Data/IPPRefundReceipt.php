@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
+ * @xmlType RefundReceipt
  * @xmlName IPPRefundReceipt
  * @var IPPRefundReceipt
- * @xmlDefinition Financial transaction representing a refund (or
-				credit) of payment or part of a payment for goods or services that
-				have been sold.
  */
-class IPPRefundReceipt
-	extends IPPSalesTransaction	{
+class IPPRefundReceiptWrapper
+	extends IPPRefundReceipt
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPRefundReceipt
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPRefundReceipt',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRefundReceipt',$initPropName))
+				if (property_exists('IPPRefundReceiptWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRefundReceiptWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,31 +36,6 @@ class IPPRefundReceipt
 			}
 		}
 
-	
-	/**
-	 * @Definition Indicates the total credit amount still
-								available to apply towards the payment.
-								[b]QuickBooks
-								Notes[/b][br /]
-								Non QB-writable.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName RemainingCredit
-	 * @var float
-	 */
-	public $RemainingCredit;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								Refund  
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName RefundReceiptEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $RefundReceiptEx;
 
 
-} // end class IPPRefundReceipt
+} // end class IPPRefundReceiptWrapper

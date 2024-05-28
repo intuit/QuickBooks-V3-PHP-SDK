@@ -3,17 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType TDSMetadata
  * @xmlName IPPTDSMetadata
  * @var IPPTDSMetadata
- * @xmlDefinition 
-				Product: QBO
-				Description: Describes metadata
-				associated with TDS entity.
-			
  */
-class IPPTDSMetadata
-	extends IPPIntuitEntity	{
+class IPPTDSMetadataWrapper
+	extends IPPTDSMetadata
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -28,7 +24,7 @@ class IPPTDSMetadata
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPTDSMetadata',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTDSMetadata',$initPropName))
+				if (property_exists('IPPTDSMetadataWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTDSMetadataWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -40,33 +36,6 @@ class IPPTDSMetadata
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Provides list of TDS entity types supported for India region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs unbounded
-	 * @xmlName TDSEntityTypes
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
-	 */
-	public $TDSEntityTypes;
-	/**
-	 * @Definition 
-								Product: QBO
-								Description: Provides list of TDS section types supported for India region.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs unbounded
-	 * @xmlName TDSSectionTypes
-	 * @var com\intuit\schema\finance\v3\IPPNameValue
-	 */
-	public $TDSSectionTypes;
 
 
-} // end class IPPTDSMetadata
+} // end class IPPTDSMetadataWrapper

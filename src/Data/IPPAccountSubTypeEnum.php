@@ -7,10 +7,11 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPAccountSubTypeEnum
  * @var IPPAccountSubTypeEnum
  * @xmlDefinition 
-						Product: QBO
-						Description: Use Rent a room relief - Relief Claimed for relief claimed for rented room for landlords
-					
- * @xmlb Share Application Money Pending Allotment
+				Product: QBO
+				Description: Enumeration of Account
+				sub-types used to specifically categorize account types in
+				QuickBooks Online.
+			
  */
 class IPPAccountSubTypeEnum
 	{

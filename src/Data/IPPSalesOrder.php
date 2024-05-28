@@ -3,32 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType SalesTransaction
+ * @xmlType SalesOrder
  * @xmlName IPPSalesOrder
  * @var IPPSalesOrder
- * @xmlDefinition 
-				Product: QBW
-				Description: A sales order is a
-				financial transaction that represents a request received from a
-				customer to purchase products or services. Sales orders help you
-				manage the sale of products and services your customers order. For
-				example, a sales order tracks inventory that is on back order for a
-				customer. Sales Orders are supported only in QuickBooks Premier
-				(desktop) and above. However, if you are accessing a company file
-				created in Premier and above from a lesser edition of QuickBooks
-				(such as Pro), you can do queries against SalesOrders. Using sales
-				orders is optional.
-				Endpoint: services.intuit.com
-				Business Rules:
-				[li]A sales order must have at least one line that describes the
-				item. [/li][li]A sales order must have a reference to a customer in
-				the [/li][li]If you submit a query with the filter
-				IncludeDiscountLineDetails, the system retrieves either
-				DiscountAmount or DiscountRatePercent with associated values[/li]
-			
  */
-class IPPSalesOrder
-	extends IPPSalesTransaction	{
+class IPPSalesOrderWrapper
+	extends IPPSalesOrder
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -43,7 +24,7 @@ class IPPSalesOrder
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPSalesOrder',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesOrder',$initPropName))
+				if (property_exists('IPPSalesOrderWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSalesOrderWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -55,31 +36,6 @@ class IPPSalesOrder
 			}
 		}
 
-	
-	/**
-	 * @Definition 
-								Product: QBW
-								Description: The entire
-								transaction, or individual items are maually closed, i.e. not
-								invoiced.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName ManuallyClosed
-	 * @var boolean
-	 */
-	public $ManuallyClosed;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								SalesOrder  
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName SalesOrderEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $SalesOrderEx;
 
 
-} // end class IPPSalesOrder
+} // end class IPPSalesOrderWrapper

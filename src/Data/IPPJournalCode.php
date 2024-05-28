@@ -3,15 +3,13 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType IntuitEntity
+ * @xmlType JournalCode
  * @xmlName IPPJournalCode
  * @var IPPJournalCode
- * @xmlDefinition Journal Code is a compliance requirement in FR. A
-				journal code is assigned to each transaction and it depends on
-				whether it is a income or a expense. 
  */
-class IPPJournalCode
-	extends IPPIntuitEntity	{
+class IPPJournalCodeWrapper
+	extends IPPJournalCode
+	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -26,7 +24,7 @@ class IPPJournalCode
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPJournalCode',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPJournalCode',$initPropName))
+				if (property_exists('IPPJournalCodeWrapper',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPJournalCodeWrapper',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,58 +36,6 @@ class IPPJournalCode
 			}
 		}
 
-	
-	/**
-	 * @Definition The two letter name for the journal code
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Name
-	 * @var string
-	 */
-	public $Name;
-	/**
-	 * @Definition  The type of the Journal Code. The applicable
-								values are those exposed through the JournalCodeTypeEnum.
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Type
-	 * @var string
-	 */
-	public $Type;
-	/**
-	 * @Definition The description of the Journal Code
-							
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Description
-	 * @var string
-	 */
-	public $Description;
-	/**
-	 * @Definition Whether or not Journal codes may be hidden for
-								display purposes
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Active
-	 * @var boolean
-	 */
-	public $Active;
-	/**
-	 * @Definition Internal use only: extension place holder for
-								Journal Code extensible element 
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName JournalCodeEx
-	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
-	 */
-	public $JournalCodeEx;
 
 
-} // end class IPPJournalCode
+} // end class IPPJournalCodeWrapper
