@@ -180,6 +180,19 @@ class IPPEmployee
 	 * @var float
 	 */
 	public $CostRate;
+	/**
+	 * @Definition 
+								Product: ALL
+								Description: Free form text describing the Employee.[br /]Max. length: 4000 characters.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs 1
+	 * @xmlName Notes
+	 * @var string
+	 */
+	public $Notes;
 
 
 } // end class IPPEmployee

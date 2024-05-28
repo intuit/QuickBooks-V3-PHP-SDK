@@ -12118,6 +12118,13 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="TimeChargeId" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								The ID of the related TimeCharge transaction.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="BillableStatus" type="BillableStatusEnum"
 								minOccurs="0">
 						<xs:annotation>
