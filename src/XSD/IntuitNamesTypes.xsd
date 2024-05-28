@@ -1205,6 +1205,14 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Notes" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Free form text describing the Employee.[br /]Max. length: 4000 characters.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
