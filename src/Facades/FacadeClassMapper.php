@@ -192,7 +192,7 @@ class FacadeClassMapper
          //Use JournalEntryEntity to replace Entity
          'JournalEntryEntity' => 'EntityTypeRef',
          'ScheduleInfo' => 'RecurringScheduleInfo',
-         // Sales Recipet mapping
+         // Sales Receipt mapping
          'SalesReceiptCCPayment' => 'CreditCardPayment',
        ];
     }
