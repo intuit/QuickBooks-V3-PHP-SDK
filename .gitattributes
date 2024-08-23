@@ -1,0 +1,13 @@
+/docs export-ignore
+/src/_Samples export-ignore
+/src/Utility.Test export-ignore
+/src/XSD2PHP/docs export-ignore
+/src/XSD2PHP/resources export-ignore
+/src/XSD2PHP/test export-ignore
+/src/XSD2PHP/website export-ignore
+/src/XSD2PHP/buildDocs.sh export-ignore
+/test export-ignore
+/views export-ignore
+/.travis.yml export-ignore
+/composer.lock export-ignore
+/phpunit.xml export-ignore
