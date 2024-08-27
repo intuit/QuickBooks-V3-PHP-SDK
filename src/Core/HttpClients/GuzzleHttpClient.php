@@ -57,7 +57,7 @@
             return $this->getLastResponse();
         } catch(RequestException $e){
             if($e->hasResponse()){
-                throw new SdkException("A networking error occurs during Guzzle client request:" . Psr7\str($e->getResponse()));
+                throw new SdkException("A networking error occurs during Guzzle client request:" . Psr7\Message::toString($e->getResponse()));
             }else{
                 throw new SdkException("Network Error:" . $e->getMessage());
             }
