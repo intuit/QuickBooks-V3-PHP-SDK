@@ -5029,6 +5029,24 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+                    <xs:element name="TotalCostAmount" type="xs:decimal" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: ALL
+                                Description: Project Estimate identifier
+                                The amount or equivalent paid or charged for a product/service
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="HomeTotalCostAmount" type="xs:decimal" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Product: ALL
+                                Description: Project Estimate identifier
+                                The amount or equivalent paid or charged for a product/service when using multi-currency
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -6612,6 +6630,24 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+            <xs:element name="CostAmount" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product: ALL
+                        Description: Project Estimate identifier
+                        The amount or equivalent paid or charged for a product/service
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="HomeCostAmount" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product: ALL
+                        Description: Project Estimate identifier
+                        The amount or equivalent paid or charged for a product/service when using multi-currency
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="Tag">
@@ -7068,6 +7104,15 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
+                <xs:element name="UnitCostPrice" type="xs:decimal" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Product: ALL
+                            Description: cost rate of the
+                            service or item for the line of Project Estimate.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
 				<xs:element name="RatePercent" type="xs:decimal"
 							minOccurs="0">
 					<xs:annotation>

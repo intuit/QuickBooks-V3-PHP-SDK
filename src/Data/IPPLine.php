@@ -410,6 +410,32 @@ class IPPLine
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
 	public $ProjectRef;
+	/**
+	 * @Definition 
+                        Product: ALL
+                        Description: Project Estimate identifier
+                        The amount or equivalent paid or charged for a product/service
+                    
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CostAmount
+	 * @var float
+	 */
+	public $CostAmount;
+	/**
+	 * @Definition 
+                        Product: ALL
+                        Description: Project Estimate identifier
+                        The amount or equivalent paid or charged for a product/service when using multi-currency
+                    
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName HomeCostAmount
+	 * @var float
+	 */
+	public $HomeCostAmount;
 
 
 } // end class IPPLine
