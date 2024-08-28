@@ -1,7 +1,7 @@
 <?php
 //Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
 include('../config.php');
-
+require ('../../vendor/autoload.php');
 use QuickBooksOnline\API\Core\ServiceContext;
 use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\PlatformService\PlatformService;
@@ -24,6 +24,7 @@ $dataService = DataService::Configure(array(
   'baseUrl'         => "development"
 ));
 
+$dataService->setClientName('guzzle');
 $invoice = $dataService->FindById("Invoice", "198");
 
 $pdfContent = $dataService->DownloadPDF($invoice, null, true);
