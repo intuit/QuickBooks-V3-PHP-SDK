@@ -994,7 +994,7 @@ Developers will need to create a ``$batch`` object first, then add the operation
 .. code-block:: php
 
     $batch = $dataService->CreateNewBatch();
-    $batch->AddQuery("select * from Customer startPosition 0 maxResults 20", "queryCustomer", "uniqueQuery");
+    $batch->AddQuery("select * from Customer startPosition 0 maxResults 20", "uniqueQueryIdentifier");
     $batch->AddEntity($invoice, "uniqueIdentifier", "create");
     $batch->Execute();
 
