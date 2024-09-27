@@ -167,7 +167,7 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
       */
      public static function encodeUTF8($string)
      {
-								if (mb_detect_encoding($string, 'UTF-8', true) === false) {
+	if (mb_detect_encoding($string, 'UTF-8', true) === false) {
            $string = utf8_encode($string);
         }
          return $string;
