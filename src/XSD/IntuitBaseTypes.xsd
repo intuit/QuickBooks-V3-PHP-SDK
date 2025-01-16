@@ -1891,6 +1891,7 @@
 			<xs:enumeration value="Vendor"/>
 			<xs:enumeration value="VendorCredit"/>
 			<xs:enumeration value="CustomFieldDefinition"/>
+			<xs:enumeration value="ChangeOrder"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ReportBasisEnum">
