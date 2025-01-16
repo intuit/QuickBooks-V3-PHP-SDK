@@ -3371,6 +3371,18 @@
 			<xs:enumeration value="Other" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="PaymentExtendedTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Enumeration of extended
+				payment types.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Prepayment" />
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="BillPaymentTypeEnum">
 		<xs:annotation>
 			<xs:documentation>
@@ -9770,6 +9782,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="PaymentExtendedType" type="PaymentExtendedTypeEnum"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Current only valid value is Prepayment.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="PaymentEx" type="IntuitAnyType"
 								minOccurs="0">
 						<xs:annotation>
@@ -14036,6 +14057,12 @@
 								type="IntuitAnyType">
 						<xs:annotation>
 							<xs:documentation> Specifies extension entity to allow extension
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentId" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>DocumentId of the uploaded attachment from Document Service
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

@@ -4,14 +4,15 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPEntityStatusEnum
- * @var IPPEntityStatusEnum
+ * @xmlName IPPPaymentExtendedTypeEnum
+ * @var IPPPaymentExtendedTypeEnum
  * @xmlDefinition 
 				Product: ALL
-				Description: Possible Status of an Entity.
+				Description: Enumeration of extended
+				payment types.
 			
  */
-class IPPEntityStatusEnum
+class IPPPaymentExtendedTypeEnum
 	{
 
 		/**                                                                       
@@ -27,7 +28,7 @@ class IPPEntityStatusEnum
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPEntityStatusEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEntityStatusEnum',$initPropName))
+				if (property_exists('IPPPaymentExtendedTypeEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPPaymentExtendedTypeEnum',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,4 +46,4 @@ class IPPEntityStatusEnum
 		 */
 		public $value;
 
-} // end class IPPEntityStatusEnum
+} // end class IPPPaymentExtendedTypeEnum
