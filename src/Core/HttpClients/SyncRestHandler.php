@@ -139,7 +139,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestUri            The Complete HTTP request URI
      * @param  RequestParameters$requestParameters     The Complete HTTP request URI
      * @param  String           $requestBody           The request body for POST request.
-     * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
+     * @param  Boolean          $throwExceptionOnError If throw an exception when the return http status is not 200. Default is false
      *
      * @return array|null Response and HTTP Status code
      */
@@ -148,10 +148,10 @@ class SyncRestHandler extends RestHandler
       $httpHeaders = $this->setCommonHeadersForPHPSDK($AuthorizationHeader, $requestUri, $requestParameters->ContentType, $requestBody);
       // Log Request Body to a file
       $this->LogAPIRequestToLog($requestBody, $requestUri, $httpHeaders);
-      $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders, $requestBody, null, false);
+      $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders, $requestBody, null, true);
       $faultHandler = $intuitResponse->getFaultHandler();
       $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
-      //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
+      //Based on the documentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
       //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
       if($faultHandler) {
           if($throwExceptionOnError == true){
@@ -195,7 +195,7 @@ class SyncRestHandler extends RestHandler
      * @param  String           $requestUri            The Complete HTTP request URI
      * @param  RequestParameters$requestParameters     The Complete HTTP request URI
      * @param  String           $requestBody           The request body for POST request.
-     * @param  Boolean          $throwExceptionOnError If throw an exception whent he return http status is not 200. Default is false
+     * @param  Boolean          $throwExceptionOnError If throw an exception when the return http status is not 200. Default is false
      *
      * @return array|null Response and HTTP Status code
      */
@@ -212,11 +212,11 @@ class SyncRestHandler extends RestHandler
              throw new SdkException("IPP or other Call is not supported in OAuth2 Mode.");
         }
 
-        $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, false);
+        $intuitResponse = $this->httpClientInterface->makeAPICall($requestUri, $HttpMethod, $httpHeaders,  $requestBody, null, true);
         $faultHandler = $intuitResponse->getFaultHandler();
         $this->LogAPIResponseToLog($intuitResponse->getBody(), $requestUri, $intuitResponse->getHeaders());
 
-        //Based on the ducomentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
+        //Based on the documentation, the fetch expected HTTP/1.1 20X or a redirect. If not, any 3xx, 4xx or 5xx will throw an OAuth Exception
         //for 3xx without direct, it will throw a 503 code and error saying: Invalid protected resource url, unable to generate signature base string
         if($faultHandler) {
             if($throwExceptionOnError == true){
