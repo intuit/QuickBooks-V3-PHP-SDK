@@ -3,6 +3,7 @@
 namespace QuickBooksOnline\API\XSD2PHP\src\com\mikebevz\xsd2php;
 
 use QuickBooksOnline\API\Core\CoreConstants;
+use AllowDynamicProperties;
 
 /**
  * Copyright 2010 Mike Bevz <myb@mikebevz.com>
@@ -29,6 +30,7 @@ use QuickBooksOnline\API\Core\CoreConstants;
  * @author Mike Bevz <myb@mikebevz.com>
  * @version 0.0.4
  */
+#[AllowDynamicProperties]
 class Php2Xml extends Common
 {
     /**

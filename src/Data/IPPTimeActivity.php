@@ -171,6 +171,17 @@ class IPPTimeActivity
 	 */
 	public $ProjectRef;
 	/**
+	 * @Definition 
+								The ID of the related TimeCharge transaction.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TimeChargeId
+	 * @var integer
+	 */
+	public $TimeChargeId;
+	/**
 	 * @Definition Billable status of the time recorded
 							
 	 * @xmlType element
