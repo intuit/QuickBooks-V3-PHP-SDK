@@ -553,6 +553,13 @@ class Batch
               case "QueryResponse":
                   $result->responseType = UtilityConstants::Query;
                   $queryResult = array();
+                  //handle count(*) case, for example Select count(*) from Invoice, and also handle the CDC case
+                  if(isset($oneXmlObj->QueryResponse->attributes()['totalCount'])
+                          && !isset($oneXmlObj->QueryResponse->attributes()['startPosition'])
+                          && !isset($oneXmlObj->QueryResponse->attributes()['maxResults'])) {
+                      $totalCount = (int) $oneXmlObj->QueryResponse->attributes()['totalCount'];
+                      $queryResult = array_merge($queryResult, [$totalCount]);
+                  }
                   foreach ($oneXmlObj->QueryResponse->children() as $oneResponse) {
                       $oneEntity = $this->responseSerializer->Deserialize('<RestResponse>'.$oneResponse->asXML().'</RestResponse>');
                       $queryResult = array_merge($queryResult, $oneEntity);
