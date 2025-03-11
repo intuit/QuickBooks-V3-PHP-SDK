@@ -435,7 +435,9 @@ class FacadeHelper{
          $key = "Entity";
      }else if(strcasecmp($key, "JournalEntryType") == 0){
          $key = "Type";
-     }
+     } else if(strcasecmp($key, "SalesReceiptCCPayment") == 0){
+        $key = "CreditCardPayment";
+    }
      $property = $reflectionClassOfTargetObject->getProperty($key);
      if($property instanceof \ReflectionProperty){
         $value = FacadeHelper::convertValueTypeToAppropriateString($value);
