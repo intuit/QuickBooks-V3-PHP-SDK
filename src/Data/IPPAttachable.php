@@ -192,6 +192,16 @@ class IPPAttachable
 	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
 	public $AttachableEx;
+	/**
+	 * @Definition DocumentId of the uploaded attachment from Document Service
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName documentId
+	 * @var string
+	 */
+	public $documentId;
 
 
 } // end class IPPAttachable
