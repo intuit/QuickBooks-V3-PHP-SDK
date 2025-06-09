@@ -130,6 +130,9 @@ class Bind extends Common
                 list($ns, $name) = $this->parseQName($child->nodeName, true);
                 //$className = $this->urnToPhpName($ns)."\\".$name;
                 try {
+                    if (!$refl->hasProperty($name)) {
+                        continue;
+                    }
                     $propertyDocs = $refl->getProperty($name)->getDocComment();
                 } catch (\ReflectionException $e) {
                     throw new \RuntimeException($e->getMessage() . ". Class " . get_class($model));
