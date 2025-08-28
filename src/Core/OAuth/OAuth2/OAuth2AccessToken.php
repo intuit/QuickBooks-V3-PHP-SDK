@@ -247,12 +247,13 @@ class OAuth2AccessToken{
 
     /**
      * Return the expiration date of Access Token
+     * @param string $timezone Optional timezone (e.g., 'America/New_York', 'Asia/Jakarta'). Defaults to UTC.
      * @return Date
      */
-    public function getAccessTokenExpiresAt(){
+    public function getAccessTokenExpiresAt($timezone = 'UTC'){
         if(!empty($this->accessTokenExpiresAt))
         {
-          return $this->getDateFromSeconds($this->accessTokenExpiresAt);
+          return $this->getDateFromSeconds($this->accessTokenExpiresAt, $timezone);
         }else{
           throw new SdkException("The Expiration Time for OAuth 2 Access Token is not set.");
         }
@@ -260,12 +261,13 @@ class OAuth2AccessToken{
 
     /**
      * Return the expiration date of refresh Token
+     * @param string $timezone Optional timezone (e.g., 'America/New_York', 'Asia/Jakarta'). Defaults to UTC.
      * @return int
      */
-    public function getRefreshTokenExpiresAt(){
+    public function getRefreshTokenExpiresAt($timezone = 'UTC'){
       if(!empty($this->refreshTokenExpiresAt))
       {
-        return $this->getDateFromSeconds($this->refreshTokenExpiresAt);
+        return $this->getDateFromSeconds($this->refreshTokenExpiresAt, $timezone);
       }else{
         throw new SdkException("The Expiration Time for OAuth 2 refresh Token is not set.");
       }
@@ -355,10 +357,13 @@ class OAuth2AccessToken{
 
     /**
      * A helper function to convert Seconds to date
-     * @param  int  $second
+     * @param  int  $seconds
+     * @param  string  $timezone
      * @return string
      */
-    private function getDateFromSeconds($seconds){
-      return date('Y/m/d H:i:s', $seconds);
+    private function getDateFromSeconds($seconds, $timezone = 'UTC'){
+      $dt = new \DateTime("@$seconds");
+      $dt->setTimezone(new \DateTimeZone($timezone));
+      return $dt->format('Y/m/d H:i:s') . ' ' . $timezone;
     }
 }
