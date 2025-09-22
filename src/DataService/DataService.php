@@ -270,7 +270,22 @@ class DataService
         return $this;
     }
 
-    /**
+    /** (bch36)
+	 * Set a callback function for request and response logs
+	 *
+	 * @param callable $callback     The callback function for receiving request and response logs
+	 *
+	 * @return $this
+	 */
+	public function setLogCallback($callback)
+	{
+		$restHandler = $this->restHandler;
+		$loggerUsedByRestHandler = $restHandler->getRequestLogger();
+		$loggerUsedByRestHandler->setLogCallback($callback);
+		return $this;
+	}
+	
+	/**
      * Set logging for OAuth calls
      *
      * @param Boolean $enableLogs          Turns on logging for OAuthCalls
