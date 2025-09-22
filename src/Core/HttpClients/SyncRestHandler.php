@@ -278,10 +278,10 @@ class SyncRestHandler extends RestHandler
      */
     public function LogAPIResponseToLog($body, $requestUri, $httpHeaders){
       $httpHeaders = array_change_key_case($httpHeaders, CASE_LOWER);
-      if(strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0 ||
-          strcasecmp($httpHeaders[strtolower(CoreConstants::CONTENT_TYPE)], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0){
+      if((isset($httpHeaders[CoreConstants::CONTENT_TYPE]) && strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML) == 0) ||
+          (isset($httpHeaders[CoreConstants::CONTENT_TYPE]) && strcasecmp($httpHeaders[CoreConstants::CONTENT_TYPE], CoreConstants::CONTENTTYPE_APPLICATIONXML_WITH_CHARSET) == 0) ) {
              $body = $this->parseStringToDom($body);
-      }
+      } 
 
       $this->RequestLogging->LogPlatformRequests($body, $requestUri, $httpHeaders, false);
     }
