@@ -6660,6 +6660,16 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="CustomExtensions" type="CustomExtensions"
+			    minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Product: IES
+                        Description: Custom extensions of the transaction line
+                        Extensions like dimensions and other user defined categories
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="Tag">
@@ -14976,5 +14986,57 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CustomExtensions">
+		<xs:annotation>
+			<xs:documentation>
+				Product: IES
+				Description: Custom extensions for user defined categories like dimensions
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExtensionType" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Holds type of the custom extension eg. DIMENSION
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssociatedValues" type="CustomExtensionAssociatedValues" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Holds the key value pairs of the extension
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomExtensionAssociatedValues">
+		<xs:annotation>
+			<xs:documentation>
+				Product: IES
+				Description: Custom Extensions Values associated with entities like transactions
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Holds the key of the associated custom extension value. This key is a reference to the custom extension defined in Custom Extensions Service
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Value" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Holds the value of the associated custom extension value
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

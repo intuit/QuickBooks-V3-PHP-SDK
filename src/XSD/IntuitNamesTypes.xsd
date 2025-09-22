@@ -113,6 +113,20 @@
 			<xs:enumeration value="QBCommerce" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="AgencyVerificationStatus">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Subcontractor's agency verification status for CIS
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MATCHED"/>
+			<xs:enumeration value="UNMATCHED"/>
+			<xs:enumeration value="PENDING"/>
+			<xs:enumeration value="FAILED"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!--Start complex type definitions -->
 	<xs:complexType name="NameBase">
@@ -1054,6 +1068,34 @@
 					<xs:element name="CostRate" type="xs:decimal" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Hourly cost rate of the Employee. QBO only. QBD Unsupporetd field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgencyVerificationStatus" type="AgencyVerificationStatus" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Subcontractor's agency verification status for CIS
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgencyVerificationStatusMsg" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Subcontractor's agency verification status detailed message for CIS
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AgencyVerificationTSUTC" type="xs:dateTime" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Latest timestamp for subcontractor's agency verification for CIS
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CompanyRegistrationNumber" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Company registration number for CIS
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>

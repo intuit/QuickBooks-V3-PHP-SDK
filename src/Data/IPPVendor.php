@@ -478,6 +478,50 @@ class IPPVendor
 	 * @var float
 	 */
 	public $CostRate;
+	/**
+	 * @Definition 
+								Subcontractor's agency verification status for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationStatus
+	 * @var com\intuit\schema\finance\v3\IPPAgencyVerificationStatus
+	 */
+	public $AgencyVerificationStatus;
+	/**
+	 * @Definition 
+								Subcontractor's agency verification status detailed message for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationStatusMsg
+	 * @var string
+	 */
+	public $AgencyVerificationStatusMsg;
+	/**
+	 * @Definition 
+								Latest timestamp for subcontractor's agency verification for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationTSUTC
+	 * @var string
+	 */
+	public $AgencyVerificationTSUTC;
+	/**
+	 * @Definition 
+								Company registration number for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CompanyRegistrationNumber
+	 * @var string
+	 */
+	public $CompanyRegistrationNumber;
 
 
 } // end class IPPVendor
