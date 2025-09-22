@@ -436,6 +436,20 @@ class IPPLine
 	 * @var float
 	 */
 	public $HomeCostAmount;
+	/**
+	 * @Definition 
+                        Product: IES
+                        Description: Custom extensions of the transaction line
+                        Extensions like dimensions and other user defined categories
+                    
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName CustomExtensions
+	 * @var com\intuit\schema\finance\v3\IPPCustomExtensions
+	 */
+	public $CustomExtensions;
 
 
 } // end class IPPLine
