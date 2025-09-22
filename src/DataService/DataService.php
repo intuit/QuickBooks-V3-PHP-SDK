@@ -109,7 +109,7 @@ class DataService
     private $restHandler;
 
     /**
-     * Serializer needs to be used fore responce object
+     * Serializer needs to be used fore response object
      * @var IEntitySerializer
      */
     private $responseSerializer;
@@ -139,13 +139,13 @@ class DataService
     private $OAuth2LoginHelper;
 
     /**
-     * A boolean value to decide if excetion will be thrown on non-200 request
+     * A boolean value to decide if exception will be thrown on non-200 request
      * @var Boolean
      */
     private $throwExceptionOnError = false;
 
     /**
-     * The client to be used for HTTP request. You can choose either defaukt(cURL) or GuzzleHttpClient if that is available
+     * The client to be used for HTTP request. You can choose either default(cURL) or GuzzleHttpClient if that is available
      * @var String
      */
     private $clientName = CoreConstants::CLIENT_CURL;
@@ -347,7 +347,7 @@ class DataService
     }
 
     /**
-     * Return the client Name used by this DataSerivce
+     * Return the client Name used by this DataService
      * @return String the Client Name. It can be curl or GuzzleHttpClient
      * @deprecated since version 5.0.4
      * @see $this->getClientName()
@@ -487,7 +487,7 @@ class DataService
     }
 
     /**
-     * Setups serializers objects for responces and requests based on service context
+     * Setups serializers objects for responses and requests based on service context
      */
     public function setupSerializers()
     {
@@ -522,7 +522,7 @@ class DataService
     }
 
     /**
-     * Returns serializer for responce objects
+     * Returns serializer for response objects
      * @return IEntitySerializer
      */
     protected function getResponseSerializer()
@@ -802,13 +802,13 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -1008,7 +1008,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }
@@ -1041,7 +1041,7 @@ class DataService
 
     /**
      * Append the Pagination Data to the Query string if it is not appended
-     * @param Integer StartPostion
+     * @param Integer StartPosition
      * @param Integer MaxResults
      * @return String The query string
      */
@@ -1430,7 +1430,7 @@ class DataService
     }
 
     /**
-     * Serializes oblect into specified format
+     * Serializes object into specified format
      * @param IPPIntuitEntity $entity
      * @param String $urlResource
      * @return object
