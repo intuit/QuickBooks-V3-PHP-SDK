@@ -336,15 +336,7 @@ class CoreConstants
      * @return String | null      The access token developer provided
      */
     public static function getAccessTokenFromArray(array $settings){
-        if(array_key_exists('accessTokenKey', $settings)){
-            return $settings['accessTokenKey'];
-        }else if(array_key_exists('accessToken', $settings)){
-            return $settings['accessToken'];
-        } else if(array_key_exists('AccessToken', $settings)){
-            return $settings['AccessToken'];
-        } else{
-            return null;
-        }
+        return static::getValueFromArray($settings, ['accessTokenKey','accessToken']);
     }
 
     /**
@@ -353,15 +345,7 @@ class CoreConstants
      * @return String | null      The refresh token developer provided
      */
     public static function getRefreshTokenFromArray(array $settings){
-        if(array_key_exists('refreshTokenKey', $settings)){
-            return $settings['refreshTokenKey'];
-        }else if(array_key_exists('refreshToken', $settings)){
-            return $settings['refreshToken'];
-        } else if(array_key_exists('RefreshToken', $settings)){
-            return $settings['RefreshToken'];
-        } else{
-            return null;
-        }
+        return static::getValueFromArray($settings, ['refreshTokenKey','refreshToken']);
     }
 
     /**
@@ -370,30 +354,23 @@ class CoreConstants
      * @return String | null      The redirect url developer provide
      */
     public static function getRedirectURL(array $settings){
-        if(array_key_exists('redirectURL', $settings)){
-            return $settings['redirectURL'];
-        }else if(array_key_exists('RedirectUrl', $settings)){
-            return $settings['RedirectUrl'];
-        } else if(array_key_exists('redirecturl', $settings)){
-            return $settings['redirecturl'];
-        } else if(array_key_exists('redirectUrl', $settings)){
-            return $settings['redirectUrl'];
-        } else if(array_key_exists('RedirectURL', $settings)){
-            return $settings['RedirectURL'];
-        } else if(array_key_exists('redirectURI', $settings)){
-            return $settings['redirectURI'];
-        }else if(array_key_exists('RedirectUri', $settings)){
-            return $settings['RedirectUri'];
-        } else if(array_key_exists('redirecturi', $settings)){
-            return $settings['redirecturl'];
-        } else if(array_key_exists('redirectUri', $settings)){
-            return $settings['redirectUrl'];
-        } else if(array_key_exists('RedirectURI', $settings)){
-            return $settings['RedirectURI'];
+        return static::getValueFromArray($settings, ['requestURL','requestURI']);
+    }
+
+    /**
+     * Internal helper method to get value from array by varying key spellings or capitalizations
+     * @param Array $settings          The array contains all the key values
+     * @param Array $keyVariations     The array contains all the key spelling variations
+     * @return String | null           The value from the array
+     */
+    private static function getValueFromArray(array $settings, array $keyVariations){
+        $lowercaseKeyVariations = array_map('strtolower', $keyVariations);
+        foreach(array_keys($settings) as $settingsKey){
+            if(in_array(strtolower($settingsKey), $lowercaseKeyVariations, true)){
+                return $settings[$settingsKey];
+            }
         }
-        else{
-            return null;
-        }
+        return null;
     }
 
     //--------------------------------------------------------------------------------------------------
