@@ -28,6 +28,12 @@ use QuickBooksOnline\API\Core\CoreConstants;
 class Bind extends Common
 {
 
+    public static $ignore_parameters = [
+        'QuickBooksOnline\API\Data\IPPPayment' => [
+            'ProjectRef'
+        ]
+    ];
+
     //protected $dom;
     //protected $namespaces;
 
@@ -130,6 +136,10 @@ class Bind extends Common
                 list($ns, $name) = $this->parseQName($child->nodeName, true);
                 //$className = $this->urnToPhpName($ns)."\\".$name;
                 try {
+                    // skip incoming XML parse assigning parameters to be ignored
+                    if(isset(self::$ignore_parameters[get_class($model)]) && in_array($name, self::$ignore_parameters[get_class($model)])){
+                        continue;
+                    }
                     $propertyDocs = $refl->getProperty($name)->getDocComment();
                 } catch (\ReflectionException $e) {
                     throw new \RuntimeException($e->getMessage() . ". Class " . get_class($model));
