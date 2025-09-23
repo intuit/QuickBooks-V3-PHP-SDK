@@ -1255,10 +1255,12 @@ class DataService
      * Query RecurringTransaction Entity under the specified realm. The realm must be set in the context.
      *
      * @param query ex : SELECT * FROM RecurringTransaction
+     * @param int $startPosition Starting page number
+     * @param int $maxResults Page size
      * @return IntuitRecurringTransactionResponse Returns the RecurringTransaction created for the entity.
      * @throws IdsException
      */
-    public function recurringTransaction($query)
+    public function recurringTransaction($query, $startPosition = null, $maxResults = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Query.");
 
@@ -1290,7 +1292,7 @@ class DataService
 
                 for($i = 0; $i < sizeof($responseArray); $i++){
                     $currentResponse = $responseArray[$i];
-                    $currentEntityName = $entityList[$i];
+                    $currentEntityName = $currentResponse->getName();
                     $entities = $this->responseSerializer->Deserialize($currentResponse->asXML(), false);
                     $entityName = $currentEntityName;
                     //If we find the actual name, update it.
