@@ -61,6 +61,17 @@ class IPPSalesReceipt
 	 * @var float
 	 */
 	public $LessCIS;
-
+	/**
+     	 * @Definition
+    	   Product: ALL
+    	   Description Information about a credit card payment for the Recipet.
+    	   NotApplicableTo: Estimate, SalesOrder
+	 * @xmlType element
+     	 * @xmlNamespace http://schema.intuit.com/finance/v3
+     	 * @xmlMinOccurs 0
+     	 * @xmlName SalesReceiptCCPayment
+     	 * @var com\intuit\schema\finance\v3\IPPCreditCardPayment
+     	*/
+    	public $SalesReceiptCCPayment;
 
 } // end class IPPSalesReceipt
