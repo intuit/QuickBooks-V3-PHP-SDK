@@ -150,6 +150,12 @@ class DataService
      */
     private $clientName = CoreConstants::CLIENT_CURL;
 
+    /**
+     * Optional Request Id to be sent as query parameter on write operations
+     * @var string|null
+     */
+    private $requestId;
+
 
     /**
      * Initializes a new instance of the DataService class. The old way to construct the dataService. Used by PHP SDK < 3.0.0
@@ -369,6 +375,19 @@ class DataService
        $serviceContext = $this->getServiceContext();
        $this->setupRestHandler($serviceContext);
        return $this;
+    }
+
+    /**
+     * Set the request id which will be appended as query parameter to supported operations
+     * (Add, Update, Void, SendEmail) for idempotency.
+     *
+     * @param string $requestId
+     * @return $this
+     */
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+        return $this;
     }
 
     /**
@@ -643,6 +662,7 @@ class DataService
             case DataService::ADD:
             case DataService::VOID:
             case DataService::UPDATE:
+                $uri = $this->appendRequestIdToUri($uri);
                 $requestParameters = $this->initPostRequest($entity, $uri);
                 break;
             case DataService::FINDBYID:
@@ -1978,5 +1998,20 @@ class DataService
         }else{
             return (String)$id;
         }
+    }
+
+    /**
+     * Appends request id to uri if it is set
+     * @param string $uri
+     * @return string
+     */
+    private function appendRequestIdToUri($uri)
+    {
+        if (isset($this->requestId) && $this->requestId !== '') {
+            $delimiter = (strpos($uri, '?') === false) ? '?' : '&';
+            return $uri . $delimiter . 'requestid=' . urlencode($this->requestId);
+        }
+        $this->requestId = null;
+        return $uri;
     }
 }
