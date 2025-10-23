@@ -2,6 +2,7 @@
 
 namespace QuickBooksOnline\API\WebhooksService;
 
+
 use QuickBooksOnline\API\Utility\JsonValidator;
 use QuickBooksOnline\API\Utility\ReflectionUtil;
 
@@ -42,5 +43,16 @@ class WebhooksService
     {
         $verifier = new TokenVerifier($token);
         return $verifier->verifyPayLoad($payload, $intuitHeaderSignature);
+    }
+
+    /// <summary>
+    /// Executes a Deserialization operation for Webhooks Events payload
+    /// </summary>
+    /// <returns>Returns a WebhooksEvent object.</returns>
+
+    public static function WebhooksCloudEvents($payload)
+    {
+        $WebhooksCloudEvents = json_decode($payload, true);
+        return $WebhooksCloudEvents;
     }
 }
