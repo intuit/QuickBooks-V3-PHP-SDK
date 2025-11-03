@@ -28,11 +28,10 @@ class WebhooksService
     }
 
     /**
-     * Deserialize new CloudEvents-based webhook payloads which are arrays of events
-     * PR parity: method name uses getWebhooksCloudEvents (typo preserved)
+     * Convert the CloudEvents payLoad of webhook to array of objects
      *
      * @param $payLoad
-     *      JSON array payload
+     *      The CloudEvents payload to be converted
      * @return array
      *      Array of WebhooksCloudEvent objects
      *

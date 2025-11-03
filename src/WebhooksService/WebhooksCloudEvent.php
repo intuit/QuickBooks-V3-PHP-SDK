@@ -11,7 +11,7 @@ class WebhooksCloudEvent
      *
      * @var string
      */
-    private $specversion;
+    private $specVersion;
 
     /**
      * Unique identifier for the event
@@ -39,7 +39,7 @@ class WebhooksCloudEvent
      *
      * @var string
      */
-    private $datacontenttype;
+    private $dataContentType;
 
     /**
      * The timestamp of the event
@@ -53,14 +53,14 @@ class WebhooksCloudEvent
      *
      * @var string
      */
-    private $intuitentityid;
+    private $intuitEntityId;
 
     /**
      * Intuit account ID
      *
      * @var string
      */
-    private $intuitaccountid;
+    private $intuitAccountId;
 
     /**
      * The event data payload
@@ -74,20 +74,20 @@ class WebhooksCloudEvent
      *
      * @return string
      */
-    public function getSpecversion()
+    public function getSpecVersion()
     {
-        return $this->specversion;
+        return $this->specVersion;
     }
 
     /**
      * Set the CloudEvents specification version
      *
-     * @param string $specversion
+     * @param string $specVersion
      * @return $this
      */
-    public function setSpecversion($specversion)
+    public function setSpecVersion($specVersion)
     {
-        $this->specversion = $specversion;
+        $this->specVersion = $specVersion;
         return $this;
     }
 
@@ -162,20 +162,20 @@ class WebhooksCloudEvent
      *
      * @return string
      */
-    public function getDatacontenttype()
+    public function getDataContentType()
     {
-        return $this->datacontenttype;
+        return $this->dataContentType;
     }
 
     /**
      * Set the data content type
      *
-     * @param string $datacontenttype
+     * @param string $dataContentType
      * @return $this
      */
-    public function setDatacontenttype($datacontenttype)
+    public function setDataContentType($dataContentType)
     {
-        $this->datacontenttype = $datacontenttype;
+        $this->dataContentType = $dataContentType;
         return $this;
     }
 
@@ -206,20 +206,20 @@ class WebhooksCloudEvent
      *
      * @return string
      */
-    public function getIntuitentityid()
+    public function getIntuitEntityId()
     {
-        return $this->intuitentityid;
+        return $this->intuitEntityId;
     }
 
     /**
      * Set the Intuit entity ID
      *
-     * @param string $intuitentityid
+     * @param string $intuitEntityId
      * @return $this
      */
-    public function setIntuitentityid($intuitentityid)
+    public function setIntuitEntityId($intuitEntityId)
     {
-        $this->intuitentityid = $intuitentityid;
+        $this->intuitEntityId = $intuitEntityId;
         return $this;
     }
 
@@ -228,20 +228,20 @@ class WebhooksCloudEvent
      *
      * @return string
      */
-    public function getIntuitaccountid()
+    public function getIntuitAccountId()
     {
-        return $this->intuitaccountid;
+        return $this->intuitAccountId;
     }
 
     /**
      * Set the Intuit account ID
      *
-     * @param string $intuitaccountid
+     * @param string $intuitAccountId
      * @return $this
      */
-    public function setIntuitaccountid($intuitaccountid)
+    public function setIntuitAccountId($intuitAccountId)
     {
-        $this->intuitaccountid = $intuitaccountid;
+        $this->intuitAccountId = $intuitAccountId;
         return $this;
     }
 
