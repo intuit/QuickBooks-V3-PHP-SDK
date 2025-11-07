@@ -8,6 +8,7 @@ use QuickBooksOnline\API\Utility\ReflectionUtil;
 class WebhooksService
 {
     const WEBHOOKSWRAPPERNAME = "WebhooksEvent";
+    const WEBHOOKSCLOUDEVENTSWRAPPERNAME = "WebhooksCloudEvent";
 
     /**
      * Convert the payLoad of webhook to object
@@ -24,6 +25,30 @@ class WebhooksService
         $string_arry = json_decode($payLoad, true);
         $obj = ReflectionUtil::constructObjectFromWebhooksArray($string_arry, WebhooksService::WEBHOOKSWRAPPERNAME);
         return $obj;
+    }
+
+    /**
+     * Convert the CloudEvents payLoad of webhook to array of objects
+     *
+     * @param $payLoad
+     *      The CloudEvents payload to be converted
+     * @return array
+     *      Array of WebhooksCloudEvent objects
+     *
+     */
+    public static function getWebhooksCloudEvents($payLoad)
+    {
+        JsonValidator::validate($payLoad);
+        $string_arry = json_decode($payLoad, true);
+        
+        $result = array();
+        foreach ($string_arry as $eventData) {
+            $obj = ReflectionUtil::constructObjectFromWebhooksArray($eventData, WebhooksService::WEBHOOKSCLOUDEVENTSWRAPPERNAME);
+            if ($obj !== null) {
+                $result[] = $obj;
+            }
+        }
+        return $result;
     }
 
     /**
