@@ -48,9 +48,9 @@ class SyncRestHandler extends RestHandler
     * Initializes a new instance of the SyncRestHandler class.
     *
     * @param ServiceContext   $context    The service context used for the request
-    * @param HttpClientInterface $client  The http client used for the request
+    * @param HttpClientInterface|null $client  The http client used for the request
     */
-    public function __construct($context, HttpClientInterface $client = null)
+    public function __construct($context, ?HttpClientInterface $client = null)
     {
         parent::__construct($context);
         $this->context = $context;
