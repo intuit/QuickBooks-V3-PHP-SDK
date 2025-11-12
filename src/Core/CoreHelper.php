@@ -159,4 +159,18 @@ use QuickBooksOnline\API\Diagnostics\LogRequestsToDisk;
 
         return $requestLogger;
     }
+
+     /**
+      * Clean up xml response
+      * @param $string
+      * @return array|string|null
+      */
+     public static function encodeUTF8($string)
+     {
+	$string = preg_replace('/[\x00-\x1F\x7F]/u', '', $string);
+	if (mb_detect_encoding($string, 'UTF-8', true) === false) {
+           $string = utf8_encode($string);
+        }
+         return $string;
+     }
  }

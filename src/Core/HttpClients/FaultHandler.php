@@ -197,7 +197,7 @@ class FaultHandler
     /**
      * Return the status code of the Response
      *
-     * @return Integer   The response status code
+     * @return int  The response status code
      */
     public function getHttpStatusCode()
     {
