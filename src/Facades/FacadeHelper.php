@@ -433,14 +433,16 @@ class FacadeHelper{
      $reflectionClassOfTargetObject = new \ReflectionClass($targetObject);
      if(strcasecmp($key, "JournalEntryEntity") == 0){
          $key = "Entity";
-     }else if(strcasecmp($key, "JournalEntryType") == 0){
+     } else if(strcasecmp($key, "JournalEntryType") == 0){
          $key = "Type";
+     } else if(strcasecmp($key, "SalesReceiptCCPayment") == 0){
+         $key = "CreditCardPayment";
      }
      $property = $reflectionClassOfTargetObject->getProperty($key);
-     if($property instanceof \ReflectionProperty){
+     if($property instanceof \ReflectionProperty) {
         $value = FacadeHelper::convertValueTypeToAppropriateString($value);
         $property->setValue($targetObject,$value);
-     }else{
+     } else {
        throw new \Exception("No Reflection Property Found.");
      }
    }
