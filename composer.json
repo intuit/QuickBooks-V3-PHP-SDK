@@ -8,6 +8,7 @@
         "php": ">=5.6.0",
         "ext-mbstring": "*",
         "ext-dom": "*",
+        "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.9"
     },
     "require-dev": {
