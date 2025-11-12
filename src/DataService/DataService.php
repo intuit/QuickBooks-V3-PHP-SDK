@@ -802,13 +802,13 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -948,7 +948,7 @@ class DataService
             return $responseBody;
         } else {
             $this->lastError = false;
-            
+
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $dir, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
@@ -1008,7 +1008,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }
@@ -1079,7 +1079,7 @@ class DataService
      * @param int $pageSize
      * @return array Returns an array of entities of specified type.
      */
-    public function FindAll($entityName, $pageNumber = 0, $pageSize = 500)
+    public function FindAll($entityName, $pageNumber = 1, $pageSize = 500)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindAll.");
 
@@ -1097,7 +1097,10 @@ class DataService
         }
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
-        $httpsPostBody = "select * from $entityName startPosition $pageNumber maxResults $pageSize";
+        
+        $startPosition = (($pageNumber - 1) * $pageSize) + 1;
+
+        $httpsPostBody = "select * from $entityName startPosition $startPosition maxResults $pageSize";
 
         $requestParameters = $this->getPostRequestParameters($httpsUri, $httpsContentType);
         $restRequestHandler = $this->getRestHandler();
