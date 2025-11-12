@@ -153,8 +153,8 @@ class Bind extends Common
                          */
                          if (class_exists($className, CoreConstants::USE_AUTOLOADER)) {
                              //Do nothing
-                         } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className)) {
-                             $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;
+                         } elseif (class_exists(CoreConstants::NAMESPACE_DATA_PREFIX . $className)) {
+                             $className = CoreConstants::NAMESPACE_DATA_PREFIX . $className;
                          } else {
                              throw new \Exception("Can't find corresponding CLASS for className" . $className . " in Bind.php");
                          }
