@@ -201,12 +201,16 @@ class JsonObjectSerializer extends IEntitySerializer
         $returned = array();
         foreach($filterArray as $k => $v){
           if(is_array($v)){
-            if(FacadeHelper::isRecurrsiveArray($v)){
+            if(count($v)>0 && FacadeHelper::isRecurrsiveArray($v)){
               $list = array();
               foreach($v as $kk => $vv){
                   $list[] = array_filter($vv, [self::class, 'valueIsNotNullOrEmptyString']);
               }
               $returned[$k] = $list;
+            } else {
+                if (count($v) > 0) {
+                    $returned[$k] = $v;
+                }
             }
           }else{
             $returned[$k] = $v;
