@@ -128,7 +128,7 @@ $objAttachable->Category = 'Image';
 $objAttachable->Tag = 'Tag_' . $randId;
 
 // Upload the attachment to the Bill
-$resultObj = $dataService->Upload(base64_decode($imageBase64[$sendMimeType]),
+$resultObj = $dataService->Upload($imageBase64[$sendMimeType],
                                   $objAttachable->FileName,
                                   $sendMimeType,
                                   $objAttachable);
