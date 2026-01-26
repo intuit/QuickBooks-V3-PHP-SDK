@@ -122,7 +122,9 @@ class BaseCurl{
   */
   public function close()
   {
-      curl_close($this->curl);
+      if (PHP_VERSION_ID < 80000) {
+        curl_close($this->curl);
+      }
       $this->curl = null;
   }
 }
