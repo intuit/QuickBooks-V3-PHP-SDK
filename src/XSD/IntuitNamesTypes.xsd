@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schema.intuit.com/finance/v3"
-	targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
+		   targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
+		   attributeFormDefault="unqualified">
 	<xs:include schemaLocation="IntuitBaseTypes.xsd"/>
 	<!-- Element definitions -->
 	<!--Simple type definitions -->
@@ -76,18 +76,18 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-    <xs:simpleType name="TaxReportBasisTypeEnum">
-        <xs:annotation>
-            <xs:documentation>
-                Product: QBO
-                Description: Enumeration of Tax Report Basis for France
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Cash"/>
-            <xs:enumeration value="Accrual"/>
-        </xs:restriction>
-    </xs:simpleType>
+	<xs:simpleType name="TaxReportBasisTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Enumeration of Tax Report Basis for France
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Cash"/>
+			<xs:enumeration value="Accrual"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="FifoCalculationStatus">
 		<xs:annotation>
 			<xs:documentation>
@@ -273,7 +273,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="PrimaryPhone" type="TelephoneNumber" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -282,7 +282,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="AlternatePhone" type="TelephoneNumber" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -307,7 +307,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="PrimaryEmailAddr" type="EmailAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -324,7 +324,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="OtherContactInfo" type="ContactInfo" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBW
@@ -356,7 +356,7 @@
 		<xs:complexContent>
 			<xs:extension base="NameBase">
 				<xs:sequence>
-				    <xs:element name="Taxable" type="xs:boolean" minOccurs="0">
+					<xs:element name="Taxable" type="xs:boolean" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation xml:lang="en">
 								Product: QBO only
@@ -365,7 +365,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="BillAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -374,7 +374,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="ShipAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -383,7 +383,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBW only.
@@ -639,31 +639,31 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <xs:element name="SecondaryTaxIdentifier" type="xs:string" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: Specifies secondary Tax ID of the Person or Organization. Applicable for IN companies for CST Registration No. and in future can be extended to other regions.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="ARAccountRef" type="ReferenceType" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: The A/R account ID for the customer. This is applicable only in FR where each customer needs to have his own AR account.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="PrimaryTaxIdentifier" type="xs:string" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description:  Specifies primary Tax ID of the Person or Organization.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="TaxExemptionReasonId" type="xs:string" minOccurs="0" maxOccurs="1">
+					<xs:element name="SecondaryTaxIdentifier" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies secondary Tax ID of the Person or Organization. Applicable for IN companies for CST Registration No. and in future can be extended to other regions.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ARAccountRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The A/R account ID for the customer. This is applicable only in FR where each customer needs to have his own AR account.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrimaryTaxIdentifier" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description:  Specifies primary Tax ID of the Person or Organization.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxExemptionReasonId" type="xs:string" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
@@ -764,20 +764,20 @@
 					<xs:element name="FamilyName" type="xs:string" minOccurs="0"/>
 					<xs:element name="Suffix" type="xs:string" minOccurs="0"/>
 					<xs:element name="EmailAddr" type="EmailAddress" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Returned only if caller passes necessary security checks to prevent e-mail address harvesting</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="Addr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="unbounded"/>
+								maxOccurs="unbounded"/>
 					<xs:element name="PhoneNumber" type="TelephoneNumber" maxOccurs="unbounded"/>
 					<xs:element name="LocaleCountry" type="xs:string" minOccurs="0"/>
 					<xs:element name="LocaleLanguage" type="xs:string" minOccurs="0"/>
 					<xs:element name="LocalePostalCode" type="xs:string" minOccurs="0"/>
 					<xs:element name="LocaleTimeZone" type="xs:string" minOccurs="0"/>
 					<xs:element name="NameValueAttr" type="NameValue" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Represents a list of UserAttribute name/value pairs if the user query provided names of extended attributes to include</xs:documentation>
 						</xs:annotation>
@@ -814,7 +814,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="BillAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -823,7 +823,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="ShipAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: ALL
@@ -832,7 +832,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBW only.
@@ -853,14 +853,14 @@
 							<xs:documentation xml:lang="en">Specifies the Tax ID of the Person or Organization </xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <xs:element name="TaxIdEffectiveDate" type="xs:date" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: Specifies the date of registeration of Supplier. Applicable for IN Region and in future can be extended to other regions.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
+					<xs:element name="TaxIdEffectiveDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies the date of registeration of Supplier. Applicable for IN Region and in future can be extended to other regions.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="BusinessNumber" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
@@ -900,7 +900,7 @@
 					<xs:element name="BillRate" type="xs:decimal" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
-								 BillRate can be set to specify this vendor's hourly billing rate.
+								BillRate can be set to specify this vendor's hourly billing rate.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -985,23 +985,23 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <xs:element name="TaxReportingBasis" type="xs:string" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: The tax reporting basis for the supplier. The applicable values are those exposed through the TaxReportBasisTypeEnum.  This is applicable only in FR.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="APAccountRef" type="ReferenceType" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: The A/P account ID for the supplier. This is applicable only in FR where each supplier needs to have his own AP account.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="VendorEx" type="IntuitAnyType" minOccurs="0">
+					<xs:element name="TaxReportingBasis" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The tax reporting basis for the supplier. The applicable values are those exposed through the TaxReportBasisTypeEnum.  This is applicable only in FR.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="APAccountRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The A/P account ID for the supplier. This is applicable only in FR where each supplier needs to have his own AP account.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VendorEx" type="IntuitAnyType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Internal use only: extension place holder for Vendor.</xs:documentation>
 						</xs:annotation>
@@ -1183,14 +1183,14 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="PrimaryAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation> Represents primary PhysicalAddress list
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation> Represents other PhysicalAddress list
 							</xs:documentation>
@@ -1199,7 +1199,7 @@
 					<xs:element name="BillableTime" type="xs:boolean" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>BillableTime should be true if this employee’s hours are typically billed to customers. QBO only.
-									QBD Unsupported field.
+								QBD Unsupported field.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -1231,7 +1231,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="UseTimeEntry" type="TimeEntryUsedForPaychecksEnum"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Specifies whether the Time Entry (time sheets) should be used to create paychecks for the employee.</xs:documentation>
 						</xs:annotation>
@@ -1382,14 +1382,14 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="PrimaryAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="1">
+								maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation> Represents primary PhysicalAddress list
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="OtherAddr" type="PhysicalAddress" minOccurs="0"
-						maxOccurs="unbounded">
+								maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation> Represents other PhysicalAddress list
 							</xs:documentation>
@@ -1468,18 +1468,18 @@
 					<xs:element name="TaxOnPurchasesAccountRef" type="ReferenceType" minOccurs="0"/>
 					<xs:element name="TaxTrackedOnSales" type="xs:boolean" minOccurs="0"/>
 					<xs:element name="TaxTrackedOnSalesAccountRef" type="ReferenceType"
-						minOccurs="0"/>
+								minOccurs="0"/>
 					<xs:element name="TaxOnTax" type="xs:boolean" minOccurs="0"/>
-                    <xs:element name="LastFileDate" type="xs:date" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: QBO
-                                Description: This specifies the last filing date for this tax agency.
-                                InputType: QBO: ReadOnly
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="TaxAgencyExt" type="IntuitAnyType" minOccurs="0"/>
+					<xs:element name="LastFileDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: This specifies the last filing date for this tax agency.
+								InputType: QBO: ReadOnly
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TaxAgencyExt" type="IntuitAnyType" minOccurs="0"/>
 					<xs:element name="TaxAgencyConfig" type="xs:string" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
@@ -1499,39 +1499,39 @@
 				Description: Contains Bank Account details to process the batch payment for Vendors. Applicable for AU region only..
 			</xs:documentation>
 		</xs:annotation>
-			<xs:sequence>
-				<xs:element name="BankBranchIdentifier" type="xs:string" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation xml:lang="en">
-							Product: QBO only
-							Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="BankAccountNumber" type="xs:string" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation xml:lang="en">
-							Product: QBO only
-							Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="BankAccountName" type="xs:string" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation xml:lang="en">
-							Product: QBO only
-							Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="StatementText" type="xs:string" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation xml:lang="en">
-							Product: QBO only
-							Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:sequence>
+		<xs:sequence>
+			<xs:element name="BankBranchIdentifier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO only
+						Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BankAccountNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO only
+						Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BankAccountName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO only
+						Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatementText" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						Product: QBO only
+						Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

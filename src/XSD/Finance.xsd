@@ -4035,8 +4035,8 @@
 			<xs:element name="ApprovalStatus" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: Overall Approval Status, collective of all user approvals.
+						Product: QBO
+						Description: Overall Approval Status, collective of all user approvals.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -4068,8 +4068,8 @@
 			<xs:element name="LastChangedByUser" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: User-id of the user last updating the approval status.
+						Product: QBO
+						Description: User-id of the user last updating the approval status.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -4077,8 +4077,8 @@
 			<xs:element name="LastChangedDate" type="xs:dateTime" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
-                        Product: QBO
-                        Description: Date when the approval status was last updated.
+						Product: QBO
+						Description: Date when the approval status was last updated.
 						InputType: QBO: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
@@ -5006,8 +5006,8 @@
 					<xs:element name="TxnApprovalInfo" type="TxnApprovalInfo" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
-                                    Product: QBO
-                                    Description: Details of the Approval Status for current transaction in QBO workflows.
+								Product: QBO
+								Description: Details of the Approval Status for current transaction in QBO workflows.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -5041,24 +5041,24 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <xs:element name="TotalCostAmount" type="xs:decimal" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: ALL
-                                Description: Project Estimate identifier
-                                The amount or equivalent paid or charged for a product/service
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="HomeTotalCostAmount" type="xs:decimal" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>
-                                Product: ALL
-                                Description: Project Estimate identifier
-                                The amount or equivalent paid or charged for a product/service when using multi-currency
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
+					<xs:element name="TotalCostAmount" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Project Estimate identifier
+								The amount or equivalent paid or charged for a product/service
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HomeTotalCostAmount" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Project Estimate identifier
+								The amount or equivalent paid or charged for a product/service when using multi-currency
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -5872,7 +5872,7 @@
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
-								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
 							</xs:documentation>
 						</xs:annotation>
@@ -5882,7 +5882,7 @@
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
-								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
 							</xs:documentation>
 						</xs:annotation>
@@ -5892,7 +5892,7 @@
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
-								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -5965,6 +5965,14 @@
 							<xs:documentation>
 								Product: QBO
 								Description: Internal use only: Convenience Fee detail for the invoice
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EnabledSurchargeInfo" type="EnabledSurchargeInfo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Per-invoice surcharging settings indicating whether surcharging is enabled and for which payment methods
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -6050,7 +6058,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: QBO
-						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -6058,7 +6066,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: QBO
-						Description: Month of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Month of global invoice data which is required by CFDI4.0 in Mexico.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -6066,7 +6074,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: QBO
-						Description: Year of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Year of global invoice data which is required by CFDI4.0 in Mexico.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -6102,6 +6110,58 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SurchargePaymentMethodInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Payment method-specific surcharge settings
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Enabled" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Whether surcharging is enabled for this payment method
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnabledSurchargeInfo">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Per-invoice surcharging settings
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Enabled" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Whether surcharging is enabled for this invoice
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Card" type="SurchargePaymentMethodInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Credit card-specific surcharge settings
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ACH" type="SurchargePaymentMethodInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: ACH-specific surcharge settings
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="SalesReceipt">
 		<xs:annotation>
@@ -6168,6 +6228,54 @@
 								minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Extension entity for Estimate
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChangeOrder">
+		<xs:annotation>
+			<xs:documentation>ChangeOrder represents a modification or addition to a
+				Project Cost Estimate (PCE). Modeled after Project Estimate -- extends
+				SalesTransaction directly with the same field structure.
+				Product: QBO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SalesTransaction">
+				<xs:sequence>
+					<xs:element name="ExpirationDate" type="xs:date"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Date by which the change order must be
+								accepted before invalidation.
+								QBO only field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AcceptedBy" type="xs:string"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Name of customer who accepted the change
+								order.
+								QBO only field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AcceptedDate" type="xs:date"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Date change order was accepted.
+								QBO only field.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChangeOrderEx" type="IntuitAnyType"
+								minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Extension entity for ChangeOrder
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -6642,34 +6750,34 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-            <xs:element name="CostAmount" type="xs:decimal" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Product: ALL
-                        Description: Project Estimate identifier
-                        The amount or equivalent paid or charged for a product/service
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="HomeCostAmount" type="xs:decimal" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>
-                        Product: ALL
-                        Description: Project Estimate identifier
-                        The amount or equivalent paid or charged for a product/service when using multi-currency
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="CustomExtensions" type="CustomExtensions"
-			    minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                    <xs:documentation>
-                        Product: IES
-                        Description: Custom extensions of the transaction line
-                        Extensions like dimensions and other user defined categories
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+			<xs:element name="CostAmount" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: ALL
+						Description: Project Estimate identifier
+						The amount or equivalent paid or charged for a product/service
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HomeCostAmount" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: ALL
+						Description: Project Estimate identifier
+						The amount or equivalent paid or charged for a product/service when using multi-currency
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomExtensions" type="CustomExtensions"
+						minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Custom extensions of the transaction line
+						Extensions like dimensions and other user defined categories
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="Tag">
@@ -7126,15 +7234,15 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-                <xs:element name="UnitCostPrice" type="xs:decimal" minOccurs="0">
-                    <xs:annotation>
-                        <xs:documentation>
-                            Product: ALL
-                            Description: cost rate of the
-                            service or item for the line of Project Estimate.
-                        </xs:documentation>
-                    </xs:annotation>
-                </xs:element>
+				<xs:element name="UnitCostPrice" type="xs:decimal" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Product: ALL
+							Description: cost rate of the
+							service or item for the line of Project Estimate.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="RatePercent" type="xs:decimal"
 							minOccurs="0">
 					<xs:annotation>
@@ -7276,16 +7384,16 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="DeferredRevenue" type="xs:boolean"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
-								Description: Use the DeferredRevenue property to indicate that the goods/services sold 
-								have not yet been delivered to the customer, and therefore not appropriate for the 
-								accounting engine to book as Revenue for accounting. The most typical example would be 
-								inventory items that have not yet been shipped. The accounting engine will credit a 
-								liability account instead of revenue account. Later a follow on transaction must be 
-								entered when the sale is fulfilled, and then the accounting engine will debit the 
+								Description: Use the DeferredRevenue property to indicate that the goods/services sold
+								have not yet been delivered to the customer, and therefore not appropriate for the
+								accounting engine to book as Revenue for accounting. The most typical example would be
+								inventory items that have not yet been shipped. The accounting engine will credit a
+								liability account instead of revenue account. Later a follow on transaction must be
+								entered when the sale is fulfilled, and then the accounting engine will debit the
 								liability account and credit the revenue account.
 							</xs:documentation>
 						</xs:annotation>
@@ -10016,7 +10124,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="ItemRef" type="ReferenceType"
-			            minOccurs="1" maxOccurs="1">
+						minOccurs="1" maxOccurs="1">
 				<xs:annotation>
 					<xs:documentation>
 						Product: QBO
@@ -10035,26 +10143,26 @@
 			</xs:element>
 			<xs:choice minOccurs="1" maxOccurs="1">
 				<xs:element name="QtyDiff" type="xs:decimal"
-				            minOccurs="0">
+							minOccurs="0">
 					<xs:annotation>
-					    <xs:documentation>
+						<xs:documentation>
 							Product: QBO
 							Description: Difference in quantity
 							it will have negative value for reducing quantity
 							positive value for increasing quantity.
-					    </xs:documentation>
-				    </xs:annotation>
-			    </xs:element>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="NewQty" type="xs:decimal"
-				            minOccurs="0">
+							minOccurs="0">
 					<xs:annotation>
-					    <xs:documentation>
+						<xs:documentation>
 							Product: QBO
 							Description: New quantity as of provided
 							transaction date.
-					    </xs:documentation>
-				    </xs:annotation>
-			    </xs:element>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 			<xs:element name="ClassRef" type="ReferenceType"
 						minOccurs="0" maxOccurs="1">
@@ -10078,21 +10186,21 @@
 			<xs:extension base="Transaction">
 				<xs:sequence>
 					<xs:element name="ShippingAdjustment" type="xs:boolean"
-						minOccurs="0">
+								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
-								Description: When this property is set to true, the "Inventory Adjustment" is treated 
-								as a notice-of-shipment or packing slip. This will cause the accounting engine to book 
-								the revenue from the sale of the items. When this property is set, the SalesPrice property 
-								must be provided. In order for correct accounting to occur SalesPrice (per item) amount 
-								must match the sales amount on the sales transaction - but no validation of this occurs 
+								Description: When this property is set to true, the "Inventory Adjustment" is treated
+								as a notice-of-shipment or packing slip. This will cause the accounting engine to book
+								the revenue from the sale of the items. When this property is set, the SalesPrice property
+								must be provided. In order for correct accounting to occur SalesPrice (per item) amount
+								must match the sales amount on the sales transaction - but no validation of this occurs
 								within the accounting engine.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="AdjustAccountRef" type="ReferenceType"
-					            minOccurs="1" maxOccurs="1">
+								minOccurs="1" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>
 								Product: QBO
@@ -10104,14 +10212,14 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="CustomerRef" type="ReferenceType"
-						        minOccurs="0" maxOccurs="1">
-				       <xs:annotation>
-					       <xs:documentation>
-							   Product: QBO
-							   Description: Customer Reference
-					       </xs:documentation>
-				       </xs:annotation>
-			        </xs:element>
+								minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Customer Reference
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -10759,6 +10867,16 @@
 								Description: Use the DeferredRevenue property to indicate that the goods/services sold
 								have not yet been delivered to the customer, and therefore not appropriate for the
 								accounting engine to book as Revenue for accounting.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomExtensions" type="CustomExtensions"
+								minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Product: IES
+								Description: Custom extensions of the Item
+								Extensions like dimensions and other user defined categories
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -11464,12 +11582,12 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="CheckNum" type="xs:string" minOccurs="0">
-					   <xs:annotation>
-						  <xs:documentation>
-							  Product: ALL
-							  Description: The check number printed on the check.
-						  </xs:documentation>
-					   </xs:annotation>
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: The check number printed on the check.
+							</xs:documentation>
+						</xs:annotation>
 					</xs:element>
 					<xs:element name="PrintStatus" type="PrintStatusEnum" minOccurs="0">
 						<xs:annotation>
@@ -12187,10 +12305,10 @@
 								minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>
-                                Product: ALL
-                                Description: Project identifier
-                                References to the project this line
-                                is associated with
+								Product: ALL
+								Description: Project identifier
+								References to the project this line
+								is associated with
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -12267,13 +12385,13 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <xs:element name="BreakSeconds" type="xs:int" minOccurs="0">
-                        <xs:annotation>
-                            <xs:documentation>Seconds of break taken between start time and
-                                end time. Valid values are 0 - 59.
-                            </xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
+					<xs:element name="BreakSeconds" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Seconds of break taken between start time and
+								end time. Valid values are 0 - 59.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="StartTime" type="xs:dateTime"
 								minOccurs="0">
 						<xs:annotation>
@@ -12309,7 +12427,7 @@
 						<xs:annotation>
 							<xs:documentation>True if the start, end hours are already with company/employee time zone offset.
 
-							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
+								Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -14122,7 +14240,7 @@
 			<xs:element name="WeekOfMonth" type="xs:int" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
- 						Product: QBO
+						Product: QBO
 						Description: The Week of the Month
 					</xs:documentation>
 				</xs:annotation>
@@ -14620,7 +14738,7 @@
 								minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation> Product: QBO Description: Indicates whether the Charge
-							has been invoiced
+								has been invoiced
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
