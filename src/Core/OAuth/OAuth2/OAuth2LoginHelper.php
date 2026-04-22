@@ -101,9 +101,9 @@ class OAuth2LoginHelper
      * @param String $redirectUri                The redirect URI specified for the App
      * @param String $scope                      The scope of the app
      * @param String $state                      The string to verify the request is not compromised
-     * @param ServiceContext $serviceContext     The serviceContext for the request, only passed for making refresh token API call
+     * @param ServiceContext|null $serviceContext     The serviceContext for the request, only passed for making refresh token API call
      */
-    public function __construct($clientID, $clientSecret, $redirectUri = null, $scope = null, $state = null, ServiceContext $serviceContext = null){
+    public function __construct($clientID, $clientSecret, $redirectUri = null, $scope = null, $state = null, ?ServiceContext $serviceContext = null){
         //used for refresh token
         if(isset($serviceContext)){
             $accessTokenObj =  $serviceContext->requestValidator;
