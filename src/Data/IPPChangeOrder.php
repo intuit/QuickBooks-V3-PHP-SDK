@@ -3,16 +3,17 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType 
- * @xmlName IPPItemAdjustmentLineDetail
- * @var IPPItemAdjustmentLineDetail
- * @xmlDefinition 
+ * @xmlType SalesTransaction
+ * @xmlName IPPChangeOrder
+ * @var IPPChangeOrder
+ * @xmlDefinition ChangeOrder represents a modification or addition to a
+				Project Cost Estimate (PCE). Modeled after Project Estimate -- extends
+				SalesTransaction directly with the same field structure.
 				Product: QBO
-				Description: Contains the line details of an inventory adjustment transaction.
 			
  */
-class IPPItemAdjustmentLineDetail
-	{
+class IPPChangeOrder
+	extends IPPSalesTransaction	{
 
 		/**                                                                       
 		* Initializes this object, optionally with pre-defined property values    
@@ -27,7 +28,7 @@ class IPPItemAdjustmentLineDetail
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPItemAdjustmentLineDetail',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPItemAdjustmentLineDetail',$initPropName))
+				if (property_exists('IPPChangeOrder',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPChangeOrder',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -41,70 +42,51 @@ class IPPItemAdjustmentLineDetail
 
 	
 	/**
-	 * @Definition 
-						Product: QBO
-						Description: Reference to an inventory item.
-					
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName ItemRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
-	 */
-	public $ItemRef;
-	/**
-	 * @Definition 
-						Product: QBO
-						Description: Specifies the Sales Price (per item) for which the items being disbursed were sold.
-					
+	 * @Definition Date by which the change order must be
+								accepted before invalidation.
+								QBO only field.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName SalesPrice
-	 * @var float
+	 * @xmlName ExpirationDate
+	 * @var string
 	 */
-	public $SalesPrice;
+	public $ExpirationDate;
 	/**
-	 * @Definition 
-							Product: QBO
-							Description: Difference in quantity
-							it will have negative value for reducing quantity
-							positive value for increasing quantity.
-						
+	 * @Definition Name of customer who accepted the change
+								order.
+								QBO only field.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName QtyDiff
-	 * @var float
+	 * @xmlName AcceptedBy
+	 * @var string
 	 */
-	public $QtyDiff;
+	public $AcceptedBy;
 	/**
-	 * @Definition 
-							Product: QBO
-							Description: New quantity as of provided
-							transaction date.
-						
+	 * @Definition Date change order was accepted.
+								QBO only field.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName NewQty
-	 * @var float
+	 * @xmlName AcceptedDate
+	 * @var string
 	 */
-	public $NewQty;
+	public $AcceptedDate;
 	/**
-	 * @Definition 
-						Product: QBO
-						Description: Class Reference
-					
+	 * @Definition Extension entity for ChangeOrder
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs 1
-	 * @xmlName ClassRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @xmlName ChangeOrderEx
+	 * @var com\intuit\schema\finance\v3\IPPIntuitAnyType
 	 */
-	public $ClassRef;
+	public $ChangeOrderEx;
 
 
-} // end class IPPItemAdjustmentLineDetail
+} // end class IPPChangeOrder

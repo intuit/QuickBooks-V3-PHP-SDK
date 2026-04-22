@@ -4,14 +4,14 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType 
- * @xmlName IPPItemAdjustmentLineDetail
- * @var IPPItemAdjustmentLineDetail
+ * @xmlName IPPEnabledSurchargeInfo
+ * @var IPPEnabledSurchargeInfo
  * @xmlDefinition 
 				Product: QBO
-				Description: Contains the line details of an inventory adjustment transaction.
+				Description: Per-invoice surcharging settings
 			
  */
-class IPPItemAdjustmentLineDetail
+class IPPEnabledSurchargeInfo
 	{
 
 		/**                                                                       
@@ -27,7 +27,7 @@ class IPPItemAdjustmentLineDetail
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPItemAdjustmentLineDetail',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPItemAdjustmentLineDetail',$initPropName))
+				if (property_exists('IPPEnabledSurchargeInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPEnabledSurchargeInfo',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -43,68 +43,39 @@ class IPPItemAdjustmentLineDetail
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Reference to an inventory item.
+						Description: Whether surcharging is enabled for this invoice
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 1
-	 * @xmlMaxOccurs 1
-	 * @xmlName ItemRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @xmlMinOccurs 0
+	 * @xmlName Enabled
+	 * @var boolean
 	 */
-	public $ItemRef;
+	public $Enabled;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Specifies the Sales Price (per item) for which the items being disbursed were sold.
+						Description: Credit card-specific surcharge settings
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName SalesPrice
-	 * @var float
+	 * @xmlName Card
+	 * @var com\intuit\schema\finance\v3\IPPSurchargePaymentMethodInfo
 	 */
-	public $SalesPrice;
-	/**
-	 * @Definition 
-							Product: QBO
-							Description: Difference in quantity
-							it will have negative value for reducing quantity
-							positive value for increasing quantity.
-						
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName QtyDiff
-	 * @var float
-	 */
-	public $QtyDiff;
-	/**
-	 * @Definition 
-							Product: QBO
-							Description: New quantity as of provided
-							transaction date.
-						
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName NewQty
-	 * @var float
-	 */
-	public $NewQty;
+	public $Card;
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Class Reference
+						Description: ACH-specific surcharge settings
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlMaxOccurs 1
-	 * @xmlName ClassRef
-	 * @var com\intuit\schema\finance\v3\IPPReferenceType
+	 * @xmlName ACH
+	 * @var com\intuit\schema\finance\v3\IPPSurchargePaymentMethodInfo
 	 */
-	public $ClassRef;
+	public $ACH;
 
 
-} // end class IPPItemAdjustmentLineDetail
+} // end class IPPEnabledSurchargeInfo

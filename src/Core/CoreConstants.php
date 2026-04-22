@@ -216,6 +216,13 @@ class CoreConstants
     const VOID_QUERYPARAMETER_PAYMENT = '?operation=update&include=void';
 
     /**
+     * Include param value for requesting all enhanced custom fields.
+     * Passed via setIncludeParam() as an array element, e.g. [CoreConstants::INCLUDE_ENHANCED_ALL_CUSTOM_FIELDS].
+     * @var string
+     */
+    const INCLUDE_ENHANCED_ALL_CUSTOM_FIELDS = 'enhancedAllCustomFields';
+
+    /**
      * Intuit tid
      * @var string
      */
@@ -297,7 +304,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK6.2.2";
+    const USERAGENT = "V3PHPSDK6.2.3";
 
     public static function getType($string, $return=1)
     {

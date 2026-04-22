@@ -83,10 +83,10 @@ class IPPItemLineDetail
 	public $UnitPrice;
 	/**
 	 * @Definition 
-                            Product: ALL
-                            Description: cost rate of the
-                            service or item for the line of Project Estimate.
-                        
+							Product: ALL
+							Description: cost rate of the
+							service or item for the line of Project Estimate.
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
