@@ -211,7 +211,7 @@ class CoreConstants
      */
     const Id = "Id";
 
-    const PAYMENTCLASSNAME = ["payment", "salesreceipt"];
+    const PAYMENTCLASSNAME = ["payment", "salesreceipt", "billpayment"];
     const VOID_QUERYPARAMETER_GENERAL = '?operation=void';
     const VOID_QUERYPARAMETER_PAYMENT = '?operation=update&include=void';
 
