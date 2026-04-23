@@ -86,8 +86,8 @@ class XmlObjectSerializer extends IEntitySerializer
         $className = trim($className);
         if (class_exists($className, CoreConstants::USE_AUTOLOADER)) {
             $phpObj = new $className;
-        } elseif (class_exists(CoreConstants::NAMEPSACE_DATA_PREFIX . $className, CoreConstants::USE_AUTOLOADER)) {
-            $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $className;
+        } elseif (class_exists(CoreConstants::NAMESPACE_DATA_PREFIX . $className, CoreConstants::USE_AUTOLOADER)) {
+            $className = CoreConstants::NAMESPACE_DATA_PREFIX . $className;
             $phpObj = new $className;
         } else {
             throw new \Exception("Can't find corresponding CLASS for className" . $className . "during unmarshall XML into POPO Object");
