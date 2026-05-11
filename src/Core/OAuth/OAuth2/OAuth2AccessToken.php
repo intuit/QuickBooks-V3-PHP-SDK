@@ -359,6 +359,6 @@ class OAuth2AccessToken{
      * @return string
      */
     private function getDateFromSeconds($seconds){
-      return date('Y/m/d H:i:s', $seconds);
+      return date('Y-m-d\TH:i:s.Z\Z', $seconds);
     }
 }
