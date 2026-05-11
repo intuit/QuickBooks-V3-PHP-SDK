@@ -608,6 +608,6 @@ class OAuth2LoginHelper
           'grant_type' => CoreConstants::OAUTH2_REFRESH_GRANTYPE,
           'refresh_token' => (String)$refresh_token
         );
-        return http_build_query($parameters);
+        return http_build_query($parameters, null, '&');
     }
 }
