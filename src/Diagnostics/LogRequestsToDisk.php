@@ -114,7 +114,7 @@ class LogRequestsToDisk
                                   ($isRequest?"REQUEST":"RESPONSE")." BODY\n=============\n".$xml."\n\n",
                                   FILE_APPEND);
             } catch (\Exception $e) {
-                throw new IdsException("Exception during LogPlatformRequests.");
+                throw new IdsException("Exception during LogPlatformRequests: " . $e->getMessage(), $e->getCode());
             }
         }
     }
