@@ -99,6 +99,15 @@ class OAuth2AccessToken{
     private $baseURL;
 
     /**
+     * The absolute (hard) expiry lifespan of the refresh token in seconds.
+     * Populated only when the caller opted in via
+     * `OAuth2LoginHelper::setIncludeRefreshTokenHardExpiresIn(true)` and the
+     * response contained `x_refresh_token_hard_expires_in`.
+     * @var int|null $refreshTokenHardExpiresIn
+     */
+    private $refreshTokenHardExpiresIn;
+
+    /**
      * The constructor for passing the OAuth 2 Token related information
      * @param String $cID                      The Client ID
      * @param String $cS                       The Client Secret
@@ -269,6 +278,24 @@ class OAuth2AccessToken{
       }else{
         throw new SdkException("The Expiration Time for OAuth 2 refresh Token is not set.");
       }
+    }
+
+      /**
+     * Get the refresh token hard expiry lifespan in seconds.
+     * @return int|null The hard expiry value, or null if not requested/available.
+     */
+    public function getRefreshTokenHardExpiresIn()
+    {
+        return $this->refreshTokenHardExpiresIn;
+    }
+
+    /**
+     * Set the refresh token hard expiry lifespan in seconds.
+     * @param int $seconds         The hard expiry lifespan value
+     */
+    public function setRefreshTokenHardExpiresIn($seconds)
+    {
+        $this->refreshTokenHardExpiresIn = $seconds;
     }
 
     /**
