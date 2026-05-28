@@ -304,7 +304,7 @@ class CoreConstants
      * The Request source header value.
      * @var string REQUESTSOURCEHEADER
      */
-    const USERAGENT = "V3PHPSDK6.2.3";
+    const USERAGENT = "V3PHPSDK6.2.4";
 
     public static function getType($string, $return=1)
     {
@@ -413,6 +413,13 @@ class CoreConstants
     const EXPIRES_IN = "expires_in";
     const X_REFRESH_TOKEN_EXPIRES_IN = "x_refresh_token_expires_in";
     const ACCESS_TOKEN = "access_token";
+
+    // --- NEW CONSTANTS ---
+    /** Header to request refresh token hard expiry info */
+    const INCLUDE_REFRESH_TOKEN_HARD_EXPIRES_IN_HEADER = "x-include-refresh-token-hard-expires-in";
+
+    /** Response field key for the refresh token hard expiry lifespan */
+    const X_REFRESH_TOKEN_HARD_EXPIRES_IN = "x_refresh_token_hard_expires_in";
 
     public static function getCertPath(){
         return dirname(__FILE__) . "/OAuth/OAuth2/certs/cacert.pem"; //Pem certification Key Path
