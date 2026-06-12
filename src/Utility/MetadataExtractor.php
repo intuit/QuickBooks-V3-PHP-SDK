@@ -108,7 +108,7 @@ class MetadataExtractor
         $name = trim($name);
         $lists = explode('\\', $name);
         $ippEntityName = end($lists);
-        $ippEntityName = CoreConstants::NAMEPSACE_DATA_PREFIX . $ippEntityName;
+        $ippEntityName = CoreConstants::NAMESPACE_DATA_PREFIX . $ippEntityName;
         return $ippEntityName;
     }
 
