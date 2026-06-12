@@ -126,6 +126,27 @@ class Bind extends Common
             $query = "child::*";
             $childs = $xpath->query($query);
 
+            if ($childs->length === 0) {
+                $properties = $refl->getProperties(\ReflectionProperty::IS_PUBLIC);
+
+                foreach ($properties as $property) {
+                    $propertyDocs = $property->getDocComment();
+                    $name = $property->getName();
+
+                    $docs = $this->parseDocComments($propertyDocs);
+
+                    $type = $docs['xmlType'];
+                    if ($type === 'value') {
+                        $model->{$name} = $this->dom->textContent;
+                    } else if ($type === 'attribute') {
+                        $attribute = $xpath->query('//@' . $docs['xmlName']);
+                        if (isset($attribute[0])) {
+                            $model->{$name} = $attribute[0]->value;
+                        }
+                    }
+                }
+            }
+
             foreach ($childs as $child) {
                 list($ns, $name) = $this->parseQName($child->nodeName, true);
                 //$className = $this->urnToPhpName($ns)."\\".$name;
@@ -177,6 +198,10 @@ class Bind extends Common
                     if (!property_exists($model, $name)) {
                         throw new \RuntimeException("Model " . get_class($model) . " does not have property " . $name);
                     }
+                    if ($this->overrideAsSingleNamespace) {
+                        $nsLastName = array_reverse(explode('\\', $className));
+                        $className = CoreConstants::NAMEPSACE_DATA_PREFIX . $nsLastName[0];
+                    }
                     if (!class_exists($className)) {
                         //print_r($className."\n");
                         $propertyDocs = $refl->getProperty($name)->getDocComment();
@@ -194,10 +219,10 @@ class Bind extends Common
                             throw new \RuntimeException('Class ' . $className . ' does not exist');
                         }
                     } else {
-                        //$name = $child->nodeName;
-                        $cModel = new $className();
-                        $cModel->value = $child->nodeValue;
-                        $model->{$name} = $cModel;
+                        $doc = new \DOMDocument();
+                        $doc->appendChild($doc->importNode($child, true));
+
+                        $model->{$name} = $this->bindXml($doc->saveXml(), new $className());
                     }
                 }
             }
@@ -250,7 +275,7 @@ class Bind extends Common
                         $model->{$child->nodeName} = $child->nodeValue;
                     } else {
                         //print_r($propertyType);
-                     throw new \RuntimeException('Class '.$child->nodeName.' does not exist');
+                        throw new \RuntimeException('Class '.$child->nodeName.' does not exist');
                     }
                 } else {
                     $name = $child->nodeName;
