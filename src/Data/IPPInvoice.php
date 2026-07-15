@@ -158,6 +158,20 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -affirm) to
+								pay the Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlineAffirmPayment
+	 * @var boolean
+	 */
+	public $AllowOnlineAffirmPayment;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
 							
