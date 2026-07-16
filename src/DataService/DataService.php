@@ -150,6 +150,13 @@ class DataService
      */
     private $clientName = CoreConstants::CLIENT_CURL;
 
+    /**
+     * Optional list of include parameter values appended to API request URIs.
+     * Mirrors the Java SDK's List<String> includeParam on Context.
+     * @var array|null
+     */
+    private $includeParam = null;
+
 
     /**
      * Initializes a new instance of the DataService class. The old way to construct the dataService. Used by PHP SDK < 3.0.0
@@ -369,6 +376,47 @@ class DataService
        $serviceContext = $this->getServiceContext();
        $this->setupRestHandler($serviceContext);
        return $this;
+    }
+
+    /**
+     * Set the include parameter values (e.g. [CoreConstants::INCLUDE_ENHANCED_ALL_CUSTOM_FIELDS]).
+     * Accepts an array of strings, matching the Java SDK's List<String> signature.
+     *
+     * @param array|null $includeParam
+     * @return $this
+     */
+    public function setIncludeParam($includeParam){
+       $this->includeParam = $includeParam;
+       return $this;
+    }
+
+    /**
+     * Get the current include parameter values.
+     *
+     * @return array|null
+     */
+    public function getIncludeParam(){
+       return $this->includeParam;
+    }
+
+    /**
+     * Append include parameters to a URI as query string segments.
+     * Each value in the array gets appended as "include={value}" (mirrors the Java SDK).
+     *
+     * @param string $uri
+     * @param array|null $includeParam  Override the instance-level value for a single call.
+     * @return string
+     */
+    private function appendIncludeParam($uri, $includeParam = null){
+       $params = $includeParam !== null ? $includeParam : $this->includeParam;
+       if (empty($params)) {
+           return $uri;
+       }
+       foreach ($params as $param) {
+           $separator = (strpos($uri, '?') === false) ? '?' : '&';
+           $uri = $uri . $separator . 'include=' . $param;
+       }
+       return $uri;
     }
 
     /**
@@ -693,7 +741,7 @@ class DataService
      * @return IPPIntuitEntity Returns an updated version of the entity with updated identifier and sync token.
      * @throws IdsException
      */
-    public function Update($entity)
+    public function Update($entity, $includeParam = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method: Update.");
 
@@ -725,6 +773,8 @@ class DataService
             $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource . '?operation=update'));
         }
 
+        $uri = $this->appendIncludeParam($uri, $includeParam);
+
         // Send Request and return response
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::UPDATE);
     }
@@ -745,7 +795,7 @@ class DataService
      * @return IPPIntuitEntity Returns an entity of specified Id.
      * @throws IdsException
      */
-    public function FindById($entity, $Id = null)
+    public function FindById($entity, $Id = null, $includeParam = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method FindById.");
         if(is_object($entity)){
@@ -759,6 +809,7 @@ class DataService
           $entityId = $this->getIDString($entity->Id);
           // Normal case
           $uri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $entityId));
+          $uri = $this->appendIncludeParam($uri, $includeParam);
           // Send request
           return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, null, DataService::FINDBYID);
         }else if(is_string($entity) && isset($Id)){
@@ -766,6 +817,7 @@ class DataService
           if ($this->isCreditCardPaymentTxn($entity)) {
             $uri = str_replace("creditcardpaymenttxn", "creditcardpayment", $uri);
           }
+          $uri = $this->appendIncludeParam($uri, $includeParam);
           $requestParameters = new RequestParameters($uri, 'GET', CoreConstants::CONTENTTYPE_APPLICATIONXML, null);
           $restRequestHandler = $this->getRestHandler();
           list($responseCode, $responseBody) = $restRequestHandler->sendRequest($requestParameters, null, null, $this->isThrownExceptionOnError());
@@ -790,7 +842,7 @@ class DataService
      * @return IPPIntuitEntity Returns the created version of the entity.
      * @throws IdsException
      */
-    public function Add($entity)
+    public function Add($entity, $includeParam = null)
     {
         $this->serviceContext->IppConfiguration->Logger->RequestLog->Log(TraceLevel::Info, "Called Method Add.");
 
@@ -802,13 +854,14 @@ class DataService
         $this->verifyOperationAccess($entity, __FUNCTION__);
         if ($this->isJsonOnly($entity)) {
             $this->forceJsonSerializers();
-        } 
+        }
 
         $httpsPostBody = $this->executeObjectSerializer($entity, $urlResource);
         // Builds resource Uri
         $resourceURI = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource));
 
-        $uri = $this->handleTaxService($entity, $resourceURI);        
+        $uri = $this->handleTaxService($entity, $resourceURI);
+        $uri = $this->appendIncludeParam($uri, $includeParam);
         // Send request
         return $this->sendRequestParseResponseBodyAndHandleHttpError($entity, $uri, $httpsPostBody, DataService::ADD);
     }
@@ -948,7 +1001,7 @@ class DataService
             return $responseBody;
         } else {
             $this->lastError = false;
-            
+
             return $this->processDownloadedContent(new ContentWriter($responseBody), $responseCode, $dir, $this->getExportFileNameForPDF($entity, "pdf"));
         }
     }
@@ -1008,7 +1061,7 @@ class DataService
 
         $httpsUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, 'query'));
         $httpsPostBody = $this->appendPaginationInfo($query, $startPosition, $maxResults);
-        
+
         if(!is_null($includes)) {
             $httpsUri .= "?include=$includes";
         }
@@ -1422,11 +1475,11 @@ class DataService
      * @param object $entity Entity to Find
      * @return IPPIntuitEntity Returns an entity of specified Id.
      */
-    public function Retrieve($entity)
+    public function Retrieve($entity, $includeParam = null)
     {
         $this->verifyOperationAccess($entity, __FUNCTION__);
 
-        return $this->FindById($entity);
+        return $this->FindById($entity, null, $includeParam);
     }
 
     /**

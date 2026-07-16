@@ -101,6 +101,7 @@ class ReportService
     private $showrows = null;
     private $add_due_date = null;
     private $attachmentType = null;
+    private $testing_migration = null;
 
     public function getAdjustedGainLoss(){
         return $this->adjusted_gain_loss;
@@ -1021,6 +1022,24 @@ class ReportService
     }
 
     /**
+     * @param bool $testing_migration
+     * @return $this
+     */
+    public function setTestingMigration($testing_migration)
+    {
+        $this->testing_migration = $testing_migration;
+        return $this;
+    }
+
+    /**
+     * @return null|bool
+     */
+    public function getTestingMigration()
+    {
+        return $this->testing_migration;
+    }
+
+    /**
      * Returns serializer for response objects
      * @return IEntitySerializer
      */
@@ -1273,6 +1292,14 @@ class ReportService
             $uriParameterString .= "=";
             $uriParameterString .= $uriParameter[1];
         }
+
+        if ($this->testing_migration) {
+            if (strlen($uriParameterString) > 0) {
+                $uriParameterString .= "&";
+            }
+            $uriParameterString .= "testing_migration";
+        }
+
         return $uriParameterString;
     }
 
@@ -1289,12 +1316,11 @@ class ReportService
         $reportQueryParameters = $this->getReportQueryParameters();
 
         if (strlen($reportQueryParameters) > 0) {
-            $httpRequestUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $reportName, $querySeparator));
-            $httpRequestUri .=  $reportQueryParameters;
+            $httpRequestUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $reportName));
+            $httpRequestUri .= $querySeparator . $reportQueryParameters;
         } else {
             $httpRequestUri = implode(CoreConstants::SLASH_CHAR, array('company', $this->serviceContext->realmId, $urlResource, $reportName));
         }
-
 
         // Creates request parameters
         if ($this->serviceContext->IppConfiguration->Message->Request->SerializationFormat == SerializationFormat::Json) {

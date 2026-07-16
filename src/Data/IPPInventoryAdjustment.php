@@ -43,11 +43,11 @@ class IPPInventoryAdjustment
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: When this property is set to true, the "Inventory Adjustment" is treated 
-								as a notice-of-shipment or packing slip. This will cause the accounting engine to book 
-								the revenue from the sale of the items. When this property is set, the SalesPrice property 
-								must be provided. In order for correct accounting to occur SalesPrice (per item) amount 
-								must match the sales amount on the sales transaction - but no validation of this occurs 
+								Description: When this property is set to true, the "Inventory Adjustment" is treated
+								as a notice-of-shipment or packing slip. This will cause the accounting engine to book
+								the revenue from the sale of the items. When this property is set, the SalesPrice property
+								must be provided. In order for correct accounting to occur SalesPrice (per item) amount
+								must match the sales amount on the sales transaction - but no validation of this occurs
 								within the accounting engine.
 							
 	 * @xmlType element
@@ -75,9 +75,9 @@ class IPPInventoryAdjustment
 	public $AdjustAccountRef;
 	/**
 	 * @Definition 
-							   Product: QBO
-							   Description: Customer Reference
-					       
+								Product: QBO
+								Description: Customer Reference
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

@@ -84,9 +84,9 @@ class IPPCreditCardPaymentTxn
 	public $VendorRef;
 	/**
 	 * @Definition 
-							  Product: ALL
-							  Description: The check number printed on the check.
-						  
+								Product: ALL
+								Description: The check number printed on the check.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

@@ -4,14 +4,14 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPSyncErrorType
- * @var IPPSyncErrorType
+ * @xmlName IPPAgencyVerificationStatus
+ * @var IPPAgencyVerificationStatus
  * @xmlDefinition 
-                Product: QBW
-                Description: must be either of the following values
-            
+				Product: ALL
+				Description: Subcontractor's agency verification status for CIS
+			
  */
-class IPPSyncErrorType
+class IPPAgencyVerificationStatus
 	{
 
 		/**                                                                       
@@ -27,7 +27,7 @@ class IPPSyncErrorType
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPSyncErrorType',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSyncErrorType',$initPropName))
+				if (property_exists('IPPAgencyVerificationStatus',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPAgencyVerificationStatus',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,4 +45,4 @@ class IPPSyncErrorType
 		 */
 		public $value;
 
-} // end class IPPSyncErrorType
+} // end class IPPAgencyVerificationStatus

@@ -132,9 +132,9 @@ class IPPVendor
 	public $TaxIdentifier;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: Specifies the date of registeration of Supplier. Applicable for IN Region and in future can be extended to other regions.
-                            
+								Product: QBO
+								Description: Specifies the date of registeration of Supplier. Applicable for IN Region and in future can be extended to other regions.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -210,7 +210,7 @@ class IPPVendor
 	public $Balance;
 	/**
 	 * @Definition 
-								 BillRate can be set to specify this vendor's hourly billing rate.
+								BillRate can be set to specify this vendor's hourly billing rate.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -346,9 +346,9 @@ class IPPVendor
 	public $TDSOverrideThreshold;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: The tax reporting basis for the supplier. The applicable values are those exposed through the TaxReportBasisTypeEnum.  This is applicable only in FR.
-                            
+								Product: QBO
+								Description: The tax reporting basis for the supplier. The applicable values are those exposed through the TaxReportBasisTypeEnum.  This is applicable only in FR.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -358,9 +358,9 @@ class IPPVendor
 	public $TaxReportingBasis;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: The A/P account ID for the supplier. This is applicable only in FR where each supplier needs to have his own AP account.
-                            
+								Product: QBO
+								Description: The A/P account ID for the supplier. This is applicable only in FR where each supplier needs to have his own AP account.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -478,6 +478,50 @@ class IPPVendor
 	 * @var float
 	 */
 	public $CostRate;
+	/**
+	 * @Definition 
+								Subcontractor's agency verification status for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationStatus
+	 * @var com\intuit\schema\finance\v3\IPPAgencyVerificationStatus
+	 */
+	public $AgencyVerificationStatus;
+	/**
+	 * @Definition 
+								Subcontractor's agency verification status detailed message for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationStatusMsg
+	 * @var string
+	 */
+	public $AgencyVerificationStatusMsg;
+	/**
+	 * @Definition 
+								Latest timestamp for subcontractor's agency verification for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AgencyVerificationTSUTC
+	 * @var string
+	 */
+	public $AgencyVerificationTSUTC;
+	/**
+	 * @Definition 
+								Company registration number for CIS
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName CompanyRegistrationNumber
+	 * @var string
+	 */
+	public $CompanyRegistrationNumber;
 
 
 } // end class IPPVendor

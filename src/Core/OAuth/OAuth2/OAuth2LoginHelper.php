@@ -95,6 +95,15 @@ class OAuth2LoginHelper
     private $faultHandler = false;
 
     /**
+     * When true, every token-endpoint request will include the
+     * `x-include-refresh-token-hard-expires-in` header so the response carries the
+     * absolute (hard) expiry lifespan of the refresh token in addition to the
+     * rolling 100-day expiry.
+     * @var bool $includeRefreshTokenHardExpiresIn
+     */
+    private $includeRefreshTokenHardExpiresIn = false;
+
+    /**
      * Constructor for OAuth2Login Helper. Client ID and Client Secret are used to get OAuth 2 Tokens. Service Context is used for refreshToken API call
      * @param String $clientID                   The client ID of the App
      * @param String $clientSecret               The client Secret of the App
@@ -191,6 +200,28 @@ class OAuth2LoginHelper
     }
 
     /**
+     * Opt in to receive the refresh token hard expiry on every token-endpoint
+     * response by sending the `x-include-refresh-token-hard-expires-in` header.
+     * The parsed value can later be read from
+     * `OAuth2AccessToken::getRefreshTokenHardExpiresIn()`.
+     *
+     * @param bool $enabled Whether the header should be sent. Defaults to true.
+     * @return $this
+     */
+    public function setIncludeRefreshTokenHardExpiresIn($enabled = true){
+        $this->includeRefreshTokenHardExpiresIn = (bool)$enabled;
+        return $this;
+    }
+
+    /**
+     * Whether the refresh token hard expiry header is currently being sent.
+     * @return bool
+     */
+    public function getIncludeRefreshTokenHardExpiresIn(){
+        return $this->includeRefreshTokenHardExpiresIn;
+    }
+
+    /**
      * Return the state for the App
      * @return String   The state
      */
@@ -260,6 +291,8 @@ class OAuth2LoginHelper
          'Authorization' => $authorizationHeaderInfo,
          'Content-Type' => 'application/x-www-form-urlencoded'
        );
+       $http_header = $this->applyRefreshTokenHardExpiresInHeader($http_header);
+
        $this->LogAPIRequestToLog(http_build_query($parameters), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $http_header);
        $intuitResponse = $this->curlHttpClient->makeAPICall(CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, CoreConstants::HTTP_POST, $http_header, http_build_query($parameters), null, true);
        $this->LogAPIResponseToLog($intuitResponse->getBody(), CoreConstants::OAUTH2_TOKEN_ENDPOINT_URL, $intuitResponse->getHeaders());
@@ -538,6 +571,12 @@ class OAuth2LoginHelper
                   $this->oauth2AccessToken = new OAuth2AccessToken($this->getClientID(), $this->getClientSecret());
               }
               $this->oauth2AccessToken->updateAccessToken($tokenExpiresTime, $refreshToken, $refreshTokenExpiresTime, $accessToken);
+              if(array_key_exists(CoreConstants::X_REFRESH_TOKEN_HARD_EXPIRES_IN, $json_body)
+                  && isset($json_body[CoreConstants::X_REFRESH_TOKEN_HARD_EXPIRES_IN])){
+                  $this->oauth2AccessToken->setRefreshTokenHardExpiresIn(
+                      (int)$json_body[CoreConstants::X_REFRESH_TOKEN_HARD_EXPIRES_IN]
+                  );
+              }
               if(isset($realmID)){
                    $this->oauth2AccessToken->setRealmID($realmID);
               }
@@ -595,6 +634,19 @@ class OAuth2LoginHelper
             'Content-Type' => CoreConstants::CONTENTTYPE_URLFORMENCODED,
             'connection'    => 'close'
         );
+        return $this->applyRefreshTokenHardExpiresInHeader($http_header);
+    }
+
+    /**
+     * Conditionally add the `x-include-refresh-token-hard-expires-in` header to a
+     * set of headers, based on the opt-in flag on this helper.
+     * @param array $http_header  The headers to augment.
+     * @return array              The (possibly augmented) headers.
+     */
+    private function applyRefreshTokenHardExpiresInHeader(array $http_header){
+        if ($this->includeRefreshTokenHardExpiresIn) {
+            $http_header[CoreConstants::INCLUDE_REFRESH_TOKEN_HARD_EXPIRES_IN_HEADER] = 'true';
+        }
         return $http_header;
     }
 

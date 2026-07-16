@@ -4,11 +4,14 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType 
- * @xmlName IPPRow
- * @var IPPRow
- * @xmlDefinition One Row can contain any number of columns
+ * @xmlName IPPCustomExtensions
+ * @var IPPCustomExtensions
+ * @xmlDefinition 
+				Product: IES
+				Description: Custom extensions for user defined categories like dimensions
+			
  */
-class IPPRow
+class IPPCustomExtensions
 	{
 
 		/**                                                                       
@@ -24,7 +27,7 @@ class IPPRow
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPRow',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPRow',$initPropName))
+				if (property_exists('IPPCustomExtensions',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPCustomExtensions',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -38,67 +41,30 @@ class IPPRow
 
 	
 	/**
+	 * @Definition 
+						Product: IES
+						Description: Holds type of the custom extension eg. DIMENSION
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName id
+	 * @xmlMinOccurs 1
+	 * @xmlName ExtensionType
 	 * @var string
 	 */
-	public $id;
+	public $ExtensionType;
 	/**
+	 * @Definition 
+						Product: IES
+						Description: Holds the key value pairs of the extension
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
-	 * @xmlName parentId
-	 * @var string
-	 */
-	public $parentId;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Header
-	 * @var com\intuit\schema\finance\v3\IPPHeader
-	 */
-	public $Header;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Rows
-	 * @var com\intuit\schema\finance\v3\IPPRows
-	 */
-	public $Rows;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
-	 * @xmlMinOccurs 0
-	 * @xmlName Summary
-	 * @var com\intuit\schema\finance\v3\IPPSummary
-	 */
-	public $Summary;
-	/**
-	 * @xmlType element
-	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMaxOccurs unbounded
-	 * @xmlName ColData
-	 * @var com\intuit\schema\finance\v3\IPPColData
+	 * @xmlName AssociatedValues
+	 * @var com\intuit\schema\finance\v3\IPPCustomExtensionAssociatedValues
 	 */
-	public $ColData;
-	/**
-	 * @Definition Row type section, summary, data row etc.. 
-	 * @xmlType attribute
-	 * @xmlName type
-	 * @var RowTypeEnum[unbounded]
-	 */
-	public $type;
-	/**
-	 * @Definition Report Group Income, Expense, COGS etc..
-	 * @xmlType attribute
-	 * @xmlName group
-	 * @var string
-	 */
-	public $group;
+	public $AssociatedValues;
 
 
-} // end class IPPRow
+} // end class IPPCustomExtensions

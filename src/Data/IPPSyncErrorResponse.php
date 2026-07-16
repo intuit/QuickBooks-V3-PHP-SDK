@@ -10,7 +10,7 @@ namespace QuickBooksOnline\API\Data;
                 Product: QBW
                 Description: Provides a wrapper for SyncError for Conflict API Response
                 Consists of list of SyncError objects
-             
+            
  */
 class IPPSyncErrorResponse
 	{
@@ -57,9 +57,9 @@ class IPPSyncErrorResponse
 	public $SyncError;
 	/**
 	 * @Definition 
-		           		Product: QBW
-		           		Description: Specifies the latest time when Upload happened.
-		           
+                    Product: QBW
+                    Description: Specifies the latest time when Upload happened.
+                
 	 * @xmlType attribute
 	 * @xmlName latestUploadTime
 	 * @var string

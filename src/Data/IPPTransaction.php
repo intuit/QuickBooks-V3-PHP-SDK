@@ -314,8 +314,8 @@ class IPPTransaction
 	public $Tag;
 	/**
 	 * @Definition 
-                                    Product: QBO
-                                    Description: Details of the Approval Status for current transaction in QBO workflows.
+								Product: QBO
+								Description: Details of the Approval Status for current transaction in QBO workflows.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -366,10 +366,10 @@ class IPPTransaction
 	public $ProjectRef;
 	/**
 	 * @Definition 
-                                Product: ALL
-                                Description: Project Estimate identifier
-                                The amount or equivalent paid or charged for a product/service
-                            
+								Product: ALL
+								Description: Project Estimate identifier
+								The amount or equivalent paid or charged for a product/service
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -379,10 +379,10 @@ class IPPTransaction
 	public $TotalCostAmount;
 	/**
 	 * @Definition 
-                                Product: ALL
-                                Description: Project Estimate identifier
-                                The amount or equivalent paid or charged for a product/service when using multi-currency
-                            
+								Product: ALL
+								Description: Project Estimate identifier
+								The amount or equivalent paid or charged for a product/service when using multi-currency
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

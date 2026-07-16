@@ -124,10 +124,10 @@ class IPPTaxAgency
 	public $TaxOnTax;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: This specifies the last filing date for this tax agency.
-                                InputType: QBO: ReadOnly
-                            
+								Product: QBO
+								Description: This specifies the last filing date for this tax agency.
+								InputType: QBO: ReadOnly
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

@@ -7,9 +7,9 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSyncType
  * @var IPPSyncType
  * @xmlDefinition 
-        Product: QBW
-        Description: must be either upload or writeback
-      
+                Product: QBW
+                Description: must be either upload or writeback
+            
  */
 class IPPSyncType
 	{

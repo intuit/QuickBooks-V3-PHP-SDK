@@ -89,7 +89,7 @@ class IPPRecurringScheduleInfo
 	public $DayOfWeek;
 	/**
 	 * @Definition 
- 						Product: QBO
+						Product: QBO
 						Description: The Week of the Month
 					
 	 * @xmlType element

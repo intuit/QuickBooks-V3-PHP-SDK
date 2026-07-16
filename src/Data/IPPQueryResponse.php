@@ -52,7 +52,7 @@ class IPPQueryResponse
 	 * @xmlMinOccurs 0
 	 * @xmlMaxOccurs unbounded
 	 * @xmlName IntuitObject
-	 * @var IntuitObject[]
+	 * @var IntuitObject[unbounded]
 	 */
 	public $IntuitObject;
 	/**

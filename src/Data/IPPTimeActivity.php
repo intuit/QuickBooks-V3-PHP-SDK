@@ -158,10 +158,10 @@ class IPPTimeActivity
 	public $PayrollItemRef;
 	/**
 	 * @Definition 
-                                Product: ALL
-                                Description: Project identifier
-                                References to the project this line
-                                is associated with
+								Product: ALL
+								Description: Project identifier
+								References to the project this line
+								is associated with
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -283,8 +283,8 @@ class IPPTimeActivity
 	public $BreakMinutes;
 	/**
 	 * @Definition Seconds of break taken between start time and
-                                end time. Valid values are 0 - 59.
-                            
+								end time. Valid values are 0 - 59.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -339,7 +339,7 @@ class IPPTimeActivity
 	/**
 	 * @Definition True if the start, end hours are already with company/employee time zone offset.
 
-							Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
+								Couple of TimeActivity API integrations are already submitting start, end hours with right company/employee time zone offsets. Such integrations will pass this attribute as true to avoid company time zone offsets by TimeActivity API.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

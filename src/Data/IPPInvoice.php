@@ -156,7 +156,21 @@ class IPPInvoice
 	 */
 	public $AllowOnlinePayPalPayment;
 	/**
-	 * @Definition 
+	 * @Definition
+								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -affirm)
+								to pay the Invoice
+
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlineAffirmPayment
+	 * @var boolean
+	 */
+	public $AllowOnlineAffirmPayment;
+	/**
+	 * @Definition
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use eInvoicing(online payment -affirm) to
@@ -198,7 +212,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
 							
 	 * @xmlType element
@@ -211,7 +225,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
 							
 	 * @xmlType element
@@ -224,7 +238,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -337,6 +351,18 @@ class IPPInvoice
 	 * @var com\intuit\schema\finance\v3\IPPConvenienceFeeDetail
 	 */
 	public $ConvenienceFeeDetail;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Per-invoice surcharging settings indicating whether surcharging is enabled and for which payment methods
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName EnabledSurchargeInfo
+	 * @var com\intuit\schema\finance\v3\IPPEnabledSurchargeInfo
+	 */
+	public $EnabledSurchargeInfo;
 	/**
 	 * @Definition 
 								Product: All

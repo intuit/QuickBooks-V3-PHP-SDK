@@ -3,15 +3,15 @@ namespace QuickBooksOnline\API\Data;
 
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
- * @xmlType string
- * @xmlName IPPSyncErrorType
- * @var IPPSyncErrorType
+ * @xmlType 
+ * @xmlName IPPSurchargePaymentMethodInfo
+ * @var IPPSurchargePaymentMethodInfo
  * @xmlDefinition 
-                Product: QBW
-                Description: must be either of the following values
-            
+				Product: QBO
+				Description: Payment method-specific surcharge settings
+			
  */
-class IPPSyncErrorType
+class IPPSurchargePaymentMethodInfo
 	{
 
 		/**                                                                       
@@ -27,7 +27,7 @@ class IPPSyncErrorType
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPSyncErrorType',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSyncErrorType',$initPropName))
+				if (property_exists('IPPSurchargePaymentMethodInfo',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPSurchargePaymentMethodInfo',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -39,10 +39,19 @@ class IPPSyncErrorType
 			}
 		}
 
-		/**
-		 * @xmlType value
-		 * @var string
-		 */
-		public $value;
+	
+	/**
+	 * @Definition 
+						Product: QBO
+						Description: Whether surcharging is enabled for this payment method
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName Enabled
+	 * @var boolean
+	 */
+	public $Enabled;
 
-} // end class IPPSyncErrorType
+
+} // end class IPPSurchargePaymentMethodInfo

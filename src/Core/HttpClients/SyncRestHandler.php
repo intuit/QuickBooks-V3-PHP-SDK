@@ -366,7 +366,7 @@ class SyncRestHandler extends RestHandler
     private function appendMinorVersionToRequestURI($requestUri){
       $setMinorVersion = $this->context->minorVersion;
       if (isset($setMinorVersion)) {
-          if ($this->queryToArray($requestUri) == false) { //if no query string params
+          if (strpos($requestUri, '?') === false) {
               $requestUri .= "?minorversion=" . $this->context->minorVersion;
           } else {
               $requestUri .= "&minorversion=" . $this->context->minorVersion;
@@ -465,7 +465,9 @@ class SyncRestHandler extends RestHandler
                 }
 
         foreach (explode('&', $qry) as $couple) {
-            list($key, $val) = explode('=', $couple);
+            $parts = explode('=', $couple, 2);
+            $key = $parts[0];
+            $val = $parts[1] ?? '';
             $result[$key] = $val;
         }
 

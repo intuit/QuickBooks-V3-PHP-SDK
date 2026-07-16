@@ -7,10 +7,10 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSyncActivity
  * @var IPPSyncActivity
  * @xmlDefinition 
-       			 Product: QBW
-        		 Description: Provides upload/writeback activity for a given period of time. Query activity using 
-        		 			  StartSyncTMS OR EndSyncTMS
-      		
+                Product: QBW
+                Description: Provides upload/writeback activity for a given period of time. Query activity using
+                StartSyncTMS OR EndSyncTMS
+            
  */
 class IPPSyncActivity
 	extends IPPIntuitEntity	{
@@ -43,9 +43,9 @@ class IPPSyncActivity
 	
 	/**
 	 * @Definition 
-          					 Product:QBW
-            				 Description: indicates when the data sync upload or write back started
-          				
+                                Product:QBW
+                                Description: indicates when the data sync upload or write back started
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -56,9 +56,9 @@ class IPPSyncActivity
 	public $LatestUploadDateTime;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: indicates when the data sync upload or write back completed
-          				
+                                Product: QBW
+                                Description: indicates when the data sync upload or write back completed
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -69,9 +69,9 @@ class IPPSyncActivity
 	public $LatestWriteBackDateTime;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: can be either Upload or Write back sync type
-          				
+                                Product: QBW
+                                Description: can be either Upload or Write back sync type
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -81,10 +81,10 @@ class IPPSyncActivity
 	public $SyncType;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: indicates when the data sync upload or write back started
-            				Filterable: QBW
-          				
+                                Product: QBW
+                                Description: indicates when the data sync upload or write back started
+                                Filterable: QBW
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -94,10 +94,10 @@ class IPPSyncActivity
 	public $StartSyncTMS;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: indicates when the data sync upload or write back completed
-            				Filterable: QBW
-          				
+                                Product: QBW
+                                Description: indicates when the data sync upload or write back completed
+                                Filterable: QBW
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -107,9 +107,9 @@ class IPPSyncActivity
 	public $EndSyncTMS;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: name of the entity that is part of the data sync
-          				
+                                Product: QBW
+                                Description: name of the entity that is part of the data sync
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -119,9 +119,9 @@ class IPPSyncActivity
 	public $EntityName;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: number of rows of this entity that have been uploaded or written back to QB
-          				
+                                Product: QBW
+                                Description: number of rows of this entity that have been uploaded or written back to QB
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
