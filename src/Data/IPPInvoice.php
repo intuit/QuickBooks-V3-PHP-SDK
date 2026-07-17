@@ -156,12 +156,12 @@ class IPPInvoice
 	 */
 	public $AllowOnlinePayPalPayment;
 	/**
-	 * @Definition
+	 * @Definition 
 								Product: QBO
 								Description: Specifies whether
 								customer is allowed to use eInvoicing(online payment -affirm)
 								to pay the Invoice
-
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -170,7 +170,7 @@ class IPPInvoice
 	 */
 	public $AllowOnlineAffirmPayment;
 	/**
-	 * @Definition
+	 * @Definition 
 								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
@@ -445,6 +445,20 @@ class IPPInvoice
 	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
 	 */
 	public $SubscriptionPaymentsSetting;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Retainage accounting summary for the invoice.
+								This is a system-derived accounting entry, not a user-facing
+								form line.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TxnRetainageDetail
+	 * @var com\intuit\schema\finance\v3\IPPTxnRetainageDetail
+	 */
+	public $TxnRetainageDetail;
 
 
 } // end class IPPInvoice

@@ -101,6 +101,19 @@ class IPPTransaction
 	public $TxnDate;
 	/**
 	 * @Definition 
+								Product: ALL
+								Description: Sub-type of the
+								transaction. For information purposes only.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TxnSubType
+	 * @var com\intuit\schema\finance\v3\IPPTxnSubTypeEnum
+	 */
+	public $TxnSubType;
+	/**
+	 * @Definition 
 								Product: QBO
 								Description: Location of the
 								transaction, as defined using location tracking in QuickBooks

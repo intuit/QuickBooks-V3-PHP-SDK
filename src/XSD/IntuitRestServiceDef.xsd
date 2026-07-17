@@ -40,6 +40,7 @@
     <xs:element name="TaxReturn" type="TaxReturn" substitutionGroup="IntuitObject"/>
     <xs:element name="TaxRate" type="TaxRate" substitutionGroup="IntuitObject"/>
     <xs:element name="VendorCredit" type="VendorCredit" substitutionGroup="IntuitObject"/>
+    <xs:element name="VendorPrepayment" type="VendorPrepayment" substitutionGroup="IntuitObject"/>
     <xs:element name="SalesRep" type="SalesRep" substitutionGroup="IntuitObject"/>
     <xs:element name="InventorySite" type="InventorySite" substitutionGroup="IntuitObject"/>
     <xs:element name="Task" type="Task" substitutionGroup="IntuitObject"/>

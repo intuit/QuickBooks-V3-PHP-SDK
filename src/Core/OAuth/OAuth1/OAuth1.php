@@ -253,10 +253,10 @@ class OAuth1{
 
   /**
    * Add all OAuth query paraemters to the signature string string
-   * @param Array $queryParameters    The queryParameters to be included
-   * @return Array $queryParameters   The complete query parameters
+   * @param array|null $queryParameters    The queryParameters to be included
+   * @return array $queryParameters   The complete query parameters
    */
-  private function appendOAuthPartsTo(array $queryParameters = null){
+  private function appendOAuthPartsTo(?array $queryParameters = null){
       if($queryParameters == null){
           $queryParameters = array();
       }

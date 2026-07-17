@@ -111,6 +111,19 @@ class IPPSalesItemLineDetail
 	public $DeferredRevenue;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: Retainage amount withheld on this sales line.
+								The corresponding open balance is tracked in TxnRetainageDetail.RetainageOpenBalance.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName RetainageAmount
+	 * @var float
+	 */
+	public $RetainageAmount;
+	/**
+	 * @Definition 
 								Product: ALL
 								Description: Internal use only:
 								extension place holder for SalesItemDetail
