@@ -55,7 +55,7 @@ class IPPAttachableRef
 	/**
 	 * @Definition 
 						Product: ALL
-						Description: 
+						Description:
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -67,7 +67,7 @@ class IPPAttachableRef
 	/**
 	 * @Definition 
 						Product: ALL
-						Description: 
+						Description:
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

@@ -26,9 +26,9 @@ class CurlHttpClient implements HttpClientInterface{
 
     /**
      * The constructor for constructing the cURL http client for making API calls
-     * @param BaseCurl $curl    A predefined BaseCurl instance to be used in this client
+     * @param BaseCurl|null $curl    A predefined BaseCurl instance to be used in this client
      */
-    public function __construct(BaseCurl $curl = null)
+    public function __construct(?BaseCurl $curl = null)
     {
         if(isset($curl)){
               $this->basecURL = $curl;

@@ -262,6 +262,27 @@ class DataService
         return $this;
     }
 
+    
+    /**
+     * Controls whether XML deserialization silently drops unknown elements
+     * returned by the QBO backend (default) or throws a RuntimeException the
+     * moment it encounters a field the SDK doesn't model.
+     *
+     * The default (lenient) behavior mirrors the JSON deserialization path
+     * and prevents new schema fields from breaking existing integrations.
+     * Pass true to opt into strict mode if you are actively debugging
+     * schema/model drift.
+     *
+     * @param bool $strict If true, unknown XML elements will throw. Defaults
+     *                     to false (skip silently) when the SDK boots.
+     * @return $this
+     */
+    // public function setStrictXmlDeserialization($strict)
+    // {
+    //     XmlObjectSerializer::setIgnoreUnknownElements(!$strict);
+    //     return $this;
+    // }
+
     /**
      * Set a new directory for request and response log
      *

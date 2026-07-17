@@ -3334,7 +3334,26 @@
 			<xs:enumeration value="Transfer" />
 			<xs:enumeration value="TimeActivity" />
 			<xs:enumeration value="VendorCredit" />
+			<xs:enumeration value="VendorPrepayment" />
 			<xs:enumeration value="YTDAdjustment" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TxnSubTypeEnum">
+		<xs:annotation>
+			<xs:documentation>
+				Product: ALL
+				Description: Enumeration of transaction
+				sub-types.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceTax" />
+			<xs:enumeration value="InvoiceRetail" />
+			<xs:enumeration value="JournalTaxAdjustment" />
+			<xs:enumeration value="ProjectCostEstimate" />
+			<xs:enumeration value="EmployeeReimbursableExpense" />
+			<xs:enumeration value="EmployeeReimbursableExpensePayment" />
+			<xs:enumeration value="RetainageRelease" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="UOMBaseTypeEnum">
@@ -4832,6 +4851,15 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="TxnSubType" type="TxnSubTypeEnum" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: ALL
+								Description: Sub-type of the
+								transaction. For information purposes only.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="DepartmentRef" type="ReferenceType"
 								minOccurs="0">
 						<xs:annotation>
@@ -5147,6 +5175,37 @@
 						v3 app to override AST rates or not. If user allows v3 apps to override AST,
 						then the txn will get saved with v3 app specified rates.
 						[span style="display: none"] I18n: US [/span]
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TxnRetainageDetail">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: Details of retainage on the
+				transaction as a whole.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RetainageAmount" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Total retainage amount
+						on the transaction.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetainageOpenBalance" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: QBO
+						Description: Outstanding retainage
+						balance on the transaction.
+						Decreases as retainage is released.
+						InputType: ReadOnly
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -5847,6 +5906,17 @@
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="AllowOnlineAffirmPayment" type="xs:boolean"
+								minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -affirm)
+								to pay the Invoice
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="EInvoiceStatus" type="ETransactionStatusEnum"
 								minOccurs="0">
 						<xs:annotation>
@@ -6037,6 +6107,16 @@
 							<xs:documentation>
 								Product: QBO
 								Description: Internal use only: Subscription payment setting for a Recurring Invoice
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TxnRetainageDetail" type="TxnRetainageDetail" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Retainage accounting summary for the invoice.
+								This is a system-derived accounting entry, not a user-facing
+								form line.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -7395,6 +7475,15 @@
 								liability account instead of revenue account. Later a follow on transaction must be
 								entered when the sale is fulfilled, and then the accounting engine will debit the
 								liability account and credit the revenue account.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RetainageAmount" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Retainage amount withheld on this sales line.
+								The corresponding open balance is tracked in TxnRetainageDetail.RetainageOpenBalance.
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -9562,6 +9651,98 @@
 								Product: QBO Only
 								Description: True if the VendorCredit should be included in annual TPAR, specific to AU region.
 							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VendorPrepayment">
+		<xs:annotation>
+			<xs:documentation>
+				Product: QBO
+				Description: An AP transaction representing a prepayment (advance
+				payment) made to a vendor that is not yet applied against a Bill.
+				This transaction has no lines; it records the vendor, the
+				account the payment was drawn from, the payment amount and its
+				unapplied balance.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Transaction">
+				<xs:sequence>
+					<xs:element name="VendorRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Specifies the vendor to whom the prepayment was made.
+								Required for the create operation.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AccountRef" type="ReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The account that the prepayment was drawn from.
+								This is typically a bank account, but may be a credit card or
+								other asset/liability account depending on how the prepayment
+								was funded.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PaymentRefNum" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The reference number for the payment (e.g. Check #
+								for a check payment).
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TotalAmt" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The total amount of the prepayment made to the vendor.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Balance" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The unapplied amount of the prepayment. When fully
+								applied against bills, balance will be zero.
+								[b]QuickBooks Notes[/b][br /]
+								Non QB-writable.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HomeBalance" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: The unapplied amount of the prepayment in home
+								currency. Available only for companies where multicurrency is
+								enabled. When fully applied, home balance will be zero.
+								[b]QuickBooks Notes[/b][br /]
+								Non QB-writable.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VendorAddr" type="PhysicalAddress" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Product: QBO
+								Description: Vendor Mailing Address.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VendorPrepaymentEx" type="IntuitAnyType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Internal use only: extension place holder for
+								VendorPrepayment.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -14680,6 +14861,70 @@
 					<xs:documentation>
 						Product: QBO
 						Description: Department Reference
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomExtensions" type="BudgetCustomExtensions"
+						minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Custom extensions for dimension-based budget subdivision.
+						Use ExtensionType=DIMENSION with AssociatedValue where Key is the dimension
+						definition id and Value is the dimension value id.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BudgetCustomExtensions">
+		<xs:annotation>
+			<xs:documentation>
+				Product: IES
+				Description: Custom extensions for budget detail lines such as dimension subdivision
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExtensionType" type="xs:string" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Holds type of the custom extension eg. DIMENSION
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssociatedValue" type="BudgetCustomExtensionAssociatedValue" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Key/value pair for the extension. For DIMENSION type, Key is the
+						dimension definition id and Value is the dimension value id.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BudgetCustomExtensionAssociatedValue">
+		<xs:annotation>
+			<xs:documentation>
+				Product: IES
+				Description: Key/value pair associated with a budget custom extension
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Dimension definition id for DIMENSION extension type
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Value" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Product: IES
+						Description: Dimension value id for DIMENSION extension type
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>

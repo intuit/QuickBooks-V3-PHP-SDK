@@ -117,6 +117,21 @@ class IPPBudgetDetail
 	 * @var com\intuit\schema\finance\v3\IPPReferenceType
 	 */
 	public $DepartmentRef;
+	/**
+	 * @Definition 
+						Product: IES
+						Description: Custom extensions for dimension-based budget subdivision.
+						Use ExtensionType=DIMENSION with AssociatedValue where Key is the dimension
+						definition id and Value is the dimension value id.
+					
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlMaxOccurs unbounded
+	 * @xmlName CustomExtensions
+	 * @var com\intuit\schema\finance\v3\IPPBudgetCustomExtensions
+	 */
+	public $CustomExtensions;
 
 
 } // end class IPPBudgetDetail

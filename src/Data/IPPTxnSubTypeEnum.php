@@ -4,14 +4,15 @@ namespace QuickBooksOnline\API\Data;
 /**
  * @xmlNamespace http://schema.intuit.com/finance/v3
  * @xmlType string
- * @xmlName IPPcurrencyCode
- * @var IPPcurrencyCode
+ * @xmlName IPPTxnSubTypeEnum
+ * @var IPPTxnSubTypeEnum
  * @xmlDefinition 
 				Product: ALL
-				Description: ISO 4217 Currency Code enumeration.
+				Description: Enumeration of transaction
+				sub-types.
 			
  */
-class IPPcurrencyCode
+class IPPTxnSubTypeEnum
 	{
 
 		/**                                                                       
@@ -27,7 +28,7 @@ class IPPcurrencyCode
 		{
 			foreach($keyValInitializers as $initPropName => $initPropVal)
 			{
-				if (property_exists('IPPcurrencyCode',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPcurrencyCode',$initPropName))
+				if (property_exists('IPPTxnSubTypeEnum',$initPropName) || property_exists('QuickBooksOnline\API\Data\IPPTxnSubTypeEnum',$initPropName))
 				{
 					$this->{$initPropName} = $initPropVal;
 				}
@@ -45,4 +46,4 @@ class IPPcurrencyCode
 		 */
 		public $value;
 
-} // end class IPPcurrencyCode
+} // end class IPPTxnSubTypeEnum
