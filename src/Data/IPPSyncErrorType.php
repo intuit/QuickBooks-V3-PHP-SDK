@@ -7,9 +7,9 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSyncErrorType
  * @var IPPSyncErrorType
  * @xmlDefinition 
-        Product: QBW
-        Description: must be either of the following values
-      
+                Product: QBW
+                Description: must be either of the following values
+            
  */
 class IPPSyncErrorType
 	{

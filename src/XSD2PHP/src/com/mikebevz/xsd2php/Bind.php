@@ -32,6 +32,21 @@ class Bind extends Common
     //protected $namespaces;
 
     /**
+     * When true, XML elements that don't map to a known property on the target
+     * PHP model are silently skipped during deserialization instead of throwing
+     * a RuntimeException. Defaults to true so that new schema fields introduced
+     * by the QBO backend (e.g. AllowOnlineAffirmPayment) do not break existing
+     * SDK integrations. Set to false to restore the historical strict behavior
+     * (useful when debugging schema/model drift).
+     *
+     * This mirrors the tolerance the JSON deserialization path already has via
+     * the IPP entity constructors' property_exists guard.
+     *
+     * @var bool
+     */
+    public $ignoreUnknownElements = true;
+
+    /**
      * __construct
      *
      * @param string  $classPrefix Prefix for generated class names
@@ -132,6 +147,9 @@ class Bind extends Common
                 try {
                     $propertyDocs = $refl->getProperty($name)->getDocComment();
                 } catch (\ReflectionException $e) {
+                    if ($this->ignoreUnknownElements) {
+                        continue;
+                    }
                     throw new \RuntimeException($e->getMessage() . ". Class " . get_class($model));
                 }
                 $docs = $this->parseDocComments($propertyDocs);
@@ -171,10 +189,16 @@ class Bind extends Common
                         }
                         // end of fix
                     } else {
+                        if ($this->ignoreUnknownElements) {
+                            continue;
+                        }
                         throw new \RuntimeException('Class ' . get_class($model) . ' does not have property ' . $name);
                     }
                 } else {
                     if (!property_exists($model, $name)) {
+                        if ($this->ignoreUnknownElements) {
+                            continue;
+                        }
                         throw new \RuntimeException("Model " . get_class($model) . " does not have property " . $name);
                     }
                     if (!class_exists($className)) {
@@ -240,6 +264,9 @@ class Bind extends Common
                 }
             } else {
                 if (!property_exists($model, $child->nodeName)) {
+                    if ($this->ignoreUnknownElements) {
+                        continue;
+                    }
                     throw new \RuntimeException("Model does not have property ".$child->nodeName);
                 }
                 if (!class_exists($child->nodeName)) {

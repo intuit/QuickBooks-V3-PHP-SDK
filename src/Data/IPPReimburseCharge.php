@@ -52,7 +52,7 @@ class IPPReimburseCharge
 	public $CustomerRef;
 	/**
 	 * @Definition  Product: QBO Description: Indicates whether the Charge
-							has been invoiced
+								has been invoiced
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

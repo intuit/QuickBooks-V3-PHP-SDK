@@ -203,6 +203,18 @@ class IPPPayment
 	 */
 	public $ProcessPayment;
 	/**
+	 * @Definition 
+								Product: ALL
+								Description: Current only valid value is Prepayment.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName PaymentExtendedType
+	 * @var com\intuit\schema\finance\v3\IPPPaymentExtendedTypeEnum
+	 */
+	public $PaymentExtendedType;
+	/**
 	 * @Definition Internal use only: extension place holder for
 								Payment 
 	 * @xmlType element

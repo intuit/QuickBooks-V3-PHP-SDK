@@ -6,7 +6,7 @@ namespace QuickBooksOnline\API\Data;
  * @xmlType string
  * @xmlName IPPcurrencyCode
  * @var IPPcurrencyCode
- * @xmlDefinition  
+ * @xmlDefinition 
 				Product: ALL
 				Description: ISO 4217 Currency Code enumeration.
 			

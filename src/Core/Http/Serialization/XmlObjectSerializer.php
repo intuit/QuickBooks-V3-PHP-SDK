@@ -75,6 +75,39 @@ class XmlObjectSerializer extends IEntitySerializer
         return $httpsPostBody;
     }
 
+    
+    /**
+     * When true (default), XML elements returned by QBO that don't map to a
+     * known property on the target PHP model are silently skipped during
+     * deserialization. When false, the deserializer throws a RuntimeException
+     * on the first unknown element (historical strict behavior).
+     *
+     * @var bool
+     */
+    private static $ignoreUnknownElements = true;
+    
+    /**
+     * Toggle whether the XML deserializer silently skips unknown elements
+     * (default true) or throws RuntimeException (historical behavior).
+     * Prefer calling DataService::setStrictXmlDeserialization() from
+     * application code; this static setter is the low-level plumbing.
+     *
+     * @param bool $ignore
+     */
+    public static function setIgnoreUnknownElements($ignore)
+    {
+        self::$ignoreUnknownElements = (bool) $ignore;
+    }
+    
+    /**
+     * Returns the current unknown-element tolerance setting.
+     * @return bool
+     */
+    public static function getIgnoreUnknownElements()
+    {
+        return self::$ignoreUnknownElements;
+    }
+
     /**
      * Unmarshall XML into a POPO object, presumably the XML came from an IPP v3 API call
      *
@@ -94,6 +127,7 @@ class XmlObjectSerializer extends IEntitySerializer
         }
         $bind = new Bind(CoreConstants::PHP_CLASS_PREFIX);
         $bind->overrideAsSingleNamespace='http://schema.intuit.com/finance/v3';
+        $bind->ignoreUnknownElements = self::$ignoreUnknownElements;
         $bind->bindXml($xmlStr, $phpObj);
         return $phpObj;
     }

@@ -158,6 +158,20 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
+								Description: Specifies whether
+								customer is allowed to use eInvoicing(online payment -affirm)
+								to pay the Invoice
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName AllowOnlineAffirmPayment
+	 * @var boolean
+	 */
+	public $AllowOnlineAffirmPayment;
+	/**
+	 * @Definition 
+								Product: QBO
 								Description: Specifies the eInvoice
 								Status(SENT, VIEWED, PAID) for the invoice
 							
@@ -184,7 +198,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Use of Invoice of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of cfdiUse.
 							
 	 * @xmlType element
@@ -197,7 +211,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Exportation type of a transaction which is required by CFDI4.0 in Mexico.
 								Visit http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20_version3-3.htm and find the catalogues that contain the accepted values of Exportation.
 							
 	 * @xmlType element
@@ -210,7 +224,7 @@ class IPPInvoice
 	/**
 	 * @Definition 
 								Product: QBO
-								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico. 
+								Description: Global invoice data of a transaction which is required by CFDI4.0 in Mexico.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -325,6 +339,18 @@ class IPPInvoice
 	public $ConvenienceFeeDetail;
 	/**
 	 * @Definition 
+								Product: QBO
+								Description: Per-invoice surcharging settings indicating whether surcharging is enabled and for which payment methods
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName EnabledSurchargeInfo
+	 * @var com\intuit\schema\finance\v3\IPPEnabledSurchargeInfo
+	 */
+	public $EnabledSurchargeInfo;
+	/**
+	 * @Definition 
 								Product: All
 								Description: QBO:  Security code associated with Sharable link of the invoice for external users
 							
@@ -419,6 +445,20 @@ class IPPInvoice
 	 * @var com\intuit\schema\finance\v3\IPPSubscriptionPaymentsSettingEnum
 	 */
 	public $SubscriptionPaymentsSetting;
+	/**
+	 * @Definition 
+								Product: QBO
+								Description: Retainage accounting summary for the invoice.
+								This is a system-derived accounting entry, not a user-facing
+								form line.
+							
+	 * @xmlType element
+	 * @xmlNamespace http://schema.intuit.com/finance/v3
+	 * @xmlMinOccurs 0
+	 * @xmlName TxnRetainageDetail
+	 * @var com\intuit\schema\finance\v3\IPPTxnRetainageDetail
+	 */
+	public $TxnRetainageDetail;
 
 
 } // end class IPPInvoice

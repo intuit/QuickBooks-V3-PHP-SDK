@@ -96,7 +96,7 @@ class IPPEmployee
 	public $OtherAddr;
 	/**
 	 * @Definition BillableTime should be true if this employee’s hours are typically billed to customers. QBO only.
-									QBD Unsupported field.
+								QBD Unsupported field.
 							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

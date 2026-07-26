@@ -218,7 +218,7 @@ class IPPPhysicalAddress
 	 * @Definition 
 						Product: ALL
 						Description: Latitude coordinate of Geocode (Geospatial Entity Object Code).[br /]Unsupported field.
-                    
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

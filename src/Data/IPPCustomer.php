@@ -463,9 +463,9 @@ class IPPCustomer
 	public $CustomerEx;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: Specifies secondary Tax ID of the Person or Organization. Applicable for IN companies for CST Registration No. and in future can be extended to other regions.
-                            
+								Product: QBO
+								Description: Specifies secondary Tax ID of the Person or Organization. Applicable for IN companies for CST Registration No. and in future can be extended to other regions.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -475,9 +475,9 @@ class IPPCustomer
 	public $SecondaryTaxIdentifier;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description: The A/R account ID for the customer. This is applicable only in FR where each customer needs to have his own AR account.
-                            
+								Product: QBO
+								Description: The A/R account ID for the customer. This is applicable only in FR where each customer needs to have his own AR account.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -487,9 +487,9 @@ class IPPCustomer
 	public $ARAccountRef;
 	/**
 	 * @Definition 
-                                Product: QBO
-                                Description:  Specifies primary Tax ID of the Person or Organization.
-                            
+								Product: QBO
+								Description:  Specifies primary Tax ID of the Person or Organization.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

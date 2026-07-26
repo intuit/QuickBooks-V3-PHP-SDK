@@ -7,9 +7,9 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPStatus
  * @var IPPStatus
  * @xmlDefinition 
-		        Product: QBW
-		        Description: generic meta data response for any add mod
-		      
+                Product: QBW
+                Description: generic meta data response for any add mod
+            
  */
 class IPPStatus
 	extends IPPIntuitEntity	{
@@ -42,10 +42,10 @@ class IPPStatus
 	
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: Request Id to create/update object
-            				Filterable: QBW
-         				 
+                                Product: QBW
+                                Description: Request Id to create/update object
+                                Filterable: QBW
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -55,10 +55,10 @@ class IPPStatus
 	public $RequestId;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: Batch Id to create/update object
-            				Filterable: QBW
-          				
+                                Product: QBW
+                                Description: Batch Id to create/update object
+                                Filterable: QBW
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -75,10 +75,10 @@ class IPPStatus
 	public $ObjectType;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: Code for Current State of object
-            				Filterable: QBW
-          				
+                                Product: QBW
+                                Description: Code for Current State of object
+                                Filterable: QBW
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -88,9 +88,9 @@ class IPPStatus
 	public $StateCode;
 	/**
 	 * @Definition 
-	            			Product: QBW
-	            				Description: Description for Current State of object
-	          			
+                                Product: QBW
+                                Description: Description for Current State of object
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -100,9 +100,9 @@ class IPPStatus
 	public $StateDesc;
 	/**
 	 * @Definition 
-            				Product: QBW
-            				Description: Status Message Code 
-          				
+                                Product: QBW
+                                Description: Status Message Code
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -112,9 +112,9 @@ class IPPStatus
 	public $MessageCode;
 	/**
 	 * @Definition 
-            			Product: QBW
-            			Description: Status Message if error occurred else null
-          			
+                                Product: QBW
+                                Description: Status Message if error occurred else null
+                            
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

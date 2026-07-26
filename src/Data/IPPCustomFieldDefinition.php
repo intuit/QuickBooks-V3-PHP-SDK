@@ -92,9 +92,9 @@ class IPPCustomFieldDefinition
 	public $Required;
 	/**
 	 * @Definition 
-							Product: ALL
-							Description: Identifier of Partner AppId that corresponds to this CustomField.
-						
+								Product: ALL
+								Description: Identifier of Partner AppId that corresponds to this CustomField.
+							
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
