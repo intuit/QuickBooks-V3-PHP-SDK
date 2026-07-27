@@ -7,9 +7,9 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPTaxReportBasisTypeEnum
  * @var IPPTaxReportBasisTypeEnum
  * @xmlDefinition 
-                Product: QBO
-                Description: Enumeration of Tax Report Basis for France
-            
+				Product: QBO
+				Description: Enumeration of Tax Report Basis for France
+			
  */
 class IPPTaxReportBasisTypeEnum
 	{

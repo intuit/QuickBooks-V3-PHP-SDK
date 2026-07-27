@@ -44,7 +44,7 @@ class IPPMXGlobalInfo
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Periodicity of global invoice data which is required by CFDI4.0 in Mexico.
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -56,7 +56,7 @@ class IPPMXGlobalInfo
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Month of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Month of global invoice data which is required by CFDI4.0 in Mexico.
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
@@ -68,7 +68,7 @@ class IPPMXGlobalInfo
 	/**
 	 * @Definition 
 						Product: QBO
-						Description: Year of global invoice data which is required by CFDI4.0 in Mexico. 
+						Description: Year of global invoice data which is required by CFDI4.0 in Mexico.
 					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3

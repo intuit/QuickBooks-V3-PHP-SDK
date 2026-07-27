@@ -42,9 +42,9 @@ class IPPVendorBankAccountDetail
 	
 	/**
 	 * @Definition 
-							Product: QBO only
-							Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
-						
+						Product: QBO only
+						Description: Specifies the BankBranchIdentifier for ABA processing. Applicable for AU region only.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -54,9 +54,9 @@ class IPPVendorBankAccountDetail
 	public $BankBranchIdentifier;
 	/**
 	 * @Definition 
-							Product: QBO only
-							Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
-						
+						Product: QBO only
+						Description: Specifies the BankAccountNumber for ABA processing. Applicable for AU region only.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -66,9 +66,9 @@ class IPPVendorBankAccountDetail
 	public $BankAccountNumber;
 	/**
 	 * @Definition 
-							Product: QBO only
-							Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
-						
+						Product: QBO only
+						Description: Specifies the BankAccountName for ABA processing. Applicable for AU region only.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -78,9 +78,9 @@ class IPPVendorBankAccountDetail
 	public $BankAccountName;
 	/**
 	 * @Definition 
-							Product: QBO only
-							Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
-						
+						Product: QBO only
+						Description: Specifies the Statement text for ABA processing. Applicable for AU region only.
+					
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0

@@ -7,8 +7,8 @@ namespace QuickBooksOnline\API\Data;
  * @xmlName IPPSyncObject
  * @var IPPSyncObject
  * @xmlDefinition 
-            	Product: QBW
-            	Description: SyncObject that has an error
+                Product: QBW
+                Description: SyncObject that has an error
             
  */
 class IPPSyncObject

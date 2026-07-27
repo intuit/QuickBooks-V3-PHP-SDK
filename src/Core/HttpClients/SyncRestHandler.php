@@ -48,9 +48,9 @@ class SyncRestHandler extends RestHandler
     * Initializes a new instance of the SyncRestHandler class.
     *
     * @param ServiceContext   $context    The service context used for the request
-    * @param HttpClientInterface $client  The http client used for the request
+    * @param HttpClientInterface|null $client  The http client used for the request
     */
-    public function __construct($context, HttpClientInterface $client = null)
+    public function __construct($context, ?HttpClientInterface $client = null)
     {
         parent::__construct($context);
         $this->context = $context;
@@ -366,7 +366,7 @@ class SyncRestHandler extends RestHandler
     private function appendMinorVersionToRequestURI($requestUri){
       $setMinorVersion = $this->context->minorVersion;
       if (isset($setMinorVersion)) {
-          if ($this->queryToArray($requestUri) == false) { //if no query string params
+          if (strpos($requestUri, '?') === false) {
               $requestUri .= "?minorversion=" . $this->context->minorVersion;
           } else {
               $requestUri .= "&minorversion=" . $this->context->minorVersion;
@@ -465,7 +465,9 @@ class SyncRestHandler extends RestHandler
                 }
 
         foreach (explode('&', $qry) as $couple) {
-            list($key, $val) = explode('=', $couple);
+            $parts = explode('=', $couple, 2);
+            $key = $parts[0];
+            $val = $parts[1] ?? '';
             $result[$key] = $val;
         }
 

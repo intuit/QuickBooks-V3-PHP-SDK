@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schema.intuit.com/finance/v3"
-	targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
+		   targetNamespace="http://schema.intuit.com/finance/v3" elementFormDefault="qualified"
+		   attributeFormDefault="unqualified">
 	<xs:annotation>
 		<xs:documentation>
 			Product: ALL
@@ -16,7 +16,7 @@
 				Description: Base type of any top level Intuit Entity of small business type.
 			</xs:documentation>
 		</xs:annotation>
-			<xs:sequence>
+		<xs:sequence>
 			<xs:element name="Id" type="id" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">
@@ -175,7 +175,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: ALL
-						Description: 
+						Description:
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -183,7 +183,7 @@
 				<xs:annotation>
 					<xs:documentation>
 						Product: ALL
-						Description: 
+						Description:
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -249,13 +249,13 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="AppId" type="xs:string" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation xml:lang="en">
-							Product: ALL
-							Description: Identifier of Partner AppId that corresponds to this CustomField.
-						</xs:documentation>
-					</xs:annotation>
-				</xs:element>
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								Product: ALL
+								Description: Identifier of Partner AppId that corresponds to this CustomField.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -714,7 +714,7 @@
 					<xs:documentation xml:lang="en">
 						Product: ALL
 						Description: Latitude coordinate of Geocode (Geospatial Entity Object Code).[br /]Unsupported field.
-                    </xs:documentation>
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="Long" type="xs:string" minOccurs="0">
@@ -894,7 +894,7 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
-	</xs:complexType>	
+	</xs:complexType>
 	<xs:simpleType name="DeliveryTypeEnum">
 		<xs:annotation>
 			<xs:documentation>
@@ -906,7 +906,7 @@
 			<xs:enumeration value="Email"/>
 			<xs:enumeration value="Tradeshift"/>
 		</xs:restriction>
-	</xs:simpleType>	
+	</xs:simpleType>
 	<xs:simpleType name="DeliveryErrorTypeEnum">
 		<xs:annotation>
 			<xs:documentation>
@@ -918,9 +918,9 @@
 			<xs:enumeration value="Missing Info"/>
 			<xs:enumeration value="Undeliverable"/>
 			<xs:enumeration value="Delivery Server Down"/>
-			<xs:enumeration value="Bounced Email"/>						
+			<xs:enumeration value="Bounced Email"/>
 		</xs:restriction>
-	</xs:simpleType>	
+	</xs:simpleType>
 	<xs:complexType name="TransactionDeliveryInfo">
 		<xs:annotation>
 			<xs:documentation>
@@ -944,7 +944,7 @@
 						Description: Time of Delivery
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>								
+			</xs:element>
 			<xs:element name="DeliveryErrorType" type="DeliveryErrorTypeEnum" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>
@@ -952,9 +952,9 @@
 						Description: If delivery failed, this would indicate the type of the failure.
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>					
+			</xs:element>
 		</xs:sequence>
-	</xs:complexType>		
+	</xs:complexType>
 	<xs:complexType name="GenericContactType">
 		<xs:annotation>
 			<xs:documentation>
@@ -1222,7 +1222,7 @@
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="Completed"/>
-			<xs:enumeration value="Voided"/> 
+			<xs:enumeration value="Voided"/>
 			<xs:enumeration value="Unknown"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -1535,7 +1535,7 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	
+
 	<xs:simpleType name="CustomFieldTypeEnum">
 		<xs:annotation>
 			<xs:documentation>
@@ -1591,13 +1591,13 @@
 			<xs:enumeration value="SyncError">
 				<xs:annotation>
 					<xs:documentation>Object failed to sync to QuickBooks</xs:documentation>
-				</xs:annotation>				
+				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="currencyCode">
 		<xs:annotation>
-			<xs:documentation> 
+			<xs:documentation>
 				Product: ALL
 				Description: ISO 4217 Currency Code enumeration.
 			</xs:documentation>
@@ -1890,6 +1890,7 @@
 			<xs:enumeration value="UOM"/>
 			<xs:enumeration value="Vendor"/>
 			<xs:enumeration value="VendorCredit"/>
+			<xs:enumeration value="VendorPrepayment"/>
 			<xs:enumeration value="CustomFieldDefinition"/>
 			<xs:enumeration value="ChangeOrder"/>
 		</xs:restriction>

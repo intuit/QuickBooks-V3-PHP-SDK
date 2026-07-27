@@ -5,7 +5,7 @@
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
     "homepage": "http://developer.intuit.com",
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.2.5",
         "ext-mbstring": "*",
         "ext-dom": "*",
         "guzzlehttp/guzzle": "^7.9"

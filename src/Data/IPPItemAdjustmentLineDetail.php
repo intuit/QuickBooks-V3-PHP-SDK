@@ -71,7 +71,7 @@ class IPPItemAdjustmentLineDetail
 							Description: Difference in quantity
 							it will have negative value for reducing quantity
 							positive value for increasing quantity.
-					    
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
@@ -84,7 +84,7 @@ class IPPItemAdjustmentLineDetail
 							Product: QBO
 							Description: New quantity as of provided
 							transaction date.
-					    
+						
 	 * @xmlType element
 	 * @xmlNamespace http://schema.intuit.com/finance/v3
 	 * @xmlMinOccurs 0
