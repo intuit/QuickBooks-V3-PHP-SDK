@@ -56,7 +56,22 @@
             $this->setIntuitResponse($guzzleResponse);
             return $this->getLastResponse();
         } catch(RequestException $e){
-            if($e->hasResponse()){
+            if (
+                class_exists('\GuzzleHttp\Exception\ResponseException')
+                && $e instanceof \GuzzleHttp\Exception\ResponseException
+            ) {
+                // Guzzle 8: use FQCN of exception to determine if response exists
+                $hasResponse = true;
+            } elseif (method_exists($e, 'hasResponse')) {
+                // Guzzle 7: use "hasResponse" method
+                $hasResponse = $e->hasResponse();
+            } else {
+                // fallthrough
+                $hasResponse = false;
+            }
+
+
+            if($hasResponse){
                 throw new SdkException("A networking error occurs during Guzzle client request:" . Psr7\Message::toString($e->getResponse()));
             }else{
                 throw new SdkException("Network Error:" . $e->getMessage());
