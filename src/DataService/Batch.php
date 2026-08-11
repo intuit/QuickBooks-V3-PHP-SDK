@@ -117,8 +117,8 @@ class Batch
 
     /**
      * Initializes a new instance of the Batch class.
-     * @param $serviceContext The service context.
-     * @param $restHandler The rest handler.
+     * @param mixed $serviceContext The service context.
+     * @param mixed $restHandler The rest handler.
      */
     public function __construct($serviceContext, $restHandler, $isThrowExceptionOnError)
     {

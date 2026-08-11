@@ -66,6 +66,15 @@ class SyncRestHandler extends RestHandler
         return $this->httpClientInterface;
     }
 
+    /**
+     * @param HttpClientInterface $cClient
+     * @return void
+     */
+    public function setHttpClientInterface(HttpClientInterface $cClient)
+    {
+        $this->httpClientInterface = $cClient;
+    }
+
    /**
     * Update the Service Context of the request.
     * @param ServiceContext $newServiceContext The new service context that will be used for the request
