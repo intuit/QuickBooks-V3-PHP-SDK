@@ -380,7 +380,7 @@ class DataService
      * @deprecated since version 5.0.4
      * @see $this->getClientName()
      */
-    public function getClinetName(){
+    public function getClientName(){
        return $this->getClientName();
     }
 
