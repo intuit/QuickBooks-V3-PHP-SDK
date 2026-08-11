@@ -214,4 +214,34 @@ class JsonObjectSerializerTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(isset($customerWithNullPropertiesRemoved['Suffix']));
         $this->assertFalse(isset($customerWithNullPropertiesRemoved['Notes']));
     }
+
+    /**
+     * Test demonstrates that passing in a non-recursive array to the 'removeNullProperties' method
+     * will still return non-recursive arrays (like a 'CustomerRef' on an 'Invoice')
+     *
+     * Empty arrays will be filtered out
+     *
+     * @throws ReflectionException
+     */
+    public function testThatRemoveNullPropertiesLeavesStandardArraysInPlace() {
+        $invoice = [
+            "Type" => "InvoiceType",
+            "Lines" => [],
+            "CustomerRef" => [
+                'name' => 'Customer',
+                'value' => '17',
+            ],
+        ];
+
+        $jsonSerializer = new JsonObjectSerializer();
+        $removeNullPropertiesMethod = new ReflectionMethod($jsonSerializer, 'removeNullProperties');
+        $removeNullPropertiesMethod->setAccessible(true);
+
+        $serializedInvoice = $removeNullPropertiesMethod->invoke($jsonSerializer, $invoice);
+
+        // Make sure that the null and empty-string properties were removed, but all others remain
+        $this->assertArrayHasKey('CustomerRef', $serializedInvoice);
+        $this->assertArrayNotHasKey('Lines', $serializedInvoice);
+        $this->assertEquals($invoice['CustomerRef']['name'], $serializedInvoice['CustomerRef']['name']);
+    }
 }
