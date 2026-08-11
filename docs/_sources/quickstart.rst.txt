@@ -171,7 +171,7 @@ If everything works as expected, the ``$resultObj`` will be a copy of the ``Invo
           echo "The Response message is: " . $error->getResponseBody() . "\n";
       }else {
           echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
-          $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+          $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultObj, $urlResource);
           echo $xmlBody . "\n";
       }
 
@@ -228,7 +228,7 @@ Here is the Complete example and what the result looks like in QuickBooks Online
         echo "The Response message is: " . $error->getResponseBody() . "\n";
     }else {
         echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
-        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultObj, $urlResource);
         echo $xmlBody . "\n";
     }
 
@@ -293,7 +293,7 @@ Many QuickBooks Online users need to create entities with Tax. It is achieved on
         echo "The Response message is: " . $error->getResponseBody() . "\n";
     }else {
         echo "Created Id={$resultObj->Id}. Reconstructed response body:\n\n";
-        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultingObj, $urlResource);
+        $xmlBody = XmlObjectSerializer::getPostXmlFromArbitraryEntity($resultObj, $urlResource);
         echo $xmlBody . "\n";
     }
 
