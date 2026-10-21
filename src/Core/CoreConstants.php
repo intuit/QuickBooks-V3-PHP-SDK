@@ -68,7 +68,7 @@ class CoreConstants
      * Current QuickBooks Namespace for PHP SDK
      * @var int Deflate
      */
-    const NAMEPSACE_DATA_PREFIX = 'QuickBooksOnline\\API\\Data\\';
+    const NAMESPACE_DATA_PREFIX = 'QuickBooksOnline\\API\\Data\\';
 
     /**
      * OAuth 1 Mode constant.
