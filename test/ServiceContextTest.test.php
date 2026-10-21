@@ -88,7 +88,7 @@ use QuickBooksOnline\API\Core\Http\Serialization\JsonObjectSerializer;
         private function getFakeContext($response = null, $request = null)
         {
         //create mock of ServiceContext without and ignore it's construct
-            $fake = $this->getMockBuilder('ServiceContext')
+            $fake = $this->getMockBuilder(\QuickBooksOnline\API\Core\ServiceContext::class)
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -222,7 +222,7 @@ class JsonObjectSerializer extends IEntitySerializer
      */
     public function Deserialize($message, $limitToOne = false)
     {
-        return $this->convertObject($this->checkResult(json_decode($message)),
+        return $this->convertObject($this->checkResult(json_decode((string) $message)),
                                          $limitToOne);
     }
 }
