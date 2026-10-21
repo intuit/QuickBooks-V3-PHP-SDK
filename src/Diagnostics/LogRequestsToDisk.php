@@ -23,6 +23,12 @@ class LogRequestsToDisk
      */
     public $ServiceRequestLoggingLocation;
 
+	/**
+	 * The Service Request Logging Callback. (bch36)
+	 * @var callable
+	 */
+	public $ServiceRequestLoggingCallback;
+	
     /**
      * Initializes a new instance of the LogRequestsToDisk class.
      * @param bool enableServiceRequestLogging Value indicating whether to log request response messages
@@ -50,6 +56,15 @@ class LogRequestsToDisk
         $this->ServiceRequestLoggingLocation = $logDirectory;
     }
 
+	/** (bch36)
+	 * Set a callback function for request and response logs
+	 * @param callable $callback     The callback function for receiving request and response logs
+	 */
+	public function setLogCallback($callback)
+	{
+		$this->ServiceRequestLoggingCallback = $callback;
+	}
+	
     /**
      * Gets the log destination folder
      * @return string log destination folder
@@ -104,15 +119,16 @@ class LogRequestsToDisk
                     $collapsedHeaders[] = "{$key}: {$val}";
                 }
 
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." URI FOR SEQUENCE ID {$sequenceNumber}\n==================================\n{$url}\n\n",
-                                  FILE_APPEND);
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." HEADERS\n================\n".implode("\n", $collapsedHeaders)."\n\n",
-                                  FILE_APPEND);
-                file_put_contents($filePath,
-                                  ($isRequest?"REQUEST":"RESPONSE")." BODY\n=============\n".$xml."\n\n",
-                                  FILE_APPEND);
+                $message =
+					($isRequest?"REQUEST":"RESPONSE")." URI FOR SEQUENCE ID {$sequenceNumber}\n==================================\n{$url}\n\n" .
+					($isRequest?"REQUEST":"RESPONSE")." HEADERS\n================\n".implode("\n", $collapsedHeaders)."\n\n" .
+					($isRequest?"REQUEST":"RESPONSE")." BODY\n=============\n".$xml."\n\n";
+
+                file_put_contents($filePath, $message);
+
+				if (is_callable($this->ServiceRequestLoggingCallback))
+					call_user_func($this->ServiceRequestLoggingCallback, $isRequest, $message, $url, $xml, $headers);
+				
             } catch (\Exception $e) {
                 throw new IdsException("Exception during LogPlatformRequests.");
             }
