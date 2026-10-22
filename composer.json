@@ -1,6 +1,6 @@
 {
-    "name": "quickbooks/v3-php-sdk",
-    "description": "The Official PHP SDK for QuickBooks Online Accounting API",
+    "name": "casbiz/v3-php-sdk",
+    "description": "The Fork Official PHP SDK for QuickBooks Online Accounting API",
     "type": "library",
     "keywords": ["api", "http", "rest", "quickbooks", "smallbusiness"],
     "homepage": "http://developer.intuit.com",
