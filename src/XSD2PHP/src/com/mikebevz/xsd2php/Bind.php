@@ -145,6 +145,9 @@ class Bind extends Common
                 list($ns, $name) = $this->parseQName($child->nodeName, true);
                 //$className = $this->urnToPhpName($ns)."\\".$name;
                 try {
+                    if (!$refl->hasProperty($name)) {
+                        continue;
+                    }
                     $propertyDocs = $refl->getProperty($name)->getDocComment();
                 } catch (\ReflectionException $e) {
                     if ($this->ignoreUnknownElements) {
