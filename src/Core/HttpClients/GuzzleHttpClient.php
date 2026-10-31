@@ -41,7 +41,7 @@
         if(isset($guzzleClient)){
             $this->guzzleClient = $guzzleClient;
         }else{
-            $this->guzzleClient = new Client();
+            $this->guzzleClient = new Client(['http_errors' => false]);
         }
      }
 
