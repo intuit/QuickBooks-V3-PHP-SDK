@@ -1189,7 +1189,7 @@ class DataService
                     $parsedResponseBody = $this->responseSerializer->Deserialize($responseXmlObj->QueryResponse->asXML(), false);
                 }
             } catch (\Exception $e) {
-                throw new \Exception("Exception appears in converting Response to XML.");
+                throw new \Exception("Exception appears in converting Response to XML.", 0, $e);
             }
 
             return $parsedResponseBody;
