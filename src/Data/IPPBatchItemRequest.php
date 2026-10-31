@@ -91,6 +91,11 @@ class IPPBatchItemRequest
 	 * @var string
 	 */
 	public $optionsData;
-
-
+    /**
+     * @Definition Specifies whether the operation attribute is specified in the request or not
+     * @xmlType attribute
+     * @xmlName operationSpecified
+     * @var true
+     */
+    public bool $operationSpecified;
 } // end class IPPBatchItemRequest
