@@ -151,6 +151,12 @@ class DataService
     private $clientName = CoreConstants::CLIENT_CURL;
 
     /**
+     * Optional Request Id to be sent as query parameter on write operations
+     * @var string|null
+     */
+    private $requestId;
+
+    /**
      * Optional list of include parameter values appended to API request URIs.
      * Mirrors the Java SDK's List<String> includeParam on Context.
      * @var array|null
@@ -441,6 +447,19 @@ class DataService
     }
 
     /**
+     * Set the request id which will be appended as query parameter to supported operations (Add, Update, Void,
+     * SendEmail) for idempotency.
+     *
+     * @param string $requestId
+     * @return $this
+     */
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+        return $this;
+    }
+
+    /**
      * New Static function for static Reading from Config or Passing Array
      * The config needs to include
      *
@@ -712,6 +731,7 @@ class DataService
             case DataService::ADD:
             case DataService::VOID:
             case DataService::UPDATE:
+                $uri = $this->appendRequestIdToUrl($uri);
                 $requestParameters = $this->initPostRequest($entity, $uri);
                 break;
             case DataService::FINDBYID:
@@ -729,6 +749,7 @@ class DataService
                 $requestParameters = $this->getPostRequestParameters($uri, "multipart/form-data; boundary={$boundaryString}");
                 break;
             case DataService::SENDEMAIL:
+                $uri = $this->appendRequestIdToUrl($uri);
                 $requestParameters = $this->getPostRequestParameters($uri . (is_null($email) ? '' : '?sendTo=' . urlencode($email)), CoreConstants::CONTENTTYPE_OCTETSTREAM);
                 break;
         }
@@ -2052,5 +2073,15 @@ class DataService
         }else{
             return (String)$id;
         }
+    }
+
+    private function appendRequestIdToUrl($uri)
+    {
+        if (isset($this->requestId) && $this->requestId !== '') {
+            $delimiter = str_contains($uri, '?') ? '&' : '?';
+            $uri = $uri . $delimiter . 'requestid=' . urlencode($this->requestId);
+        }
+        $this->requestId = null;
+        return $uri;
     }
 }
